@@ -1,0 +1,619 @@
+/* homepageの余白を無くす */
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: sans-serif;
+}
+
+/* list要素の点を無くす */
+li {
+    list-style-type: none;
+}
+
+/* headerのCSS */
+#theme-select, #language-select:hover {
+cursor: pointer;
+}
+
+header {
+    position: sticky;
+    top: -52px;
+    z-index: 999;
+}
+
+header p {
+    text-align: center;
+    background-color: #F5F5F5;
+    font-size: 18.8px;
+    font-weight: normal;
+    margin: 0px;
+    padding: 15px;
+    border-bottom: solid;
+    border-width: thin;
+}
+
+.header-lead-text {
+    text-decoration: none;
+    color: rgb(144, 95, 204);
+}
+
+.header-lead-text:hover {
+    text-decoration: underline;
+}
+
+.topmenu-right-theme {
+    background-image: url("./lang.png");
+    background-repeat: no-repeat;
+    background-position-y: center;
+    padding: 3px 0 3px 20px;
+    margin-left: 15px;
+    border: none;
+    outline: none;
+    appearance: none;
+    font-size: 14px;
+}
+
+.topmenu-right-theme:hover {
+    background-color: #cdcdcd
+}
+
+.topmenu-right-search {
+    margin-left: 15px;
+}
+
+.login {
+    color: black;
+    text-decoration: none;
+    margin-left: 15px;
+    font-size: 14px;
+}
+
+.topmenu-right-btn {
+    margin-left: 15px;
+    padding: 5px 8px;
+    font-size: 15px;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+    border-style: none;
+}
+
+.topmenu-right-btn:hover {
+    opacity: 70%;
+    cursor: pointer;
+}
+
+.topmenu {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 10px;
+    border-bottom: solid;
+    border-width: thin;
+    background-color: white;
+}
+
+.topmenu-right-lang {
+    background-image: url("./language.png");
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-color: #F5F5F5;;
+    padding: 3px 20px;
+    margin-left: 15px;
+    border: none;
+    outline: none;
+    appearance: none;
+    font-size: 16px;
+}
+
+.topmenu-left-mg {
+    margin-left: 100px;
+}
+
+.topmenu-left {
+    display: inline;
+    padding-left: 0;
+}
+
+.topmenu-left-list {
+    display: inline;
+    margin-right: 20px;
+}
+
+.top-right-new {
+    display: inline-block;
+    font-weight: bold;
+    vertical-align: top;
+    font-size: 6px;
+    padding: 1.5px 2.5px;
+    color: white;
+    background-color: blue;
+    border-radius: 10px;
+}
+
+.top-icon {
+    vertical-align: middle;
+}
+
+.top-index {
+    color: rgb(129, 128, 128);
+    text-decoration: none;
+    position: relative;
+}
+
+.bread-list {
+    background-color: #F5F5F5;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid;
+    border-width: thin;
+}
+
+.bread-navi {
+    color: black;
+    text-decoration: none;
+}
+
+.bread-navi:hover {
+    text-decoration: underline;
+}
+
+/* headerサブメニュー */
+.sub {
+    display: inline-block;
+}
+
+.sub-sub {
+    position: absolute;
+    padding-left: 0;
+    border: 1px solid black;
+    background-color: white;
+}
+
+.sub-hide {
+    display: none;
+}
+
+.top-index:hover + .sub-hide {
+    display: block;
+    
+}
+
+.sub-hide:hover {
+    display: block;
+}
+
+.sub-sub li {
+    line-height: 25px;
+}
+
+.sub-small-text {
+    font-size: 12px;
+}
+
+.sub-item {
+    border-left: 3px solid black;
+    margin: 25px 20px;
+    padding-left: 15px;
+}
+
+.sub-item:hover {
+    background-color: rgb(231, 231, 231);
+}
+
+/* mainのCSS */
+.main-text {
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.main-left {
+    width: 25%;
+    margin-left: 154.5px;
+}
+
+.main-center {
+    width: 50%;
+}
+
+.main-right {
+    width: 25%;
+    margin-left: 30px;
+}
+
+/* 言語変更のCSS */
+
+.topmenu-right-mg {
+    margin-right: 130px;
+}
+
+#change-language {
+    display: none;
+  }
+
+.change-language-img {
+    vertical-align: middle;
+    margin-bottom: 1px;
+}
+
+.change-language-icon {
+    cursor: pointer;
+    position: relative;
+}
+
+.change-language-menu {
+    display: none;
+    padding: 10px 5px;
+    margin-top: 2px;
+    margin-left: 0;
+    background-color: rgb(246, 246, 246);
+}
+
+#change-language:checked + .change-language-icon + .change-language-menu {
+    display: block;
+    border: 1px solid black;
+    position: absolute;
+}
+
+.change-language-space {
+    line-height: 20px;
+    padding: 10px 5px;
+    margin: 2px;
+}
+
+.change-language-space:hover {
+    background-color: rgb(184, 184, 184);
+    margin: 2px;
+    border-radius: 5px;
+}
+
+.change-language-list {
+    font-size: 13px;
+    color: black;
+    text-decoration: none;
+}
+
+.help-page {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background-color: #cdcdcd;
+    border-radius: 100%;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.help-page:hover {
+    background-color: rgb(66, 66, 200);
+}
+
+.toggle-wrapper {
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+}
+
+#toggle {
+    position: absolute;
+    margin-top: 11px;
+    margin-left: 5px;
+    width: 140px;
+    height: 18px;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.toggle-label {
+    position: relative;
+    vertical-align: middle;
+    width: 40px;
+    height: 16px;
+    background-color: rgb(70, 70, 70);
+    border: 1px solid black;
+    display: inline-block;
+    border-radius: 16px;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.toggle-label::after {
+    position: absolute;
+    content: "";
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: 0;
+    background-color: white;
+    border-radius: 100%;
+    transition: 0.4s;
+}
+
+#toggle:checked + .toggle-label {
+    background-color: rgb(65, 65, 221);
+}
+
+#toggle:checked + .toggle-label::after {
+    left: 24px;
+}
+
+.toggle-title {
+    display: inline-block;
+    font-size: 10px;
+}
+
+/* mainのflexの左側 */
+.main-left-sticky {
+    position: sticky;
+    top: 80px;
+    overflow: auto;
+    height: 100vh;
+    width: 90%;
+}
+
+.search-left {
+    width: 200px;
+    max-width: 25%;
+    border-radius: 10px;
+    border-width: thin;
+    margin-bottom: 30px;
+}
+
+.small-index-left {
+    font-size: 20px;
+    background-color: #FFC0CB;
+    width: fit-content;
+    padding: 10px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    border-left: 2px solid red;
+    color: black;
+    text-decoration: none;
+    line-height: 70px;
+}
+
+.small-index-left:hover {
+    text-decoration: underline;
+} 
+
+.small-index-left-refa {
+    font-size: 20px;
+    padding: 10px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    text-decoration: none;
+    color: black;
+    text-decoration: none;
+    line-height: 70px;
+}
+
+.small-index-left-refa:hover {
+    text-decoration: underline;
+}
+
+.left-index {
+	display: inline-block;
+    padding-left: 0;
+} 
+
+.left-index-list{
+    text-align: left;
+    margin-bottom: 15px;
+    line-height: 25px;
+}
+
+.left-index-list:hover {
+    cursor: pointer;
+}
+
+.index-left-color {
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.index-left-color:hover {
+    text-decoration: underline;
+}
+
+/* mainのflexの中央 */
+.large-index-center {
+    font-size: 40px;
+}
+
+.main-center-text {
+    line-height: 30px;
+}
+
+.main-center span {
+    background-color: rgb(237, 237, 237);
+    padding: 1px 3px;
+}
+
+.main-center-h2 {
+    text-decoration: none;
+    color: black;
+    font-size: 30px;
+}
+
+.main-center-h2:hover {
+    text-decoration: underline;
+}
+
+.main-center-target {
+    text-decoration: none;
+    color: black;
+}
+
+.main-center-target:hover {
+    text-decoration: underline;
+}
+
+.main-center-para {
+    margin-left: 15px;
+}
+
+.question-box {
+   border: 1px solid rgb(192, 192, 192);
+    background-color: rgb(240, 240, 241);
+    padding: 15px;
+    margin: 1px;
+}
+
+.question-box-title {
+    font-size: 30px;
+}
+
+.answear-question {
+    font-size: 15px;
+    padding: 5px 10px;
+    margin-bottom: 15px;
+}
+
+.btn-img-size {
+    width: 13px;
+    height: 13px;
+    margin-right: 10px;
+}
+
+.question-short-text {
+    text-decoration: none;
+}
+
+.question-last-text {
+    margin-top: 60px;
+}
+
+/* mainのflexの右側 */
+.main-right-sticky {
+    position: sticky;
+    top: 80px;
+}
+
+.small-index-right {
+    margin-left: 25px;
+    font-size: 20px;
+}
+
+.index-right {
+    color: rgb(93, 93, 93);
+    text-decoration: none;
+    line-height: 40px;
+}
+
+.main-center-down {
+    margin-bottom: 30px;
+}
+
+.index-right-block {
+    border-left: 2px solid rgb(204, 204, 204);
+    padding-left: 20px;
+    margin-left: 20px;
+}
+
+/* footerのCSS */
+
+footer {
+    background-color: rgb(240, 240, 241);
+}
+
+.footer-top {
+    display: flex;
+    border-bottom: 1px solid rgb(192, 192, 192);
+    padding: 50px 0;
+    margin: 30px 130px;
+}
+
+.footer-top-left {
+    width: 25%;
+    display: inline;
+    line-height: 30px;
+}
+
+.footer-icon-ul {
+    display: inline-block;
+    padding-left: 0;
+}
+
+.footer-icon-list {
+    display: inline;
+    text-align: left;
+}
+
+.footer-top-right {
+    width: 75%;
+    margin-left: 200px;
+}
+
+.footer-right-ul {
+    display: inline;
+    padding-left: 0;
+}
+
+.footer-right-li {
+    display: inline-block;
+    vertical-align: top;
+    line-height: 35px;
+    margin-right: 100px;
+}
+
+.footer-column-title {
+    padding-left: 0;
+}
+
+.footer-middle-ul {
+    display: inline;
+    margin: 0 130px;
+    padding-left: 0;
+}
+
+.footer-middle-li {
+    display: inline;
+    margin-right: 15px;
+}
+
+.footer-column-content {
+    text-decoration: none;
+    color: rgb(79, 78, 78);
+    font-size: 13px;
+}
+
+.footer-column-list-space {
+    line-height: 25px;
+}
+
+.footer-middle-li-text {
+    color: rgb(79, 78, 78);
+    font-size: 12px;
+}
+
+.footer-middle-li-text:hover {
+    text-decoration: none;
+}
+
+.footer-right-text {
+    font-size: 12px;
+    color: rgb(79, 78, 78);
+    margin: 50px 130px 0 130px;
+    padding-bottom: 35px;
+}
+
+.sns-icon {
+    height: 25px;
+    width: 25px;
+    margin-top: 20px;
+}
+
+.footer-mdn-icon {
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.footer-icon {
+    display: inline-block;
+    vertical-align: middle;
+}
