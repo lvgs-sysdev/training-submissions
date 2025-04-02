@@ -1,0 +1,290 @@
+/* main-header sub-header */
+.header-main {
+    display: flex;
+    top: 10px;
+    bottom: 10px;
+    margin-right: 50px;
+}
+
+/* main navigation */
+
+.main-nav {
+    display: inline-block;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.main-nav>ul>li {
+    display: inline-block;
+}
+
+/* .nav-link-list {
+  display: inline-block;
+  } */
+
+.nav-link-list {
+    padding-left: 0;
+}
+
+.nav-link-list>li {
+    list-style-type: none;
+}
+
+.nav-link>a {
+    color: #010718;
+    text-decoration: none;
+    padding: 15px 10px;
+}
+
+.new::after {
+    content: "NEW";
+    display: inline-block;
+    color: #fff;
+    background: #266bd8;
+    font-size: 8px;
+    font-weight: bold;
+    width: 20px;
+    height: 10px;
+    border-radius: 15px;
+    padding: 2px 5px;
+    text-align: center;
+    vertical-align: super;
+}
+
+.top {
+    font-size: small;
+    font-weight: bold;
+}
+
+.bottom {
+    font-size: 8pt;
+}
+
+.nav-link>a:hover {
+    background-color: rgb(244, 141, 141);
+    color: red;
+    border-radius: 5px;
+}
+
+/* doropdown-list */
+.dropdown-list {
+    display: none;
+    padding: 0px;
+    margin: 0px;
+    z-index: 100;
+}
+
+.nav-link:hover .dropdown-list {
+    display: block;
+    position: absolute;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid gray;
+    margin-top: 15px;
+    z-index: 100;
+}
+
+.dropdown-list li {
+    border-left: 2px solid #52f44a;
+    padding: 0px 50px;
+    margin: 5px 10px;
+    border-radius: 5px;
+}
+
+.dropdown-list li:hover {
+    display: block;
+    background-color: #dddddd;
+    border-radius: 1px;
+}
+
+.nav-link ul li {
+    list-style-type: none;
+    padding: 10px 15px;
+}
+
+/* .doropdown-list li {
+  list-style-type: none;
+  } だと反映されないなぜ？*/
+
+.dropdown-link a {
+    text-decoration: none;
+    color: #010718;
+    /* font-size: 10.5pt; */
+    text-align: none;
+}
+
+/* thema bottun login sign */
+.btn-func {
+    margin-left: auto;
+}
+
+.btn-func>li {
+    display: inline-block;
+    font-size: 10.5pt;
+    margin-left: 10px;
+}
+
+/* TODO: see https://picturepan2.github.io/spectre/components/menu.html#google_vignette */
+.thema {
+    border: none;
+    background-color: white;
+    text-decoration: none;
+    color: #010718;
+    border: 1px solid white;
+}
+
+.thema::before {
+    content: '';
+    background-image: url('../../image/icon/contrast_24dp_1F1F1F.svg');
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+    transform: translateY(5px);
+    /* ちょっとずれるから修正　https://qiita.com/7note/items/f24e276fe3c79f55d789 */
+}
+
+.thema-list {
+    display: none;
+    padding: 0px;
+    margin: 0px;
+    padding: 10px 10px;
+    z-index: 100;
+}
+
+.thema-list li {
+    list-style-type: none;
+    border-radius: 5px;
+}
+
+.thema-list button {
+    background-color: white;
+    border-radius: 5px;
+    border: 1pt solid #e0e0e0;
+    width: 110px;
+    padding: 5px 10px;
+    text-align: left;
+}
+
+.OS-Default::before {
+    content: '';
+    background-image: url('../../image/icon/contrast_24dp_1F1F1F.svg');
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+    transform: translateY(5px);
+    /* ちょっとずれるから修正　https://qiita.com/7note/items/f24e276fe3c79f55d789 */
+}
+
+.Light::before {
+    content: '';
+    background-image: url('../../image/icon/light_mode_24dp_1F1F1F.svg');
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+    transform: translateY(5px);
+    /* ちょっとずれるから修正　https://qiita.com/7note/items/f24e276fe3c79f55d789 */
+}
+
+.Dark::before {
+    content: '';
+    background-image: url('../../image/icon/dark_mode_24dp_1F1F1F.svg');
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+    transform: translateY(5px);
+    /* ちょっとずれるから修正　https://qiita.com/7note/items/f24e276fe3c79f55d789 */
+}
+
+/* */
+
+.thema:hover {
+    background-color: #c1c1c1;
+    border-radius: 5px;
+}
+
+.thema:focus {
+    background-color: white;
+    border: 1px solid blue;
+    border-radius: 5px;
+}
+
+.thema:focus+.thema-list {
+    display: block;
+    position: absolute;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid gray;
+    margin-top: 1px;
+}
+
+.thema-list li :hover {
+    display: block;
+    background-color: #7b7d7d;
+}
+
+.search-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid #777777;
+    border-radius: 25px;
+}
+
+.search-form input {
+    width: 20px;
+    padding: 5px 10px;
+    border: none;
+    box-sizing: border-box;
+    font-size: 1em;
+    outline: none;
+}
+
+.search-form input:focus {
+    width: 100px;
+    left: 0;
+}
+
+.search-form input::placeholder {
+    color: #777777;
+}
+
+.search-form button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 25px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.search-form button::after {
+    width: 15px;
+    height: 15px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z' fill='%23777777'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    content: '';
+}
+
+.login {
+    text-decoration: none;
+    color: #010718;
+}
+
+.signup {
+    padding: 10px 12px;
+    border-radius: 5px;
+    background-color: #010718;
+    text-decoration: none;
+    color: white;
+}
+
+.signup:hover {
+    opacity: 0.7;
+}

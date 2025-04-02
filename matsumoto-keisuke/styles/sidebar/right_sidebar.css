@@ -1,0 +1,21 @@
+/* right */
+.right-side {
+  position: sticky;
+  top: 200px;
+  align-self: flex-start;
+}
+
+.right-side ul {
+  border-left: 2px solid #c1c1c1;
+}
+
+.right-side ul li {
+  list-style: none;
+  margin-bottom: 15px;
+  font-size: 12px;
+  
+  a {
+    color: #7b7d7d;
+    text-decoration: none;
+  }
+}
