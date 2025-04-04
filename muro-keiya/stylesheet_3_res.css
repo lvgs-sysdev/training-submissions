@@ -1,0 +1,147 @@
+@media screen and (max-width: 1200px) {
+    .header-right button {
+        margin-right: 0px;
+    }
+
+    .menu-btn {
+        margin-right: 15px;
+    }
+
+    .side-bar-left-res {
+        display: block;
+        width: 300px;
+        height: 280px;
+    }
+
+    .side-bar-left-res-contents h4 {
+        font-size: 20px;
+        font-weight: normal;
+    }
+
+    .side-bar-left-res-contents li {
+        height: 40px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        border-left: 2px solid #CDCDCD;
+        padding-left: 20px;
+    }
+
+    .side-bar-left-res-contents li a {
+        width: 100%;
+    }
+
+    .side-bar-left-res-contents li a:hover {
+        color: #4A8CD0;
+    }
+
+    .main-text {
+        width: 80%;
+    }
+
+    .main-text-contents {
+        margin-top: 50px;
+        margin-right: 50px;
+    }
+
+    .side-bar-right {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .menu-btns {
+        display: none;
+    }
+
+    .header-right {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .side-bar-left {
+        display: none;
+    }
+
+    .main-text {
+        width: 100%;
+    }
+
+    .main-text-contents h1 {
+        font-size: 24px;
+        margin-left: 35px;
+    }
+
+    .main-text-contents {
+        margin-right: 35px;
+    }
+
+    .main-text-contents p {
+        margin-left: 35px;
+    }
+
+    section h2 {
+        margin-left: 35px;
+        font-size: 22px;
+    }
+
+    section h3 {
+        margin-left: 35px;
+    }
+
+    section h3:hover {
+        margin-left: 30px;
+    }
+
+    section h4 {
+        margin-left: 35px;
+    }
+
+    .mdn-help {
+        margin-left: 35px;
+    }
+
+    .footer {
+        height: 735px;
+    }
+
+    .footer-top-wrapper {
+        height: 570px;
+        display: block;
+        padding-bottom: 0px;
+    }
+
+    .footer-top-mdn {
+        flex-basis: 100%;
+    }
+
+    .footer-top-index {
+        flex-basis: 50%;
+        display: block;
+    }
+
+    .footer-top-index-left {
+        margin-bottom: 50px;
+    }
+}
+
+@media screen and (max-width: 660px) {
+    .mdn-help {
+        height: 300px;
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .mdn-help {
+        height: 325px;
+    }
+
+    .footer-bottom-upside {
+        display: block;
+    }
+
+    .footer-bottom-policy ul {
+        justify-content: left;
+    }
+}

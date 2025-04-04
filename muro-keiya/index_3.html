@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet_3.css">
+    <link rel="stylesheet" href="stylesheet_3_res.css">
+    <script src="script_3.js" defer></script>
+    <script src="script_3_res.js" defer></script>
+    <title>HTML:ハイパーテキストマークアップ言語｜MDN</title>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-left">
+                <img src="src/img/mdn-web-docs-header_2.jpg">
+                <div class="menu-btns">
+                    <ul class="menu-btns-ul">
+                        <li class="menu-btn">
+                            <a href="#">Reference</a>
+                            <ul>
+                                <li class="menu-btn-list border-red">
+                                    <div>
+                                        <p class="btn-title">HTML</p>
+                                        <p class="btn-describe">structure of content on the web</p>
+                                    </div>
+                                </li>
+                                <li class="menu-btn-list border-blue">
+                                    <div>
+                                        <p class="btn-title">CSS</p>
+                                        <p class="btn-describe">Code used to describe document style</p>
+                                    </div>
+                                </li>
+                                <li class="menu-btn-list border-yellow">
+                                    <div>
+                                        <p class="btn-title">JavaScript</p>
+                                        <p class="btn-describe">General-purpose scripting language</p>
+                                    </div>
+                                </li>
+                                <li class="menu-btn-list border-green">
+                                    <div>
+                                        <p class="btn-title">HTTP</p>
+                                        <p class="btn-describe">Protocol for transmitting web resources</p>
+                                    </div>
+                                </li>
+                                <li class="menu-btn-list border-purple">
+                                    <div>
+                                        <p class="btn-title">Web APIs</p>
+                                        <p class="btn-describe">Interfaces for building web applications</p>
+                                    </div>
+                                </li>
+                                <li class="menu-btn-list border-grey">
+                                    <div>
+                                        <p class="btn-title">Web Extensions</p>
+                                        <p class="btn-describe">Developing extensions for web browsers</p>
+                                    </div>
+                                </li>
+                                <li class="menu-btn-list border-grey">
+                                    <div>
+                                        <p class="btn-title">Accessibility</p>
+                                        <p class="btn-describe">Build web projects usable for all</p>
+                                    </div>
+                                </li>
+                                <li class="menu-btn-list border-grey">
+                                    <div>
+                                        <p class="btn-title">Web Technology</p>
+                                        <p class="btn-describe">Web technology reference for development</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="menu-btn">
+                            <a href="#">Learn</a>
+                            <ul>
+                                <li class="menu-btn-list border-red">
+                                    <div>
+                                        <p class="btn-title">MDN Learning Area</p>
+                                        <p class="btn-describe">Learn web development</p>
+                                    </div>
+                                </li>
+                                <li class="menu-btn-list border-red">
+                                    <div>
+                                        <p class="btn-title">HTML</p>
+                                        <p class="btn-describe">Learn to structure web content with HTML</p>
+                                    </div>
+                                </li>
+                                <li class="menu-btn-list border-blue">
+                                    <div>
+                                        <p class="btn-title">CSS</p>
+                                        <p class="btn-describe">Learn to style content using CSS</p>
+                                    </div>
+                                </li>
+                                <li class="menu-btn-list border-yellow">
+                                    <div>
+                                        <p class="btn-title">JavaScript</p>
+                                        <p class="btn-describe">Learn to run scripts in the browser</p>
+                                    </div>
+                                </li>
+                                <li class="menu-btn-list border-grey">
+                                    <div>
+                                        <p class="btn-title">Accessibility</p>
+                                        <p class="btn-describe">Learn to make the web accessible to all</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="menu-btn">
+                            <a href="#">Plus</a>
+                            <ul>
+                                <li class="menu-btn-list border-red">
+                                    <div>
+                                        <p class="btn-title">Overview</p>
+                                        <p class="btn-describe">A customized MDN experience</p>
+                                    </div>
+                                </li>
+                                <li class="menu-btn-list border-red">
+                                    <div>
+                                        <p class="btn-title">AI Help</p>
+                                        <p class="btn-describe">Get real-time assistance and support</p>
+                                    </div>
+                                </li>
+                                <li class="menu-btn-list border-red">
+                                    <div>
+                                        <p class="btn-title">Updates</p>
+                                        <p class="btn-describe">All browser compatibility updates at a glance</p>
+                                    </div>
+                                </li>
+                                <li class="menu-btn-list border-red">
+                                    <div>
+                                        <p class="btn-title">Documentation</p>
+                                        <p class="btn-describe">Learn how to use MDN Plus</p>
+                                    </div>
+                                </li>
+                                <li class="menu-btn-list border-red">
+                                    <div>
+                                        <p class="btn-title">FAQ</p>
+                                        <p class="btn-describe">Frequently asked questions about MDN Plus</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="menu-btn">
+                            <a href="#">Curriculum<sup class="right-script">NEW</sup></a>
+                        </li>
+                        <li class="menu-btn">
+                            <a href="#">Blog</a>
+                        </li>
+                        <li class="menu-btn">
+                            <a href="#">Tools</a>
+                            <ul>
+                                <li class="menu-btn-list border-grey">
+                                    <div>
+                                        <p class="btn-title">Playground</p>
+                                        <p class="btn-describe">Write, test and share your code</p>
+                                    </div>
+                                </li>
+                                <li class="menu-btn-list border-grey">
+                                    <div>
+                                        <p class="btn-title">HTTP Observatory</p>
+                                        <p class="btn-describe">Scan a website for free</p>
+                                    </div>
+                                </li>
+                                <li class="menu-btn-list border-grey">
+                                    <div>
+                                        <p class="btn-title">AI Help</p>
+                                        <p class="btn-describe">Get real-time assistance and support</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="header-right">
+                <button class="theme">◐Theme</button>
+                <button class="search">search</button>
+                <button class="log-in">Log in</button>
+                <button class="sigh-up">Sign up for free</button>
+            </div>
+        </div>
+    </header>
+    <nav class="nav">
+        <div class="container">
+            <ol class="breadcrumbs">
+                <li><a href="#">開発者向けのウェブ技術</a></li>
+                <li><a href="#">HTML</a></li>
+            </ol>
+            <div class="language">
+                <div class="ja-btn">
+                    <img src="src/img/internet.png"><span>日本語</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="main">
+        <div class="container">
+            <div class="notice">
+                <div class="info-mark">i</div><span>このページはコミュニティーの尽力で英語から翻訳されました。MDN Web Docsコミュニティーについてもっと知り、仲間になるにはこちらから。</span>
+            </div>
+            <div class="main-text-wrapper">
+                <div class="side-bar-left">
+                    <div class="filter-content">
+                        <div class="filter">
+                            <img src="src/img/filter.png" alt="filterマーク"><input type="text" placeholder="Filter">
+                        </div>
+                    </div>
+                    <div class="side-bar-left-res">
+                        <div class="side-bar-left-res-contents">
+                            <h4>この記事では</h4>
+                            <ul id="tableOfContentsListRes"></ul>
+                        </div>
+                    </div>
+                    <div class="left-contents">
+                        <div class="html-contents">
+                            <p class="html-index">HTML</p>
+                            <details class="ac-first-layor ac-setting">
+                                <summary class="ac-first-summary">チュートリアル</summary>
+                                <ul class="ac-first-ul">
+                                    <li class="ac-setting"><a href="#">初めてのウェブサイト:コンテンツの作成</a></li>
+                                </ul>
+                                <details class="ac-second-layor">
+                                    <summary class="ac-second-summary ac-setting"><a href="#">HTMLによるコンテンツの構造化</a></summary>
+                                    <ul class="ac-second-ul ac-setting">
+                                        <li class="ac-setting"><a href="#">基本的なHTMLの構文</a></li>
+                                        <li class="ac-setting"><a href="#">ヘッド部には何が入る？ウェブページのメタデータ</a></li>
+                                        <li class="ac-setting"><a href="#">HTMLの見出しと段落</a></li>
+                                        <li class="ac-setting"><a href="#">強調と重要性</a></li>
+                                        <li class="ac-setting"><a href="#">リスト</a></li>
+                                        <li class="ac-setting"><a href="#">文書とウェブサイトの構造</a></li>
+                                        <li class="ac-setting"><a href="#">高度なテキスト装飾</a></li>
+                                        <li class="ac-setting"><a href="#">リンクの作成</a></li>
+                                        <li class="ac-setting"><a href="#">課題：手紙のマークアップ</a></li>
+                                        <li class="ac-setting"><a href="#">課題：コンテンツのページの構造化</a></li>
+                                        <li class="ac-setting"><a href="#">HTML の画像</a></li>
+                                        <li class="ac-setting"><a href="#">動画と音声のコンテンツ</a></li>
+                                        <li class="ac-setting"><a href="#">Mozillaのスプラッシュページ</a></li>
+                                        <li class="ac-setting"><a href="#">HTML の表の基本</a></li>
+                                        <li class="ac-setting"><a href="#">HTML 表のアクセシビリティ</a></li>
+                                        <li class="ac-setting"><a href="#">課題：惑星データの構造化</a></li>
+                                        <li class="ac-setting"><a href="#">HTML におけるフォームとボタン</a></li>
+                                        <li class="ac-setting"><a href="#">HTML のデバッグ</a></li>
+                                    </ul>
+                                </details>
+                            </details>
+                            <details class="ac-first-layor ac-setting">
+                                <summary class="ac-first-summary">ガイド</summary>
+                                <ul class="ac-first-ul">
+                                    <li class="ac-setting"><a href="#">コンテンツカテゴリー</a></li>
+                                    <li class="ac-setting"><a href="#">ブロックレベル要素</a></li>
+                                    <li class="ac-setting"><a href="#">インライン要素</a></li>
+                                    <li class="ac-setting"><a href="#">互換モードと標準モード</a></li>
+                                    <li class="ac-setting"><a href="#">HTML で使用される日付と時刻の形式</a></li>
+                                    <li class="ac-setting"><a href="#">制約検証</a></li>
+                                    <li class="ac-setting"><a href="#">Microdata</a></li>
+                                    <li class="ac-setting"><a href="#">Microformats</a></li>
+                                    <li class="ac-setting"><a href="#">ビューポートメタタグ</a></li>
+                                    <li class="ac-setting"><a href="#">別オリジンの画像とキャンバスを利用可能にする</a></li>
+                                </ul>
+                            </details>
+                        </div>
+                        <div class="reference-contents">
+                            <p>リファレンス</p>
+                            <details class="ac-first-layor ac-setting">
+                                <summary class="ac-first-summary">HTML要素</summary>
+                                <ul class="ac-first-ul">
+                                    <li class="ac-setting"><a href="#">&lt;a&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;abbr&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;acronym&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;address&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;area&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;article&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;aside&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;audio&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;b&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;base&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;bdi&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;big&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;blockquote&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;body&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;br&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;button&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;canvas&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;caption&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;center&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;cite&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;code&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;col&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;colgroup&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;data&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;datalist&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;dd&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;del&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;details&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;dfn&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;dialog&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;dir&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;div&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;dl&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;dt&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;em&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;embed&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;fencedframe&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;fieldset&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;figcaption&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;figure&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;font&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;footer&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;form&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;frame&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;frameset&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;h1&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;head&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;header&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;hgroup&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;hr&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;html&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;i&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;iframe&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;img&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;input&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;ins&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;kbd&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;label&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;legend&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;li&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;link&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;main&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;map&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;mark&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;marquee&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;menu&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;meta&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;meter&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;nav&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;nobr&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;noembed&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;noframes&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;noscript&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;object&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;ol&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;optgroup&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;option&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;output&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;p&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;param&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;picture&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;pre&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;progress&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;q&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;rb&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;rp&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;rt&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;rtc&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;ruby&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;s&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;samp&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;script&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;search&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;section&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;select&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;slot&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;small&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;source&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;span&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;strike&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;strong&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;style&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;sub&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;summary&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;sup&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;table&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;tbody&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;td&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;template&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;textarea&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;tfoot&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;th&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;thead&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;time&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;tr&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;track&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;tt&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;u&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;ul&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;var&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;video&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;wbr&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;xmp&gt;</a></li>
+                                </ul>
+                            </details>
+                            <details class="ac-first-layor ac-setting">
+                                <summary class="ac-first-summary">グローバル属性</summary>
+                                <ul class="ac-first-ul">
+                                    <li class="ac-setting"><a href="#">accesskey</a></li>
+                                    <li class="ac-setting"><a href="#">anchor</a></li>
+                                    <li class="ac-setting"><a href="#">autocapitalize</a></li>
+                                    <li class="ac-setting"><a href="#">autocorrect</a></li>
+                                    <li class="ac-setting"><a href="#">autofocus</a></li>
+                                    <li class="ac-setting"><a href="#">class</a></li>
+                                    <li class="ac-setting"><a href="#">contenteditable</a></li>
+                                    <li class="ac-setting"><a href="#">data-*</a></li>
+                                    <li class="ac-setting"><a href="#">dir</a></li>
+                                    <li class="ac-setting"><a href="#">draggable</a></li>
+                                    <li class="ac-setting"><a href="#">enterkeyhint</a></li>
+                                    <li class="ac-setting"><a href="#">exportparts</a></li>
+                                    <li class="ac-setting"><a href="#">hidden</a></li>
+                                    <li class="ac-setting"><a href="#">id</a></li>
+                                    <li class="ac-setting"><a href="#">inert</a></li>
+                                    <li class="ac-setting"><a href="#">inputmode</a></li>
+                                    <li class="ac-setting"><a href="#">is</a></li>
+                                    <li class="ac-setting"><a href="#">itemid</a></li>
+                                    <li class="ac-setting"><a href="#">itemprop</a></li>
+                                    <li class="ac-setting"><a href="#">itemref</a></li>
+                                    <li class="ac-setting"><a href="#">itemscope</a></li>
+                                    <li class="ac-setting"><a href="#">itemtype</a></li>
+                                    <li class="ac-setting"><a href="#">lang</a></li>
+                                    <li class="ac-setting"><a href="#">nonce</a></li>
+                                    <li class="ac-setting"><a href="#">part</a></li>
+                                    <li class="ac-setting"><a href="#">popover</a></li>
+                                    <li class="ac-setting"><a href="#">slot</a></li>
+                                    <li class="ac-setting"><a href="#">spellcheck</a></li>
+                                    <li class="ac-setting"><a href="#">style</a></li>
+                                    <li class="ac-setting"><a href="#">tabindex</a></li>
+                                    <li class="ac-setting"><a href="#">title</a></li>
+                                    <li class="ac-setting"><a href="#">translate</a></li>
+                                    <li class="ac-setting"><a href="#">virtualkeyboardpolicy</a></li>
+                                    <li class="ac-setting"><a href="#">writingsuggestions</a></li>
+                                </ul>
+                            </details>
+                            <details class="ac-first-layor ac-setting">
+                                <summary class="ac-first-summary">属性</summary>
+                                <ul class="ac-first-ul">
+                                    <li class="ac-setting"><a href="#">HTML属性:accept</a></li>
+                                    <li class="ac-setting"><a href="#">autocomplete</a></li>
+                                    <li class="ac-setting"><a href="#">HTML属性:capture</a></li>
+                                    <li class="ac-setting"><a href="#">HTML属性:crossorigin</a></li>
+                                    <li class="ac-setting"><a href="#">HTML属性:dirname</a></li>
+                                    <li class="ac-setting"><a href="#">HTML属性:disabled</a></li>
+                                    <li class="ac-setting"><a href="#">HTML属性:elementtiming</a></li>
+                                    <li class="ac-setting"><a href="#">HTML属性:for</a></li>
+                                    <li class="ac-setting"><a href="#">max</a></li>
+                                    <li class="ac-setting"><a href="#">maxlength</a></li>
+                                    <li class="ac-setting"><a href="#">min</a></li>
+                                    <li class="ac-setting"><a href="#">minlength</a></li>
+                                    <li class="ac-setting"><a href="#">multiple</a></li>
+                                    <li class="ac-setting"><a href="#">pattern</a></li>
+                                    <li class="ac-setting"><a href="#">HTML属性:placeholder</a></li>
+                                    <li class="ac-setting"><a href="#">rel</a></li>
+                                    <li class="ac-setting"><a href="#">required</a></li>
+                                    <li class="ac-setting"><a href="#">HTML属性:size</a></li>
+                                    <li class="ac-setting"><a href="#">step</a></li>
+                                </ul>
+                            </details>
+                            <details class="ac-first-layor ac-setting">
+                                <summary class="ac-first-summary">&lt;input&gt; 型</summary>
+                                <ul class="ac-first-ul">
+                                    <li class="ac-setting"><a href="#">&lt;input type="button"&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;input type="checkbox"&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;input type="color"&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;input type="date"&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;input type="datetime-local"&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;input type="email"&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;input type="file"&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;input type="hidden"&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;input type="image"&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;input type="month"&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;input type="number"&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;input type="password"&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;input type="radio"&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;input type="range"&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;input type="reset"&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;input type="search"&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;input type="submit"&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;input type="tel"&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;input type="text"&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;input type="time"&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;input type="url"&gt;</a></li>
+                                    <li class="ac-setting"><a href="#">&lt;input type="week"&gt;</a></li>
+                                </ul>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-text">
+                    <div class="main-text-contents">
+                        <h1>HTML: ハイパーテキストマークアップ言語</h1>
+                        <p><span class="font-weight">HTML</span> (HyperText Markup Language) はウェブの最も基本的な構成要素です。HTML はウェブページの基本レイアウトに従ってウェブページの<em>コンテンツ</em>を記述し定義するものです。HTML に隣接する他の技術としては、ウェブページの表示や表現を記述するもの（<a href="#">CSS</a>）または機能や振る舞いを記述する（<a href="#">JavaScript</a>）があります。</p>
+                        <p>「ハイパーテキスト」はWebページから別なページに、ウェブサイト内でもWebサイト間でも、接続するリンクを示します。リンクはウェブの基礎的な特徴です。コンテンツをインターネットにアップロードして他の人々が作成したページにリンクすれば、World Wide Web の活発な参加者になれます。</p>
+                        <p>HTML ではウェブブラウザーのテキスト、画像、その他のコンテンツを記述するために「マークアップ」を使用します。HTML のマークアップには、<a href="#" class="contents-link contents-bg">&lt;head&gt;</a>, <a href="#" class="contents-link contents-bg">&lt;title&gt;</a>, <a href="#" class="contents-link contents-bg">&lt;body&gt;</a>, <a href="#" class="contents-link contents-bg">&lt;header&gt;</a>, <a href="#" class="contents-link contents-bg">&lt;footer&gt;</a>, <a href="#" class="contents-link contents-bg">&lt;article&gt;</a>, <a href="#" class="contents-link contents-bg">&lt;section&gt;</a>, <a href="#" class="contents-link contents-bg">&lt;p&gt;</a>, <a href="#" class="contents-link contents-bg">&lt;div&gt;</a>, <a href="#" class="contents-link contents-bg">&lt;span&gt;</a>, <a href="#" class="contents-link contents-bg">&lt;img&gt;</a>, <a href="#" class="contents-link contents-bg">&lt;aside&gt;</a>, <a href="#" class="contents-link contents-bg">&lt;audio&gt;</a>, <a href="#" class="contents-link contents-bg">&lt;canvas&gt;</a>, <a href="#" class="contents-link contents-bg">&lt;datalist&gt;</a>, <a href="#" class="contents-link contents-bg">&lt;details&gt;</a>, <a href="#" class="contents-link contents-bg">&lt;embed&gt;</a>, <a href="#" class="contents-link contents-bg">&lt;nav&gt;</a>, <a href="#" class="contents-link contents-bg">&lt;search&gt;</a>, <a href="#" class="contents-link contents-bg">&lt;output&gt;</a>, <a href="#" class="contents-link contents-bg">&lt;progress&gt;</a>, <a href="#" class="contents-link contents-bg">&lt;video&gt;</a>, <a href="#" class="contents-link contents-bg">&lt;ul&gt;</a>, <a href="#" class="contents-link contents-bg">&lt;ol&gt;</a>, <a href="#" class="contents-link contents-bg">&lt;li&gt;</a>その他のたくさんの特殊な「要素」を用います。</p>
+                        <p>HTML 要素は文書中で、<span class="contents-bg">&lt;</span> および <span class="contents-bg">&gt;</span> で囲まれた要素名で構成される「タグ」によって区別されます。タグ内の要素名は、大文字と小文字の区別がありません。つまり、大文字でも、小文字でも、混在して書いても構いません。例えば、<span class="contents-bg">&lt;title&gt;</span>タグは <span class="contents-bg">&lt;Title&gt;</span> や <span class="contents-bg">&lt;TITLE&gt;</span>やその他の方法で書くことができます。ただし、タグを小文字で書くのが慣習となっており、推奨されています。</p>
+                        <p>以下の記事がHTMLについてもっと学ぶのに役立ちます。</p>
+                        <section>
+                            <h2 class="sharp-action">中心的なリソース</h2>
+                            <h3 class="sharp-action">HTML 入門</h3>
+                            <p class="index">ウェブ開発が初めてであれば、HTMLとは何か、HTMLの使用方法を説明する<a href="#">HTML の基本</a>をご覧ください。</p>
+                            <h3 class="sharp-action">HTML チュートリアル</h3>
+                            <p class="index">チュートリアルや例を含むHTMLの使用方法に関する記事は、<a href="#">HTML 学習エリア</a>を確認してください。</p>
+                            <h3 class="sharp-action">HTML リファレンス</h3>
+                            <p class="index">広範な <a href="#">HTML リファレンス</a>の章で、HTML のすべての要素と属性についての詳細がわかります。</p>
+                        </section>
+                        <section>
+                            <h2 class="sharp-action">初心者向けチュートリアル</h2>
+                            <p><a href="#">HTML 学習エリア</a>はHTMLを基礎から学ぶための複数のモジュールを中心としています。ーー前提知識は必要ありません。</p>
+                            <h4><a href="#">HTML 概論</a></h4>
+                            <p class="index">このモジュールでは、HTMLを文章に適用する方法、ハイパーリンクを作成する方法、HTMLを使用してウェブページを構築する方法など、重要な概念と構文に慣れていく段階を設定します。</p>
+                            <h4><a href="#">マルチメディアとその埋め込み方</a></h4>
+                            <p class="index">このモジュールでは、ウェブページにマルチメディアを埋め込むためのHTML の使い方を探ります。画像を入れるための様々な方法、映像、音声、他のウェブページ全体を含める場合も含みます。</p>
+                            <h4><a href="#">HTML テーブル</a></h4>
+                            <p class="index">ウェブページ上で表形式のデータをわかりやすく使いやすい方法で表現するのは難しいことです。このモジュールでは、基本的なテーブルのマークアップと、キャプションやサマリーの追加などのより複雑な機能を扱います。</p>
+                            <h4><a href="#">HTML フォーム</a></h4>
+                            <p class="index">フィームはウェブで非常に重要な部分です。ーーこれはウェブサイトとのやり取り（登録やログイン、フィードバックの送信、商品の購入など）に必要な多くの機能を提供します。このモジュールでは、フォームのクライアント側/フロントエンド部分の作成から始めます。</p>
+                            <h4><a href="#">よくある問題解決に HTML を使う</a></h4>
+                            <p class="index">HTML を使用してウェブページを作成する際に、とてもよくある問題（タイトルの扱い、画像や動画の追加、コンテンツの強調、基本フォームの作成など）を解決する方法を説明する記事の章へのリンクを紹介します。</p>
+                        </section>
+                        <section>
+                            <h2 class="sharp-action">高度なトピック</h2>
+                            <h4><a href="#">CORS を利用した画像</a></h4>
+                            <p class="index"><a href="#" class="contents-link contents-bg">crossorigin</a> 属性と<a href="#">CORS</a>ヘッダーを組み合わせることで、<a href="#" class="contents-link contents-bg">img</a> 要素で定義された画像を異なるドメインから読み出し、それを<a href="#" class="contents-link contents-bg">&lt;canvas&gt;</a> 要素の中で同じドメインから読み出したかのように扱うことができます。</p>
+                            <h4><a href="#">CORS 設定属性</a></h4>
+                            <p class="index"><a href="#">CORS</a>をサポートするいくつかのHTML 要素（<a href="#" class="contents-link contents-bg">&lt;img&gt;</a>や <a href="#" class="contents-link contents-bg">&lt;video&gt;</a>など）は<span class="contents-bg">crossOrigin</span> 属性（<span class="contents-bg">crossOrigin</span> プロパティ）を持っており、要素が取得したデータに関する CORS リクエストを設定することができます。</p>
+                            <h4><a href="#">rel="preload" によるコンテンツの先読み</a></h4>
+                            <p class="index">HTML の <a href="#" class="contents-link contents-bg">&lt;head&gt;</a>要素内において、<a href="#" class="contents-link contents-bg">&lt;link&gt;</a>要素で<a href="#" class="contents-link contents-bg">&lt;rel&gt;</a>属性に <span class="contents-bg">preload</span>を指定することで、読み込み後すぐにページに必要なリソース、つまりページ読み込みの過程の初期の、ブラウザーの主なレンダリング機構が起動する前に、先読みを始めたいものを指定する宣言的なフェッチリクエストを記述することができます。これにより、ページの最初のレンダリングがブロックされにくくなり、パフォーマンスが向上します。この記事では<span class="contents-bg">preload</span>がどのように動作するのかについての基本的なガイドを提供します。</p>
+                        </section>
+                        <section>
+                            <h2 class="sharp-action">リファレンス</h2>
+                            <h4><a href="#">HTML リファレンス</a></h4>
+                            <p class="index">HTML は<span class="font-weight">要素</span>の集まりで、それぞれの要素がいくつかの<span class="font-weight">属性</span>で修飾される場合があります。HTML 文書は互いに<span class="font-weight">リンク</span>で接続されます。</p>
+                            <h4><a href="#">HTML 要素リファレンス</a></h4>
+                            <p class="index">全ての<a href="#">HTML</a> <a href="#">要素</a>の一覧を閲覧します。</p>
+                            <h4><a href="#">HTML 属性リファレンス</a></h4>
+                            <p class="index">HTML の要素には<span class="font-weight">属性</span>があります。これは要素を調整したり、さまざまな方法で振る舞いを調整したりするための付加的な値です。</p>
+                            <h4><a href="#">グローバル属性</a></h4>
+                            <p class="index">グローバル属性は、<em>標準仕様で規定されていないものを含む</em>すべての <a href="#">HTML 要素</a>に指定できるものです。つまり、あらゆる標準外の要素も、それを使用することで文書が HTML5 に準拠しなくなるとしても、グローバル属性を受け入れなければならないということです。</p>
+                            <h4><a href="#">インラインレベル要素</a>と<a href="#">ブロックレベル要素</a></h4>
+                            <p class="index">通常、HTML の要素は「インラインレベル」要素または「ブロックレベル」要素のどちらかです。インラインレベル要素は、要素を定義するタグによって指定された範囲のみを占有します。ブロックレベル要素は親要素（コンテナー）の範囲全体を占有し、それによって「ブロックボックス」を作成します。</p>
+                            <h4><a href="#">HTML コメント</a></h4>
+                            <p class="index">HTML コメントは、マークアップに説明メモを追加したり、文書ないの特定の部分をブラウザーが解釈しないようにしたりするために使用します。</p>
+                            <h4><a href="#">ウェブにおけるメディア種別と形式のガイド</a></h4>
+                            <p class="index"><a href="#" class="contents-link contents-bg">&lt;audio&gt;</a> および <a href="#" class="contents-link contents-bg">&lt;video&gt;</a>要素では、外部のソフトウェアの支援を必要とせずにコンテンツの中でネイティブに音声や動画を再生できます。</p>
+                            <h4><a href="#">HTML コンテンツカテゴリー</a></h4>
+                            <p class="index">HTML は数種類のコンテンツで構成されています。それぞれのコンテンツは特定のコンテキストで使用することができ、それ以外のコンテキストでは使用できません。同様に、それぞれのコンテキストには、格納することができる他のコンテンツカテゴリーと、その中で使用できる要素、または使用できない要素の集合があります。これは、これらのカテゴリーへのガイドです</p>
+                            <h4><a href="#">後方互換モードと標準準拠モード</a></h4>
+                            <p class="index">後方互換モードと標準準拠モード</p>
+                        </section>
+                        <section>
+                            <h2 class="sharp-action">関連トピック</h2>
+                            <h4><a href="#">CSS を使って HTML の要素に色をつける</a></h4>
+                            <p class="index">この記事では、CSS を使用して HTML コンテンツに色をつける方法、HTML 文書のどの部分に色付けできるかの一覧、使用する CSS プロパティについて説明します。</p>
+                        </section>
+                        <div class="mdn-help">
+                            <div class="mdn-help-contents">
+                                <div class="mdn-help-heading">Help improve MDN</div>
+                                <div class="mdn-help-q">Was this page helpful to you?</div>
+                                <div class="yes-no-btn">
+                                    <button class="yes-no-btn-style" id="yes-btn"><img src="src/img/good-icon.png" alt="good-button" width="20" height="20">Yes</button>
+                                    <button class="yes-no-btn-style" id="no-btn"><img src="src/img/bad-icon.png" alt="bad-button" width="20" height="20">No</button>
+                                </div>
+                                <div class="learn-text"><a href="#">Learn how to contribute.</a></div>
+                                <div class="mdn-help-text">
+                                    This page was last modified on <time datetime="2024-10-18">2024年10月18日</time> by <a href="#">MDN contributors.</a><br>
+                                    <span><a href="#">View this page on GitHub</a>・<a href="#">Report a problem with this content</a></span>
+                                </div>
+                            </div>
+                            <div class="mdn-help-logo">
+                                <img src="src/img/mdn-help-logo.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="side-bar-right">
+                    <div class="side-bar-right-contents">
+                        <h4>この記事では</h4>
+                        <ul id="tableOfContentsList"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top-wrapper">
+                <div class="footer-top-mdn">
+                    <div class="footer-top-mdn-text">
+                        <h4>mdn</h4>
+                        <p>Your blueprint for a better internet.</p>
+                    </div>
+                    <div class="footer-top-mdn-contents">
+                        <ul class="sns-btns">
+                            <li><a href="#"><img src="src/img/sns-btn-mdn.svg" alt="MDN"></a></li>
+                            <li><a href="#"><img src="src/img/sns-btn-x.png" alt="Twitter"></a></li>
+                            <li><a href="#"><img src="src/img/sns-btn-github.png" alt="Github"></a></li>
+                            <li><a href="#"><img src="src/img/sns-btn-wifi-45.png" alt="Wifi"></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-top-index">
+                    <div class="footer-top-index-left">
+                        <div class="index-content">
+                            <h4>MDN</h4>
+                            <ul>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="#">Careers</a></li>
+                                <li><a href="#">Advertise with us</a></li>
+                            </ul>
+                        </div>
+                        <div class="index-content">
+                            <h4>Support</h4>
+                            <ul>
+                                <li><a href="#">Product help</a></li>
+                                <li><a href="#">Report an issue</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="footer-top-index-right">
+                        <div class="index-content">
+                            <h4>Our communities</h4>
+                            <ul>
+                                <li><a href="#">MDN Community</a></li>
+                                <li><a href="#">MDN Forum</a></li>
+                                <li><a href="#">MDN Chat</a></li>
+                            </ul>
+                        </div>
+                        <div class="index-content">
+                            <h4>Developers</h4>
+                            <ul>
+                                <li><a href="#">Web Technologies</a></li>
+                                <li><a href="#">Learn Web Development</a></li>
+                                <li><a href="#">MDN Plus</a></li>
+                                <li><a href="#">Hacks Blog</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom-wrapper">
+                <div class="footer-bottom-upside">
+                    <div class="footer-bottom-logo">
+                        <a href="#"><img src="src/img/mozilla-mark.svg" alt="MDN"></a>
+                    </div>
+                    <div class="footer-bottom-policy">
+                        <ul>
+                            <li><a href="#">Website Privacy Notice</a></li>
+                            <li><a href="#">Cookies</a></li>
+                            <li><a href="#">Legal</a></li>
+                            <li><a href="#">Community Partication Guidelines</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom-downside">
+                    <p>Visit <a href="#">Mozilla Corporation's</a> not-for-profit parent, the <a href="#">Mozilla Foundation</a>.</p>
+                    <p>Portions of this content are &copy; 1998-2025 by individual mozilla.org contributors. Content available under <a href="#">a Creative Commons license</a>.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
