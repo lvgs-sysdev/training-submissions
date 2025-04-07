@@ -54,6 +54,11 @@ footer {
 }
 
 /* second */
+.footer-second-mozilla-logo {
+  height: 50px;
+  width: 170px;
+}
+
 .footer-second section ul {
   padding-left: 0;
   li{

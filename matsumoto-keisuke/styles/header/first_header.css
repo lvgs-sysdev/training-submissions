@@ -18,6 +18,11 @@
     display: inline-block;
 }
 
+.main-nav-mdn-logo {
+    height: 20px;
+    width: 170px;
+}
+
 /* .nav-link-list {
   display: inline-block;
   } */
