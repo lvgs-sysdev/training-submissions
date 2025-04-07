@@ -58,6 +58,10 @@ details {
   margin-bottom: 20px;
 }
 
+.prime-summary {
+  font-size: small;
+}
+
 details summary a{
   font-size: small;
   margin-top: 20px;
