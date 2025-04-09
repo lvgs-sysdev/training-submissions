@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/style/header.css">
+    <link rel="stylesheet" href="/public/style/general.css">
+    <link rel="stylesheet" href="/public/style/tsueeet.css">
+    <link class="z-icon" rel="icon" href="/public/Z.png">
+    <title>Zにツェート</title>
+</head>
+<body>
+    <header>
+        <div class="header-wrapper">
+            <div class="z-logo">
+                <a class="header-logo">
+                    <img class="z-img" src="/public/Z.png">
+                </a>
+            </div>
+            <div class="menu-wrapper">
+                <ul class="main-menu">
+                    <li>
+                        <a href="/" class="menu-content">ツェート一覧</a>
+                    </li>
+                    <li>
+                        <a href="/profile" class="menu-content">プロフィール確認</a>
+                    </li>
+                    <li>
+                        <a href="/tsueeet" class="current-page">ツェートする</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main class="page-loggedin">
+        <div class="center-contents">
+            <div class="wrapper">
+                <form>
+                    <label class="main-title" for="tsueeet-text">Zにツェート</label>
+                    <textarea id="tsueeet-text" class="input-area" name="tsueeet" maxlength="100"
+                        placeholder="今起きていることを共有しよう" required></textarea>
+                        <p id="count-text">現在まる文字</p>
+                    <input id="tsueeet-text-submit" class="submit" type="submit" value="ツェートする">
+                </form>
+            </div>
+            <div class="link-for">
+                <a href="/">ツェート一覧に戻る</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

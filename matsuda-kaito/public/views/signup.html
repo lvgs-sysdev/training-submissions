@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/style/general.css">
+    <link class="z-icon" rel="icon" href="/public/Z.png">
+    <title>Zに新規登録</title>
+    <script src="/public/script/signup.js" defer></script>
+</head>
+
+<body>
+    <main class="page">
+        <div class="center-contents">
+            <div class="wrapper">
+                <form id="signupForm" action="/register" method="POST">
+                    <span class="main-title">Zに新規登録</span>
+                    <input id="username" class="input-area" type="text" name="username" maxlength="16"
+                        placeholder="ユーザーネーム" required />
+                    <p class="alert-username">ひら・カナ・漢字のみ使用可能です。</p>
+                    <input id="loginId" class="input-area" type="text" name="user_id" maxlength="16"
+                        placeholder="ログインID" required />
+                    <p class="alert-id">英数字のみ入力できます。</p>
+                    <input id="firstPassword" class="input-area" type="password" name="password" maxlength="16" placeholder="パスワード"
+                        required />
+                    <p class="alert-firstPW">大小英数字の2種類以上を組み合わせて入力ください。</p>
+                    <input id="secondPassword" class="input-area" type="password" maxlength="16"
+                        placeholder="パスワード再入力" required />
+                    <p class="alert-secondPW">パスワードが異なります。</p>
+                    <button id="signupInformationSubmit" class="submit" type="submit" disabled>新規登録</button>
+                </form>
+            </div>
+            <div class="link-for">
+                <a href="/login">アカウントをお持ちの方はこちらから</a>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

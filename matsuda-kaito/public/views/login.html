@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/style/general.css">
+    <link class="z-icon" rel="icon" href="/public/Z.png">
+    <title>Zにログイン</title>
+</head>
+
+<body>
+    <main class="page">
+        <div class="center-contents">
+            <div class="wrapper">
+                <form action="/trylogin" method="POST">
+                    <span class="main-title">Zにログイン</span>
+                    <input id="user-id" class="input-area" type="text" name="user_id" maxlength="16"
+                        placeholder="ログインID" required />
+                    <input id="password" class="input-area" type="password" name="password" maxlength="16"
+                        placeholder="パスワード" required />
+                    <input id="login-information-submit" class="submit" type="submit" value="ログイン">
+                </form>
+            </div>
+            <div class="link-for">
+                <a href="/signup">アカウントの作成はこちらから</a>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
