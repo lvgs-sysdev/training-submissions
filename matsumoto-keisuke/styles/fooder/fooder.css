@@ -1,0 +1,72 @@
+/* footer */
+footer {
+  margin-bottom: 10px;
+  margin-left: 20px;
+  right: 0;
+}
+
+.footer-first {
+  display: flex;
+  border-bottom: 1px solid rgb(184, 184, 184);
+}
+
+.footer-first a {
+  text-decoration: none;
+  color: black;
+}
+
+.media-icons {
+  flex: 2;
+  li {
+    padding-left: 20px;
+    display: inline-block;
+    list-style-type: none;
+  }
+}
+
+.mdn-bold{
+  font-size: large;
+  font-weight: bold;
+}
+
+
+.footer-support {
+  margin-left: auto;
+}
+
+.footer-first section ul li {
+  display: inline-block;
+  list-style-type: none;
+  margin-right: 60px;
+}
+
+.footer-first section ul li > a {
+  text-decoration: none;
+  color: black;
+}
+
+.footer-first section ul li ul{
+  padding-left: 0;
+}
+
+.footer-first section ul li ul li {
+  display: block;
+}
+
+/* second */
+.footer-second-mozilla-logo {
+  height: 50px;
+  width: 170px;
+}
+
+.footer-second section ul {
+  padding-left: 0;
+  li{
+  display: inline-block;
+  font-size: 8pt;
+  }
+}
+
+.footer-second section p {
+  font-size: 8pt;
+}

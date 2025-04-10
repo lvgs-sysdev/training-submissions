@@ -1,0 +1,101 @@
+/* second-nav */
+.sub-header {
+  left: 0;
+  height: 30px;
+  width: 100%;
+  /* margin-top: 60px; */
+  background-color: #f0f0f0;
+  border-top: 1px solid rgb(184, 184, 184);
+  border-bottom: 1px solid rgb(184, 184, 184);
+  z-index: 3;
+}
+
+.second-nav {
+  margin-left:50px;
+  margin-right: 50px;
+}
+
+.second-nav-list {
+  margin: 0;
+  padding: 0;
+}
+
+.second-nav-list > li,
+.language-list > li {
+  list-style-type: none;
+  display: inline-block;
+}
+
+.second-nav-element a {
+  color: black;
+  text-decoration: none;
+}
+
+.second-nav-element:hover {
+  text-decoration: underline;
+}
+
+.btn-language{
+  margin-left: 1080px;
+}
+
+.language::before{
+  content:'';
+  background-image: url('../../image/icon/language_24dp_1F1F1F.svg');
+  display: inline-block;
+  width:20px;
+  height:20px;
+  background-size: cover;
+  transform: translateY(5px);  /* ちょっとずれるから修正　https://qiita.com/7note/items/f24e276fe3c79f55d789 */
+}
+
+.language-list {
+  display: none;
+  padding:0px;
+  margin:0px;
+  width: 150px;
+  padding: 10px 10px;
+  z-index: 100;
+}
+
+.language-list li button {
+  background-color: white;
+  border: none;
+  width: 150px;
+  padding: 15px 10px;
+  text-align: left;
+}
+
+.language {
+  border: none;
+  text-decoration: none;
+}
+
+.language:hover {
+  background-color: #c1c1c1;
+  border-radius: 5px;
+}
+
+.language button:focus {
+  background-color: white;
+  border: 1px solid blue;
+  border-radius: 5px;
+}
+
+.language:focus + .language-list{
+  display: block;
+  position: absolute;
+  right: 50px;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid gray;
+  margin-top: 1px;
+}
+
+.language-list li :hover{
+  background-color: #7b7d7d;
+  border-radius: 5px;
+  display: block;
+}
+
+

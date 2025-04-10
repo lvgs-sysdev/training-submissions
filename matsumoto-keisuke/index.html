@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>HTML: ハイパーテキストマークアップ言語</title>
+  <link rel="stylesheet" href="styles/header/header.css"/>
+  <link rel="stylesheet" href="styles/header/adv.css"/>
+  <link rel="stylesheet" href="styles/header/first_header.css"/>
+  <link rel="stylesheet" href="styles/header/second_header.css"/>
+  <link rel="stylesheet" href="styles/main/main.css"/>
+  <link rel="stylesheet" href="styles/sidebar/left_sidebar.css"/>
+  <link rel="stylesheet" href="styles/sidebar/right_sidebar.css"/>
+  <link rel="stylesheet" href="styles/fooder/fooder.css"/>
+  <link href="https://use.fontawesome.com/releases/v6.7.2/css/all.css" rel="stylesheet">
+  <link rel="icon" href="image/mdn-web-docs-icon.webp">
+</head>
+
+<body>
+
+  <aside class="adv">
+    adv
+  </aside>
+
+  <header>
+    <div class="header-main">
+      <nav class="main-nav">
+        <ul class="nav-link-list">
+          <li class="logo">
+            <a href="#"><img class="main-nav-mdn-logo" src="image/MDN_Web_Docs_full_logo.svg.png" alt="MDN Web Documents Logo"></a>
+          </li>
+          <li class="nav-link">
+            <a class="" href="#">Referense</a>
+            <ul class="dropdown-list">
+              <li class="dropdown-link">
+                <a href="#"><span class="top">HTML</span><br><span class="bottom">Structure of content on the web</span></a>
+              </li>
+              <li class="dropdown-link">
+                <a href="#"><span class="top">CSS</span><br><span class="bottom">Code used to describe document style</span></a>
+              </li>
+              <li class="dropdown-link">
+                <a href="#"><span class="top">Javascript</span><br><span class="bottom"></span></a>
+              </li>
+              <li class="dropdown-link">
+                <a href="#"><span class="top">HTTP</span><br><span class="bottom"></span></a>
+              </li>
+              <li class="dropdown-link">
+                <a href="#"><span class="top">Web APIs</span><br><span class="bottom"></span></a>
+              </li>
+              <li class="dropdown-link">
+                <a href="#"><span class="top">Web Extensions</span><br><span class="bottom"></span></a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- TODO: you can see https://zenn.dev/kagan/articles/css-hover-style -->
+          <li class="nav-link"><a href="#">Learn</a>
+            <ul class="dropdown-list">
+              <li class="dropdown-link">
+                <a href="#"><span class="top">MDN Learning Area</span><br><span class="bottom">Learn web development</span></a>
+              </li>
+              <li class="dropdown-link">
+                <a href="#"><span class="top">HTML</span><br><span class="bottom">Learn to structure web content with HTML</span></a>
+              </li>
+              <li class="dropdown-link">
+                <a href="#"><span class="top">CSS</span><br><span class="bottom">Learn to style content using CSS</span></a>
+              </li>
+              <li class="dropdown-link">
+                <a href="#"><span class="top">JavaScript</span><br><span class="bottom">Learn to run scripts in the browser</span></a>
+              </li>
+              <li class="dropdown-link">
+                <a href="#"><span class="top">Accessibility</span><br><span class="bottom">Learn to make the web accessible to all</span></a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-link"><a href="#">Plus</a>
+            <ul class="dropdown-list">
+              <li class="dropdown-link">
+                <a href="#"><span class="top">Overview</span><br><span class="bottom">A customized MDN experience</span></a>
+              </li>
+              <li class="dropdown-link">
+                <a href="#"><span class="top">AI Help</span><br><span class="bottom">Get real-time assistance and support</span></a>
+              </li>
+              <li class="dropdown-link">
+                <a href="#"><span class="top">Updates</span><br><span class="bottom">All browser compatibility updates at a glance</span></a>
+              </li>
+              <li class="dropdown-link">
+                <a href="#"><span class="top">Documentation</span><br><span class="bottom">Learn how to use MDN Plus</span></a>
+              </li>
+              <li class="dropdown-link">
+                <a href="#"><span class="top">FAQ</span><br><span class="bottom">Frequently asked questions about MDN Plus</span></a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-link "><a class="new" href="#">Curriculum</a></li>
+          <li class="nav-link"><a href="#">New</a></li>
+          <li class="nav-link"><a href="#">Blog</a></li>
+          <li class="nav-link"><a href="#">Tools</a>
+            <ul class="dropdown-list">
+              <li class="dropdown-link">
+                <a href="#"><span class="top">Playground</span><br><span class="bottom">Write, test and share your code</span></a>
+              </li>
+              <li class="dropdown-link">
+                <a href="#"><span class="top">HTTP Observatory</span><br><span class="bottom">Scan a website for free</span></a>
+              </li>
+              <li class="dropdown-link">
+                <a href="#"><span class="top">AI Help</span><br><span class="bottom">Get real-time assistance and support</span></a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+
+      <ul class="btn-func">
+        <li>
+          <div class="btn-thema">
+          <button class="thema" type="button">Thema</button>
+          <ul class="thema-list">
+            <li><button class="OS-Default" type="button">OS Default</button></li>
+            <li><button class="Light"  type="button">Light</button></li>
+            <li><button class="Dark"  type="button">Dark</button></li>
+          </ul>
+          </div>
+        </li>
+        <li>
+          <form action="#" class="search-form">
+            <input class="search" type="search">
+            <button class="search-icon" type="submit"></button>
+          </form>
+            <!-- TODO: you can get some mdn icons. Change this icon. 
+            see https://stackoverflow.com/questions/56621708/how-to-get-material-ui-icon-svg-path-react-icon-picker -->
+        </li>
+        <li><a href="#" class="login">Login</a></li>
+        <li><a href="#" class="signup">Sign up for free</a></li>
+      </ul>
+    </div>
+
+    <div class="sub-header">
+      <nav class="second-nav">
+        <ul class="second-nav-list">
+          <li class="second-nav-element"><a href="#">開発者向けのウェブ技術</a></li>
+          <li class="second-nav-element"><a href="#">HTML</a></li>
+          <li>
+            <div class="btn-language">
+              <button class="language" type="button">日本語</button>
+              <ul class="language-list">
+                <li><button type="button">Deutsch</button></li>
+                <li><button type="button">Español</button></li>
+                <li><button type="button">Français</button></li>
+                <li><button >日本語</button></li>
+                <li><button >한국어</button></li>
+                <li><button >Português (do Brasil)</button></li>
+                <li><button >Русский</button></li>
+                <li><button >中文 (简体)</button></li>
+                <li><button >正體中文 (繁體)</button></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <aside class="community-box">
+    このページはコミュニティーの尽力で英語から翻訳されました。MDN Web Docs コミュニティーについてもっと知り、仲間になるにはこちらから。
+  </aside>
+
+  <main>
+    <nav class="sidebar left-side">
+        <div class="filter-box">
+          <input class="filter" type="filter" placeholder="Filter">
+        </div>
+      <p><a href="#">HTML</a></p>
+      <details>
+        <summary class="prime-summary">チュートリアル</summary>
+        <a href="#">初めてのウェブサイト: コンテンツの作成</a>
+        <details>
+          <summary><a href="#">HTML によるコンテンツの構造化</a></summary>
+          <ul>
+            <li><a href="#">基本的な HTML の構文</a></li>
+            <li><a href="#">ヘッド部には何が入る? ウェブページのメタデータ</a></li>
+            <li><a href="#">HTML の見出しと段落</a></li>
+            <li><a href="#">初めてのウェブサイト: コンテンツの作成</a></li>
+            <li><a href="#">初めてのウェブサイト: コンテンツの作成</a></li>
+          </ul>          
+        </details>
+      </details>
+
+      <details>
+        <summary class="prime-summary">ガイド</summary>
+        <ul>
+          <li><a href="#">基本的な HTML の構文</a></li>
+          <li><a href="#">ヘッド部には何が入る? ウェブページのメタデータ</a></li>
+          <li><a href="#">HTML の見出しと段落</a></li>
+          <li><a href="#">強調と重要性</a></li>
+          <li><a href="#">リスト</a></li>
+          <li><a href="#">文書とウェブサイトの構造</a></li>
+          <li><a href="#">高度なテキスト装飾</a></li>
+          <li><a href="#">リンクの作成</a></li>
+          <li><a href="#">課題: 手紙のマークアップ</a></li>
+          <li><a href="#">課題: コンテンツのページの構造化</a></li>
+          <li><a href="#">HTML の画像</a></li>
+          <li><a href="#">動画と音声のコンテンツ</a></li>
+          <li><a href="#">Mozilla のスプラッシュページ</a></li>
+          <li><a href="#">HTML の表の基本</a></li>
+          <li><a href="#">HTML 表のアクセシビリティ</a></li>
+          <li><a href="#">課題: 惑星データの構造化</a></li>
+          <li><a href="#">HTML におけるフォームとボタン</a></li>
+          <li><a href="#">HTML のデバッグ</a></li>
+        </ul>
+      </details>
+      
+      <p><a href="#">リファレンス</a></p>
+      <details>
+        <summary class="prime-summary">HTML 要素</summary>
+        <ul>
+          <li><a href="#">a</a></li>
+          <li><a href="#">abbr</a></li>
+          <li><a href="#">acronym非推奨;</a></li>
+          <li><a href="#">address</a></li>
+          <li><a href="#">area</a></li>
+          <li><a href="#">article</a></li>
+          <li><a href="#">aside</a></li>
+          <li><a href="#">audio</a></li>
+          <li><a href="#">b</a></li>
+          <li><a href="#">base</a></li>
+          <li><a href="#">bdi</a></li>
+          <li><a href="#">bdo</a></li>
+          <li><a href="#">big非推奨;</a></li>
+          <li><a href="#">blockquote</a></li>
+          <li><a href="#">body</a></li>
+          <li><a href="#">br</a></li>
+          <li><a href="#">button</a></li>
+          <li><a href="#">canvas</a></li>
+          <li><a href="#">caption</a></li>
+          <li><a href="#">center非推奨;</a></li>
+          <li><a href="#">cite</a></li>
+          <li><a href="#">code</a></li>
+          <li><a href="#">col</a></li>
+          <li><a href="#">colgroup</a></li>
+          <li><a href="#">data</a></li>
+          <li><a href="#">datalist</a></li>
+          <li><a href="#">dd</a></li>
+          <li><a href="#">del</a></li>
+          <li><a href="#">details</a></li>
+          <li><a href="#">dfn</a></li>
+          <li><a href="#">dialog</a></li>
+          <li><a href="#">dir非推奨;</a></li>
+          <li><a href="#">div</a></li>
+          <li><a href="#">dl</a></li>
+          <li><a href="#">dt</a></li>
+          <li><a href="#">em</a></li>
+          <li><a href="#">embed</a></li>
+          <li><a href="#">fencedframeExperimental</a></li>
+          <li><a href="#">fieldset</a></li>
+          <li><a href="#">figcaption</a></li>
+          <li><a href="#">figure</a></li>
+          <li><a href="#">font非推奨;</a></li>
+          <li><a href="#">footer</a></li>
+          <li><a href="#">form</a></li>
+          <li><a href="#">frame非推奨;</a></li>
+          <li><a href="#">frameset非推奨;</a></li>
+          <li><a href="#">h1</a></li>
+          <li><a href="#">head</a></li>
+          <li><a href="#">header</a></li>
+          <li><a href="#">hgroup</a></li>
+          <li><a href="#">hr</a></li>
+          <li><a href="#">html</a></li>
+          <li><a href="#">i</a></li>
+          <li><a href="#">iframe</a></li>
+          <li><a href="#">img</a></li>
+          <li><a href="#">input</a></li>
+          <li><a href="#">ins</a></li>
+          <li><a href="#">kbd</a></li>
+          <li><a href="#">label</a></li>
+          <li><a href="#">legend</a></li>
+          <li><a href="#">li</a></li>
+          <li><a href="#">link</a></li>
+          <li><a href="#">main</a></li>
+          <li><a href="#">map</a></li>
+          <li><a href="#">mark</a></li>
+          <li><a href="#">marquee非推奨;</a></li>
+          <li><a href="#">menu</a></li>
+          <li><a href="#">meta</a></li>
+          <li><a href="#">meter</a></li>
+          <li><a href="#">nav</a></li>
+          <li><a href="#">nobr非推奨;</a></li>
+          <li><a href="#">noembed非推奨;</a></li>
+          <li><a href="#">noframes非推奨;</a></li>
+          <li><a href="#">noscript</a></li>
+          <li><a href="#">object</a></li>
+          <li><a href="#">ol</a></li>
+          <li><a href="#">optgroup</a></li>
+          <li><a href="#">option</a></li>
+          <li><a href="#">output</a></li>
+          <li><a href="#">p</a></li>
+          <li><a href="#">param非推奨;</a></li>
+          <li><a href="#">picture</a></li>
+          <li><a href="#">plaintext非推奨;</a></li>
+          <li><a href="#">pre</a></li>
+          <li><a href="#">progress</a></li>
+          <li><a href="#">q</a></li>
+          <li><a href="#">rb非推奨;</a></li>
+          <li><a href="#">rp</a></li>
+          <li><a href="#">rt</a></li>
+          <li><a href="#">rtc非推奨;</a></li>
+          <li><a href="#">ruby</a></li>
+          <li><a href="#">s</a></li>
+          <li><a href="#">samp</a></li>
+          <li><a href="#">script</a></li>
+          <li><a href="#">search</a></li>
+          <li><a href="#">section</a></li>
+          <li><a href="#">select</a></li>
+          <li><a href="#">slot</a></li>
+          <li><a href="#">small</a></li>
+          <li><a href="#">source</a></li>
+          <li><a href="#">span</a></li>
+          <li><a href="#">strike非推奨;</a></li>
+          <li><a href="#">strong</a></li>
+          <li><a href="#">style</a></li>
+          <li><a href="#">sub</a></li>
+          <li><a href="#">summary</a></li>
+          <li><a href="#">sup</a></li>
+          <li><a href="#">table</a></li>
+          <li><a href="#">tbody</a></li>
+          <li><a href="#">td</a></li>
+          <li><a href="#">template</a></li>
+          <li><a href="#">textarea</a></li>
+          <li><a href="#">tfoot</a></li>
+          <li><a href="#">th</a></li>
+          <li><a href="#">thead</a></li>
+          <li><a href="#">time</a></li>
+          <li><a href="#">title</a></li>
+          <li><a href="#">tr</a></li>
+          <li><a href="#">track</a></li>
+          <li><a href="#">tt非推奨;</a></li>
+          <li><a href="#">u</a></li>
+          <li><a href="#">ul</a></li>
+          <li><a href="#">var</a></li>
+          <li><a href="#">video</a></li>
+          <li><a href="#">wbr</a></li>
+          <li><a href="#">xmp非推奨;</a></li>
+        </ul>        
+      </details>
+
+      <details>
+        <summary class="prime-summary">グローバル属性</summary>
+        <ul>
+          <li><a href="#">accesskey</a></li>
+        <li><a href="#">anchorExperimental非標準</a></li>
+        <li><a href="#">autocapitalize</a></li>
+        <li><a href="#">autocorrect</a></li>
+        <li><a href="#">autofocus</a></li>
+        <li><a href="#">class</a></li>
+        <li><a href="#">contenteditable</a></li>
+        <li><a href="#">data-*</a></li>
+        <li><a href="#">dir</a></li>
+        <li><a href="#">draggable</a></li>
+        <li><a href="#">enterkeyhint</a></li>
+        <li><a href="#">exportparts</a></li>
+        <li><a href="#">hidden</a></li>
+        <li><a href="#">id</a></li>
+        <li><a href="#">inert</a></li>
+        <li><a href="#">inputmode</a></li>
+        <li><a href="#">is</a></li>
+        <li><a href="#">itemid</a></li>
+        <li><a href="#">itemprop</a></li>
+        <li><a href="#">itemref</a></li>
+        <li><a href="#">itemscope</a></li>
+        <li><a href="#">itemtype</a></li>
+        <li><a href="#">lang</a></li>
+        <li><a href="#">nonce</a></li>
+        <li><a href="#">part</a></li>
+        <li><a href="#">popover</a></li>
+        <li><a href="#">slot</a></li>
+        <li><a href="#">spellcheck</a></li>
+        <li><a href="#">style</a></li>
+        <li><a href="#">tabindex</a></li>
+        <li><a href="#">title</a></li>
+        <li><a href="#">translate</a></li>
+        <li><a href="#">virtualkeyboardpolicyExperimental</a></li>
+        <li><a href="#">writingsuggestions</a></li>
+        </ul>
+      </details>
+
+      <details>
+        <summary class="prime-summary">属性</summary>
+        <ul>
+          <li><a href="#">HTML 属性: accept</a></li>
+          <li><a href="#">autocomplete</a></li>
+          <li><a href="#">HTML 属性: capture</a></li>
+          <li><a href="#">HTML 属性: crossorigin</a></li>
+          <li><a href="#">HTML 属性: dirname</a></li>
+          <li><a href="#">HTML 属性: disabled</a></li>
+          <li><a href="#">HTML 属性: elementtiming</a></li>
+          <li><a href="#">HTML 属性: for</a></li>
+          <li><a href="#">max</a></li>
+          <li><a href="#">maxlength</a></li>
+          <li><a href="#">min</a></li>
+          <li><a href="#">minlength</a></li>
+          <li><a href="#">multiple</a></li>
+          <li><a href="#">pattern</a></li>
+          <li><a href="#">HTML 属性: placeholder</a></li>
+          <li><a href="#">HTML 属性: readonly</a></li>
+          <li><a href="#">rel</a></li>
+          <li><a href="#">required</a></li>
+          <li><a href="#">HTML 属性: size</a></li>
+          <li><a href="#">step</a></li>
+        </ul>
+      </details>
+
+      <details>
+        <summary class="prime-summary">&lt;input&gt;型</summary>
+        <ul>
+          <li><a href="#">&lt;input&gt; 型</a></li>
+          <li><a href="#">&lt;input type="button"&gt;</a></li>
+          <li><a href="#">&lt;input type="checkbox"&gt;</a></li>
+          <li><a href="#">&lt;input type="color"&gt;</a></li>
+          <li><a href="#">&lt;input type="date"&gt;</a></li>
+          <li><a href="#">&lt;input type="datetime-local"&gt;</a></li>
+          <li><a href="#">&lt;input type="email"&gt;</a></li>
+          <li><a href="#">&lt;input type="file"&gt;</a></li>
+          <li><a href="#">&lt;input type="hidden"&gt;</a></li>
+          <li><a href="#">&lt;input type="image"&gt;</a></li>
+          <li><a href="#">&lt;input type="month"&gt;</a></li>
+          <li><a href="#">&lt;input type="number"&gt;</a></li>
+          <li><a href="#">&lt;input type="password"&gt;</a></li>
+          <li><a href="#">&lt;input type="radio"&gt;</a></li>
+          <li><a href="#">&lt;input type="range"&gt;</a></li>
+          <li><a href="#">&lt;input type="reset"&gt;</a></li>
+          <li><a href="#">&lt;input type="search"&gt;</a></li>
+          <li><a href="#">&lt;input type="submit"&gt;</a></li>
+          <li><a href="#">&lt;input type="tel"&gt;</a></li>
+          <li><a href="#">&lt;input type="text"&gt;</a></li>
+          <li><a href="#">&lt;input type="time"&gt;</a></li>
+          <li><a href="#">&lt;input type="url"&gt;</a></li>
+          <li><a href="#">&lt;input type="week"&gt;</a></li>
+        </ul>
+      </details>
+    </nav>
+
+    <article>
+      <h1>HTML:ハイパーテキストマークアップ言語</h1>
+      <p>
+        <b>HTML</b>(HyperText Markup Language) はウェブのもっとも基本的な構成要素です。
+        HTML はウェブページの基本レイアウトに従ってウェブページのコンテンツを記述し定義するものです。
+        HTML に隣接する他の技術としては、ウェブページの表示や表現を記述するもの (<a class="context-marker" href="#">CSS</a>)
+        または機能や振る舞いを記述するもの 
+        (<a class="context-marker" href="#">JavaScript</a>) があります。
+      </p>
+      <p>
+        「ハイパーテキスト」はウェブページから別なページに、ウェブサイト内でもウェブサイト間でも、接続するリンクを示します。リンクはウェブの基礎的な特徴です。
+        コンテンツをインターネットにアップロードして他の人々が作成したページにリンクすれば、
+        World Wide Web の活発な参加者になれます。
+      </p>
+      <p>
+        HTML ではウェブブラウザーのテキスト、画像、その他のコンテンツを記述するために「マークアップ」を使用します。 HTML のマークアップには、
+        <a class="tag-name" href="#"> &lt;head&gt;</a>
+        <a class="tag-name" href="#"> &lt;title&gt;</a>
+        <a class="tag-name" href="#"> &lt;body&gt;</a>
+        <a class="tag-name" href="#"> &lt;header&gt;</a>
+        <a class="tag-name" href="#"> &lt;footer&gt;</a>
+        <a class="tag-name" href="#"> &lt;article&gt;</a>
+        <a class="tag-name" href="#"> &lt;section&gt;</a>
+        <a class="tag-name" href="#"> &lt;p&gt;</a>
+        <a class="tag-name" href="#"> &lt;div&gt;</a>
+        <a class="tag-name" href="#"> &lt;span&gt;</a>
+        <a class="tag-name" href="#"> &lt;img&gt;</a>
+        <a class="tag-name" href="#"> &lt;aside&gt;</a>
+        <a class="tag-name" href="#"> &lt;audio&gt;</a>
+        <a class="tag-name" href="#"> &lt;canvas&gt;</a>
+        <a class="tag-name" href="#"> &lt;datalist&gt;</a>
+        <a class="tag-name" href="#"> &lt;details&gt;</a>
+        <a class="tag-name" href="#"> &lt;embed&gt;</a>
+        <a class="tag-name" href="#"> &lt;nav&gt;</a>
+        <a class="tag-name" href="#"> &lt;search&gt;</a>
+        <a class="tag-name" href="#"> &lt;output&gt;</a>
+        <a class="tag-name" href="#"> &lt;progress&gt;</a>
+        <a class="tag-name" href="#"> &lt;video&gt;</a>
+        <a class="tag-name" href="#"> &lt;ul&gt;</a>
+        <a class="tag-name" href="#"> &lt;ol&gt;</a>
+        <a class="tag-name" href="#"> &lt;li&gt;</a>その他のたくさんの特殊な「要素」を用います。</p>
+      <p>
+        HTML 要素は文書中で、<span class="tag-name">&lt;</span> および <span class="tag-name">&gt;</span>
+        で囲まれた要素名で構成される「タグ」によって区別されます。タグ内の要素名は、大文字と小文字の区別がありません。つまり、
+        大文字でも、小文字でも、混在して書いても構いません。例えば、 <span class="tag-name">&lt;title&gt;</span> タグは 
+        <span class="tag-name">&lt;Title&gt;</span> や <span class="tag-name">&lt;TITLE&gt;</span>やその他の方法で書くことができます。
+        ただし、タグを小文字で書くのが慣習となっており、推奨されています。
+      </p>
+      <p>以下の記事が HTML についてもっと学ぶのに役立ちます。</p>
+
+      <section>
+        <h2>中心的なリソース</h2>
+        <a href="#">HTML入門</a>
+        <p>ウェブ開発が初めてであれば、 HTML とは何か、 HTML の使用方法を説明するHTML の基本をご覧ください。</p>
+        <a href="#">HTMLチュートリアル</a>
+        <p>チュートリアルや例を含む HTML の使用方法に関する記事は、HTML 学習エリアを確認してください。</p>
+        <a href="#">HTMLリファレンス</a>
+        <p>広範な HTML リファレンスの章で、 HTML のすべての要素と属性についての詳細が分かります。</p>
+      </section>
+
+      <section>
+        <h2>初心者向けチュートリアル</h2>
+        <p>HTML 学習エリアは HTML を基礎から学ぶための複数のモジュールを中心としています。――前提知識は必要ありません。</p>
+
+        <a href="#">HTML 概論</a>
+        <p>
+          このモジュールでは、 HTML を文章に適用する方法、ハイパーリンクを作成する方法、 HTML を使用してウェブページを構築する方法など、
+          重要な概念と構文に慣れていく段階を設定します。
+        </p>
+
+        <a href="#">マルチメディアとその埋め込み方</a>
+        <p>
+          このモジュールでは、ウェブページにマルチメディアを埋め込むための HTML の使い方を探ります。画像を入れるための様々な方法、映像、
+          音声、他のウェブページ全体を含める場合も含みます。
+        </p>
+
+        <a href="#">HTML テーブル</a>
+        <p>
+          ウェブページ上で表形式のデータを分かりやすく使いやすい方法で表現するのは難しいことです。このモジュールでは、基本的なテーブルのマークアップと、
+          キャプションやサマリーの追加などのより複雑な機能を扱います。
+        </p>
+
+        <a href="#">HTML フォーム</a>
+        <p>
+          フォームはウェブで非常に重要な部分です。――これはウェブサイトとのやり取り（登録やログイン、フィードバックの送信、商品の購入など）
+          に必要な多くの機能を提供します。このモジュールでは、フォームのクライアント側／フロントエンド部分の作成から始めます。
+        </p>
+
+        <a href="#">よくある問題解決に HTML を使う</a>
+        <p>
+          HTML を使用してウェブページを作成する際に、とてもよくある問題（タイトルの扱い、画像や動画の追加、コンテンツの強調、基本フォームの作成など）
+          を解決する方法を説明する記事の章へのリンクを紹介します。
+        </p>
+      </section>
+
+      <section>
+        <h2>高度なトピック</h2>
+        <a href="#">CORS を利用した画像</a>
+        <p>
+          <a class="tag-name-a" href="#">crossorigin</a> 属性と
+          <a href="#">CORS</a> ヘッダーを組み合わせることで、 <a class="tag-name" href="#">&lt;img&gt;</a> 
+          要素で定義された画像を異なるドメインから読み出し、 それを <a class="tag-name" href="#"ああ>&lt;canvas&gt;</a> 
+          要素の中で同じドメインから読み出したかのように扱うことができます。
+        </p>
+
+        <a href="#">CORS 設定属性</a>
+        <p>
+          <a href="#">CORS</a> をサポートするいくつかの HTML 要素
+          （<a class="tag-name" href="#">&lt;img&gt;</a>や<a class="tag-name" href="#">&lt;video&gt;</a> など）は
+          <span class="tag-name">crossorigin</span> 属性（<span class="tag-name">crossOrigin</span> プロパティ）
+          を持っており、要素が取得したデータに関する CORSリクエストを設定することができます。
+        </p>
+
+        <a href="#">rel="preload" によるコンテンツの先読み</a>
+        <p>HTML の
+          &lt;head&gt; 要素内において、
+          &lt;Link&gt; 要素で rel 属性に preloadを指定することで、読み込み後すぐにページに必要なリソース、つまりページ読み込みの過程の初期の、
+          ブラウザーの主なレンダリング機構が起動する前に、先読みを始めたいものを指定する宣言的なフェッチリクエストを記述することができます。
+          これにより、ページの最初のレンダリングがブロックされにくくなり、パフォーマンスが向上します。
+          この記事ではpreload がどのように動作するのかについての基本的なガイドを提供します。
+        </p>
+      </section>
+
+      <section>
+        <h2>リファレンス</h2>
+        <a href="#">HTML リファレンス</a>
+        <p>HTML は要素の集まりで、それぞれの要素がいくつかの属性で修飾される場合があります。 HTML 文書は互いにリンクで接続されます。</p>
+
+        <a href="#">HTML 要素リファレンス</a>
+        <p>すべての HTML 要素の一覧を閲覧します。</p>
+
+        <a href="#">属性リファレンス</a>
+        <p>HTML の要素には属性があります。これは要素を調整したり、さまざまな方法で振る舞いを調整したりするための付加的な値です。
+        </p>
+
+        <a href="#">グローバル属性</a>
+        <p>グローバル属性は、標準仕様で規定されていないものを含むすべての HTML 要素に指定できるものです。つまり、あらゆる標準外の要素も、それを使用することで文書が HTML5
+          に準拠しなくなるとしても、グローバル属性を受け入れなければならないということです。</p>
+
+        <a href="#">インラインレベル要素とブロックレベル要素</a>
+        <p>通常、 HTML
+          の要素は「インラインレベル」要素または「ブロックレベル」要素のどちらかです。インラインレベル要素は、要素を定義するタグによって指定された範囲のみを占有します。
+          ブロックレベル要素は親要素（コンテナー）の範囲全体を占有し、それによって「ブロックボックス」を作成します。
+        </p>
+
+        <a href="#">HTML コメント</a>
+        <p>HTML コメントは、マークアップに説明メモを追加したり、文書内の特定の部分をブラウザーが解釈しないようにしたりするために使用します。</p>
+
+        <a href="#">ウェブにおけるメディア種別と形式のガイド</a>
+        <p><audio> および <video> 要素では、外部のソフトウェアの支援を必要とせずにコンテンツの中でネイティブに音声や動画を再生できます。</p>
+
+        <a href="#">HTML コンテンツカテゴリー</a>
+        <p>HTMLは数種類のコンテンツで構成されています。それぞれのコンテンツは特定のコンテキストで使用することができ、
+          それ以外のコンテキストでは使用できません。同様に、それぞれのコンテキストには、格納することができる他のコンテンツカテゴリーと、
+          その中で使用できる要素、または使用できない要素の集合があります。これは、これらのカテゴリーへのガイドです
+        </p>
+
+        <a href="#">後方互換モードと標準準拠モード</a>
+        <p>後方互換モードと標準準拠モードの歴史的な情報です。</p>
+      </section>
+
+      <section>
+        <h2>関連トピック</h2>
+        <a href="#">CSS を使って HTML の要素に色をつける</a>
+        <p>この記事では、 CSS を使用して HTML コンテンツに色をつける方法、 HTML 文書のどの部分に色付けできるかの一覧、使用する CSS プロパティについて説明します。</p>
+      </section>
+
+      <section class="help">
+        <p class="help-top">Help improve MDN</p>
+        <p class="help-normal">Was this page helpful to you?</p>
+        <ul>
+          <li><button class="Yes" type="button">Yes</button></li>
+          <li><button class="No" type="button">No</button></li>
+        </ul>
+        <p class="help-normal"><a href="#">Learn how to contribute.</a></p>
+        <p class="help-normal">This page was last modified on 2025年3月22日 by <a href="#">MDN contributors.</a></p>
+        <p class="help-normal"><a href="">View this page on GitHub</a> • <a href="">Report a problem with this content</a></p>
+      </section>
+    </article>
+
+    <nav class="sidebar right-side">
+      <h3>この記事では</h3>
+      <ul>
+        <li><a href="#">中心的なリソース</a></li>
+        <li><a href="#">初心者向けチュートリアル</a></li>
+        <li><a href="#">高度なトピック</a></li>
+        <li><a href="#">リファレンス</a></li>
+        <li><a href="#">関連トピックス</a></li>
+      </ul>
+    </nav>
+
+  </main>
+
+  <aside class="adv">
+    adv
+  </aside>
+
+  <footer>
+    <div class="footer-first">
+      <section class="media-icons">
+        <p class="mdn-bold"><a  href="#">mdn</a></p>
+        <p>Your blueprint for a better internet.</p>
+        <div class="media-icon-list">
+          <li><a href="#"><i class="fa-brands fa-bluesky"></i></a></li>
+          <li><a href="#"><i class="fa-brands fa-mastodon"></i></a></li>
+          <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+          <li><a href="#"><i class="fa-brands fa-github"></i></a></li>
+          <li><a href="#"><i class="fa-solid fa-wifi"></i></a></li>
+        </div>
+      </section>
+
+      <section class="fooder-support">
+        <ul>
+          <li><a href="#">MDN</a>
+            <ul>
+              <li><a href="">About</a></li>
+              <li><a href="">Blog</a></li>
+              <li><a href="">Careers</a></li>
+              <li><a href="">Advertise with us</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Support</a>
+            <ul>
+              <li><a href="">About</a></li>
+              <li><a href="">Blog</a></li>
+              <li><a href="">Careers</a></li>
+              <li><a href="">Advertise with us</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Our communities</a>
+            <ul>
+              <li><a href="">About</a></li>
+              <li><a href="">Blog</a></li>
+              <li><a href="">Careers</a></li>
+              <li><a href="">Advertise with us</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Developers</a>
+            <ul>
+              <li><a href="">About</a></li>
+              <li><a href="">Blog</a></li>
+              <li><a href="">Careers</a></li>
+              <li><a href="">Advertise with us</a></li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+
+    <div class="footer-second">
+      <section>
+        <ul>
+          <li class="mozilla-logo">
+            <a href="#">
+              <img class="footer-second-mozilla-logo" src="image/Mozilla-Logo-New.png" alt="New Mozilla Logo">
+            </a>
+          </li>
+          <li><a href="#">Website Privacy Notice</a></li>
+          <li><a href="#">Cookies</a></li>
+          <li><a href="#">Legal</a></li>
+          <li><a href="#">Community Participation Guidelines</a></li>
+        </ul>
+
+      </section>
+      <section>
+        <p>
+          Visit <a href="#">Mozilla Corporation’s</a> not-for-profit parent, the <a href="">Mozilla Foundation</a>.
+        </p>
+        <p>
+          Portions of this content are ©1998–2025 by individual mozilla.org contributors. Content available under
+          <a href="#">a Creative Commons license</a>.
+        </p>
+      </section>
+
+    </div>
+  </footer>
+</body>
+
+</html>

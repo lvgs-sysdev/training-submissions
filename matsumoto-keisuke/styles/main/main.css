@@ -1,0 +1,100 @@
+/* main */
+main {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 50px;
+  display: flex;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.community-box {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+  padding: 20px 20px;
+  background-color: #c7eaff;
+  border-radius: 5px;
+  border-left: 2px solid rgb(83, 164, 244);
+  color: rgb(83, 164, 244);
+}
+
+/* center */
+article {
+  flex: 3;
+  margin-right: 20px;
+  h1 {
+    font-size: 30pt;
+  }
+  p {
+    margin-bottom: 40px;
+  }
+}
+
+section {
+  h2 {
+    font-size: 30pt;
+    font-weight: normal;
+  }
+  p {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+section a,
+article a {
+  color: rgb(83, 164, 244);
+}
+
+.tag-name {
+  background-color: #e0e0e0;
+}
+
+.sidebar {
+  flex: 1;
+}
+
+/* help */
+.help {
+  background-color: #efefef;
+  border: 1px solid #7b7d7d;
+  border-radius: 5px;
+}
+
+.help-top {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 20pt;
+  font-weight: bold;
+}
+
+.help-normal {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.help ul {
+  padding-left: 0;
+}
+
+.help ul li {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.help ul li button {
+  padding: 5px 5px;
+}
+
+.Yes:hover {
+  background-color: green;
+  color: white;
+  border: none;
+}
+
+.No:hover {
+  background-color: red;
+  color: white;
+}
