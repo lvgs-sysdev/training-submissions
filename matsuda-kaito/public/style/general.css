@@ -83,6 +83,32 @@ form p {
     font-weight: bold;
 }
 
+/* サインアップ成功時のCSS */
+.after-signup {
+    text-align: center;
+}
+
+.after-signup span {
+    font-size: 2rem;
+}
+
+.after-signup a {
+    display: inline-block;
+    padding: 8px 16px;
+    margin-top: 16px;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: black;
+    border: 1px solid grey;
+    background-color: #39FFFE;
+    border-radius: 16px;
+}
+
+.after-signup a:hover {
+    background-color: #78FFFE;
+    cursor: pointer;
+}
+
 /* バリデーション操作 */
 .alert-username, .alert-id, .alert-firstPW, .alert-secondPW {
     display: none;
