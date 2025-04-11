@@ -11,13 +11,14 @@ const formbody = require('@fastify/formbody');
 const mysql = require('mysql2/promise');
 const { register } = require('module');
 
-// databaseとの繋ぎこみ　※ここは消しちゃダメ
+// databaseとの繋ぎこみ
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
   password: '',
   database: 'twitterz',
-  connectionLimit: 10
+  connectionLimit: 10,
+  namedPlaceholders: true
 });
 
 // ミドルウェア関数の使用
@@ -100,8 +101,8 @@ fastify.post('/signup', (req, reply) => {
     && password.match(/^(?=.*?[A-Za-z])(?=.*?[A-Z0-9])/)
   ) {
     pool.query(
-      'INSERT INTO users(user_id, username, password) VALUES (?, ?, ?)',
-      [user_id, username, password]
+      'INSERT INTO users(user_id, username, password) VALUES (user_id = ?, username = ?, password = ?)',
+      {user_id: user_id, username: username, password: password}
     );
     reply.redirect('/registered');
   } else {
@@ -109,45 +110,26 @@ fastify.post('/signup', (req, reply) => {
   }
 });
 
-// テスト用なので消してよし ※動作確認済み
 // ログインの処理およびセッションの発行
-// const users = [
-//   { user: 'yamada', password: 'yamada1' },
-//   { user: 'satou', password: 'satou1' },
-//   { user: 'tanaka', password: 'tanaka1' }
-// ];
-
-fastify.post('/login', (req, reply) => {
+fastify.post('/login', async (req, reply) => {
   const { user_id, password } = req.body;
 
-  // for (let userdata of users) {
-  //   if (userdata.user === user_id && userdata.password === password) {
-  //     console.log("it's okay");
-  //     req.session.user = user_id;
-  //     console.log(req.session.user);
-  //     reply.redirect('/');
-  //     break;
-  //   } else {
-  //     console.log("it's wrong");
-  //   }
-  // }
-
-  const kueri = async () => {
+  try {
     const [resultRows] = await pool.query(
-      'SELECT * FROM users WHERE user_id = ?',
-      [user_id]
-    );
-    console.log(resultRows[0].password);
+      'SELECT * FROM users WHERE user_id = :user_id',
+    {user_id: user_id});
+    
     if (password === resultRows[0].password) {
-      req.session.user = user_id;
-      reply.redirect('/');
-    } else {
-      reply.redirect('/login');
-    }
+        req.session.user = user_id;
+        reply.redirect('/');
+      } else {
+        console.log("Wrong password");
+        reply.redirect('/login');
+      }
+  } catch(err) {
+    console.log(err);
   }
-  kueri();
 });
-// ここまで同じ処理のテストで削除可
 
 // サーバーを動かす
 fastify.listen({ port: 3001 }, (err) => {
