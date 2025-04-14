@@ -43,6 +43,7 @@ fastify.register(session, {
 fastify.register(formbody);
 
 // ルーティングで表示するページを指定
+// 投稿一覧画面
 fastify.get('/', (req, reply) => {
   if (req.session.user) {
     reply.sendFile('/views/tsueeet.html');
@@ -51,6 +52,23 @@ fastify.get('/', (req, reply) => {
   }
 });
 
+fastify.get('/allPosts', async (req, reply) => {
+  if (req.session.user === "NinjaWanko") {
+    try {
+      const [allPosts] = await pool.query(
+        'SELECT * FROM posts WHERE tsueeet_delete = 0 ORDER BY posted_date DESC'
+      );
+      console.log(allPosts);
+      reply.send({allPosts});
+    } catch (err) {
+      console.log('Something Wrong');
+    }
+  } else {
+    reply.redirect('/');
+  }
+});
+
+// 投稿作成画面
 fastify.get('/tsueeet', (req, reply) => {
   if (req.session.user) {
     reply.sendFile('/views/post.html');
@@ -70,6 +88,7 @@ fastify.get('/tsueeet', (req, reply) => {
 //   }
 // });
 
+// プロフィール画面
 fastify.get('/profile', (req, reply) => {
   if (req.session.user) {
     reply.sendFile(`/views/profile.html`);
@@ -91,22 +110,38 @@ fastify.get('/registered', (req, reply) => {
   reply.sendFile('/views/success-signup.html');
 });
 
+fastify.get('/failedLogin', (req, reply) => {
+  reply.sendFile('/views/failed-login.html');
+});
+
+// バリデーションによって不要だが一応
+fastify.get('/failedSignup', (req, reply) => {
+  reply.sendFile('/views/failed-signup.html');
+});
+
 // 新規登録の処理
 fastify.post('/signup', (req, reply) => {
   const { username, user_id, password } = req.body;
 
-  if (
-    username.match(/^[\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf]+$/)
-    && user_id.match(/^[A-Za-z0-9]+$/)
-    && password.match(/^(?=.*?[A-Za-z])(?=.*?[A-Z0-9])/)
-  ) {
-    pool.query(
-      'INSERT INTO users(user_id, username, password) VALUES (user_id = ?, username = ?, password = ?)',
-      {user_id: user_id, username: username, password: password}
-    );
-    reply.redirect('/registered');
-  } else {
-    console.log('Not OK signup');
+  try {
+    if (
+      username.match(/^[\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf]+$/)
+      && username.length <= 16
+      && user_id.match(/^[A-Za-z0-9]+$/)
+      && username.length <= 16
+      && password.match(/^(?=.*?[A-Za-z])(?=.*?[A-Z0-9])/)
+      && password.length <= 16
+    ) {
+      pool.query(
+        'INSERT INTO users(user_id, username, password) VALUES (:user_id, :username, :password)',
+        ({user_id: user_id, username: username, password: password})
+      );
+      reply.redirect('/registered');
+    } else {
+      reply.redirect('/failefSignup');
+    }
+  } catch (err) {
+    throw err;
   }
 });
 
@@ -124,10 +159,10 @@ fastify.post('/login', async (req, reply) => {
         reply.redirect('/');
       } else {
         console.log("Wrong password");
-        reply.redirect('/login');
+        reply.redirect('/failedLogin');
       }
   } catch(err) {
-    console.log(err);
+    throw err;
   }
 });
 

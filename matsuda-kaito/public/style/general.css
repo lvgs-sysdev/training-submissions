@@ -84,15 +84,15 @@ form p {
 }
 
 /* サインアップ成功時のCSS */
-.after-signup {
+.after-page {
     text-align: center;
 }
 
-.after-signup span {
+.after-page span {
     font-size: 2rem;
 }
 
-.after-signup a {
+.after-page a {
     display: inline-block;
     padding: 8px 16px;
     margin-top: 16px;
@@ -104,7 +104,7 @@ form p {
     border-radius: 16px;
 }
 
-.after-signup a:hover {
+.after-page a:hover {
     background-color: #78FFFE;
     cursor: pointer;
 }
