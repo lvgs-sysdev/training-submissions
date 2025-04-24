@@ -1,0 +1,61 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* ログイン画面全体のレイアウト */
+.page {
+    height: 100vh;
+    align-content: center;
+}
+
+main {
+    width: 100%;
+    max-width: 720px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* メイン画面のレイアウト */
+.wrapper {
+    margin: 0 auto;
+    height: 600px;
+    align-content: center;
+    background-color: #c0ffee;
+    border: 2px solid limegreen;
+    border-radius: 10px;
+}
+
+.owner-image {
+    display: flex;
+    height: 50px;
+    width: 50px;
+    border-radius: 32px;
+}
+
+.others-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 75%;
+    padding: 16px;
+    background-color: white;
+    border: 2px solid limegreen;
+    border-radius: 8px;
+}
+
+.owner-username {
+    text-align: center;
+    align-items: center;
+    display: flex;
+    font-size: 1.5rem;
+    gap: 16px;
+}
+
+.owner-bio {
+    background-color: white;
+    margin-left: 66px;
+}

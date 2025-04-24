@@ -1,4 +1,9 @@
 // ESMで書いてる
+// nodeにあるモジュール
+const fs = require('fs');
+const util = require('util');
+const { pipeline } = require('stream');
+
 // fastify関連のフレームワークやプラグインモジュールの読み込み
 const fastify = require('fastify')({ logger: true });
 const path = require('path');
@@ -6,10 +11,14 @@ const fastifyStatic = require('@fastify/static');
 const session = require('@fastify/session');
 const cookie = require('@fastify/cookie');
 const formbody = require('@fastify/formbody');
+const multipart = require('@fastify/multipart');
 
 // mysql2の読み込み
 const mysql = require('mysql2/promise');
 const { register } = require('module');
+
+// パスワード安全性向上のため
+const crypto = require('crypto');
 
 // databaseとの繋ぎこみ
 const pool = mysql.createPool({
@@ -18,7 +27,8 @@ const pool = mysql.createPool({
   password: '',
   database: 'twitterz',
   connectionLimit: 10,
-  namedPlaceholders: true
+  namedPlaceholders: true,
+  timezone: 'jst'
 });
 
 // ミドルウェア関数の使用
@@ -41,6 +51,9 @@ fastify.register(session, {
 });
 
 fastify.register(formbody);
+fastify.register(multipart);
+
+const pump = util.promisify(pipeline);
 
 // ルーティングで表示するページを指定
 // 投稿一覧画面
@@ -53,13 +66,12 @@ fastify.get('/', (req, reply) => {
 });
 
 fastify.get('/allPosts', async (req, reply) => {
-  if (req.session.user === "NinjaWanko") {
+  if (req.session.user) {
     try {
       const [allPosts] = await pool.query(
-        'SELECT * FROM posts WHERE tsueeet_delete = 0 ORDER BY posted_date DESC'
+        'SELECT posts.user_id, posts.tsueeet_content, posts.posted_date, users.username, users.profile_icon FROM posts INNER JOIN users ON posts.user_id = users.user_id WHERE posts.tsueeet_delete = 0 ORDER BY posts.posted_date DESC'
       );
-      console.log(allPosts);
-      reply.send({allPosts});
+      reply.send({ allPosts });
     } catch (err) {
       console.log('Something Wrong');
     }
@@ -72,27 +84,101 @@ fastify.get('/allPosts', async (req, reply) => {
 fastify.get('/tsueeet', (req, reply) => {
   if (req.session.user) {
     reply.sendFile('/views/post.html');
-    console.log(req.session.user);
   } else {
     reply.redirect('/login');
   }
 });
 
+fastify.post('/tsueeet', (req, reply) => {
+  const tsueeeted = req.body.tsueeet;
+  try {
+    pool.query(
+      'INSERT INTO posts(user_id, tsueeet_content) VALUES (:user_id, :tsueeet_content)',
+      { user_id: req.session.user, tsueeet_content: tsueeeted }
+    );
+    reply.redirect('/');
+  } catch (err) {
+    throw err;
+  }
+});
+
 // 以下のコードでセッションに合わせたルーティングができる
-// fastify.get('/profile', (req, reply) => {
-//   if(req.session.user) {
-//     reply.sendFile(`/views/${req.session.user}.html`);
-//     console.log(req.session.user);
-//   } else {
-//     reply.redirect('/login');
-//   }
-// });
+fastify.get('/others/:user_id', (req, reply) => {
+  if (req.session.user) {
+    // const userProfile = req.params.user_id;
+    reply.sendFile('/views/others-profile.html');
+  } else {
+    reply.redirect('/login');
+  }
+});
+
+fastify.get('/others-profile', async (req, reply) => {
+  if (req.session.user) {
+    const [othersProfileData] = await pool.query(
+      'SELECT user_id, username, user_bio, profile_icon FROM users'
+    );
+    reply.send({ othersProfileData });
+  }
+});
 
 // プロフィール画面
 fastify.get('/profile', (req, reply) => {
   if (req.session.user) {
     reply.sendFile(`/views/profile.html`);
-    console.log(req.session.user);
+  } else {
+    reply.redirect('/login');
+  }
+});
+
+fastify.post('/profile', async (req, reply) => {
+  const parts = req.files();
+
+  if (req.session.user) {
+    const imgRooting = `./public/images/${req.session.user}.png`;
+
+    for await (const part of parts) {
+      console.log(part);
+
+      if (part.filename !== '') {
+        await pump(part.file, fs.createWriteStream(imgRooting));
+        await pool.query(
+          'UPDATE users SET profile_icon = :profile_icon WHERE user_id= :user_id',
+          { profile_icon: imgRooting, user_id: req.session.user }
+        );
+      }
+
+      if (part.fields.edit_username.value !== '') {
+        await pool.query(
+          'UPDATE users SET username = :username WHERE user_id= :user_id',
+          { username: part.fields.edit_username.value, user_id: req.session.user }
+        )
+      }
+
+      if (part.fields.edit_bio.value !== '') {
+        await pool.query(
+          'UPDATE users SET user_bio = :user_bio WHERE user_id= :user_id',
+          { user_bio: part.fields.edit_bio.value, user_id: req.session.user }
+        )
+      }
+    }
+    reply.redirect('/profile');
+  } else {
+    eply.redirect('/login');
+  }
+});
+
+fastify.get('/profileData', async (req, reply) => {
+  if (req.session.user) {
+    try {
+      const iAmUser = req.session.user;
+      const [userDataRows] = await pool.query(
+        'SELECT user_id, username, profile_icon, user_bio FROM users WHERE user_id = :user_id',
+        { user_id: iAmUser }
+      );
+      reply.send({ userDataRows });
+    } catch (err) {
+      console.log('Something Wrong');
+    }
   } else {
     reply.redirect('/login');
   }
@@ -120,7 +206,7 @@ fastify.get('/failedSignup', (req, reply) => {
 });
 
 // 新規登録の処理
-fastify.post('/signup', (req, reply) => {
+fastify.post('/signup', async (req, reply) => {
   const { username, user_id, password } = req.body;
 
   try {
@@ -132,9 +218,10 @@ fastify.post('/signup', (req, reply) => {
       && password.match(/^(?=.*?[A-Za-z])(?=.*?[A-Z0-9])/)
       && password.length <= 16
     ) {
+      const hash = crypto.createHash('sha256').update(password).digest('hex');
       pool.query(
         'INSERT INTO users(user_id, username, password) VALUES (:user_id, :username, :password)',
-        ({user_id: user_id, username: username, password: password})
+        ({ user_id: user_id, username: username, password: hash })
       );
       reply.redirect('/registered');
     } else {
@@ -152,16 +239,19 @@ fastify.post('/login', async (req, reply) => {
   try {
     const [resultRows] = await pool.query(
       'SELECT * FROM users WHERE user_id = :user_id',
-    {user_id: user_id});
-    
-    if (password === resultRows[0].password) {
-        req.session.user = user_id;
-        reply.redirect('/');
-      } else {
-        console.log("Wrong password");
-        reply.redirect('/failedLogin');
-      }
-  } catch(err) {
+      { user_id: user_id }
+    );
+
+    const loginHash = crypto.createHash('sha256').update(password).digest('hex');
+
+    if (loginHash === resultRows[0].password) {
+      req.session.user = user_id;
+      reply.redirect('/');
+    } else {
+      console.log("Wrong password");
+      reply.redirect('/failedLogin');
+    }
+  } catch (err) {
     throw err;
   }
 });
@@ -172,5 +262,5 @@ fastify.listen({ port: 3001 }, (err) => {
     console.error('サーバーの起動中にエラーが発生しました:', err);
     process.exit(1);
   }
-  console.log('サーバーがポート3001で起動しました');
+  console.log(`サーバーがポート${fastify.server.address().port}で起動しました`);
 });

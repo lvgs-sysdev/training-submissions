@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>画像データのやりとり用</h1>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <input type="file" name="imageFile" accept="image/*"/>
+        <input type="text" name="username">
+        <textarea id="bio" class="input-area" maxlength="100"
+                        placeholder="自己紹介は100字以内まで" name="edit_bio"></textarea>
+        <input type="submit">
+    </form>
+</body>
+</html>

@@ -4,3 +4,102 @@
     box-sizing: border-box;
 }
 
+/* ログイン画面全体のレイアウト */
+.page {
+    height: 100vh;
+    align-content: center;
+}
+
+.page-loggedin {
+    height: 90vh;
+    align-content: center;
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+
+main {
+    width: 100%;
+    max-width: 720px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* メイン画面のレイアウト */
+.wrapper {
+    height: 600px;
+    align-content: center;
+    background-color: #c0ffee;
+    border: 2px solid limegreen;
+    border-radius: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-area, .submit, .main-title {
+    display: inline-block;
+    width: 50%;
+    margin: 10px auto;
+}
+
+label,  .profile-photo, p {
+    display: inline-block;
+    width: 50%;
+    margin: 0 auto;
+}
+
+p {
+    color: red;
+    font-weight: bold;
+    font-size: 0.75rem;
+}
+
+.show-profile-photo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    margin: 10px auto;
+}
+
+.put_file {
+    align-items: center;
+}
+
+.put_file:hover {
+    cursor: pointer;
+}
+
+.input-area, .submit {
+    border: 1px solid grey;
+}
+
+.submit {
+    cursor: pointer;
+}
+
+.main-title {
+    font-size: 2rem;
+}
+
+.input-area {
+    padding: 12px 6px;
+    border-radius: 4px;
+}
+
+.submit {
+    padding: 8px;
+    border-radius: 32px;
+}
+
+.profile-icon {
+    display: block;
+    height: 40px;
+    width: 40px;
+    margin: 0 16px;
+    border-radius: 32px;
+}

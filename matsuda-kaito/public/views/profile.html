@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/public/style/header.css">
+    <link rel="stylesheet" href="/public/style/profile.css">
+    <script src="/public/script/profile.js" defer></script>
     <link class="z-icon" rel="icon" href="/public/Z.png">
     <title>Z プロフィール</title>
 </head>
@@ -30,5 +32,28 @@
             </div>
         </div>
     </header>
+    <main class="page">
+        <div class="center-contents">
+            <div class="wrapper">
+                <form action="/profile" method="POST" enctype="multipart/form-data">
+                    <span class="main-title">プロフィールの編集</span>
+                    <div class="profile-photo">現在のプロフィール画像</div>
+                    <div class="show-profile-photo">
+                        <img id="profileIcon" class="profile-icon" src="">
+                        <input id="editProfilePhoto" class="put_file" type="file" name="edit_profilePhoto" accept="images/jpg, images/png, images/jpeg">
+                    </div>
+
+                    <label id="showUsername" for="editUsername">現在のユーザネーム：</label>
+                    <input id="editUsername" class="input-area" type="text" name="edit_username" maxlength="16"
+                    placeholder="変更後のユーザーネーム（漢・ひら・カナのみ）"/>
+                    <label for="bio">自己紹介の編集</label>
+                    <textarea id="bio" class="input-area" maxlength="100"
+                        placeholder="自己紹介は100字以内まで" name="edit_bio"></textarea>
+                        <p id="count-text">現在0文字</p>
+                    <input id="login-information-submit" class="submit" type="submit" value="変更を保存">
+                </form>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
