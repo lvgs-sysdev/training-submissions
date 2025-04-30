@@ -130,6 +130,7 @@ fastify.get('/profile', (req, reply) => {
   }
 });
 
+// アカウント情報の編集
 fastify.post('/profile', async (req, reply) => {
   const parts = req.files();
 
@@ -137,9 +138,11 @@ fastify.post('/profile', async (req, reply) => {
     const imgRooting = `./public/images/${req.session.user}.png`;
 
     for await (const part of parts) {
-      console.log(part);
+      const editProfileIcon = part.filename;
+      const editUsername = part.fields.edit_username.value;
+      const editBio = part.fields.edit_bio.value;
 
-      if (part.filename !== '') {
+      if (editProfileIcon !== '') {
         await pump(part.file, fs.createWriteStream(imgRooting));
         await pool.query(
           'UPDATE users SET profile_icon = :profile_icon WHERE user_id= :user_id',
@@ -147,23 +150,29 @@ fastify.post('/profile', async (req, reply) => {
         );
       }
 
-      if (part.fields.edit_username.value !== '') {
+      if (
+        editUsername !== ''
+        && editUsername.match(/^[\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf]+$/)
+        && editUsername.length <= 16
+      ) {
         await pool.query(
           'UPDATE users SET username = :username WHERE user_id= :user_id',
-          { username: part.fields.edit_username.value, user_id: req.session.user }
+          { username: editUsername, user_id: req.session.user }
         )
       }
 
-      if (part.fields.edit_bio.value !== '') {
+      if (editBio !== ''
+        && editBio.length <= 100
+      ) {
         await pool.query(
           'UPDATE users SET user_bio = :user_bio WHERE user_id= :user_id',
-          { user_bio: part.fields.edit_bio.value, user_id: req.session.user }
+          { user_bio: editBio, user_id: req.session.user }
         )
       }
     }
     reply.redirect('/profile');
   } else {
-    eply.redirect('/login');
+    reply.redirect('/login');
   }
 });
 
@@ -218,14 +227,26 @@ fastify.post('/signup', async (req, reply) => {
       && password.match(/^(?=.*?[A-Za-z])(?=.*?[A-Z0-9])/)
       && password.length <= 16
     ) {
-      const hash = crypto.createHash('sha256').update(password).digest('hex');
-      pool.query(
+      const [checkDouble] = await pool.query(
+        'SELECT * FROM users WHERE user_id = :user_id',
+        {user_id: user_id}
+      );
+
+      if (checkDouble.length > 0) {
+        reply.redirect('/failedSignup');
+      } else {
+        const hash = crypto.createHash('sha256').update(password).digest('hex');
+
+      await pool.query(
         'INSERT INTO users(user_id, username, password) VALUES (:user_id, :username, :password)',
         ({ user_id: user_id, username: username, password: hash })
       );
+
       reply.redirect('/registered');
+      }
+
     } else {
-      reply.redirect('/failefSignup');
+      reply.redirect('/failedSignup');
     }
   } catch (err) {
     throw err;

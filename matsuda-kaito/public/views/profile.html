@@ -46,10 +46,12 @@
                     <label id="showUsername" for="editUsername">現在のユーザネーム：</label>
                     <input id="editUsername" class="input-area" type="text" name="edit_username" maxlength="16"
                     placeholder="変更後のユーザーネーム（漢・ひら・カナのみ）"/>
+                    <p class="alert-username">名前はひら・カナ・漢字のみで16文字以下まで</p>
                     <label for="bio">自己紹介の編集</label>
                     <textarea id="bio" class="input-area" maxlength="100"
                         placeholder="自己紹介は100字以内まで" name="edit_bio"></textarea>
                         <p id="count-text">現在0文字</p>
+                        <p class="alert-bio">100文字以内で入力してください</p>
                     <input id="login-information-submit" class="submit" type="submit" value="変更を保存">
                 </form>
             </div>

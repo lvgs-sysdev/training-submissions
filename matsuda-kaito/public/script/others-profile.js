@@ -12,7 +12,7 @@ const getJson = () => {
                 const ownerImage = document.getElementById('ownerImage');
                 const ownerBio = document.getElementById('ownerBio');
 
-                ownerImage.src = getProfile.profile_icon;
+                ownerImage.src = `.${getProfile.profile_icon}`;
 
                 ownerUsername.textContent = getProfile.username;
                 if (getProfile.user_bio == null) {

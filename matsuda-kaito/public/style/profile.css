@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-/* ログイン画面全体のレイアウト */
+/* 画面全体のレイアウト */
 .page {
     height: 100vh;
     align-content: center;
@@ -102,4 +102,17 @@ p {
     width: 40px;
     margin: 0 16px;
     border-radius: 32px;
+}
+
+/* アラート機能 */
+.alert-username {
+    display: none;
+}
+
+.alert-bio {
+    display: none;
+}
+
+.is-show {
+    display: block;
 }
