@@ -20,8 +20,6 @@ const getJson = () => {
                 } else {
                     ownerBio.textContent = getProfile.user_bio;
                 }
-            } else {
-                // 何もしない
             }
         }
     });

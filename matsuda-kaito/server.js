@@ -139,8 +139,9 @@ fastify.post('/profile', async (req, reply) => {
 
     for await (const part of parts) {
       const editProfileIcon = part.filename;
-      const editUsername = part.fields.edit_username.value;
-      const editBio = part.fields.edit_bio.value;
+      const editUsername = part.fields?.edit_username?.value;
+      const editBio = part.fields?.edit_bio?.value;
+console.log(part);
 
       if (editProfileIcon !== '') {
         await pump(part.file, fs.createWriteStream(imgRooting));
@@ -151,7 +152,8 @@ fastify.post('/profile', async (req, reply) => {
       }
 
       if (
-        editUsername !== ''
+        editUsername != undefined
+        && editUsername !== ''
         && editUsername.match(/^[\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf]+$/)
         && editUsername.length <= 16
       ) {
@@ -161,7 +163,9 @@ fastify.post('/profile', async (req, reply) => {
         )
       }
 
-      if (editBio !== ''
+      if (
+        editBio != undefined
+        && editBio !== ''
         && editBio.length <= 100
       ) {
         await pool.query(
@@ -229,7 +233,7 @@ fastify.post('/signup', async (req, reply) => {
     ) {
       const [checkDouble] = await pool.query(
         'SELECT * FROM users WHERE user_id = :user_id',
-        {user_id: user_id}
+        { user_id: user_id }
       );
 
       if (checkDouble.length > 0) {
@@ -237,12 +241,12 @@ fastify.post('/signup', async (req, reply) => {
       } else {
         const hash = crypto.createHash('sha256').update(password).digest('hex');
 
-      await pool.query(
-        'INSERT INTO users(user_id, username, password) VALUES (:user_id, :username, :password)',
-        ({ user_id: user_id, username: username, password: hash })
-      );
+        await pool.query(
+          'INSERT INTO users(user_id, username, password) VALUES (:user_id, :username, :password)',
+          ({ user_id: user_id, username: username, password: hash })
+        );
 
-      reply.redirect('/registered');
+        reply.redirect('/registered');
       }
 
     } else {

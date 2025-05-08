@@ -39,6 +39,6 @@ countLength.addEventListener('input', () => {
     if (counted > 100) {
         alertBio.classList.add('is-show');
     } else {
-        alertBio.classList.remove('is-how');
+        alertBio.classList.remove('is-show');
     }
 });

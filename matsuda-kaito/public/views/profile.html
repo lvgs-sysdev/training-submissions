@@ -13,8 +13,8 @@
     <header>
         <div class="header-wrapper">
             <div class="z-logo">
-                <a class="header-logo">
-                    <img class="z-img" src="/public/Z.png">
+                <a class="header-logo" href="/">
+                    <img class="z-img" src="/public/Z.png" alt="Z icon">
                 </a>
             </div>
             <div class="menu-wrapper">
@@ -35,12 +35,12 @@
     <main class="page">
         <div class="center-contents">
             <div class="wrapper">
-                <form action="/profile" method="POST" enctype="multipart/form-data">
+                <form action="/profile" method="post" enctype="multipart/form-data">
                     <span class="main-title">プロフィールの編集</span>
                     <div class="profile-photo">現在のプロフィール画像</div>
                     <div class="show-profile-photo">
                         <img id="profileIcon" class="profile-icon" src="">
-                        <input id="editProfilePhoto" class="put_file" type="file" name="edit_profilePhoto" accept="images/jpg, images/png, images/jpeg">
+                        <input id="editProfilePhoto" class="put_file" type="file" name="edit_profilePhoto" accept="image/jpg, image/png, image/jpeg">
                     </div>
 
                     <label id="showUsername" for="editUsername">現在のユーザネーム：</label>
