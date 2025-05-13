@@ -1,0 +1,46 @@
+header {
+  display: flex;
+  width: 1366px;
+  background-color: white;
+  align-items: center;
+  margin: 0;
+  position: fixed;
+  z-index: 1;
+}
+
+.header-container {
+  width: 1366px;
+  height: 90px;
+  padding: 0px 123px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 20px;
+  text-align: center;
+  color: #ff553c;
+}
+
+.login-button-container {
+  display: flex;
+  align-items: center;
+}
+
+.login-button {
+  width: 127px;
+  height: 50px;
+  color: white;
+  font-size: 14px;
+  font-weight: 100;
+  background-color: #ff553c;
+  border: none;
+}
+
+.login-text {
+  font-size: 14px;
+  font-weight: 100;
+  text-align: center;
+  padding-right: 10px;
+}

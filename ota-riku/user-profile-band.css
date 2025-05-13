@@ -1,0 +1,24 @@
+.userprofile-band-container{
+    height: 60px;
+    width: auto;
+    display: flex;
+}
+
+.userprofile-icon-aspect{
+    height: 60px;
+    width: 60px;
+}
+
+.userprofile-text-font{
+    font-size: 16px;
+    color: #121212;
+}
+
+.userprofile-text-padding{
+    margin: 0;
+    padding: 10px 0 47px 12px;
+}
+
+.userprofile-icon{
+    text-align: left;
+}
