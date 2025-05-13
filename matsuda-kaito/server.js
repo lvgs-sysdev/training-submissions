@@ -15,12 +15,11 @@ const multipart = require('@fastify/multipart');
 
 // mysql2の読み込み
 const mysql = require('mysql2/promise');
-const { register } = require('module');
 
-// パスワード安全性向上のため
+// 暗号化モジュール
 const crypto = require('crypto');
 
-// databaseとの繋ぎこみ
+// database接続
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
@@ -44,7 +43,8 @@ fastify.register(session, {
   secret: 'a secret with minimum length of 32 characters',
   cookie: {
     secure: false,
-    expires: undefined
+    expires: undefined,
+    httpOnly: true
   },
   // cookieにセッションを保存するための設定
   saveUninitialized: false
@@ -103,6 +103,7 @@ fastify.post('/tsueeet', (req, reply) => {
 });
 
 // 以下のコードでセッションに合わせたルーティングができる
+// 他人のプロフィール閲覧画面
 fastify.get('/others/:user_id', (req, reply) => {
   if (req.session.user) {
     // const userProfile = req.params.user_id;
@@ -141,7 +142,6 @@ fastify.post('/profile', async (req, reply) => {
       const editProfileIcon = part.filename;
       const editUsername = part.fields?.edit_username?.value;
       const editBio = part.fields?.edit_bio?.value;
-console.log(part);
 
       if (editProfileIcon !== '') {
         await pump(part.file, fs.createWriteStream(imgRooting));
