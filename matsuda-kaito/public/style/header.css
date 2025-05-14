@@ -1,0 +1,68 @@
+/* ヘッダー部分 */
+header {
+    position: sticky;
+    top: 0;
+    display: block;
+    background-color: #c0ffee;
+}
+
+ul {
+    list-style: none;
+}
+
+.header-wrapper {
+    max-width: 720px;
+    width: 100%;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 16px;
+    align-items: center;
+}
+
+.z-logo {
+    display: inline-block;
+    padding: 12px;
+}
+
+.header-logo {
+    cursor: pointer;
+}
+
+.z-img {
+    margin-top: 6px;
+    width: 2rem;
+    height: 2rem;
+}
+
+.main-menu {
+    display: flex;
+    gap: 1rem;
+}
+
+/* ツェート一覧　プロフィール確認 */
+.menu-content, .current-page {
+    display: block;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: none;
+    color: #4e4e4e;
+    font-family: BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-weight: bold;
+}
+
+.menu-content:hover {
+    border-radius: 8px;
+    background-color: #66FFD5;
+}
+
+/* ツェート投稿 */
+.current-page {
+    background-color: #39FFFE;
+    border-radius: 32px;
+}
+
+.current-page:hover {
+    background-color: #78FFFE;
+}
