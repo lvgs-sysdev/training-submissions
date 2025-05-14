@@ -1,14 +1,9 @@
-/*デフォルトマージンを除去*/
-*{
-  margin:0;
-  padding: 0;
-}
-
 body{
     width: 100%;
 }
 
 main{
+    display: block;
     width: 100%;
     max-width: 100%;
     height: auto;
@@ -19,12 +14,11 @@ main{
 #top-box{
     width: 100%;
     height: auto;
-    background-image: url("toppicture.png");
+    background-image: url("../image/toppicture.png");
     background-size: 100vw;
     background-position: center;
     background-repeat: no-repeat;
     margin-top: 0;
-
 }
 
 
@@ -34,7 +28,6 @@ main{
     margin-left: 10%;
     border: 0;
     padding: 0;
-
 }
 
 .top-text{
@@ -45,7 +38,6 @@ main{
     letter-spacing: -2px;
     color: #121212;
     margin-top: 20%;
-
 }
 
 .top-content{
@@ -119,7 +111,7 @@ main{
 }
 
 .hr-main{
-    border: 0.5px solid lightgray
+    border: 1px solid lightgray;
 }
 
 .more-button{
@@ -130,9 +122,7 @@ main{
     letter-spacing: 0px;
     color: #757575;
     padding: 4% 7%;
-
     border: 1px solid #DEDEDE;
-
     margin-right: 10%;
 }
 
@@ -143,6 +133,7 @@ main{
     display: grid;
     grid-template-columns: repeat(2,1fr);
     gap: 5%;
+    list-style: none;
 }
 
 .contents{
@@ -153,15 +144,18 @@ main{
 }
 
 .contents-img{
-    width: 360px;
-    height: 240px;
+    width: 100%;
+    height: 35vh;
     object-fit: cover;
+    margin-bottom: 1vh;
 }
 
 .informationbox{
     width: 100%;
     height: auto;
     display: flex;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
 }
 
 .tag{
@@ -181,7 +175,6 @@ main{
     line-height: 100%;
     letter-spacing: 1px;
     color: #757575;
-
     border-left: 1px solid #DEDEDE;
     padding-left: 3%;
 }
@@ -201,5 +194,6 @@ main{
     font-size: 16px;
     line-height: 100%;
     letter-spacing: 0px;
-    color: #757575;   
+    color: #757575;
+    margin-top: 10%;
 }
