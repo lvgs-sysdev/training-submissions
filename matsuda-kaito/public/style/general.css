@@ -29,7 +29,7 @@ main {
     border-radius: 10px;
 }
 
-form {
+.post-form {
     display: flex;
     flex-direction: column;
 }

@@ -1,6 +1,11 @@
+// 入力値が正しくない時にアラートしてくれる
+import { showAlert, removeAlert } from "/public/script/add_class.js";
+
+const myProfileEndpoint = 'http://127.0.0.1:3001/profileData';
+
 // プロフィール画像を確認させる
 const getJson = () => {
-    fetch('http://127.0.0.1:3001/profileData')
+    fetch(myProfileEndpoint)
     .then(response => response.json())
     .then(userData => {
         const nowPhoto = document.getElementById('profileIcon');
@@ -19,9 +24,9 @@ checkUsername.addEventListener('input', () => {
     const alertUsername = document.querySelector('.alert-username');
 
     if (!checkUsername.value.match(/^[\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf]+$/)) {
-        alertUsername.classList.add('is-show');
+        showAlert(alertUsername);
     } else {
-        alertUsername.classList.remove('is-show');
+        removeAlert(alertUsername);
     }
 });
 
@@ -37,8 +42,8 @@ countLength.addEventListener('input', () => {
     const alertBio = document.querySelector('.alert-bio');
 
     if (counted > 100) {
-        alertBio.classList.add('is-show');
+        showAlert(alertBio);
     } else {
-        alertBio.classList.remove('is-show');
+        removeAlert(alertBio);
     }
 });

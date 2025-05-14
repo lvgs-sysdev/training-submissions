@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/public/style/general.css">
     <link rel="stylesheet" href="/public/style/tsueeet.css">
     <link class="z-icon" rel="icon" href="/public/Z.png">
-    <script src="/public/script/count.js" defer></script>
+    <script src="/public/script/post_length_conter.js" defer></script>
     <title>Zにツェート</title>
 </head>
 <body>
@@ -37,7 +37,7 @@
     <main class="page-loggedin">
         <div class="center-contents">
             <div class="wrapper">
-                <form action="/tsueeet" method="post">
+                <form class="post-form" action="/tsueeet" method="post">
                     <label class="main-title" for="tsueeet-text">Zにツェート</label>
                     <textarea id="tsueeet-text" class="input-area" name="tsueeet" maxlength="100"
                         placeholder="今起きていることを共有しよう" required></textarea>

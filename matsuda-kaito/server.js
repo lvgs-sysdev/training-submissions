@@ -277,7 +277,7 @@ fastify.post('/login', async (req, reply) => {
       reply.redirect('/failedLogin');
     }
   } catch (err) {
-    throw err;
+    reply.redirect('/failedLogin');
   }
 });
 

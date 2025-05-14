@@ -1,3 +1,5 @@
+import { showAlert, removeAlert } from "/public/script/add_class.js";
+
 // 新規登録フォームのバリデーション
 const signupForm = document.getElementById('signupForm');
 const infoSubmit = document.getElementById('signupInformationSubmit');
@@ -8,9 +10,9 @@ username.addEventListener('input', () => {
     const alertUsername = document.querySelector('.alert-username');
     // // ひらがな・カタカナ・漢字のみ使用可
     if (!username.value.match(/^[\u30a0-\u30ff\u3040-\u309f\u3005-\u3006\u30e0-\u9fcf]+$/)) {
-        alertUsername.classList.add('is-show');
+        showAlert(alertUsername);
     } else {
-        alertUsername.classList.remove('is-show');
+        removeAlert(alertUsername);
     }
 });
 
@@ -21,9 +23,9 @@ loginId.addEventListener('input', () => {
     const alertId = document.querySelector('.alert-id');
 
     if (!loginId.value.match(forValidation)) {
-        alertId.classList.add('is-show');
+        showAlert(alertId);
     } else {
-        alertId.classList.remove('is-show');
+        removeAlert(alertId);
     }
 });
 
@@ -34,9 +36,9 @@ password.addEventListener('input', () => {
     const alertPassword = document.querySelector('.alert-firstPW');
 
     if (!password.value.match(forStrongValidation)) {
-        alertPassword.classList.add('is-show');
+        showAlert(alertPassword);
     } else {
-        alertPassword.classList.remove('is-show');
+        removeAlert(alertPassword);
     }
 });
 
@@ -46,9 +48,9 @@ checkPassword.addEventListener('input', () => {
     const alertCheckPassword = document.querySelector('.alert-secondPW');
 
     if (password.value !== checkPassword.value) {
-        alertCheckPassword.classList.add('is-show');
+        showAlert(alertCheckPassword);
     } else {
-        alertCheckPassword.classList.remove('is-show');
+        removeAlert(alertCheckPassword);
     }
 });
 
