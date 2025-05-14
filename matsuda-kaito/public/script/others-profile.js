@@ -1,9 +1,11 @@
-const getPath = location.pathname;
-const splitPath = getPath.split('/');
+// const getPath = location.pathname;
+const splitPath = location.pathname.split('/');
 const profileOwner = splitPath[splitPath.length - 1];
 
+const othersProfileEndpoint = 'http://127.0.0.1:3001/others-profile';
+
 const getJson = () => {
-    fetch('http://127.0.0.1:3001/others-profile')
+    fetch(othersProfileEndpoint)
     .then(response => response.json())
     .then(seeProfile => {
         for (const getProfile of seeProfile.othersProfileData) {

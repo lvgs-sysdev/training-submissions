@@ -62,7 +62,7 @@ const getJson = () => {
         .then(response => response.json())
         .then(posts => {
             const ul = document.querySelector('.all-posts');
-            
+
             for (const post of posts.allPosts) {
                 const year = post.posted_date.slice(0, 4) + '年';
                 const month = post.posted_date.slice(5, 7) + '月';
@@ -87,7 +87,6 @@ const getJson = () => {
                 </div>
             </li>
             `;
-            console.log(postContent);
             }
 
             ul.innerHTML = postContent;
