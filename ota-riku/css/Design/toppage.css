@@ -180,10 +180,12 @@
 
 .tags-btn-ul {
   display: flex;
+  flex-wrap: wrap;
   list-style: none;
   padding-left: 0;
 }
 
 .tags-btn-li {
   padding-right: 23px;
+  padding-bottom: 10px;
 }
