@@ -20,6 +20,8 @@ header {
 .title {
   font-size: 20px;
   text-align: center;
+  font-weight: 600;
+  text-decoration: none;
   color: #ff553c;
 }
 
@@ -36,6 +38,9 @@ header {
   font-weight: 100;
   background-color: #ff553c;
   border: none;
+  text-decoration: none;
+  text-align: center;
+  line-height: 50px;
 }
 
 .login-text {
