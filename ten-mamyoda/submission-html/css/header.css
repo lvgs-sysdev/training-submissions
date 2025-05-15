@@ -17,11 +17,12 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 181;
-    height: 43;
+    width: auto;
+    height: auto;
     gap: 10px;
     text-align: left;
     margin-inline-start: 10%;
+    background-color: #FFFFFF;
 }
 
 #title{
