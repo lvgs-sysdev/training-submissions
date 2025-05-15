@@ -17,7 +17,7 @@
   flex-wrap: wrap;
   list-style: none;
   margin: 0;
-  padding: 0 0 0;
+  padding: 0;
 }
 
 .sidemenu-contents-card-ul {
@@ -25,7 +25,7 @@
   flex-wrap: wrap;
   list-style: none;
   margin: 0;
-  padding: 0 0 0;
+  padding: 0;
 }
 
 .sidemenu-card-elem {
@@ -79,7 +79,7 @@
 .sidemenu-contributors-list-ul {
   list-style: none;
   margin: 0;
-  padding: 0 0 0;
+  padding: 0;
 }
 
 .sidemenu-contributors-list-li {
