@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>editUser</title>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <main>
+        <div id="profile_left">
+            <div id="profile_head">
+                <div id="profile_title">
+                    <a href="/home">
+                        <div id="title">
+                            <p>DAYDAYTRAVEL</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div id="profile_contents">
+                <h1 class="MyProfile">
+                    My Profile
+                </h1>
+            </div>
+            <div id="profile_foot">
+                <p class="profile_copywrite">© 2023 PT. Travel Everyday Indonesia</p>
+            </div>
+        </div>
+        <div id="profile_right">
+            <h1 class="input_headline">
+                Edit Profile
+            </h1>
+            <div id="user_img">
+                <img id="currentProfileImageDisplay" src="@USER_IMG_SRC@" alt="プロフィール画像">
+            </div>
+            <div id="input_form">
+                <form id="profileSaveForm" action="/save" method="post" enctype="multipart/form-data">
+                    <div id="upload-box">
+                        <label for="profileImage" id="uploadContent">
+                            Choice your profile image:
+                        </label>
+                        <input type="file" name="profileImage" id="profileImage" accept="image/*"
+                            style="display: none;"> <label for="profileImage" class="upload-button">
+                            Select File
+                        </label>
+                        <span id="fileNameDisplay">No file chosen</span>
+                    </div>
+                    <div id="imageMessage"></div>
+                    <div id="deletebox">
+                        <input type="checkbox" id="deleteProfileImage" name="deleteProfileImage" value="true">
+                        <label for="deleteProfileImage" id="deleteContents">Delete profile image</label>
+                    </div>
+                    <hr style="margin: 2vh 0;">
+                    <div id="input_box">
+                        <ul id="user_info">
+                            <li class="item_name">
+                                <span class="item">User ID</span>
+                                <input type="text" name="NEWuserID" class="input" value="@USERID@" />
+                            </li>
+                            <li class="item_name">
+                                <span class="item">User Name</span>
+                                <input type="text" name="NEWusername" class="input" value="@USERNAME@" />
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="save_box">
+                        <button type="submit" class="save_button">save</button>
+                    </div>
+                </form>
+            </div>
+    </main>
+    <script>
+        // windowに割り当てることで、外部JSファイルからアクセス可能にする
+        window.initialProfileImageSrc = "@USER_IMG_SRC@";
+    </script>
+    <script src="/js/profile_edit.js"></script>
+</body>
+
+</html>
