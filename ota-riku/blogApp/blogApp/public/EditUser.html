@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="jp">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UserInfo</title>
+    <link rel="stylesheet" href="/css/UserInfo/userinfo.css" />
+    <link rel="stylesheet" href="/css/EditUser/editUser.css" />
+    <link rel="stylesheet" href="/css/Common/style.css" />
+  </head>
+  <body>
+    <section class="info-main-view">
+      <div class="half-img-block">
+        <img src="Image/Mugiwara.jpg" alt="LoginHero" class="info-img-view" />
+        <h1 class="title-text">DAYDAYTRAVEL</h1>
+      </div>
+      <div class="half-edituser-block">
+        <form id="edit-user-form" class="edituser-input-block">
+          <p class="edituser-title">プロフィール編集</p>
+          <div id="error-msg"></div>
+          <label for="user_id" class="input-title">ユーザーID</label>
+          <input
+            type="text"
+            id="user_id"
+            class="textbox"
+            name="user_id"
+            placeholder="入力"
+          />
+          <label for="user_name" class="input-title">ユーザー名</label>
+          <input
+            type="text"
+            id="user_name"
+            class="textbox"
+            name="user_name"
+            placeholder="入力"
+          />
+          <button type="submit" href="#" class="edituser-confirm-button">
+            完了
+          </button>
+        </form>
+      </div>
+    </section>
+    <script src="/js/profile.js"></script>
+    <script src="/js/EditUser.js"></script>
+  </body>
+</html>

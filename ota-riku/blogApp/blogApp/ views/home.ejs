@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="jp">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/Common/style.css" />
+    <link rel="stylesheet" href="css/Common/header.css" />
+    <link rel="stylesheet" href="css/Common/footer.css" />
+    <link rel="stylesheet" href="css/Design/toppage.css" />
+    <title>Design</title>
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <a href="./home" class="title">DAYDAYTRAVEL</a>
+        <div id="login-block" class="login-status-block">
+          <% if(loggedIn){%> <% }else{ %>
+          <div class="login-button-container">
+            <a href="./Login.html" class="login-text">Login</a>
+            <a href="./RegistAccount.html" type="button" class="login-button"
+              >Get Started</a
+            >
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </header>
+    <section>
+      <div class="title-container">
+        <img src="Image/Mugiwara.jpg" class="title-image" alt="麦わら帽子" />
+        <div class="title-text-container">
+          <h1 class="title-text-topic">Share your holiday stories.</h1>
+          <p class="title-text-context">
+            Write about your experiences while on holiday in various parts of
+            Indonesia, and reach a wide readership.
+          </p>
+        </div>
+      </div>
+      <div class="sitecontents-container">
+        <div class="maincontents-container">
+          <div class="sitecontents-title-padding">
+            <span class="maincontents-title">一覧(新着順)</span>
+          </div>
+          <ul class="maincontents-card-ul">
+            <li class="maincontents-card-elem">
+              <a href="#">
+                <img
+                  src="Image/card/card1.png"
+                  alt="card1"
+                  class="maincontents-card-img"
+                />
+              </a>
+              <div class="maincontents-card-categorydate-ul">
+                <p class="maincontents-card-catogorydate-categorytext">
+                  Travel
+                </p>
+                <p class="util-margin-0">|</p>
+                <p class="maincontents-card-catogorydate-datetext">
+                  19 Feb 2022
+                </p>
+              </div>
+              <dl>
+                <dt>
+                  <a href="#" class="maincontents-card-title-text util-margin-0"
+                    >記事タイトル記事タイトル記事タイトル記事タイトル</a
+                  >
+                </dt>
+                <dd class="maincontents-card-context-dd">
+                  <a href="#" class="maincontents-card-context util-margin-0"
+                    >本文の一部を表示本文の一部を表示本文の..</a
+                  >
+                </dd>
+              </dl>
+            </li>
+
+            <li class="maincontents-card-elem">
+              <a href="./detail">
+                <img
+                  src="Image/card/card2.png"
+                  alt="card2"
+                  class="maincontents-card-img"
+                />
+              </a>
+              <div class="maincontents-card-categorydate-ul">
+                <p class="maincontents-card-catogorydate-categorytext">
+                  Culinary
+                </p>
+                <p class="util-margin-0">|</p>
+                <p class="maincontents-card-catogorydate-datetext">
+                  25 Apr 2022
+                </p>
+              </div>
+              <dl>
+                <dt>
+                  <a
+                    href="./detail"
+                    class="maincontents-card-title-text util-margin-0"
+                    >The taste of Bang Embul's soto betawi</a
+                  >
+                </dt>
+                <dd class="maincontents-card-context-dd">
+                  <a
+                    href="./detail"
+                    class="maincontents-card-context util-margin-0"
+                    >Each region has its own specialty food..</a
+                  >
+                </dd>
+              </dl>
+            </li>
+
+            <li class="maincontents-card-elem">
+              <a href="#">
+                <img
+                  src="Image/card/card3.png"
+                  alt="card3"
+                  class="maincontents-card-img"
+                />
+              </a>
+
+              <div class="maincontents-card-categorydate-ul">
+                <p class="maincontents-card-catogorydate-categorytext">
+                  Travel
+                </p>
+                <p class="util-margin-0">|</p>
+                <p class="maincontents-card-catogorydate-datetext">
+                  29 Apr 2022
+                </p>
+              </div>
+              <dl>
+                <dt>
+                  <a href="#" class="maincontents-card-title-text util-margin-0"
+                    >Seeing the beauty of Bali, which has many statues in
+                    temples</a
+                  >
+                </dt>
+                <dd class="maincontents-card-context-dd">
+                  <a href="#" class="maincontents-card-context util-margin-0"
+                    >Talking about Bali is never boring to tell..</a
+                  >
+                </dd>
+              </dl>
+            </li>
+
+            <li class="maincontents-card-elem">
+              <a href="#">
+                <img
+                  src="Image/card/card4.jpg"
+                  alt="card4"
+                  class="maincontents-card-img"
+                />
+              </a>
+
+              <div class="maincontents-card-categorydate-ul">
+                <p class="maincontents-card-catogorydate-categorytext">
+                  Culinary
+                </p>
+                <p class="util-margin-0">|</p>
+                <p class="maincontents-card-catogorydate-datetext">
+                  02 May 2022
+                </p>
+              </div>
+              <dl>
+                <dt>
+                  <a href="#" class="maincontents-card-title-text util-margin-0"
+                    >Delicious and cheap Semarang street food</a
+                  >
+                </dt>
+                <dd class="maincontents-card-context-dd">
+                  <a href="#" class="maincontents-card-context util-margin-0"
+                    >There's a lot of street food in Semarang..</a
+                  >
+                </dd>
+              </dl>
+            </li>
+
+            <li class="maincontents-card-elem">
+              <a href="#">
+                <img
+                  src="Image/card/card5.jpg"
+                  alt="card5"
+                  class="maincontents-card-img"
+                />
+              </a>
+
+              <div class="maincontents-card-categorydate-ul">
+                <p class="maincontents-card-catogorydate-categorytext">
+                  Travel
+                </p>
+                <p class="util-margin-0">|</p>
+                <p class="maincontents-card-catogorydate-datetext">
+                  05 Jun 2022
+                </p>
+              </div>
+              <dl>
+                <dt>
+                  <a href="#" class="maincontents-card-title-text util-margin-0"
+                    >Karang bebai beach Lampung for summer vacation</a
+                  >
+                </dt>
+                <dd class="maincontents-card-context-dd">
+                  <a href="#" class="maincontents-card-context util-margin-0"
+                    >Talking about Bali is never boring to tell..</a
+                  >
+                </dd>
+              </dl>
+            </li>
+
+            <li class="maincontents-card-elem">
+              <a href="#">
+                <img
+                  src="Image/card/card6.png"
+                  alt="card6"
+                  class="maincontents-card-img"
+                />
+              </a>
+
+              <div class="maincontents-card-categorydate-ul">
+                <p class="maincontents-card-catogorydate-categorytext">
+                  Travel
+                </p>
+                <p class="util-margin-0">|</p>
+                <p class="maincontents-card-catogorydate-datetext">
+                  13 Jun 2022
+                </p>
+              </div>
+              <dl>
+                <dt>
+                  <a href="#" class="maincontents-card-title-text util-margin-0"
+                    >The upside-down mystical forest in Banyuwangi</a
+                  >
+                </dt>
+                <dd class="maincontents-card-context-dd">
+                  <a href="#" class="maincontents-card-context util-margin-0"
+                    >This place is most often used as a photo..</a
+                  >
+                </dd>
+              </dl>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidemenu-container">
+          <div class="sidemenu-postlist-container">
+            <div class="sidemenu-title-container">
+              <div class="sidemenu-title-font">
+                <span>人気記事（機能不要）</span>
+              </div>
+            </div>
+            <ul class="sidemenu-postlist-ul">
+              <li class="sidemenu-postlist-li sidemenu-postlist-line">
+                <a href="#" class="sidemenu-postlist-content-link"
+                  >記事タイトル記事タイトル記事タイトル記事タイトル</a
+                >
+              </li>
+              <li
+                class="sidemenu-postlist-li sidemenu-postlist-line sidemenu-postlist-margintop"
+              >
+                <a href="#" class="sidemenu-postlist-content-link"
+                  >Cheap Padang specialty food restaurant</a
+                >
+              </li>
+              <li class="sidemenu-postlist-li sidemenu-postlist-margintop">
+                <a href="#" class="sidemenu-postlist-content-link"
+                  >Mountain hiking in central Java</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidemenu-tags-container">
+            <div class="sidemenu-title-container">
+              <div class="sidemenu-title-font">
+                <span>もっと見る(更新不要)</span>
+              </div>
+            </div>
+            <div class="sidemenu-tags-btn-container">
+              <ul class="tags-btn-ul">
+                <li class="tags-btn-li">
+                  <button class="tag-btn-style" onclick="location.href='#'">
+                    Travel
+                  </button>
+                </li>
+                <li class="tags-btn-li">
+                  <button class="tag-btn-style" onclick="location.href='#'">
+                    Cullnary
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <ul class="footer-ul">
+        <li class="footer-li footer-li-aboutsite">
+          <div class="contents-title">
+            <span>PT. Travel Everyday Indonesia</span>
+          </div>
+          <div class="contents-block">
+            <a href="#" class="content-link-style">
+              Grand Floor Zaidin L-Walk,<br />
+              Jl. Maju Jaya No. 2,<br />
+              Daerah Istimewa Yogyakarta,<br />
+              Indonesia 55281
+            </a>
+            <div class="aboutsite-line-container">
+              <hr class="aboutsite-line" />
+            </div>
+            <ul class="content-link-style aboutsite-link-ul">
+              <li class="aboutsite-link-li">
+                <a href="#" class="content-link-style">About</a>
+              </li>
+              <li class="aboutsite-link-li">
+                <a href="#" class="content-link-style">Privacy policy</a>
+              </li>
+              <li class="aboutsite-link-li">
+                <a href="#" class="content-link-style">Terms & Conditions</a>
+              </li>
+              <li class="aboutsite-link-li">
+                <a href="#" class="content-link-style">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="footer-li footer-li-infomations">
+          <div class="contents-title">
+            <span>Infomations</span>
+          </div>
+
+          <div class="infomations-container">
+            <ul class="infomations-ul">
+              <li class="infomations-li">
+                <a href="#" class="content-link-style"
+                  >How to register as a user</a
+                >
+              </li>
+              <li class="infomations-li">
+                <a href="#" class="content-link-style"
+                  >Guide to creating travel review</a
+                >
+              </li>
+              <li class="infomations-li">
+                <a href="#" class="content-link-style"
+                  >Tutorial for making culinary reviews</a
+                >
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="footer-li footer-ul-followus">
+          <div class="contents-title">
+            <span>Follow us</span>
+          </div>
+          <div class="followus-snslink-container">
+            <ul class="followus-snslink-ul">
+              <li class="followus-snslink-li">
+                <a href="#" class="content-link-style">Instagram</a>
+              </li>
+              <li class="followus-snslink-li">
+                <a href="#" class="content-link-style">Facebook</a>
+              </li>
+              <li class="followus-snslink-li">
+                <a href="#" class="content-link-style">X</a>
+              </li>
+              <li class="followus-snslink-li">
+                <a href="#" class="content-link-style">Facebook</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="footer-li">
+          <div class="contents-title">
+            <span>Download app</span>
+          </div>
+          <ul class="util-padding-0 util-textalign-left util-liststyle-none">
+            <li class="list-padding">
+              <a class="appstore-button" href="#">
+                <img
+                  src="Image/AppstoreButton.png"
+                  alt="AppStore"
+                  class="appstore-button-aspect"
+                />
+              </a>
+            </li>
+            <li class="list-padding">
+              <a class="appstore-button" href="#">
+                <img
+                  src="Image/PlayStoreButton.png"
+                  alt="AppStore"
+                  class="playstore-button-aspect"
+                />
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <div class="util-centering">
+        <div class="copylight-container">
+          <p class="copylight-text">© 2023 PT. Travel Everyday Indonesia</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
