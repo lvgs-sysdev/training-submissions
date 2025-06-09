@@ -16,11 +16,11 @@ import {
   confirmUser,
   editUser,
   getUserInfo,
-} from "./public/js/db/userTable.js";
+} from "./src/db/userTable.js";
 
 import { transformTimestamp } from "./public/js/util/TranformTimestamp.js";
 
-import { editArticle, getArticleInfo } from "./public/js/db/articleTable.js";
+import { editArticle, getArticleInfo } from "./src/db/articleTable.js";
 import { loadNewArticle } from "./public/js/util/LoadArticle.js";
 
 const fastify = Fastify({ logger: true });
