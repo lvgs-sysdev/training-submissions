@@ -18,6 +18,8 @@ import {
   getUserInfo,
 } from "./public/js/db/userTable.js";
 
+import { transformTimestamp } from "./public/js/util/TranformTimestamp.js";
+
 import { editArticle, getArticleInfo } from "./public/js/db/articleTable.js";
 import { loadNewArticle } from "./public/js/util/LoadArticle.js";
 
@@ -101,7 +103,40 @@ fastify.post("/api/load-new-article", async (req, res) => {
   const { articleNum } = req.body;
   console.log(articleNum);
   const newArticles = await loadNewArticle(articleNum);
-  return res.send(newArticles);
+
+  // 記事HTMLの生成
+  let articleHtml = ``;
+  articleHtml += `<ul class="maincontents-card-ul">`;
+  for (let i = 0; i < newArticles.length; i++) {
+    articleHtml += `
+      <li class="maincontents-card-elem">
+              <a href="/detail/${newArticles[i].article_id}">
+                <img src="Image/card/card1.png" alt="card1" class="maincontents-card-img"/>
+              </a>
+              <div class="maincontents-card-categorydate-ul">
+                <p class="maincontents-card-catogorydate-categorytext">Travel</p>
+                <p class="util-margin-0">|</p>
+                <p class="maincontents-card-catogorydate-datetext">${transformTimestamp(
+                  newArticles[i].updated_at
+                )}</p>
+              </div>
+              <dl>
+                <dt>
+                  <a href="/detail" class="maincontents-card-title-text util-margin-0">${
+                    newArticles[i].article_title
+                  }</a>
+                </dt>
+                <dd class="maincontents-card-context-dd">
+                  <a href="/detail" class="maincontents-card-context util-margin-0">${newArticles[
+                    i
+                  ].content.slice(0, 20)}</a>
+                </dd>
+              </dl>
+            </li>
+    `;
+  }
+  articleHtml += `</ul>`;
+  return res.type("text/html").send(articleHtml);
 });
 
 fastify.post("/api/article-info", async (req, res) => {
