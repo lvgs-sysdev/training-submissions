@@ -5,11 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
   async function setLoginStatus() {
     const response = await fetch("/api/login-status");
     const data = await response.json();
-    const loggedIn = data.loggedIn;
+    const isLoggedIn = data.loggedIn;
 
     element.innerHTML = ``;
     console.log(`${element.innerHTML}`);
-    if (loggedIn) {
+    if (isLoggedIn) {
       element.innerHTML = `
         <div class="login-status-container">
                   <a href="/user">
