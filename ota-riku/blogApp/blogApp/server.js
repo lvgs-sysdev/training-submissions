@@ -110,21 +110,22 @@ fastify.post("/api/load-new-article", async (req, res) => {
   for (let i = 0; i < newArticles.length; i++) {
     articleHtml += `
       <li class="maincontents-card-elem">
+         <article>
               <a href="/detail/${newArticles[i].article_id}">
                 <img src="Image/card/card1.png" alt="card1" class="maincontents-card-img"/>
               </a>
               <div class="maincontents-card-categorydate-ul">
-                <p class="maincontents-card-catogorydate-categorytext">Travel</p>
+                <h2 class="maincontents-card-catogorydate-categorytext">Travel</h2>
                 <p class="util-margin-0">|</p>
-                <p class="maincontents-card-catogorydate-datetext">${transformTimestamp(
+                <h2 class="maincontents-card-catogorydate-datetext">${transformTimestamp(
                   newArticles[i].updated_at
-                )}</p>
+                )}</h2>
               </div>
               <dl>
                 <dt>
-                  <a href="/detail" class="maincontents-card-title-text util-margin-0">${
+                  <h2><a href="/detail" class="maincontents-card-title-text util-margin-0">${
                     newArticles[i].article_title
-                  }</a>
+                  }</a></h2>
                 </dt>
                 <dd class="maincontents-card-context-dd">
                   <a href="/detail" class="maincontents-card-context util-margin-0">${newArticles[
@@ -132,6 +133,7 @@ fastify.post("/api/load-new-article", async (req, res) => {
                   ].content.slice(0, 20)}</a>
                 </dd>
               </dl>
+              </article>
             </li>
     `;
   }
