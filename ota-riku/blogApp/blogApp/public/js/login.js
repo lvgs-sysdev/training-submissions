@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const element = document.getElementById("login-block");
-  setLogStatus();
+  setLoginStatus();
 
-  async function setLogStatus() {
+  async function setLoginStatus() {
     const response = await fetch("/api/login-status");
     const data = await response.json();
     const loggedIn = data.loggedIn;
