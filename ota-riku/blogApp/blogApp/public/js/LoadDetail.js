@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const profileNameElem = document.getElementById("author-name");
       profileNameElem.textContent = userInfo.userName;
       const articleDate = document.getElementById("date-text");
-      articleDate.textContent = getDateText(articleInfo.updated_at);
+      articleDate.textContent = toDateText(articleInfo.updated_at);
       const articleTitleElem = document.getElementById("title-text");
       articleTitleElem.textContent = articleInfo.article_title;
       const articleContextElem = document.getElementById("context-container");
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadArticleDetail(articleId);
 });
 
-const getDateText = (dateStr) => {
+const toDateText = (dateStr) => {
   const dateObj = new Date(dateStr);
   console.log(dateStr);
 
