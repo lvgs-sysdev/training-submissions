@@ -12,7 +12,7 @@ export const applyArticle = async (userId, title, context) => {
         if (error) throw error;
       }
     );
-    (await connection).end();
+    await connection.end();
   } catch (e) {
     console.log(e);
   }
@@ -28,7 +28,7 @@ export const getNewArticle = async (numArticle) => {
         if (error) throw error;
       }
     );
-    (await connection).end();
+    await connection.end();
     return [raws, fields];
   } catch (e) {
     console.log(e);
@@ -43,7 +43,7 @@ export const getArticleInfo = async (articleId) => {
       "SELECT * FROM articles WHERE article_id = ?",
       [articleId]
     );
-    (await connection).end();
+
     return raws;
   } catch (e) {
     console.log(e);
