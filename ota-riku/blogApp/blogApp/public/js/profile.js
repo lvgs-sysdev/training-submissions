@@ -4,10 +4,23 @@ document.addEventListener("DOMContentLoaded", () => {
   getUserInfo();
 
   async function getUserInfo() {
-    const response = await fetch("/api/user-info");
-    const userInfo = await response.json();
-    console.log(userInfo);
-    idTextElement.innerText = userInfo.userId;
-    nameTextElement.innerText = userInfo.userName;
+    try {
+      const response = await fetch("/api/user-info");
+      if (response.ok) {
+        const userInfo = await response.json();
+        console.log(userInfo);
+        idTextElement.innerText = userInfo.userId;
+        nameTextElement.innerText = userInfo.userName;
+      } else {
+        const error = new Error(
+          `HTTP Error is occored.${response.status} ${response.statusText}`
+        );
+        error.statusCode = response.status;
+        error.statusText = response.statusText;
+        throw error;
+      }
+    } catch (e) {
+      window.location.href = `/error/${e.statusCode}`;
+    }
   }
 });

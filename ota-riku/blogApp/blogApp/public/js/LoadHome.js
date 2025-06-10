@@ -4,15 +4,27 @@ document.addEventListener("DOMContentLoaded", () => {
   setNewArticle();
 
   async function setNewArticle() {
-    const response = await fetch("/api/load-new-article", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ articleNum: 6 }),
-    });
-
-    targetElem.innerHTML = await response.text();
+    try {
+      const response = await fetch("/api/load-new-article", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ articleNum: 6 }),
+      });
+      if (response.ok) {
+        targetElem.innerHTML = await response.text();
+      } else {
+        const error = new Error(
+          `HTTP Error is occored.${response.status} ${response.statusText}`
+        );
+        error.statusCode = response.status;
+        error.statusText = response.statusText;
+        throw error;
+      }
+    } catch (e) {
+      window.location.href = `/error/${e.statusCode}`;
+    }
   }
 });
 

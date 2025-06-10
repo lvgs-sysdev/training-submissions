@@ -1,0 +1,22 @@
+.network-error-msg-container {
+  padding-top: 90px;
+  align-items: center;
+}
+
+.network-error-imgmsg-container {
+  display: flex;
+  justify-content: center;
+}
+
+.network-error-img {
+  width: 50px;
+}
+
+.network-error-msg {
+  color: red;
+}
+
+.network-error-guide-msg {
+  color: red;
+  text-align: center;
+}

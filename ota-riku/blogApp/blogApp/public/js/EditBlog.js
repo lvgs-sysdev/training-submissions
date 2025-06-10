@@ -1,3 +1,5 @@
+import { errorCodes } from "fastify";
+
 // 記事表示処理
 document.addEventListener("DOMContentLoaded", async () => {
   const url = new URL(window.location.href);
@@ -22,9 +24,17 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.log(articleInfo);
       titleInputElem.value = articleInfo.article_title;
       contextInputElem.textContent = articleInfo.content;
+    } else {
+      const error = new Error(
+        `HTTP Error is occored.${response.status} ${response.statusText}`
+      );
+      error.statusCode = response.status;
+      error.statusText = response.statusText;
+      throw error;
     }
   } catch (e) {
     console.log(e);
+    window.location.href = `/error/${e.statusCode}`;
   }
 });
 
@@ -60,8 +70,16 @@ editblogForm.addEventListener("submit", async (event) => {
     if (response.ok) {
       console.log("Edit Completed.");
       window.location.href = "/home";
+    } else {
+      const error = new Error(
+        `HTTP Error is occored.${response.status} ${response.statusText}`
+      );
+      error.statusCode = response.status;
+      error.statusText = response.statusText;
+      throw error;
     }
   } catch (e) {
     console.log(e);
+    window.location.href = `/error/${e.statusCode}`;
   }
 });

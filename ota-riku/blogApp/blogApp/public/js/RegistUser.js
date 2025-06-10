@@ -63,11 +63,26 @@ registForm.addEventListener("submit", async (event) => {
             if (responseRegist.ok) {
               // 画面遷移
               window.location.href = "/login";
+            } else {
+              const error = new Error(
+                `HTTP Error is occored.${response.status} ${response.statusText}`
+              );
+              error.statusCode = response.status;
+              error.statusText = response.statusText;
+              throw error;
             }
           }
+        } else {
+          const error = new Error(
+            `HTTP Error is occored.${response.status} ${response.statusText}`
+          );
+          error.statusCode = response.status;
+          error.statusText = response.statusText;
+          throw error;
         }
       } catch (e) {
         console.log(e);
+        window.location.href = `/error/${e.statusCode}`;
       }
     }
   }
