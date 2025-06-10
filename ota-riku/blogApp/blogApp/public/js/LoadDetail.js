@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const loadArticleDetail = async (id) => {
     try {
       const responseArticleDB = await fetch("/api/article-info", {
-        method: "POST",
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
         },

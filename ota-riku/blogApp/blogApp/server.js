@@ -141,7 +141,7 @@ fastify.post("/api/load-new-article", async (req, res) => {
   return res.type("text/html").send(articleHtml);
 });
 
-fastify.post("/api/article-info", async (req, res) => {
+fastify.get("/api/article-info", async (req, res) => {
   const { articleId } = req.body;
   const articleInfo = await getArticleInfo(articleId);
   return res.send(articleInfo[0]);
