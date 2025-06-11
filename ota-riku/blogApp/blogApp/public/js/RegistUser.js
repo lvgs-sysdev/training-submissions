@@ -28,61 +28,72 @@ registForm.addEventListener("submit", async (event) => {
       CreateErrorMsgElem("確認用パスワードを入力してください。");
     }
   } else {
-    // パスワードと確認用パスワードの入力チェック
-    if (passwordElem.value != passwordConfirmElem.value) {
-      CreateErrorMsgElem("パスワードと確認用パスワードが一致していません。");
+    const usernameCheck = userIdElem.value.match(/^[a-zA-Z0-9]*$/);
+    const passwordCheck = passwordElem.value.match(/^[a-zA-Z0-9]*$/);
+    if (!usernameCheck || !passwordCheck) {
+      if (!usernameCheck) {
+        CreateErrorMsgElem("ユーザIDは半角英数字のみで入力してください。");
+      }
+      if (!passwordCheck) {
+        CreateErrorMsgElem("パスワードは半角英数字のみで入力してください。");
+      }
     } else {
-      try {
-        // id重複チェック
-        const responseIdCheck = await fetch("/api/user-info", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            userId: userIdElem.value,
-          }),
-        });
-        if (responseIdCheck.ok) {
-          const userInfo = await responseIdCheck.json();
-          if (userInfo.userId != "") {
-            CreateErrorMsgElem("このユーザIDは既に使われています。");
-          } else {
-            // 問題なければ登録情報を送信してログイン画面に遷移
-            // 登録情報送信
-            const responseRegist = await fetch("/register", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                user_id: userIdElem.value,
-                password: passwordElem.value,
-              }),
-            });
-            if (responseRegist.ok) {
-              // 画面遷移
-              window.location.href = "/login";
+      // パスワードと確認用パスワードの入力チェック
+      if (passwordElem.value != passwordConfirmElem.value) {
+        CreateErrorMsgElem("パスワードと確認用パスワードが一致していません。");
+      } else {
+        try {
+          // id重複チェック
+          const responseIdCheck = await fetch("/api/user-info", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              userId: userIdElem.value,
+            }),
+          });
+          if (responseIdCheck.ok) {
+            const userInfo = await responseIdCheck.json();
+            if (userInfo.userId != "") {
+              CreateErrorMsgElem("このユーザIDは既に使われています。");
             } else {
-              const error = new Error(
-                `HTTP Error is occored.${response.status} ${response.statusText}`
-              );
-              error.statusCode = response.status;
-              error.statusText = response.statusText;
-              throw error;
+              // 問題なければ登録情報を送信してログイン画面に遷移
+              // 登録情報送信
+              const responseRegist = await fetch("/register", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  user_id: userIdElem.value,
+                  password: passwordElem.value,
+                }),
+              });
+              if (responseRegist.ok) {
+                // 画面遷移
+                window.location.href = "/login";
+              } else {
+                const error = new Error(
+                  `HTTP Error is occored.${response.status} ${response.statusText}`
+                );
+                error.statusCode = response.status;
+                error.statusText = response.statusText;
+                throw error;
+              }
             }
+          } else {
+            const error = new Error(
+              `HTTP Error is occored.${response.status} ${response.statusText}`
+            );
+            error.statusCode = response.status;
+            error.statusText = response.statusText;
+            throw error;
           }
-        } else {
-          const error = new Error(
-            `HTTP Error is occored.${response.status} ${response.statusText}`
-          );
-          error.statusCode = response.status;
-          error.statusText = response.statusText;
-          throw error;
+        } catch (e) {
+          console.log(e);
+          window.location.href = `/error/${e.statusCode}`;
         }
-      } catch (e) {
-        console.log(e);
-        window.location.href = `/error/${e.statusCode}`;
       }
     }
   }
