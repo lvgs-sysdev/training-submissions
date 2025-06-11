@@ -30,6 +30,8 @@ const view = require("@fastify/view");
 //bcrypt関連
 const bcrypt = require('bcrypt');
 
+const escape = require('escape-html');
+
 fastify.register(require('@fastify/formbody'));
 fastify.register(require('@fastify/cookie'));
 
@@ -38,7 +40,8 @@ fastify.register(require('@fastify/session'),{
     secret: process.env.SESSION_SECRET, //秘密鍵は.envの中に保存
     cookie:{
         secure: process.env.NODE_ENV === 'production',
-        maxAGE: 3600000 //セッション有効時間（秒）
+        maxAge: 3600000, //セッション有効時間（秒）
+        sameSite: 'lax'
     },
     saveUninitialized: false,
 });
@@ -99,19 +102,19 @@ async function renderHomePage(request, reply) {
             const date = new Date(article.updated_at);
             const options = { day: '2-digit', month: 'short', year: 'numeric' };
             const formattedDate = date.toLocaleDateString('en-US', options).replace(/,/g, '');
-            const truncatedContent = article.content.substring(0, 35) + '...';
-
-            const titleHtml = article.article_title;
+            const truncatedContent = escape(article.content.substring(0, 35) + '...');
+            const titleHtml = escape(article.article_title);
+            const tagHtml = escape(article.tag);
             const imageSrc = article.image_path || 'image/sample2.png';
 
             articlesHtml += `
                 <a href="/detail?id=${article.article_id}">
                     <li class="contents">
                         <div class="contents-img">
-                            <img class="contents-img" src="/${imageSrc}" alt="${article.article_title}">
+                            <img class="contents-img" src="/${imageSrc}" alt="${titleHtml}">
                         </div>
                         <div class="informationbox">
-                            <p class="tag">${article.tag}</p>
+                            <p class="tag">${tagHtml}</p>
                             <p class="date">${formattedDate}</p>
                         </div>
                         <p class="title">${titleHtml}</p>
@@ -295,6 +298,11 @@ fastify.get('/register', async (request, reply) => {
 
 // profileページ ( /profile )
 fastify.get('/profile', async (request, reply) => {
+    if (!request.session.authenticated) {
+    // 認証されていない場合はログインページへリダイレクト
+    return reply.redirect('/login');
+    }
+    
     const userID = request.session.userID;
 
     if (!userID) {
@@ -335,6 +343,11 @@ fastify.get('/profile', async (request, reply) => {
 
 // 編集ページ（ユーザー）
 fastify.get('/editUser', async (request, reply) => {
+    if (!request.session.authenticated) {
+        // 認証されていない場合はログインページへリダイレクト
+        return reply.redirect('/login');
+    }
+
     const userID = request.session.userID;
 
     if (!userID) {
@@ -375,9 +388,38 @@ fastify.get('/editUser', async (request, reply) => {
 
 
 //ユーザー登録の処理
-fastify.post('/register', async (request, reply) => {
-    const { username, userID, password, confirm_password } = request.body; //ユーザーネーム、ユーザーID、パスワード、確認用パスワードを取得
-    //パスワードが確認用と一致しているか判定
+fastify.post('/register', {
+    // バリデーションスキーマ
+    schema: {
+        body: {
+            type: 'object',
+            required: ['username', 'userID', 'password', 'confirm_password'], // すべてのフィールドを必須項目に設定
+            properties: {
+                username: {
+                    type: 'string',
+                    maxLength: 255, // user_nameの最大文字数
+                    minLength: 1      // 空文字を許可しない
+                },
+                userID: {
+                    type: 'string',
+                    maxLength: 20,   // user_idの最大文字数
+                    minLength: 1     // 空文字を許可しない
+                },
+                password: {
+                    type: 'string',
+                    maxLength: 255, // passwordの最大文字数
+                    minLength: 1      // 空文字を許可しない
+                },
+                confirm_password: {
+                    type: 'string'
+                }
+            }
+        }
+    }
+}, async (request, reply) => {
+    const { username, userID, password, confirm_password } = request.body;
+
+    // パスワードが確認用と一致しているか判定
     if (password !== confirm_password) {
         return reply.status(400).send({
             error: 'パスワードが一致しません'
@@ -385,28 +427,28 @@ fastify.post('/register', async (request, reply) => {
     }
 
     try {
-        //ユーザーIDの重複チェック
-        const [existingUsers] = await fastify.db.execute(  
+        // ユーザーIDの重複チェック
+        const [existingUsers] = await fastify.db.execute(
             "SELECT * FROM users WHERE user_id = ?",
             [userID]
         );
 
-        if (existingUsers.length > 0) { //ユーザーIDが既にあるならエラー
+        if (existingUsers.length > 0) { // ユーザーIDが既にあるならエラー
             return reply.status(400).send({
                 error: 'そのユーザーIDはすでに使われています。'
             })
         };
 
-        const saltRounds = 10; //ソルトラウンド数
-        const hashedpassword = await bcrypt.hash(password, saltRounds); //ハッシュ化
+        const saltRounds = 10; // ソルトラウンド数
+        const hashedpassword = await bcrypt.hash(password, saltRounds); // ハッシュ化
 
-         //データベースに新規登録
+        // データベースに新規登録
         await fastify.db.execute(
             "INSERT INTO users (user_id, password, user_name) VALUES (?, ?, ?)",
             [userID, hashedpassword, username]
         );
 
-         //ログインページへ
+        // ログインページへ
         return reply.redirect('/login');
     } catch (error) {
         console.error(error);
@@ -456,7 +498,7 @@ fastify.post('/logout', async (request, reply) => {
             console.error('セッション破棄エラー:', err);
             return reply.status(500).send({ error: 'ログアウト失敗' });
         }
-    reply.redirect('/home'); // ログアウト後にメインページ
+    return reply.redirect('/home'); // ログアウト後にメインページ
     });
 });
 

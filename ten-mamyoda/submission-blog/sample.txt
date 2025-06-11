@@ -1,0 +1,7 @@
+envの中身はこんな感じです
+
+SESSION_SECRET='passssss'
+NODE_ENV='development'
+
+DB_PASSWORD='passsssssssss' 
+DB_NAME='datebase'

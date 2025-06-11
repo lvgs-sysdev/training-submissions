@@ -1,6 +1,7 @@
 const fs = require('fs/promises');
 const path = require('path');
 const fp = require('fastify-plugin');
+const escape = require('escape-html');
 
 const DEFAULT_PROFILE_IMAGE_PATH = '/public/image/user-1.png';
 
@@ -10,7 +11,7 @@ async function injectContentPlugin(fastify, opts) {
 
         // @LOGIN_BOX@ の内容を生成
         if (session && session.authenticated) {
-            const userName = session.userName || session.userID;
+            const userName = escape(session.userName || session.userID);
             loginBoxContent = `
                 <div id="login-box">
                     <form action="/logout" method="post" style="display: inline-block;">
@@ -50,7 +51,13 @@ async function injectContentPlugin(fastify, opts) {
                     value = '';
                 }
 
-                const finalValue = String(value);
+                let finalValue;
+                // ★ 変更点: 'ARTICLES_LIST' はHTMLとして扱い、それ以外はエスケープする
+                if (key.toUpperCase() === 'ARTICLES_LIST') {
+                    finalValue = String(value); // エスケープしない
+                } else {
+                    finalValue = escape(String(value)); // それ以外はエスケープする
+                }
 
                 htmlContent = htmlContent.replace(new RegExp(placeholder, 'g'), finalValue);
             }
