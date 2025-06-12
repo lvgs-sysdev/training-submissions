@@ -43,6 +43,13 @@ registForm.addEventListener("submit", async (event) => {
         CreateErrorMsgElem("パスワードと確認用パスワードが一致していません。");
       } else {
         try {
+          // fetchメソッドのタイムアウト設定
+          const idCheckAbortController = new AbortController();
+          const idCheckTimeout = setTimeout(
+            () => idCheckAbortController.abort(),
+            10000
+          );
+
           // id重複チェック
           const responseIdCheck = await fetch("/api/user-info", {
             method: "POST",
@@ -52,12 +59,22 @@ registForm.addEventListener("submit", async (event) => {
             body: JSON.stringify({
               userId: userIdElem.value,
             }),
+            signal: idCheckAbortController.signal,
           });
+
+          // タイマーのキャンセル
+          clearTimeout(idCheckTimeout);
           if (responseIdCheck.ok) {
             const userInfo = await responseIdCheck.json();
             if (userInfo.userId != "") {
               CreateErrorMsgElem("このユーザIDは既に使われています。");
             } else {
+              // fetchメソッドのタイムアウト設定
+              const registAbortController = new AbortController();
+              const registTimeout = setTimeout(
+                () => registAbortController.abort(),
+                10000
+              );
               // 問題なければ登録情報を送信してログイン画面に遷移
               // 登録情報送信
               const responseRegist = await fetch("/register", {
@@ -69,7 +86,12 @@ registForm.addEventListener("submit", async (event) => {
                   user_id: userIdElem.value,
                   password: passwordElem.value,
                 }),
+                signal: registAbortController.signal,
               });
+
+              // タイマーのキャンセル
+              clearTimeout(registTimeout);
+
               if (responseRegist.ok) {
                 // 画面遷移
                 window.location.href = "/login";

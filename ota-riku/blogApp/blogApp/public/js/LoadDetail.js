@@ -5,23 +5,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const loadArticleDetail = async (id) => {
     try {
+      // fetchメソッドのタイムアウト設定
+      const articleDBAbortController = new AbortController();
+      const articleDBTimeout = setTimeout(
+        () => articleDBAbortController.abort(),
+        10000
+      );
+
       const responseArticleDB = await fetch("/api/article-info", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ articleId: id }),
+        signal: articleDBAbortController.signal,
       });
+
+      // タイマーのキャンセル
+      clearTimeout(articleDBTimeout);
+
       if (responseArticleDB.ok) {
         const articleInfo = await responseArticleDB.json();
 
+        // fetchメソッドのタイムアウト設定
+        const userDBAbortController = new AbortController();
+        const userDBTimeout = setTimeout(
+          () => userDBAbortController.abort(),
+          10000
+        );
         const responseUserDB = await fetch("/api/user-info", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ userId: articleInfo.user_id }),
+          signal: userDBAbortController.signal,
         });
+
+        // タイマーのキャンセル
+        clearTimeout(userDBTimeout);
+
         if (responseUserDB.ok) {
           const userInfo = await responseUserDB.json();
 
@@ -41,7 +64,20 @@ document.addEventListener("DOMContentLoaded", () => {
           if (responseLoginInfo.ok) {
             const loginInfo = await responseLoginInfo.json();
             if (loginInfo.loggedIn) {
-              const responseLoginUserInfo = await fetch("/api/user-info");
+              // fetchメソッドのタイムアウト設定
+              const loginUserInfoAbortController = new AbortController();
+              const loginUserInfoTimeout = setTimeout(
+                () => loginUserInfoAbortController.abort(),
+                10000
+              );
+
+              const responseLoginUserInfo = await fetch("/api/user-info", {
+                signal: loginUserInfoAbortController.signal,
+              });
+
+              // タイマーのリセット
+              clearTimeout(loginUserInfoTimeout);
+
               const loginUserInfo = await responseLoginUserInfo.json();
               if (loginUserInfo.userId == userInfo.userId) {
                 const reviewHeaderElem = document.getElementById(

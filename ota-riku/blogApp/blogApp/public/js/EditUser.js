@@ -34,10 +34,29 @@ editForm.addEventListener("submit", async (event) => {
       }
     } else {
       try {
+        // fetchメソッドのタイムアウト設定
+        const myIdCheckAbortController = new AbortController();
+        const myIdCheckTimeout = setTimeout(
+          () => myIdCheckAbortController.abort(),
+          10000
+        );
+
         // userIdが元々の自分のuserIdの場合
-        const responseMyIdCheck = await fetch("/api/user-info");
+        const responseMyIdCheck = await fetch("/api/user-info", {
+          signal: myIdCheckAbortController.signal,
+        });
+        // タイマーのキャンセル
+        clearTimeout(myIdCheckTimeout);
         if (responseMyIdCheck.ok) {
           const currentMyUserId = await responseMyIdCheck.json();
+
+          // fetchメソッドのタイムアウト設定
+          const idCheckAbortController = new AbortController();
+          const idCheckTimeout = setTimeout(
+            () => idCheckAbortController.abort(),
+            10000
+          );
+
           // id重複チェック
           const responseIdCheck = await fetch("/api/user-info", {
             method: "POST",
@@ -47,7 +66,12 @@ editForm.addEventListener("submit", async (event) => {
             body: JSON.stringify({
               userId: userIdElem.value,
             }),
+            signal: idCheckAbortController.signal,
           });
+
+          // タイマーのキャンセル
+          clearTimeout(idCheckTimeout);
+
           if (responseIdCheck.ok) {
             const userInfo = await responseIdCheck.json();
             if (
@@ -56,6 +80,13 @@ editForm.addEventListener("submit", async (event) => {
             ) {
               CreateErrorMsgElem("このユーザIDは既に使われています。");
             } else {
+              // fetchメソッドのタイムアウト設定
+              const registAbortController = new AbortController();
+              const registTimeout = setTimeout(
+                () => registAbortController.abort(),
+                10000
+              );
+
               // 問題なければ登録情報を送信してログイン画面に遷移
               // 登録情報送信
               const responseRegist = await fetch("/editUser", {
@@ -67,7 +98,11 @@ editForm.addEventListener("submit", async (event) => {
                   user_id: userIdElem.value,
                   user_name: usernameElem.value,
                 }),
+                signal: registAbortController.signal,
               });
+
+              // タイマーのキャンセル
+              clearTimeout(registTimeout);
               if (responseRegist.ok) {
                 // 画面遷移
                 window.location.href = "/user";

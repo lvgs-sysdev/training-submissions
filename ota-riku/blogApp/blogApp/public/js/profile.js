@@ -5,7 +5,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function getUserInfo() {
     try {
-      const response = await fetch("/api/user-info");
+      // fetchメソッドのタイムアウト設定
+      const abortController = new AbortController();
+      const timeout = setTimeout(() => abortController.abort(), 10000);
+      const response = await fetch("/api/user-info", {
+        signal: abortController.signal,
+      });
+      // タイマーのリセット
+      clearTimeout(timeout);
       if (response.ok) {
         const userInfo = await response.json();
         console.log(userInfo);

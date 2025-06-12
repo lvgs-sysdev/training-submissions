@@ -9,6 +9,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   const titleInputElem = document.getElementById("title-input");
   const contextInputElem = document.getElementById("context-input");
 
+  // fetchメソッドのタイムアウト設定
+  const abortController = new AbortController();
+  const timeout = setTimeout(() => abortController.abort(), 10000);
+
   try {
     const response = await fetch("/api/article-info", {
       method: "POST",
@@ -18,7 +22,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       body: JSON.stringify({
         articleId: id,
       }),
+      signal: abortController.signal,
     });
+
+    // レスポンスが返ってきたらタイマーをリセット
+    clearTimeout(timeout);
+
     if (response.ok) {
       const articleInfo = await response.json();
       console.log(articleInfo);

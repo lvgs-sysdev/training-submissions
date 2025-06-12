@@ -5,13 +5,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function setNewArticle() {
     try {
+      // fetchメソッドのタイムアウト設定
+      const abortController = new AbortController();
+      const timeout = setTimeout(() => abortController.abort(), 10000);
+
       const response = await fetch("/api/load-new-article", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ articleNum: 6 }),
+        single: abortController.signal,
       });
+
+      // タイマーのキャンセル
+      clearTimeout(timeout);
+
       if (response.ok) {
         targetElem.innerHTML = await response.text();
       } else {
