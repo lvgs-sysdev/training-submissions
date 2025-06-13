@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="jp">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="css/LoginPage/loginpage.css" />
+    <link rel="stylesheet" href="css/Common/style.css" />
+  </head>
+  <body>
+    <article class="login-main-view">
+      <div class="half-img-block">
+        <img src="Image/Mugiwara.jpg" alt="LoginHero" class="login-img-view" />
+        <h1 class="title-text">DAYDAYTRAVEL</h1>
+      </div>
+      <div class="half-input-block">
+        <form id="login-form" class="login-input-block">
+          <h2 class="login-title">ログイン</h2>
+          <span id="error-msg" class="error-msg"></span>
+          <label for="user_id" class="input-title">ユーザID</label>
+          <input
+            type="text"
+            id="user_id"
+            class="textbox"
+            name="user_id"
+            placeholder="入力"
+          />
+          <label for="password" class="input-title">パスワード</label>
+          <input
+            type="password"
+            id="password"
+            class="textbox"
+            name="password"
+            placeholder="入力"
+          />
+          <button id="login-button" type="submit" class="login-loginbutton">
+            ログイン
+          </button>
+          <script>
+            const loginForm = document.getElementById("login-form");
+            const errorMsg = document.getElementById("error-msg");
+
+            loginForm.addEventListener("submit", async (event) => {
+              const user_id = document.getElementById("user_id").value;
+              const password = document.getElementById("password").value;
+              event.preventDefault();
+
+              try {
+                const response = await fetch("/login", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    user_id: user_id,
+                    password: password,
+                  }),
+                });
+                if (response.ok) {
+                  window.location.href = "/home";
+                } else {
+                  errorMsg.textContent = "ユーザIDかパスワードが間違っています";
+                }
+              } catch (e) {
+                console.log(e);
+                errorMsg.textContent = "ログインに失敗しました。";
+              }
+            });
+          </script>
+        </form>
+      </div>
+    </article>
+  </body>
+</html>
