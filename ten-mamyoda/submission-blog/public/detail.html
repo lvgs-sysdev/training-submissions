@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>DAYDAYTRAVEL_BLOG1</title>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/detail_main.css">
+    <link rel="stylesheet" href="css/index_main.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div id="title-box">
+            <a href="/home">
+                <div id="title">
+                    <p>DAYDAYTRAVEL</p>
+                </div>
+            </a>
+        </div>
+        @LOGIN_BOX@
+    </header>
+    <main>
+        <div id="detail-main">
+            <div id="detail-left-box">
+                <div id="writer-box">
+                    <div class="writer">
+                        <img src="@ARTICLE_WRITER_IMG@" alt="@ARTICLE_WRITER_NAME@">
+                        <div id="writer-profile">
+                            <p class="name">@ARTICLE_WRITER_NAME@</p>
+                            <p class="contents-date">@ARTICLE_DATE@</p>
+                        </div>
+                    </div>
+                    <div id="writer-sns">
+                        <img src="image/bxl-twitter.svg.png" alt="Twitter" class="sns-icon">
+                        <img src="image/bxl-instagram-alt.svg.png" alt="Instagram" class="sns-icon">
+                        <img src="image/bxl-linkedin-square.svg.png" alt="linkedin" class="sns-icon">
+                        <img src="image/bx-link-alt.svg.png" alt="other" class="sns-icon">
+                    </div>
+                </div>
+                <div id="edit_box">
+                    <a href="/editBlog?id=@ARTICLE_ID@">
+                        <span id="edit_button">Edit</span>
+                    </a>
+                </div>
+                <div id="contents-title-box">
+                    <p class="tag">@ARTICLE_TAG@</p>
+                    <h1 class="main-title">@ARTICLE_TITLE@</h1>
+                </div>
+                <div id="content-box">
+                    <p class="contents-text">@ARTICLE_CONTENT@</p>
+                    <div id="contents-img1">
+                        <img src="image/sample2.png" class="gazou">
+                        <p class="footnote">Food portrait this afternoon</p>
+                    </div>
+                </div>
+                <div id="tag-box">
+                    <span class="tag-button">@ARTICLE_TAG@</span>
+                </div>
+                <div id="connection-box">
+                    <h1 class="main-headline">関連記事（同一タグ）</h1>
+                    <ul class="contents-all">
+                        <li class="contents">
+                            <div class="contents-img">
+                                <img class="contents-img" src="image/sample11.png" alt="サンプル11">
+                            </div>
+                            <div class="informationbox">
+                                <p class="tag">Culinary </p>
+                                <p class="date"> 02 May 2022</p>
+                            </div>
+                            <h2 class="title">記事タイトル記事タイトル記事タイトル<br>記事タイトル記事タイトル</h2>
+                            <p class="main-text">本文の一部を表示本文の一部を表示本文の..</p>
+                        </li>
+                        <li class="contents">
+                            <div class="contents-img">
+                                <img class="contents-img" src="image/sample7.png" alt="サンプル7">
+                            </div>
+                            <div class="informationbox">
+                                <p class="tag">Culinary </p>
+                                <p class="date"> 02 May 2022</p>
+                            </div>
+                            <h2 class="title">Cah kangkung ala wonosobo <br>restaurant</h2>
+                            <p class="main-text">Order your favorite food menu from Asia..</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="detail-right-box">
+                <ul id="new-contents-box">
+                    <h1 class="main-headline">新着記事</h1>
+                    <li class="new-contents">
+                        <div class="new-contents-img">
+                            <img class="new-contents-img" src="image/sample8.png" alt="サンプル8">
+                        </div>
+                        <div class="informationbox">
+                            <p class="tag">Culinary </p>
+                            <p class="date"> 13 Jun 2022</p>
+                        </div>
+                        <h2 class="new-title">記事タイトル記事タイトル記事タイ<br>トル記事タイトル</h2>
+                    </li>
+                    <li class="new-contents">
+                        <div class="new-contents-img">
+                            <img class="new-contents-img" src="image/sample9.png" alt="サンプル9">
+                        </div>
+                        <div class="informationbox">
+                            <p class="tag">Travel </p>
+                            <p class="date"> 22 Jul 2022</p>
+                        </div>
+                        <h2 class="new-title">Enjoying the sunset on Padar<br>island together</h2>
+                    </li>
+                    <li class="new-contents">
+                        <div class="new-contents-img">
+                            <img class="new-contents-img" src="image/sample10.png" alt="サンプル10">
+                        </div>
+                        <div class="informationbox">
+                            <p class="tag">Travel </p>
+                            <p class="date"> 22 Jul 2022</p>
+                        </div>
+                        <h2 class="new-title">The lush green surroundings of<br>the campgrounds create a..</h2>
+                    </li>
+                </ul>
+                <ul id="writer-all">
+                    <h1 class="main-headline">投稿者</h1>
+                    <li class="writer">
+                        <img src="image/user-1.png" alt="Andrea Wise">
+                        <p class="name">Andrea Wise</p>
+                    </li>
+                    <li class="writer">
+                        <img src="image/user-2.png" alt="Karen Smith">
+                        <p class="name">Karen Smith</p>
+                    </li>
+                    <li class="writer">
+                        <img src="image/user-3.png" alt="Samantha William">
+                        <p class="name">Samantha William</p>
+                    </li>
+                    <li class="writer">
+                        <img src="image/user-4.png" alt="Renata Hope">
+                        <p class="name">Renata Hope</p>
+                    </li>
+                    <li class="writer">
+                        <img src="image/user-5.png" alt="Angela Saunder">
+                        <p class="name">Angela Saunder</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div id="footer-top">
+            <div id="address">
+                <h1 class="footer-headline">PT. Travel Everyday Indonesia</h1>
+                <p class="content">
+                    Grand Floor Zaidin L-Walk,<br>
+                    Maju Jaya No. 2,<br>
+                    Daerah Istimewa Yogyakarta,<br>
+                    Indonesia 55281<br><br>
+                </p>
+                <hr class="hr-footer">
+                <p class="content">
+                    About&emsp;&emsp;Privacy policy<br>
+                    <br>
+                    Terms&Conditions&emsp;&emsp;Contact
+                </p>
+            </div>
+            <div id="information">
+                <h1 class="footer-headline">Informations</h1>
+                <p class="content">
+                    How to register as a user<br>
+                    <br>
+                    Guide to creating travel review<br>
+                    <br>
+                    Tutorial for making culinary<br>
+                    review
+                </p>
+            </div>
+            <div id="SNS">
+                <h1 class="footer-headline">Follow us</h1>
+                <p class="content">
+                    Instagram<br><br>Facebook<br><br>Twitter<br><br>Youtube
+                </p>
+            </div>
+            <div id="App">
+                <h1 class="footer-headline">Download app</h1>
+                <img class="app-icon" src="image/AppStore.png" alt="App Storeのアイコン" />
+                <img class="app-icon" src="image/PlayStore.png" alt="Play storeのアイコン" />
+            </div>
+        </div>
+        <div id="footer-bottom">
+            <div id="copy-wright">
+                <p>© 2023 PT. Travel Everyday Indonesia</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
