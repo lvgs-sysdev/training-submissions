@@ -1,0 +1,63 @@
+body {
+  width: 1366px;
+  margin: 0 auto 0;
+}
+
+.view-group-container {
+  padding-top: 90px;
+  display: flex;
+}
+
+.title-font {
+  font-size: 22px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.title-padding {
+  margin: 0;
+  padding-bottom: 40.45px;
+}
+
+.mainview-container {
+  width: 71.6%;
+}
+
+.sidemenu-container {
+  width: 28.4%;
+}
+
+.util-full-img {
+  width: 100%;
+  height: auto;
+}
+
+.util-padding-0 {
+  padding: 0;
+}
+
+.util-textalign-left {
+  text-align: left;
+}
+
+.util-liststyle-none {
+  list-style: none;
+}
+
+.util-centering {
+  text-align: center;
+}
+
+.util-margin-0 {
+  margin: 0;
+}
+
+.util-text-decoration-none {
+  text-decoration: none;
+}
+
+.date-text {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}

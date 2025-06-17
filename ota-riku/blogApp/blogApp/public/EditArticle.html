@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="jp">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/Common/style.css" />
+    <link rel="stylesheet" href="/css/EditArticle/editArticle.css" />
+    <link rel="stylesheet" href="/css/Common/header.css" />
+    <title>Edit Article</title>
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <a href="/home" class="title">DAYDAYTRAVEL</a>
+        <div id="login-block" class="login-status-block">
+          <div class="login-button-container">
+            <a href="/Login.html" class="login-text">Login</a>
+            <a href="/RegistAccount.html" type="button" class="login-button"
+              >Get Started</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+    <article class="edit-menu">
+      <form id="edit-blog-form" action="/editBlog" method="post">
+        <div class="title-block">
+          <label for="title" class="title-text">タイトル</label>
+          <input
+            id="title-input"
+            type="text"
+            name="title"
+            class="title-input"
+            placeholder="タイトル"
+          />
+        </div>
+        <div class="context-block">
+          <label for="context" class="context-title">本文</label>
+          <textarea
+            id="context-input"
+            name="context"
+            class="context-input"
+            raws="100"
+          ></textarea>
+        </div>
+        <div class="submit-button-container">
+          <button class="submit-button" type="submit" href="#">完了</button>
+        </div>
+      </form>
+    </article>
+    <script src="/js/login.js"></script>
+    <script src="/js/EditBlog.js"></script>
+  </body>
+</html>
