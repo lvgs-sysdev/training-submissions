@@ -16,7 +16,7 @@ export const Header: FC = () => {
 
   const logoStyle = {
     fontSize: "50px",
-    color: "red",
+    color: "white",
     textAlign: "center",
     marginLeft: "auto",
     marginRight: "auto",
@@ -28,7 +28,7 @@ export const Header: FC = () => {
     height: "50px",
     objectFit: "cover",
     borderRadius: "50%",
-    paddingLeft: "20px",
+    marginLeft: "20px",
   } as React.CSSProperties;
 
   const notificateIcon = {
@@ -45,7 +45,7 @@ export const Header: FC = () => {
           src={`${process.env.PUBLIC_URL}/images/cat_meam.jpg`}
           style={iconStyle}
         />
-        <h1 style={logoStyle}>R</h1>
+        <h1 style={logoStyle}>X</h1>
         <img
           src={`${process.env.PUBLIC_URL}/images/bell.png`}
           style={notificateIcon}
