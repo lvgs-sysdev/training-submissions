@@ -1,0 +1,27 @@
+.window-style {
+  width: 100%;
+  height: auto;
+  background-color: black;
+  border-top: 1px solid gray;
+  border-radius: 3px;
+
+  display: flex;
+}
+
+.title-container {
+  width: 30%;
+  height: auto;
+  align-items: center;
+}
+
+.title-text {
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 10px;
+  color: white;
+}
+.form-container {
+  width: 70%;
+  height: auto;
+  display: flex;
+}

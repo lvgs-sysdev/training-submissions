@@ -1,0 +1,8 @@
+.follow-button {
+  background-color: white;
+  font-size: 15px;
+  border-radius: 5%;
+  min-width: 200px;
+  height: 40px;
+  margin: 10px;
+}

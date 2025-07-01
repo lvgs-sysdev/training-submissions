@@ -1,0 +1,103 @@
+.main-container {
+  width: 1000px;
+  margin-top: -110px;
+}
+
+.profile-container {
+  height: 400px;
+  width: 1000px;
+  background-color: black;
+}
+
+.icon-image {
+  width: 200px;
+  height: 200px;
+  margin-bottom: -100px;
+  border-radius: 50%;
+
+  margin-left: 30px;
+}
+
+.follow-button-container {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.name-text {
+  font-size: 40px;
+  color: white;
+  margin: 0;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.id-text {
+  font-size: 18px;
+  color: white;
+  opacity: 0.5;
+  padding-left: 5px;
+  margin: 0;
+}
+
+.name-container {
+  width: 80%;
+  height: auto;
+  padding-left: 30px;
+}
+
+.bio-container {
+  width: 80%;
+  height: auto;
+  min-height: 20px;
+  padding-top: 20px;
+  padding-left: 40px;
+}
+
+.bio-text {
+  font-size: 25px;
+  color: white;
+  margin: 0;
+}
+
+.link-container {
+  display: flex;
+  padding-top: 30px;
+  padding-left: 30px;
+}
+
+.link-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.link-text {
+  font-size: 15px;
+  color: skyblue;
+  text-decoration: none;
+  padding-left: 10px;
+}
+
+.ff-list {
+  display: flex;
+}
+
+.follow-container {
+  width: 250px;
+  display: flex;
+  padding-top: 30px;
+  padding-left: 30px;
+}
+
+.follow-text {
+  font-size: 20px;
+  color: white;
+  opacity: 0.5;
+}
+
+.follow-num-text {
+  font-size: 20px;
+  color: white;
+  padding-left: 10px;
+}

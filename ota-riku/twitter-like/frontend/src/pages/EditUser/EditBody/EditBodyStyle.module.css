@@ -1,0 +1,30 @@
+.icon-image {
+  margin-bottom: -100px;
+  margin-left: 30px;
+}
+
+.edit-profile-container {
+  height: auto;
+  width: 1000px;
+  margin-top: -100px;
+  background-color: black;
+}
+
+.input-field-container {
+  padding-top: 150px;
+  width: 100%;
+}
+
+.input-style {
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  border-width: 0px;
+}
+
+.button-container-style {
+  display: flex;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  justify-content: center;
+}

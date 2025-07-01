@@ -1,5 +1,5 @@
-import { Header } from "../compornents/header";
-import { TweetReview } from "../compornents/tweetReview";
+import { Header } from "../../compornents/Header/HeaderElem";
+import { TweetReview } from "../../compornents/TweetReview/TweetReviewElem";
 import { FC } from "react";
 
 export const Home: FC = () => {
