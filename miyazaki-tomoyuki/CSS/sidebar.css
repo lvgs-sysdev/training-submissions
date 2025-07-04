@@ -1,10 +1,6 @@
 .sidebar {
-    margin-top: 100px;
+    margin-left: 9%;
     margin-right: 9%;
-}
-
-.popular-article {
-    margin-bottom: 200px;
 }
 
 .sidebar h3 {
@@ -37,6 +33,23 @@
     border: 1px solid #DEDEDE;
 }
 
+@media screen and (min-width: 600px) {
+    .sidebar {
+        margin-left: 9%;
+        margin-right: 50%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .sidebar {
+        margin-top: 100px;
+        margin-right: 9%;
+    }
+
+    .popular-article {
+        margin-bottom: 200px;
+    }
+}
 
     
 
