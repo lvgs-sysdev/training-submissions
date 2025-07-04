@@ -1,0 +1,42 @@
+.sidebar {
+    margin-top: 100px;
+    margin-right: 9%;
+}
+
+.popular-article {
+    margin-bottom: 200px;
+}
+
+.sidebar h3 {
+    font-size: 22px;
+    margin-bottom: 50px;
+}
+
+.popular-article li {
+    border-bottom: 0.5px solid rgba(18, 18, 18, 0.2);
+    padding-bottom: 50px;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.popular-article li:last-child {
+    border-bottom: none;
+}
+
+.more-article {
+    display: flex;
+    gap: 30px;
+    color: #757575;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.more-article li {
+    padding: 8px 18px;
+    border: 1px solid #DEDEDE;
+}
+
+
+    
+

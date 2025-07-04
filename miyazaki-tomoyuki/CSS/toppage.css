@@ -24,3 +24,58 @@
     font-weight: 300;
     margin: 0;
 }
+
+.article {
+    margin-left: 9%;
+    margin-top: 100px;
+    width: 60%;
+}
+
+.article h3 {
+    font-size: 22px;
+}
+
+.article-container {
+    display: flex;
+}
+
+.article-item-container {
+    display: flex;
+    flex-wrap: wrap; 
+}
+
+.article-item {
+    width: 40%;
+    padding: 0px 10% 10% 0px;
+}
+
+.article-item img {
+    width: 100%;
+    height: auto;
+}
+
+.article-item-header {
+    font-size: 14px;
+    display: flex;
+}
+
+.article-title {
+    font-weight: 300;
+    font-size: 20px;
+}
+
+.article-content {
+    font-weight: 300;
+    color: #757575;
+    font-size: 16px;
+}
+
+.article-category {
+    font-weight: 500;
+    color: #FF553C;
+}
+
+.article-date {
+    font-weight: 300;
+    color: #757575;
+}
