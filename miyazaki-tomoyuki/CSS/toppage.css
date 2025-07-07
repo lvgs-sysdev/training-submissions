@@ -26,58 +26,58 @@
     margin: 0;
 }
 
-.article {
+.post {
     margin-left: 9%;
     margin-top: 30px;
 }
 
-.article h3 {
+.post h3 {
     font-size: 22px;
 }
 
-.article-item {
+.post-item {
     padding: 0px 9% 10% 0px;
 }
 
-.article-item img {
+.post-item img {
     width: 100%;
     height: auto;
 }
 
-.article-item-header {
+.post-item-header {
     font-size: 14px;
     display: flex;
     margin-top: 20px;
 }
 
-.article-title {
+.post-title {
     font-weight: 300;
     font-size: 20px;
 }
 
-.article-content {
+.post-content {
     font-weight: 300;
     color: #757575;
     font-size: 16px;
 }
 
-.article-category {
+.post-category {
     font-weight: 500;
     color: #FF553C;
 }
 
-.article-date {
+.post-date {
     font-weight: 300;
     color: #757575;
 }
 
 @media screen and (min-width: 600px) {
-    .article-item-container {
+    .post-item-container {
         display: flex;
         flex-wrap: wrap; 
     }
 
-    .article-item {
+    .post-item {
         width: 40%;
     }
 
@@ -95,11 +95,11 @@
 }
 
 @media screen and (min-width: 1024px) {
-    .article-container {
+    .post-container {
         display: flex;
     }
 
-    .article {
+    .post {
         width: 60%;
         margin-top:100px;
     }
