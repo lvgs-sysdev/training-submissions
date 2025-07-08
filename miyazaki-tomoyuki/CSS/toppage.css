@@ -73,7 +73,7 @@
 @media screen and (min-width: 600px) {
     .post-item-container {
         display: flex;
-        flex-wrap: wrap; 
+        flex-wrap: wrap;
     }
 
     .post-item {

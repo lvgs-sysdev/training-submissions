@@ -51,10 +51,10 @@ footer {
     .footer {
         padding: 100px 0 10px 0;
     }
-    
+
     .footer-container {
         display: flex;
-        flex-wrap: wrap; 
+        flex-wrap: wrap;
     }
 
     .footer-item1 {
