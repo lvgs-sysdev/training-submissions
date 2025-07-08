@@ -1,11 +1,17 @@
 .sidebar {
-    margin-left: 9%;
     margin-right: 9%;
+    margin-left: 9%;
+}
+
+.sidebar h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 30px;
 }
 
 .sidebar h3 {
-    font-size: 22px;
-    margin-bottom: 50px;
+    font-size: 16px;
+    font-weight: 300;
 }
 
 .popular-post li {
@@ -34,9 +40,34 @@
     border: 1px solid #DEDEDE;
 }
 
+.new-post-img {
+    width: 100%;
+    margin-top: 30px;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    object-position: center;
+}
+
+.new-post {
+    margin-bottom: 50px;
+}
+
+.writer {
+    margin-bottom: 50px;
+}
+
+.writer-img {
+    margin-top: 20px;
+}
+
+.writer-name {
+    vertical-align: 30px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
 @media screen and (min-width: 600px) {
     .sidebar {
-        margin-left: 9%;
         margin-right: 50%;
     }
 }
@@ -45,6 +76,8 @@
     .sidebar {
         margin-top: 100px;
         margin-right: 9%;
+        margin-left: 0;
+        flex: 3;
     }
 
     .popular-post {
