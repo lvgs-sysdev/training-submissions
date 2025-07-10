@@ -1,5 +1,6 @@
 body {
     font-family: "Poppins";
+    margin: 0;
 }
 
 ul {
@@ -8,5 +9,6 @@ ul {
 }
 
 a {
+    color: inherit;
     text-decoration: none;
 }
