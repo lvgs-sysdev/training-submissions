@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>記事タイトル記事タイトル記事タイトル｜DAYDAYTRAVEL</title>
-  <link rel="stylesheet" href="/css/user.css">
+  <title>ユーザー新規登録｜DAYDAYTRAVEL</title>
+  <link rel="stylesheet" href="/css/register.css">
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/layout.css">
   <link rel="stylesheet" href="/css/sidebar.css">
@@ -22,33 +22,26 @@
     </ul>
   </header>
   <main>
-
-    <div class="user">
-      <h1>ユーザープロフィール</h1>
-      <div id="user">
-
-
+    <div class="register">
+      <div id="register">
         <script>
-          const params = new URLSearchParams(window.location.search);
-          const userId = params.get("id");
-          fetch(`/userDetail?id=${userId}`)
-            .then(response => response.json())
-            .then(user => {
-              let htmlToInsert = "";
-              const articleListContainer = document.getElementById("user");
-              htmlToInsert = htmlToInsert + `
-                  <p>ユーザーID：${user.user_id}</p>
-                  <p>ユーザー名：${user.user_name}</p>
-              `;
-              articleListContainer.innerHTML = htmlToInsert;
-            })
-            .catch(error => {
-              console.error(("データの取得中にエラーが発生しました：", error));
-              const articleListContainer = document.getElementById("user");
-              articleListContainer.innerHTML = `<p>ユーザー情報の読み込みに失敗しました。</p>`;
-            });
+          const urlParams = new URLSearchParams(window.location.search);
+          if (urlParams.get("success") === "true") {
+            const articleListContainer = document.getElementById("register");
+            articleListContainer.innerHTML = "<p>ユーザーの新規登録に成功しました</p>";
+          } else if (urlParams.get("success") === "false") {
+            const articleListContainer = document.getElementById("register");
+            articleListContainer.innerHTML = "<p>ユーザーの新規登録に失敗しました</p>";
+          }
         </script>
       </div>
+      <h1>ユーザー新規登録</h1>
+      <form method="POST" action="/registerUser">
+        <p>ユーザーID：<input type="text" name="userId"></p>
+        <p>ユーザー名：<input type="text" name="userName"></p>
+        <p>パスワード：<input type="text" name="password"></p>
+        <p><input type="submit" value="登録"></p>
+      </form>
     </div>
 
   </main>

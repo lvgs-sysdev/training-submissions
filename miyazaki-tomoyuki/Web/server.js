@@ -1,6 +1,7 @@
 const fastify = require("fastify")({ logger: true });
 const path = require("path");
 const mysql = require("mysql2/promise");
+fastify.register(require('@fastify/formbody'));
 
 fastify.register(require("@fastify/static"), {
   root: path.join(__dirname, ""),
@@ -26,7 +27,7 @@ fastify.get("/articles", async (request, reply) => {
     const [rows, fields] = await db.query("SELECT id, article_title, SUBSTRING(content, 1, 20) AS content, updated_at FROM articles ORDER BY updated_at DESC LIMIT 6");
     reply.send(rows);
   } catch (error) {
-    request.log.error('DBからのデータ取得に失敗しました:', error);
+    request.log.error("DBからのデータ取得に失敗しました:", error);
     reply.sendFile("error.html");
   }
 });
@@ -42,7 +43,7 @@ fastify.get("/articleDetail", async (request, reply) => {
     const [rows, fields] = await db.query(`SELECT art.article_title, art.content, user.user_name, user.user_id FROM articles art INNER JOIN users user ON art.user_id = user.user_id where art.id = ${articleId}`);
     reply.send(rows[0]);
   } catch (error) {
-    request.log.error('DBからのデータ取得に失敗しました:', error);
+    request.log.error("DBからのデータ取得に失敗しました:", error);
     reply.sendFile("error.html");
   }
 });
@@ -58,8 +59,26 @@ fastify.get("/userDetail", async (request, reply) => {
     const [rows, fields] = await db.query(`SELECT user_id, user_name FROM users where user_id = ${userId}`);
     reply.send(rows[0]);
   } catch (error) {
-    request.log.error('DBからのデータ取得に失敗しました:', error);
+    request.log.error("DBからのデータ取得に失敗しました:", error);
     reply.sendFile("error.html");
+  }
+});
+
+fastify.get("/register", (req, reply) => {
+  reply.sendFile("register.html");
+});
+
+//ユーザーの新規登録
+fastify.post("/registerUser", async (request, reply) => {
+  const userId = request.body.userId;
+  const userName = request.body.userName;
+  const password = request.body.password;
+  try {
+    const [result] = await db.query(`INSERT INTO users (user_id, password, user_name) VALUES (?, ?, ?)`, [userId, password, userName]);
+    reply.redirect("/register?success=true");
+  } catch (error) {
+    request.log.error("ユーザーの新規登録に失敗しました:", error);
+    reply.redirect("/register?success=false");
   }
 });
 

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>記事タイトル記事タイトル記事タイトル｜DAYDAYTRAVEL</title>
+  <title>記事詳細｜DAYDAYTRAVEL</title>
   <link rel="stylesheet" href="/css/post.css">
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/layout.css">
@@ -15,10 +15,10 @@
 
 <body>
   <header class="header">
-    <a href="./toppage.html" class="title">DAYDAYTRAVEL</a>
+    <a href="/" class="title">DAYDAYTRAVEL</a>
     <ul>
       <li class="login">Login</li>
-      <li class="start">Get started</li>
+      <li class="start"><a href="/register">Get started</a></li>
     </ul>
   </header>
   <main>
@@ -40,10 +40,11 @@
                   <h1>${detail.article_title}</h1>
                   <p>${detail.content}</p>
               `;
+                document.title = `${detail.article_title}｜DAYDAYTRAVEL`
                 articleListContainer.innerHTML = htmlToInsert;
               })
               .catch(error => {
-                console.lerror(("データの取得中にエラーが発生しました：", error));
+                console.error(("データの取得中にエラーが発生しました：", error));
                 const articleListContainer = document.getElementById("detail");
                 articleListContainer.innerHTML = `<p>記事の読み込みに失敗しました。</p>`;
               });
