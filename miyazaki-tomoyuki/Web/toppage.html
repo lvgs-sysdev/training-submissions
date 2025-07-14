@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>DAYDAYTRAVEL｜Share your holiday stories</title>
+  <link rel="stylesheet" href="/css/toppage.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/sidebar.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header class="header">
+    <h1><a href="./toppage.html" class="title">DAYDAYTRAVEL</a></h1>
+    <ul>
+      <li class="login">Login</li>
+      <li class="start">Get started</li>
+    </ul>
+  </header>
+  <main>
+    <div class="topimage">
+      <img src="/image/top_image.jpg" alt="トップページ画像">
+      <h2>Share your<br>
+        holiday stories.</h2>
+      <p>Write about your experiencies while on holiday in various parts of Indonesia, and reach a wide readership.</p>
+    </div>
+    <div class="post-container">
+      <div class="post" id="post">
+        <h2>一覧（新着順）</h2>
+        <script>
+          fetch("/articles")
+            .then(response => response.json())
+            .then(data => {
+              let htmlToInsert = "";
+              const articleListContainer = document.getElementById("post");
+              data.forEach(article => {
+                htmlToInsert = htmlToInsert + `
+                <li class="post-item">
+                  <h3 class="post-title"><a href="/detail?id=${article.id}">${article.article_title}</a></h3>
+                  <p class="post-item-header"><span class="post-date">${new Date(article.updated_at).toLocaleDateString('ja-JP')}</span></p>
+                  <p class="post-content">${article.content}</p>
+                </li>
+                `;
+              });
+              articleListContainer.innerHTML = `<ul class="post-item-container">${htmlToInsert}</ul>`;
+            })
+            .catch(error => {
+              console.lerror(("データの取得中にエラーが発生しました：", error));
+              const articleListContainer = document.getElementById("post");
+              articleListContainer.innerHTML = `<p>記事一覧の読み込みに失敗しました。</p>`;
+            });
+        </script>
+
+      </div>
+      <div class="sidebar">
+        <h2>人気記事（機能不要）</h2>
+        <ul class="popular-post">
+          <li>記事タイトル記事タイトル記事タイトル記事タイトル</li>
+          <li>Cheap Padang speciality food restaurant</li>
+          <li>Mountain hiking in central Java</li>
+        </ul>
+        <h2>もっと見る（機能不要）</h2>
+        <ul class="more-post">
+          <li>Travel</li>
+          <li>Culinary</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-item1">
+        <h2>PT.Travel Everyday Indonesia</h2>
+        <p class="address">Grand Floor Zaidin L-Walk, JI.Maju Jaya No.2, Daerah Istimewa Yogyakarta, Indonesia 55281</p>
+        <ul class="about">
+          <li><a href="#">About</a></li>
+          <li><a href="#">Privacy policy</a></li>
+        </ul>
+        <ul class="contact">
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-item2">
+        <h2>Informations</h2>
+        <ul>
+          <li><a href="#">How to register as a user</a></li>
+          <li><a href="#">Guide to creating travel review</a></li>
+          <li><a href="#">Tutorial for making culinary reviews</a></li>
+        </ul>
+      </div>
+      <div class="footer-item3">
+        <h2>Follow us</h2>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Youtube</a></li>
+        </ul>
+      </div>
+      <div class="footer-item4">
+        <h2>Download app</h2>
+        <ul>
+          <li><a href="#"><img src="image/appstore.png" alt="AppStore"></a></li>
+          <li><a href="#"><img src="image/googleplay.png" alt="GooglePlay"></a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="copyright">© 2023 PT. Travel Everyday Indonesia</p>
+  </footer>
+</body>
+
+</html>
