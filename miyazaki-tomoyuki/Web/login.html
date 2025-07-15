@@ -32,6 +32,12 @@
           } else if (urlParams.get("success") === "false") {
             const articleListContainer = document.getElementById("login");
             articleListContainer.innerHTML = "<p>ログインに失敗しました</p>";
+          } else if (urlParams.get("login") === "true") {
+            const articleListContainer = document.getElementById("login");
+            articleListContainer.innerHTML = "<p>該当ユーザーでログインしてください</p>";
+          } else if (urlParams.get("login") === "false") {
+            const articleListContainer = document.getElementById("login");
+            articleListContainer.innerHTML = "<p>ログインしてください</p>";
           }
         </script>
       </div>

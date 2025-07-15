@@ -32,13 +32,13 @@ fastify.get("/", (request, reply) => {
   reply.sendFile("toppage.html");
 });
 
-//最新の記事情報を6つ取得
+//最新の記事情報を6つ取得する処理
 fastify.get("/articles", async (request, reply) => {
   try {
     const [rows] = await db.query("SELECT id, article_title, SUBSTRING(content, 1, 20) AS content, updated_at FROM articles ORDER BY updated_at DESC LIMIT 6");
     reply.send(rows);
   } catch (error) {
-    request.log.error("DBからのデータ取得に失敗しました:", error);
+    request.log.error("DBからの最新記事のデータ取得に失敗しました:", error);
     reply.sendFile("error.html");
   }
 });
@@ -47,14 +47,14 @@ fastify.get("/detail", (request, reply) => {
   reply.sendFile("detail.html");
 });
 
-//ユーザーがクリックした記事の情報を取得
+//ユーザーがクリックした記事の情報を取得する処理
 fastify.get("/articleDetail", async (request, reply) => {
   const articleId = request.query.id;
   try {
     const [rows] = await db.query(`SELECT art.id, art.article_title, art.content, user.user_name, user.user_id FROM articles art INNER JOIN users user ON art.user_id = user.user_id where art.id = ?`, [articleId]);
     reply.send(rows[0]);
   } catch (error) {
-    request.log.error("DBからのデータ取得に失敗しました:", error);
+    request.log.error("DBからのユーザーがクリックした記事データ取得に失敗しました:", error);
     reply.sendFile("error.html");
   }
 });
@@ -63,11 +63,11 @@ fastify.get("/user", (request, reply) => {
   reply.sendFile("user.html");
 });
 
-//ユーザーがクリックしたユーザーの情報を取得
+//ユーザーがクリックしたユーザーの情報を取得する処理
 fastify.get("/userDetail", async (request, reply) => {
   const userId = request.query.id;
   try {
-    const [rows] = await db.query(`SELECT user_id, user_name FROM users where user_id = ?`, [userId]);
+    const [rows] = await db.query(`SELECT user_id, user_name FROM users WHERE user_id = ?`, [userId]);
     reply.send(rows[0]);
   } catch (error) {
     request.log.error("DBからのデータ取得に失敗しました:", error);
@@ -75,11 +75,65 @@ fastify.get("/userDetail", async (request, reply) => {
   }
 });
 
+fastify.get("/editUser", (request, reply) => {
+  const userId = request.query.id;
+  if (request.session.user) {
+    if (request.session.user.userId === userId) {
+      reply.sendFile("editUser.html");
+    } else {
+      reply.redirect("/login?login=true");
+    }
+  } else {
+    reply.redirect("/login?login=false");
+  }
+});
+
+//ユーザー情報の編集のためにユーザーの情報を取得する処理
+fastify.get("/editUserPage", async (request, reply) => {
+  const userId = request.query.id;
+  if (request.session.user) {
+    if (request.session.user.userId === userId) {
+      try {
+        const [rows] = await db.query(`SELECT user_id, user_name FROM users WHERE user_id = ?`, [userId]);
+        reply.send(rows[0]);
+      } catch (error) {
+        request.log.error("DBからのユーザー情報取得に失敗しました:", error);
+        reply.sendFile("error.html");
+      }
+    } else {
+      reply.redirect("/login?login=true");
+    }
+  } else {
+    reply.redirect("/login?login=false");
+  }
+});
+
+//ユーザー情報の編集処理
+fastify.post("/editUser", async (request, reply) => {
+  const userId = request.body.userId;
+  const userName = request.body.userName;
+  if (request.session.user) {
+    if (request.session.user.userId === userId) {
+      try {
+        const [result] = await db.query(`UPDATE users set user_name = ? WHERE user_id = ?`, [userName, userId]);
+        reply.redirect(`/user?id=${userId}&success=true`);
+      } catch (error) {
+        request.log.error("ユーザー情報の編集に失敗しました:", error);
+        reply.redirect(`/user?id=${userId}&success=false`);
+      }
+    } else {
+      reply.redirect("/login?login=true");
+    }
+  } else {
+    reply.redirect("/login?login=false");
+  }
+});
+
 fastify.get("/register", (request, reply) => {
   reply.sendFile("register.html");
 });
 
-//ユーザーの新規登録
+//ユーザーの新規登録処理
 fastify.post("/registerUser", async (request, reply) => {
   const userId = request.body.userId;
   const userName = request.body.userName;
@@ -98,7 +152,7 @@ fastify.get("/login", (request, reply) => {
   reply.sendFile("login.html");
 });
 
-//ユーザーのログイン
+//ユーザーのログイン処理
 fastify.post("/loginUser", async (request, reply) => {
   const userId = request.body.userId;
   const password = request.body.password;
@@ -107,7 +161,7 @@ fastify.post("/loginUser", async (request, reply) => {
     if (rows.length > 0) {
       const isMatch = await bcrypt.compare(password, rows[0].password)
       if (isMatch) {
-        request.session.user = { userId: rows[0].userId, userName: rows[0].userName };
+        request.session.user = { userId: rows[0].user_id, user_name: rows[0].user_name };
         reply.redirect("/login?success=true");
       }
     }
@@ -127,7 +181,7 @@ fastify.get("/editBlog", (request, reply) => {
   }
 });
 
-//記事の編集ページ表示
+//記事の編集のために記事の情報を取得する処理
 fastify.get("/editBlogPage", async (request, reply) => {
   const articleId = request.query.id;
   if (request.session.user) {
@@ -135,7 +189,7 @@ fastify.get("/editBlogPage", async (request, reply) => {
       const [rows] = await db.query(`SELECT id, article_title, content FROM articles where id = ?`, [articleId]);
       reply.send(rows[0]);
     } catch (error) {
-      request.log.error("DBからのデータ取得に失敗しました:", error);
+      request.log.error("DBからの記事データ取得に失敗しました:", error);
       reply.sendFile("error.html");
     }
   } else {
@@ -143,7 +197,7 @@ fastify.get("/editBlogPage", async (request, reply) => {
   }
 });
 
-//記事の編集
+//記事の編集処理
 fastify.post("/editBlog", async (request, reply) => {
   const articleTitle = request.body.articleTitle;
   const content = request.body.content;

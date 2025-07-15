@@ -24,19 +24,25 @@
   <main>
 
     <div class="user">
-      <h1>ユーザープロフィール</h1>
+
       <div id="user">
 
 
         <script>
-          const params = new URLSearchParams(window.location.search);
-          const userId = params.get("id");
+          const urlParams = new URLSearchParams(window.location.search);
+          const userId = urlParams.get("id");
           fetch(`/userDetail?id=${userId}`)
             .then(response => response.json())
             .then(user => {
               let htmlToInsert = "";
               const articleListContainer = document.getElementById("user");
+              if (urlParams.get("success") === "true") {
+                htmlToInsert = htmlToInsert + "<p>ユーザー情報を変更しました</p>";
+              } else if (urlParams.get("success") === "false") {
+                htmlToInsert = htmlToInsert + "<p>ユーザー情報の変更に失敗しました</p>";
+              }
               htmlToInsert = htmlToInsert + `
+                  <h1>ユーザープロフィール</h1>
                   <p>ユーザーID：${user.user_id}</p>
                   <p>ユーザー名：${user.user_name}</p>
                   <a href="/editUser?id=${user.user_id}"><button>編集</button></a>
@@ -44,9 +50,9 @@
               articleListContainer.innerHTML = htmlToInsert;
             })
             .catch(error => {
-              console.error(("データの取得中にエラーが発生しました：", error));
+              console.error(("ユーザー情報ページ表示時にエラーが発生しました：", error));
               const articleListContainer = document.getElementById("user");
-              articleListContainer.innerHTML = `<p>ユーザー情報の読み込みに失敗しました。</p>`;
+              articleListContainer.innerHTML = `<p>ユーザー情報ページの表示に失敗しました。</p>`;
             });
         </script>
       </div>
