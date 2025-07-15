@@ -51,7 +51,7 @@ fastify.get("/detail", (request, reply) => {
 fastify.get("/articleDetail", async (request, reply) => {
   const articleId = request.query.id;
   try {
-    const [rows] = await db.query(`SELECT art.article_title, art.content, user.user_name, user.user_id FROM articles art INNER JOIN users user ON art.user_id = user.user_id where art.id = ?`, [articleId]);
+    const [rows] = await db.query(`SELECT art.id, art.article_title, art.content, user.user_name, user.user_id FROM articles art INNER JOIN users user ON art.user_id = user.user_id where art.id = ?`, [articleId]);
     reply.send(rows[0]);
   } catch (error) {
     request.log.error("DBからのデータ取得に失敗しました:", error);
@@ -115,6 +115,49 @@ fastify.post("/loginUser", async (request, reply) => {
   } catch (error) {
     request.log.error("ログインに失敗しました:", error);
     reply.redirect("/login?success=false");
+  }
+});
+
+fastify.get("/editBlog", (request, reply) => {
+  const articleId = request.query.id;
+  if (request.session.user) {
+    reply.sendFile("editBlog.html");
+  } else {
+    reply.redirect("/login");
+  }
+});
+
+//記事の編集ページ表示
+fastify.get("/editBlogPage", async (request, reply) => {
+  const articleId = request.query.id;
+  if (request.session.user) {
+    try {
+      const [rows] = await db.query(`SELECT id, article_title, content FROM articles where id = ?`, [articleId]);
+      reply.send(rows[0]);
+    } catch (error) {
+      request.log.error("DBからのデータ取得に失敗しました:", error);
+      reply.sendFile("error.html");
+    }
+  } else {
+    reply.redirect("/login");
+  }
+});
+
+//記事の編集
+fastify.post("/editBlog", async (request, reply) => {
+  const articleTitle = request.body.articleTitle;
+  const content = request.body.content;
+  const articleId = request.body.id;
+  if (request.session.user) {
+    try {
+      const [result] = await db.query(`UPDATE articles set article_title = ?, content = ? where id = ?`, [articleTitle, content, articleId]);
+      reply.redirect(`/detail?id=${articleId}&success=true`);
+    } catch (error) {
+      request.log.error("記事の編集に失敗しました:", error);
+      reply.redirect("/editBlog?success=false");
+    }
+  } else {
+    reply.redirect("/login");
   }
 });
 

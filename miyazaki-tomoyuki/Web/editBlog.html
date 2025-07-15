@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>記事詳細｜DAYDAYTRAVEL</title>
+  <title>記事編集｜DAYDAYTRAVEL</title>
+  <link rel="stylesheet" href="/css/editBlog.css">
   <link rel="stylesheet" href="/css/post.css">
   <link rel="stylesheet" href="/css/header.css">
   <link rel="stylesheet" href="/css/layout.css">
@@ -25,38 +26,35 @@
     <div class="post-container">
       <div class="post">
 
-        <div id="detail">
+        <div id="edit">
 
           <script>
             const params = new URLSearchParams(window.location.search);
             const articleId = params.get("id");
-            const message = params.get("success")
-            fetch(`/articleDetail?id=${articleId}`)
+            fetch(`/editBlogPage?id=${articleId}`)
               .then(response => response.json())
-              .then(detail => {
+              .then(edit => {
                 let htmlToInsert = "";
-                const articleListContainer = document.getElementById("detail");
-                if (message === "true") {
-                  htmlToInsert = htmlToInsert + `
-                  <p>記事を保存しました</p>
-                  `;
-                } else if (message === "false") {
-                  htmlToInsert = htmlToInsert + `
-                  <p>記事の保存に失敗しました</p>
-                  `;
-                }
+                const articleListContainer = document.getElementById("edit");
                 htmlToInsert = htmlToInsert + `
-                  <p class="post-writer-name"><a href="/user?id=${detail.user_id}">${detail.user_name}</a></p>
-                  <h1>${detail.article_title}</h1>
-                  <p>${detail.content}</p>
-                  <a href="/editBlog?id=${detail.id}"><button>編集</button></a>
+                  <form method="POST" action="/editBlog">
+                    <div class="form">
+                      タイトル：<input type="text" name="articleTitle" value="${edit.article_title}">
+                    </div>
+                    <div class="form">
+                      本文：<textarea name="content">${edit.content}</textarea>
+                    </div>
+                      <input type="hidden" name="id" value="${edit.id}"> 
+                    <div class="form">
+                    <input type="submit" value="更新">
+                    </div>
+                  </form>
               `;
-                document.title = `${detail.article_title}｜DAYDAYTRAVEL`
                 articleListContainer.innerHTML = htmlToInsert;
               })
               .catch(error => {
                 console.error(("データの取得中にエラーが発生しました：", error));
-                const articleListContainer = document.getElementById("detail");
+                const articleListContainer = document.getElementById("edit");
                 articleListContainer.innerHTML = `<p>記事の読み込みに失敗しました。</p>`;
               });
           </script>

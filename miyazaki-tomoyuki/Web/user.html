@@ -39,6 +39,7 @@
               htmlToInsert = htmlToInsert + `
                   <p>ユーザーID：${user.user_id}</p>
                   <p>ユーザー名：${user.user_name}</p>
+                  <a href="/editUser?id=${user.user_id}"><button>編集</button></a>
               `;
               articleListContainer.innerHTML = htmlToInsert;
             })
