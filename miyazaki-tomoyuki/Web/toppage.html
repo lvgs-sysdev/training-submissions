@@ -52,32 +52,33 @@
       <p>Write about your experiencies while on holiday in various parts of Indonesia, and reach a wide readership.</p>
     </div>
     <div class="post-container">
-      <div class="post" id="post">
+      <div class="post">
         <h2>一覧（新着順）</h2>
-        <script>
-          fetch("/articles")
-            .then(response => response.json())
-            .then(data => {
-              let htmlToInsert = "";
-              const articleListContainer = document.getElementById("post");
-              data.forEach(article => {
-                htmlToInsert = htmlToInsert + `
+        <ul class="post-item-container" id="post">
+          <script>
+            fetch("/articles")
+              .then(response => response.json())
+              .then(data => {
+                let htmlToInsert = "";
+                const articleListContainer = document.getElementById("post");
+                data.forEach(article => {
+                  htmlToInsert = htmlToInsert + `
                 <li class="post-item">
                   <h3 class="post-title"><a href="/detail?id=${article.id}">${article.article_title}</a></h3>
                   <p class="post-item-header"><span class="post-date">${new Date(article.updated_at).toLocaleDateString('ja-JP')}</span></p>
                   <p class="post-content">${article.content}</p>
                 </li>
                 `;
+                });
+                articleListContainer.innerHTML = htmlToInsert;
+              })
+              .catch(error => {
+                console.error(("トップページ表示時にエラーが発生しました：", error));
+                const articleListContainer = document.getElementById("post");
+                articleListContainer.innerHTML = `<p>トップページの表示に失敗しました。</p>`;
               });
-              articleListContainer.innerHTML = `<ul class="post-item-container">${htmlToInsert}</ul>`;
-            })
-            .catch(error => {
-              console.error(("トップページ表示時にエラーが発生しました：", error));
-              const articleListContainer = document.getElementById("post");
-              articleListContainer.innerHTML = `<p>トップページの表示に失敗しました。</p>`;
-            });
-        </script>
-
+          </script>
+        </ul>
       </div>
       <div class="sidebar">
         <h2>人気記事（機能不要）</h2>

@@ -65,7 +65,7 @@
                       タイトル：<input type="text" name="articleTitle" value="${edit.article_title}" required>
                     </div>
                     <div class="form">
-                      本文：<textarea name="content" required>${edit.content}</textarea>
+                      本文：<textarea name="content" required>${edit.content.replace(/<br>/g, '\n')}</textarea>
                     </div>
                       <input type="hidden" name="id" value="${edit.id}"> 
                     <div class="form">
