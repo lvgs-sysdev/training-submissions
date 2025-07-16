@@ -16,9 +16,32 @@
 <body>
   <header class="header">
     <a href="/" class="title">DAYDAYTRAVEL</a>
-    <ul>
-      <li class="login"><a href="/login">Login</a></li>
-      <li class="start"><a href="/register">Get started</a></li>
+    <ul id="login-status">
+      <script>
+        fetch("/loginStatus")
+          .then(response => response.json())
+          .then(status => {
+            let htmlToInsert = "";
+            const articleListContainer = document.getElementById("login-status");
+            if (status) {
+              htmlToInsert = htmlToInsert + `
+                <li class="login"><a href="/logout">Logout</a></li>
+                <li class="start">ログイン中</li>
+                `;
+            } else {
+              htmlToInsert = htmlToInsert + `
+                <li class="login"><a href="/login">Login</a></li>
+                <li class="start"><a href="/register">Get started</a></li>
+                `;
+            }
+            articleListContainer.innerHTML = htmlToInsert;
+          })
+          .catch(error => {
+            console.error(("ヘッダー表示時にエラーが発生しました：", error));
+            const articleListContainer = document.getElementById("post");
+            articleListContainer.innerHTML = `<p>ヘッダーの表示に失敗しました。</p>`;
+          });
+      </script>
     </ul>
   </header>
   <main>
@@ -28,22 +51,18 @@
         <div id="detail">
 
           <script>
-            const params = new URLSearchParams(window.location.search);
-            const articleId = params.get("id");
-            const message = params.get("success")
+            const urlParams = new URLSearchParams(window.location.search);
+            const articleId = urlParams.get("id");
+            const message = urlParams.get("success")
             fetch(`/articleDetail?id=${articleId}`)
               .then(response => response.json())
               .then(detail => {
                 let htmlToInsert = "";
                 const articleListContainer = document.getElementById("detail");
-                if (message === "true") {
+                if (urlParams.get("msg")) {
                   htmlToInsert = htmlToInsert + `
-                  <p>記事を保存しました</p>
-                  `;
-                } else if (message === "false") {
-                  htmlToInsert = htmlToInsert + `
-                  <p>記事の保存に失敗しました</p>
-                  `;
+                <p>${urlParams.get("msg")}</p>
+                `;
                 }
                 htmlToInsert = htmlToInsert + `
                   <p class="post-writer-name"><a href="/user?id=${detail.user_id}">${detail.user_name}</a></p>

@@ -81,16 +81,19 @@ fastify.get("/editUser", (request, reply) => {
     if (request.session.user.userId === userId) {
       reply.sendFile("editUser.html");
     } else {
-      reply.redirect("/login?login=true");
+      const encodedMsg = encodeURIComponent("該当ユーザーでログインしてください");
+      reply.redirect(`/login?msg=${encodedMsg}`);
     }
   } else {
-    reply.redirect("/login?login=false");
+    const encodedMsg = encodeURIComponent("ログインしてください");
+    reply.redirect(`/login?msg=${encodedMsg}`);
   }
 });
 
 //ユーザー情報の編集のためにユーザーの情報を取得する処理
 fastify.get("/editUserPage", async (request, reply) => {
   const userId = request.query.id;
+  let encodedMsg = "";
   if (request.session.user) {
     if (request.session.user.userId === userId) {
       try {
@@ -101,10 +104,12 @@ fastify.get("/editUserPage", async (request, reply) => {
         reply.sendFile("error.html");
       }
     } else {
-      reply.redirect("/login?login=true");
+      encodedMsg = encodeURIComponent("該当ユーザーでログインしてください");
+      reply.redirect(`/login?msg=${encodedMsg}`);
     }
   } else {
-    reply.redirect("/login?login=false");
+    encodedMsg = encodeURIComponent("ログインしてください");
+    reply.redirect(`/login?msg=${encodedMsg}`);
   }
 });
 
@@ -112,21 +117,29 @@ fastify.get("/editUserPage", async (request, reply) => {
 fastify.post("/editUser", async (request, reply) => {
   const userId = request.body.userId;
   const userName = request.body.userName;
+  let encodedMsg = "";
   if (request.session.user) {
     if (request.session.user.userId === userId) {
-      try {
-        const [result] = await db.query(`UPDATE users set user_name = ? WHERE user_id = ?`, [userName, userId]);
-        reply.redirect(`/user?id=${userId}&success=true`);
-      } catch (error) {
-        request.log.error("ユーザー情報の編集に失敗しました:", error);
-        reply.redirect(`/user?id=${userId}&success=false`);
+      if (userName.length > 255) {
+        encodedMsg = encodeURIComponent("ユーザー名が255文字を超えています");
+      } else {
+        try {
+          const [result] = await db.query(`UPDATE users set user_name = ? WHERE user_id = ?`, [userName, userId]);
+          encodedMsg = encodeURIComponent("ユーザー情報を変更しました");
+        } catch (error) {
+          request.log.error("ユーザー情報の編集に失敗しました:", error);
+          encodedMsg = encodeURIComponent("ユーザー情報の変更に失敗しました");
+          reply.redirect(`/user?id=${userId}&msg=${encodedMsg}`);
+        }
       }
+      reply.redirect(`/user?id=${userId}&msg=${encodedMsg}`);
     } else {
-      reply.redirect("/login?login=true");
+      encodedMsg = encodeURIComponent("該当ユーザーでログインしてください");
     }
   } else {
-    reply.redirect("/login?login=false");
+    encodedMsg = encodeURIComponent("ログインしてください");
   }
+  reply.redirect(`/login?msg=${encodedMsg}`);
 });
 
 fastify.get("/register", (request, reply) => {
@@ -139,13 +152,34 @@ fastify.post("/registerUser", async (request, reply) => {
   const userName = request.body.userName;
   const password = request.body.password;
   const hashedPassword = await bcrypt.hash(password, saltRounds);
-  try {
-    const [result] = await db.query(`INSERT INTO users (user_id, password, user_name) VALUES (?, ?, ?)`, [userId, hashedPassword, userName]);
-    reply.redirect("/register?success=true");
-  } catch (error) {
-    request.log.error("ユーザーの新規登録に失敗しました:", error);
-    reply.redirect("/register?success=false");
+  const validCharsRegex = /^[a-zA-Z0-9!@#$%^&*()_+-=\[\]{};:'"\\|,<.>\/?`~]+$/;
+  let encodedMsg = "";
+  if (userId.length > 20) {
+    encodedMsg = encodeURIComponent("ユーザーIDが20文字を超えています");
+  } else if (!validCharsRegex.test(userId)) {
+    encodedMsg = encodeURIComponent("ユーザーIDは英数字記号のみ使用することができます");
+  } else if (userName.length > 255) {
+    encodedMsg = encodeURIComponent("ユーザー名が255文字を超えています");
+  } else if (password.length > 255) {
+    encodedMsg = encodeURIComponent("パスワードが255文字を超えています");
+  } else if (!validCharsRegex.test(password)) {
+    encodedMsg = encodeURIComponent("パスワードは英数字記号のみ使用することができます");
+  } else {
+    try {
+      const [rows] = await db.query(`SELECT user_id FROM users where user_id = ?`, [userId]);
+      if (rows.length === 0) {
+        const [result] = await db.query(`INSERT INTO users (user_id, password, user_name) VALUES (?, ?, ?)`, [userId, hashedPassword, userName]);
+        encodedMsg = encodeURIComponent("ユーザーの新規登録に成功しました");
+      } else {
+        encodedMsg = encodeURIComponent("重複したユーザーIDです。ユーザーIDを変えて再度登録をお願いします。");
+      }
+    } catch (error) {
+      request.log.error("ユーザーの新規登録中にエラーが発生しました:", error);
+      encodedMsg = encodeURIComponent("ユーザーの新規登録中にエラーが発生しました");
+      reply.redirect(`/register?msg=${encodedMsg}`);
+    }
   }
+  reply.redirect(`/register?msg=${encodedMsg}`);
 });
 
 fastify.get("/login", (request, reply) => {
@@ -156,19 +190,23 @@ fastify.get("/login", (request, reply) => {
 fastify.post("/loginUser", async (request, reply) => {
   const userId = request.body.userId;
   const password = request.body.password;
+  let encodedMsg = "";
   try {
     const [rows] = await db.query(`SELECT user_id, user_name, password FROM users where user_id = ?`, [userId]);
     if (rows.length > 0) {
       const isMatch = await bcrypt.compare(password, rows[0].password)
       if (isMatch) {
         request.session.user = { userId: rows[0].user_id, user_name: rows[0].user_name };
-        reply.redirect("/login?success=true");
+        encodedMsg = encodeURIComponent("ログインに成功しました");
+        reply.redirect(`/login?msg=${encodedMsg}`);
       }
     }
-    reply.redirect("/login?success=false");
+    encodedMsg = encodeURIComponent("ログインに失敗しました。ユーザーIDかパスワードが違います。");
+    reply.redirect(`/login?msg=${encodedMsg}`);
   } catch (error) {
     request.log.error("ログインに失敗しました:", error);
-    reply.redirect("/login?success=false");
+    encodedMsg = encodeURIComponent("ログインに失敗しました");
+    reply.redirect(`/login?msg=${encodedMsg}`);
   }
 });
 
@@ -202,17 +240,49 @@ fastify.post("/editBlog", async (request, reply) => {
   const articleTitle = request.body.articleTitle;
   const content = request.body.content;
   const articleId = request.body.id;
+  let encodedMsg = "";
   if (request.session.user) {
-    try {
-      const [result] = await db.query(`UPDATE articles set article_title = ?, content = ? where id = ?`, [articleTitle, content, articleId]);
-      reply.redirect(`/detail?id=${articleId}&success=true`);
-    } catch (error) {
-      request.log.error("記事の編集に失敗しました:", error);
-      reply.redirect("/editBlog?success=false");
+    if (articleTitle.length > 255) {
+      encodedMsg = encodeURIComponent("タイトルが255文字を超えています");
+    } else if (content.length > 10000) {
+      encodedMsg = encodeURIComponent("本文が10000文字を超えています");
+    } else {
+      try {
+        const [result] = await db.query(`UPDATE articles set article_title = ?, content = ? where id = ?`, [articleTitle, content, articleId]);
+        encodedMsg = encodeURIComponent("記事を保存しました");
+      } catch (error) {
+        request.log.error("記事の編集に失敗しました:", error);
+        encodedMsg = encodeURIComponent("記事の編集に失敗しました");
+      }
     }
+    reply.redirect(`/detail?id=${articleId}&msg=${encodedMsg}`);
   } else {
     reply.redirect("/login");
   }
+});
+
+//ユーザーのログイン状態の確認
+fastify.get("/loginStatus", (request, reply) => {
+  let loginStatus = false;
+  if (request.session.user) {
+    loginStatus = true;
+  }
+  reply.send(loginStatus);
+});
+
+//ユーザーのログアウト処理
+fastify.get("/logout", async (request, reply) => {
+  if (request.session.user) {
+    request.session.destroy(error => {
+      if (error) {
+        request.log.error('セッションの破棄に失敗しました:', error);
+        reply.sendFile("error.html");
+      }
+    });
+    const encodedMsg = encodeURIComponent("ログアウトしました");
+    reply.redirect(`/login?msg=${encodedMsg}`);
+  }
+  reply.redirect("/login");
 });
 
 const start = async () => {

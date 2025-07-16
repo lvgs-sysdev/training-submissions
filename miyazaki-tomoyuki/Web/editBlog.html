@@ -17,32 +17,55 @@
 <body>
   <header class="header">
     <a href="/" class="title">DAYDAYTRAVEL</a>
-    <ul>
-      <li class="login"><a href="/login">Login</a></li>
-      <li class="start"><a href="/register">Get started</a></li>
+    <ul id="login-status">
+      <script>
+        fetch("/loginStatus")
+          .then(response => response.json())
+          .then(status => {
+            let htmlToInsert = "";
+            const articleListContainer = document.getElementById("login-status");
+            if (status) {
+              htmlToInsert = htmlToInsert + `
+                <li class="login"><a href="/logout">Logout</a></li>
+                <li class="start">ログイン中</li>
+                `;
+            } else {
+              htmlToInsert = htmlToInsert + `
+                <li class="login"><a href="/login">Login</a></li>
+                <li class="start"><a href="/register">Get started</a></li>
+                `;
+            }
+            articleListContainer.innerHTML = htmlToInsert;
+          })
+          .catch(error => {
+            console.error(("ヘッダー表示時にエラーが発生しました：", error));
+            const articleListContainer = document.getElementById("post");
+            articleListContainer.innerHTML = `<p>ヘッダーの表示に失敗しました。</p>`;
+          });
+      </script>
     </ul>
   </header>
   <main>
     <div class="post-container">
       <div class="post">
 
-        <div id="edit">
+        <div id="editBlog">
 
           <script>
-            const params = new URLSearchParams(window.location.search);
-            const articleId = params.get("id");
+            const urlParams = new URLSearchParams(window.location.search);
+            const articleId = urlParams.get("id");
             fetch(`/editBlogPage?id=${articleId}`)
               .then(response => response.json())
               .then(edit => {
                 let htmlToInsert = "";
-                const articleListContainer = document.getElementById("edit");
+                const articleListContainer = document.getElementById("editBlog");
                 htmlToInsert = htmlToInsert + `
                   <form method="POST" action="/editBlog">
                     <div class="form">
-                      タイトル：<input type="text" name="articleTitle" value="${edit.article_title}">
+                      タイトル：<input type="text" name="articleTitle" value="${edit.article_title}" required>
                     </div>
                     <div class="form">
-                      本文：<textarea name="content">${edit.content}</textarea>
+                      本文：<textarea name="content" required>${edit.content}</textarea>
                     </div>
                       <input type="hidden" name="id" value="${edit.id}"> 
                     <div class="form">
@@ -53,9 +76,9 @@
                 articleListContainer.innerHTML = htmlToInsert;
               })
               .catch(error => {
-                console.error(("データの取得中にエラーが発生しました：", error));
+                console.error(("記事編集ページ表示時にエラーが発生しました：", error));
                 const articleListContainer = document.getElementById("edit");
-                articleListContainer.innerHTML = `<p>記事の読み込みに失敗しました。</p>`;
+                articleListContainer.innerHTML = `<p>記事編集ページの表示に失敗しました。</p>`;
               });
           </script>
         </div>
