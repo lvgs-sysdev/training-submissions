@@ -56,18 +56,18 @@
             const articleId = urlParams.get("id");
             fetch(`/editBlogPage?id=${articleId}`)
               .then(response => response.json())
-              .then(edit => {
+              .then(editArticleData => {
                 let htmlToInsert = "";
                 const articleListContainer = document.getElementById("editBlog");
                 htmlToInsert = htmlToInsert + `
                   <form method="POST" action="/editBlog">
                     <div class="form">
-                      タイトル：<input type="text" name="articleTitle" value="${edit.article_title}" required>
+                      タイトル：<input type="text" name="articleTitle" value="${editArticleData.article_title}" required>
                     </div>
                     <div class="form">
-                      本文：<textarea name="content" required>${edit.content.replace(/<br>/g, '\n')}</textarea>
+                      本文：<textarea name="content" required>${editArticleData.content.replace(/<br>/g, '\n')}</textarea>
                     </div>
-                      <input type="hidden" name="id" value="${edit.id}"> 
+                      <input type="hidden" name="id" value="${editArticleData.id}"> 
                     <div class="form">
                     <input type="submit" value="更新">
                     </div>
@@ -77,7 +77,7 @@
               })
               .catch(error => {
                 console.error(("記事編集ページ表示時にエラーが発生しました：", error));
-                const articleListContainer = document.getElementById("edit");
+                const articleListContainer = document.getElementById("editBlog");
                 articleListContainer.innerHTML = `<p>記事編集ページの表示に失敗しました。</p>`;
               });
           </script>

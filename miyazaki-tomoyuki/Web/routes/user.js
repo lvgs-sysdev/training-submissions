@@ -19,6 +19,7 @@ module.exports = async function (fastify) {
     }
   });
 
+  //ユーザー情報編集ボタンを押した時にユーザー情報編集ページを表示する処理
   fastify.get("/editUser", (request, reply) => {
     const userId = request.query.id;
     if (request.session.user) {

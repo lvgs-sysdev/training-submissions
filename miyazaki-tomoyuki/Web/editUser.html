@@ -54,16 +54,16 @@
             const userId = urlParams.get("id");
             fetch(`/editUserPage?id=${userId}`)
               .then(response => response.json())
-              .then(edit => {
+              .then(editUserData => {
                 let htmlToInsert = "";
                 const articleListContainer = document.getElementById("editUser");
                 htmlToInsert = htmlToInsert + `
                   <form method="POST" action="/editUser">
                     <div class="form">
-                      ユーザーID：<input type="text" name="userId" value="${edit.user_id}" required readonly>
+                      ユーザーID：<input type="text" name="userId" value="${editUserData.user_id}" required readonly>
                     </div>
                     <div class="form">
-                      ユーザー名：<input type="text" name="userName" value="${edit.user_name}" required>
+                      ユーザー名：<input type="text" name="userName" value="${editUserData.user_name}" required>
                     </div>
                     <div class="form">
                     <input type="submit" value="更新">
@@ -74,7 +74,7 @@
               })
               .catch(error => {
                 console.error(("ユーザー情報編集ページ表示時にエラーが発生しました：", error));
-                const articleListContainer = document.getElementById("edit");
+                const articleListContainer = document.getElementById("editUser");
                 articleListContainer.innerHTML = `<p>ユーザー情報編集ページの表示に失敗しました。</p>`;
               });
           </script>

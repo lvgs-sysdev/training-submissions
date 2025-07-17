@@ -1,9 +1,10 @@
+require("dotenv").config();
 const fastify = require("fastify")({ logger: true });
 const path = require("path");
-fastify.register(require('@fastify/formbody'));
-fastify.register(require('@fastify/cookie'));
-fastify.register(require('@fastify/session'), {
-  secret: 'a_very_secret_string_that_is_at_least_32_chars_long',
+fastify.register(require("@fastify/formbody"));
+fastify.register(require("@fastify/cookie"));
+fastify.register(require("@fastify/session"), {
+  secret: process.env.SESSION_SECRET,
   cookie: {
     secure: false //クッキーをHTTPS接続でのみ送信する場合はtrue
     , maxAge: 7200000

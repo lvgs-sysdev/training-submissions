@@ -56,7 +56,7 @@
           const userId = urlParams.get("id");
           fetch(`/userDetail?id=${userId}`)
             .then(response => response.json())
-            .then(user => {
+            .then(userData => {
               let htmlToInsert = "";
               const articleListContainer = document.getElementById("user");
               if (urlParams.get("msg")) {
@@ -66,9 +66,9 @@
               }
               htmlToInsert = htmlToInsert + `
                   <h1>ユーザープロフィール</h1>
-                  <p>ユーザーID：${user.user_id}</p>
-                  <p>ユーザー名：${user.user_name}</p>
-                  <a href="/editUser?id=${user.user_id}" class="edit-button"><button>編集</button></a>
+                  <p>ユーザーID：${userData.user_id}</p>
+                  <p>ユーザー名：${userData.user_name}</p>
+                  <a href="/editUser?id=${userData.user_id}" class="edit-button"><button>編集</button></a>
               `;
               articleListContainer.innerHTML = htmlToInsert;
             })
