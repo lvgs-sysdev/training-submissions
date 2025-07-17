@@ -1,0 +1,44 @@
+/* リセット */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* フォント */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", sans-serif;
+  background-color: #ffffff;
+  color: #333;
+}
+/* リンク */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.hover {
+  transition: 0.3s;
+  border-radius: 20%;
+}
+
+.hover:hover {
+  background-color: black;
+}
+
+.mtb-1 {
+  margin: 1rem 0;
+}
+
+.ptb-1 {
+  padding: 1rem 0;
+}
