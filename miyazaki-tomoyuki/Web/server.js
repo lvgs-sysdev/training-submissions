@@ -1,13 +1,12 @@
 const fastify = require("fastify")({ logger: true });
 const path = require("path");
-const saltRounds = 10;
 fastify.register(require('@fastify/formbody'));
 fastify.register(require('@fastify/cookie'));
 fastify.register(require('@fastify/session'), {
   secret: 'a_very_secret_string_that_is_at_least_32_chars_long',
   cookie: {
-    secure: false
-    , maxAge: 86400000
+    secure: false //クッキーをHTTPS接続でのみ送信する場合はtrue
+    , maxAge: 7200000
   }
 });
 fastify.register(require("./routes/user"));

@@ -3,7 +3,11 @@ const bcrypt = require("bcrypt");
 
 module.exports = async function (fastify) {
   fastify.get("/login", (request, reply) => {
-    reply.sendFile("login.html");
+    if (request.session.user) {
+      reply.redirect("/");
+    } else {
+      reply.sendFile("login.html");
+    }
   });
 
   //ユーザーのログイン処理

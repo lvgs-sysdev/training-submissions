@@ -61,14 +61,14 @@
               const articleListContainer = document.getElementById("user");
               if (urlParams.get("msg")) {
                 htmlToInsert = htmlToInsert + `
-                <p>${urlParams.get("msg")}</p>
+                <p class="msg">${urlParams.get("msg")}</p>
                 `;
               }
               htmlToInsert = htmlToInsert + `
                   <h1>ユーザープロフィール</h1>
                   <p>ユーザーID：${user.user_id}</p>
                   <p>ユーザー名：${user.user_name}</p>
-                  <a href="/editUser?id=${user.user_id}"><button>編集</button></a>
+                  <a href="/editUser?id=${user.user_id}" class="edit-button"><button>編集</button></a>
               `;
               articleListContainer.innerHTML = htmlToInsert;
             })

@@ -29,7 +29,6 @@ module.exports = async function (fastify) {
   });
 
   fastify.get("/editBlog", (request, reply) => {
-    const articleId = request.query.id;
     if (request.session.user) {
       reply.sendFile("editBlog.html");
     } else {

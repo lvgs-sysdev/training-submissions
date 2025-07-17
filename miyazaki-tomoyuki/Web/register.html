@@ -51,12 +51,12 @@
           const urlParams = new URLSearchParams(window.location.search);
           if (urlParams.get("msg")) {
             const articleListContainer = document.getElementById("register");
-            articleListContainer.innerHTML = `<p>${urlParams.get("msg")}</p>`;
+            articleListContainer.innerHTML = `<p class="msg">${urlParams.get("msg")}</p>`;
           }
         </script>
       </div>
       <h1>ユーザー新規登録</h1>
-      <form method="POST" action="/registerUser">
+      <form method="POST" action="/registerUser" class="register-form">
         <p>ユーザーID：<input type="text" name="userId" required></p>
         <p>ユーザー名：<input type="text" name="userName" required></p>
         <p>パスワード：<input type="text" name="password" required></p>

@@ -1,5 +1,6 @@
 const db = require("../db/db.js");
 const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 module.exports = async function (fastify) {
   fastify.get("/user", (request, reply) => {
@@ -25,7 +26,7 @@ module.exports = async function (fastify) {
         reply.sendFile("editUser.html");
       } else {
         const encodedMsg = encodeURIComponent("該当ユーザーでログインしてください");
-        reply.redirect(`/login?msg=${encodedMsg}`);
+        reply.redirect(`/user?id=${userId}&msg=${encodedMsg}`);
       }
     } else {
       const encodedMsg = encodeURIComponent("ログインしてください");
@@ -113,8 +114,9 @@ module.exports = async function (fastify) {
         if (rows.length === 0) {
           const [result] = await db.query(`INSERT INTO users (user_id, password, user_name) VALUES (?, ?, ?)`, [userId, hashedPassword, userName]);
           encodedMsg = encodeURIComponent("ユーザーの新規登録に成功しました");
+          reply.redirect(`/login?msg=${encodedMsg}`);
         } else {
-          encodedMsg = encodeURIComponent("重複したユーザーIDです。ユーザーIDを変えて再度登録をお願いします。");
+          encodedMsg = encodeURIComponent("登録済みのユーザーIDです。ユーザーIDを変えて再度登録をお願いします。");
         }
       } catch (error) {
         request.log.error("ユーザーの新規登録中にエラーが発生しました:", error);

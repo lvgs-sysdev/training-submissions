@@ -9,3 +9,21 @@
     font-size: 18px;
     font-weight: 300;
 }
+
+p.msg {
+    color: #FF553C;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+@media screen and (min-width: 600px) {
+    .login-form {
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .login-form {
+        width: 50%;
+    }
+}
