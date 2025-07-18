@@ -60,7 +60,7 @@
                   throw new Error("エラーが発生しました");
                 }
                 return response.json();
-                })
+              })
               .then(editArticleData => {
                 let htmlToInsert = "";
                 const articleListContainer = document.getElementById("editBlog");

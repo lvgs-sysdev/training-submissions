@@ -58,7 +58,7 @@
                   throw new Error("エラーが発生しました");
                 }
                 return response.json();
-                })
+              })
               .then(editUserData => {
                 let htmlToInsert = "";
                 const articleListContainer = document.getElementById("editUser");
