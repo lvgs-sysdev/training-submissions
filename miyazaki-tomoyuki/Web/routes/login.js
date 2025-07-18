@@ -28,8 +28,7 @@ module.exports = async function (fastify) {
       reply.redirect(`/login?msg=${encodedMsg}`);
     } catch (error) {
       request.log.error("ログインに失敗しました:", error);
-      encodedMsg = encodeURIComponent("ログインに失敗しました");
-      reply.redirect(`/login?msg=${encodedMsg}`);
+      reply.status(500).send('Internal Server Error');
     }
   });
 

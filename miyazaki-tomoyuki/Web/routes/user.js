@@ -15,7 +15,7 @@ module.exports = async function (fastify) {
       reply.send(rows[0]);
     } catch (error) {
       request.log.error("DBからのデータ取得に失敗しました:", error);
-      reply.sendFile("error.html");
+      reply.status(500).send('Internal Server Error');
     }
   });
 
@@ -46,7 +46,7 @@ module.exports = async function (fastify) {
           reply.send(rows[0]);
         } catch (error) {
           request.log.error("DBからのユーザー情報取得に失敗しました:", error);
-          reply.sendFile("error.html");
+          reply.status(500).send('Internal Server Error');
         }
       } else {
         encodedMsg = encodeURIComponent("該当ユーザーでログインしてください");
@@ -73,8 +73,7 @@ module.exports = async function (fastify) {
             encodedMsg = encodeURIComponent("ユーザー情報を変更しました");
           } catch (error) {
             request.log.error("ユーザー情報の編集に失敗しました:", error);
-            encodedMsg = encodeURIComponent("ユーザー情報の変更に失敗しました");
-            reply.redirect(`/user?id=${userId}&msg=${encodedMsg}`);
+            reply.status(500).send('Internal Server Error');
           }
         }
         reply.redirect(`/user?id=${userId}&msg=${encodedMsg}`);
@@ -121,8 +120,7 @@ module.exports = async function (fastify) {
         }
       } catch (error) {
         request.log.error("ユーザーの新規登録中にエラーが発生しました:", error);
-        encodedMsg = encodeURIComponent("ユーザーの新規登録中にエラーが発生しました");
-        reply.redirect(`/register?msg=${encodedMsg}`);
+        reply.status(500).send('Internal Server Error');
       }
     }
     reply.redirect(`/register?msg=${encodedMsg}`);

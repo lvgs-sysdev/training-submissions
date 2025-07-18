@@ -38,8 +38,8 @@
           })
           .catch(error => {
             console.error(("ヘッダー表示時にエラーが発生しました：", error));
-            const articleListContainer = document.getElementById("post");
-            articleListContainer.innerHTML = `<p>ヘッダーの表示に失敗しました。</p>`;
+            const articleListContainer = document.getElementById("login-status");
+            articleListContainer.innerHTML = `<li>ヘッダーの表示に失敗しました。</li>`;
           });
       </script>
     </ul>
@@ -55,7 +55,12 @@
             const articleId = urlParams.get("id");
             const message = urlParams.get("success")
             fetch(`/articleDetail?id=${articleId}`)
-              .then(response => response.json())
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error("エラーが発生しました");
+                }
+                return response.json();
+                })
               .then(articleData => {
                 let htmlToInsert = "";
                 const articleListContainer = document.getElementById("detail");

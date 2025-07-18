@@ -8,7 +8,7 @@ module.exports = async function (fastify) {
       reply.send(rows);
     } catch (error) {
       request.log.error("DBからの最新記事のデータ取得に失敗しました:", error);
-      reply.sendFile("error.html");
+      reply.status(500).send('Internal Server Error');
     }
   });
 
@@ -24,7 +24,7 @@ module.exports = async function (fastify) {
       reply.send(rows[0]);
     } catch (error) {
       request.log.error("DBからのユーザーがクリックした記事データ取得に失敗しました:", error);
-      reply.sendFile("error.html");
+      reply.status(500).send('Internal Server Error');
     }
   });
 
@@ -45,7 +45,7 @@ module.exports = async function (fastify) {
         reply.send(rows[0]);
       } catch (error) {
         request.log.error("DBからの記事データ取得に失敗しました:", error);
-        reply.sendFile("error.html");
+        reply.status(500).send('Internal Server Error');
       }
     } else {
       reply.redirect("/login");
@@ -69,7 +69,7 @@ module.exports = async function (fastify) {
           encodedMsg = encodeURIComponent("記事を保存しました");
         } catch (error) {
           request.log.error("記事の編集に失敗しました:", error);
-          encodedMsg = encodeURIComponent("記事の編集に失敗しました");
+          reply.status(500).send('Internal Server Error');
         }
       }
       reply.redirect(`/detail?id=${articleId}&msg=${encodedMsg}`);
