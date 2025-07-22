@@ -1,0 +1,371 @@
+@import url(destyle.css);
+
+html {
+    font-family: "Poppins", sans-serif; /*全体のフォント設定*/
+}
+
+* {
+    box-sizing: border-box; /* paddingとborderをwidthの計算に含める */
+}
+
+img {
+    max-width: 100%; /* 親要素の幅を超えないようにする */
+    height: auto;    /* 幅に合わせて高さを自動調整し、縦横比を維持 */
+    display: block;  /* 必要に応じてブロック要素にする（インライン要素で発生する下部の余白対策） */
+}
+
+
+.container {
+   max-width: 1120px;
+   margin: 0 auto; /*水平方向（左右）に中央揃え*/
+   display: flex;
+   flex-wrap: wrap;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    letter-spacing: 1.5px;
+}
+
+.btn-login-register li {
+    list-style-type: none;
+    margin-left: 35px;
+    opacity: 0.8;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 16px;
+    background-color: #FF553C;
+    color: white;
+}
+
+/* ヘッダー全体 */
+
+header {
+    padding: 20px 20px; 
+    background-color: #FFFFFF;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.fixed-header {
+    position: fixed; /*　これでヘッダーを固定する　*/
+    top: 0;
+    left: 0;
+    z-index: 1000; /* これで他コンテンツより上に表示されるようになる　*/
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 700;
+    color: #FF553C;
+    letter-spacing: 1px;
+}
+
+/* 以下からがメイン　*/
+.hero {
+    background-image: url(/Users/honoka.yamada/Documents/Study/training-submissions/yamada-honoka/submission_html/images/top-view-passport-tickets-camera.png); /*　背景画像　*/
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height:100vh;
+    width: 100vw;
+    height: 100vh;
+    margin-bottom: 200px;
+    text-align: center;
+}
+
+.hero_inner h1 {
+    font-size: 60px;
+    font-weight: 600;
+    margin-bottom: 35px;
+    letter-spacing: -2px;
+    line-height: 95px;
+    text-align: left;
+
+}
+
+.hero_inner p {
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 28px;
+    letter-spacing: 0.5px;
+    opacity: 0.7;
+    line-height: 28px;
+    text-align: left;
+}
+
+/* 背景写真がある中の要素 */
+.hero_inner {
+    width: 455px;
+    height: 230px;
+    padding-top: 200px; /*上の余白を設定する*/
+    margin-left: 223px;
+}
+
+
+/* ここから一覧から下のaticle */
+
+article {
+    display: flex;
+    justify-content: center; /* 中央よせにする！ */
+    margin-bottom: 280px; /* フッターの上の白いところ　*/
+    gap: 50px;
+
+}
+
+
+.section-reviews {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2つの均等な幅の列を作成 */
+    gap: 10px;
+    text-align: left;
+}
+
+.card-review {
+    flex: auto;
+    margin-bottom: 30px;
+}
+
+
+
+.card-review img {
+    max-width: 360px;
+    max-height: 240px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+
+.category-date-wrapper {
+    display: flex; /* 子要素を横並びにする */
+    align-items: center; /* 垂直方向の中央揃え (必要に応じて) */
+    padding-top: 20px;
+}
+
+/* pタグとspanタグのデフォルトのマージンをリセットすると、より制御しやすくなる */
+.category-date-wrapper p {
+    padding-right: 10px; /* 右に余白を入れた　*/
+    font-size: 14px;
+    color: #FF553C;
+    border-right: 1px solid #dedede; /* 右に横線を入れる！solidとかのスタイルも入れないと反映されない */
+}
+
+.category-date-wrapper span {
+    margin: 0;
+    padding-left: 10px; /* 左に余白を入れた　*/
+}
+
+
+
+.graphic-design {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 30px;
+    margin: 20px 0px;
+}
+
+.article-date {
+    font-size: 14px;
+}
+
+.paragraph {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 100%;
+    color: #757575;
+}
+
+/* ,で区切ればどっちもにも反映される */
+h2 , h3 , h4 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 70px;
+}
+
+
+/* aside */
+
+.aside-right {
+    max-width: 265px;
+}
+
+.contents-popular-list {
+    width: 100%;
+}
+
+.contents-popular-list p {
+    font-size: 18px;
+    font-weight: 300;
+    height: 109.5px;
+    border-bottom: 2px solid rgba(18, 18, 18, 0.2);
+    padding-bottom: 5px; /* ボーダーとテキストの間に少しスペースを空ける */
+    margin-bottom: 10px; /* 各項目間の下部にスペースを空ける */
+}
+
+/* その中で最後の.contents-popular-listのp要素だけボーダーをなくす */
+
+.contents-popular-list p:last-of-type {
+    border-bottom: none; /* 最後のp要素の下線をなくす */
+    padding-bottom: 0; /* ボーダーがなくなったので、不要な下部パディングも0に */
+    margin-bottom: 0; /* 必要に応じて、下部のマージンも調整 */
+}
+
+
+.tag {
+    float: left;
+    font-size: 14px;
+    font-weight: 300;
+    border-width: 1px;
+    border-style: solid;
+    margin: 30px 30px 0 0;
+    padding: 8px 18px 8px 18px;
+}
+
+
+/* 下からがフッターです！！！！ */
+
+footer {
+    background-color: #121212;
+    color:rgba(255,255,255,0.5);
+}
+
+.footer-main {
+    display: flex;
+    justify-content: space-evenly; /*　flexアイテムかんと両端全て均等なスペーず　*/
+}
+
+.footer-sub {
+    font-size: 18px;
+    font-weight: 300;
+    padding-bottom: 30px;
+}
+
+/* アドレスの下に線を引く*/
+
+.address-block {
+    border-bottom: 1px solid #dedede; /* 線の色 */
+    padding-bottom: 20px; /* 線と下のコンテンツの間の余白 */
+    margin-bottom: 20px; /* その下のコンテンツとの間隔 */
+    line-height: 1.6; /* 住所の行間 */
+}
+
+.footer-brand p {
+    color:rgba(255,255,255,0.5);
+    font-weight: 300;
+}
+
+.footer-links-group { /* 左下のところ*/
+    display: flex; /*　中身を箱とみなします！*/
+    flex-wrap: wrap; /*　横の幅限界迎えたら次の行にいきます！*/
+}
+
+.footer-link {
+    font-size: 16px;
+    font-weight: 300;
+    opacity: 0.5;
+    line-height: 40px;
+    padding-right: 20px;
+    color: rgba(255, 255, 255, 0.5); 
+    
+}
+
+.footer-copyright {
+    font-size: 14px;
+    font-weight: 300;
+    opacity: 0.5;
+    width: fit-content; /* または明示的な最大幅 */
+    margin: 0 auto;     /* これが中央寄せのキー */
+    text-align: center; /* 念のため、pタグ内のテキストも中央寄せにする */
+    padding-bottom: 20px;
+}
+
+.footer-brand {
+    padding-top: 100px;
+    max-width: 265px;
+}
+
+
+.footer-brand img {
+    width: 177px;
+    height: 55.99px;
+}
+
+.app-buttons {
+    display: flex; /* Flexboxを有効にする */
+    flex-direction: column; /* 要素を縦方向に並べる */
+    gap: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+/* タブレット向け　(max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+
+    article {
+        display: block;
+    
+    }
+
+}
+
+/* 一般的なスマホ向け（max-width: 767px） */
+@media screen and (max-width: 767px) {
+
+    .hero {
+        display: flex;             /* Flexboxコンテナにする */
+        justify-content: center;   /* 主軸方向（デフォルトは横方向）で中央寄せ */
+    }
+
+    .hero_inner {
+        text-align: center;
+        margin-left: 10px;
+    }
+
+    .hero_inner h1 {
+        font-size: 40px;
+
+    }
+
+    .section-title {
+        width: 80%;
+        margin: 50px auto;
+    }
+
+    .section-reviews {
+        display: block;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .footer-main {
+        display: block;
+    }
+
+    .footer-brand {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .footer-copyright {
+        margin-top: 100px;
+    }
+
+    .graphic-design{
+        font-size: 18px;
+    }
+
+    .aside-right {
+        width: 80%;
+        margin: 50px auto;
+    }
+
+}
