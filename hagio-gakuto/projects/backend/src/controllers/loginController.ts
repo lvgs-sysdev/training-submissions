@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { LoginService } from "../services/loginService";
 
-export class AuthController {
+export class LoginController {
   private service = new LoginService();
 
   login = async (req: Request, res: Response) => {

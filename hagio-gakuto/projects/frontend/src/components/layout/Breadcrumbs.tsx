@@ -10,7 +10,7 @@ const Breadcrumbs = () => {
   };
 
   return (
-    <nav className="flex mt-1">
+    <nav className="flex max-w-screen-xl py-2">
       <span className="hover pointer">
         <Link to="/">
           <HomeIcon />

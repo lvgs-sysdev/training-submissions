@@ -17,28 +17,11 @@ a {
   text-decoration: none;
 }
 
-.flex {
-  display: flex;
-  align-items: center;
-}
-
-.pointer {
-  cursor: pointer;
-}
-
 .hover {
   transition: 0.3s;
   border-radius: 20%;
 }
 
 .hover:hover {
-  background-color: black;
-}
-
-.mtb-1 {
-  margin: 1rem 0;
-}
-
-.ptb-1 {
-  padding: 1rem 0;
+  opacity: 3;
 }
