@@ -5,16 +5,11 @@ export class LoginController {
   private service = new LoginService();
 
   login = async (req: Request, res: Response) => {
-    const { email, password } = req.body;
-    const token = await this.service.login(email, password);
-
-    if (!token) {
-      return res.status(401).json({ message: "認証失敗" });
-    }
-
+    const token = await this.service.login(req.body);
     res.cookie("token", token, {
-      httpOnly: true,
-      sameSite: "lax",
+      httpOnly: true, // JavaScriptからのアクセスを禁止
+      secure: process.env.NODE_ENV === "production", // 本番環境ではHTTPSのみで送信
+      sameSite: "strict", // CSRF対策
     });
     res.json({ message: "ログイン成功" });
   };

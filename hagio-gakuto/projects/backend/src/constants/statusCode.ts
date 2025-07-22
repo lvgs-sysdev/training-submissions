@@ -1,4 +1,5 @@
 export const STATUS_CODES = {
   VALIDATION_ERROR: 422,
+  UNAUTHORIZE: 401,
   CONFLICT: 409,
 };

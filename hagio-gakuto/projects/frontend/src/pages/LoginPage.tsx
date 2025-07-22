@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LoginForm from "../components/login/LoginForm";
+import { useAuth } from "../components/context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user]);
+
   return (
     <>
       <div className=" bg-gray-900">

@@ -1,39 +1,88 @@
 import { Link, useLocation } from "react-router-dom";
-import HomeIcon from "@mui/icons-material/Home";
+// import HomeIcon from "@mui/icons-material/Home";
+
+const HomeIcon = () => (
+  <svg
+    className="w-3 h-3 me-2.5"
+    aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="currentColor"
+    viewBox="0 0 20 20"
+  >
+    <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
+  </svg>
+);
+
+const SeparatorIcon = () => (
+  <svg
+    className="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1"
+    aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 6 10"
+  >
+    <path
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      d="m1 9 4-4-4-4"
+    />
+  </svg>
+);
 
 const Breadcrumbs = () => {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
   const breadcrumbNameMap: { [key: string]: string } = {
-    about: "商品一覧",
-    tv: "テレビ",
+    login: "Login",
+    signup: "Sign Up",
+    mypage: "My Page",
   };
 
   return (
-    <nav className="flex max-w-screen-xl py-2">
-      <span className="hover pointer">
-        <Link to="/">
-          <HomeIcon />
-        </Link>
-      </span>
-      {pathnames.map((value, index) => {
-        const to = "/" + pathnames.slice(0, index + 1).join("/");
-        const isLast = index === pathnames.length - 1;
-        const name = breadcrumbNameMap[value] || value;
+    <nav className="flex" aria-label="Breadcrumb">
+      <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+        {/* ホームへのリンク */}
+        <li className="inline-flex items-center">
+          <Link
+            to="/"
+            className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
+          >
+            <HomeIcon />
+            Home
+          </Link>
+        </li>
 
-        return (
-          <span key={to}>
-            {" > "}
-            {isLast ? (
-              <span className="hover pointer mt-">
-                {decodeURIComponent(name)}
-              </span>
-            ) : (
-              <Link to={to}>{decodeURIComponent(name)}</Link>
-            )}
-          </span>
-        );
-      })}
+        {/* 動的に生成されるパンくずリスト */}
+        {pathnames.map((value, index) => {
+          const to = `/${pathnames.slice(0, index + 1).join("/")}`;
+          const isLast = index === pathnames.length - 1;
+          const name = breadcrumbNameMap[value] || value;
+
+          return (
+            <li key={to} {...(isLast ? { "aria-current": "page" } : {})}>
+              <div className="flex items-center">
+                <SeparatorIcon />
+                {isLast ? (
+                  // 最後の項目はリンクではなくテキスト
+                  <span className="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">
+                    {decodeURIComponent(name)}
+                  </span>
+                ) : (
+                  // 途中の項目はリンク
+                  <Link
+                    to={to}
+                    className="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white"
+                  >
+                    {decodeURIComponent(name)}
+                  </Link>
+                )}
+              </div>
+            </li>
+          );
+        })}
+      </ol>
     </nav>
   );
 };

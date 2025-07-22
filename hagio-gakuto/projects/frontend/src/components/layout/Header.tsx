@@ -1,8 +1,11 @@
 import React from "react";
 import Breadcrumbs from "./Breadcrumbs";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Header: React.FC = () => {
+  const { user } = useAuth();
+
   return (
     <header className=" ">
       <div className="mx-auto max-w-screen-xl py-4 md:py-4 px-4">
@@ -75,14 +78,27 @@ const Header: React.FC = () => {
               </a>
             </li>
             <li>
-              <Link
-                to="/login"
-                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                aria-label="Sign up"
-                title="Sign up"
-              >
-                Login
-              </Link>
+              {user ? (
+                <>
+                  <Link
+                    to="/mypage"
+                    className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                    aria-label="My Page"
+                    title="My Page"
+                  >
+                    {user.name}
+                  </Link>
+                </>
+              ) : (
+                <Link
+                  to="/login"
+                  className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                  aria-label="Sign up"
+                  title="Sign up"
+                >
+                  Login
+                </Link>
+              )}
             </li>
           </ul>
         </div>

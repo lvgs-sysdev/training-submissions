@@ -9,5 +9,14 @@ class SignUpDao {
             password,
         ]);
     };
+    isEmailExists = async (email) => {
+        return await client_1.pool.query(`
+    SELECT EXISTS (
+      SELECT 1
+      FROM users 
+      WHERE email = $1
+    )
+  `, [email]);
+    };
 }
 exports.SignUpDao = SignUpDao;

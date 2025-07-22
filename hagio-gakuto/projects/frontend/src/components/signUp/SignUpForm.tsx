@@ -75,7 +75,6 @@ const SignUpForm: React.FC = () => {
               errorMsg={validationError || undefined}
               rules={{
                 required: ERROR_MESSAGES.INPUT_REQUIRED,
-                validate: passwordValidation,
               }}
             />
             {confirmPasswordErrorMsg && (

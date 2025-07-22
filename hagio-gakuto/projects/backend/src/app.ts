@@ -5,8 +5,12 @@ dotenv.config();
 
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
+
 import loginRouter from "./routes/loginRouter";
+import logoutRouter from "./routes/logoutRouter";
 import signUpRouter from "./routes/signUpRouter";
+import authRouter from "./routes/authRouter";
 import { errorHandler } from "./middlewares/errorHandler";
 
 const app = express();
@@ -17,10 +21,12 @@ app.use(
   })
 );
 app.use(express.json());
+app.use(cookieParser());
 
-// 簡単なAPI（認証付き）
 app.use("/api/login", loginRouter);
+app.use("/api/logout", logoutRouter);
 app.use("/api/signup", signUpRouter);
+app.use("/api/auth", authRouter);
 
 app.use(errorHandler);
 

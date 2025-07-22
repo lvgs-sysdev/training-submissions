@@ -1,30 +1,33 @@
 import { useState } from "react";
-import { signup } from "../api/postSignUp";
 import { useLoading } from "../components/context/LoadingContext";
 import { useNavigate } from "react-router-dom";
 import { useApiErrorHandler } from "./useApiErrorHandler";
 import { ValidationError } from "../types/ValidationErrorType";
 import { showSuccessToast } from "../utils/toastUtils";
+import { logout } from "../api/postLogout";
+import { useAuth } from "../components/context/AuthContext";
 
-export const useSignUp = () => {
+export const useLogout = () => {
   const [validationError, setValidationError] = useState<
     ValidationError | undefined
   >(undefined);
+  const { setUser } = useAuth();
 
   const { setLoading } = useLoading();
   const navigate = useNavigate();
   const { handleApiError, nonFieldError, clearNonFieldError } =
     useApiErrorHandler(setValidationError);
 
-  const executeSignup = async (data: { email: string; password: string }) => {
+  const executeLogout = async () => {
     setLoading(true);
     setValidationError(undefined);
     clearNonFieldError();
 
     try {
-      const res = await signup(data);
-      showSuccessToast("登録完了しました");
-      navigate("/login");
+      const res = await logout();
+      setUser(null);
+      showSuccessToast("ログアウトしました");
+      navigate("/");
       return res.data;
     } catch (e: any) {
       handleApiError(e as any);
@@ -32,5 +35,5 @@ export const useSignUp = () => {
       setLoading(false);
     }
   };
-  return { executeSignup, validationError, nonFieldError };
+  return { executeLogout, validationError, nonFieldError };
 };

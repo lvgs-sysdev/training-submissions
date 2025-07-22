@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import { FieldValues, UseFormSetError } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { ValidationError } from "../types/ValidationErrorType";
 import { GenericServerError } from "../types/GenericServerErrorType";
+import { ERROR_MESSAGES } from "../constants/errorMessages";
 
 /**
  * APIエラーを処理するためのカスタムフック
@@ -32,28 +32,19 @@ export const useApiErrorHandler = (setError: Dispatch<SetStateAction<any>>) => {
           const validationError = errorData as ValidationError;
           setError(validationError);
         }
-      } else if (status === 409) {
+      } else if (status === 409 || status === 401) {
         // 重複エラー
         const genericError = errorData as GenericServerError;
         setNonFieldError(genericError.message); // stateにメッセージをセット
       } else if (status >= 500) {
         // サーバーエラー
-        navigate("/error");
+        navigate("/error", { state: { statusCode: 500, message: "ss" } });
       } else {
-        // その他のクライアントエラー
-        const genericError = errorData as GenericServerError;
-        // setError("root.serverError", {
-        //   type: "server",
-        //   message:
-        //     genericError.message || `予期せぬエラーが発生しました (${status})`,
-        // });
+        navigate("/error", { state: { statusCode: 500, message: "ss" } });
       }
     } else {
       // ネットワークエラー
-      //   setError("root.networkError", {
-      //     type: "network",
-      //     message: "ネットワークに接続できませんでした。接続を確認してください。",
-      //   });
+      navigate("/error", { state: { message: ERROR_MESSAGES.NETWORK_ERROR } });
     }
   };
 

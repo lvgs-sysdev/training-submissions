@@ -4,6 +4,8 @@ import { PasswordInput } from "../forms/PasswordInput";
 import { EmailInput } from "../forms/EmailInput";
 import { Link } from "react-router-dom";
 import { ERROR_MESSAGES } from "../../constants/errorMessages";
+import { useLogin } from "../../hooks/useLogin";
+import { ServerErrorMsg } from "../error/ServerErrorMsg";
 
 type Inputs = {
   email: string;
@@ -13,8 +15,10 @@ type Inputs = {
 const LoginForm: React.FC = () => {
   const methods = useForm<Inputs>();
   const { handleSubmit } = methods;
+  const { executeLogin, validationError, nonFieldError } = useLogin();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = async (data) =>
+    await executeLogin(data);
 
   return (
     <>
@@ -23,20 +27,35 @@ const LoginForm: React.FC = () => {
           <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
             Welcom Back!
           </h3>
+          <ServerErrorMsg msg={nonFieldError} />
           <form onSubmit={handleSubmit(onSubmit)}>
             <EmailInput
               name="email"
               label="E-mail"
               placeholder="sample@leverages.jp"
-            />
-            <PasswordInput
-              name="password"
-              label="Password"
-              placeholder="パスワードを入力"
+              errorMsg={validationError}
               rules={{
                 required: ERROR_MESSAGES.INPUT_REQUIRED,
               }}
             />
+
+            <PasswordInput
+              name="password"
+              label="Password"
+              placeholder="パスワードを入力"
+              errorMsg={validationError}
+              rules={{
+                required: ERROR_MESSAGES.INPUT_REQUIRED,
+              }}
+            />
+            <div className="text-right">
+              <a
+                href="#"
+                className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+              >
+                Forgot password?
+              </a>
+            </div>
             <div className="mt-4 mb-2 sm:mb-4">
               <button
                 type="submit"
@@ -48,7 +67,7 @@ const LoginForm: React.FC = () => {
             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
               Don’t have an account yet?{" "}
               <Link
-                to="/signup"
+                to="/login/signup"
                 className="font-medium text-primary-600 hover:underline dark:text-primary-500"
               >
                 Sign up

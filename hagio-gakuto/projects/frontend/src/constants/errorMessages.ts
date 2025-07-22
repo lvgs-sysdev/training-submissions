@@ -1,6 +1,7 @@
 export const ERROR_MESSAGES = {
   INPUT_REQUIRED: "入力してください",
   INVALID_EMAIL: "メールアドレスの形式が不正です",
-  REQUIRED_PASSWORD: "パスワードは必須です",
+  INVALID_PASSWORD: "パスワードの形式が不正です",
   PASSWORD_MISMATCH: "パスワードが一致しません",
+  NETWORK_ERROR: "ネットワークエラーが発生しました。",
 };

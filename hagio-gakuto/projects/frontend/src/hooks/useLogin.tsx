@@ -1,12 +1,14 @@
 import { useState } from "react";
-import { signup } from "../api/postSignUp";
 import { useLoading } from "../components/context/LoadingContext";
 import { useNavigate } from "react-router-dom";
 import { useApiErrorHandler } from "./useApiErrorHandler";
 import { ValidationError } from "../types/ValidationErrorType";
+import { login } from "../api/postLogin";
 import { showSuccessToast } from "../utils/toastUtils";
+import { useAuth } from "../components/context/AuthContext";
+import { me } from "../api/getAuth";
 
-export const useSignUp = () => {
+export const useLogin = () => {
   const [validationError, setValidationError] = useState<
     ValidationError | undefined
   >(undefined);
@@ -15,16 +17,19 @@ export const useSignUp = () => {
   const navigate = useNavigate();
   const { handleApiError, nonFieldError, clearNonFieldError } =
     useApiErrorHandler(setValidationError);
+  const { setUser } = useAuth();
 
-  const executeSignup = async (data: { email: string; password: string }) => {
+  const executeLogin = async (data: { email: string; password: string }) => {
     setLoading(true);
     setValidationError(undefined);
     clearNonFieldError();
 
     try {
-      const res = await signup(data);
-      showSuccessToast("登録完了しました");
-      navigate("/login");
+      const res = await login(data);
+      const authRes = await me();
+      setUser(authRes.data);
+      showSuccessToast("ログインしました");
+      navigate("/");
       return res.data;
     } catch (e: any) {
       handleApiError(e as any);
@@ -32,5 +37,5 @@ export const useSignUp = () => {
       setLoading(false);
     }
   };
-  return { executeSignup, validationError, nonFieldError };
+  return { executeLogin, validationError, nonFieldError };
 };

@@ -5,12 +5,12 @@ class User {
     id;
     name;
     email;
-    password_hash;
-    constructor(id, name, email, password_hash) {
+    hashedPassword;
+    constructor(id, name, email, hashedPassword) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.password_hash = password_hash;
+        this.hashedPassword = hashedPassword;
     }
 }
 exports.User = User;

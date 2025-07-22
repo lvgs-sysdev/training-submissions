@@ -4,6 +4,7 @@ import { CustomError } from "../errors/customError";
 import { CheckRequiredInput } from "../utils/checkRequiredInput";
 import { ERROR_MESSAGES } from "../constants/errorMessages";
 import { STATUS_CODES } from "../constants/statusCode";
+import { passwordValidation } from "../utils/regex";
 
 export class SignUpService {
   private dao = new SignUpDao();
@@ -37,6 +38,15 @@ export class SignUpService {
       value: confirmPassword,
     });
 
+    const isValidPassword = await passwordValidation(password);
+    if (!isValidPassword) {
+      throw new CustomError(
+        ERROR_MESSAGES.INVALID_PASSWORD,
+        STATUS_CODES.VALIDATION_ERROR,
+        "password"
+      );
+    }
+
     if (password !== confirmPassword) {
       throw new CustomError(
         ERROR_MESSAGES.PASSWORD_MISMATCH,
@@ -55,7 +65,7 @@ export class SignUpService {
 
   private checkIfSameEmailExists = async (email: string) => {
     const isExist = await this.dao.isEmailExists(email);
-    if (isExist) {
+    if (isExist.rows[0].exists) {
       throw new CustomError(
         ERROR_MESSAGES.ALREADY_REGISTERD,
         STATUS_CODES.CONFLICT
