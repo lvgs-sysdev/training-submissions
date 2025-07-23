@@ -70,7 +70,7 @@ const SignUpForm: React.FC = () => {
             />
             <PasswordInput
               name="confirmPassword"
-              label="ConfirmPassword"
+              label="Confirm Password"
               placeholder="同じパスワードを入力"
               errorMsg={validationError || undefined}
               rules={{

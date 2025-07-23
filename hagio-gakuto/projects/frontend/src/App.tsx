@@ -10,6 +10,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { AuthProvider } from "./components/context/AuthContext";
 import MypPage from "./pages/MyPage";
+import AboutUs from "./pages/AboutUsPage";
+import ChangePassword from "./pages/ChangePasswordPage";
 
 function App() {
   return (
@@ -19,11 +21,18 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Layout />}>
+                <Route index element={<Home />} />
+
                 <Route path="/login" element={<Login />} />
                 <Route path="/login/signup" element={<SignUp />} />
 
-                <Route index element={<Home />} />
                 <Route path="/mypage" element={<MypPage />} />
+                <Route
+                  path="/mypage/changepassword"
+                  element={<ChangePassword />}
+                />
+
+                <Route path="/about" element={<AboutUs />} />
 
                 {/* <Route path="about" element={<AboutPage />} /> */}
                 <Route path="*" element={<Error />} />

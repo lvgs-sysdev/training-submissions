@@ -4,30 +4,31 @@ import { useNavigate } from "react-router-dom";
 import { useApiErrorHandler } from "./useApiErrorHandler";
 import { ValidationError } from "../types/ValidationErrorType";
 import { showSuccessToast } from "../utils/toastUtils";
-import { postLogout } from "../api/postLogout";
-import { useAuth } from "../components/context/AuthContext";
+import { putChangePassword } from "../api/putChangePassword";
 
-export const useLogout = () => {
+export const useChangePassword = () => {
   const [validationError, setValidationError] = useState<
     ValidationError | undefined
   >(undefined);
-  const { setUser } = useAuth();
 
   const { setLoading } = useLoading();
   const navigate = useNavigate();
   const { handleApiError, nonFieldError, clearNonFieldError } =
     useApiErrorHandler(setValidationError);
 
-  const executeLogout = async () => {
+  const changePassword = async (data: {
+    password: string;
+    newPassword: string;
+  }) => {
     setLoading(true);
     setValidationError(undefined);
     clearNonFieldError();
 
     try {
-      const res = await postLogout();
-      setUser(null);
-      showSuccessToast("ログアウトしました");
-      navigate("/");
+      const res = await putChangePassword(data);
+      console.log(data);
+      showSuccessToast("変更完了しました");
+      navigate("/mypage");
       return res.data;
     } catch (e: any) {
       handleApiError(e as any);
@@ -35,5 +36,5 @@ export const useLogout = () => {
       setLoading(false);
     }
   };
-  return { executeLogout, validationError, nonFieldError };
+  return { changePassword, validationError, nonFieldError };
 };

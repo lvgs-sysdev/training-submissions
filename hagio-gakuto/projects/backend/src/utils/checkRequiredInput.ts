@@ -19,4 +19,16 @@ export class CheckRequiredInput {
       );
     }
   };
+
+  checkInputThrows500 = async (value: any) => {
+    if (!value) {
+      console.log(
+        `[checkInputThrows500] ${value} が空なのでエラーをスローします`
+      );
+      throw new CustomError(
+        ERROR_MESSAGES.SERVER_ERROR, // 1. message
+        STATUS_CODES.SERVER_ERROR
+      );
+    }
+  };
 }

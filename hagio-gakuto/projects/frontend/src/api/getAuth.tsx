@@ -1,5 +1,5 @@
 import { apiClient } from "./apiClient";
 
-export const me = () => {
+export const getMe = () => {
   return apiClient.get("/auth/me");
 };

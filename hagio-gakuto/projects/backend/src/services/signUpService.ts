@@ -5,9 +5,11 @@ import { CheckRequiredInput } from "../utils/checkRequiredInput";
 import { ERROR_MESSAGES } from "../constants/errorMessages";
 import { STATUS_CODES } from "../constants/statusCode";
 import { passwordValidation } from "../utils/regex";
+import { UserService } from "./userService";
 
 export class SignUpService {
   private dao = new SignUpDao();
+  private userService = new UserService();
   private checkRequiredInput = new CheckRequiredInput();
 
   signUp = async (data: {
@@ -59,12 +61,12 @@ export class SignUpService {
   private insertDB = async (data: { email: string; password: string }) => {
     const { email, password } = data;
     await this.checkIfSameEmailExists(email);
-    const hashed = await bcrypt.hash(password, 10);
+    const hashed = await this.userService.hashPassword(password);
     await this.dao.signUp(email, hashed);
   };
 
   private checkIfSameEmailExists = async (email: string) => {
-    const isExist = await this.dao.isEmailExists(email);
+    const isExist = await this.userService.isEmailExists(email);
     if (isExist.rows[0].exists) {
       throw new CustomError(
         ERROR_MESSAGES.ALREADY_REGISTERD,

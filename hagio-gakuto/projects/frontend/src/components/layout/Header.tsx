@@ -7,7 +7,7 @@ const Header: React.FC = () => {
   const { user } = useAuth();
 
   return (
-    <header className=" ">
+    <header>
       <div className="mx-auto max-w-screen-xl py-4 md:py-4 px-4">
         <Breadcrumbs />
         <div className="relative flex items-center justify-between">
@@ -68,14 +68,14 @@ const Header: React.FC = () => {
               </a>
             </li>
             <li>
-              <a
-                href="/"
+              <Link
+                to="/about"
                 aria-label="About us"
                 title="About us"
                 className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
                 About us
-              </a>
+              </Link>
             </li>
             <li>
               {user ? (

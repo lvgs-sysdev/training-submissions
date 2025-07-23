@@ -1,13 +1,15 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useTitle } from "../hooks/useTitle";
 
 const Error: React.FC = () => {
   const { state } = useLocation();
+  useTitle("エラー");
 
   if (state?.statusCode || state?.message) {
     return (
       <>
-        <div className="flex h-[calc(90vh-80px)] items-center justify-center p-5 w-full">
+        <div className="flex  items-center justify-center p-5 w-full">
           <div className="text-center">
             <div className="inline-flex rounded-full bg-red-100 p-4">
               <div className="rounded-full stroke-red-600 bg-red-200 p-4">
@@ -44,7 +46,7 @@ const Error: React.FC = () => {
     return (
       <>
         {/* 404 Not Found */}
-        <div className="text-center animate-fadeIn py-40">
+        <div className="text-center animate-fadeIn py-4">
           <img
             src="https://yemca-services.net/404.png"
             alt="404 Illustration"
@@ -56,12 +58,12 @@ const Error: React.FC = () => {
           <p className="text-xl text-gray-700 mt-2">
             We can't seem to find the page you're looking for.
           </p>
-          <a
-            href="/"
+          <Link
+            to="/"
             className="mt-6 inline-block bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold shadow-lg transform transition hover:scale-105 hover:bg-blue-700"
           >
             Return Home
-          </a>
+          </Link>
         </div>
       </>
     );

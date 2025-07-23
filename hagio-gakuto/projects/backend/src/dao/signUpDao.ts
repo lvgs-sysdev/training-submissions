@@ -7,17 +7,4 @@ export class SignUpDao {
       password,
     ]);
   };
-
-  isEmailExists = async (email: string) => {
-    return await pool.query(
-      `
-    SELECT EXISTS (
-      SELECT 1
-      FROM users 
-      WHERE email = $1
-    )
-  `,
-      [email]
-    );
-  };
 }

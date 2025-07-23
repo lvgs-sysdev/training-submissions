@@ -1,14 +1,10 @@
-import bcrypt from "bcrypt";
-import { CustomError } from "../errors/customError";
 import { CheckRequiredInput } from "../utils/checkRequiredInput";
-import { ERROR_MESSAGES } from "../constants/errorMessages";
-import { STATUS_CODES } from "../constants/statusCode";
-import { LoginDao } from "../dao/loginDao";
 import jwt from "jsonwebtoken";
-import { User } from "../models/User";
+import { UserService } from "./userService";
+import { ERROR_MESSAGES } from "../constants/errorMessages";
 
 export class LoginService {
-  private dao = new LoginDao();
+  private service = new UserService();
   private checkRequiredInput = new CheckRequiredInput();
 
   login = async (data: { email: string; password: string }) => {
@@ -34,35 +30,15 @@ export class LoginService {
 
   private executeLogin = async (data: { email: string; password: string }) => {
     const { email, password } = data;
-    const user = await this.findUser(email);
-    await this.comparePasswordAndHashedPassword(password, user.hashedPassword);
+    const user = await this.service.findUserByEmail(email);
+    await this.service.comparePasswordAndHashedPasswordThrows401(
+      password,
+      user.hashedPassword,
+      ERROR_MESSAGES.LOGIN_FAILED
+    );
     // 認証成功後、JWTを生成
     const token = await this.generateToken(user.id, user.name);
     return token;
-  };
-
-  private findUser = async (email: string): Promise<User> => {
-    const user = await this.dao.findUserByEmail(email);
-    if (!user) {
-      throw new CustomError(
-        ERROR_MESSAGES.LOGIN_FAILED, // 1. message
-        STATUS_CODES.UNAUTHORIZE
-      );
-    }
-    return user;
-  };
-
-  private comparePasswordAndHashedPassword = async (
-    password: string,
-    hashedPassword: string
-  ) => {
-    const isMatch = await bcrypt.compare(password, hashedPassword);
-    if (!isMatch) {
-      throw new CustomError(
-        ERROR_MESSAGES.LOGIN_FAILED, // 1. message
-        STATUS_CODES.UNAUTHORIZE
-      );
-    }
   };
 
   private generateToken = async (id: number, name: string) => {

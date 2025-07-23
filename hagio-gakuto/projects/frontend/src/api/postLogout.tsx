@@ -1,5 +1,5 @@
 import { apiClient } from "./apiClient";
 
-export const logout = () => {
+export const postLogout = () => {
   return apiClient.post("/logout");
 };

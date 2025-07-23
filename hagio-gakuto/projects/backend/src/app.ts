@@ -11,7 +11,9 @@ import loginRouter from "./routes/loginRouter";
 import logoutRouter from "./routes/logoutRouter";
 import signUpRouter from "./routes/signUpRouter";
 import authRouter from "./routes/authRouter";
+import changePasswordRouter from "./routes/changePasswordRouter";
 import { errorHandler } from "./middlewares/errorHandler";
+import { logger } from "./middlewares/logger";
 
 const app = express();
 app.use(
@@ -23,10 +25,14 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
+app.use(logger);
+
+// --- ルーター定義 ---
 app.use("/api/login", loginRouter);
 app.use("/api/logout", logoutRouter);
 app.use("/api/signup", signUpRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/password", changePasswordRouter);
 
 app.use(errorHandler);
 

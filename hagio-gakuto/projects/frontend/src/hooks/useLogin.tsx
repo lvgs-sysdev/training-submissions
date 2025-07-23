@@ -3,10 +3,10 @@ import { useLoading } from "../components/context/LoadingContext";
 import { useNavigate } from "react-router-dom";
 import { useApiErrorHandler } from "./useApiErrorHandler";
 import { ValidationError } from "../types/ValidationErrorType";
-import { login } from "../api/postLogin";
+import { postLogin } from "../api/postLogin";
 import { showSuccessToast } from "../utils/toastUtils";
 import { useAuth } from "../components/context/AuthContext";
-import { me } from "../api/getAuth";
+import { getMe } from "../api/getAuth";
 
 export const useLogin = () => {
   const [validationError, setValidationError] = useState<
@@ -25,8 +25,8 @@ export const useLogin = () => {
     clearNonFieldError();
 
     try {
-      const res = await login(data);
-      const authRes = await me();
+      const res = await postLogin(data);
+      const authRes = await getMe();
       setUser(authRes.data);
       showSuccessToast("ログインしました");
       navigate("/");

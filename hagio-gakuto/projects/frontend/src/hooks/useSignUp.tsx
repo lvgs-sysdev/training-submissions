@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { signup } from "../api/postSignUp";
+import { postSignup } from "../api/postSignUp";
 import { useLoading } from "../components/context/LoadingContext";
 import { useNavigate } from "react-router-dom";
 import { useApiErrorHandler } from "./useApiErrorHandler";
@@ -22,7 +22,7 @@ export const useSignUp = () => {
     clearNonFieldError();
 
     try {
-      const res = await signup(data);
+      const res = await postSignup(data);
       showSuccessToast("登録完了しました");
       navigate("/login");
       return res.data;

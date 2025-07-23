@@ -38,6 +38,8 @@ const Breadcrumbs = () => {
     login: "Login",
     signup: "Sign Up",
     mypage: "My Page",
+    about: "About us",
+    changepassword: "Change Password",
   };
 
   return (

@@ -7,7 +7,7 @@ import React, {
   Dispatch,
   SetStateAction,
 } from "react";
-import { me } from "../../api/getAuth";
+import { getMe } from "../../api/getAuth";
 
 // ユーザーの型を定義
 interface User {
@@ -37,7 +37,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     // 初回およびフォーカス時のチェックを行う関数
     const checkUser = async () => {
       try {
-        const res = await me();
+        const res = await getMe();
         setUser(res.data);
       } catch (error) {
         // 認証エラーの場合はユーザーをnullに設定（ログアウト状態）
