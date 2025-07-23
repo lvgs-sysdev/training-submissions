@@ -10,15 +10,12 @@ export class UserService {
   private dao = new UserDao();
   private checkRequiredInput = new CheckRequiredInput();
 
-  findUserByEmail = async (email: string): Promise<User> => {
+  findUserByEmail = async (email: string): Promise<User | null> => {
     this.checkRequiredInput.checkInputThrows500(email);
     const user = await this.dao.findUserByEmail(email);
 
     if (!user) {
-      throw new CustomError(
-        ERROR_MESSAGES.SERVER_ERROR,
-        STATUS_CODES.SERVER_ERROR
-      );
+      return null;
     }
     return user;
   };

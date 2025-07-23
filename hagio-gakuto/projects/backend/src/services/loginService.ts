@@ -2,6 +2,8 @@ import { CheckRequiredInput } from "../utils/checkRequiredInput";
 import jwt from "jsonwebtoken";
 import { UserService } from "./userService";
 import { ERROR_MESSAGES } from "../constants/errorMessages";
+import { CustomError } from "../errors/customError";
+import { STATUS_CODES } from "../constants/statusCode";
 
 export class LoginService {
   private service = new UserService();
@@ -31,6 +33,12 @@ export class LoginService {
   private executeLogin = async (data: { email: string; password: string }) => {
     const { email, password } = data;
     const user = await this.service.findUserByEmail(email);
+    if (!user) {
+      throw new CustomError(
+        ERROR_MESSAGES.LOGIN_FAILED,
+        STATUS_CODES.UNAUTHORIZE
+      );
+    }
     await this.service.comparePasswordAndHashedPasswordThrows401(
       password,
       user.hashedPassword,
