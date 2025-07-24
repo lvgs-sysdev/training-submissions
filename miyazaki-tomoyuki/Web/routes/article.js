@@ -55,7 +55,7 @@ module.exports = async function (fastify) {
   //記事の編集処理
   fastify.post("/editBlog", async (request, reply) => {
     const articleTitle = request.body.articleTitle;
-    const content = request.body.content.replace(/\n/g, '<br>');
+    const content = request.body.content;
     const articleId = request.body.id;
     let encodedMsg = "";
     if (request.session.user) {
