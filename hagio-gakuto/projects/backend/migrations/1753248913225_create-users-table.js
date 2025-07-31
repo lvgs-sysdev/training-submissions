@@ -1,11 +1,8 @@
-/**
- * @type {import('node-pg-migrate').ColumnDefinitions | undefined}
- */
-export const shorthands = undefined;
+module.exports.shorthands = undefined;
 
-exports.up = (pgm) => {
+module.exports.up = (pgm) => {
   pgm.createTable("users", {
-    id: "id", // 自動的にシリアルPRIMARY KEYになります
+    id: "id",
     name: { type: "varchar(100)", notNull: true },
     email: { type: "varchar(100)", notNull: true, unique: true },
     password_hash: { type: "varchar(255)", notNull: true },
@@ -17,6 +14,6 @@ exports.up = (pgm) => {
   });
 };
 
-exports.down = (pgm) => {
+module.exports.down = (pgm) => {
   pgm.dropTable("users");
 };
