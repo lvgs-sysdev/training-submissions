@@ -21,4 +21,4 @@ COPY --from=builder /usr/src/app/.env .
 
 EXPOSE 4000
 # コンテナ起動時にマイグレーションを実行してから、サーバーを起動
-CMD npm run migrate up && npm start
+CMD [ "sh", "-c", "npm run migrate up && npm start" ]
