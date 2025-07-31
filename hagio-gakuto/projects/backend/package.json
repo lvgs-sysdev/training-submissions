@@ -7,7 +7,7 @@
     "build": "tsc",
     "start": "node dist/app.js",
     "dev": "nodemon src/app.ts",
-    "migrate": "node-pg-migrate"
+    "migrate": "node-pg-migrate -r ts-node/register"
   },
   "dependencies": {
     "@types/express": "^4.17.23",
