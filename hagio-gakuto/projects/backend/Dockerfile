@@ -1,19 +1,24 @@
-# --- データベース用 ---
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=password
-POSTGRES_DB=my_app
+# --- ビルドステージ ---
+FROM node:18-alpine AS builder
+WORKDIR /usr/src/app
+COPY package*.json ./
+# 開発用も含めて全てインストール
+RUN npm install
+COPY . .
+RUN npm run build
 
-# --- バックエンドアプリケーション用 ---
-DB_HOST=db
-DB_PORT=5432
-DB_USER=${POSTGRES_USER}
-DB_PASSWORD=${POSTGRES_PASSWORD}
-DB_NAME=${POSTGRES_DB}
+# --- 本番ステージ ---
+FROM node:18-alpine
+WORKDIR /usr/src/app
+# package.jsonをコピー
+COPY package*.json ./
+# 本番で必要な依存関係のみインストール
+RUN npm install --omit=dev
+# ビルドステージから成果物をコピー
+COPY --from=builder /usr/src/app/dist ./dist
+COPY --from=builder /usr/src/app/migrations ./migrations
+COPY --from=builder /usr/src/app/.env .
 
-# --- マイグレーション用 ---
-DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DB_HOST}:${DB_PORT}/${POSTGRES_DB}
-
-
-# --- 認証用 ---
-JWT_SECRET_KEY=aaa
-JWT_EXPIRIES_TIME=3600
+EXPOSE 4000
+# コンテナ起動時にマイグレーションを実行してから、サーバーを起動
+CMD npm run migrate up && npm start
