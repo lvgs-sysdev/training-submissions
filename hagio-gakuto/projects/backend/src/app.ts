@@ -18,7 +18,7 @@ import { logger } from "./middlewares/logger";
 const app = express();
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "http://43.206.80.105:3000",
     credentials: true,
   })
 );
