@@ -1,0 +1,12 @@
+import React from "react";
+import { useTitle } from "../hooks/useTitle";
+
+const Home: React.FC = () => {
+  useTitle("ホーム");
+  return (
+    <>
+      <h1>ホームaa</h1>
+    </>
+  );
+};
+export default Home;
