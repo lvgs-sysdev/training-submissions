@@ -5,7 +5,7 @@ const Home: React.FC = () => {
   useTitle("ホーム");
   return (
     <>
-      <h1>ホームaa</h1>
+      <h1>ホーム　CICD !!!!!</h1>
     </>
   );
 };
