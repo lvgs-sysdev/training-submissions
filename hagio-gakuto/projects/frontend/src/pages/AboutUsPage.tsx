@@ -21,7 +21,7 @@ const AboutUs: React.FC = () => {
         <div className="md:w-1/2 flex justify-center mb-6 md:mb-0">
           <img
             src="https://c0.wallpaperflare.com/preview/692/415/725/business-portrait-glasses-style.jpg"
-            alt="Profile Picture"
+            alt="Business person wearing glasses"
             className="w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-indigo-500 object-cover"
           />
         </div>
