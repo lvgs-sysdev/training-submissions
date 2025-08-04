@@ -1,0 +1,28 @@
+body {
+    font-family: "Poppins";
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+textarea {
+    font-size: 18px;
+    width: 100%;
+    height: 500px;
+}
+
+input {
+    font-size: 18px;
+}
+
+input[type="text"] {
+    width: 100%;
+}
