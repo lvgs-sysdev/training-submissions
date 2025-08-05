@@ -1,31 +1,28 @@
 "use server";
 
-import { SignUpSchema } from "@/lib/validators/signUpValidator";
-import { createUser } from "@/server/services/signUpService";
+import { LoginSchema } from "@/lib/validators/loginValidator";
+import { login } from "@/server/services/loginService";
+import { cookies } from "next/headers";
 
 // FormStateの型を拡張して、フィールドごとのエラーを格納できるようにする
 interface FormState {
   message: string | null;
   errors?: {
-    name?: string[];
     email?: string[];
     password?: string[];
-    confirmPassword?: string[];
   };
   success: boolean;
   fields?: {
-    name?: string;
     email?: string;
     password?: string;
-    confirmPassword?: string;
   };
 }
 
-export async function signUpAction(
+export async function loginAction(
   prevState: FormState,
   formData: FormData
 ): Promise<FormState> {
-  const result = SignUpSchema.safeParse(Object.fromEntries(formData.entries()));
+  const result = LoginSchema.safeParse(Object.fromEntries(formData.entries()));
 
   // バリデーション失敗時
   if (!result.success) {
@@ -39,9 +36,18 @@ export async function signUpAction(
   }
 
   try {
-    await createUser(result.data);
+    const token = await login(result.data);
+
+    // 2. 受け取ったJWTをHttpOnlyクッキーに設定
+    const cookieStore = await cookies();
+    cookieStore.set("session_token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 60 * 60, // 1時間
+      path: "/",
+    });
     return {
-      message: "ユーザー登録が完了しました。",
+      message: "ログインしました。",
       errors: {},
       success: true,
       fields: result.data,

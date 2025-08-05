@@ -1,6 +1,19 @@
-import Link from "next/link";
+"use client";
+
+import { useAuth } from "@/context/AuthContext";
+import Nav from "./components/Nav";
 
 export default function Header() {
+  const { user } = useAuth(); // Contextからuserとlogoutを取得
+  const navLinks = [
+    { href: "/", name: "Home" },
+    { href: "/", name: "Our product" },
+    { href: "/", name: "Features" },
+    { href: "/", name: "Product pricing" },
+    { href: "/", name: "Pricing" },
+    { href: "/about", name: "About us" },
+  ];
+  console.log("Current user:", user); // デバッグ用に現在のユーザーを表示
   return (
     <header>
       <div className="mx-auto max-w-screen-xl py-4 md:py-4 px-4">
@@ -31,45 +44,17 @@ export default function Header() {
             </span>
           </a>
           <ul className="flex items-center hidden space-x-8 lg:flex">
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                <Nav href={link.href} name={link.name} />
+              </li>
+            ))}
             <li>
-              <a
-                href="/"
-                aria-label="Our product"
-                title="Our product"
-                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-              >
-                Product
-              </a>
-            </li>
-            <li>
-              <a
-                href="/"
-                aria-label="Our product"
-                title="Our product"
-                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-              >
-                Features
-              </a>
-            </li>
-            <li>
-              <a
-                href="/"
-                aria-label="Product pricing"
-                title="Product pricing"
-                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-              >
-                Pricing
-              </a>
-            </li>
-            <li>
-              <Link
-                href="/about"
-                aria-label="About us"
-                title="About us"
-                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-              >
-                About us
-              </Link>
+              {user ? (
+                <Nav href="/mypage" name="My Page" />
+              ) : (
+                <Nav href="/login" name="Login" />
+              )}
             </li>
           </ul>
         </div>

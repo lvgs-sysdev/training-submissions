@@ -8,6 +8,9 @@ import "react-toastify/dist/ReactToastify.css";
 // 作成したコンポーネントをインポート
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { AuthProvider } from "@/context/AuthContext";
+import { LoadingProvider } from "@/context/LoadingContext";
+import { Loading } from "@/components/layout/Loading";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,13 +28,18 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ToastContainer />
-        <Header />
-        <main className="mx-auto max-w-screen-xl my-8 bg-gray-50">
-          <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-            {children}
-          </div>
-        </main>
-        <Footer />
+        <LoadingProvider>
+          <AuthProvider>
+            <Header />
+            <Loading />
+            <main className="mx-auto max-w-screen-xl  bg-gray-50">
+              <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+                {children}
+              </div>
+            </main>
+            <Footer />
+          </AuthProvider>
+        </LoadingProvider>
       </body>
     </html>
   );

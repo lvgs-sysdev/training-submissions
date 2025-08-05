@@ -4,7 +4,7 @@ import { Form } from "@/components/form/Form";
 import { EmailInput } from "@/components/inputs/EmailInput"; // Email用に汎用Inputを使用
 import { PasswordInput } from "@/components/inputs/PasswordInput"; // Password用に専用コンポーネントを使用
 import { signUpAction } from "../actions/signUpActions";
-import { TextInput } from "@/components/inputs/ TextInput";
+import { TextInput } from "@/components/inputs/TextInput";
 import { useRouter } from "next/navigation";
 import { useActionState, useEffect } from "react";
 import { showErrorToast, showSuccessToast } from "@/utils/ToastUtils";
@@ -112,10 +112,6 @@ export default function SignUpForm() {
             (v) => (v.length < 8 ? "8文字以上入力してください" : undefined),
             (v) =>
               v.length > 100 ? "100文字以下で入力してください" : undefined,
-            (v) =>
-              v === state.fields?.password
-                ? undefined
-                : "パスワードが一致しません",
           ]}
         />
       </Form>

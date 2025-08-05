@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 // 全てのトーストに適用する共通オプション
 const commonOptions: ToastOptions = {
   position: "top-right",
-  autoClose: 3000, // 3秒で自動的に閉じる
+  autoClose: 5000, // 5秒で自動的に閉じる
   hideProgressBar: false,
   closeOnClick: true,
   pauseOnHover: true,
