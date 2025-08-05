@@ -1,10 +1,8 @@
 import React from "react";
 import SignUpForm from "./components/SignUpForm";
-import { useTitle } from "../../hooks/useTitle";
 import Link from "next/link";
 
 const SignUp: React.FC = () => {
-  // useTitle("ユーザー登録");
   return (
     <div className="flex flex-col items-center justify-between xl:flex-row">
       <div className="w-full max-w-xl mb-12 xl:pr-16 xl:mb-0 xl:w-7/12">

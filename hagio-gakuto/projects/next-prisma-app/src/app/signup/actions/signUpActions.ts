@@ -1,34 +1,54 @@
 "use server";
 
-import { RegisterSchema } from "@/lib/validators/user";
-import { prisma } from "@/lib/prisma";
-import { hash } from "bcryptjs";
+import { SignUpSchema } from "@/lib/validators/signUpValidator";
+import { createUser } from "@/server/services/signUpService";
+import { redirect } from "next/navigation";
 
+// FormStateの型を拡張して、フィールドごとのエラーを格納できるようにする
 interface FormState {
   message: string | null;
+  errors?: {
+    name?: string[];
+    email?: string[];
+    password?: string[];
+    confirmPassword?: string[];
+  };
+  success: boolean;
+  fields?: {
+    name?: string;
+    email?: string;
+    password?: string;
+    confirmPassword?: string;
+  };
 }
 
 export async function signUpAction(
   prevState: FormState,
   formData: FormData
 ): Promise<FormState> {
-  const raw = {
-    name: formData.get("name"),
-    email: formData.get("email"),
-    password: formData.get("password"),
-  };
-  const result = RegisterSchema.safeParse(raw);
+  const result = SignUpSchema.safeParse(Object.fromEntries(formData.entries()));
+
+  // バリデーション失敗時
   if (!result.success) {
-    return { message: "入力内容に誤りがあります" };
+    const fields = Object.fromEntries(formData.entries());
+    return {
+      message: "入力内容にエラーがあります。",
+      errors: result.error.flatten().fieldErrors,
+      success: false,
+      fields,
+    };
   }
-  const { name, email, password } = result.data;
-  const exists = await prisma.user.findUnique({ where: { email } });
-  if (exists) {
-    return { message: "すでに登録済みです" };
+
+  try {
+    await createUser(result.data);
+  } catch (error: any) {
+    return {
+      message: error.message,
+      errors: {},
+      success: false,
+      fields: result.data,
+    };
   }
-  const hashed = await hash(password, 10);
-  await prisma.user.create({
-    data: { name, email, password: hashed },
-  });
-  return { message: "登録が完了しました" };
+
+  redirect("/login");
 }

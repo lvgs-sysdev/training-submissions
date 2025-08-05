@@ -11,12 +11,12 @@ type Props = {
   defaultValue?: string;
   rules?: ((value: string) => string | undefined)[];
 };
-export const EmailInput = ({
+export const TextInput = ({
   name,
   label,
   placeholder,
   errorMsg,
-  defaultValue = "",
+  defaultValue,
   rules = [],
 }: Props) => {
   const [validationError, setValidationError] = useState<string | null>(null);
@@ -48,13 +48,12 @@ export const EmailInput = ({
       )}
       <div className="relative mb-2">
         <input
-          type="email"
+          type="text"
           className="flex-grow w-full h-12 px-4 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
-          // {...register(name, rules)}
+          onInput={handleInput}
           name={name}
           placeholder={placeholder}
           defaultValue={defaultValue}
-          onInput={handleInput}
         />
       </div>
       {validationError && <ErrorMsg msg={validationError} />}
