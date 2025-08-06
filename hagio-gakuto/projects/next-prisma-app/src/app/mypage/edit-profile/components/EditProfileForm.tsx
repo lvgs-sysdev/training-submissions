@@ -5,7 +5,6 @@ import { AvatarInput } from "@/components/inputs/ImageInput";
 import { EmailInput } from "@/components/inputs/EmailInput";
 import { TextInput } from "@/components/inputs/TextInput";
 import { useAuth } from "@/context/AuthContext";
-import { useTitle } from "@/hooks/useTitle";
 import { editProfileAction } from "../actions/editProfileAction";
 import { useActionState, useEffect } from "react";
 import { useLoading } from "@/context/LoadingContext";
@@ -13,7 +12,6 @@ import { showErrorToast, showSuccessToast } from "@/utils/ToastUtils";
 import { useRouter } from "next/navigation";
 
 export default function EditProfileForm() {
-  useTitle("プロフィール変更");
   const { user, fetchUser } = useAuth();
   const { setIsLoading } = useLoading();
   const [state, formAction] = useActionState(editProfileAction, {

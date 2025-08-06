@@ -1,7 +1,8 @@
 "use client"; // フックを使うためクライアントコンポーネントにする
 
-import Link from "next/link"; // ★ next/linkからインポート
-import { usePathname } from "next/navigation"; // ★ next/navigationからインポート
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const HomeIcon = () => (
   <svg

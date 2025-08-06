@@ -1,17 +1,16 @@
 "use client";
 
+import { Form } from "@/components/form/Form";
+import { PasswordInput } from "@/components/inputs/PasswordInput";
+
 import { useActionState, useEffect } from "react";
 
 import { useLoading } from "@/context/LoadingContext";
 import { showErrorToast, showSuccessToast } from "@/utils/ToastUtils";
 import { useRouter } from "next/navigation";
-import { useTitle } from "@/hooks/useTitle";
-import { Form } from "@/components/form/Form";
-import { PasswordInput } from "@/components/inputs/PasswordInput";
-import { changePasswordAction } from "../mypage/change-password/actions/changePasswordActions";
+import { changePasswordAction } from "../actions/changePasswordActions";
 
-const ChangePassword: React.FC = () => {
-  useTitle("パスワード変更");
+export function ChangePasswordForm() {
   const { setIsLoading } = useLoading();
   const router = useRouter();
   const [state, formAction] = useActionState(changePasswordAction, {
@@ -71,5 +70,4 @@ const ChangePassword: React.FC = () => {
       </div>
     </div>
   );
-};
-export default ChangePassword;
+}

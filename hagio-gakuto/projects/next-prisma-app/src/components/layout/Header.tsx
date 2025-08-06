@@ -8,10 +8,7 @@ export default function Header() {
   const { user } = useAuth(); // Contextからuserとlogoutを取得
   const navLinks = [
     { href: "/", name: "Home" },
-    { href: "/", name: "Our product" },
-    { href: "/", name: "Features" },
-    { href: "/", name: "Product pricing" },
-    { href: "/", name: "Pricing" },
+
     { href: "/about", name: "About us" },
   ];
   console.log("Current user:", user); // デバッグ用に現在のユーザーを表示

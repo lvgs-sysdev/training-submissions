@@ -1,9 +1,7 @@
 "use client";
 
 import { Form } from "@/components/form/Form";
-
 import { useAuth } from "@/context/AuthContext";
-import { useTitle } from "@/hooks/useTitle";
 import { useActionState, useEffect } from "react";
 import { useLoading } from "@/context/LoadingContext";
 import { showErrorToast, showSuccessToast } from "@/utils/ToastUtils";
@@ -12,7 +10,6 @@ import { deleteAccountAction } from "../actions/deleteAccountAction";
 import { PasswordInput } from "@/components/inputs/PasswordInput";
 
 export default function DeleteAccountForm() {
-  useTitle("アカウント削除");
   const { fetchUser, logout } = useAuth();
   const { setIsLoading } = useLoading();
   const [state, formAction] = useActionState(deleteAccountAction, {

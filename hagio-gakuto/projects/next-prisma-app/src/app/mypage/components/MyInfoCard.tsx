@@ -3,19 +3,15 @@
 import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 import LogoutButton from "./LogoutButton";
-import { useTitle } from "@/hooks/useTitle";
+
 import Link from "next/link";
-import { useLoading } from "@/context/LoadingContext"; // ローディングを追加
+
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
+import VpnKeyIcon from "@mui/icons-material/VpnKey";
+import PersonOffIcon from "@mui/icons-material/PersonOff";
 
 export default function MyInfoCard() {
-  useTitle("マイページ");
   const { user } = useAuth();
-  const { setIsLoading } = useLoading(); // ローディング状態を取得
-
-  // ユーザー情報が読み込まれるまでローディング表示
-  if (!user) {
-    setIsLoading(true); // ローディング状態を設定
-  }
 
   return (
     <div className="bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -39,22 +35,25 @@ export default function MyInfoCard() {
         <div className="flex flex-col space-y-4">
           <Link
             href="/mypage/edit-profile"
-            className="w-full text-center px-4 py-3 font-semibold text-white bg-sky-600 rounded-lg hover:bg-sky-700 transition-all duration-200"
+            className="w-full text-center px-4 py-3 font-semibold text-white bg-sky-600 rounded-lg hover:bg-sky-700 transition-all duration-200 flex items-center justify-center"
           >
+            <ManageAccountsIcon className="inline mr-2" />
             プロフィールを編集
           </Link>
 
           <Link
             href="/mypage/change-password"
-            className="w-full text-center px-4 py-3 font-semibold text-white bg-slate-600 rounded-lg hover:bg-slate-700 transition-all duration-200"
+            className="w-full text-center px-4 py-3 font-semibold text-white bg-slate-600 rounded-lg hover:bg-slate-700 transition-all duration-200 flex items-center justify-center"
           >
+            <VpnKeyIcon className="inline mr-2" />
             パスワードを変更
           </Link>
 
           <Link
             href="/mypage/delete-account"
-            className="w-full text-center px-4 py-3 font-semibold text-red-600 bg-red-100 rounded-lg hover:bg-red-200 transition-all duration-200"
+            className="w-full text-center px-4 py-3 font-semibold text-red-600 bg-red-100 rounded-lg hover:bg-red-200 transition-all duration-200 flex items-center justify-center"
           >
+            <PersonOffIcon className="inline mr-2" />
             アカウントを削除
           </Link>
           <LogoutButton />

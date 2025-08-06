@@ -3,6 +3,7 @@
 import { useAuth } from "@/context/AuthContext";
 import { showSuccessToast } from "@/utils/ToastUtils";
 import { useRouter } from "next/navigation";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 export default function LogoutButton() {
   const { logout } = useAuth();
@@ -22,8 +23,9 @@ export default function LogoutButton() {
   return (
     <button
       onClick={handleLogout}
-      className="w-full px-4 py-3 font-semibold text-red-600 bg-red-100 rounded-lg hover:bg-red-200 transition-all duration-200"
+      className="w-full text-center px-4 py-3 font-semibold text-red-600 bg-red-100 rounded-lg hover:bg-red-200 transition-all duration-200 cursor-pointer flex items-center justify-center"
     >
+      <LogoutIcon className="inline mr-2" />
       ログアウト
     </button>
   );

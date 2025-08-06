@@ -1,9 +1,9 @@
+import { Metadata } from "next";
 import MyInfoCard from "./components/MyInfoCard";
 
+export const metadata: Metadata = {
+  title: "マイページ",
+};
 export default function MyPage() {
-  return (
-    <div className="bg-gray-50 min-h-screen pt-12 sm:pt-16">
-      <MyInfoCard />
-    </div>
-  );
+  return <MyInfoCard />;
 }

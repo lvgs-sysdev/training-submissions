@@ -1,10 +1,10 @@
-"use client";
-
-import { useTitle } from "@/hooks/useTitle";
+import { Metadata } from "next";
 import React from "react";
 
+export const metadata: Metadata = {
+  title: "About Us",
+};
 const AboutUs: React.FC = () => {
-  useTitle("About us");
   return (
     <>
       <section

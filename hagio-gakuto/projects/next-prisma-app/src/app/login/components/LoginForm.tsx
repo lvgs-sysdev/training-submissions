@@ -3,7 +3,6 @@ import React, { useActionState, useEffect } from "react";
 import { PasswordInput } from "../../../components/inputs/PasswordInput";
 import { EmailInput } from "../../../components/inputs/EmailInput";
 import Link from "next/link";
-import { useTitle } from "@/hooks/useTitle";
 import { useRouter } from "next/navigation";
 import { Form } from "@/components/form/Form";
 import { loginAction } from "../actions/loginActions";
@@ -12,7 +11,6 @@ import { useAuth } from "@/context/AuthContext";
 import { useLoading } from "@/context/LoadingContext";
 
 const LoginForm: React.FC = () => {
-  useTitle("ログイン");
   const { setIsLoading } = useLoading();
   const { fetchUser } = useAuth();
   const [state, formAction] = useActionState(loginAction, {
