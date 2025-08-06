@@ -11,11 +11,6 @@ import { showErrorToast, showSuccessToast } from "@/utils/ToastUtils";
 import { useAuth } from "@/context/AuthContext";
 import { useLoading } from "@/context/LoadingContext";
 
-type Inputs = {
-  email: string;
-  password: string;
-};
-
 const LoginForm: React.FC = () => {
   useTitle("ログイン");
   const { setIsLoading } = useLoading();

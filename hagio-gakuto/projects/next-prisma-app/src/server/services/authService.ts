@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma"; // PrismaClientのインスタンス
 interface UserPayload {
   userId: number;
   name: string;
+  avatar_url?: string; // オプションのプロパティß
   // 他にトークンに含めた情報があれば追加
 }
 
@@ -24,15 +25,17 @@ export async function getUserFromToken(token: string) {
   }
 
   // 3. データベースからユーザーを検索
-  const user = await prisma.user.findUnique({
+  const user = await prisma.user.findMany({
     where: {
       id: userId,
+      is_deleted: false, // 削除されていないユーザーのみ対象
     },
     // 4. パスワードなど、クライアントに返すべきでない情報は除外する
     select: {
       id: true,
       email: true,
       name: true,
+      avatar_url: true, // オプションのプロパティ
     },
   });
 
