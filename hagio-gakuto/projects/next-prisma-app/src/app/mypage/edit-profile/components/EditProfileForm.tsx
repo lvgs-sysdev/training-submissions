@@ -38,7 +38,11 @@ export default function EditProfileForm() {
   return (
     <div className="bg-gray-50 min-h-screen pt-12">
       <div className="max-w-md mx-auto bg-white rounded-xl shadow-xl p-8">
-        <Form action={formAction} buttonText="プロフィールを更新">
+        <Form
+          action={formAction}
+          buttonText="プロフィールを更新"
+          formTitle="プロフィール編集"
+        >
           <AvatarInput
             name="avatar"
             defaultImage={
@@ -49,12 +53,42 @@ export default function EditProfileForm() {
             <TextInput
               name="name"
               label="ユーザー名"
-              defaultValue={user?.name}
+              defaultValue={state.fields?.name || user?.name || ""}
+              rules={[
+                (v) => (!v ? "名前は必須です" : undefined),
+                (v) => (v.length < 2 ? "2文字以上入力してください" : undefined),
+                (v) =>
+                  v.length > 50 ? "50文字以下で入力してください" : undefined,
+              ]}
+              errorMsg={state.errors?.name}
             />
             <EmailInput
               name="email"
               label="メールアドレス"
-              defaultValue={user?.email}
+              defaultValue={state.fields?.email || user?.email || ""}
+              errorMsg={state.errors?.email}
+              rules={[
+                (v) => (!v ? "メールアドレスは必須です" : undefined),
+                (v) => (v.length < 2 ? "2文字以上入力してください" : undefined),
+                (v) =>
+                  v.length > 50 ? "50文字以下で入力してください" : undefined,
+                (v) =>
+                  /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(v)
+                    ? undefined
+                    : "有効なメールアドレスを入力してください",
+                (v) =>
+                  /^[^\s]+$/.test(v)
+                    ? undefined
+                    : "先頭にスペースは使用できません",
+                (v) =>
+                  /^[^\s]+$/.test(v)
+                    ? undefined
+                    : "末尾にスペースは使用できません",
+                (v) =>
+                  /^[^\s]+$/.test(v)
+                    ? undefined
+                    : "連続するスペースは使用できません",
+              ]}
             />
           </div>
         </Form>

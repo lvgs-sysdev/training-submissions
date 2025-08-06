@@ -38,12 +38,13 @@ const LoginForm: React.FC = () => {
 
   return (
     <div className="relative bg-white rounded shadow-2xl p-7 sm:p-10">
-      <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
-        Welcome Back!
-      </h3>
       {/* <ServerErrorMsg msg={nonFieldError} /> */}
 
-      <Form action={formAction} buttonText="Login">
+      <Form
+        action={formAction}
+        buttonText="Login"
+        formTitle="Login to Your Account"
+      >
         <EmailInput
           name="email"
           label="E-mail"

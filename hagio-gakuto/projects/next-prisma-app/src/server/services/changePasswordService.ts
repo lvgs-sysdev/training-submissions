@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prisma";
-import { hash } from "bcryptjs";
+import { compare, hash } from "bcryptjs";
 import { z } from "zod";
 import { changePasswordSchema } from "@/lib/validators/changePasswordValidator";
 
@@ -17,7 +17,7 @@ export async function changePassword(userId: number, data: ChangePasswordData) {
   }
 
   // 現在のパスワードが正しいか確認
-  const isPasswordValid = await hash(currentPassword, user.password);
+  const isPasswordValid = await compare(currentPassword, user.password);
   if (!isPasswordValid) {
     throw new Error("現在のパスワードが正しくありません");
   }

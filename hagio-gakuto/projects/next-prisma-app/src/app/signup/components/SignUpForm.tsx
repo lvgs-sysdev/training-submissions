@@ -31,11 +31,11 @@ export default function SignUpForm() {
 
   return (
     <div className="relative bg-white rounded shadow-2xl p-7 sm:p-10">
-      <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
-        Create an Account
-      </h3>
-
-      <Form action={formAction} buttonText="Sign Up">
+      <Form
+        action={formAction}
+        buttonText="Sign Up"
+        formTitle="Create an Account"
+      >
         <TextInput
           name="name"
           label="Name"
@@ -46,18 +46,6 @@ export default function SignUpForm() {
             (v) => (!v ? "名前は必須です" : undefined),
             (v) => (v.length < 2 ? "2文字以上入力してください" : undefined),
             (v) => (v.length > 50 ? "50文字以下で入力してください" : undefined),
-            (v) =>
-              /^[a-zA-Z0-9\s]+$/.test(v)
-                ? undefined
-                : "英数字とスペースのみ使用可能です",
-            (v) =>
-              /^[^\s]+$/.test(v) ? undefined : "先頭にスペースは使用できません",
-            (v) =>
-              /^[^\s]+$/.test(v) ? undefined : "末尾にスペースは使用できません",
-            (v) =>
-              /^[^\s]+$/.test(v)
-                ? undefined
-                : "連続するスペースは使用できません",
           ]}
         />
         <EmailInput

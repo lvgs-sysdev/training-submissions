@@ -1,14 +1,13 @@
 "use client";
 
+import { Form } from "@/components/form/Form";
+import { PasswordInput } from "@/components/inputs/PasswordInput";
+import { useTitle } from "@/hooks/useTitle";
 import { useActionState, useEffect } from "react";
-
+import { changePasswordAction } from "./actions/changePasswordActions";
 import { useLoading } from "@/context/LoadingContext";
 import { showErrorToast, showSuccessToast } from "@/utils/ToastUtils";
 import { useRouter } from "next/navigation";
-import { useTitle } from "@/hooks/useTitle";
-import { Form } from "@/components/form/Form";
-import { PasswordInput } from "@/components/inputs/PasswordInput";
-import { changePasswordAction } from "../mypage/change-password/actions/changePasswordActions";
 
 const ChangePassword: React.FC = () => {
   useTitle("パスワード変更");

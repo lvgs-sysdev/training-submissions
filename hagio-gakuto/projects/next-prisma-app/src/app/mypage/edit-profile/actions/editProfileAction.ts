@@ -24,7 +24,6 @@ export async function editProfileAction(
   prevState: FormState,
   formData: FormData
 ): Promise<FormState> {
-  console.log("editProfileAction called with formData:", formData);
   const result = EditProfileSchema.safeParse(
     Object.fromEntries(formData.entries())
   );
