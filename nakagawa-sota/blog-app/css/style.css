@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+}
+
+header {
+    position: fixed;
+    height: 90px;
+    width: 100%;
+    background-color: white;
+}
+
+footer {
+    display: flex;
+
+}
+
+img {
+    width: 100%;
+}

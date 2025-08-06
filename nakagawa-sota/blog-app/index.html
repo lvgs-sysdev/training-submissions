@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <title>DAYDAYTRAVEL</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header id="header"></header>
+    <main>
+        <div>
+            <img src="img/top-view-passport-tickets-camera.jpg" alt="hero">
+            <h1>Share your holiday stories.</h1>
+            <p>Write about your experiences while on holiday in various parts of indonesia, and reach a wide readership.</p>
+        </div>
+        <div>
+            <article>
+                <img src="">
+                <p>Travel</p><p>19 Feb 2020</p>
+                <h1>記事タイトル</h1>
+                <p>本文の一部を表示</p>
+            </article>
+            <article>
+                <img src="">
+                <p>Travel</p><p>19 Feb 2020</p>
+                <h1>記事タイトル</h1>
+                <p>本文の一部を表示</p>
+            </article>
+            <article>
+                <img src="">
+                <p>Travel</p><p>19 Feb 2020</p>
+                <h1>記事タイトル</h1>
+                <p>本文の一部を表示</p>
+            </article>
+            <article>
+                <img src="">
+                <p>Travel</p><p>19 Feb 2020</p>
+                <h1>記事タイトル</h1>
+                <p>本文の一部を表示</p>
+            </article>
+            <article>
+                <img src="">
+                <p>Travel</p><p>19 Feb 2020</p>
+                <h1>記事タイトル</h1>
+                <p>本文の一部を表示</p>
+            </article>
+            <article>
+                <img src="">
+                <p>Travel</p><p>19 Feb 2020</p>
+                <h1>記事タイトル</h1>
+                <p>本文の一部を表示</p>
+            </article>
+        </div>
+        <div>
+            <h1>人気記事（機能不要）</h1>
+            <p>記事タイトル</p>
+            <hr>
+            <p>記事タイトル</p>
+            <hr>
+            <p>記事タイトル</p>
+        </div>
+        <div>
+            <h1>もっと見る（機能不要）</h1>
+            <ul>
+                <li>Travel</li>
+                <li>Cullnary</li>
+            </ul>
+        </div>
+    </main>
+    <footer id="footer"></footer>
+    <script>
+        fetch("header.html")
+            .then((Response) => Response.text())
+            .then((data) => document.querySelector("#header").innerHTML = data);
+        fetch("footer.html")
+            .then((Response) => Response.text())
+            .then((data) => document.querySelector("#footer").innerHTML = data);
+    </script>
+</body>
+</html>
