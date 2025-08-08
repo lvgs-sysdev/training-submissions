@@ -1,0 +1,74 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets'; 
+import myImage from '../images/top-view-passport-tickets-camera.jpg';
+---
+
+<Layout>
+	<div id="hero">
+		<Image src={myImage} alt="" />
+		<h1>Share your holiday stories.</h1>
+		<p>Write about your experiences while on holiday in various parts of indonesia, and reach a wide readership.</p>
+	</div>
+	<div id="reviews">
+		<h1>一覧（新着順）</h1>
+		<article>
+			<img src="" alt="">
+			<p>Travel</p><p>19 Feb 2020</p>
+			<h1>記事タイトル</h1>
+			<p>本文の一部を表示</p>
+		</article>
+		<article>
+			<img src="" alt="">
+			<p>Travel</p><p>19 Feb 2020</p>
+			<h1>記事タイトル</h1>
+			<p>本文の一部を表示</p>
+		</article>
+		<article>
+			<img src="">
+			<p>Travel</p><p>19 Feb 2020</p>
+			<h1>記事タイトル</h1>
+			<p>本文の一部を表示</p>
+		</article>
+		<article>
+			<img src="">
+			<p>Travel</p><p>19 Feb 2020</p>
+			<h1>記事タイトル</h1>
+			<p>本文の一部を表示</p>
+		</article>
+		<article>
+			<img src="">
+			<p>Travel</p><p>19 Feb 2020</p>
+			<h1>記事タイトル</h1>
+			<p>本文の一部を表示</p>
+		</article>
+		<article>
+			<img src="">
+			<p>Travel</p><p>19 Feb 2020</p>
+			<h1>記事タイトル</h1>
+			<p>本文の一部を表示</p>
+		</article>
+	</div>
+	<div id="popular">
+		<h1>人気記事（機能不要）</h1>
+		<p>記事タイトル</p>
+		<hr>
+		<p>記事タイトル</p>
+		<hr>
+		<p>記事タイトル</p>
+	</div>
+	<div id="tags">
+		<h1>もっと見る（機能不要）</h1>
+		<ul>
+			<li>Travel</li>
+			<li>Cullnary</li>
+		</ul>
+	</div>
+</Layout>
+
+<style>
+	img {
+		width: 100%;
+		height: auto;
+	}
+</style>
