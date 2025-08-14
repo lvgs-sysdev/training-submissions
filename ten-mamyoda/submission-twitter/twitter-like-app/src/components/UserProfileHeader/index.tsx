@@ -1,5 +1,6 @@
 import styles from './UserProfileHeader.module.css';
 import { Link } from 'react-router-dom';
+import { CONFIG, ROUTES } from '../../constants';
 
 type Props = {
     userName: string;
@@ -18,23 +19,31 @@ export function UserProfileHeader({
     avatarImageUrl,
     isOwnPage,
 }: Props) {
+    const bannerUrl = bannerImageUrl
+        ? `${CONFIG.API_BASE_URL}${bannerImageUrl}`
+        : CONFIG.DEFAULT_BANNER_URL;
+
+    const avatarUrl = avatarImageUrl
+        ? `${CONFIG.API_BASE_URL}${avatarImageUrl}`
+        : CONFIG.DEFAULT_AVATAR_URL;
+
     return (
         <div className={styles.profileHeader}>
             <div
                 className={styles.profileBanner}
-                style={{ backgroundImage: `url(http://localhost:3000${bannerImageUrl})` }}
+                style={{ backgroundImage: `url(${bannerUrl})` }}
             ></div>
             <div className={styles.profileContent}>
                 <div className={styles.profileTopRow}>
                     <div className={styles.profileAvatarWrapper}>
                         <img
                             className={styles.profileAvatarImage}
-                            src={`http://localhost:3000${avatarImageUrl}`}
+                            src={avatarUrl}
                             alt={`${userName}のアバター`}
                         />
                     </div>
                     {isOwnPage && (
-                        <Link to="/profile/edit" className={styles.profileEditButton}>
+                        <Link to={ROUTES.EDIT_PROFILE} className={styles.profileEditButton}>
                             プロフィールを編集
                         </Link>
                     )}
@@ -48,4 +57,3 @@ export function UserProfileHeader({
         </div>
     );
 }
-

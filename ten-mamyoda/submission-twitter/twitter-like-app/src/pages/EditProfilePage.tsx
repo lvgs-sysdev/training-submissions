@@ -4,14 +4,13 @@ import { EditProfileCenterBar } from '../components/EditProfileCenterBar';
 import { useRecommendedUsers } from '../hooks/useRecommendedUsers';
 
 export function EditProfilePage() {
-    
-    const recommendedUsers = useRecommendedUsers();
+    const { users, loading, error } = useRecommendedUsers();
 
     return (
         <main>
             <SideBarA />
             <EditProfileCenterBar />
-            <SideBarB users={recommendedUsers} />
+            <SideBarB users={users} loading={loading} error={error} />
         </main>
     );
 }

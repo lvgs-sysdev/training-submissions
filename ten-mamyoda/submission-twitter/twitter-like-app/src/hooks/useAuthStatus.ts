@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { API_ENDPOINTS } from '../constants';
 
 type AuthStatus = {
     isLoggedIn: boolean;
@@ -14,7 +15,7 @@ export function useAuthStatus() {
 
     useEffect(() => {
         axios
-            .get('/api/users/auth/status', { withCredentials: true })
+            .get(API_ENDPOINTS.AUTH_STATUS, { withCredentials: true })
             .then((res) => setAuthStatus(res.data))
             .catch(() => setAuthStatus({ isLoggedIn: false, userId: null }));
     }, []);

@@ -1,4 +1,3 @@
-// src/pages/CreatePostPage.tsx
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -10,6 +9,7 @@ import { CreatePostCenterBar } from '../components/CreatePostCenterBar';
 import { convertFetchedToUser } from '../utils/convertUser';
 import type { FetchedUser, User } from '../types/user';
 import { useAuth } from '../context/AuthContext';
+import { API_ENDPOINTS, UI_MESSAGES } from '../constants';
 
 export function CreatePostPage() {
     const navigate = useNavigate();
@@ -18,8 +18,9 @@ export function CreatePostPage() {
 
     useEffect(() => {
         if (!authUser) return;
+
         axios
-            .get(`/api/users/profile/${authUser.account_id}`, { withCredentials: true })
+            .get(API_ENDPOINTS.USER_PROFILE(authUser.account_id), { withCredentials: true })
             .then((res) => {
                 const rawUser: FetchedUser = res.data.user;
                 setUser(convertFetchedToUser(rawUser));
@@ -33,10 +34,10 @@ export function CreatePostPage() {
         }
     }, [authUser, isLoading, navigate]);
 
-    if (isLoading) return <p>読み込み中...</p>;
+    if (isLoading) return <p>{UI_MESSAGES.LOADING}</p>;
     if (!authUser) return null;
-    if (user === undefined) return <p>ユーザー情報取得中...</p>;
-    if (user === null) return <p>ユーザー情報が取得できません。</p>;
+    if (user === undefined) return <p>{UI_MESSAGES.LOADING}</p>;
+    if (user === null) return <p>{UI_MESSAGES.USER_NOT_FOUND}</p>;
 
     return (
         <BaseLayout>

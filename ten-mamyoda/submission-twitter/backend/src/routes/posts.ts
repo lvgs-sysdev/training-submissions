@@ -2,7 +2,7 @@ import express from 'express';
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
-import { createPost } from '../controllers/createPost';
+import { createPost } from '../services/createPost';
 import { getAllPosts, getPostsByUser } from '../controllers/postController';
 
 const router = express.Router();
@@ -26,9 +26,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-/**
- * 画像単体アップロード用（CKEditor用など）
- */
 router.post('/upload', upload.single('upload'), (req, res) => {
     const fileName = req.file?.filename;
     if (!fileName) {
@@ -39,9 +36,6 @@ router.post('/upload', upload.single('upload'), (req, res) => {
     res.status(200).json({ imageUrl: `/postImage/${fileName}` });
 });
 
-/**
- * 投稿作成用API：本文＋画像パスをDBに保存
- */
 router.post('/', async (req, res) => {
     const { content, imagePath } = req.body;
     const userId = req.session.userId; // ここでUUIDv7を取得
@@ -60,9 +54,6 @@ router.post('/', async (req, res) => {
     }
 });
 
-/**
- * 全投稿取得
- */
 router.get('/', async (req, res) => {
     try {
         const posts = await getAllPosts();
@@ -73,9 +64,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-/**
- * 特定ユーザーの投稿取得
- */
 router.get('/by-user/:userId', async (req, res) => {
     try {
         const { userId } = req.params;

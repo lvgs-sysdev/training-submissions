@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './LoginForm.module.css';
 import { useAuth } from '../../context/AuthContext';
+import { API_ENDPOINTS, ROUTES, UI_MESSAGES } from '../../constants';
 
 export function LoginForm() {
     const navigate = useNavigate();
@@ -10,7 +11,7 @@ export function LoginForm() {
     const [userId, setUserId] = useState('');
     const [password, setPassword] = useState('');
 
-    // ここでエラーメッセージを管理
+    // エラーメッセージ管理
     const [userIdError, setUserIdError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [generalError, setGeneralError] = useState('');
@@ -18,51 +19,44 @@ export function LoginForm() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // まずはエラーをリセット
         setUserIdError('');
         setPasswordError('');
         setGeneralError('');
 
         let hasError = false;
 
-        // 簡単な入力チェック（必要なら拡張可能）
         if (!userId.trim()) {
-            setUserIdError('ユーザーIDは必須です。');
+            setUserIdError('ユーザーIDは必須です。'); // UI_MESSAGES に追加可能
             hasError = true;
         }
         if (!password) {
-            setPasswordError('パスワードは必須です。');
+            setPasswordError('パスワードは必須です。'); // UI_MESSAGES に追加可能
             hasError = true;
         }
 
         if (hasError) return;
 
         try {
-            const response = await fetch('http://localhost:3000/api/users/login', {
+            const response = await fetch(API_ENDPOINTS.LOGIN, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
-                body: JSON.stringify({
-                    accountId: userId,
-                    password: password,
-                }),
+                body: JSON.stringify({ accountId: userId, password }),
             });
+
             const data = await response.json();
 
             if (!response.ok) {
-                // 失敗時は汎用エラーとしてセット（バックエンドのメッセージを表示）
-                setGeneralError(data.message || 'ログインに失敗しました。');
+                setGeneralError(data.message || UI_MESSAGES.GENERAL_ERROR);
                 return;
             }
 
             login(data.user);
-            navigate('/');
+            navigate(ROUTES.HOME);
 
         } catch (error: any) {
             console.error('ログイン処理中にエラーが発生しました:', error);
-            setGeneralError('通信エラーが発生しました。再度お試しください。');
+            setGeneralError(UI_MESSAGES.NETWORK_ERROR);
         }
     };
 
@@ -97,7 +91,6 @@ export function LoginForm() {
                             </li>
                         </ul>
                     </div>
-                    {/* 全体のエラー表示 */}
                     {generalError && (
                         <p style={{ color: 'red', marginTop: '8px', textAlign: 'center' }}>
                             {generalError}
@@ -110,7 +103,7 @@ export function LoginForm() {
                 <div className={styles.goRegist}>
                     <hr />
                     <p className={styles.announce}>
-                        If you don't have an account, click <Link to="/register" className={styles.here}>here.</Link>
+                        If you don't have an account, click <Link to={ROUTES.REGISTER} className={styles.here}>here.</Link>
                     </p>
                 </div>
             </div>

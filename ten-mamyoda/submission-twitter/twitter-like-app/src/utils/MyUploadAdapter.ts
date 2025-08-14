@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { API_ENDPOINTS, CONFIG } from '../constants';
 
 export default class MyUploadAdapter {
     private loader: any;
@@ -15,7 +16,7 @@ export default class MyUploadAdapter {
         data.append('upload', file);
 
         try {
-            const res = await axios.post('/api/posts/upload', data, {
+            const res = await axios.post(API_ENDPOINTS.POST_UPLOAD, data, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -24,8 +25,8 @@ export default class MyUploadAdapter {
             // アップロードされた相対パス
             const relativePath = res.data.imageUrl;
 
-            // ✅ フルURLに変換（開発環境用に http://localhost:3000 を先頭に付加）
-            const uploadedUrl = `http://localhost:3000${relativePath}`;
+            // フルURLに変換
+            const uploadedUrl = `${CONFIG.API_BASE_URL}${relativePath}`;
 
             this.onSuccess(uploadedUrl); // 成功時コールバック
 

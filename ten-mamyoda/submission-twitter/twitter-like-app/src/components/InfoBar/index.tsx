@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import topPicture from '../../assets/topPicture.png';
 import styles from './InfoBar.module.css';
+import { ROUTES } from '../../constants';
 
 type InfoBarProps = {
   headline: string;
@@ -12,8 +13,8 @@ export function InfoBar({ headline, description }: InfoBarProps) {
     <div className={styles.infoBar}>
       <header className={styles.header}>
         <div className={styles.title}>
-          <Link to="/">
-          <img src={topPicture} className={styles.titleImg} alt="titleImage" />
+          <Link to={ROUTES.HOME}>
+            <img src={topPicture} className={styles.titleImg} alt="titleImage" />
             <h1 className={styles.titleContent}>Black Box</h1>
           </Link>
         </div>

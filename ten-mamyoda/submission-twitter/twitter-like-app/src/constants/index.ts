@@ -1,5 +1,3 @@
-// src/constants/index.ts
-
 export const UI_MESSAGES = {
     LOADING: '読み込み中...',
     POST_NOT_FOUND: '投稿が見つかりません',
@@ -41,31 +39,3 @@ export const CONFIG = {
     DEFAULT_AVATAR_URL: 'http://localhost:3000/images/default-avatar.png',
     DEFAULT_BANNER_URL: 'http://localhost:3000/images/default-banner.png',
 } as const;
-
-// ダミーデータ（実際のAPIができるまで使用）
-export const DUMMY_RECOMMENDED_USERS = [
-    {
-        id: '1',
-        name: '田中太郎',
-        userId: 'tanaka_taro',
-        imageUrl: '/images/default-avatar.png',
-        bio: 'プログラマーです',
-        bannerImageUrl: '/images/default-banner.png',
-    },
-    {
-        id: '2',
-        name: '佐藤花子',
-        userId: 'sato_hanako',
-        imageUrl: '/images/default-avatar.png',
-        bio: 'デザイナーです',
-        bannerImageUrl: '/images/default-banner.png',
-    },
-    {
-        id: '3',
-        name: 'Mike Johnson',
-        userId: 'mike_johnson',
-        imageUrl: '/images/default-avatar.png',
-        bio: 'Software Engineer',
-        bannerImageUrl: '/images/default-banner.png',
-    },
-] as const;

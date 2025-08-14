@@ -44,18 +44,15 @@ export async function createUser(accountId: string, plainPassword: string, userN
         return userWithoutPassword;
 
     } catch (error) {
-        // もしこの関数内でエラーが起きたら、それもログに出力する
         console.error('--- ❌ userServiceでエラーが発生しました ❌ ---', error);
-        // エラーをコントローラーに伝えるために、再度エラーを投げる
         throw error;
     }
 }
 
-// ユーザー情報の型（必要であれば）
 interface User extends RowDataPacket {
     id: string;
     account_id: string;
-    password: string; // ハッシュ化されたパスワード
+    password: string;
     user_name: string;
     user_image: string;
     user_contents: string | null;
@@ -70,7 +67,6 @@ export async function findUserByAccountId(accountId: string): Promise<User | nul
 
 
 export async function findUserById(id: string): Promise<User | null> {
-    // account_idも含め、すべてのカラムを取得するために SELECT * を使う
     const sql = 'SELECT * FROM users WHERE id = ?';
     const [rows] = await db.query<User[]>(sql, [id]);
 
@@ -107,7 +103,7 @@ export const checkUserIdExists = async (userId: string) => {
 
 type UpdateProfileParams = {
 
-    id: string;               // ← 内部ID(UUIDv7)、これでユーザーを一意に特定
+    id: string;
     name: string;
     bio: string;
     bannerImage?: string;
@@ -156,7 +152,6 @@ export const updateUserProfile = async ({
     }
 
     if (accountId) {
-        // ✅ 表に出てる account_id を更新
         queryParts.push('account_id = ?');
         params.push(accountId);
     }

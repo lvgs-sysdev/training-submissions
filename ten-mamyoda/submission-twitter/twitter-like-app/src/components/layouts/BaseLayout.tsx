@@ -1,4 +1,3 @@
-// src/components/layouts/BaseLayout.tsx
 import type { ReactNode } from 'react';
 import { SideBarA } from '../SideBarA';
 import { SideBarB } from '../SideBarB';

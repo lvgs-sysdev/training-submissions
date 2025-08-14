@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import styles from './SideBarB.module.css';
 import type { RecommendedUser } from '../../types/user';
-import { CONFIG } from '../../constants';
+import { CONFIG, UI_MESSAGES } from '../../constants';
 
 type SideBarBProps = {
     users?: RecommendedUser[];
@@ -19,19 +19,19 @@ export function SideBarB({ users = [], loading = false, error }: SideBarBProps) 
                     
                     {loading && (
                         <li style={{ padding: '1rem', textAlign: 'center', color: '#888' }}>
-                            読み込み中...
+                            {UI_MESSAGES.LOADING}
                         </li>
                     )}
                     
                     {error && (
                         <li style={{ padding: '1rem', textAlign: 'center', color: '#ff6b6b' }}>
-                            エラーが発生しました
+                            {UI_MESSAGES.GENERAL_ERROR}
                         </li>
                     )}
                     
                     {!loading && !error && users.length === 0 && (
                         <li style={{ padding: '1rem', textAlign: 'center', color: '#888' }}>
-                            おすすめユーザーが見つかりません
+                            {UI_MESSAGES.USER_NOT_FOUND}
                         </li>
                     )}
 

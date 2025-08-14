@@ -3,13 +3,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import styles from './EditProfileCenterBar.module.css';
 import { useAuth } from '../../context/AuthContext';
 import axios from 'axios';
-import { convertFetchedToUser } from '../../utils/convertUser'; // ✅ リファクタ: FetchedUser -> User 変換関数を分離
+import { convertFetchedToUser } from '../../utils/convertUser';
 import type { FetchedUser } from '../../types/user';
+import { UI_MESSAGES, ROUTES, API_ENDPOINTS, CONFIG } from '../../constants';
 
-const DEFAULT_AVATAR_URL = 'http://localhost:3000/images/default-avatar.png';
-const DEFAULT_BANNER_URL = 'http://localhost:3000/images/default-banner.png';
-
-// ✅ 型をコンポーネント内に閉じず、共通化しても良い
 type ProfileFormData = {
     name: string;
     userId: string;
@@ -26,19 +23,20 @@ export function EditProfileCenterBar() {
         bio: '',
     });
 
-    const [avatarPreview, setAvatarPreview] = useState(DEFAULT_AVATAR_URL);
-    const [bannerPreview, setBannerPreview] = useState(DEFAULT_BANNER_URL);
-    const [originalAvatarUrl, setOriginalAvatarUrl] = useState(DEFAULT_AVATAR_URL);
+    // ✅ 型エラー回避のため string 型を明示
+    const [avatarPreview, setAvatarPreview] = useState<string>(CONFIG.DEFAULT_AVATAR_URL);
+    const [bannerPreview, setBannerPreview] = useState<string>(CONFIG.DEFAULT_BANNER_URL);
+    const [originalAvatarUrl, setOriginalAvatarUrl] = useState<string>(CONFIG.DEFAULT_AVATAR_URL);
 
     const [avatarFile, setAvatarFile] = useState<File | null>(null);
     const [bannerFile, setBannerFile] = useState<File | null>(null);
-    const [deleteProfileImage, setDeleteProfileImage] = useState(false);
+    const [deleteProfileImage, setDeleteProfileImage] = useState<boolean>(false);
 
     useEffect(() => {
         if (!authUser?.account_id) return;
 
         axios
-            .get(`/api/users/profile/${authUser.account_id}`, { withCredentials: true })
+            .get(API_ENDPOINTS.USER_PROFILE(authUser.account_id), { withCredentials: true })
             .then((res) => {
                 const userData = res.data.user;
 
@@ -49,11 +47,11 @@ export function EditProfileCenterBar() {
                 });
 
                 const avatarUrl = userData.avatarImageUrl
-                    ? `http://localhost:3000${userData.avatarImageUrl}`
-                    : DEFAULT_AVATAR_URL;
+                    ? `${CONFIG.API_BASE_URL}${userData.avatarImageUrl}`
+                    : CONFIG.DEFAULT_AVATAR_URL;
                 const bannerUrl = userData.bannerImageUrl
-                    ? `http://localhost:3000${userData.bannerImageUrl}`
-                    : DEFAULT_BANNER_URL;
+                    ? `${CONFIG.API_BASE_URL}${userData.bannerImageUrl}`
+                    : CONFIG.DEFAULT_BANNER_URL;
 
                 setAvatarPreview(avatarUrl);
                 setBannerPreview(bannerUrl);
@@ -61,7 +59,6 @@ export function EditProfileCenterBar() {
             })
             .catch((err) => {
                 console.error('プロフィール詳細の取得に失敗しました:', err);
-                // エラーが発生した場合、認証ユーザー情報から初期値を設定
                 if (authUser) {
                     setFormData({
                         name: authUser.user_name || '',
@@ -73,7 +70,7 @@ export function EditProfileCenterBar() {
     }, [authUser]);
 
     const revokeIfBlob = (url: string) => {
-        if (url.startsWith('blob:')) URL.revokeObjectURL(url); // ✅ リファクタ: blob破棄の共通化
+        if (url.startsWith('blob:')) URL.revokeObjectURL(url);
     };
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, type: 'avatar' | 'banner') => {
@@ -101,7 +98,11 @@ export function EditProfileCenterBar() {
         if (!checked && avatarFile) revokeIfBlob(avatarPreview);
 
         setAvatarPreview(
-            checked ? DEFAULT_AVATAR_URL : avatarFile ? URL.createObjectURL(avatarFile) : originalAvatarUrl
+            checked
+                ? CONFIG.DEFAULT_AVATAR_URL
+                : avatarFile
+                ? URL.createObjectURL(avatarFile)
+                : originalAvatarUrl
         );
     };
 
@@ -116,7 +117,7 @@ export function EditProfileCenterBar() {
         try {
             const data = new FormData();
             if (!authUser?.id) {
-                alert('ユーザー情報が取得できていません。ログイン状態を確認してください。');
+                alert(UI_MESSAGES.LOGIN_REQUIRED);
                 return;
             }
             data.append('id', authUser.id);
@@ -128,22 +129,22 @@ export function EditProfileCenterBar() {
             if (avatarFile) data.append('avatarImage', avatarFile);
             data.append('deleteProfileImage', deleteProfileImage ? 'true' : 'false');
 
-            await axios.post('/api/users/profile/update', data, {
+            await axios.post(API_ENDPOINTS.USER_PROFILE_UPDATE, data, {
                 withCredentials: true,
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
 
-            const res = await axios.get(`/api/users/profile/${formData.userId}`, { withCredentials: true });
+            const res = await axios.get(API_ENDPOINTS.USER_PROFILE(formData.userId), { withCredentials: true });
             const fetchedUser: FetchedUser = res.data.user;
-            setUser(convertFetchedToUser(fetchedUser)); // ✅ 明示的な変換を使用
+            setUser(convertFetchedToUser(fetchedUser));
 
-            navigate(`/user/${formData.userId}`);
+            navigate(ROUTES.USER_PROFILE(formData.userId));
         } catch (err: any) {
             console.error(err);
             if (err.response?.status === 409) {
-                alert('そのユーザーIDは既に使用されています。別のユーザーIDを選択してください。');
+                alert(UI_MESSAGES.DUPLICATE_USER_ID);
             } else {
-                alert('プロフィールの更新中にエラーが発生しました。');
+                alert(UI_MESSAGES.GENERAL_ERROR);
             }
         }
     };
@@ -153,7 +154,7 @@ export function EditProfileCenterBar() {
             <header>
                 <div id="headerBox">
                     <div id="title">
-                        <Link to={`/user/${formData.userId}`} className="backButton">←</Link>
+                        <Link to={ROUTES.USER_PROFILE(formData.userId)} className="backButton">←</Link>
                     </div>
                     <button type="submit" form="profileEditForm" className="postButton">
                         保存
@@ -164,19 +165,37 @@ export function EditProfileCenterBar() {
             <form className={styles.profileEditForm} id="profileEditForm" onSubmit={handleSubmit}>
                 <div className={styles.editHeaderImages}>
                     <div className={styles.editBannerContainer}>
-                        <div className={styles.editBannerPreview} style={{ backgroundImage: `url(${bannerPreview})` }}>
+                        <div
+                            className={styles.editBannerPreview}
+                            style={{ backgroundImage: `url(${bannerPreview})` }}
+                        >
                             <div className={styles.imageActionOverlay}>
                                 <label htmlFor="bannerImage" className={styles.imageUploadLabel}>📷</label>
-                                <input type="file" id="bannerImage" accept="image/*" hidden onChange={(e) => handleFileChange(e, 'banner')} />
+                                <input
+                                    type="file"
+                                    id="bannerImage"
+                                    accept="image/*"
+                                    hidden
+                                    onChange={(e) => handleFileChange(e, 'banner')}
+                                />
                             </div>
                         </div>
                     </div>
 
                     <div className={styles.editAvatarContainer}>
-                        <div className={styles.editAvatarPreview} style={{ backgroundImage: `url(${avatarPreview})` }}>
+                        <div
+                            className={styles.editAvatarPreview}
+                            style={{ backgroundImage: `url(${avatarPreview})` }}
+                        >
                             <div className={styles.imageActionOverlay}>
                                 <label htmlFor="profileImage" className={styles.imageUploadLabel}>📷</label>
-                                <input type="file" id="profileImage" accept="image/*" hidden onChange={(e) => handleFileChange(e, 'avatar')} />
+                                <input
+                                    type="file"
+                                    id="profileImage"
+                                    accept="image/*"
+                                    hidden
+                                    onChange={(e) => handleFileChange(e, 'avatar')}
+                                />
                             </div>
                         </div>
                     </div>

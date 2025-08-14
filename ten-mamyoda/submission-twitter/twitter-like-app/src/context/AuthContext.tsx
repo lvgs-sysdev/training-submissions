@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
-import type { User, FetchedUser,AuthContextType } from '../types/user';
+import type { User, FetchedUser, AuthContextType } from '../types/user';
+import { API_ENDPOINTS } from '../constants';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -10,14 +11,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     useEffect(() => {
         axios
-            .get('/api/users/auth/status', { withCredentials: true })
+            .get(API_ENDPOINTS.AUTH_STATUS, { withCredentials: true })
             .then(async (res) => {
                 if (res.data.isLoggedIn) {
                     const basicUser = res.data.user;
 
-                    const profileRes = await axios.get(`/api/users/profile/${basicUser.account_id}`, {
-                        withCredentials: true,
-                    });
+                    const profileRes = await axios.get(
+                        API_ENDPOINTS.USER_PROFILE(basicUser.account_id),
+                        { withCredentials: true }
+                    );
 
                     const fullUser: FetchedUser = profileRes.data.user;
 
@@ -40,7 +42,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const login = (userData: User) => setUser(userData);
 
     const logout = async () => {
-        await axios.post('/api/users/auth/logout', {}, { withCredentials: true });
+        await axios.post(API_ENDPOINTS.LOGOUT, {}, { withCredentials: true });
         setUser(null);
     };
 

@@ -144,7 +144,7 @@ export const getUserProfile = async (req: Request, res: Response, next: NextFunc
             avatarImageUrl: userFromDb.user_image,
         };
 
-        res.json({ user });  // 戻り値は使わない
+        res.json({ user });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: '内部サーバーエラー' });
@@ -175,7 +175,6 @@ export const updateUserProfile = async (req: Request, res: Response) => {
 
         const deleteAvatar = req.body.deleteProfileImage === 'true';
 
-        // ユーザーIDの変更がある場合の重複チェック
         if (user.accountId && user.accountId !== user.userId) {
             const exists = await UserService.checkUserIdExists(user.accountId);
             if (exists) {

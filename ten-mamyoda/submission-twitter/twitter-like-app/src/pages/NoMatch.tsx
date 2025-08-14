@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { BaseLayout } from '../components/layouts/BaseLayout';
 import { CenterBarLayout } from '../components/layouts/CenterBarLayout';
+import { ROUTES } from '../constants';
 
 export function NoMatch() {
     return (
@@ -25,7 +26,7 @@ export function NoMatch() {
                 >
                     <h1>404</h1>
                     <p>お探しのページは存在しないか、移動した可能性があります。</p>
-                    <Link to="/" style={{ color: '#1d9bf0', textDecoration: 'underline' }}>
+                    <Link to={ROUTES.CREATE_POST} style={{ color: '#1d9bf0', textDecoration: 'underline' }}>
                         ホームページに戻る
                     </Link>
                 </div>

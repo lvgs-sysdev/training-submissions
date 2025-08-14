@@ -1,4 +1,3 @@
-// src/components/layouts/CenterBarLayout.tsx
 import type { ReactNode } from 'react';
 
 type CenterBarLayoutProps = {
