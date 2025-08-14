@@ -13,7 +13,11 @@ export default function PropertyList({
       key={property.id}
       className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 h-120 overflow-auto"
     >
-      <Link href={`/properties/property/${property.id}`}>
+      <Link
+        href={`/properties/property/${property.id}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <Image
           src={property.photos[0]}
           alt={property.name}

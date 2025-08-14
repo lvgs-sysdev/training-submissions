@@ -4,10 +4,12 @@ import { Property } from "@/types/PropertyType";
 import { useEffect, useState, useCallback } from "react";
 import PropertyList from "./PropertyList";
 import { useLoading } from "@/context/LoadingContext";
+import PropertySearchForm, { SearchFilters } from "./PropertySearchForm";
 
 export default function PropertySearchPage() {
   const [properties, setProperties] = useState<Property[]>([]);
   const [withinNeighborhood, setWithinNeighborhood] = useState<boolean>(true);
+  const [filters, setFilters] = useState<SearchFilters | null>(null);
   const limit = 9; // ページあたりの物件数
   const [offset, setOffset] = useState(0);
   const [count, setCount] = useState(0);
@@ -17,23 +19,32 @@ export default function PropertySearchPage() {
   const fetchProperties = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(
-        `/api/properties?limit=${limit}&offset=${offset}&withinNeighborhood=${withinNeighborhood}&sortBy=${sortBy}`
-      );
+      const params = {
+        limit,
+        offset,
+        sortBy,
+        // スプレッド構文でfiltersオブジェクトの中身を展開してマージ
+        ...(filters || {}),
+      };
+
+      const query = new URLSearchParams(params as any).toString();
+
+      const response = await fetch(`/api/properties?${query}`);
       if (!response.ok) {
         throw new Error("Failed to fetch");
       }
       const result = await response.json();
       // ★ オブジェクト形式のレスポンスを正しく受け取る
-      setProperties(result[1]);
-      setCount(result[0]);
+
+      setProperties(result.properties);
+      setCount(result.count);
     } catch {
       setProperties([]);
       setCount(0);
     } finally {
       setIsLoading(false);
     }
-  }, [limit, offset, withinNeighborhood, sortBy, setIsLoading]);
+  }, [limit, offset, withinNeighborhood, sortBy, setIsLoading, filters]);
 
   useEffect(() => {
     fetchProperties();
@@ -53,11 +64,36 @@ export default function PropertySearchPage() {
     }
   };
 
+  // PropertySearchFormから検索条件を受け取る関数
+  const handleSearch = (newFilters: SearchFilters) => {
+    setFilters(newFilters);
+  };
+
+  console.log(filters);
+
   return (
-    <div className="font-sans container mx-auto px-4 py-8">
+    <div className="font-sans container mx-auto px-4 py-4">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold text-gray-900">物件一覧</h1>
-        {/* ★ 4. 並び替え用のUIを追加 */}
+      </div>
+      <div className="my-8">
+        <PropertySearchForm onSearch={handleSearch} />
+      </div>
+
+      <div className="flex justify-between items-center mb-8">
+        <label className="inline-flex items-center cursor-pointer">
+          <input
+            type="checkbox"
+            checked={withinNeighborhood}
+            className="sr-only peer"
+            readOnly
+            onClick={() => setWithinNeighborhood(!withinNeighborhood)}
+          />
+          <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600"></div>
+          <span className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">
+            ご近所手当範囲内のみを表示
+          </span>
+        </label>
         <select
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value)}
@@ -69,19 +105,7 @@ export default function PropertySearchPage() {
           <option value="age_asc">築年数が新しい順</option>
         </select>
       </div>
-      <label className="inline-flex items-center cursor-pointer">
-        <input
-          type="checkbox"
-          checked={withinNeighborhood}
-          className="sr-only peer"
-          readOnly
-          onClick={() => setWithinNeighborhood(!withinNeighborhood)}
-        />
-        <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600"></div>
-        <span className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">
-          ご近所手当範囲内のみを表示
-        </span>
-      </label>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {properties.map((property) => (
           <PropertyList key={property.id} property={property} />
