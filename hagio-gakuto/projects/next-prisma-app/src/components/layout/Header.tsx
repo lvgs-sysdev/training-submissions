@@ -8,7 +8,7 @@ export default function Header() {
   const { user } = useAuth(); // Contextからuserとlogoutを取得
   const navLinks = [
     { href: "/", name: "Home" },
-
+    { href: "/properties", name: "Properties" },
     { href: "/about", name: "About us" },
   ];
   console.log("Current user:", user); // デバッグ用に現在のユーザーを表示
@@ -42,7 +42,7 @@ export default function Header() {
               Company
             </span>
           </a>
-          <ul className="flex items-center hidden space-x-8 lg:flex">
+          <ul className=" items-center  space-x-8 lg:flex">
             {navLinks.map((link) => (
               <li key={link.name}>
                 <Nav href={link.href} name={link.name} />

@@ -3,9 +3,7 @@
 import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 import LogoutButton from "./LogoutButton";
-
 import Link from "next/link";
-
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import PersonOffIcon from "@mui/icons-material/PersonOff";
@@ -22,7 +20,7 @@ export default function MyInfoCard() {
               src={user?.avatar_url || "/images/avatars/default-avatar.png"}
               alt="User Avatar"
               fill
-              priority
+              // priority
               sizes="96px"
               className="rounded-full object-cover ring-4 ring-sky-500"
             />
@@ -43,7 +41,7 @@ export default function MyInfoCard() {
 
           <Link
             href="/mypage/change-password"
-            className="w-full text-center px-4 py-3 font-semibold text-white bg-slate-600 rounded-lg hover:bg-slate-700 transition-all duration-200 flex items-center justify-center"
+            className="w-full text-center px-4 py-3 font-semibold text-white bg-green-600 rounded-lg hover:bg-green-700 transition-all duration-200 flex items-center justify-center"
           >
             <VpnKeyIcon className="inline mr-2" />
             パスワードを変更

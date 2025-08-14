@@ -39,7 +39,7 @@ export default function DeleteAccountForm() {
         <Form
           action={formAction}
           buttonText="アカウントを削除"
-          formTitle="アカウント削除"
+          formTitle="Delete Account"
           confirmationMessage="本当にアカウントを削除しますか？この操作は元に戻せません。"
         >
           <PasswordInput

@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import React from "react"; // JSX内でReactNodeを使うため
 
+// ホームアイコン用のSVGコンポーネント
 const HomeIcon = () => (
   <svg
     className="w-3 h-3 me-2.5"
@@ -16,9 +17,10 @@ const HomeIcon = () => (
   </svg>
 );
 
+// 区切り文字用のSVGコンポーネント
 const SeparatorIcon = () => (
   <svg
-    className="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1"
+    className="rtl:rotate-180 w-3 h-3 text-gray-400"
     aria-hidden="true"
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -35,53 +37,72 @@ const SeparatorIcon = () => (
 );
 
 const Breadcrumbs = () => {
-  const pathname = usePathname(); // ★ useLocationからusePathnameに変更
-  const pathnames = pathname.split("/").filter((x) => x);
+  const pathname = usePathname();
+  let pathSegments = pathname.split("/").filter((x) => x);
 
-  // ★ URLのパス名(kebab-case)に合わせる
-  const breadcrumbNameMap: { [key: string]: string } = {
-    login: "Login",
-    signup: "Sign Up",
-    mypage: "My Page",
-    about: "About us",
-    "change-password": "Change Password",
-    "edit-profile": "Edit Profile",
-    "delete-account": "Delete Account",
-    "product-pricing": "Product Pricing",
+  // ★ 1. 配列を加工するロジック
+  if (pathSegments.length > 2 && pathSegments.includes("property")) {
+    const index = pathSegments.indexOf("property");
+    const tempId = pathSegments[index + 1];
+    pathSegments = pathSegments.filter((p) => p !== tempId);
+    pathSegments[index] += `/${tempId}`;
+  }
+
+  // URLのパス名と表示名を対応させるためのマップ
+  const breadcrumbNameMap: { [key: string]: React.ReactNode } = {
+    login: "ログイン",
+    signup: "会員登録",
+    mypage: "マイページ",
+    about: "会社概要",
+    properties: "物件一覧",
+    property: "物件詳細",
+    "change-password": "パスワード変更",
+    "edit-profile": "プロフィール編集",
+    "delete-account": "アカウント削除",
   };
 
   return (
     <nav className="flex mb-4" aria-label="Breadcrumb">
       <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+        {/* ホームへの固定リンク */}
         <li className="inline-flex items-center">
           <Link
             href="/"
-            className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
+            className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600"
           >
             <HomeIcon />
             Home
           </Link>
         </li>
 
-        {pathnames.map((value, index) => {
-          const to = `/${pathnames.slice(0, index + 1).join("/")}`;
-          const isLast = index === pathnames.length - 1;
-          const name = breadcrumbNameMap[value] || value;
+        {/* 動的に生成されるパンくずリスト */}
+        {pathSegments.map((segment, index) => {
+          const href = `/${pathSegments.slice(0, index + 1).join("/")}`;
+          const isLast = index === pathSegments.length - 1;
+          let displayName: React.ReactNode =
+            breadcrumbNameMap[segment] || segment;
+
+          // ★ ロジック修正: 最後の項目で、かつ親が'properties'なら表示名を上書き
+          if (pathSegments[index - 1] === "properties") {
+            displayName = "物件詳細";
+          }
 
           return (
-            <li key={to} {...(isLast ? { "aria-current": "page" } : {})}>
+            <li key={href}>
               <div className="flex items-center">
                 <SeparatorIcon />
                 {isLast ? (
-                  <span className="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">
-                    {decodeURIComponent(name)}
+                  // 最後の項目はリンクではなく、テキストとして表示
+                  <span className="ms-1 text-sm font-medium text-gray-500">
+                    {displayName}
                   </span>
                 ) : (
+                  // 途中の項目はリンクとして表示
                   <Link
-                    href={to} // ★ to={to} から href={to} に変更
-                    className="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white"
+                    href={href}
+                    className="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600"
                   >
-                    {decodeURIComponent(name)}
+                    {displayName}
                   </Link>
                 )}
               </div>

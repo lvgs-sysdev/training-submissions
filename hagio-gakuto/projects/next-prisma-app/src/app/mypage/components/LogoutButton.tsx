@@ -23,7 +23,7 @@ export default function LogoutButton() {
   return (
     <button
       onClick={handleLogout}
-      className="w-full text-center px-4 py-3 font-semibold text-red-600 bg-red-100 rounded-lg hover:bg-red-200 transition-all duration-200 cursor-pointer flex items-center justify-center"
+      className="w-full text-center px-4 py-3 font-semibold text-white bg-slate-600 rounded-lg hover:bg-slate-700 transition-all duration-200 flex items-center justify-center"
     >
       <LogoutIcon className="inline mr-2" />
       ログアウト
