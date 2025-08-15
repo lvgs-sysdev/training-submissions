@@ -9,6 +9,7 @@ export default function Header() {
   const navLinks = [
     { href: "/", name: "Home" },
     { href: "/properties", name: "Properties" },
+    { href: "/moving", name: "Moving" },
     { href: "/about", name: "About us" },
   ];
   console.log("Current user:", user); // デバッグ用に現在のユーザーを表示
@@ -38,7 +39,7 @@ export default function Header() {
               <rect x="14" y="1" width="7" height="6" />
               <rect x="14" y="11" width="7" height="12" />
             </svg>
-            <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
+            <span className="ml-2 text-xl font-bold tracking-wide  uppercase">
               Company
             </span>
           </a>

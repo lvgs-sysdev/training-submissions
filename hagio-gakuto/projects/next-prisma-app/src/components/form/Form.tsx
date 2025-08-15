@@ -20,7 +20,7 @@ function SubmitButton({ text }: { readonly text: string }) {
       <button
         type="submit"
         disabled={pending}
-        className="inline-flex items-center cursor-pointer justify-center w-full h-12 px-6 font-medium tracking-wide transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+        className="inline-flex items-center cursor-pointer justify-center w-full h-12 px-6 font-medium tracking-wide transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none dark:text-gray-600"
         style={{ opacity: pending ? 0.5 : 1 }}
       >
         {pending ? "送信中..." : text}
@@ -46,7 +46,7 @@ export function Form({
   };
   return (
     <form action={action} onSubmit={handleSubmit}>
-      <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
+      <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl dark:text-gray-600">
         {formTitle}
       </h3>
       {children}

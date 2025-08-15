@@ -11,6 +11,7 @@ import Footer from "@/components/layout/Footer";
 import { AuthProvider } from "@/context/AuthContext";
 import { LoadingProvider } from "@/context/LoadingContext";
 import { Loading } from "@/components/layout/Loading";
+import ThemeProvider from "@/theme/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,21 +30,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
-      <body className={inter.className}>
+    <html lang="ja" suppressHydrationWarning>
+      <body className={`${inter.className} bg-background text-foreground`}>
         <ToastContainer />
-        <LoadingProvider>
-          <AuthProvider>
-            <Header />
-            <Loading />
-            <main className="mx-auto max-w-screen-xl  bg-gray-50">
-              <div className="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-4">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <LoadingProvider>
+            <AuthProvider>
+              <Header />
+              <Loading />
+              <main className="mx-auto max-w-screen-xl py-4 px-8 bg-gray-50 dark:bg-gray-800">
+                {/* <div className="px-4 py-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-4"> */}
                 {children}
-              </div>
-            </main>
-            <Footer />
-          </AuthProvider>
-        </LoadingProvider>
+                {/* </div> */}
+              </main>
+              <Footer />
+            </AuthProvider>
+          </LoadingProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

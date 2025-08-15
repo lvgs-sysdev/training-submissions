@@ -8,11 +8,12 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import PersonOffIcon from "@mui/icons-material/PersonOff";
 
+import ThemeToggle from "@/theme/theme-toggle";
+
 export default function MyInfoCard() {
   const { user } = useAuth();
-
   return (
-    <div className="bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 p-10 bg-white rounded-xl shadow-lg">
         <div className="text-center">
           <div className="relative w-24 h-24 mx-auto mb-4">
@@ -55,6 +56,7 @@ export default function MyInfoCard() {
             アカウントを削除
           </Link>
           <LogoutButton />
+          <ThemeToggle />
         </div>
       </div>
     </div>

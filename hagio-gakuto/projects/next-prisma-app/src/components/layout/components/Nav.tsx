@@ -23,7 +23,7 @@ export default function Nav({ href, name }: Readonly<Props>) {
         // 条件付きのスタイル
         {
           "bg-sky-100 text-sky-700": pathname === href, // アクティブ時のスタイル
-          "text-gray-700 hover:bg-sky-700 hover:text-white hover:-translate-y-0.5":
+          " hover:bg-sky-700 hover:text-white hover:-translate-y-0.5":
             pathname !== href, // 非アクティブ時のスタイル
         }
       )}

@@ -41,10 +41,10 @@ export default function PropertyDetailInfo({
   return (
     <>
       <div className="flex justify-between items-center my-8">
-        <h1 className="text-3xl font-bold text-gray-900">物件一覧</h1>
+        <h1 className="text-3xl font-bold light:text-gray-900">物件詳細</h1>
         <button
           onClick={handleToggleFavorite}
-          className=" p-2 bg-white/70 backdrop-blur-sm rounded-full text-gray-700 hover:text-red-500 cursor-pointer hover:scale-110 transition-all duration-200 focus:outline-none"
+          className=" p-2 bg-white/70 backdrop-blur-sm rounded-full text-gray-700 hover:text-red-500 cursor-pointer hover:scale-110 transition-all duration-200 focus:outline-none border"
           aria-label="お気に入りに追加"
         >
           {favorite ? (

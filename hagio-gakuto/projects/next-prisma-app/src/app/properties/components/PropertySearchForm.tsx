@@ -43,7 +43,7 @@ export default function PropertySearchForm({ onSearch }: Readonly<Props>) {
   };
 
   return (
-    <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+    <div className=" p-6 rounded-xl shadow-lg border border-gray-200">
       <h2 className="text-xl font-bold text-gray-800 mb-6">検索条件</h2>
       <form onSubmit={handleSubmit}>
         {/* 賃料 */}
@@ -52,7 +52,7 @@ export default function PropertySearchForm({ onSearch }: Readonly<Props>) {
           <div className="col-span-1">
             <label
               htmlFor="price"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium light:text-gray-700"
             >
               賃料
             </label>
@@ -62,7 +62,7 @@ export default function PropertySearchForm({ onSearch }: Readonly<Props>) {
                 name="price-min"
                 value={priceMin}
                 onChange={(e) => setPriceMin(e.target.value)}
-                className="w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500"
+                className="w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500  border p-2"
               >
                 <option value="">下限なし</option>
                 <option value="50000">5万円</option>
@@ -75,7 +75,7 @@ export default function PropertySearchForm({ onSearch }: Readonly<Props>) {
                 name="price-max"
                 value={priceMax}
                 onChange={(e) => setPriceMax(e.target.value)}
-                className="w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500"
+                className="w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500 border p-2"
               >
                 <option value="">上限なし</option>
                 <option value="80000">8万円</option>
@@ -89,7 +89,7 @@ export default function PropertySearchForm({ onSearch }: Readonly<Props>) {
           <div className="col-span-1">
             <label
               htmlFor="layout"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium light:text-gray-700"
             >
               間取り
             </label>
@@ -108,7 +108,7 @@ export default function PropertySearchForm({ onSearch }: Readonly<Props>) {
                     />
                     <label
                       htmlFor={`layout-${layout}`}
-                      className="ml-2 text-sm text-gray-600"
+                      className="ml-2 text-sm light:text-gray-600"
                     >
                       {layout}
                     </label>
@@ -122,7 +122,7 @@ export default function PropertySearchForm({ onSearch }: Readonly<Props>) {
           <div className="col-span-1">
             <label
               htmlFor="area"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium light:text-gray-700"
             >
               平米数
             </label>
@@ -131,7 +131,7 @@ export default function PropertySearchForm({ onSearch }: Readonly<Props>) {
               name="area"
               value={area}
               onChange={(e) => setArea(e.target.value)}
-              className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500"
+              className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500 border p-2"
             >
               <option value="">指定なし</option>
               <option value="20">20㎡以上</option>
@@ -145,7 +145,7 @@ export default function PropertySearchForm({ onSearch }: Readonly<Props>) {
           <div className="col-span-1">
             <label
               htmlFor="walk"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium light:text-gray-700"
             >
               駅徒歩
             </label>
@@ -154,7 +154,7 @@ export default function PropertySearchForm({ onSearch }: Readonly<Props>) {
               name="walk"
               value={walk}
               onChange={(e) => setWalk(e.target.value)}
-              className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500"
+              className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500 border p-2"
             >
               <option value="">指定なし</option>
               <option value="1">1分以内</option>
@@ -168,7 +168,7 @@ export default function PropertySearchForm({ onSearch }: Readonly<Props>) {
           <div className="col-span-1">
             <label
               htmlFor="age"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium light:text-gray-700"
             >
               築年数
             </label>
@@ -177,7 +177,7 @@ export default function PropertySearchForm({ onSearch }: Readonly<Props>) {
               name="age"
               value={age}
               onChange={(e) => setAge(e.target.value)}
-              className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500"
+              className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500 border p-2"
             >
               <option value="">指定なし</option>
               <option value="1">新築・1年以内</option>
@@ -191,7 +191,7 @@ export default function PropertySearchForm({ onSearch }: Readonly<Props>) {
           <div className="col-span-1">
             <label
               htmlFor="floor"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium light:text-gray-700"
             >
               階数
             </label>
@@ -205,7 +205,10 @@ export default function PropertySearchForm({ onSearch }: Readonly<Props>) {
                 value="2"
                 className="h-4 w-4 text-sky-600 border-gray-300 rounded focus:ring-sky-500"
               />
-              <label htmlFor="floor-2" className="ml-2 text-sm text-gray-600">
+              <label
+                htmlFor="floor-2"
+                className="ml-2 text-sm light:text-gray-600"
+              >
                 2階以上
               </label>
             </div>

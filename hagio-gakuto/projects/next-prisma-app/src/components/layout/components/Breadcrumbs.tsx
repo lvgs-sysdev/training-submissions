@@ -39,7 +39,6 @@ const SeparatorIcon = () => (
 const Breadcrumbs = () => {
   const pathname = usePathname();
   let pathSegments = pathname.split("/").filter((x) => x);
-  console.log(pathSegments);
 
   if (pathSegments.length > 2 && pathSegments.includes("property")) {
     const index = pathSegments.indexOf("property");
@@ -53,13 +52,15 @@ const Breadcrumbs = () => {
     login: "ログイン",
     signup: "会員登録",
     mypage: "マイページ",
-    about: "会社概要",
+    about: "概要",
     properties: "物件一覧",
     property: "物件詳細",
     "change-password": "パスワード変更",
     "edit-profile": "プロフィール編集",
     "delete-account": "アカウント削除",
     favorite: "お気に入り一覧",
+    moving: "引越し",
+    todo: "引越しやることリスト",
   };
 
   return (
@@ -69,7 +70,7 @@ const Breadcrumbs = () => {
         <li className="inline-flex items-center">
           <Link
             href="/"
-            className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600"
+            className="inline-flex items-center text-sm font-medium  hover:text-blue-600"
           >
             <HomeIcon />
             Home
@@ -97,14 +98,14 @@ const Breadcrumbs = () => {
                 <SeparatorIcon />
                 {isLast ? (
                   // 最後の項目はリンクではなく、テキストとして表示
-                  <span className="ms-1 text-sm font-medium text-gray-500">
+                  <span className="ms-1 text-sm font-medium light:text-gray-500">
                     {displayName}
                   </span>
                 ) : (
                   // 途中の項目はリンクとして表示
                   <Link
                     href={href}
-                    className="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600"
+                    className="ms-1 text-sm font-medium light:text-gray-700 hover:text-blue-600"
                   >
                     {displayName}
                   </Link>

@@ -75,10 +75,10 @@ export default function PropertySearchPage() {
   return (
     <div className="font-sans container mx-auto px-4 py-4">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">物件一覧</h1>
+        <h1 className="text-3xl font-bold light:text-gray-900">物件一覧</h1>
         <Link
           href="/properties/favorite"
-          className=" p-2 bg-white/70 backdrop-blur-sm rounded-full text-gray-700 hover:text-red-500 cursor-pointer hover:scale-110 transition-all duration-200 focus:outline-none"
+          className=" p-2 bg-white/70 backdrop-blur-sm rounded-full text-gray-700 hover:text-red-500 cursor-pointer hover:scale-110 transition-all duration-200 focus:outline-none border"
           aria-label="お気に入り一覧"
         >
           <FavoriteIcon className="text-red-500" />
@@ -97,8 +97,8 @@ export default function PropertySearchPage() {
             readOnly
             onClick={() => setWithinNeighborhood(!withinNeighborhood)}
           />
-          <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600"></div>
-          <span className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">
+          <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-300 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-green-600"></div>
+          <span className="ms-3 text-sm font-medium">
             ご近所手当範囲内のみを表示
           </span>
         </label>
@@ -125,10 +125,10 @@ export default function PropertySearchPage() {
         <button
           onClick={handlePrevPage}
           disabled={offset === 0}
-          className={`px-4 py-2 bg-gray-200 rounded disabled:opacity-50 ${
+          className={`px-4 py-2 bg-sky-600 rounded disabled:opacity-50 text-white ${
             offset === 0
               ? "cursor-not-allowed"
-              : "cursor-pointer hover:bg-gray-300"
+              : "cursor-pointer hover:bg-sky-300"
           }`}
         >
           前へ
@@ -139,10 +139,10 @@ export default function PropertySearchPage() {
         <button
           onClick={handleNextPage}
           disabled={offset + limit >= count}
-          className={`px-4 py-2 bg-gray-200 rounded disabled:opacity-50 ${
+          className={`px-4 py-2 bg-sky-600 rounded disabled:opacity-50 text-white ${
             offset + limit >= count
               ? "cursor-not-allowed"
-              : "cursor-pointer hover:bg-gray-300"
+              : "cursor-pointer hover:bg-sky-300"
           }`}
         >
           次へ
