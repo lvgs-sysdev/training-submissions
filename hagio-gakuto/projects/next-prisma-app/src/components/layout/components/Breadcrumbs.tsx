@@ -39,8 +39,8 @@ const SeparatorIcon = () => (
 const Breadcrumbs = () => {
   const pathname = usePathname();
   let pathSegments = pathname.split("/").filter((x) => x);
+  console.log(pathSegments);
 
-  // ★ 1. 配列を加工するロジック
   if (pathSegments.length > 2 && pathSegments.includes("property")) {
     const index = pathSegments.indexOf("property");
     const tempId = pathSegments[index + 1];
@@ -59,6 +59,7 @@ const Breadcrumbs = () => {
     "change-password": "パスワード変更",
     "edit-profile": "プロフィール編集",
     "delete-account": "アカウント削除",
+    favorite: "お気に入り一覧",
   };
 
   return (
@@ -83,7 +84,10 @@ const Breadcrumbs = () => {
             breadcrumbNameMap[segment] || segment;
 
           // ★ ロジック修正: 最後の項目で、かつ親が'properties'なら表示名を上書き
-          if (pathSegments[index - 1] === "properties") {
+          if (
+            pathSegments[index - 1] === "properties" &&
+            pathSegments[index].includes("property")
+          ) {
             displayName = "物件詳細";
           }
 

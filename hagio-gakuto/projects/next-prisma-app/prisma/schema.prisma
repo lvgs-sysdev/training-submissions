@@ -15,4 +15,19 @@ model User {
   avatar_url    String?
   is_deleted    Boolean  @default(false)
   createdAt DateTime @default(now())
+  favorites Favorite[]
+}
+
+model Favorite {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+
+  // Userへのリレーション
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+
+  propertyId String
+
+  // ユーザーIDと物件IDの組み合わせはユニークでなければならない
+  @@unique([userId, propertyId])
 }

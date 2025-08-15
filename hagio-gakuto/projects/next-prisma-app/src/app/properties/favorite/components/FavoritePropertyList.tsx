@@ -2,16 +2,12 @@
 
 import { Property } from "@/types/PropertyType";
 import { useEffect, useState, useCallback } from "react";
-import PropertyList from "./PropertyList";
 import { useLoading } from "@/context/LoadingContext";
-import PropertySearchForm, { SearchFilters } from "./PropertySearchForm";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import Link from "next/link";
+import PropertyList from "../../components/PropertyList";
 
-export default function PropertySearchPage() {
+export default function FavoriteProperties() {
   const [properties, setProperties] = useState<Property[]>([]);
   const [withinNeighborhood, setWithinNeighborhood] = useState<boolean>(true);
-  const [filters, setFilters] = useState<SearchFilters | null>(null);
   const limit = 9; // ページあたりの物件数
   const [offset, setOffset] = useState(0);
   const [count, setCount] = useState(0);
@@ -26,13 +22,11 @@ export default function PropertySearchPage() {
         offset,
         sortBy,
         withinNeighborhood,
-        // スプレッド構文でfiltersオブジェクトの中身を展開してマージ
-        ...(filters || {}),
       };
 
       const query = new URLSearchParams(params as any).toString();
 
-      const response = await fetch(`/api/properties?${query}`);
+      const response = await fetch(`/api/properties/favorite?${query}`);
       if (!response.ok) {
         throw new Error("Failed to fetch");
       }
@@ -47,7 +41,7 @@ export default function PropertySearchPage() {
     } finally {
       setIsLoading(false);
     }
-  }, [limit, offset, withinNeighborhood, sortBy, setIsLoading, filters]);
+  }, [limit, offset, withinNeighborhood, sortBy, setIsLoading]);
 
   useEffect(() => {
     fetchProperties();
@@ -67,25 +61,10 @@ export default function PropertySearchPage() {
     }
   };
 
-  // PropertySearchFormから検索条件を受け取る関数
-  const handleSearch = (newFilters: SearchFilters) => {
-    setFilters(newFilters);
-  };
-
   return (
     <div className="font-sans container mx-auto px-4 py-4">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">物件一覧</h1>
-        <Link
-          href="/properties/favorite"
-          className=" p-2 bg-white/70 backdrop-blur-sm rounded-full text-gray-700 hover:text-red-500 cursor-pointer hover:scale-110 transition-all duration-200 focus:outline-none"
-          aria-label="お気に入り一覧"
-        >
-          <FavoriteIcon className="text-red-500" />
-        </Link>
-      </div>
-      <div className="my-8">
-        <PropertySearchForm onSearch={handleSearch} />
+        <h1 className="text-3xl font-bold text-gray-900">お気に入り一覧</h1>
       </div>
 
       <div className="flex justify-between items-center mb-8">
@@ -120,7 +99,7 @@ export default function PropertySearchPage() {
         ))}
       </div>
 
-      {/* ★ ページングUIを追加 */}
+      {/* ★ ページング */}
       <div className="flex justify-center items-center mt-12 space-x-4">
         <button
           onClick={handlePrevPage}

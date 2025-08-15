@@ -7,16 +7,15 @@ import { useParams } from "next/navigation";
 import PropertyDetailInfo from "./PropertyDetailInfo";
 import { Loading } from "@/components/layout/Loading";
 
-export default function PropertyDetailPage() {
+export default function PropertyDetailFunction() {
   const params = useParams();
-  const id = params.id as string; // idを取得（型をstringにキャスト）
+  const id = params.id as string;
 
-  // ★ 3. useStateの初期値をnullに変更
   const [property, setProperty] = useState<Property | null>(null);
   const { setIsLoading } = useLoading();
 
   const fetchProperty = useCallback(async () => {
-    if (!id) return; // idがなければ何もしない
+    if (!id) return;
     setIsLoading(true);
     try {
       const response = await fetch(`/api/property/${id}`);
@@ -24,7 +23,7 @@ export default function PropertyDetailPage() {
         throw new Error("Failed to fetch");
       }
       const result = await response.json();
-      setProperty(result[0]);
+      setProperty(result);
     } catch {
       setProperty(null);
     } finally {
@@ -36,12 +35,9 @@ export default function PropertyDetailPage() {
     fetchProperty();
   }, [fetchProperty]);
 
-  // ★ 4. データ取得前はローディング表示
   if (!property) {
     return <Loading />;
   }
-
-  // ★ 5. mapUrlはデータ取得後に定義
 
   return <PropertyDetailInfo property={property} />;
 }

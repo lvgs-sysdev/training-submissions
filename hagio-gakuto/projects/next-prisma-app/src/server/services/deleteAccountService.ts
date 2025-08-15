@@ -2,7 +2,6 @@ import { prisma } from "@/lib/prisma";
 import { z } from "zod";
 
 import { DeleteAccountSchema } from "@/lib/validators/deleteAccountValidator";
-import { hash } from "crypto";
 import { compare } from "bcryptjs";
 
 type DeleteAccountData = z.infer<typeof DeleteAccountSchema>;

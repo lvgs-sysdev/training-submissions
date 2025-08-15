@@ -1,4 +1,5 @@
-import { getProperties } from "@/server/services/propertiesService";
+import { getAuth } from "@/server/services/authService";
+import { getFavoriteProperties } from "@/server/services/favoriteService";
 import { NextRequest, NextResponse } from "next/server"; // NextRequestをインポート
 
 export async function GET(request: NextRequest): Promise<NextResponse> {
@@ -8,27 +9,22 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   const offset = parseInt(searchParams.get("offset") || "0");
   const sortBy = searchParams.get("sortBy") || "price_asc"; // デフォルトのソート順を設定
   const withinNeighborhood = searchParams.get("withinNeighborhood") === "true";
-  const filters: { [key: string]: any } = {};
-
-  for (const [key, value] of searchParams.entries()) {
-    // ページネーションとソート以外のパラメータをfiltersオブジェクトに追加
-    if (key !== "limit" && key !== "offset" && key !== "sort") {
-      // "layouts"は配列として扱う
-      if (key === "layouts") {
-        filters[key] = searchParams.getAll("layouts");
-      } else {
-        filters[key] = value;
-      }
-    }
+  const { user } = await getAuth();
+  if (!user) {
+    return NextResponse.json(
+      { message: "認証されていません" },
+      { status: 401 }
+    );
   }
+  const userId = user.userId;
 
   // サービスにlimitとoffsetを渡す
-  const { properties, count } = await getProperties({
+  const { properties, count } = await getFavoriteProperties({
     limit,
     offset,
     withinNeighborhood,
     sortBy,
-    filters,
+    userId,
   });
 
   return NextResponse.json({

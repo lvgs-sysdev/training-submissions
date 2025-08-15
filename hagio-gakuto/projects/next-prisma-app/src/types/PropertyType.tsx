@@ -23,4 +23,5 @@ export type Property = {
   features: string[];
   photos: string[];
   floor_plan_url: string;
+  isFavorite?: boolean;
 };

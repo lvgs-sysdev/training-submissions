@@ -1,12 +1,11 @@
 import jwt from "jsonwebtoken";
 import { prisma } from "@/lib/prisma"; // PrismaClientのインスタンス
+import { cookies } from "next/headers";
 
-// JWTのペイロード（中身）の型を定義
 interface UserPayload {
   userId: number;
   name: string;
-  avatar_url?: string; // オプションのプロパティß
-  // 他にトークンに含めた情報があれば追加
+  avatar_url?: string;
 }
 
 /**
@@ -45,3 +44,20 @@ export async function getUserFromToken(token: string) {
 
   return user;
 }
+
+/**
+ * サーバーサイドで現在の認証状態を取得する共通関数
+ * @returns 認証済みの場合はユーザー情報、そうでなければnull
+ */
+export const getAuth = async () => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("session_token")?.value;
+
+  if (!token) {
+    return { user: null };
+  }
+
+  // トークンを検証・デコード
+  const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY!) as UserPayload;
+  return { user: decoded };
+};

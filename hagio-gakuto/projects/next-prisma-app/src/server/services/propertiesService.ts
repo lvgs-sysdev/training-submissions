@@ -1,7 +1,6 @@
-import { promises as fs } from "fs";
-import path from "path";
 import { Property } from "@/types/PropertyType";
 import { specifiedAddresses } from "@/utils/specifiedAddresses";
+import { getAllProperties } from "./fetchPropertyService";
 
 interface GetPropertiesParams {
   limit: number;
@@ -18,9 +17,9 @@ export async function getProperties({
   filters,
   withinNeighborhood,
 }: GetPropertiesParams) {
-  const jsonPath = path.join(process.cwd(), "src", "properties.json");
-  const fileContents = await fs.readFile(jsonPath, "utf8");
-  const allProperties = await JSON.parse(fileContents);
+  const allProperties = await getAllProperties();
+
+  console.log(withinNeighborhood);
 
   let filteredProperties = withinNeighborhood
     ? allProperties.filter(
