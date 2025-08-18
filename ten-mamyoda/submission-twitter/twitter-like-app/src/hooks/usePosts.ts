@@ -17,15 +17,15 @@ export function usePosts({ userId, autoFetch = true }: UsePostsOptions = {}) {
         try {
             setLoading(true);
             setError(null);
-            
-            const endpoint = userId 
+
+            const endpoint = userId
                 ? API_ENDPOINTS.POSTS_BY_USER(userId)
                 : API_ENDPOINTS.POSTS;
-            
-            const response = await axios.get<PostsResponse>(endpoint, { 
-                withCredentials: true 
+
+            const response = await axios.get<PostsResponse>(endpoint, {
+                withCredentials: true
             });
-            
+
             setPosts(response.data.posts);
         } catch (err) {
             console.error('投稿取得エラー:', err);
@@ -39,9 +39,11 @@ export function usePosts({ userId, autoFetch = true }: UsePostsOptions = {}) {
     const createPost = async (content: string, imagePath?: string) => {
         try {
             const replacedContent = content.replace(
-                /<img[^>]*>/gi, 
-                '<img src="__POST_IMAGE__" alt="投稿画像" />'
+                /<img[\s\S]*?>/gi,
+                () => '<img src="__POST_IMAGE__" alt="投稿画像" />'
             );
+
+            console.log('置換後のcontent:', replacedContent);
 
             await axios.post(API_ENDPOINTS.POSTS, {
                 content: replacedContent,
@@ -50,7 +52,7 @@ export function usePosts({ userId, autoFetch = true }: UsePostsOptions = {}) {
 
             // 投稿完了後に投稿一覧を再取得
             await fetchPosts();
-            
+
             return { success: true };
         } catch (err) {
             console.error('投稿エラー', err);

@@ -47,10 +47,10 @@ export function EditProfileCenterBar() {
                 });
 
                 const avatarUrl = userData.avatarImageUrl
-                    ? `${CONFIG.API_BASE_URL}${userData.avatarImageUrl}`
+                    ? `${userData.avatarImageUrl}`
                     : CONFIG.DEFAULT_AVATAR_URL;
                 const bannerUrl = userData.bannerImageUrl
-                    ? `${CONFIG.API_BASE_URL}${userData.bannerImageUrl}`
+                    ? `$${userData.bannerImageUrl}`
                     : CONFIG.DEFAULT_BANNER_URL;
 
                 setAvatarPreview(avatarUrl);

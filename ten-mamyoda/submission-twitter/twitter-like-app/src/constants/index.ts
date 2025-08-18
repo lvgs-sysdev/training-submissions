@@ -36,6 +36,6 @@ export const API_ENDPOINTS = {
 
 export const CONFIG = {
     API_BASE_URL: 'http://localhost:3000',
-    DEFAULT_AVATAR_URL: 'http://localhost:3000/images/default-avatar.png',
-    DEFAULT_BANNER_URL: 'http://localhost:3000/images/default-banner.png',
+    DEFAULT_AVATAR_URL: '/images/default-avatar.png',
+    DEFAULT_BANNER_URL: '/images/default-banner.png',
 } as const;

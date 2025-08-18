@@ -20,11 +20,11 @@ export function UserProfileHeader({
     isOwnPage,
 }: Props) {
     const bannerUrl = bannerImageUrl
-        ? `${CONFIG.API_BASE_URL}${bannerImageUrl}`
+        ? `${bannerImageUrl}`
         : CONFIG.DEFAULT_BANNER_URL;
 
     const avatarUrl = avatarImageUrl
-        ? `${CONFIG.API_BASE_URL}${avatarImageUrl}`
+        ? `${avatarImageUrl}`
         : CONFIG.DEFAULT_AVATAR_URL;
 
     return (

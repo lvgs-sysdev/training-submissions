@@ -1,6 +1,6 @@
 import styles from './Post.module.css';
 import { Link } from 'react-router-dom';
-import { CONFIG, ROUTES } from '../../constants';
+import { ROUTES } from '../../constants';
 
 type PostProps = {
     userName: string;
@@ -18,7 +18,7 @@ export function Post({ userName, userId, content, avatarImageUrl, imagePath }: P
             <div className={styles.userImg}>
                 <img
                     className={styles.profileAvatarImage}
-                    src={`${CONFIG.API_BASE_URL}${avatarImageUrl}`}
+                    src={`${avatarImageUrl}`}
                     alt={`${userName}のアバター`}
                 />
             </div>

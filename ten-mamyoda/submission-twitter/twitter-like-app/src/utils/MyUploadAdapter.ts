@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_ENDPOINTS, CONFIG } from '../constants';
+import { API_ENDPOINTS } from '../constants';
 
 export default class MyUploadAdapter {
     private loader: any;
@@ -26,7 +26,7 @@ export default class MyUploadAdapter {
             const relativePath = res.data.imageUrl;
 
             // フルURLに変換
-            const uploadedUrl = `${CONFIG.API_BASE_URL}${relativePath}`;
+            const uploadedUrl = `${relativePath}`;
 
             this.onSuccess(uploadedUrl); // 成功時コールバック
 

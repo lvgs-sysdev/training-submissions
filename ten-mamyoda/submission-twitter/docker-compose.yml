@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  frontend:
+    build: ./twitter-like-app
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    ports:
+      - "5000:3000"
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: twitter
+      MYSQL_CHARSET: utf8mb4
+      MYSQL_COLLATION: utf8mb4_0900_ai_ci
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./mydb.sql:/docker-entrypoint-initdb.d/mydb.sql
+    ports:
+      - "3306:3306"
+
+volumes:
+  db-data:
+    driver: local
