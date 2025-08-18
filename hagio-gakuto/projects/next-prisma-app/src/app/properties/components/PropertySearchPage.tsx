@@ -7,6 +7,8 @@ import { useLoading } from "@/context/LoadingContext";
 import PropertySearchForm, { SearchFilters } from "./PropertySearchForm";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Link from "next/link";
+import AttachEmailIcon from "@mui/icons-material/AttachEmail";
+import InquiryButton from "./InquiryButton";
 
 export default function PropertySearchPage() {
   const [properties, setProperties] = useState<Property[]>([]);
@@ -76,13 +78,22 @@ export default function PropertySearchPage() {
     <div className="font-sans container mx-auto px-4 py-4">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold light:text-gray-900">物件一覧</h1>
-        <Link
-          href="/properties/favorite"
-          className=" p-2 bg-white/70 backdrop-blur-sm rounded-full text-gray-700 hover:text-red-500 cursor-pointer hover:scale-110 transition-all duration-200 focus:outline-none border"
-          aria-label="お気に入り一覧"
-        >
-          <FavoriteIcon className="text-red-500" />
-        </Link>
+        <nav className="flex gap-8">
+          <Link
+            href="/properties/favorite"
+            className=" p-2 bg-white/70 backdrop-blur-sm rounded-full text-gray-700 hover:text-red-500 cursor-pointer hover:scale-110 transition-all duration-200 focus:outline-none border flex "
+            aria-label="お気に入り一覧"
+          >
+            <FavoriteIcon className="text-red-500" />
+          </Link>
+          <Link
+            href="/properties/inquiry"
+            className=" p-2 bg-white/70 backdrop-blur-sm rounded-full text-gray-700 hover:text-sky-500 cursor-pointer hover:scale-110 transition-all duration-200 focus:outline-none border flex "
+            aria-label="お問い合わせ一覧"
+          >
+            <AttachEmailIcon />
+          </Link>
+        </nav>
       </div>
       <div className="my-8">
         <PropertySearchForm onSearch={handleSearch} />
@@ -148,6 +159,7 @@ export default function PropertySearchPage() {
           次へ
         </button>
       </div>
+      <InquiryButton properties={properties} />
     </div>
   );
 }

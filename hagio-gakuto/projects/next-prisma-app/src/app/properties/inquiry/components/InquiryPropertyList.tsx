@@ -4,9 +4,8 @@ import { Property } from "@/types/PropertyType";
 import { useEffect, useState, useCallback } from "react";
 import { useLoading } from "@/context/LoadingContext";
 import PropertyList from "../../components/PropertyList";
-import InquiryButton from "../../components/InquiryButton";
 
-export default function FavoriteProperties() {
+export default function InquiryProperties() {
   const [properties, setProperties] = useState<Property[]>([]);
   const [withinNeighborhood, setWithinNeighborhood] = useState<boolean>(true);
   const limit = 9; // ページあたりの物件数
@@ -27,7 +26,7 @@ export default function FavoriteProperties() {
 
       const query = new URLSearchParams(params as any).toString();
 
-      const response = await fetch(`/api/properties/favorite?${query}`);
+      const response = await fetch(`/api/properties/inquiry?${query}`);
       if (!response.ok) {
         throw new Error("Failed to fetch");
       }
@@ -66,7 +65,7 @@ export default function FavoriteProperties() {
     <div className="font-sans container mx-auto px-4 py-4">
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold light:text-gray-900">
-          お気に入り一覧
+          お問い合わせ物件一覧
         </h1>
       </div>
 
@@ -130,7 +129,6 @@ export default function FavoriteProperties() {
           次へ
         </button>
       </div>
-      <InquiryButton properties={properties} />
     </div>
   );
 }

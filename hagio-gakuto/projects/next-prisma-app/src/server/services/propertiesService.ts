@@ -19,8 +19,6 @@ export async function getProperties({
 }: GetPropertiesParams) {
   const allProperties = await getAllProperties();
 
-  console.log(withinNeighborhood);
-
   let filteredProperties = withinNeighborhood
     ? allProperties.filter(
         (property: Property) =>

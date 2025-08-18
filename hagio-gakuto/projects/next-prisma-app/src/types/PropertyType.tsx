@@ -24,4 +24,5 @@ export type Property = {
   photos: string[];
   floor_plan_url: string;
   isFavorite?: boolean;
+  isInquiry?: boolean;
 };

@@ -9,12 +9,15 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useState } from "react";
 import { useLoading } from "@/context/LoadingContext";
+import InquiryButton from "@/app/properties/components/InquiryButton";
+import AttachEmailIcon from "@mui/icons-material/AttachEmail";
 
 export default function PropertyDetailInfo({
   property,
 }: Readonly<{ property: Property }>) {
   const mapUrl = `https://www.google.com/maps?q=${property.location.lat},${property.location.lng}`;
   const [favorite, setFavorite] = useState(property?.isFavorite || false);
+  const isInquiry = property?.isInquiry || false;
   const { setIsLoading } = useLoading();
 
   const postFavorite = async () => {
@@ -42,17 +45,33 @@ export default function PropertyDetailInfo({
     <>
       <div className="flex justify-between items-center my-8">
         <h1 className="text-3xl font-bold light:text-gray-900">物件詳細</h1>
-        <button
-          onClick={handleToggleFavorite}
-          className=" p-2 bg-white/70 backdrop-blur-sm rounded-full text-gray-700 hover:text-red-500 cursor-pointer hover:scale-110 transition-all duration-200 focus:outline-none border"
-          aria-label="お気に入りに追加"
-        >
-          {favorite ? (
-            <FavoriteIcon className="text-red-500" />
-          ) : (
-            <FavoriteBorderIcon />
-          )}
-        </button>
+        <nav className="flex gap-8">
+          <button
+            onClick={handleToggleFavorite}
+            className=" p-2 bg-white/70 backdrop-blur-sm rounded-full text-gray-700 hover:text-red-500 cursor-pointer hover:scale-110 transition-all duration-200 focus:outline-none border"
+            aria-label="お気に入りに追加"
+          >
+            {favorite ? (
+              <FavoriteIcon className="text-red-500" />
+            ) : (
+              <FavoriteBorderIcon />
+            )}
+          </button>
+          {/* <div
+            className={`p-2 bg-white/70 backdrop-blur-sm rounded-full text-gray-700 border flex ${
+              isInquiry && "text-sky-500"
+            }`}
+          >
+            <AttachEmailIcon />
+          </div> */}
+          <div className="p-2 bg-white/70 backdrop-blur-sm rounded-full border flex">
+            <AttachEmailIcon
+              className={`
+                "text-gray-700"
+                ${isInquiry && "text-sky-500"}`}
+            />
+          </div>
+        </nav>
       </div>
       <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
         {/* メイン画像 */}
@@ -161,6 +180,14 @@ export default function PropertyDetailInfo({
             </div>
           </div>
         </div>
+        {isInquiry ? (
+          <button className="fixed bottom-8 right-8 w-auto px-4 h-16 bg-sky-600 text-white rounded-full shadow-lg flex gap-1 items-center justify-center  hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 cursor-not-allowed">
+            <AttachEmailIcon fontSize="medium" />
+            お問い合わせ済み
+          </button>
+        ) : (
+          <InquiryButton properties={property} />
+        )}
       </div>
     </>
   );

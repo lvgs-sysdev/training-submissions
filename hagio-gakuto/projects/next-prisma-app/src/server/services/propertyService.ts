@@ -1,6 +1,7 @@
 import { Property } from "@/types/PropertyType";
 import { getFavoriteStatus } from "./favoriteService";
 import { getAllProperties } from "./fetchPropertyService";
+import { getInquiryStatus } from "./inquiryService";
 
 interface GetPropertiesParams {
   id: string;
@@ -27,6 +28,14 @@ export async function getPropertyById({
     filteredData.isFavorite = true;
   } else {
     filteredData.isFavorite = false;
+  }
+
+  const isInquiry = await getInquiryStatus(userId, id);
+
+  if (isInquiry) {
+    filteredData.isInquiry = true;
+  } else {
+    filteredData.isInquiry = false;
   }
 
   return filteredData;

@@ -61,6 +61,7 @@ const Breadcrumbs = () => {
     favorite: "お気に入り一覧",
     moving: "引越し",
     todo: "引越しやることリスト",
+    inquiry: "お問い合わせ物件",
   };
 
   return (
