@@ -1,49 +1,138 @@
 ---
+import { Image } from 'astro:assets'; 
+import appStore from '../images/app-store.jpg';
+import playStore from '../images/play-store.jpg';
 ---
 <footer>
-    <div>
-        <h1>PT. Travel Everyday Indonesia</h1>
-        <p>Grand Floor Zaidin L-Walk,</p>
-        <p>Jl. Maju Java No. 2,</p>
-        <p>Daerah Istimewa Yogyakarta,</p>
-        <p>Indonesia 55281</p>
-        <hr>
-        <p>About</p>
-        <p>Privacy policy</p>
-        <p>Terms & Conditions</p>
-        <p>Contact</p>
-    </div>
-    <div>
-        <h1>Informations</h1>
-        <p>How to registter as a user</p>
-        <p>Guide to creating travel review</p>
-        <p>Tutorial for making culinary reviews</p>
-    </div>
-    <div>
-        <h1>Follow us</h1>
-        <p>Instagram</p>
-        <p>Facebook</p>
-        <p>Twitter</p>
-        <p>Youtube</p>
-    </div>
-    <div>
-        <h1>Download app</h1>
-        <p>logo appstore</p>
-        <p>logo googleplay</p>
-    </div>
+	<div class="container">
+		<div class="footer-company">
+			<h1>PT. Travel Everyday Indonesia</h1>
+			<div id="address">
+				<p>Grand Floor Zaidin L-Walk,</p>
+				<p>Jl. Maju Java No. 2,</p>
+				<p>Daerah Istimewa Yogyakarta,</p>
+				<p>Indonesia 55281</p>
+			</div>
+			<hr>
+			<div id="not-address">
+				<p>About</p>
+				<p>Privacy policy</p>
+				<p>Terms & Conditions</p>
+				<p>Contact</p>
+			</div>
+		</div>
+
+		<div class="footer-info">
+			<h1>Informations</h1>
+			<p>How to register as a user</p>
+			<p>Guide to creating travel review</p>
+			<p>Tutorial for making culinary reviews</p>
+		</div>
+
+		<div class="footer-sns">
+			<h1>Follow us</h1>
+			<p>Instagram</p>
+			<p>Facebook</p>
+			<p>Twitter</p>
+			<p>Youtube</p>
+		</div>
+
+		<div class="footer-app">
+			<h1>Download app</h1>
+			<Image src={appStore} alt="App Store" />
+			<Image src={playStore} alt="Google Play" />
+		</div>
+	</div>
+
+	<section class="copyright">
+		<p>&copy; 2023 PT. Travel Everyday Indonesia</p>
+	</section>
 </footer>
 
 <style>
-    footer {
-        display: flex;
-        background-color: black;
-    }
+	footer {
+		width: 100%;
+		background-color: black;
+		position: relative;
+	}
 
-    footer h1 {
-        color: white;
-    }
+	.container {
+		padding: 100px 123px;
+		display: flex;
+		flex-wrap: wrap;
+	}
 
-    footer p {
-        color: gray;
-    }
+	.container > div {
+		margin-right: 100px;
+		margin-bottom: 50px;
+	}
+
+	.footer-company {
+		width: 280px;
+	}
+
+	.footer-info {
+		width: 260px;
+	}
+
+	.footer-sns {
+		width: 100px;
+	}
+
+	.footer-app {
+		width: 180px;
+	}
+
+	h1 {
+		color: white;
+		font-size: 18px;
+		margin-bottom: 30px;
+	}
+
+	p {
+		color: gray;
+		font-size: 16px;
+		margin: 12px 0;
+	}
+
+	.copyright {
+		font-size: 14px;
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	/* .footer-company内 */
+	#address p {
+		margin: 4px 0; /* デフォルトの16pxから変更 */
+	}
+
+	hr {
+		margin: 28px 0 20px 0;
+	}
+
+	#not-address {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	#not-address p {
+		margin-right: 28px;
+	}
+
+	/* .footer-app内 */
+	img {
+		width: 100%;
+		height: auto;
+		display: block;
+	}
+
+	@media screen and (max-width: 768px) {
+		.container {
+			padding: 100px 50px;
+			display: flex;
+			flex-wrap: wrap;
+		}
+	}
 </style>

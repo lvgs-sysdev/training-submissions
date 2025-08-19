@@ -1,74 +1,252 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets'; 
-import myImage from '../images/top-view-passport-tickets-camera.jpg';
+import heroImage from '../images/top-view-passport-tickets-camera.jpg';
+import articleImage1 from '../images/article1-top.jpg';
+import articleImage2 from '../images/article2-top.jpg';
+import articleImage3 from '../images/article3-top.jpg';
+import articleImage4 from '../images/article4-top.jpg';
+import articleImage5 from '../images/article5-top.jpg';
+import articleImage6 from '../images/article6-top.jpg';
 ---
 
-<Layout>
-	<div id="hero">
-		<Image src={myImage} alt="" />
-		<h1>Share your holiday stories.</h1>
-		<p>Write about your experiences while on holiday in various parts of indonesia, and reach a wide readership.</p>
+<Layout title="ホーム - DAYDAYTRAVEL">
+	<div class="hero" style={`background-image: url(${heroImage.src})`}>
+		<h4>Share your<br>holiday stories.</h4>
+		<p>Write about your experiences while on holiday in</p>
+		<p>various parts of indonesia, and reach a wide</p>
+		<p>readership.</p>
 	</div>
-	<div id="reviews">
-		<h1>一覧（新着順）</h1>
-		<article>
-			<img src="" alt="">
-			<p>Travel</p><p>19 Feb 2020</p>
-			<h1>記事タイトル</h1>
-			<p>本文の一部を表示</p>
-		</article>
-		<article>
-			<img src="" alt="">
-			<p>Travel</p><p>19 Feb 2020</p>
-			<h1>記事タイトル</h1>
-			<p>本文の一部を表示</p>
-		</article>
-		<article>
-			<img src="">
-			<p>Travel</p><p>19 Feb 2020</p>
-			<h1>記事タイトル</h1>
-			<p>本文の一部を表示</p>
-		</article>
-		<article>
-			<img src="">
-			<p>Travel</p><p>19 Feb 2020</p>
-			<h1>記事タイトル</h1>
-			<p>本文の一部を表示</p>
-		</article>
-		<article>
-			<img src="">
-			<p>Travel</p><p>19 Feb 2020</p>
-			<h1>記事タイトル</h1>
-			<p>本文の一部を表示</p>
-		</article>
-		<article>
-			<img src="">
-			<p>Travel</p><p>19 Feb 2020</p>
-			<h1>記事タイトル</h1>
-			<p>本文の一部を表示</p>
-		</article>
-	</div>
-	<div id="popular">
-		<h1>人気記事（機能不要）</h1>
-		<p>記事タイトル</p>
-		<hr>
-		<p>記事タイトル</p>
-		<hr>
-		<p>記事タイトル</p>
-	</div>
-	<div id="tags">
-		<h1>もっと見る（機能不要）</h1>
-		<ul>
-			<li>Travel</li>
-			<li>Cullnary</li>
-		</ul>
+	
+	<div class="container">
+		<div class="main-content">
+			<div class="article-list-new">
+				<div class="heading">
+					<h2>一覧（新着順）</h2>
+				</div>
+				<div class="articles">
+					<div class="article">
+						<a href="#">
+							<Image src={articleImage1} alt="image" />
+							<p><span class="tag">Travel</span> <span class="line">|</span> <span class="date">19 Feb 2022</span></p>
+							<h1>記事タイトル記事タイトル記事タイトル記事タイトル</h1>
+							<p>本文の一部を表示本文の一部を表示本文の..</p>
+						</a>
+					</div>
+					<div class="article">
+						<a href="article">
+							<Image src={articleImage2} alt="image" />
+							<p><span class="tag">Culinary</span> <span class="line">|</span> <span class="date">26 Apr 2022</span></p>
+							<h1>The taste of Bang Embul's soto betawi</h1>
+							<p>Each region has its own specialty food..</p>
+						</a>
+					</div>
+					<div class="article">
+						<a href="#">
+							<Image src={articleImage3} alt="image" />
+							<p><span class="tag">Travel</span> <span class="line">|</span> <span class="date">29 Apr 2022</span></p>
+							<h1>Seeing the beauty of Bali, which has many statues in temples</h1>
+							<p>Talking about Bali is never boring to tell..</p>
+						</a>
+					</div>
+					<div class="article">
+						<a href="#">
+							<Image src={articleImage4} alt="image" />
+							<p><span class="tag">Culinary</span> <span class="line">|</span> <span class="date">02 May 2022</span></p>
+							<h1>Delicious and cheap Semarang street food</h1>
+							<p>There's a lot of street food in Semarang..</p>
+						</a>
+					</div>
+					<div class="article">
+						<a href="#">
+							<Image src={articleImage5} alt="image" />
+							<p><span class="tag">Travel</span> <span class="line">|</span> <span class="date">05 Jun 2022</span></p>
+							<h1>Karang bebai beach Lampung for summer vacation</h1>
+							<p>Talking about Bali is never boring to tell..</p>
+						</a>
+					</div>
+					<div class="article">
+						<a href="#">
+							<Image src={articleImage6} alt="image" />
+							<p><span class="tag">Travel</span> <span class="line">|</span> <span class="date">13 Jun 2022</span></p>
+							<h1>The upside-down mystical forest in Bonyuwangi</h1>
+							<p>This place is most often used as a photo..</p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<aside>
+			<div class="article-list-popular">
+				<h2>人気記事（機能不要）</h2>
+				<p><a href="#">記事タイトル記事タイトル記事タイトル記事タイトル</a></p>
+				<hr/>
+				<p><a href="#">Cheap Padang specialty food restaurant</a></p>
+				<hr>
+				<p><a href="#">Mountain hiking in central Java</a></p>
+			</div>
+			
+			<div class="article-tags">
+				<h2>もっと見る（機能不要）</h2>
+				<ul>
+					<li><a href="#">Travel</a></li>
+					<li><a href="#">Culinary</a></li>
+				</ul>
+			</div>
+		</aside>
 	</div>
 </Layout>
 
 <style>
-	img {
+	/* .heroに適用 */
+	.hero {
+		padding: 200px 123px;
+		background-size: cover;
+	}
+
+	.hero h4{
+		font-weight: 600;
+		font-size: 64px;
+		margin: 50px 0;
+	}
+
+	.hero p {
+		font-weight: 300;
+		font-size: 18px;
+		margin: 0 0 4px 0;
+	}
+	
+	/* メインとサイドの配置 */
+	.container {
+		display: flex;
+		gap: 100px;
+		padding: 100px 123px;
+	}
+
+	.main-content {
+		flex: 3;
+	}
+
+	aside {
+		flex: 1;
+	}
+
+	.main-content > div, aside > div {
+		margin-bottom: 80px;
+	}
+
+	/* 記事一覧 */
+	.articles {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 20px;
+	}
+
+	.article {
+		width: 420px;
+		height: auto;
+		margin-bottom: 60px;
+	}
+
+	.article h1 {
+		font-weight: 300;
+		font-size: 20px;
+	}
+
+	.article p {
+		font-weight: 300;
+		font-size: 16px;
+		color: #757575;
+	}
+
+	/* 画像の調整 */
+	a img {
 		width: 100%;
 		height: auto;
+		aspect-ratio: 3 / 2;
+		object-fit: cover;
+	}
+
+	a {
+		display: block;
+		text-decoration: none;
+		color: inherit;
+	}
+
+	/* .article-list-popularに適用 */
+	.article-list-popular p {
+		margin-bottom: 50px;
+	}
+
+	hr {
+		margin: 30px 0;
+	}
+
+	/* .article-tagsに適用 */
+	ul {
+		padding-left: 0;
+	}
+
+	li {
+		list-style: none;
+		display: inline-block;
+		margin-right: 20px;
+		margin-bottom: 20px;
+	}
+
+	.article-tags a {
+		padding: 10px 15px;
+		color: #757575;
+		border: 1px solid #757575;
+	}
+
+	/* その他の書式 */
+	h2 {
+		font-weight: 600;
+		font-size: 22px;
+		margin-bottom: 40px;
+	}
+
+	.tag {
+		color: orangered;
+		font-weight: 500;
+	}
+
+	.line{
+		color: #DEDEDE;
+	}
+
+	.date {
+		color: #757575;
+		font-weight: 300;
+	}
+
+	@media screen and (max-width: 768px) {
+		.hero {
+			padding: 100px 50px;
+		}
+
+		.hero h4 {
+			font-size: 36px;
+		}
+
+		.hero p {
+			font-size: 20px;
+		}
+		
+		.container {
+			flex-direction: column;
+			gap: 0;
+			padding: 100px 50px;
+		}
+
+		.main-content, aside {
+			flex: auto;
+		}
+
+		.article {
+			margin-bottom: 20px;
+		}
 	}
 </style>
