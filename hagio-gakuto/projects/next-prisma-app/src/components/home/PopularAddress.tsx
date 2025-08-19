@@ -7,13 +7,13 @@ export default function PopularAddress() {
       name: "渋谷区",
       averageRent: "50000円",
       href: "/properties?city=shibuya",
-      image: "/images/areas/shibuya.jpg",
+      image: "/images/areas/meguro.jpg",
     },
     {
       name: "港区",
       averageRent: "50000円",
       href: "/properties?city=minato",
-      image: "/images/areas/minato.jpg",
+      image: "/images/areas/meguro.jpg",
     },
     {
       name: "目黒区",
@@ -44,7 +44,7 @@ export default function PopularAddress() {
                   height={250}
                   className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300 opacity-50" // ★ opacity-75を追加
                 />
-                {/* テキスト用のオーバーレイはそのまま残しても良い */}
+
                 <div className="absolute inset-0 flex items-center justify-center">
                   <h3 className=" text-2xl font-bold">{area.name}</h3>
                 </div>
