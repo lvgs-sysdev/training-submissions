@@ -2,21 +2,21 @@
 
 import { useAuth } from "@/context/AuthContext";
 import Nav from "./components/Nav";
+import Breadcrumbs from "./components/Breadcrumbs";
 
 export default function Header() {
   const { user } = useAuth(); // Contextからuserとlogoutを取得
   const navLinks = [
     { href: "/", name: "Home" },
-    { href: "/", name: "Our product" },
-    { href: "/", name: "Features" },
-    { href: "/", name: "Product pricing" },
-    { href: "/", name: "Pricing" },
+    { href: "/properties", name: "Properties" },
+    { href: "/moving", name: "Moving" },
     { href: "/about", name: "About us" },
   ];
   console.log("Current user:", user); // デバッグ用に現在のユーザーを表示
   return (
     <header>
       <div className="mx-auto max-w-screen-xl py-4 md:py-4 px-4">
+        <Breadcrumbs />
         <div className="relative flex items-center justify-between">
           <a
             href="/"
@@ -39,11 +39,11 @@ export default function Header() {
               <rect x="14" y="1" width="7" height="6" />
               <rect x="14" y="11" width="7" height="12" />
             </svg>
-            <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
+            <span className="ml-2 text-xl font-bold tracking-wide  uppercase">
               Company
             </span>
           </a>
-          <ul className="flex items-center hidden space-x-8 lg:flex">
+          <ul className=" items-center  space-x-8 lg:flex">
             {navLinks.map((link) => (
               <li key={link.name}>
                 <Nav href={link.href} name={link.name} />

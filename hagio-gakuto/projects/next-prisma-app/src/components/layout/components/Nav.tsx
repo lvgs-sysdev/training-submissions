@@ -1,18 +1,32 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import clsx from "clsx";
 
 type Props = {
-  name: string;
   href: string;
+  name: string;
 };
-export default function Nav({ name, href }: Readonly<Props>) {
+
+export default function Nav({ href, name }: Readonly<Props>) {
+  const pathname = usePathname();
+
   return (
     <Link
       href={href}
       aria-label={name}
       title={name}
-      className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+      className={clsx(
+        // 基本のスタイル
+        "px-2 py-2 rounded-md font-medium tracking-wide transition-all duration-300",
+        // 条件付きのスタイル
+        {
+          "bg-sky-100 text-sky-700": pathname === href, // アクティブ時のスタイル
+          " hover:bg-sky-700 hover:text-white hover:-translate-y-0.5":
+            pathname !== href, // 非アクティブ時のスタイル
+        }
+      )}
     >
       {name}
     </Link>

@@ -3,7 +3,6 @@ import React, { useActionState, useEffect } from "react";
 import { PasswordInput } from "../../../components/inputs/PasswordInput";
 import { EmailInput } from "../../../components/inputs/EmailInput";
 import Link from "next/link";
-import { useTitle } from "@/hooks/useTitle";
 import { useRouter } from "next/navigation";
 import { Form } from "@/components/form/Form";
 import { loginAction } from "../actions/loginActions";
@@ -11,13 +10,7 @@ import { showErrorToast, showSuccessToast } from "@/utils/ToastUtils";
 import { useAuth } from "@/context/AuthContext";
 import { useLoading } from "@/context/LoadingContext";
 
-type Inputs = {
-  email: string;
-  password: string;
-};
-
 const LoginForm: React.FC = () => {
-  useTitle("ログイン");
   const { setIsLoading } = useLoading();
   const { fetchUser } = useAuth();
   const [state, formAction] = useActionState(loginAction, {
@@ -43,12 +36,13 @@ const LoginForm: React.FC = () => {
 
   return (
     <div className="relative bg-white rounded shadow-2xl p-7 sm:p-10">
-      <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
-        Welcome Back!
-      </h3>
       {/* <ServerErrorMsg msg={nonFieldError} /> */}
 
-      <Form action={formAction} buttonText="Login">
+      <Form
+        action={formAction}
+        buttonText="Login"
+        formTitle="Login to Your Account"
+      >
         <EmailInput
           name="email"
           label="E-mail"
@@ -94,7 +88,7 @@ const LoginForm: React.FC = () => {
         <p className="text-sm font-light text-gray-500 dark:text-gray-400">
           Don’t have an account yet?{" "}
           <Link
-            href="/signup"
+            href="/login/signup"
             className="font-medium text-primary-600 hover:underline dark:text-primary-500"
           >
             Sign up

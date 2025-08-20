@@ -1,20 +1,12 @@
+import { Metadata } from "next";
 import LoginForm from "./components/LoginForm";
 import Link from "next/link";
-// import { useAuth } from "../components/context/AuthContext";
-// import { Link, useNavigate } from "react-router-dom";
-// import { useTitle } from "../hooks/useTitle";
+
+export const metadata: Metadata = {
+  title: "ログイン",
+};
 
 const Login: React.FC = () => {
-  //   const { user } = useAuth();
-  //   const navigate = useNavigate();
-  //   useTitle("ログイン");
-
-  //   useEffect(() => {
-  //     if (user) {
-  //       navigate("/");
-  //     }
-  //   }, [user]);
-
   return (
     <div className="flex flex-col items-center justify-between xl:flex-row">
       <div className="w-full max-w-xl mb-12 xl:pr-16 xl:mb-0 xl:w-7/12">
@@ -29,7 +21,7 @@ const Login: React.FC = () => {
         <Link
           href="/about"
           aria-label=""
-          className="inline-flex items-center font-semibold tracking-wider transition-colors duration-200 text-teal-accent-400 hover:text-teal-accent-700"
+          className="inline-flex items-center font-semibold tracking-wider transition-colors duration-200 text-teal-accent-400 hover:text-teal-accent-700 underline"
         >
           Learn more
           <svg

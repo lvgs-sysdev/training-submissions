@@ -44,12 +44,14 @@ export const EmailInput = ({
   return (
     <div className="mb-1 sm:mb-2">
       {label && (
-        <label className="inline-block mb-1 font-medium">{label}</label>
+        <label className="inline-block mb-1 font-medium dark:text-gray-600 ">
+          {label}
+        </label>
       )}
       <div className="relative mb-2">
         <input
           type="email"
-          className="flex-grow w-full h-12 px-4 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+          className="flex-grow w-full h-12 px-4 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline dark:text-gray-900"
           // {...register(name, rules)}
           name={name}
           placeholder={placeholder}

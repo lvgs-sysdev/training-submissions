@@ -15,6 +15,7 @@ interface User {
   userId: number;
   name: string;
   email: string;
+  avatar_url?: string; // オプションのプロパティß
 }
 
 interface AuthContextType {
@@ -39,7 +40,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         return;
       }
       const data = await response.json();
-      setUser(data);
+
+      setUser(data[0]);
     } catch {
       setUser(null);
     } finally {

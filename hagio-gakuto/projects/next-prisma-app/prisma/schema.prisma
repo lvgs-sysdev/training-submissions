@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native", "linux-arm64-openssl-3.0.x"]
 }
 
 datasource db {
@@ -12,5 +13,38 @@ model User {
   name      String
   email     String   @unique
   password  String
+  avatar_url    String?
+  is_deleted    Boolean  @default(false)
   createdAt DateTime @default(now())
+  favorites Favorite[]
+  Inquiries Inquiry[]
+}
+
+model Favorite {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+
+  // Userへのリレーション
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+
+  propertyId String
+
+  // ユーザーIDと物件IDの組み合わせはユニークでなければならない
+  @@unique([userId, propertyId])
+}
+
+
+model Inquiry {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+
+  // Userへのリレーション
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+
+  propertyId String
+
+  // ユーザーIDと物件IDの組み合わせはユニークでなければならない
+  @@unique([userId, propertyId])
 }
