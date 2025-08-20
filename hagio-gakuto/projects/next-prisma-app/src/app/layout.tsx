@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 
 import { ToastContainer } from "react-toastify";
@@ -12,8 +11,6 @@ import { AuthProvider } from "@/context/AuthContext";
 import { LoadingProvider } from "@/context/LoadingContext";
 import { Loading } from "@/components/layout/Loading";
 import ThemeProvider from "@/theme/theme-provider";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   // titleをオブジェクト形式で設定
@@ -31,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" suppressHydrationWarning>
-      <body className={`${inter.className} bg-background text-foreground`}>
+      <body className="font-sans bg-background text-foreground">
         <ToastContainer />
         <ThemeProvider
           attribute="class"
