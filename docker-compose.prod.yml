@@ -1,0 +1,25 @@
+services:
+  next-app:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod # 1で作成した本番用Dockerfileを指定
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.prod # 3で作成する本番用環境変数ファイル
+    restart: always
+    depends_on:
+      - db
+
+  db:
+    image: postgres:14-alpine
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - .env.prod # 本番用環境変数を参照
+    restart: always
+
+volumes:
+  postgres_data:
