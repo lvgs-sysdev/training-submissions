@@ -35,28 +35,30 @@ export function SideBarB({ users = [], loading = false, error }: SideBarBProps) 
                         </li>
                     )}
 
-                    {!loading && !error && users.length > 0 && users.map(user => (
-                        <li className={styles.userInfo} key={user.id}>
-                            <Link to={`/user/${user.userId}`}>
-                                <div className={styles.userImg}>
-                                    <img
-                                        className={styles.userImg}
-                                        src={user.imageUrl ? `${CONFIG.API_BASE_URL}${user.imageUrl}` : CONFIG.DEFAULT_AVATAR_URL}
-                                        alt={`${user.name}のアバター`}
-                                        onError={(e) => {
-                                            // 画像読み込みエラー時のフォールバック
-                                            const target = e.target as HTMLImageElement;
-                                            target.src = CONFIG.DEFAULT_AVATAR_URL;
-                                        }}
-                                    />
-                                </div>
-                                <div className={styles.userNameAndId}>
-                                    <strong>{user.name}</strong>
-                                    <span className={styles.userId}>@{user.userId}</span>
-                                </div>
-                            </Link>
-                        </li>
-                    ))}
+                    {!loading && !error && users.length > 0 && users.map(user => {
+                        console.log('Recommended user:', user); // ← ここでユーザー情報確認
+                        return (
+                            <li className={styles.userInfo} key={user.id}>
+                                <Link to={`/user/${user.userId}`}>
+                                    <div className={styles.userImg}>
+                                        <img
+                                            className={styles.userImg}
+                                            src={user.imageUrl ? `${user.imageUrl}` : CONFIG.DEFAULT_AVATAR_URL}
+                                            alt={`${user.name}のアバター`}
+                                            onError={(e) => {
+                                                const target = e.target as HTMLImageElement;
+                                                target.src = CONFIG.DEFAULT_AVATAR_URL;
+                                            }}
+                                        />
+                                    </div>
+                                    <div className={styles.userNameAndId}>
+                                        <strong>{user.name}</strong>
+                                        <span className={styles.userId}>@{user.userId}</span>
+                                    </div>
+                                </Link>
+                            </li>
+                        );
+                    })}
                 </ul>
             </nav>
         </div>

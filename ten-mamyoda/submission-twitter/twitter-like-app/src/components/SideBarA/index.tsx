@@ -31,7 +31,7 @@ export function SideBarA() {
                                     <div
                                         className={styles.userImg}
                                         style={{
-                                            backgroundImage: `url(${CONFIG.API_BASE_URL}${user.user_image || CONFIG.DEFAULT_AVATAR_URL})`,
+                                            backgroundImage: `url(${user.user_image || CONFIG.DEFAULT_AVATAR_URL})`,
                                         }}
                                     ></div>
                                     <div className={styles.userNameAndId}>

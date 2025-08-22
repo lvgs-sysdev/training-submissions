@@ -93,6 +93,7 @@ export async function getRandomUsersExcluding(currentUserId: string | null, limi
     queryParams.push(limit);
 
     const [rows] = await db.query<RowDataPacket[]>(query, queryParams);
+    console.log("DBから取得したユーザー:", rows); // ← ここで確認
     return rows;
 }
 

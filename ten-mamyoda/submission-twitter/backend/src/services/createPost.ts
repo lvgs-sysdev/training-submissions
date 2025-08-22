@@ -23,7 +23,6 @@ export async function createPost(
 ) {
     const connection = await pool.getConnection();
     try {
-        // サニタイズ前に __POST_IMAGE__ を置換済みと仮定
         const sanitizedContent = myXSS.process(content);
 
         await connection.execute(
