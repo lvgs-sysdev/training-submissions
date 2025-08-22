@@ -1,0 +1,123 @@
+footer {
+  background-color: #121212;
+  height: 540px;
+  max-width: 1366px;
+}
+
+.footer-ul {
+  display: flex;
+  justify-content: start;
+  margin: 0;
+  padding: 100px 122px 100px;
+  text-align: center;
+}
+
+.footer-li {
+  display: inline-block;
+}
+
+.footer-li-aboutsite {
+  padding-right: 115px;
+}
+
+.aboutsite-line-container {
+  padding: 20px 0 20px;
+}
+
+.aboutsite-line {
+  color: rgba(222, 222, 222, 0.5);
+  size: 1px;
+}
+
+.aboutsite-link-ul {
+  list-style: none;
+  padding: 0;
+}
+
+.aboutsite-link-li {
+  display: inline-block;
+  padding-right: 20px;
+}
+
+.footer-li-infomations {
+  padding-right: 20px;
+}
+
+.infomations-container {
+  width: 265px;
+}
+
+.infomations-ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.infomations-li {
+  padding-bottom: 10px;
+}
+
+.footer-ul-followus {
+  padding-right: 20px;
+}
+
+.followus-snslink-container {
+  width: 170px;
+}
+
+.followus-snslink-ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.followus-snslink-li {
+  padding-bottom: 10px;
+}
+
+.contents-block {
+  text-align: left;
+  width: 271px;
+}
+
+.contents-title {
+  color: white;
+  font-size: 18px;
+  font-weight: 100;
+  padding-bottom: 40px;
+  text-align: left;
+}
+
+.content-link-style {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 16px;
+  font-weight: 100;
+  text-decoration: none;
+}
+
+.appstore-button {
+  background-color: black;
+  height: 56px;
+  margin: 0 auto;
+  width: 177px;
+}
+
+.appstore-button-aspect {
+  width: 177px;
+  height: 56px;
+}
+
+.playstore-button-aspect {
+  width: 177px;
+  height: 56px;
+}
+
+.list-padding {
+  padding-bottom: 10px;
+}
+
+.copylight-text {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+  margin: 0;
+}

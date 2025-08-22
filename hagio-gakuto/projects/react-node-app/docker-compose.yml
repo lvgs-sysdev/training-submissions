@@ -1,0 +1,41 @@
+services:
+  # バックエンドサービス
+  backend:
+    build:
+      context: ./backend # Dockerfileがあるディレクトリ
+    command: npm run dev
+    ports:
+      - "4000:4000" # PCの4000番をコンテナの4000番に接続
+    volumes:
+      - ./backend:/usr/src/app # ソースコードの同期
+    env_file:
+      - ./backend/.env # バックエンド用の環境変数ファイル
+    depends_on:
+      - db # dbサービスが起動してから起動する
+
+  # フロントエンドサービス
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:80"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment: # ★ この3行を追加
+      - HOST=0.0.0.0
+    depends_on:
+      - backend
+
+  # データベースサービス
+  db:
+    image: postgres:14 # PostgreSQLの公式イメージを使用
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # DBデータを永続化
+    env_file:
+      - ./backend/.env # DBのパスワードなどを共有
+
+volumes:
+  postgres_data: # DBデータ保存用の名前付きボリューム

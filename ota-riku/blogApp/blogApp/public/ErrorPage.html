@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="jp">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/Common/style.css" />
+    <link rel="stylesheet" href="/css/Common/header.css" />
+    <link rel="stylesheet" href="/css/ErrorPage/ErrorPage.css" />
+    <title>Error</title>
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <a href="/home" class="title">DAYDAYTRAVEL</a>
+        <div id="login-block" class="login-status-block">
+          <div class="login-button-container">
+            <a href="/Login.html" class="login-text">Login</a>
+            <a href="/RegistAccount.html" type="button" class="login-button"
+              >Get Started</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+    <article>
+      <div class="network-error-msg-container">
+        <div class="network-error-imgmsg-container">
+          <img
+            src="/Image/error-cat.png"
+            class="network-error-img"
+            alt="エラー猫"
+          />
+          <h1 id="network-error-msg" class="network-error-msg">デフォルト</h1>
+        </div>
+        <h2 id="network-error-guide-msg" class="network-error-guide-msg">
+          デフォルト
+        </h2>
+      </div>
+    </article>
+    <script src="/js/ErrorPage.js"></script>
+  </body>
+</html>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ユーザー新規登録｜DAYDAYTRAVEL</title>
+  <link rel="stylesheet" href="/css/register.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/sidebar.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header class="header">
+    <a href="/" class="title">DAYDAYTRAVEL</a>
+    <ul id="login-status">
+      <li>Loading status...</li>
+    </ul>
+  </header>
+  <main>
+    <div class="register">
+      <div id="register">
+        <script>
+          const urlParams = new URLSearchParams(window.location.search);
+          if (urlParams.get("msg")) {
+            const articleListContainer = document.getElementById("register");
+            articleListContainer.innerHTML = `<p class="msg">${urlParams.get("msg")}</p>`;
+          }
+        </script>
+      </div>
+      <h1>ユーザー新規登録</h1>
+      <form method="POST" action="/registerUser" class="register-form">
+        <p>ユーザーID：<input type="text" name="userId" required></p>
+        <p>ユーザー名：<input type="text" name="userName" required></p>
+        <p>パスワード：<input type="text" name="password" required></p>
+        <p><input type="submit" value="登録"></p>
+      </form>
+    </div>
+
+  </main>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-item1">
+        <h2>PT.Travel Everyday Indonesia</h2>
+        <p class="address">Grand Floor Zaidin L-Walk, JI.Maju Jaya No.2, Daerah Istimewa Yogyakarta, Indonesia 55281</p>
+        <ul class="about">
+          <li><a href="#">About</a></li>
+          <li><a href="#">Privacy policy</a></li>
+        </ul>
+        <ul class="contact">
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-item2">
+        <h2>Informations</h2>
+        <ul>
+          <li><a href="#">How to register as a user</a></li>
+          <li><a href="#">Guide to creating travel review</a></li>
+          <li><a href="#">Tutorial for making culinary reviews</a></li>
+        </ul>
+      </div>
+      <div class="footer-item3">
+        <h2>Follow us</h2>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Youtube</a></li>
+        </ul>
+      </div>
+      <div class="footer-item4">
+        <h2>Download app</h2>
+        <ul>
+          <li><a href="#"><img src="/image/appstore.png" alt="AppStore"></a></li>
+          <li><a href="#"><img src="/image/googleplay.png" alt="GooglePlay"></a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="copyright">© 2023 PT. Travel Everyday Indonesia</p>
+  </footer>
+  <script src="../loginStatus.js"></script>
+</body>
+
+</html>

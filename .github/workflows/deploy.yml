@@ -1,0 +1,25 @@
+name: Deploy to EC2 via Git Pull
+
+on:
+  push:
+    branches:
+      - main # mainブランチにプッシュされたら実行
+    paths:
+      - "hagio-gakuto/**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HAGIO_EC2_HOST }}
+          username: ${{ secrets.HAGIO_EC2_USER }}
+          key: ${{ secrets.HAGIO_EC2_KEY }}
+          script: |
+            cd training-submissions/hagio-gakuto/projects
+            git pull origin main
+            docker-compose -f docker-compose.prod.yml build
+            docker-compose -f docker-compose.prod.yml up -d
+            docker image prune -f
