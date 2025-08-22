@@ -1,0 +1,120 @@
+.headerActions {
+    display: flex;
+    align-items: center;
+}
+.headerActions.right {
+    justify-content: flex-end;
+}
+.cancelButton {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    transition: background-color 0.2s;
+}
+.cancelButton:hover {
+    background-color: #2f2f2f;
+}
+
+.scrollableContent {
+    flex: 1;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #555 #202020;
+}
+.scrollableContent::-webkit-scrollbar { width: 8px; }
+.scrollableContent::-webkit-scrollbar-track { background: #202020; }
+.scrollableContent::-webkit-scrollbar-thumb { background-color: #555; border-radius: 4px; }
+
+.postFormContainer {
+    padding: 1rem;
+    border-bottom: 1px solid #3f3f3f;
+}
+
+.postInputGroup {
+    display: flex;
+    gap: 1rem; 
+    min-width: 0;
+}
+
+.composerBody {
+    flex: 1;
+    min-width: 0;
+}
+
+.ckEditorContainer {
+    --ck-color-base-border: #444;
+    --ck-color-base-background: transparent;
+    --ck-color-text: #ffffff;
+    --ck-color-button-default-background: transparent;
+    --ck-color-button-default-hover-background: #333;
+    --ck-color-button-on-background: #444;
+    --ck-color-button-on-hover-background: #555;
+    --ck-color-toolbar-border: #444;
+    --ck-color-focus-border: #1d9bf0;
+    --ck-border-radius: 4px;
+    --ck-color-input-background: transparent;
+    --ck-color-input-text: #ffffff;
+    --ck-color-list-button-on-background: #444;
+    --ck-color-panel-background: #222;
+    --ck-color-panel-border: #444;
+    --ck-color-dropdown-panel-background: #222;
+}
+
+.ckEditorContainer :global(.ck.ck-editor__main > .ck-editor__editable) {
+    border: none !important;
+    min-height: 8rem;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: #ffffff;
+    height: 40dvh;
+    background-color: #1a1a1a;
+}
+
+.ckEditorContainer :global(.ck.ck-toolbar) {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 1px solid #444 !important;
+}
+
+.ckEditorContainer :global(.ck-editor__editable.ck-placeholder::before) {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+
+.timelineHeadline {
+    padding: 1rem;
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: bold;
+    border-bottom: 1px solid #3f3f3f;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.profileAvatarWrapper {
+    width: 4rem;
+    height: 4rem;
+    min-width: 4rem;
+    min-height: 4rem;
+    border-radius: 50%;
+    background-color: #555555;
+    border: 4px solid #000000;
+    overflow: hidden;
+}
+
+.profileAvatarImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+.createPostBar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background-color: #121212;
+    color: #ffffff;
+    overflow: hidden;
+}
