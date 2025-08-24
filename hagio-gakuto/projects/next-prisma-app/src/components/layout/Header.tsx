@@ -3,6 +3,7 @@
 import { useAuth } from "@/context/AuthContext";
 import Nav from "./components/Nav";
 import Breadcrumbs from "./components/Breadcrumbs";
+import Link from "next/link";
 
 export default function Header() {
   const { user } = useAuth(); // Contextからuserとlogoutを取得
@@ -18,7 +19,7 @@ export default function Header() {
       <div className="mx-auto max-w-screen-xl py-4 md:py-4 px-4">
         <Breadcrumbs />
         <div className="relative flex items-center justify-between">
-          <a
+          <Link
             href="/"
             aria-label="Company"
             title="Company"
@@ -42,7 +43,7 @@ export default function Header() {
             <span className="ml-2 text-xl font-bold tracking-wide  uppercase">
               Company
             </span>
-          </a>
+          </Link>
           <ul className=" items-center  space-x-8 lg:flex">
             {navLinks.map((link) => (
               <li key={link.name}>
