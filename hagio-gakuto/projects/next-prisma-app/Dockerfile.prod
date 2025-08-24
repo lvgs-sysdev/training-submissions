@@ -10,6 +10,7 @@ WORKDIR /usr/src/app
 # 前のステージから、本番用のnode_modulesをコピー
 COPY --from=deps /usr/src/app/node_modules ./node_modules
 COPY . .
+RUN npx prisma generate
 RUN npm run build
 
 # --- 3. 実行ステージ ---
