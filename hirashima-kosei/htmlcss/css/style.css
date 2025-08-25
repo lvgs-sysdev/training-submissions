@@ -1,0 +1,146 @@
+.header-title {
+    color: #FF553C;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.header-login {
+    background-color: #FFFFFF;
+    color: #121212;
+    text-decoration: none;
+    font-size: 14px;
+    opacity: 80%;
+    margin-right: 20px;
+    padding: 14px 16px;
+}
+
+.header-login:hover {
+    opacity: 100%;
+    background-color: #dcdcdc;
+}
+
+.header-get-started {
+    background-color: #FF553C;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 14px 16px;
+}
+
+.header-get-started:hover {
+    background-color: #d74933;
+}
+
+@media (max-width: 768px) {
+    .header-title {
+        font-size: 18px;
+    }
+    .header-login, .header-get-started {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    .header-title {
+        font-size: 16px;
+    }
+    .header-login, .header-get-started {
+        font-size: 10px;
+        padding: 10px 12px;
+    }
+}
+
+.list-item:hover {
+    background-color: #f0f0f0;
+    opacity: 75%;
+}
+
+.subheading {
+    color: #121212;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.text-category {
+    color: #FF553C;
+    font-size: 14px;
+}
+
+.text-date {
+    color: #757575;
+    font-size: 14px;
+}
+
+.text-article-title {
+    color: #121212;
+    font-size: 20px;
+}
+
+.text-part-of-content {
+    color: #757575;
+    font-size: 16px;
+}
+
+.btn-category {
+    color: #757575;
+    font-size: 14px;
+    background-color: #FFFFFF;
+    border: 1px solid #DEDEDE;
+    padding: 8px 18px;
+    margin-right: 10px;
+}
+
+.btn-category:hover {
+    background-color: #F0F0F0;
+}
+
+.text-article-content {
+    color: #757575;
+    font-size: 18px;
+}
+
+.author-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+@media (max-width: 576px) {
+    .author-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+}
+
+.footer-title {
+    color: #FFFFFF;
+    font-size: 18px;
+}
+
+.footer-content p, .footer-content span, .footer-content hr {
+    color: #FFFFFF;
+    font-size: 16px;
+    opacity: 50%;
+}
+
+.footer-content a {
+    display: block;
+    color: #FFFFFF;
+    font-size: 16px;
+    text-decoration: none;
+    opacity: 50%;
+}
+
+.footer-content a:hover {
+    text-decoration-line: underline;
+}
+
+.footer-btn-store {
+    width: 177px;
+    height: 56px;
+}
+
+.footer-btn-store:hover {
+    opacity: 75%;
+}
