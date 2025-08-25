@@ -1,0 +1,4 @@
+# Finder用のファイルを無視
+*.DS_Store
+node_modules/
+*.env

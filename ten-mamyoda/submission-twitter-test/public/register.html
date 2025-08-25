@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Black Box</title>
+    <link rel="stylesheet" href="css/register.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <main>
+        <div id="registerInfoBar">
+            <div id="registerHeader">
+                <div id="registerTitle">
+                    <img src="image/topPicture.png" id="titleImg" alt="titleImage">
+                    <a href="/">
+                        <h1 class="titleContent">Black Box</h1>
+                    </a>
+                </div>
+            </div>
+            <div id="registerContents">
+                <h2 class="infomation">
+                    説明文が入ります。
+                </h2>
+            </div>
+            <div id="registerFooter">
+                <p class="footerContent">© こぴーらいと</p>
+            </div>
+        </div>
+        <div id="registerInputBar">
+            <div id="inputForm">
+                <h2 class="inputHeadline">
+                    New Account
+                </h2>
+                <form action="/register" method="post">
+                    <div id="inputBox">
+                        <ul id="userInfo">
+                            <li class="itemName">
+                                <span class="item">
+                                    Name
+                                </span>
+                                <input type="text" name="userName" class="input" required />
+                            </li>
+                            <li class="itemName">
+                                <span class="item">
+                                    User ID
+                                </span>
+                                <input type="text" name="userId" class="input" required />
+                            </li>
+                            <li class="itemName">
+                                <span class="item">
+                                    Password
+                                </span>
+                                <input type="password" name="password" class="input" required />
+                            </li>
+                            <li class="itemName">
+                                <span class="item">
+                                    Confirm Password
+                                </span>
+                                <input type="password" name="confirmPassword" class="input" required />
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="registerBox">
+                        <button type="submit" class="registButton">
+                            register
+                        </button>
+                    </div>
+                </form>
+                <div id="goLogin">
+                    <hr>
+                    <p class="announce">If you have an account, click
+                        <a href="/login" class="here">here.</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

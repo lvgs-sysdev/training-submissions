@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Black Box</title>
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <main>
+        <div id="sideBarA">
+            <nav id="allPage">
+                <ul class="pageList">
+                    <li class="pages">
+                        <a href="/">Home</a>
+                    </li>
+                    <li class="pages">
+                        <a href="/login">Login</a>
+                    </li>
+                    <li class="pages">
+                        <a href="/register">Register</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div id="centerBar">
+            <header>
+                <div id="headerBox">
+                    <div id="title">
+                        <a href="/user/username" class="backButton">←</a>
+                        <h2 class="titleContent">プロフィールを編集</h2>
+                    </div>
+                    <button type="submit" form="profileEditForm" class="postButton">保存</button>
+                </div>
+            </header>
+            <form id="profileEditForm" action="/profile/save" method="post" enctype="multipart/form-data">
+                <div class="editHeaderImages">
+                    <div class="editBannerContainer">
+                        <div class="editBannerPreview" style="background-image: url('...');">
+                            <div class="imageActionOverlay">
+                                <label for="bannerImage" class="imageUploadLabel">
+                                    <span class="iconPlaceholder">📷</span>
+                                </label>
+                                <input type="file" id="bannerImage" name="bannerImage" accept="image/*"
+                                    style="display:none;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="editAvatarContainer">
+                        <div class="editAvatarPreview" style="background-image: url('...');">
+                            <div class="imageActionOverlay">
+                                <label for="profileImage" class="imageUploadLabel">
+                                    <span class="iconPlaceholder">📷</span>
+                                </label>
+                                <input type="file" id="profileImage" name="profileImage" accept="image/*"
+                                    style="display:none;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="editFormFields">
+                    <div class="formGroupCheckbox">
+                        <input type="checkbox" id="deleteProfileImage" name="deleteProfileImage" value="true">
+                        <label for="deleteProfileImage">プロフィール画像を削除する</label>
+                    </div>
+                    <div class="formGroup">
+                        <label for="username">名前</label>
+                        <input type="text" id="username" name="username" class="input" value="ユーザー名">
+                    </div>
+                    <div class="formGroup">
+                        <label for="userid">ユーザーID</label>
+                        <input type="text" id="userid" name="userid" class="input" value="username"
+                            placeholder="例: new_user_123">
+                        <p class="formNote">半角英数字とアンダースコア(_)のみ使用できます。</p>
+                    </div>
+                    <div class="formGroup">
+                        <label for="bio">自己紹介</label>
+                        <textarea id="bio" name="bio" class="input" rows="4">...</textarea>
+                    </div>
+                </div>
+            </form>
+            <footer>
+                <div id="footerBox">
+                    <p class="footerContent">コピーライト</p>
+                </div>
+            </footer>
+        </div>
+        <div id="sideBarB">
+            <nav id="randomUser">
+                <ul class="userList">
+                    <p class="userContent">おすすめユーザー</p>
+                    <li class="userInfo">
+                        <a href="">
+                            画像＋ユーザー１
+                        </a>
+                    </li>
+                    <li class="userInfo">
+                        <a href="">
+                            画像＋ユーザー２
+                        </a>
+                    </li>
+                    <li class="userInfo">
+                        <a href="">
+                            画像＋ユーザー３
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </main>
+</body>
+
+</html>
