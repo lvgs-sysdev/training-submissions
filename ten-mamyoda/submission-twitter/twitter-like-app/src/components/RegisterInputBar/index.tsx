@@ -78,7 +78,7 @@ export function RegisterInputBar() {
                 password,
             });
 
-            alert(UI_MESSAGES.POST_CREATED); // 登録完了メッセージとして代用
+            alert(UI_MESSAGES.USER_REGUSTERED); // 登録完了メッセージとして代用
             navigate(ROUTES.LOGIN);
         } catch (error: any) {
             console.error('登録処理中にエラーが発生しました:', error);

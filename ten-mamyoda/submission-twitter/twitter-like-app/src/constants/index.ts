@@ -3,6 +3,7 @@ export const UI_MESSAGES = {
     POST_NOT_FOUND: '投稿が見つかりません',
     POST_CREATED: '投稿が完了しました！',
     POST_ERROR: '投稿中にエラーが発生しました',
+    USER_REGUSTERED: 'ユーザー登録が完了しました！',
     USER_NOT_FOUND: 'ユーザーが見つかりません',
     LOGIN_REQUIRED: 'ログインが必要です',
     DUPLICATE_USER_ID: 'そのユーザーIDは既に使用されています',

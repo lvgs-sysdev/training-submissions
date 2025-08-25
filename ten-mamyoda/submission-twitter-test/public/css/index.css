@@ -1,0 +1,309 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    background-color: black;
+    color: #FFFFFF;
+    font-family: "Noto Sans JP", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul, li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+#sideBarA {
+    width: 25%;
+    min-width: 200px;
+    padding: 1.5rem;
+    border-right: 1px solid #3f3f3f;
+
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+#centerBar {
+    width: 50%;
+    min-width: 375px; 
+    border-right: 1px solid #3f3f3f;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#sideBarB {
+    width: 25%;
+    padding: 1.5rem;
+    
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+#allPage {
+    margin-top: 2rem;
+}
+
+.pageList {
+    text-align: right;
+}
+
+.pages a {
+    display: inline-block;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 9999px;
+    transition: background-color 0.2s;
+}
+
+.pages a:hover {
+    background-color: #2f2f2f;
+}
+
+#headerBox {
+    background-color: #000000;
+
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #3f3f3f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+#title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+#titleImg {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.titleContent {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.postButton {
+    display: inline-block;
+    background-color: #1d9bf0;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.6rem 1.5rem;
+    border-radius: 9999px;
+    transition: background-color 0.2s;
+}
+.postButton:hover {
+    background-color: #1a8cd8;
+}
+
+#explainBox {
+    padding: 2rem;
+    text-align: center;
+    background-color: #16181c;
+    border-bottom: 1px solid #3f3f3f;
+    flex-shrink: 0;
+}
+
+.explainContent {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    margin: 0;
+}
+
+#postTitle {
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #3f3f3f;
+    flex-shrink: 0;
+}
+
+.postTitleContent {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+#allPosts {
+    flex: 1;
+    overflow-y: auto;
+    background-color: #202020;
+
+    scrollbar-width: thin;
+    scrollbar-color: #555 #202020;
+}
+
+#allPosts::-webkit-scrollbar {
+    width: 8px;
+}
+
+#allPosts::-webkit-scrollbar-track {
+    background: #202020;
+}
+
+#allPosts::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 4px;
+}
+
+.post {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid #3f3f3f;
+}
+
+.userImg {
+    width: 3rem;
+    height: 3rem;
+    background-color: #555;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.postBody {
+    width: 100%;
+}
+
+.postHeader {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+.userId {
+    color: #888;
+    margin-left: 0.5rem;
+}
+.postContent {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+footer {
+    padding: 1rem;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+#footerBox {
+    border: none;
+} 
+
+.footerContent {
+    font-size: 0.875rem;
+    color: #888;
+    margin: 0;
+}
+
+#randomUser {
+    margin-top: 2rem;
+}
+
+.userList {
+    background-color: #16181c;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+.userContent {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 0 0 1rem 0;
+    border-bottom: 1px solid #3f3f3f;
+    padding-bottom: 1rem;
+}
+.userInfo a {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s;
+}
+.userInfo a:hover {
+    background-color: #2f2f2f;
+}
+
+@media (max-width: 1024px) {
+    #sideBarB {
+        display: none;
+    }
+    #sideBarA {
+        width: 35%;
+    }
+    #centerBar {
+        width: 65%;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+
+    #sideBarA,
+    #centerBar {
+        width: 100%;
+        min-width: unset;
+    }
+
+    #sideBarA {
+        position: static;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid #3f3f3f;
+    }
+
+    #allPage {
+        margin-top: 0;
+    }
+
+    .pageList {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    .pages a {
+        margin: 0;
+        font-size: 1rem;
+    }
+
+    #centerBar {
+        height: auto;
+    }
+
+    #allPosts {
+        flex: unset;
+        overflow-y: visible;
+    }
+}

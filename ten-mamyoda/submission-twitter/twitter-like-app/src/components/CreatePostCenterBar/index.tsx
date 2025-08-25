@@ -105,7 +105,7 @@ export function CreatePostCenterBar({ userName, avatarImageUrl }: Props) {
                             <div className={styles.profileAvatarWrapper}>
                                 <img
                                     className={styles.profileAvatarImage}
-                                    src={`http://localhost:3000${avatarImageUrl}`}
+                                    src={`${avatarImageUrl}`}
                                     alt={`${userName}のアバター`}
                                 />
                             </div>
