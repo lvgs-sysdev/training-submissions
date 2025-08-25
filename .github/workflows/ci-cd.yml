@@ -1,0 +1,55 @@
+name: CI/CD Pipeline
+
+# プルリクエスト作成時と main ブランチへの push (マージ時) をトリガー
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  # PR作成時のテスト
+  test:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./ten-mamyoda/submission-twitter/twitter-like-app
+        
+      - name: Run tests
+        run: npm test
+        working-directory: ./ten-mamyoda/submission-twitter/twitter-like-app
+
+  # mainブランチへのマージ時にEC2へデプロイ
+  deploy:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.1
+        with:
+          ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+
+      - name: Deploy to EC2
+        run: |
+          ssh -o StrictHostKeyChecking=no ec2-user@13.114.99.104 << 'EOF'
+            cd /home/ec2-user/submission-twitter
+            git pull origin main
+            docker-compose down
+            docker-compose up --build -d
+          EOF
