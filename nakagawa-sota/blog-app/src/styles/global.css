@@ -30,19 +30,15 @@ aside {
   margin-bottom: 80px;
 }
 
-ul {
-  padding-left: 0;
-}
-
-li {
-  list-style: none;
-  display: inline-block;
-}
-
 h2 {
   font-weight: 600;
   font-size: 1.5rem;
   margin-bottom: 40px;
+}
+
+h3 {
+  font-weight: 300;
+  font-size: 1.4rem;
 }
 
 .tag {
@@ -56,6 +52,7 @@ h2 {
   font-size: 1rem;
 }
 
+/* タグと日付の間に線 */
 .article .date {
   border-left: 1px solid #DEDEDE;
   padding-left: 10px;
@@ -67,7 +64,7 @@ img {
   height: auto;
 }
 
-a {
+main a {
   display: block;
   text-decoration: none;
   color: inherit;
@@ -90,11 +87,6 @@ a img {
   margin-bottom: 60px;
 }
 
-h3 {
-  font-weight: 300;
-  font-size: 1.4rem;
-}
-
 aside .article h3 {
   font-weight: 300;
   font-size: 1.2rem;
@@ -113,6 +105,15 @@ aside .article h3 {
   margin-bottom: 10px;
 }
 
+ul {
+  padding-left: 0;
+}
+
+li {
+  list-style: none;
+  display: inline-block;
+}
+
 .tag-box {
   padding: 10px 15px;
   color: #757575;
@@ -122,6 +123,7 @@ aside .article h3 {
 }
 
 @media screen and (max-width: 768px) {
+  /* 縦に並べて、幅はもういらないので無くす */
   main .container {
     flex-direction: column;
     gap: 0;
