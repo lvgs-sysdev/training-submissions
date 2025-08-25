@@ -12,7 +12,7 @@ import articleImage6 from '../images/article6-top.jpg';
 
 <Layout title="ホーム - DAYDAYTRAVEL">
 	<div class="hero" style={`background-image: url(${heroImage.src})`}>
-		<h4>Share your<br>holiday stories.</h4>
+		<h1>Share your<br>holiday stories.</h1>
 		<p>Write about your experiences while on holiday in</p>
 		<p>various parts of indonesia, and reach a wide</p>
 		<p>readership.</p>
@@ -27,49 +27,49 @@ import articleImage6 from '../images/article6-top.jpg';
 				<div class="articles">
 					<div class="article">
 						<a href="#">
-							<Image src={articleImage1} alt="image" />
-							<p><span class="tag">Travel</span> <span class="line">|</span> <span class="date">19 Feb 2022</span></p>
-							<h1>記事タイトル記事タイトル記事タイトル記事タイトル</h1>
-							<p>本文の一部を表示本文の一部を表示本文の..</p>
+							<Image src={articleImage1} alt="women sewing" />
+							<div><span class="tag">Travel</span> <span class="date">19 Feb 2022</span></div>
+							<h3>記事タイトル記事タイトル記事タイトル記事タイトル</h3>
+							<p>本文の一部を表示本文の一部を表示本文の一部を表示本文の一部を表示</p>
 						</a>
 					</div>
 					<div class="article">
 						<a href="article">
-							<Image src={articleImage2} alt="image" />
-							<p><span class="tag">Culinary</span> <span class="line">|</span> <span class="date">26 Apr 2022</span></p>
-							<h1>The taste of Bang Embul's soto betawi</h1>
+							<Image src={articleImage2} alt="food and drinks" />
+							<div><span class="tag">Culinary</span> <span class="date">26 Apr 2022</span></div>
+							<h3>The taste of Bang Embul's soto betawi</h3>
 							<p>Each region has its own specialty food..</p>
 						</a>
 					</div>
 					<div class="article">
 						<a href="#">
-							<Image src={articleImage3} alt="image" />
-							<p><span class="tag">Travel</span> <span class="line">|</span> <span class="date">29 Apr 2022</span></p>
-							<h1>Seeing the beauty of Bali, which has many statues in temples</h1>
+							<Image src={articleImage3} alt="stone animal" />
+							<div><span class="tag">Travel</span> <span class="date">29 Apr 2022</span></div>
+							<h3>Seeing the beauty of Bali, which has many statues in temples</h3>
 							<p>Talking about Bali is never boring to tell..</p>
 						</a>
 					</div>
 					<div class="article">
 						<a href="#">
-							<Image src={articleImage4} alt="image" />
-							<p><span class="tag">Culinary</span> <span class="line">|</span> <span class="date">02 May 2022</span></p>
-							<h1>Delicious and cheap Semarang street food</h1>
+							<Image src={articleImage4} alt="food and drinks" />
+							<div><span class="tag">Culinary</span> <span class="date">02 May 2022</span></div>
+							<h3>Delicious and cheap Semarang street food</h3>
 							<p>There's a lot of street food in Semarang..</p>
 						</a>
 					</div>
 					<div class="article">
 						<a href="#">
-							<Image src={articleImage5} alt="image" />
-							<p><span class="tag">Travel</span> <span class="line">|</span> <span class="date">05 Jun 2022</span></p>
-							<h1>Karang bebai beach Lampung for summer vacation</h1>
+							<Image src={articleImage5} alt="sea and rocks" />
+							<div><span class="tag">Travel</span> <span class="date">05 Jun 2022</span></div>
+							<h3>Karang bebai beach Lampung for summer vacation</h3>
 							<p>Talking about Bali is never boring to tell..</p>
 						</a>
 					</div>
 					<div class="article">
 						<a href="#">
-							<Image src={articleImage6} alt="image" />
-							<p><span class="tag">Travel</span> <span class="line">|</span> <span class="date">13 Jun 2022</span></p>
-							<h1>The upside-down mystical forest in Bonyuwangi</h1>
+							<Image src={articleImage6} alt="trees" />
+							<div><span class="tag">Travel</span> <span class="date">13 Jun 2022</span></div>
+							<h3>The upside-down mystical forest in Bonyuwangi</h3>
 							<p>This place is most often used as a photo..</p>
 						</a>
 					</div>
@@ -80,18 +80,20 @@ import articleImage6 from '../images/article6-top.jpg';
 		<aside>
 			<div class="article-list-popular">
 				<h2>人気記事（機能不要）</h2>
-				<p><a href="#">記事タイトル記事タイトル記事タイトル記事タイトル</a></p>
-				<hr/>
-				<p><a href="#">Cheap Padang specialty food restaurant</a></p>
-				<hr>
-				<p><a href="#">Mountain hiking in central Java</a></p>
+				<ul>
+					<li class="article"><h3><a href="#">記事タイトル記事タイトル記事タイトル記事タイトル</a></h3></li>
+					<hr>
+					<li class="article"><h3><a href="#">Cheap Padang specialty food restaurant</a></h3></li>
+					<hr>
+					<li class="article"><h3><a href="#">Mountain hiking in central Java</a></h3></li>
+				</ul>
 			</div>
 			
 			<div class="article-tags">
 				<h2>もっと見る（機能不要）</h2>
 				<ul>
-					<li><a href="#">Travel</a></li>
-					<li><a href="#">Culinary</a></li>
+					<li><a class="tag-box" href="#">Travel</a></li>
+					<li><a class="tag-box" href="#">Culinary</a></li>
 				</ul>
 			</div>
 		</aside>
@@ -99,127 +101,25 @@ import articleImage6 from '../images/article6-top.jpg';
 </Layout>
 
 <style>
-	/* .heroに適用 */
 	.hero {
 		padding: 200px 123px;
 		background-size: cover;
 	}
 
-	.hero h4{
+	.hero h1 {
 		font-weight: 600;
-		font-size: 64px;
+		font-size: 4rem;
 		margin: 50px 0;
 	}
 
 	.hero p {
 		font-weight: 300;
-		font-size: 18px;
+		font-size: 1.5rem;
 		margin: 0 0 4px 0;
 	}
-	
-	/* メインとサイドの配置 */
-	.container {
-		display: flex;
-		gap: 100px;
-		padding: 100px 123px;
-	}
 
-	.main-content {
-		flex: 3;
-	}
-
-	aside {
-		flex: 1;
-	}
-
-	.main-content > div, aside > div {
-		margin-bottom: 80px;
-	}
-
-	/* 記事一覧 */
-	.articles {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 20px;
-	}
-
-	.article {
-		width: 420px;
-		height: auto;
-		margin-bottom: 60px;
-	}
-
-	.article h1 {
-		font-weight: 300;
-		font-size: 20px;
-	}
-
-	.article p {
-		font-weight: 300;
-		font-size: 16px;
-		color: #757575;
-	}
-
-	/* 画像の調整 */
-	a img {
-		width: 100%;
-		height: auto;
-		aspect-ratio: 3 / 2;
-		object-fit: cover;
-	}
-
-	a {
-		display: block;
-		text-decoration: none;
-		color: inherit;
-	}
-
-	/* .article-list-popularに適用 */
-	.article-list-popular p {
-		margin-bottom: 50px;
-	}
-
-	hr {
-		margin: 30px 0;
-	}
-
-	/* .article-tagsに適用 */
-	ul {
-		padding-left: 0;
-	}
-
-	li {
-		list-style: none;
-		display: inline-block;
-		margin-right: 20px;
-		margin-bottom: 20px;
-	}
-
-	.article-tags a {
-		padding: 10px 15px;
-		color: #757575;
-		border: 1px solid #757575;
-	}
-
-	/* その他の書式 */
-	h2 {
-		font-weight: 600;
-		font-size: 22px;
-		margin-bottom: 40px;
-	}
-
-	.tag {
-		color: orangered;
-		font-weight: 500;
-	}
-
-	.line{
-		color: #DEDEDE;
-	}
-
-	.date {
-		color: #757575;
-		font-weight: 300;
+	.article-list-popular hr {
+		margin: 40px 0 30px 0;
 	}
 
 	@media screen and (max-width: 768px) {
@@ -227,26 +127,12 @@ import articleImage6 from '../images/article6-top.jpg';
 			padding: 100px 50px;
 		}
 
-		.hero h4 {
-			font-size: 36px;
+		.hero h1 {
+			font-size: 2.5rem;
 		}
 
 		.hero p {
-			font-size: 20px;
-		}
-		
-		.container {
-			flex-direction: column;
-			gap: 0;
-			padding: 100px 50px;
-		}
-
-		.main-content, aside {
-			flex: auto;
-		}
-
-		.article {
-			margin-bottom: 20px;
+			font-size: 1rem;
 		}
 	}
 </style>

@@ -13,13 +13,14 @@ import twitterLogo from '../images/bxl-twitter.svg';
 import instagramLogo from '../images/bxl-instagram-alt.svg';
 import linkedinLogo from '../images/bxl-linkedin-square.svg';
 import linkLogo from '../images/bx-link-alt.svg';
-import andreaWise from '../images/andrea-wise.jpg';
-import karenSmith from '../images/karen-smith.jpg';
-import samanthaWilliam from '../images/samantha-william.jpg';
-import renataHope from '../images/renata-hope.jpg';
-import angelaSaunder from '../images/angela-saunder.jpg';
+import andreaWise from '../images/author-andrea-wise.jpg';
+import karenSmith from '../images/author-karen-smith.jpg';
+import samanthaWilliam from '../images/author-samantha-william.jpg';
+import renataHope from '../images/author-renata-hope.jpg';
+import angelaSaunder from '../images/author-angela-saunder.jpg';
 ---
 <Layout title="記事 - DAYDAYTRAVEL">
+	<div class="empty-block"></div> <!-- レイアウト調整用ブロック -->
 	<div class="container">
 		<div class="main-content">
 			<div class="author-profile">
@@ -27,27 +28,27 @@ import angelaSaunder from '../images/angela-saunder.jpg';
 					<div class="author-karen-smith" style={`background-image: url(${karenSmith.src})`} />
 					<div>
 						<p class="author-name">Karen Smith</p>
-						<p class="post-date">19 Feb 2022</p>
+						<p class="date">19 Feb 2022</p>
 					</div>
 				</div>
-				<nav class="profile-right">
+				<div class="profile-right">
 					<ul>
 						<li><a href="#"><Image src={twitterLogo} alt="twitter logo" /></a></li>
 						<li><a href="#"><Image src={instagramLogo} alt="instagram logo" /></a></li>
 						<li><a href="#"><Image src={linkedinLogo} alt="linkedin logo" /></a></li>
 						<li><a href="#"><Image src={linkLogo} alt="link logo" /></a></li>
 					</ul>
-				</nav>
+				</div>
 			</div>
 
 			<article>
-				<p class="tag">Culinary</p>
-				<h3>記事タイトル記事タイトル記事タイトル</h3>
+				<div class="tag">Culinary</div>
+				<h1>記事タイトル記事タイトル記事タイトル</h1>
 				<p>Even there are a lot of potential tourism in Semarang. 
 					Therefore Semarang need more promotional for old potential Tourism.</p>
-				<div class="main-image">
+				<div class="article-image main-image">
 					<Image src={articleImage2} alt="cafe food" />
-					<p>Food portrait this afternoon</p>
+					<center>Food portrait this afternoon</center>
 				</div>
 				<p>Lorem ipsum dolor sit amet consectetur. 
 					Nascetur hendrerit mauris in elit viverra consectetur. 
@@ -60,7 +61,7 @@ import angelaSaunder from '../images/angela-saunder.jpg';
 					Faucibus et ante faucibus nunc. Est nec feugiat congue viverra. 
 					Enim ut lacus malesuada est purus tellus ac condimentum. 
 					Dignissim lacinia malesuada nisl condimentum lectus euismod.</p>
-				<h1>Your gene pool depth chart</h1>
+				<h3>Your gene pool depth chart</h3>
 				<p>Sit amet consectetur. 
 					Urna ipsum praesent at nunc habitasse porttitor consequat risus adipiscing. 
 					Ut enim ultricies non lectus. 
@@ -71,9 +72,9 @@ import angelaSaunder from '../images/angela-saunder.jpg';
 				<p>Dolor sit amet consectetur. Nascetur hendrerit mauris in elit viverra consectetur. 
 					Enim placerat consectetur leo at pulvinar iaculis sit. Quam nec amet mauris sit. 
 					Adipiscing orci integer bibendum vitae sit. Porttitor.</p>
-				<div class="two-pictures">
-					<Image src={articleImage2_1} alt="" />
-					<Image src={articleImage2_2} alt="" />
+				<div class="article-image two-pictures">
+					<Image src={articleImage2_1} alt="jars" />
+					<Image src={articleImage2_2} alt="a bicycle" />
 				</div>
 				<p>Amet consectetur. 
 					Urna ipsum praesent at nunc habitasse porttitor consequat risus adipiscing. 
@@ -87,7 +88,7 @@ import angelaSaunder from '../images/angela-saunder.jpg';
 					Fringilla duis purus cursus dui sed neque ridiculus. 
 					lel Faucibus et ante faucibus nunc. Est nec feugiat congue. </p>
 				<ul>
-					<li><a href="#">Culinary</a></li>
+					<li><a class="tag-box" href="#">Culinary</a></li>
 				</ul>
 			</article>
 
@@ -98,17 +99,17 @@ import angelaSaunder from '../images/angela-saunder.jpg';
 				<div class="articles">
 					<div class="article">
 						<a href="#">
-							<Image src={articleImage7} alt="image" />
-							<p><span class="tag">Culinary</span> <span class="line">|</span> <span class="date">02 May 2022</span></p>
-							<h1>記事タイトル記事タイトル記事タイトル記事タイトル記事タイトル</h1>
+							<Image src={articleImage7} alt="food and drinks" />
+							<div><span class="tag">Culinary</span> <span class="date">02 May 2022</span></div>
+							<h3>記事タイトル記事タイトル記事タイトル記事タイトル記事タイトル</h3>
 							<p>本文の一部を表示本文の一部を表示本文の..</p>
 						</a>
 					</div>
 					<div class="article">
 						<a href="#">
-							<Image src={articleImage8} alt="image" />
-							<p><span class="tag">Culinary</span> <span class="line">|</span> <span class="date">02 May 2022</span></p>
-							<h1>Cah kangkung ala wonosobo restaurant</h1>
+							<Image src={articleImage8} alt="food" />
+							<div><span class="tag">Culinary</span> <span class="date">02 May 2022</span></div>
+							<h3>Cah kangkung ala wonosobo restaurant</h3>
 							<p>Order your favorite food menu from Asia..</p>
 						</a>
 					</div>
@@ -124,23 +125,23 @@ import angelaSaunder from '../images/angela-saunder.jpg';
 				<div class="articles">
 					<div class="article">
 						<a href="#">
-							<Image src={articleImage9} alt="image" />
-							<p><span class="tag">Culinary</span> <span class="line">|</span> <span class="date">13 Jun 2022</span></p>
-							<h1>記事タイトル記事タイトル記事タイトル記事タイトル</h1>
+							<Image src={articleImage9} alt="woman cooking" />
+							<div><span class="tag">Culinary</span> <span class="date">13 Jun 2022</span></div>
+							<h3>記事タイトル記事タイトル記事タイトル記事タイトル</h3>
 						</a>
 					</div>
 					<div class="article">
 						<a href="#">
-							<Image src={articleImage10} alt="image" />
-							<p><span class="tag">Travel</span> <span class="line">|</span> <span class="date">22 Jul 2022</span></p>
-							<h1>Enjoying the sunset on Padar island together</h1>
+							<Image src={articleImage10} alt="kids" />
+							<div><span class="tag">Travel</span> <span class="date">22 Jul 2022</span></div>
+							<h3>Enjoying the sunset on Padar island together</h3>
 						</a>
 					</div>
 					<div class="article">
 						<a href="#">
-							<Image src={articleImage11} alt="image" />
-							<p><span class="tag">Travel</span> <span class="line">|</span> <span class="date">22 Jul 2022</span></p>
-							<h1>The lush green surroundings of the campgrounds create a..</h1>
+							<Image src={articleImage11} alt="couple" />
+							<div><span class="tag">Travel</span> <span class="date">22 Jul 2022</span></div>
+							<h3>The lush green surroundings of the campgrounds create a..</h3>
 						</a>
 					</div>
 				</div>
@@ -178,26 +179,6 @@ import angelaSaunder from '../images/angela-saunder.jpg';
 </Layout>
 
 <style>
-	/* メインとサイドの配置 */
-	.container {
-		display: flex;
-		gap: 100px;
-		padding: 200px 123px 100px 123px;
-	}
-
-	.main-content {
-		flex: 3;
-	}
-
-	aside {
-		flex: 1;
-	}
-
-	.main-content > *, aside > div {
-		margin-bottom: 80px;
-	}
-
-	/* 投稿者プロフィールバー */
 	.author-profile {
 		height: 70px;
 		margin-bottom: 100px;
@@ -223,75 +204,24 @@ import angelaSaunder from '../images/angela-saunder.jpg';
 	}
 
 	.author-name {
-		font-size: 16px;
-	}
-
-	.post-date {
-		font-size: 14px;
-		font-weight: 300;
-		color: grey;
-	}
-
-	ul {
-		padding-left: 0;
-	}
-
-	li {
-		list-style: none;
-		display: inline-block;
+		font-size: 1rem;
 	}
 
 	.profile-right li {
 		margin-right: 10px;
 	}
 
-	/* 記事の調整 */
-	h3 {
-		font-size: 36px;
+	article h1 {
+		font-size: 2rem;
 		margin-top: 0;
 		margin-bottom: 48px;
 	}
 
-	article > p:not(p:first-child) {
+	article > p {
 		color: #757575;
-		font-size: 18px;
+		font-size: 1.2rem;
 		font-weight: 300;
 		margin-bottom: 40px;
-	}
-
-	article a {
-		padding: 10px 15px;
-		color: #757575;
-		border: 1px solid #757575;
-	}
-
-	/* 記事一覧 */
-	.articles {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 20px;
-	}
-
-	.main-content .article {
-		width: 420px;
-		height: auto;
-		margin-bottom: 60px;
-	}
-
-	.article h1 {
-		font-weight: 300;
-		font-size: 20px;
-	}
-
-	aside .article h1 {
-		font-weight: 300;
-		font-size: 18px;
-	}
-
-	.article p {
-		font-weight: 300;
-		font-size: 16px;
-		color: #757575;
 	}
 
 	/* 著者のアイコン */
@@ -341,24 +271,6 @@ import angelaSaunder from '../images/angela-saunder.jpg';
 		background-size: 200%;
 	}
 
-	/* 画像の調整 */
-	img {
-		width: 100%;
-		height: auto;
-	}
-
-	a img {
-		aspect-ratio: 3 / 2;
-		object-fit: cover;
-	}
-
-	a {
-		display: block;
-		text-decoration: none;
-		color: inherit;
-	}
-
-	/* 記事途中の2枚並んだ写真 */
 	.two-pictures {
 		display: flex;
 		gap: 20px;
@@ -371,51 +283,19 @@ import angelaSaunder from '../images/angela-saunder.jpg';
 		object-fit: cover;
 	}
 
-	/* その他の書式 */
-	h2 {
-		margin-top: 0;
-	}
-
-	.tag {
-		color: orangered;
-		font-weight: 500;
-	}
-
-	.line{
-		color: #DEDEDE;
-	}
-
-	.date {
-		color: #757575;
-		font-weight: 300;
+	.article-image {
+		margin-bottom: 50px;
 	}
 
 	@media screen and (max-width: 768px) {
-		.container {
-			flex-direction: column;
-			gap: 0;
-			padding: 200px 50px 100px 50px;
-		}
-
-		.main-content, aside {
-			flex: auto;
-		}
-
-		aside .article {
-			width: 420px;
-		}
-
 		.author-profile {
 			flex-direction: column;
+			gap: 20px;
 			align-items: flex-start;
 		}
 
 		.profile-right img {
 			width: 37px;
-		}
-
-		.article {
-			margin-bottom: 20px;
 		}
 	}
 </style>

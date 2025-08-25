@@ -1,0 +1,142 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* フォントは今回Poppinsしか使わないため、ここに記述 */
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.empty-block {
+  height: 70px;
+}
+
+main .container {
+  display: flex;
+  gap: 100px;
+  padding: 100px 123px;
+}
+
+.main-content {
+  flex: 3;
+}
+
+aside {
+  flex: 1;
+}
+
+.article-list-new, .article-list-popular, .article-tags, .author-profile, article, .article-list-related, .author-list {
+  margin-bottom: 80px;
+}
+
+ul {
+  padding-left: 0;
+}
+
+li {
+  list-style: none;
+  display: inline-block;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: 40px;
+}
+
+.tag {
+  color: orangered;
+  font-weight: 500;
+}
+
+.date {
+  color: #757575;
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+.article .date {
+  border-left: 1px solid #DEDEDE;
+  padding-left: 10px;
+  margin-left: 10px;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+a img {
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.articles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.main-content .article {
+  width: 420px;
+  height: auto;
+  margin-bottom: 60px;
+}
+
+h3 {
+  font-weight: 300;
+  font-size: 1.4rem;
+}
+
+aside .article h3 {
+  font-weight: 300;
+  font-size: 1.2rem;
+}
+
+.article p {
+  font-weight: 300;
+  font-size: 16px;
+  color: #757575;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.article > a > * {
+  margin-bottom: 10px;
+}
+
+.tag-box {
+  padding: 10px 15px;
+  color: #757575;
+  border: 1px solid #757575;
+  margin-right: 20px;
+	margin-bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  main .container {
+    flex-direction: column;
+    gap: 0;
+    padding: 100px 50px;
+  }
+
+  .main-content, aside {
+    flex: auto;
+  }
+
+  .article {
+    margin-bottom: 20px;
+  }
+
+  aside .article {
+    width: 420px;
+  }
+}
