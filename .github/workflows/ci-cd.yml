@@ -1,6 +1,5 @@
 name: CI/CD Pipeline
 
-# プルリクエスト作成時と main ブランチへの push (マージ時) をトリガー
 on:
   pull_request:
     branches:
@@ -10,7 +9,6 @@ on:
       - main
 
 jobs:
-  # PR作成時のテスト
   test:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
@@ -31,11 +29,9 @@ jobs:
         run: npm test
         working-directory: ./ten-mamyoda/submission-twitter/twitter-like-app
 
-  # mainブランチへのマージ時にEC2へデプロイ
   deploy:
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
-    needs: test
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
