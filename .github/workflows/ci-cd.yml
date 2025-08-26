@@ -52,9 +52,8 @@ jobs:
       - name: Deploy to EC2
         run: |
           ssh -o StrictHostKeyChecking=no ec2-user@13.114.99.104 << 'EOF'
-            cd /home/ec2-user/submission-twitter
+            cd /home/ec2-user/training-submissions/ten-mamyoda/submission-twitter
             git pull origin main
             docker-compose down
             docker-compose up --build -d
           EOF
-          
