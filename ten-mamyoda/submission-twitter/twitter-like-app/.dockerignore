@@ -8,4 +8,4 @@ tests
 vitest.config.ts
 jest.config.js
 test-results
-certbot
+**/certbot
