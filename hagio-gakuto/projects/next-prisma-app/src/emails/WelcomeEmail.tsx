@@ -29,7 +29,7 @@ export const WelcomeEmail = ({ name }: WelcomeEmailProps) => (
         </Text>
         <Button
           style={button}
-          href="http://localhost:3000/properties" // ★ 将来的には本番のURLに変更
+          href="http://52.69.254.133/" // ★ 将来的には本番のURLに変更
           //   pX={20}
           //   pY={12}
         >

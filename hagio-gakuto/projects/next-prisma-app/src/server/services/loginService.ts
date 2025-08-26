@@ -25,6 +25,8 @@ export async function login(data: LoginData) {
     expiresIn: "1h",
   });
 
+
+
   // ★ 3. ユーザーオブジェクトではなく、生成したトークンを返す
   return token;
 }

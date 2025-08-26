@@ -62,11 +62,11 @@ export async function getInquiryProperties({
   let filteredProperties = withinNeighborhood
     ? favoriteProperties.filter(
         (property: Property) =>
-          property.address.prefecture === "東京都" &&
+          property.prefecture === "東京都" &&
           specifiedAddresses.some(
             (address) =>
-              address.city === property.address.city &&
-              address.streets.includes(property.address.street)
+              address.city === property.city &&
+              address.streets.includes(property.street)
           )
       )
     : favoriteProperties;
