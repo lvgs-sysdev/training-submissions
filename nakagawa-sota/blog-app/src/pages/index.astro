@@ -20,7 +20,7 @@ import articleImage6 from '../images/article6-top.jpg';
 	
 	<div class="container">
 		<div class="main-content">
-			<div class="article-list-new">
+			<section class="article-list-new">
 				<div class="heading">
 					<h2>一覧（新着順）</h2>
 				</div>
@@ -74,34 +74,33 @@ import articleImage6 from '../images/article6-top.jpg';
 						</a>
 					</div>
 				</div>
-			</div>
+			</section>
 		</div>
 
 		<aside>
-			<div class="article-list-popular">
+			<section class="article-list-popular">
 				<h2>人気記事（機能不要）</h2>
-				<ul>
-					<li class="article"><h3><a href="#">記事タイトル記事タイトル記事タイトル記事タイトル</a></h3></li>
-					<hr>
-					<li class="article"><h3><a href="#">Cheap Padang specialty food restaurant</a></h3></li>
-					<hr>
-					<li class="article"><h3><a href="#">Mountain hiking in central Java</a></h3></li>
-				</ul>
-			</div>
+				<h3 class="article"><a href="#">記事タイトル記事タイトル記事タイトル記事タイトル</a></h3>
+				<hr>
+				<h3 class="article"><a href="#">Cheap Padang specialty food restaurant</a></h3>
+				<hr>
+				<h3 class="article"><a href="#">Mountain hiking in central Java</a></h3>
+			</section>
 			
-			<div class="article-tags">
+			<section class="article-tags">
 				<h2>もっと見る（機能不要）</h2>
 				<ul>
 					<li><a class="tag-box" href="#">Travel</a></li>
 					<li><a class="tag-box" href="#">Culinary</a></li>
 				</ul>
-			</div>
+			</section>
 		</aside>
 	</div>
 </Layout>
 
 <style>
 	.hero {
+		height: 850px;
 		padding: 200px 123px;
 		background-size: cover;
 	}
@@ -109,13 +108,20 @@ import articleImage6 from '../images/article6-top.jpg';
 	.hero h1 {
 		font-weight: 600;
 		font-size: 4rem;
-		margin: 50px 0;
+		margin-bottom: 50px;
+		color: #121212;
 	}
 
 	.hero p {
 		font-weight: 300;
 		font-size: 1.5rem;
-		margin: 0 0 4px 0;
+		margin-bottom: 4px;
+		color: #121212;
+	}
+
+	.article-tags ul {
+		display: flex;
+		gap: 20px;
 	}
 
 	.article-list-popular hr {

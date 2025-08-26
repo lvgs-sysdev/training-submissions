@@ -8,25 +8,23 @@
 
 		<nav class="header-right">
 			<ul>
-				<li id="login"><a href="#">Login</a></li>
-				<li id="get-started"><a href="#">Get started</a></li>
+				<li class="login"><a href="#">Login</a></li>
+				<li class="get-started"><a href="#">Get started</a></li>
 			</ul>
 		</nav>
 	</div>
 </header>
 
 <style>
-	/* ヘッダーの固定、背景色の指定 */
 	header {
 		position: fixed;
 		z-index: 1;
 		width: 100%;
 		height: 90px;
-		background-color: white;
+		background-color: #FFFFFF;
 		border-bottom: 1px solid #DEDEDE;
 	}
 
-	/* 各要素の配置 */
 	.container {
 		height: 100%;
 		padding: 0 123px;
@@ -35,35 +33,33 @@
 		align-items: center;
 	}
 
-	.header-left h1 {
-		font-size: 1.5rem;
-		color: orangered;
+	.header-right ul {
+		display: flex;
+		align-items: center;
+		gap: 32px;
 	}
 
-	.header-right {
-		max-height: 100%;
+	.get-started a {
+		display: block;
+		padding: 10px 15px;
+		background-color: #FF553C;
 	}
 
 	.header-right li {
 		font-size: 1rem;
-		list-style: none;
-		display: inline-block;
 	}
 
-	#get-started {
-		background-color: orangered;
-		color: white;
-		margin-left: 20px;
-	}
-	
-	#get-started a {
-		display: block;
-		padding: 10px 15px;
+	.header-left h1 {
+		font-size: 1.25rem;
+		color: #FF553C;
 	}
 
-	a {
-		text-decoration: none;
-		color: inherit;
+	.login {
+		color: #121212;
+	}
+
+	.get-started {
+		color: #FFFFFF;
 	}
 
 	@media screen and (max-width:768px) {
@@ -77,19 +73,17 @@
 
 		.header-left h1 {
 			font-size: 1rem;
-			font-weight: 600;
+		}
+
+		.header-right ul {
+			gap: 20px;
 		}
 
 		.header-right li {
 			font-size: 0.8rem;
-			list-style: none;
-			display: inline-block;
 		}
 
-		#get-started {
-			margin-left: 10px;
-		}
-		#get-started a {
+		.get-started a {
 			padding: 10px 10px;
 		}
 	}

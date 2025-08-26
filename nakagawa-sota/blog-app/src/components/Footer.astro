@@ -5,7 +5,7 @@ import playStore from '../images/play-store.jpg';
 ---
 <footer>
 	<div class="container">
-		<div class="footer-company">
+		<section class="footer-company">
 			<h2>PT. Travel Everyday Indonesia</h2>
 			<address>
 				<p>Grand Floor Zaidin L-Walk,</p>
@@ -20,18 +20,18 @@ import playStore from '../images/play-store.jpg';
 				<li>Terms & Conditions</li>
 				<li>Contact</li>
 			</ul>
-		</div>
+		</section>
 
-		<div class="footer-info">
+		<section class="footer-info">
 			<h2>Informations</h2>
 			<ul>
 				<li>How to register as a user</li>
 				<li>Guide to creating travel review</li>
 				<li>Tutorial for making culinary reviews</li>
 			</ul>
-		</div>
+		</section>
 
-		<div class="footer-sns">
+		<section class="footer-sns">
 			<h2>Follow us</h2>
 			<ul>
 				<li>Instagram</li>
@@ -39,15 +39,15 @@ import playStore from '../images/play-store.jpg';
 				<li>Twitter</li>
 				<li>Youtube</li>
 			</ul>
-		</div>
+		</section>
 
-		<div class="footer-app">
+		<section class="footer-app">
 			<h2>Download app</h2>
 			<ul>
 				<li><Image src={appStore} alt="App Store" /></li>
 				<li><Image src={playStore} alt="Google Play" /></li>
 			</ul>
-		</div>
+		</section>
 	</div>
 
 	<p class="copyright">&copy; 2023 PT. Travel Everyday Indonesia</p>
@@ -55,9 +55,8 @@ import playStore from '../images/play-store.jpg';
 
 <style>
 	footer {
-		width: 100%;
-		background-color: rgb(10, 10, 10);
-		position: relative;
+		background-color: #121212;
+		position: relative; /* copyright用 */
 	}
 
 	.container {
@@ -66,13 +65,13 @@ import playStore from '../images/play-store.jpg';
 		flex-wrap: wrap;
 	}
 
-	.footer-company, .footer-info, .footer-sns, .footer-app {
+	section {
 		margin-right: 100px;
 		margin-bottom: 50px;
 	}
 
 	.footer-company {
-		width: 280px;
+		width: 320px;
 	}
 
 	.footer-info {
@@ -88,14 +87,20 @@ import playStore from '../images/play-store.jpg';
 	}
 
 	h2 {
-		color: white;
-		font-size: 1.2rem;
+		color: #FFFFFF;
+		font-weight: 300;
+		font-size: 1.25rem;
+		margin-bottom: 40px;
 	}
 
 	p, li {
-		color: gray;
+		color: #FFFFFF;
 		font-size: 1rem;
 		margin-bottom: 20px;
+	}
+
+	p, section:not(section:last-child) li {
+		opacity: 0.5;
 	}
 
 	.copyright {
@@ -106,37 +111,28 @@ import playStore from '../images/play-store.jpg';
 		transform: translateX(-50%);
 	}
 
-	/* .footer-company内 */
-	address p {
+	.footer-company address p {
 		margin-bottom: 4px; 
 	}
 
-	hr {
-		margin: 28px 0 20px 0;
+	.footer-company hr {
+		margin: 28px 0;
 	}
 
 	.footer-menu {
 		display: flex;
 		flex-wrap: wrap;
-	}
-
-	.footer-menu li {
-		margin: 12px 28px 12px 0;
+		column-gap: 32px;
 	}
 
 	/* .footer-app内 */
-	img {
-		width: 100%;
-		height: auto;
+	.footer-app img {
 		display: block;
 	}
 
 	@media screen and (max-width: 768px) {
 		.container {
 			padding: 100px 50px;
-			display: flex;
-			flex-direction: row;
-			flex-wrap: wrap;
 		}
 	}
 </style>

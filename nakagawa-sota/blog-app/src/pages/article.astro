@@ -23,7 +23,7 @@ import angelaSaunder from '../images/author-angela-saunder.jpg';
 	<div class="empty-block"></div> <!-- レイアウト調整用ブロック -->
 	<div class="container">
 		<div class="main-content">
-			<div class="author-profile">
+			<section class="author-profile">
 				<div class="profile-left">
 					<div class="author-karen-smith" style={`background-image: url(${karenSmith.src})`} />
 					<div>
@@ -39,7 +39,7 @@ import angelaSaunder from '../images/author-angela-saunder.jpg';
 						<li><a href="#"><Image src={linkLogo} alt="link logo" /></a></li>
 					</ul>
 				</div>
-			</div>
+			</section>
 
 			<article>
 				<div class="tag">Culinary</div>
@@ -92,7 +92,7 @@ import angelaSaunder from '../images/author-angela-saunder.jpg';
 				</ul>
 			</article>
 
-			<div class="article-list-related">
+			<section class="article-list-related">
 				<div class="heading">
 					<h2>関連記事（同一タグ）</h2>
 				</div>
@@ -114,11 +114,11 @@ import angelaSaunder from '../images/author-angela-saunder.jpg';
 						</a>
 					</div>
 				</div>
-			</div>
+			</section>
 		</div>
 
 		<aside>
-			<div class="article-list-new">
+			<section class="article-list-new">
 				<div class="heading">
 					<h2>新着記事</h2>
 				</div>
@@ -145,9 +145,9 @@ import angelaSaunder from '../images/author-angela-saunder.jpg';
 						</a>
 					</div>
 				</div>
-			</div>
+			</section>
 
-			<div class="author-list">
+			<section class="author-list">
 				<div class="heading">
 					<h2>投稿者</h2>
 				</div>
@@ -173,7 +173,7 @@ import angelaSaunder from '../images/author-angela-saunder.jpg';
 						<p>Angela Saunder</p>
 					</div>
 				</div>
-			</div>
+			</section>
 		</aside>
 	</div>
 </Layout>
@@ -185,10 +185,6 @@ import angelaSaunder from '../images/author-angela-saunder.jpg';
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-	}
-
-	.author-profile p {
-		margin: 0;
 	}
 
 	.profile-left {
@@ -203,24 +199,19 @@ import angelaSaunder from '../images/author-angela-saunder.jpg';
 		margin: 10px 0;
 	}
 
-	.author-name {
-		font-size: 1rem;
-	}
-
-	.profile-right li {
-		margin-right: 10px;
+	ul {
+		display: flex;
+		gap: 10px;
 	}
 
 	article h1 {
 		font-size: 2rem;
-		margin-top: 0;
 		margin-bottom: 48px;
 	}
 
 	article > p {
 		color: #757575;
 		font-size: 1.2rem;
-		font-weight: 300;
 		margin-bottom: 40px;
 	}
 

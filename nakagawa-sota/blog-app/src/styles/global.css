@@ -1,10 +1,10 @@
+/* html */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   /* フォントは今回Poppinsしか使わないため、ここに記述 */
   font-family: "Poppins", sans-serif;
-  font-weight: 400;
   font-style: normal;
 }
 
@@ -12,6 +12,29 @@
   height: 70px;
 }
 
+h3, p {
+  font-weight: 300;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  padding-left: 0;
+}
+
+li {
+  list-style: none;
+}
+
+/* main */
 main .container {
   display: flex;
   gap: 100px;
@@ -26,48 +49,22 @@ aside {
   flex: 1;
 }
 
-.article-list-new, .article-list-popular, .article-tags, .author-profile, article, .article-list-related, .author-list {
+main section, article {
   margin-bottom: 80px;
 }
 
-h2 {
+main h2 {
   font-weight: 600;
   font-size: 1.5rem;
   margin-bottom: 40px;
 }
 
-h3 {
-  font-weight: 300;
-  font-size: 1.4rem;
-}
-
-.tag {
-  color: orangered;
-  font-weight: 500;
-}
-
-.date {
-  color: #757575;
-  font-weight: 300;
-  font-size: 1rem;
-}
-
-/* タグと日付の間に線 */
-.article .date {
-  border-left: 1px solid #DEDEDE;
-  padding-left: 10px;
-  margin-left: 10px;
-}
-
-img {
-  width: 100%;
-  height: auto;
+.main-content h3 {
+  font-size: 1.375rem;
 }
 
 main a {
   display: block;
-  text-decoration: none;
-  color: inherit;
 }
 
 a img {
@@ -75,55 +72,64 @@ a img {
   object-fit: cover;
 }
 
+.tag-box {
+  padding: 10px 15px;
+  color: #757575;
+  border: 1px solid #757575;
+}
+
+.tag {
+  color: #FF553C;
+  font-weight: 500;
+}
+
+.date {
+  color: #757575;
+}
+
+.article .date { /* タグと日付の間に線 */
+  border-left: 1px solid #DEDEDE;
+  padding-left: 10px;
+  margin-left: 10px;
+}
+
 .articles {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  display: grid;
+}
+
+.main-content .articles {
+  grid-template-columns: 1fr 1fr;
+  gap: 64px 24px;
+}
+
+aside .articles {
+  gap: 24px;
 }
 
 .main-content .article {
-  width: 420px;
-  height: auto;
-  margin-bottom: 60px;
-}
-
-aside .article h3 {
-  font-weight: 300;
-  font-size: 1.2rem;
+  min-width: 0;
 }
 
 .article p {
-  font-weight: 300;
-  font-size: 16px;
   color: #757575;
-  overflow: hidden;
   white-space: nowrap;
+  overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.article h3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 2行まで表示 */
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
 }
 
 .article > a > * {
   margin-bottom: 10px;
 }
 
-ul {
-  padding-left: 0;
-}
-
-li {
-  list-style: none;
-  display: inline-block;
-}
-
-.tag-box {
-  padding: 10px 15px;
-  color: #757575;
-  border: 1px solid #757575;
-  margin-right: 20px;
-	margin-bottom: 20px;
-}
-
 @media screen and (max-width: 768px) {
-  /* 縦に並べて、幅はもういらないので無くす */
   main .container {
     flex-direction: column;
     gap: 0;
