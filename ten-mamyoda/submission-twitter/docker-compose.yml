@@ -21,6 +21,9 @@ services:
       - ./backend/.env
     depends_on:
       - db
+    volumes:
+    - ./backend/public/image:/app/public/image
+    - ./backend/public/postImage:/app/public/postImage
 
   db:
     image: mysql:8.0
