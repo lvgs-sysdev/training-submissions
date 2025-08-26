@@ -1,0 +1,73 @@
+.infoBar {
+    width: 40%;
+    min-width: 320px;
+    border-right: 1px solid #3f3f3f;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+@media (min-width: 769px) {
+    .infoBar {
+        position: sticky;
+        top: 0;
+    }
+}
+
+.header {
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #3f3f3f;
+    flex-shrink: 0;
+}
+.title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.title a{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.titleImg {
+    width: 3.5rem;
+    height: 3.5rem;
+}
+.titleContent {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.75rem;
+    margin: 0;
+}
+
+.description {
+    font-size: 1rem;
+    color: #ccc;
+    line-height: 1.7;
+    text-align: center;
+}
+
+.contents {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    background-color: #16181c;
+}
+.information {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    line-height: 1.8;
+}
+
+.footer {
+    padding: 1rem 2rem;
+    text-align: center;
+    border-top: 1px solid #3f3f3f;
+    flex-shrink: 0;
+}
+.footerContent {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #888;
+}

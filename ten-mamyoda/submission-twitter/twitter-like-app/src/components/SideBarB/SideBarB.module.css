@@ -1,0 +1,71 @@
+.sideBarB {
+    width: 25%;
+    padding: 1.5rem;
+    
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.randomUser {
+    margin-top: 4rem;
+}
+
+.userList {
+    background-color: #16181c;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+.userContent {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 0 0 1rem 0;
+    border-bottom: 1px solid #3f3f3f;
+    padding-bottom: 1rem;
+}
+.userInfo a {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s;
+}
+.userInfo a:hover {
+    background-color: #2f2f2f;
+}
+
+.userInfo a {
+    /* display: flex; は既存のスタイル */
+    gap: 0.75rem; /* アイコンと名前の間の隙間 */
+}
+
+.userNameAndId {
+    display: flex;
+    flex-direction: column; /* 名前とIDを縦に並べる */
+}
+
+.userNameAndId strong {
+    font-size: 1rem;
+}
+
+.userNameAndId .userId {
+    font-size: 0.875rem;
+    color: #888;
+    margin: 0;
+}
+
+@media (max-width: 1024px) {
+    #sideBarB {
+        display: none;
+    }
+}
+
+.userImg {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #555;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
+}

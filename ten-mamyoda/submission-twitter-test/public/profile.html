@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Black Box</title>
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <main>
+        <div id="sideBarA">
+            <nav id="allPage">
+                <ul class="pageList">
+                    <li class="pages">
+                        <a href="/">Home</a>
+                    </li>
+                    <li class="pages">
+                        <a href="/login">Login</a>
+                    </li>
+                    <li class="pages">
+                        <a href="/register">Register</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div id="centerBar">
+            <header>
+                <div id="headerBox">
+                    <div id="title">
+                        <img src="image/topPicture.png" id="titleImg" alt="titleImage">
+                        <h1 class="titleContent">Black Box</h1>
+                    </div>
+                    <a href="/post" class="postButton">
+                        吐き出す
+                    </a>
+                </div>
+            </header>
+            <div class="profileHeader">
+                <div class="profileBanner">
+                </div>
+                <div class="profileContent">
+                    <div class="profileTopRow">
+                        <div class="profileAvatar">
+                        </div>
+                        <a href="/profile/edit" class="profileEditButton">
+                            プロフィールを編集
+                        </a>
+                    </div>
+                    <div class="profileDetails">
+                        <h2 class="profileName">ユーザー名</h2>
+                        <span class="profileHandle">@username</span>
+                    </div>
+                    <p class="profileBio">
+                        ここに自己紹介文（BIO）が入ります。
+                    </p>
+                </div>
+            </div>
+            <div id="allPosts">
+                <article class="post">
+                    <div class="userImg"></div>
+                    <div class="postBody">
+                        <div class="postHeader">
+                            <strong>ユーザー名</strong>
+                            <span class="userId">@username</span>
+                        </div>
+                        <p class="postContent">サンプル”これは私の最初の投稿です。”</p>
+                    </div>
+                </article>
+            </div>
+            <footer>
+                <div id="footerBox">
+                    <p class="footerContent">コピーライト</p>
+                </div>
+            </footer>
+        </div>
+        <div id="sideBarB">
+            <nav id="randomUser">
+                <ul class="userList">
+                    <p class="userContent">おすすめユーザー</p>
+                    <li class="userInfo">
+                        <a href="">
+                            画像＋ユーザー１
+                        </a>
+                    </li>
+                    <li class="userInfo">
+                        <a href="">
+                            画像＋ユーザー２
+                        </a>
+                    </li>
+                    <li class="userInfo">
+                        <a href="">
+                            画像＋ユーザー３
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </main>
+</body>
+
+</html>

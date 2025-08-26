@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>吐き出す</title>
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+</head>
+
+<body>
+    <main>
+        <div id="sideBarA">
+            <nav id="allPage">
+                <ul class="pageList">
+                    <li class="pages">
+                        <a href="/">Home</a>
+                    </li>
+                    <li class="pages">
+                        <a href="/login">Login</a>
+                    </li>
+                    <li class="pages">
+                        <a href="/register">Register</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div id="centerBar">
+            <header>
+                <div id="headerBox">
+                    <div class="headerActions left">
+                        <a href="/" class="cancelButton">キャンセル</a>
+                    </div>
+                    <div class="headerActions right">
+                        <button type="submit" form="createPostForm" class="postButton" disabled>吐き出す</button>
+                    </div>
+                </div>
+            </header>
+            <div class="createPostContainer">
+                <form id="createPostForm" action="/post/create" method="post" enctype="multipart/form-data">
+                    <div class="postInputGroup">
+                        <div class="userImg"></div>
+                        <div class="composerBody">
+                            <textarea id="postText" name="postText" placeholder="いまどうしてる？" rows="5"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <footer>
+                <div id="footerBox">
+                    <p class="footerContent">コピーライト</p>
+                </div>
+            </footer>
+        </div>
+        <div id="sideBarB">
+            <nav id="randomUser">
+                <ul class="userList">
+                    <p class="userContent">おすすめユーザー</p>
+                    <li class="userInfo">
+                        <a href="">
+                            画像＋ユーザー１
+                        </a>
+                    </li>
+                    <li class="userInfo">
+                        <a href="">
+                            画像＋ユーザー２
+                        </a>
+                    </li>
+                    <li class="userInfo">
+                        <a href="">
+                            画像＋ユーザー３
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </main>
+    <script>
+        tinymce.init({
+            selector: 'textarea#postText',
+
+            height: '100%', // 高さは親要素に追従
+            menubar: false,
+            language: 'ja',  // 日本語化（別途言語パックの読み込みが必要な場合も）
+
+            // ### 見た目の設定 ###
+            skin: 'oxide-dark', // ダークモード用のスキン
+            content_css: 'dark', // エディタ内のコンテンツもダークモードに
+
+            // ### 機能（プラグイン）の選択 ###
+            plugins: [
+                'autoresize', // 内容に応じてエディタの高さを自動調整
+                'lists',      // 箇条書きリスト
+                'link',       // リンク挿入
+                'image',      // 画像挿入（重要）
+                'media',      // 動画などのメディア埋め込み
+                'emoticons',  // 絵文字
+                'preview',    // プレビュー機能
+                'fullscreen',  // フルスクリーン編集モード
+                'codesample'
+            ],
+
+            // ### ツールバーに表示するボタンの選択 ###
+            toolbar: 'undo redo | blocks | bold italic underline | bullist numlist | link image media | emoticons | fullscreen preview',
+
+            // サーバー上で、画像のアップロード処理を行うプログラムのURLを指定します。
+            // このURLは、あなたがサーバーサイドで作成する必要があります。
+            images_upload_url: '/api/upload-image', // 例：Node.js, PHP, Rubyなどで作成
+            automatic_uploads: true,
+            images_file_types: 'jpeg,jpg,png,gif,webp',
+            file_picker_types: 'image',
+
+            branding: false,
+            // エディタのリサイズハンドルの非表示
+            resize: false,
+        });
+    </script>
+</body>
+
+</html>

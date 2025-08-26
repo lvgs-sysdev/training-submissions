@@ -1,0 +1,135 @@
+.loginInputBar {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+
+.inputForm {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 0 auto;
+    padding: 4rem 0;
+}
+
+
+.inputHeadline{
+    font-family: Share Tech Mono;
+    color: #FFFFFF;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+.inputBox{
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.userInfo{
+    padding-left: 0%;
+    list-style: none;
+    margin: 0;
+}
+
+.item{
+    width: 10em;
+    display: inline-block;
+    font-family: Share Tech Mono;
+    font-size: 1.25rem;
+    padding-right: 1rem;
+    text-align: left;
+}
+
+.itemName {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 1.25rem 0;
+    gap: 0.5rem 1rem;
+}
+
+.input {
+    flex: 1;
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    background-color: #2f2f2f;
+    border: 1px solid #5f5f5f;
+    color: #FFFFFF;
+    border-radius: 4px;
+}
+
+.loginBox{
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.loginButton {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.25rem;
+    padding: 0.75rem 2rem;
+    cursor: pointer;
+    border: none;
+    background-color: #1d9bf0;
+    color: #FFFFFF;
+    border-radius: 9999px;
+    transition: background-color 0.2s;
+}
+
+.loginButton:hover {
+    background-color: #1a8cd8;
+}
+
+.goRegist {
+    width: 100%;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    text-align: center;
+}
+
+.announce{
+    font-family: Share Tech Mono;
+    font-size: 1rem;
+}
+
+.announce a{
+    text-decoration: underline;
+    text-decoration-thickness: 10%;
+    font-size: 1.1em;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+@media (max-width: 1024px) {
+    .loginInputBar {
+        width: 100%;
+        min-width: unset;
+        padding: 0;
+    }
+
+    .inputForm {
+        padding: 2rem 0;
+    }
+
+    .itemName {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .item {
+        width: auto;
+        margin-left: 5%;
+    }
+
+    .input {
+        width: 100%;
+        min-width: unset;
+    }
+}
+
