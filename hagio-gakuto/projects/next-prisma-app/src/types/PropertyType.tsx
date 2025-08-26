@@ -3,17 +3,13 @@ export type Property = {
   name: string;
   type: string;
   price_rent: number;
-  address: {
-    zip: string;
-    prefecture: string;
-    city: string;
-    street: string;
-    block: string;
-  };
-  location: {
-    lat: number;
-    lng: number;
-  };
+  zip: string;
+  prefecture: string;
+  city: string;
+  street: string;
+  block: string;
+  lat: number;
+  lng: number;
   nearest_station: string;
   area_sqm: number;
   layout: string;

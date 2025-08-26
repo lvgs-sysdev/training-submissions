@@ -15,7 +15,7 @@ import AttachEmailIcon from "@mui/icons-material/AttachEmail";
 export default function PropertyDetailInfo({
   property,
 }: Readonly<{ property: Property }>) {
-  const mapUrl = `https://www.google.com/maps?q=${property.location.lat},${property.location.lng}`;
+  const mapUrl = `https://www.google.com/maps?q=${property.lat},${property.lng}`;
   const [favorite, setFavorite] = useState(property?.isFavorite || false);
   const isInquiry = property?.isInquiry || false;
   const { setIsLoading } = useLoading();
@@ -115,9 +115,9 @@ export default function PropertyDetailInfo({
             >
               <MapIcon className="h-5 w-5 mr-2 text-gray-400" />
               <span>
-                〒{property.address.zip} {property.address.prefecture}{" "}
-                {property.address.city} {property.address.street}{" "}
-                {property.address.block}
+                〒{property.zip} {property.prefecture}{" "}
+                {property.city} {property.street}{" "}
+                {property.block}
               </span>
             </a>
             <p className="ml-7 text-sm text-gray-500">

@@ -17,7 +17,7 @@ model User {
   is_deleted    Boolean  @default(false)
   createdAt DateTime @default(now())
   favorites Favorite[]
-  Inquiries Inquiry[]
+  inquiries Inquiry[]
 }
 
 model Favorite {
@@ -28,6 +28,7 @@ model Favorite {
   user       User     @relation(fields: [userId], references: [id])
   userId     Int
 
+  property       Property     @relation(fields: [propertyId], references: [id])
   propertyId String
 
   // ユーザーIDと物件IDの組み合わせはユニークでなければならない
@@ -43,8 +44,35 @@ model Inquiry {
   user       User     @relation(fields: [userId], references: [id])
   userId     Int
 
+  property       Property     @relation(fields: [propertyId], references: [id])
   propertyId String
 
   // ユーザーIDと物件IDの組み合わせはユニークでなければならない
   @@unique([userId, propertyId])
+}
+
+model Property {
+  id               String   @id @db.VarChar(100)
+  name             String   @db.VarChar(200)
+  type             String   @db.VarChar(50)
+  price_rent       Int
+  zip              String   @db.VarChar(10)
+  prefecture       String   @db.VarChar(10)
+  city             String   @db.VarChar(20)
+  street           String   @db.VarChar(50)
+  block            String   @db.VarChar(20)
+  lat              Decimal  @db.Decimal(10, 6)
+  lng              Decimal  @db.Decimal(10, 6)
+  nearest_station  String   @db.VarChar(100)
+  area_sqm         Decimal  @db.Decimal(5, 1)
+  layout           String   @db.VarChar(10)
+  age_years        Int
+  floor            Int
+  total_floors     Int
+  features         String   @db.Text
+  photos           String   @db.Text
+  floor_plan_url   String   @db.VarChar(200)
+
+  favorites        Favorite[]
+  inquiries        Inquiry[]
 }

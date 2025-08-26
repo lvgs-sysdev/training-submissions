@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function PropertyList({
   property,
 }: Readonly<{ property: Property }>) {
-  const mapUrl = `https://www.google.com/maps?q=${property.location.lat},${property.location.lng}`;
+  const mapUrl = `https://www.google.com/maps?q=${property.lat},${property.lng}`;
   return (
     <div
       key={property.id}
@@ -41,11 +41,11 @@ export default function PropertyList({
         className="text-gray-600 mt-2 block hover:text-sky-600 hover:underline cursor-pointer"
       >
         <p className="text-gray-600 mt-2">
-          &#12306;{property.address.zip}
+          &#12306;{property.zip}
           <br />
-          {property.address.city}
-          {property.address.street}
-          {property.address.block}
+          {property.city}
+          {property.street}
+          {property.block}
         </p>
       </a>
 
