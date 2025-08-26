@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="./css/style.css">
     </head>
     <body>
-        <header style="position: sticky; top: 0; background-color: #FFFFFF; z-index: 1000;">
+        <header class="header-main">
             <div class="container pt-3 pt-md-4 pb-1">
                 <div class="row">
                     <div class="col-6">
@@ -22,22 +22,22 @@
                     </div>
                 </div>
             </div>
-            <hr style="margin: 0" />
+            <hr class="m-0" />
         </header>
         <main>
             <section class="mb-lg-5">
                 <div class="container-fluid p-0">
-                    <img src="./img/section-hero.png" alt="Travel Image" style="width: 100%; height: auto;">
+                    <img src="./img/section-hero.png" alt="Travel Image" class="w-100 h-auto">
                 </div>
             </section>
             <section class="pt-5">
                 <div class="container">
                     <div class="row">
-                        <div class="col-12 col-lg-7">
-                            <h5 class="subheading mb-3">一覧（新着順）</h5>
+                        <div class="col-12 col-lg-8 pe-lg-5">
+                            <p class="subheading mb-3">一覧（新着順）</p>
                             <div class="row pb-lg-5">
                                 <div class="col-12 col-lg-6 list-item pt-3">
-                                    <img src="./img/travel/travel-1.png" alt="Travel Image" style="width: 100%; height: auto;">
+                                    <img src="./img/travel/travel-1.png" alt="Travel Image" class="w-100 h-auto">
                                     <p>
                                         <span class="text-category">Travel</span>
                                         <span class="text-date"> | 19 Feb 2022</span>
@@ -46,7 +46,7 @@
                                     <p class="text-part-of-content">本文の一部を表示本文の一部を表示本文の..</p>
                                 </div>
                                 <div class="col-12 col-lg-6 list-item pt-3">
-                                    <img src="./img/culinary/culinary-1.png" alt="Culinary Image" style="width: 100%; height: auto;">
+                                    <img src="./img/culinary/culinary-1.png" alt="Culinary Image" class="w-100 h-auto">
                                     <p>
                                         <span class="text-category">Culinary</span>
                                         <span class="text-date"> | 25 Apr 2022</span>
@@ -57,7 +57,7 @@
                             </div>
                             <div class="row pb-lg-5">
                                 <div class="col-12 col-lg-6 list-item pt-3">
-                                    <img src="./img/travel/travel-2.png" alt="Travel Image" style="width: 100%; height: auto;">
+                                    <img src="./img/travel/travel-2.png" alt="Travel Image" class="w-100 h-auto">
                                     <p>
                                         <span class="text-category">Travel</span>
                                         <span class="text-date"> | 29 Apr 2022</span>
@@ -66,7 +66,7 @@
                                     <p class="text-part-of-content">Talking about Bali is never boring to tell..</p>
                                 </div>
                                 <div class="col-12 col-lg-6 list-item pt-3">
-                                    <img src="./img/culinary/culinary-2.png" alt="Culinary Image" style="width: 100%; height: auto;">
+                                    <img src="./img/culinary/culinary-2.png" alt="Culinary Image" class="w-100 h-auto">
                                     <p>
                                         <span class="text-category">Culinary</span>
                                         <span class="text-date"> | 02 May 2022</span>
@@ -77,7 +77,7 @@
                             </div>
                             <div class="row pb-5">
                                 <div class="col-12 col-lg-6 list-item pt-3">
-                                    <img src="./img/travel/travel-3.png" alt="Travel Image" style="width: 100%; height: auto;">
+                                    <img src="./img/travel/travel-3.png" alt="Travel Image" class="w-100 h-auto">
                                     <p>
                                         <span class="text-category">Travel</span>
                                         <span class="text-date"> | 05 Jun 2022</span>
@@ -86,7 +86,7 @@
                                     <p class="text-part-of-content">Talking about Bali is never boring to tell..</p>
                                 </div>
                                 <div class="col-12 col-lg-6 list-item pt-3">
-                                    <img src="./img/travel/travel-4.png" alt="Travel Image" style="width: 100%; height: auto;">
+                                    <img src="./img/travel/travel-4.png" alt="Travel Image" class="w-100 h-auto">
                                     <p>
                                         <span class="text-category">Travel</span>
                                         <span class="text-date"> | 13 Jun 2022</span>
@@ -96,15 +96,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-1"></div>
-                        <div class="col-12 col-lg-4">
-                            <h5 class="subheading mb-3">人気記事</h5>
+                        <div class="col-12 col-lg-4 ps-lg-5">
+                            <p class="subheading mb-3">人気記事</p>
                             <p class="pt-3 pb-5 list-item">記事タイトル記事タイトル記事タイトル記事タイトル</p>
                             <hr class="pb-3" />
                             <p class="pt-3 pb-5 list-item">Cheap Padang specialty food restaurant</p>
                             <hr class="pb-3" />
                             <p class="pt-3 pb-5 list-item">Mountain hiking in central Java</p>
-                            <h5 class="subheading mt-5 mb-3">もっと見る</h5>
+                            <p class="subheading mt-5 mb-3">もっと見る</p>
                             <div class="pt-3">
                                 <button class="btn-category">Travel</button>
                                 <button class="btn-category">Culinary</button>
@@ -117,56 +116,63 @@
         <footer class="bg-dark mt-5 pb-4">
             <div class="container pt-5">
                 <div class="row">
-                    <div class="col-12 col-lg-4 mb-3">
+                    <div class="col-12 col-lg-4 mb-3 pe-5">
                         <p class="footer-title">PT. Travel Everyday Indonesia</p>
-                        <div class="footer-content">
-                            <a href="">
-                                Grand Floor Zaidin L-Walk,<br />
-                                Jl. Maju Jaya No. 2,<br />
-                                Daerah Istimewa Yogyakarta,<br />
-                                Indonesia
-                            </a>
+                        <ul class="footer-content ps-0">
+                            <li>
+                                <a href="">
+                                    Grand Floor Zaidin L-Walk,<br />
+                                    Jl. Maju Jaya No. 2,<br />
+                                    Daerah Istimewa Yogyakarta,<br />
+                                    Indonesia
+                                </a>
+                            </li>
                             <hr />
-                            <div>
+                            <li>
                                 <span class="pe-5">About</span>
-                                <a href="" style="display: inline;">Privacy policy</a>
-                            </div>
-                            <div class="mb-3">
+                                <a href="" class="d-inline">Privacy policy</a>
+                            </li>
+                            <li class="mb-3">
                                 <span class="pe-5">Teams & Conditions</span>
-                                <a href="" style="display: inline;">Contact</a>
-                            </div>
-                        </div>
+                                <a href="" class="d-inline">Contact</a>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="col-12 col-lg-3 mb-3">
+                    <div class="col-12 col-lg-3 mb-3 pe-5">
                         <p class="footer-title">Informations</p>
-                        <div class="footer-content">
-                            <a href="" class="mb-3">How to register as a user</a>
-                            <a href="" class="mb-3">Guide to creating travel review</a>
-                            <a href="" class="mb-3">Tutorial for making culinary reviews</a>
-                        </div>
+                        <ul class="footer-content ps-0">
+                            <li>
+                                <a href="" class="mb-3">How to register as a user</a>
+                            </li>
+                            <li>
+                                <a href="" class="mb-3">Guide to creating travel review</a>
+                            </li>
+                            <li>
+                                <a href="" class="mb-3">Tutorial for making culinary reviews</a>
+                            </li>
+                        </ul>
                     </div>
                     <div class="col-12 col-lg-2 mb-3">
                         <p class="footer-title">Follow us</p>
-                        <div class="footer-content">
-                            <a href="" class="mb-3">Instagram</a>
-                            <a href="" class="mb-3">Facebook</a>
-                            <a href="" class="mb-3">Twitter</a>
-                            <a href="" class="mb-3">Youtube</a>
-                        </div>
+                        <ul class="footer-content ps-0">
+                            <li><a href="" class="mb-3">Instagram</a></li>
+                            <li><a href="" class="mb-3">Facebook</a></li>
+                            <li><a href="" class="mb-3">Twitter</a></li>
+                            <li><a href="" class="mb-3">Youtube</a></li>
                     </div>
                     <div class="col-12 col-lg-3 mb-3">
                         <p class="footer-title">Download app</p>
-                        <a href="" style="text-decoration: none;">
+                        <a href="" class="text-decoration-none">
                             <img src="./img/app-icon/app-store.png" alt="App Store" class="footer-btn-store mb-2" />
                         </a>
                         <br class="d-none d-lg-block" />
-                        <a href="" style="text-decoration: none;">
+                        <a href="" class="text-decoration-none">
                             <img src="./img/app-icon/play-store.png" alt="Play Store" class="footer-btn-store mb-2"/>
                         </a>
                     </div>
                 </div>
             </div>
-            <div style="text-align: center" class="footer-content pt-5">
+            <div class="footer-content pt-5 text-center">
                 <p>&copy; 2023 PT.Travel Everyday Indonesia</p>
             </div>
         </footer>
