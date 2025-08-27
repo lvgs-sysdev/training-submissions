@@ -1,6 +1,11 @@
+* {
+    font-family: "Poppins", sans-serif;
+}
+
 .header-main {
-    position: sticky; top: 0;
-    background-color: #FFFFFF;
+    position: sticky;
+    top: 0;
+    background-color: #FFF;
     z-index: 1000;
 }
 
@@ -11,7 +16,7 @@
 }
 
 .header-login {
-    background-color: #FFFFFF;
+    background-color: #FFF;
     color: #121212;
     text-decoration: none;
     font-size: 0.875rem;
@@ -27,7 +32,7 @@
 
 .header-get-started {
     background-color: #FF553C;
-    color: #FFFFFF;
+    color: #FFF;
     text-decoration: none;
     font-size: 0.875rem;
     padding: 0.875rem 1.25rem;
@@ -60,7 +65,7 @@
 
 .text-article-title {
     color: #121212;
-    font-size: 1.25rem;
+    font-size: 1rem;
 }
 
 h1.text-article-title {
@@ -82,7 +87,7 @@ h1.text-article-title {
 .btn-category {
     color: #757575;
     font-size: 0.875rem;
-    background-color: #FFFFFF;
+    background-color: #FFF;
     border: 1px solid #DEDEDE;
     padding: 0.5rem 1rem;
     margin-right: 0.5rem;
@@ -108,26 +113,24 @@ h1.text-article-title {
     border-radius: 50%;
 }
 
+.footer-bg {
+    background-color: #121212;
+}
+
 .footer-title {
-    color: #FFFFFF;
+    color: #FFF;
     font-size: 1.25rem;
 }
 
-.footer-content p, .footer-content span, .footer-content hr {
-    color: #FFFFFF;
-    font-size: 1rem;
-    opacity: 50%;
-}
-
-.footer-content a {
+.footer-content {
     display: block;
-    color: #FFFFFF;
+    color: #FFF;
     font-size: 1rem;
-    text-decoration: none;
     opacity: 50%;
+    text-decoration: none;
 }
 
-.footer-content a:hover {
+a.footer-content:hover {
     text-decoration-line: underline;
 }
 
@@ -157,9 +160,6 @@ h1.text-article-title {
         font-size: 0.625rem;
         padding: 0.625rem ;
     }
-}
-
-@media (max-width: 576px) {
     .author-icon {
         width: 50px;
         height: 50px;
