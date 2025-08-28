@@ -1,0 +1,144 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets'; 
+import heroImage from '../images/top-view-passport-tickets-camera.jpg';
+import articleImage1 from '../images/article1-top.jpg';
+import articleImage2 from '../images/article2-top.jpg';
+import articleImage3 from '../images/article3-top.jpg';
+import articleImage4 from '../images/article4-top.jpg';
+import articleImage5 from '../images/article5-top.jpg';
+import articleImage6 from '../images/article6-top.jpg';
+---
+
+<Layout title="ホーム - DAYDAYTRAVEL">
+	<div class="hero" style={`background-image: url(${heroImage.src})`}>
+		<h1>Share your<br>holiday stories.</h1>
+		<p>Write about your experiences while on holiday in</p>
+		<p>various parts of indonesia, and reach a wide</p>
+		<p>readership.</p>
+	</div>
+	
+	<div class="container">
+		<div class="main-content">
+			<section class="article-list-new">
+				<div class="heading">
+					<h2>一覧（新着順）</h2>
+				</div>
+				<div class="articles">
+					<div class="article">
+						<a href="#">
+							<Image src={articleImage1} alt="women sewing" />
+							<div><span class="tag">Travel</span> <span class="date">19 Feb 2022</span></div>
+							<h3>記事タイトル記事タイトル記事タイトル記事タイトル</h3>
+							<p>本文の一部を表示本文の一部を表示本文の一部を表示本文の一部を表示</p>
+						</a>
+					</div>
+					<div class="article">
+						<a href="article">
+							<Image src={articleImage2} alt="food and drinks" />
+							<div><span class="tag">Culinary</span> <span class="date">26 Apr 2022</span></div>
+							<h3>The taste of Bang Embul's soto betawi</h3>
+							<p>Each region has its own specialty food..</p>
+						</a>
+					</div>
+					<div class="article">
+						<a href="#">
+							<Image src={articleImage3} alt="stone animal" />
+							<div><span class="tag">Travel</span> <span class="date">29 Apr 2022</span></div>
+							<h3>Seeing the beauty of Bali, which has many statues in temples</h3>
+							<p>Talking about Bali is never boring to tell..</p>
+						</a>
+					</div>
+					<div class="article">
+						<a href="#">
+							<Image src={articleImage4} alt="food and drinks" />
+							<div><span class="tag">Culinary</span> <span class="date">02 May 2022</span></div>
+							<h3>Delicious and cheap Semarang street food</h3>
+							<p>There's a lot of street food in Semarang..</p>
+						</a>
+					</div>
+					<div class="article">
+						<a href="#">
+							<Image src={articleImage5} alt="sea and rocks" />
+							<div><span class="tag">Travel</span> <span class="date">05 Jun 2022</span></div>
+							<h3>Karang bebai beach Lampung for summer vacation</h3>
+							<p>Talking about Bali is never boring to tell..</p>
+						</a>
+					</div>
+					<div class="article">
+						<a href="#">
+							<Image src={articleImage6} alt="trees" />
+							<div><span class="tag">Travel</span> <span class="date">13 Jun 2022</span></div>
+							<h3>The upside-down mystical forest in Bonyuwangi</h3>
+							<p>This place is most often used as a photo..</p>
+						</a>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<aside>
+			<section class="article-list-popular">
+				<h2>人気記事（機能不要）</h2>
+				<h3 class="article"><a href="#">記事タイトル記事タイトル記事タイトル記事タイトル</a></h3>
+				<hr>
+				<h3 class="article"><a href="#">Cheap Padang specialty food restaurant</a></h3>
+				<hr>
+				<h3 class="article"><a href="#">Mountain hiking in central Java</a></h3>
+			</section>
+			
+			<section class="article-tags">
+				<h2>もっと見る（機能不要）</h2>
+				<ul>
+					<li><a class="tag-box" href="#">Travel</a></li>
+					<li><a class="tag-box" href="#">Culinary</a></li>
+				</ul>
+			</section>
+		</aside>
+	</div>
+</Layout>
+
+<style>
+	.hero {
+		height: 850px;
+		padding: 200px 123px;
+		background-size: cover;
+	}
+
+	.hero h1 {
+		font-weight: 600;
+		font-size: 4rem;
+		margin-bottom: 50px;
+		color: #121212;
+	}
+
+	.hero p {
+		font-weight: 300;
+		font-size: 1.5rem;
+		margin-bottom: 4px;
+		color: #121212;
+	}
+
+	.article-tags ul {
+		display: flex;
+		gap: 20px;
+	}
+
+	.article-list-popular hr {
+		margin: 40px 0 30px 0;
+	}
+
+	@media screen and (max-width: 768px) {
+		.hero {
+			padding: 100px 50px;
+		}
+
+		.hero h1 {
+			font-size: 2.5rem;
+		}
+
+		.hero p {
+			font-size: 1rem;
+		}
+	}
+</style>

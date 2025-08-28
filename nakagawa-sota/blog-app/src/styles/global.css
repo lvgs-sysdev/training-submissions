@@ -1,0 +1,150 @@
+/* html */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* フォントは今回Poppinsしか使わないため、ここに記述 */
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+}
+
+.empty-block {
+  height: 70px;
+}
+
+h3, p {
+  font-weight: 300;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  padding-left: 0;
+}
+
+li {
+  list-style: none;
+}
+
+/* main */
+main .container {
+  display: flex;
+  gap: 100px;
+  padding: 100px 123px;
+}
+
+.main-content {
+  flex: 3;
+}
+
+aside {
+  flex: 1;
+}
+
+main section, article {
+  margin-bottom: 80px;
+}
+
+main h2 {
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: 40px;
+}
+
+.main-content h3 {
+  font-size: 1.375rem;
+}
+
+main a {
+  display: block;
+}
+
+a img {
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.tag-box {
+  padding: 10px 15px;
+  color: #757575;
+  border: 1px solid #757575;
+}
+
+.tag {
+  color: #FF553C;
+  font-weight: 500;
+}
+
+.date {
+  color: #757575;
+}
+
+.article .date { /* タグと日付の間に線 */
+  border-left: 1px solid #DEDEDE;
+  padding-left: 10px;
+  margin-left: 10px;
+}
+
+.articles {
+  display: grid;
+}
+
+.main-content .articles {
+  grid-template-columns: 1fr 1fr;
+  gap: 64px 24px;
+}
+
+aside .articles {
+  gap: 24px;
+}
+
+.main-content .article {
+  min-width: 0;
+}
+
+.article p {
+  color: #757575;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.article h3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 2行まで表示 */
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
+}
+
+.article > a > * {
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  main .container {
+    flex-direction: column;
+    gap: 0;
+    padding: 100px 50px;
+  }
+
+  .main-content, aside {
+    flex: auto;
+  }
+
+  .article {
+    margin-bottom: 20px;
+  }
+
+  aside .article {
+    width: 420px;
+  }
+}

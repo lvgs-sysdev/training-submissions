@@ -1,0 +1,138 @@
+---
+import { Image } from 'astro:assets'; 
+import appStore from '../images/app-store.jpg';
+import playStore from '../images/play-store.jpg';
+---
+<footer>
+	<div class="container">
+		<section class="footer-company">
+			<h2>PT. Travel Everyday Indonesia</h2>
+			<address>
+				<p>Grand Floor Zaidin L-Walk,</p>
+				<p>Jl. Maju Java No. 2,</p>
+				<p>Daerah Istimewa Yogyakarta,</p>
+				<p>Indonesia 55281</p>
+			</address>
+			<hr>
+			<ul class="footer-menu">
+				<li>About</li>
+				<li>Privacy policy</li>
+				<li>Terms & Conditions</li>
+				<li>Contact</li>
+			</ul>
+		</section>
+
+		<section class="footer-info">
+			<h2>Informations</h2>
+			<ul>
+				<li>How to register as a user</li>
+				<li>Guide to creating travel review</li>
+				<li>Tutorial for making culinary reviews</li>
+			</ul>
+		</section>
+
+		<section class="footer-sns">
+			<h2>Follow us</h2>
+			<ul>
+				<li>Instagram</li>
+				<li>Facebook</li>
+				<li>Twitter</li>
+				<li>Youtube</li>
+			</ul>
+		</section>
+
+		<section class="footer-app">
+			<h2>Download app</h2>
+			<ul>
+				<li><Image src={appStore} alt="App Store" /></li>
+				<li><Image src={playStore} alt="Google Play" /></li>
+			</ul>
+		</section>
+	</div>
+
+	<p class="copyright">&copy; 2023 PT. Travel Everyday Indonesia</p>
+</footer>
+
+<style>
+	footer {
+		background-color: #121212;
+		position: relative; /* copyright用 */
+	}
+
+	.container {
+		padding: 100px 123px;
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	section {
+		margin-right: 100px;
+		margin-bottom: 50px;
+	}
+
+	.footer-company {
+		width: 320px;
+	}
+
+	.footer-info {
+		width: 260px;
+	}
+
+	.footer-sns {
+		width: 100px;
+	}
+
+	.footer-app {
+		width: 180px;
+	}
+
+	h2 {
+		color: #FFFFFF;
+		font-weight: 300;
+		font-size: 1.25rem;
+		margin-bottom: 40px;
+	}
+
+	p, li {
+		color: #FFFFFF;
+		font-size: 1rem;
+		margin-bottom: 20px;
+	}
+
+	p, section:not(section:last-child) li {
+		opacity: 0.5;
+	}
+
+	.copyright {
+		font-size: 0.8rem;
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	.footer-company address p {
+		margin-bottom: 4px; 
+	}
+
+	.footer-company hr {
+		margin: 28px 0;
+	}
+
+	.footer-menu {
+		display: flex;
+		flex-wrap: wrap;
+		column-gap: 32px;
+	}
+
+	/* .footer-app内 */
+	.footer-app img {
+		display: block;
+	}
+
+	@media screen and (max-width: 768px) {
+		.container {
+			padding: 100px 50px;
+		}
+	}
+</style>
