@@ -42,6 +42,26 @@ export default function PropertySearchForm({ onSearch }: Readonly<Props>) {
     onSearch({ priceMin, priceMax, layouts, area, walk, age, floor });
   };
 
+  const handleReset = () => {
+    setPriceMin("");
+    setPriceMax("");
+    setLayouts([]);
+    setArea("");
+    setWalk("");
+    setAge("");
+    setFloor(false);
+    // 親コンポーネントにもリセットした条件を伝えて再検索させる
+    onSearch({
+      priceMin: "",
+      priceMax: "",
+      layouts: [],
+      area: "",
+      walk: "",
+      age: "",
+      floor: false,
+    });
+  };
+
   return (
     <div className=" p-6 rounded-xl shadow-lg border border-gray-200">
       <h2 className="text-xl font-bold text-gray-800 mb-6">検索条件</h2>
@@ -141,7 +161,6 @@ export default function PropertySearchForm({ onSearch }: Readonly<Props>) {
             </select>
           </div>
 
-          {/* 駅徒歩 */}
           <div className="col-span-1">
             <label
               htmlFor="walk"
@@ -216,12 +235,18 @@ export default function PropertySearchForm({ onSearch }: Readonly<Props>) {
         </div>
 
         {/* 検索ボタン */}
-        <div className="mt-8 pt-6 border-t border-gray-200">
+        <div className="mt-8 pt-6 border-t border-gray-200 flex items-center gap-4">
+          <button
+            type="button"
+            onClick={handleReset}
+            className="w-full flex justify-center items-center px-6 py-3 border border-gray-300 rounded-md shadow-sm text-base font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
+          >
+            リセット
+          </button>
           <button
             type="submit"
             className="w-full flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
           >
-            {/* <SearchIcon className="h-5 w-5 mr-2" /> */}
             この条件で検索
           </button>
         </div>

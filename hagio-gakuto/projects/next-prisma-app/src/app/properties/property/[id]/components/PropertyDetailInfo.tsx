@@ -17,7 +17,7 @@ export default function PropertyDetailInfo({
 }: Readonly<{ property: Property }>) {
   const mapUrl = `https://www.google.com/maps?q=${property.lat},${property.lng}`;
   const [favorite, setFavorite] = useState(property?.isFavorite || false);
-  const isInquiry = property?.isInquiry || false;
+  const [isInquiry, setIsInquiry] = useState(property?.isInquiry || false);
   const { setIsLoading } = useLoading();
 
   const postFavorite = async () => {
@@ -41,10 +41,14 @@ export default function PropertyDetailInfo({
     postFavorite();
   };
 
+  const handleChangeInquiry = () => {
+    setIsInquiry(!isInquiry);
+  };
+
   return (
     <>
       <div className="flex justify-between items-center my-8">
-        <h1 className="text-3xl font-bold light:text-gray-900">物件詳細</h1>
+        <h2 className="text-3xl font-bold light:text-gray-900">物件詳細</h2>
         <nav className="flex gap-8">
           <button
             onClick={handleToggleFavorite}
@@ -57,13 +61,7 @@ export default function PropertyDetailInfo({
               <FavoriteBorderIcon />
             )}
           </button>
-          {/* <div
-            className={`p-2 bg-white/70 backdrop-blur-sm rounded-full text-gray-700 border flex ${
-              isInquiry && "text-sky-500"
-            }`}
-          >
-            <AttachEmailIcon />
-          </div> */}
+
           <div className="p-2 bg-white/70 backdrop-blur-sm rounded-full border flex">
             <AttachEmailIcon
               className={`
@@ -115,13 +113,12 @@ export default function PropertyDetailInfo({
             >
               <MapIcon className="h-5 w-5 mr-2 text-gray-400" />
               <span>
-                〒{property.zip} {property.prefecture}{" "}
-                {property.city} {property.street}{" "}
-                {property.block}
+                〒{property.zip} {property.prefecture} {property.city}{" "}
+                {property.street} {property.block}
               </span>
             </a>
             <p className="ml-7 text-sm text-gray-500">
-              {property.nearest_station}
+              {property.nearest_station}徒歩{property.walk_to_station}分
             </p>
           </div>
 
@@ -186,7 +183,10 @@ export default function PropertyDetailInfo({
             お問い合わせ済み
           </button>
         ) : (
-          <InquiryButton properties={property} />
+          <InquiryButton properties={property} onSuccess={handleChangeInquiry}>
+            <AttachEmailIcon fontSize="medium" />
+            お問い合わせ
+          </InquiryButton>
         )}
       </div>
     </>

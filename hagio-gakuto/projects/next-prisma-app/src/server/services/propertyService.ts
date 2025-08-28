@@ -1,42 +1,49 @@
 import { Property } from "@/types/PropertyType";
-import { getFavoriteStatus } from "./favoriteService";
-import { getAllProperties } from "./fetchPropertyService";
-import { getInquiryStatus } from "./inquiryService";
+import { prisma } from "@/lib/prisma";
 
 interface GetPropertiesParams {
-  id: string;
+  id: number;
   userId: number;
 }
 
 export async function getPropertyById({
   id,
   userId,
-}: GetPropertiesParams): Promise<Property | undefined> {
-  const allProperties = await getAllProperties();
+}: GetPropertiesParams): Promise<Property | null> {
+  const propertyFromDb = await prisma.property.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      propertyImages: true,
+      propertyFeature: true,
+      favorites: {
+        where: {
+          user_id: userId,
+        },
+      },
+      inquiries: {
+        where: {
+          user_id: userId,
+        },
+      },
+    },
+  });
 
-  const filteredData = allProperties.find(
-    (property: Property) => property.id === id
-  );
-
-  if (!filteredData) {
-    return undefined;
+  if (!propertyFromDb) {
+    return null;
   }
 
-  const isFavorite = await getFavoriteStatus(userId, id);
+  const property: Property = {
+    ...propertyFromDb,
+    lat: propertyFromDb.lat.toNumber(),
+    lng: propertyFromDb.lng.toNumber(),
+    photos: propertyFromDb.propertyImages.map((image) => image.image_url),
+    features: propertyFromDb.propertyFeature.map((feature) => feature.feature),
+    isFavorite: propertyFromDb.favorites.length > 0,
+    isInquiry: propertyFromDb.inquiries.length > 0,
+    area_sqm: propertyFromDb.area_sqm.toNumber(),
+  };
 
-  if (isFavorite) {
-    filteredData.isFavorite = true;
-  } else {
-    filteredData.isFavorite = false;
-  }
-
-  const isInquiry = await getInquiryStatus(userId, id);
-
-  if (isInquiry) {
-    filteredData.isInquiry = true;
-  } else {
-    filteredData.isInquiry = false;
-  }
-
-  return filteredData;
+  return property;
 }

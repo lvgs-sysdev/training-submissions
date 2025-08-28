@@ -22,8 +22,8 @@ export async function GET(
   }
   const userId = user.userId;
   const property = await getPropertyById({
-    id,
-    userId,
+    id: Number(id),
+    userId: userId,
   });
 
   return NextResponse.json(property);

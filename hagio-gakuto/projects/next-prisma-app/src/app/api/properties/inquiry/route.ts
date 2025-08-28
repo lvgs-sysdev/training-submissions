@@ -46,14 +46,20 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   }
   const userId = user.userId;
 
-  // サービスにlimitとoffsetを渡す
-  const { properties, count } = await getInquiryProperties({
+  const result = await getInquiryProperties({
     limit,
     offset,
     withinNeighborhood,
     sortBy,
     userId,
   });
+
+  if (!result) {
+    // もし null だった場合、エラーを返すか、空のデータを返す
+    return NextResponse.json({ properties: [], count: 0 });
+  }
+
+  const { properties, count } = result;
 
   return NextResponse.json({
     properties,

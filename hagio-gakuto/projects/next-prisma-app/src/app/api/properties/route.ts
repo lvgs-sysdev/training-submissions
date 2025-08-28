@@ -8,7 +8,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   const offset = parseInt(searchParams.get("offset") || "0");
   const sortBy = searchParams.get("sortBy") || "price_asc"; // デフォルトのソート順を設定
   const withinNeighborhood = searchParams.get("withinNeighborhood") === "true";
-  const filters: { [key: string]: any } = {};
+  const filters: { [key: string]: string | string[] } = {};
 
   for (const [key, value] of searchParams.entries()) {
     // ページネーションとソート以外のパラメータをfiltersオブジェクトに追加

@@ -3,11 +3,15 @@
 import { Property } from "@/types/PropertyType";
 import Image from "next/image";
 import Link from "next/link";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import AttachEmailIcon from "@mui/icons-material/AttachEmail";
 
 export default function PropertyList({
   property,
 }: Readonly<{ property: Property }>) {
   const mapUrl = `https://www.google.com/maps?q=${property.lat},${property.lng}`;
+
   return (
     <div
       key={property.id}
@@ -33,7 +37,9 @@ export default function PropertyList({
       <p className="text-gray-600 mt-2">
         {property.type}&nbsp;{property.area_sqm}㎡/{property.layout}
       </p>
-      <p className="text-gray-600 mt-2">{property.nearest_station}</p>
+      <p className="text-gray-600 mt-2">
+        {property.nearest_station} 徒歩{property.walk_to_station}分
+      </p>
       <a
         href={mapUrl}
         target="_blank"
@@ -52,6 +58,22 @@ export default function PropertyList({
       <p className="text-lg font-bold text-gray-900 mt-4">
         ￥{property.price_rent.toLocaleString()}円
       </p>
+      <div className="flex gap-4 justify-end">
+        <div className=" p-2 bg-white/70 backdrop-blur-sm rounded-full text-gray-700   border">
+          {property.isFavorite ? (
+            <FavoriteIcon className="text-red-500" />
+          ) : (
+            <FavoriteBorderIcon />
+          )}
+        </div>
+        <div className="p-2 bg-white/70 backdrop-blur-sm rounded-full border flex">
+          <AttachEmailIcon
+            className={`
+                "text-gray-700"
+                ${property.isInquiry && "text-sky-500"}`}
+          />
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,11 +1,10 @@
 import { prisma } from "@/lib/prisma";
 import { Property } from "@/types/PropertyType";
-import { getAllProperties } from "./fetchPropertyService";
-import { specifiedAddresses } from "@/utils/specifiedAddresses";
+import { convertToAppProperty, filterProperties } from "./propertyUtilService";
 
 interface Params {
   userId: number;
-  propertyIds: string[];
+  propertyIds: number[];
 }
 
 export async function postInquiry({ userId, propertyIds }: Params) {
@@ -15,13 +14,12 @@ export async function postInquiry({ userId, propertyIds }: Params) {
     const isInquired = await getInquiryStatus(userId, id);
     if (!isInquired) {
       dataToInsert.push({
-        userId: userId,
-        propertyId: id,
+        user_id: userId,
+        property_id: id,
       });
     }
   }
 
-  // 5. 挿入すべきデータがあれば、createManyを実行
   if (dataToInsert.length > 0) {
     await prisma.inquiry.createMany({
       data: dataToInsert,
@@ -43,66 +41,54 @@ export async function getInquiryProperties({
   withinNeighborhood,
   userId,
 }: GetPropertiesParams) {
-  const allProperties = await getAllProperties();
-
-  const inquiryRecords = await prisma.inquiry.findMany({
+  const propertiesFromDb = await prisma.property.findMany({
     where: {
-      userId: userId,
+      inquiries: {
+        some: {
+          user_id: userId,
+        },
+      },
+    },
+    include: {
+      propertyImages: true,
+      propertyFeature: true,
+      favorites: {
+        where: {
+          user_id: userId,
+        },
+      },
+      inquiries: {
+        where: {
+          user_id: userId,
+        },
+      },
     },
   });
 
-  const favoritePropertyIds = new Set(
-    inquiryRecords.map((inq) => inq.propertyId)
-  );
+  if (!propertiesFromDb) {
+    return null;
+  }
 
-  const favoriteProperties = allProperties.filter((property) =>
-    favoritePropertyIds.has(property.id)
-  );
+  const properties: Property[] = propertiesFromDb.map(convertToAppProperty);
 
-  let filteredProperties = withinNeighborhood
-    ? favoriteProperties.filter(
-        (property: Property) =>
-          property.prefecture === "東京都" &&
-          specifiedAddresses.some(
-            (address) =>
-              address.city === property.city &&
-              address.streets.includes(property.street)
-          )
-      )
-    : favoriteProperties;
-
-  const totalCount = filteredProperties.length;
-
-  const sortedProperties = filteredProperties.toSorted(
-    (a: Property, b: Property) => {
-      switch (sortBy) {
-        case "price_desc":
-          return b.price_rent - a.price_rent;
-        case "area_desc":
-          return b.area_sqm - a.area_sqm;
-        case "age_asc":
-          return a.age_years - b.age_years;
-        case "price_asc":
-        default:
-          return a.price_rent - b.price_rent;
-      }
-    }
-  );
-
-  const paginatedProperties = sortedProperties.slice(offset, offset + limit);
-
-  return { properties: paginatedProperties, count: totalCount };
+  return filterProperties({
+    limit,
+    offset,
+    sortBy,
+    withinNeighborhood,
+    properties,
+  });
 }
 
 export async function getInquiryStatus(
   userId: number,
-  propertyId: string
+  propertyId: number
 ): Promise<boolean> {
   const existingInquiry = await prisma.inquiry.findUnique({
     where: {
-      userId_propertyId: {
-        userId: userId,
-        propertyId: propertyId,
+      user_id_property_id: {
+        user_id: userId,
+        property_id: propertyId,
       },
     },
   });

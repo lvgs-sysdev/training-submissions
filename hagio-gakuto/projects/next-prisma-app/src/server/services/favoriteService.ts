@@ -1,20 +1,19 @@
 import { prisma } from "@/lib/prisma";
 import { Property } from "@/types/PropertyType";
-import { specifiedAddresses } from "@/utils/specifiedAddresses";
-import { getAllProperties } from "./fetchPropertyService";
+import { convertToAppProperty, filterProperties } from "./propertyUtilService";
 
 interface Params {
   userId: number;
-  propertyId: string;
+  propertyId: number;
 }
 
 export async function toggleFavorite({ userId, propertyId }: Params) {
   const existingFavorite = await prisma.favorite.findUnique({
     where: {
-      userId_propertyId: {
+      user_id_property_id: {
         // @@uniqueで設定した複合キーを使う
-        userId: userId,
-        propertyId: propertyId,
+        user_id: userId,
+        property_id: propertyId,
       },
     },
   });
@@ -29,8 +28,8 @@ export async function toggleFavorite({ userId, propertyId }: Params) {
   } else {
     await prisma.favorite.create({
       data: {
-        userId: userId,
-        propertyId: propertyId,
+        user_id: userId,
+        property_id: propertyId,
       },
     });
     return { status: "added" }; // 追加したことを返す
@@ -39,13 +38,13 @@ export async function toggleFavorite({ userId, propertyId }: Params) {
 
 export async function getFavoriteStatus(
   userId: number,
-  propertyId: string
+  propertyId: number
 ): Promise<boolean> {
   const existingFavorite = await prisma.favorite.findUnique({
     where: {
-      userId_propertyId: {
-        userId: userId,
-        propertyId: propertyId,
+      user_id_property_id: {
+        user_id: userId,
+        property_id: propertyId,
       },
     },
   });
@@ -67,53 +66,41 @@ export async function getFavoriteProperties({
   withinNeighborhood,
   userId,
 }: GetPropertiesParams) {
-  const allProperties = await getAllProperties();
-
-  const favoriteRecords = await prisma.favorite.findMany({
+  const propertiesFromDb = await prisma.property.findMany({
     where: {
-      userId: userId,
+      favorites: {
+        some: {
+          user_id: userId,
+        },
+      },
+    },
+    include: {
+      propertyImages: true,
+      propertyFeature: true,
+      favorites: {
+        where: {
+          user_id: userId,
+        },
+      },
+      inquiries: {
+        where: {
+          user_id: userId,
+        },
+      },
     },
   });
 
-  const favoritePropertyIds = new Set(
-    favoriteRecords.map((fav) => fav.propertyId)
-  );
+  if (!propertiesFromDb) {
+    return null;
+  }
 
-  const favoriteProperties = allProperties.filter((property) =>
-    favoritePropertyIds.has(property.id)
-  );
+  const properties: Property[] = propertiesFromDb.map(convertToAppProperty);
 
-  let filteredProperties = withinNeighborhood
-    ? favoriteProperties.filter(
-        (property: Property) =>
-          property.prefecture === "東京都" &&
-          specifiedAddresses.some(
-            (address) =>
-              address.city === property.city &&
-              address.streets.includes(property.street)
-          )
-      )
-    : favoriteProperties;
-
-  const totalCount = filteredProperties.length;
-
-  const sortedProperties = filteredProperties.toSorted(
-    (a: Property, b: Property) => {
-      switch (sortBy) {
-        case "price_desc":
-          return b.price_rent - a.price_rent;
-        case "area_desc":
-          return b.area_sqm - a.area_sqm;
-        case "age_asc":
-          return a.age_years - b.age_years;
-        case "price_asc":
-        default:
-          return a.price_rent - b.price_rent;
-      }
-    }
-  );
-
-  const paginatedProperties = sortedProperties.slice(offset, offset + limit);
-
-  return { properties: paginatedProperties, count: totalCount };
+  return filterProperties({
+    limit,
+    offset,
+    sortBy,
+    withinNeighborhood,
+    properties,
+  });
 }

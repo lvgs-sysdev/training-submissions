@@ -1,15 +1,80 @@
-import { Property } from "@/types/PropertyType";
+import { prisma } from "@/lib/prisma";
+import { Prisma } from "@prisma/client";
 import { specifiedAddresses } from "@/utils/specifiedAddresses";
-import { getAllProperties } from "./fetchPropertyService";
+import { Property } from "@/types/PropertyType";
+import { convertToAppProperty } from "./propertyUtilService";
 
+// フィルターの型定義
+export interface Filters {
+  priceMin?: string;
+  priceMax?: string;
+  area?: string;
+  age?: string;
+  floor?: string;
+  layouts?: string[];
+  walk?: string;
+}
+
+// パラメータ全体の型定義
 interface GetPropertiesParams {
   limit: number;
   offset: number;
   sortBy: string;
   withinNeighborhood: boolean;
-  filters: { [key: string]: any };
+  filters: Filters; // ★修正点1: 正しい型を指定
 }
 
+// where句を構築するヘルパー関数
+function buildWhereClause(
+  filters: Filters,
+  withinNeighborhood: boolean
+): Prisma.PropertyWhereInput {
+  const where: Prisma.PropertyWhereInput = {};
+  if (withinNeighborhood) {
+    where.prefecture = "東京都";
+    where.OR = specifiedAddresses.map((addr) => ({
+      city: addr.city,
+      street: { in: addr.streets },
+    }));
+  }
+
+  const priceFilter: Prisma.IntFilter = {};
+  if (filters.priceMin) priceFilter.gte = Number(filters.priceMin);
+  if (filters.priceMax) priceFilter.lte = Number(filters.priceMax);
+  if (Object.keys(priceFilter).length > 0) where.price_rent = priceFilter;
+  if (filters.area) where.area_sqm = { gte: Number(filters.area) };
+  if (filters.age) where.age_years = { lte: Number(filters.age) };
+  if (filters.walk) where.walk_to_station = { lte: Number(filters.walk) };
+  if (filters.floor === "true") where.floor = { gte: 2 };
+  if (
+    Array.isArray(filters.layouts) &&
+    filters.layouts.length > 0 &&
+    filters.layouts[0] !== ""
+  ) {
+    where.layout = { in: filters.layouts };
+  }
+
+  return where;
+}
+
+// orderBy句を構築するヘルパー関数
+function buildOrderByClause(
+  sortBy: string
+): Prisma.PropertyOrderByWithRelationInput {
+  switch (sortBy) {
+    case "price_desc":
+      return { price_rent: "desc" };
+    case "area_desc":
+      return { area_sqm: "desc" };
+    case "age_asc":
+      return { age_years: "asc" };
+    case "price_asc":
+    default:
+      return { price_rent: "asc" };
+  }
+}
+
+// メインの関数
 export async function getProperties({
   limit,
   offset,
@@ -17,85 +82,26 @@ export async function getProperties({
   filters,
   withinNeighborhood,
 }: GetPropertiesParams) {
-  const allProperties = await getAllProperties();
+  const where = buildWhereClause(filters, withinNeighborhood);
+  const orderBy = buildOrderByClause(sortBy);
 
-  let filteredProperties = withinNeighborhood
-    ? allProperties.filter(
-        (property: Property) =>
-          property.prefecture === "東京都" &&
-          specifiedAddresses.some(
-            (address) =>
-              address.city === property.city &&
-              address.streets.includes(property.street)
-          )
-      )
-    : allProperties;
+  const [propertiesFromDb, count] = await prisma.$transaction([
+    prisma.property.findMany({
+      where,
+      orderBy,
+      skip: offset,
+      take: limit,
+      include: {
+        propertyImages: true,
+        propertyFeature: true,
+        favorites: true,
+        inquiries: true,
+      },
+    }),
+    prisma.property.count({ where }),
+  ]);
 
-  // --- 全てのフィルター処理 ---
-  if (filters.priceMin && filters.priceMin !== "") {
-    filteredProperties = filteredProperties.filter(
-      (p: Property) => p.price_rent >= parseInt(filters.priceMin)
-    );
-  }
-  if (filters.priceMax && filters.priceMax !== "") {
-    filteredProperties = filteredProperties.filter(
-      (p: Property) => p.price_rent <= parseInt(filters.priceMax)
-    );
-  }
-  if (filters.area) {
-    filteredProperties = filteredProperties.filter(
-      (p: Property) => p.area_sqm >= parseInt(filters.area)
-    );
-  }
-  if (filters.walk && filters.walk !== "") {
-    const walkRegex = /徒歩(\d+)分/;
-    filteredProperties = filteredProperties.filter((p: Property) => {
-      const match = walkRegex.exec(p.nearest_station);
-      const walkTime = parseInt(match?.[1] || "99");
-      return walkTime <= parseInt(filters.walk);
-    });
-  }
-  if (filters.age && filters.age !== "") {
-    filteredProperties = filteredProperties.filter(
-      (p: Property) => p.age_years <= parseInt(filters.age)
-    );
-  }
-  if (filters.floor && filters.floor === "true") {
-    // チェックボックスの値は文字列の'true'
-    filteredProperties = filteredProperties.filter(
-      (p: Property) => p.floor >= 2
-    );
-  }
-  if (
-    filters.layouts &&
-    filters.layouts.length > 0 &&
-    filters.layouts[0] !== ""
-  ) {
-    filteredProperties = filteredProperties.filter((p: Property) =>
-      filters.layouts.includes(p.layout)
-    );
-  }
+  const properties: Property[] = propertiesFromDb.map(convertToAppProperty);
 
-  const totalCount = filteredProperties.length;
-
-  // ★ .sort() から .toSorted() に変更
-  const sortedProperties = filteredProperties.toSorted(
-    (a: Property, b: Property) => {
-      switch (sortBy) {
-        case "price_desc":
-          return b.price_rent - a.price_rent;
-        case "area_desc":
-          return b.area_sqm - a.area_sqm;
-        case "age_asc":
-          return a.age_years - b.age_years;
-        case "price_asc":
-        default:
-          return a.price_rent - b.price_rent;
-      }
-    }
-  );
-
-  const paginatedProperties = sortedProperties.slice(offset, offset + limit);
-
-  return { properties: paginatedProperties, count: totalCount };
+  return { properties, count };
 }

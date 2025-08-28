@@ -2,6 +2,7 @@ services:
   next-app:
     platform: linux/arm64
     build: .
+    command: npm run dev
     ports:
       - "3000:3000"
       - "5555:5555"

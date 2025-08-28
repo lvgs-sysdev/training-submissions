@@ -1,5 +1,5 @@
 export type Property = {
-  id: string;
+  id: number;
   name: string;
   type: string;
   price_rent: number;
@@ -11,6 +11,7 @@ export type Property = {
   lat: number;
   lng: number;
   nearest_station: string;
+  walk_to_station: number;
   area_sqm: number;
   layout: string;
   age_years: number;
