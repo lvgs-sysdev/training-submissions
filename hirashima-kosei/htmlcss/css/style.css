@@ -61,6 +61,8 @@
 .text-date {
     color: #757575;
     font-size: 0.875rem;
+    border-left: 1px solid #DEDEDE;
+    white-space: pre;
 }
 
 .text-article-title {
@@ -128,6 +130,7 @@ h1.text-article-title {
     font-size: 1rem;
     opacity: 50%;
     text-decoration: none;
+    border-bottom: 1px solid #DEDEDE;
 }
 
 a.footer-content:hover {
