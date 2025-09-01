@@ -1,25 +1,39 @@
+// 関連モデルの型を定義
+export type PropertyType = {
+  id: number;
+  name: string;
+};
+
+export type Layout = {
+  id: number;
+  name: string;
+};
+
+// メインのPropertyの型
 export type Property = {
   id: number;
   name: string;
-  type: string;
-  price_rent: number;
+  priceRent: number;
   zip: string;
   prefecture: string;
   city: string;
-  street: string;
-  block: string;
-  lat: number;
-  lng: number;
-  nearest_station: string;
-  walk_to_station: number;
-  area_sqm: number;
-  layout: string;
-  age_years: number;
+  town: string;
+  chome: number;
+  block: number;
+  building: string | null;
+  nearestStation: string;
+  walkToStation: number;
+  areaSqm: number;
+  buildDate: Date;
   floor: number;
-  total_floors: number;
+  totalFloors: number;
+  floorPlanUrl: string;
+  roomNumber: string | null;
+  isEmpty: boolean | null;
+  propertyType: PropertyType;
+  layout: Layout;
   features: string[];
   photos: string[];
-  floor_plan_url: string;
-  isFavorite?: boolean;
-  isInquiry?: boolean;
+  isFavorite: boolean;
+  isInquiry: boolean;
 };

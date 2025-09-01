@@ -53,7 +53,7 @@ const Breadcrumbs = () => {
     signup: "会員登録",
     mypage: "マイページ",
     about: "概要",
-    properties: "物件一覧",
+    properties: "物件",
     property: "物件詳細",
     "change-password": "パスワード変更",
     "edit-profile": "プロフィール編集",
@@ -62,6 +62,7 @@ const Breadcrumbs = () => {
     moving: "引越し",
     todo: "引越しやることリスト",
     inquiry: "お問い合わせ物件",
+    admin: "管理者画面",
   };
 
   return (

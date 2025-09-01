@@ -20,7 +20,7 @@ function SubmitButton({ text }: { readonly text: string }) {
       <button
         type="submit"
         disabled={pending}
-        className="inline-flex items-center cursor-pointer justify-center w-full h-12 px-6 font-medium tracking-wide transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none dark:text-gray-600"
+        className="inline-flex items-center cursor-pointer justify-center w-full h-12 px-6  tracking-wide duration-200 rounded shadow-md bg-sky-600 hover:bg-sky-900 focus:shadow-outline focus:outline-none text-white font-bold dark:text-gray-600  focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 transition-colors"
         style={{ opacity: pending ? 0.5 : 1 }}
       >
         {pending ? "送信中..." : text}

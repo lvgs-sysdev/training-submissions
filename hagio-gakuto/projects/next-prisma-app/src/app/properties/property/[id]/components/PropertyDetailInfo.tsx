@@ -11,11 +11,12 @@ import { useState } from "react";
 import { useLoading } from "@/context/LoadingContext";
 import InquiryButton from "@/app/properties/components/InquiryButton";
 import AttachEmailIcon from "@mui/icons-material/AttachEmail";
+import PropertySlideshow from "./PropertySlideshow";
+import { calculateBuildingAge, formatDateToYMD } from "@/utils/DateUtil";
 
 export default function PropertyDetailInfo({
   property,
 }: Readonly<{ property: Property }>) {
-  const mapUrl = `https://www.google.com/maps?q=${property.lat},${property.lng}`;
   const [favorite, setFavorite] = useState(property?.isFavorite || false);
   const [isInquiry, setIsInquiry] = useState(property?.isInquiry || false);
   const { setIsLoading } = useLoading();
@@ -73,22 +74,15 @@ export default function PropertyDetailInfo({
       </div>
       <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
         {/* メイン画像 */}
-        <div className="relative w-full h-auto md:h-96">
-          <Image
-            src={property.photos[0]}
-            alt={property.name}
-            fill
-            priority
-            className="object-cover"
-          />
-        </div>
+
+        <PropertySlideshow photos={property.photos} alt={property.name} />
 
         <div className="p-6 md:p-8">
           {/* 物件名と家賃 */}
           <div className="flex justify-between items-start">
             <div>
               <p className="text-sm font-semibold text-sky-600">
-                {property.type}
+                {property.propertyType.name}
               </p>
               <h1 className="text-3xl font-bold text-gray-900 mt-1">
                 {property.name}
@@ -97,7 +91,7 @@ export default function PropertyDetailInfo({
             <div className="text-right flex-shrink-0 ml-4">
               <br />
               <p className="text-3xl font-bold">
-                {property.price_rent.toLocaleString()}
+                {property.priceRent}
                 <span className="text-base font-medium ml-1">円/月</span>
               </p>
             </div>
@@ -105,20 +99,16 @@ export default function PropertyDetailInfo({
 
           {/* 住所と地図 */}
           <div className="mt-4 border-t pt-4">
-            <a
-              href={mapUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center text-gray-600 hover:text-sky-700 transition-colors"
-            >
-              <MapIcon className="h-5 w-5 mr-2 text-gray-400" />
-              <span>
-                〒{property.zip} {property.prefecture} {property.city}{" "}
-                {property.street} {property.block}
-              </span>
-            </a>
+            <MapIcon className="h-5 w-5 mr-2 text-gray-400" />
+            <span>
+              〒{property.zip} {property.prefecture} {property.city}{" "}
+              {property.chome} 丁目{property.block}番地
+              {property?.building}
+              {property?.roomNumber && <>{property?.roomNumber}号室</>}
+            </span>
+
             <p className="ml-7 text-sm text-gray-500">
-              {property.nearest_station}徒歩{property.walk_to_station}分
+              {property.nearestStation}徒歩{property.walkToStation}分
             </p>
           </div>
 
@@ -129,18 +119,21 @@ export default function PropertyDetailInfo({
               <div>
                 <p className="text-sm text-gray-500">間取り/面積</p>
                 <p className="font-semibold">
-                  {property.layout} / {property.area_sqm}㎡
+                  {property.layout.name} / {property.areaSqm}㎡
                 </p>
               </div>
             </div>
             <div>
               <p className="text-sm text-gray-500">築年数</p>
-              <p className="font-semibold">{property.age_years}年</p>
+              <p className="font-semibold">
+                {calculateBuildingAge(property.buildDate)} /{" "}
+                {formatDateToYMD(property.buildDate)}
+              </p>
             </div>
             <div>
               <p className="text-sm text-gray-500">階数</p>
               <p className="font-semibold">
-                {property.floor}階 / {property.total_floors}階建
+                {property.floor}階 / {property.totalFloors}階建
               </p>
             </div>
           </div>
@@ -150,7 +143,7 @@ export default function PropertyDetailInfo({
             <h3 className="text-lg font-semibold mb-3">間取り図</h3>
             <div className="relative w-full h-auto">
               <Image
-                src={property.floor_plan_url}
+                src={property.floorPlanUrl}
                 alt={`${property.name}の間取り図`}
                 width={600}
                 height={600}

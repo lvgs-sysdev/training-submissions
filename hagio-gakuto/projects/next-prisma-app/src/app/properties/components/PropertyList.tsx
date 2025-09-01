@@ -10,12 +10,10 @@ import AttachEmailIcon from "@mui/icons-material/AttachEmail";
 export default function PropertyList({
   property,
 }: Readonly<{ property: Property }>) {
-  const mapUrl = `https://www.google.com/maps?q=${property.lat},${property.lng}`;
-
   return (
     <div
       key={property.id}
-      className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 h-120 overflow-auto"
+      className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 h-140 overflow-auto"
     >
       <Link
         href={`/properties/property/${property.id}`}
@@ -35,28 +33,25 @@ export default function PropertyList({
         </h2>
       </Link>
       <p className="text-gray-600 mt-2">
-        {property.type}&nbsp;{property.area_sqm}㎡/{property.layout}
+        {property.propertyType.name}&nbsp;{property.areaSqm.toString()}㎡/
+        {property.layout.name}
       </p>
       <p className="text-gray-600 mt-2">
-        {property.nearest_station} 徒歩{property.walk_to_station}分
+        {property.nearestStation} 徒歩{property.walkToStation}分
       </p>
-      <a
-        href={mapUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-gray-600 mt-2 block hover:text-sky-600 hover:underline cursor-pointer"
-      >
-        <p className="text-gray-600 mt-2">
-          &#12306;{property.zip}
-          <br />
-          {property.city}
-          {property.street}
-          {property.block}
-        </p>
-      </a>
+
+      <p className="text-gray-600 mt-2">
+        &#12306;{property.zip}
+        <br />
+        {property.city}
+        {property.chome}丁目
+        {property.block}番地
+        {property?.building}
+        {property?.roomNumber && <>{property?.roomNumber}号室</>}
+      </p>
 
       <p className="text-lg font-bold text-gray-900 mt-4">
-        ￥{property.price_rent.toLocaleString()}円
+        ￥{property.priceRent}円
       </p>
       <div className="flex gap-4 justify-end">
         <div className=" p-2 bg-white/70 backdrop-blur-sm rounded-full text-gray-700   border">

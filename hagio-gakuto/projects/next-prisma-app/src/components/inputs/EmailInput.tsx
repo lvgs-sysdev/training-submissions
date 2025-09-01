@@ -51,8 +51,7 @@ export const EmailInput = ({
       <div className="relative mb-2">
         <input
           type="email"
-          className="flex-grow w-full h-12 px-4 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline dark:text-gray-900"
-          // {...register(name, rules)}
+          className="flex-grow w-full h-12 px-4 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline dark:text-gray-900 focus:ring-sky-500 focus:border-sky-500"
           name={name}
           placeholder={placeholder}
           defaultValue={defaultValue}

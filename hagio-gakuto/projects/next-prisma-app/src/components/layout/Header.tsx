@@ -50,6 +50,13 @@ export default function Header() {
                 <Nav href={link.href} name={link.name} />
               </li>
             ))}
+
+            {user && user.role === 2 && (
+              <li>
+                <Nav href="/admin" name="Admin" />
+              </li>
+            )}
+
             <li>
               {user ? (
                 <Nav href="/mypage" name="My Page" />

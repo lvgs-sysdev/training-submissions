@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { Property } from "@/types/PropertyType";
-import { convertToAppProperty, filterProperties } from "./propertyUtilService";
+import { getFilteredProperties } from "./propertyUtilService";
+import { PropertyFilters } from "@/types/PropertyFiltersType";
 
 interface Params {
   userId: number;
@@ -14,8 +15,8 @@ export async function postInquiry({ userId, propertyIds }: Params) {
     const isInquired = await getInquiryStatus(userId, id);
     if (!isInquired) {
       dataToInsert.push({
-        user_id: userId,
-        property_id: id,
+        userId: userId,
+        propertyId: id,
       });
     }
   }
@@ -27,57 +28,25 @@ export async function postInquiry({ userId, propertyIds }: Params) {
   }
 }
 
-interface GetPropertiesParams {
+interface GetInquiryPropertiesParams {
   limit: number;
   offset: number;
   sortBy: string;
   withinNeighborhood: boolean;
   userId: number;
 }
-export async function getInquiryProperties({
-  limit,
-  offset,
-  sortBy,
-  withinNeighborhood,
-  userId,
-}: GetPropertiesParams) {
-  const propertiesFromDb = await prisma.property.findMany({
-    where: {
-      inquiries: {
-        some: {
-          user_id: userId,
-        },
-      },
-    },
-    include: {
-      propertyImages: true,
-      propertyFeature: true,
-      favorites: {
-        where: {
-          user_id: userId,
-        },
-      },
-      inquiries: {
-        where: {
-          user_id: userId,
-        },
-      },
-    },
-  });
 
-  if (!propertiesFromDb) {
-    return null;
-  }
-
-  const properties: Property[] = propertiesFromDb.map(convertToAppProperty);
-
-  return filterProperties({
-    limit,
-    offset,
-    sortBy,
-    withinNeighborhood,
-    properties,
-  });
+/**
+ * ユーザーがお問い合わせした物件のみを取得する
+ */
+export async function getInquiryProperties(
+  params: GetInquiryPropertiesParams
+): Promise<{ properties: Property[]; count: number }> {
+  const filters: PropertyFilters = {
+    ...params,
+    inquiryOnly: true,
+  };
+  return getFilteredProperties(filters);
 }
 
 export async function getInquiryStatus(
@@ -86,9 +55,9 @@ export async function getInquiryStatus(
 ): Promise<boolean> {
   const existingInquiry = await prisma.inquiry.findUnique({
     where: {
-      user_id_property_id: {
-        user_id: userId,
-        property_id: propertyId,
+      userId_propertyId: {
+        userId,
+        propertyId,
       },
     },
   });

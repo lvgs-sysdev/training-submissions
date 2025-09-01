@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { Property } from "@/types/PropertyType";
-import { convertToAppProperty, filterProperties } from "./propertyUtilService";
+import { getFilteredProperties } from "./propertyUtilService";
+import { PropertyFilters } from "@/types/PropertyFiltersType";
 
 interface Params {
   userId: number;
@@ -10,10 +11,10 @@ interface Params {
 export async function toggleFavorite({ userId, propertyId }: Params) {
   const existingFavorite = await prisma.favorite.findUnique({
     where: {
-      user_id_property_id: {
+      userId_propertyId: {
         // @@uniqueで設定した複合キーを使う
-        user_id: userId,
-        property_id: propertyId,
+        userId,
+        propertyId,
       },
     },
   });
@@ -28,30 +29,15 @@ export async function toggleFavorite({ userId, propertyId }: Params) {
   } else {
     await prisma.favorite.create({
       data: {
-        user_id: userId,
-        property_id: propertyId,
+        userId,
+        propertyId,
       },
     });
     return { status: "added" }; // 追加したことを返す
   }
 }
 
-export async function getFavoriteStatus(
-  userId: number,
-  propertyId: number
-): Promise<boolean> {
-  const existingFavorite = await prisma.favorite.findUnique({
-    where: {
-      user_id_property_id: {
-        user_id: userId,
-        property_id: propertyId,
-      },
-    },
-  });
-  return !!existingFavorite; // !! でオブジェクトをbooleanに変換 (存在すればtrue, nullならfalse)
-}
-
-interface GetPropertiesParams {
+interface GetFavoritePropertiesParams {
   limit: number;
   offset: number;
   sortBy: string;
@@ -59,48 +45,15 @@ interface GetPropertiesParams {
   userId: number;
 }
 
-export async function getFavoriteProperties({
-  limit,
-  offset,
-  sortBy,
-  withinNeighborhood,
-  userId,
-}: GetPropertiesParams) {
-  const propertiesFromDb = await prisma.property.findMany({
-    where: {
-      favorites: {
-        some: {
-          user_id: userId,
-        },
-      },
-    },
-    include: {
-      propertyImages: true,
-      propertyFeature: true,
-      favorites: {
-        where: {
-          user_id: userId,
-        },
-      },
-      inquiries: {
-        where: {
-          user_id: userId,
-        },
-      },
-    },
-  });
-
-  if (!propertiesFromDb) {
-    return null;
-  }
-
-  const properties: Property[] = propertiesFromDb.map(convertToAppProperty);
-
-  return filterProperties({
-    limit,
-    offset,
-    sortBy,
-    withinNeighborhood,
-    properties,
-  });
+/**
+ * ユーザーがお気に入り登録した物件のみを取得する
+ */
+export async function getFavoriteProperties(
+  params: GetFavoritePropertiesParams
+): Promise<{ properties: Property[]; count: number }> {
+  const filters: PropertyFilters = {
+    ...params,
+    favoritesOnly: true,
+  };
+  return getFilteredProperties(filters);
 }

@@ -1,38 +1,54 @@
-import { getProperties } from "@/server/services/propertiesService";
-import { NextRequest, NextResponse } from "next/server"; // NextRequestをインポート
+import { NextRequest, NextResponse } from "next/server";
+// Utilサービスから、型定義とメイン関数をインポート
+import { getFilteredProperties } from "@/server/services/propertyUtilService";
+import { getAuth } from "@/server/services/authService";
+import { PropertyFilters } from "@/types/PropertyFiltersType";
 
-export async function GET(request: NextRequest): Promise<NextResponse> {
-  // URLのクエリパラメータを取得
-  const searchParams = request.nextUrl.searchParams;
-  const limit = parseInt(searchParams.get("limit") || "10");
-  const offset = parseInt(searchParams.get("offset") || "0");
-  const sortBy = searchParams.get("sortBy") || "price_asc"; // デフォルトのソート順を設定
-  const withinNeighborhood = searchParams.get("withinNeighborhood") === "true";
-  const filters: { [key: string]: string | string[] } = {};
+export async function GET(request: NextRequest) {
+  try {
+    const searchParams = request.nextUrl.searchParams;
 
-  for (const [key, value] of searchParams.entries()) {
-    // ページネーションとソート以外のパラメータをfiltersオブジェクトに追加
-    if (key !== "limit" && key !== "offset" && key !== "sort") {
-      // "layouts"は配列として扱う
-      if (key === "layouts") {
-        filters[key] = searchParams.getAll("layouts");
-      } else {
-        filters[key] = value;
-      }
-    }
+    //ページネーションとソートのパラメータを解析
+    const limit = parseInt(searchParams.get("limit") || "10", 10);
+    const offset = parseInt(searchParams.get("offset") || "0", 10);
+    const sortBy = searchParams.get("sortBy") || "price_asc";
+    const withinNeighborhood =
+      searchParams.get("withinNeighborhood") === "true";
+
+    //絞り込み条件（filters）をオブジェクトにまとめる
+    const filters: PropertyFilters = {
+      priceMin: Number(searchParams.get("priceMin")) || undefined,
+      priceMax: Number(searchParams.get("priceMax")) || undefined,
+      areaMin: Number(searchParams.get("area")) || undefined,
+      ageMax: Number(searchParams.get("age")) || undefined,
+      walkMax: Number(searchParams.get("walk")) || undefined,
+      floorMin: searchParams.get("floor") === "true",
+      layouts: searchParams.getAll("layouts"),
+      features: searchParams.getAll("features"),
+    };
+
+    const { user } = await getAuth();
+
+    const userId = user?.userId;
+
+    const { properties, count } = await getFilteredProperties({
+      userId,
+      limit,
+      offset,
+      sortBy,
+      withinNeighborhood,
+      ...filters, // 絞り込み条件を渡す
+    });
+
+    return NextResponse.json({
+      properties,
+      count,
+    });
+  } catch (error) {
+    console.error("Failed to get properties:", error);
+    return NextResponse.json(
+      { message: "物件の取得に失敗しました。" },
+      { status: 500 }
+    );
   }
-
-  // サービスにlimitとoffsetを渡す
-  const { properties, count } = await getProperties({
-    limit,
-    offset,
-    withinNeighborhood,
-    sortBy,
-    filters,
-  });
-
-  return NextResponse.json({
-    properties,
-    count,
-  });
 }

@@ -4,7 +4,7 @@ import Tasks from "@/components/home/Tasks";
 
 export default function Home() {
   return (
-    <div className="">
+    <div>
       <PopularAddress />
       <PopularRestaurant />
       <Tasks />

@@ -14,34 +14,27 @@ interface UserPayload {
  * @returns ユーザー情報（パスワードは除く）
  */
 export async function getUserFromToken(token: string) {
-  // 1. トークンを秘密鍵で検証・デコードする
   const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY!) as UserPayload;
-
-  // 2. デコードした情報からuserIdを取得
   const userId = decoded.userId;
   if (!userId) {
     throw new Error("Invalid token payload");
   }
-
-  // 3. データベースからユーザーを検索
   const user = await prisma.user.findMany({
     where: {
       id: userId,
-      is_deleted: false, // 削除されていないユーザーのみ対象
+      deletedAt: null,
     },
-    // 4. パスワードなど、クライアントに返すべきでない情報は除外する
     select: {
       id: true,
       email: true,
       name: true,
-      avatar_url: true, // オプションのプロパティ
+      role: true,
+      avatarUrl: true,
     },
   });
-
   if (!user) {
     throw new Error("User not found");
   }
-
   return user;
 }
 

@@ -1,5 +1,9 @@
 import { Property } from "@/types/PropertyType";
 import { prisma } from "@/lib/prisma";
+import {
+  convertToAppProperty,
+  PrismaPropertyWithRelations,
+} from "./propertyUtilService";
 
 interface GetPropertiesParams {
   id: number;
@@ -15,16 +19,18 @@ export async function getPropertyById({
       id,
     },
     include: {
+      layout: true,
+      propertyType: true,
       propertyImages: true,
-      propertyFeature: true,
+      features: true,
       favorites: {
         where: {
-          user_id: userId,
+          userId: userId,
         },
       },
       inquiries: {
         where: {
-          user_id: userId,
+          userId: userId,
         },
       },
     },
@@ -34,16 +40,8 @@ export async function getPropertyById({
     return null;
   }
 
-  const property: Property = {
-    ...propertyFromDb,
-    lat: propertyFromDb.lat.toNumber(),
-    lng: propertyFromDb.lng.toNumber(),
-    photos: propertyFromDb.propertyImages.map((image) => image.image_url),
-    features: propertyFromDb.propertyFeature.map((feature) => feature.feature),
-    isFavorite: propertyFromDb.favorites.length > 0,
-    isInquiry: propertyFromDb.inquiries.length > 0,
-    area_sqm: propertyFromDb.area_sqm.toNumber(),
-  };
-
+  const property: Property = convertToAppProperty(
+    propertyFromDb as PrismaPropertyWithRelations
+  );
   return property;
 }

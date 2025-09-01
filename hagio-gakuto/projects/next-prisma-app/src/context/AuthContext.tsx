@@ -15,6 +15,7 @@ interface User {
   userId: number;
   name: string;
   email: string;
+  role: number;
   avatar_url?: string; // オプションのプロパティß
 }
 
@@ -51,6 +52,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     fetchUser();
+  }, [fetchUser]);
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") fetchUser();
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () =>
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
   }, [fetchUser]);
 
   // ★ logout関数を定義

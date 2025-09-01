@@ -55,7 +55,6 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   });
 
   if (!result) {
-    // もし null だった場合、エラーを返すか、空のデータを返す
     return NextResponse.json({ properties: [], count: 0 });
   }
 

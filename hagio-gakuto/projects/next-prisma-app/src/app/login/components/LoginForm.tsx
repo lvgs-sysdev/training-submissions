@@ -32,7 +32,7 @@ const LoginForm: React.FC = () => {
     } else if (state.message) {
       showErrorToast(state.message);
     }
-  }, [state, router]);
+  }, [state, router, fetchUser, setIsLoading]);
 
   return (
     <div className="relative bg-white rounded shadow-2xl p-7 sm:p-10">
@@ -85,11 +85,11 @@ const LoginForm: React.FC = () => {
           </Link>
         </div>
 
-        <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+        <p className="text-sm font-light  dark:text-gray-400">
           Don’t have an account yet?{" "}
           <Link
             href="/login/signup"
-            className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+            className="font-medium text-primary-600 underline text-blue-600 hover:text-blue-950 dark:text-primary-500"
           >
             Sign up
           </Link>

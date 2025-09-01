@@ -9,13 +9,19 @@
     "lint": "next lint",
     "test": "jest"
   },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^7.2.0",
     "@mui/material": "^7.2.0",
     "@prisma/client": "^6.14.0",
+    "@react-email/components": "^0.5.0",
+    "@tailwindcss/postcss": "^4.1.12",
     "@types/axios": "^0.9.36",
+    "autoprefixer": "^10.4.21",
     "axios": "^1.11.0",
     "bcryptjs": "^3.0.2",
     "jsonwebtoken": "^9.0.2",
@@ -26,10 +32,7 @@
     "react-hook-form": "^7.62.0",
     "react-toastify": "^11.0.5",
     "resend": "^6.0.1",
-    "zod": "^4.0.14",
-    "@react-email/components": "^0.5.0" ,
-    "@tailwindcss/postcss": "^4.1.12",
-    "autoprefixer": "^10.4.21"
+    "zod": "^4.0.14"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -47,6 +50,7 @@
     "react-email": "^4.2.8",
     "tailwindcss": "^4.1.12",
     "ts-jest": "^29.4.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   },
   "optionalDependencies": {
