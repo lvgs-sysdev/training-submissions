@@ -1,0 +1,35 @@
+.header-style {
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 90px;
+  width: 1000px;
+  background-color: black;
+  z-index: 1;
+  text-align: center;
+}
+
+.logo-style {
+  font-size: 50px;
+  color: white;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.icon-style {
+  align-content: center;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-left: 20px;
+}
+
+.notificate-icon {
+  align-content: center;
+  width: 50px;
+  height: 50px;
+  padding-right: 20px;
+}

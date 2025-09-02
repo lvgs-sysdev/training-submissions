@@ -1,0 +1,13 @@
+.input-style {
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  border-width: 0px;
+}
+
+.button-container-style {
+  display: flex;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  justify-content: center;
+}

@@ -1,0 +1,24 @@
+.main-container {
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 20px;
+}
+
+.like-button {
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.like-img {
+  width: 20px;
+  height: 20px;
+}
+
+.like-num {
+  margin: 0;
+  color: white;
+}
