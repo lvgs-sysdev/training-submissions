@@ -15,8 +15,8 @@ interface User {
   userId: number;
   name: string;
   email: string;
-  role: number;
-  avatar_url?: string; // オプションのプロパティß
+  isAdmin: boolean;
+  avatar_url?: string;
 }
 
 interface AuthContextType {
@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
       const data = await response.json();
 
-      setUser(data[0]);
+      setUser(data);
     } catch {
       setUser(null);
     } finally {

@@ -1,19 +1,20 @@
 "use client";
 
-import { Property } from "@/types/PropertyType";
+import { UnitSummary } from "@/types/PropertyType";
 import Image from "next/image";
 import Link from "next/link";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AttachEmailIcon from "@mui/icons-material/AttachEmail";
+import { calculateBuildingAge, formatDateToYMD } from "@/utils/DateUtil";
 
 export default function PropertyList({
   property,
-}: Readonly<{ property: Property }>) {
+}: Readonly<{ property: UnitSummary }>) {
   return (
     <div
       key={property.id}
-      className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 h-140 overflow-auto"
+      className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 h-130 overflow-auto"
     >
       <Link
         href={`/properties/property/${property.id}`}
@@ -21,35 +22,31 @@ export default function PropertyList({
         rel="noopener noreferrer"
       >
         <Image
-          src={property.photos[0]}
-          alt={property.name}
+          src={property.thumbnailUrl || ""}
+          alt={property.buildingName}
           width={300}
           height={200}
           priority
           className="w-full h-48 object-cover rounded-md"
         />
         <h2 className="text-xl font-semibold text-gray-800 underline">
-          {property.name}
+          {property.buildingName}
+          {property?.floor ? ` ${property.floor}階` : ""}
         </h2>
       </Link>
       <p className="text-gray-600 mt-2">
-        {property.propertyType.name}&nbsp;{property.areaSqm.toString()}㎡/
-        {property.layout.name}
+        {/* {property.propertyType.name}&nbsp; */}
+        {property.areaSqm.toString()}㎡ / {property.layout}
       </p>
       <p className="text-gray-600 mt-2">
         {property.nearestStation} 徒歩{property.walkToStation}分
       </p>
 
+      <p className="text-gray-600 mt-2">{property.address}</p>
       <p className="text-gray-600 mt-2">
-        &#12306;{property.zip}
-        <br />
-        {property.city}
-        {property.chome}丁目
-        {property.block}番地
-        {property?.building}
-        {property?.roomNumber && <>{property?.roomNumber}号室</>}
+        築 {calculateBuildingAge(property.buildDate)} /{" "}
+        {formatDateToYMD(property.buildDate)}
       </p>
-
       <p className="text-lg font-bold text-gray-900 mt-4">
         ￥{property.priceRent}円
       </p>

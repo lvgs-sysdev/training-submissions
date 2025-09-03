@@ -1,11 +1,29 @@
 import jwt from "jsonwebtoken";
 import { prisma } from "@/lib/prisma"; // PrismaClientのインスタンス
 import { cookies } from "next/headers";
+import { Prisma } from "@prisma/client";
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const userWithRole = Prisma.validator<Prisma.UserDefaultArgs>()({
+  include: { role: true },
+});
+type UserWithRole = Prisma.UserGetPayload<typeof userWithRole>;
+
+// フロントエンドに最終的に返したいユーザープロファイルの型
+export type UserProfile = {
+  id: number;
+  name: string;
+  email: string;
+  isAdmin: boolean;
+  avatarUrl: string | null;
+};
 
 interface UserPayload {
   userId: number;
   name: string;
   avatar_url?: string;
+  roleId: number;
+  roleName: string;
 }
 
 /**
@@ -13,29 +31,39 @@ interface UserPayload {
  * @param token JWT文字列
  * @returns ユーザー情報（パスワードは除く）
  */
-export async function getUserFromToken(token: string) {
+export async function getUserFromToken(
+  token: string
+): Promise<UserProfile | null> {
   const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY!) as UserPayload;
+  console.log(decoded);
   const userId = decoded.userId;
   if (!userId) {
     throw new Error("Invalid token payload");
   }
-  const user = await prisma.user.findMany({
+  const user = await prisma.user.findUnique({
     where: {
       id: userId,
       deletedAt: null,
     },
-    select: {
-      id: true,
-      email: true,
-      name: true,
+    include: {
       role: true,
-      avatarUrl: true,
     },
   });
   if (!user) {
     throw new Error("User not found");
   }
-  return user;
+  console.log("user", user);
+  return transformUserToProfile(user);
+}
+
+function transformUserToProfile(user: UserWithRole): UserProfile {
+  return {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    isAdmin: user.role.id === 2,
+    avatarUrl: user?.avatarUrl,
+  };
 }
 
 /**

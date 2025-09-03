@@ -1,12 +1,12 @@
 "use client";
 
-import { Property } from "@/types/PropertyType";
 import PropertyList from "./PropertyList";
 import InquiryButton from "./InquiryButton";
 import AttachEmailIcon from "@mui/icons-material/AttachEmail";
+import { UnitSummary } from "@/types/PropertyType";
 
 interface PropertyListViewProps {
-  properties: Property[];
+  properties: UnitSummary[];
   count: number;
   limit: number;
   offset: number;

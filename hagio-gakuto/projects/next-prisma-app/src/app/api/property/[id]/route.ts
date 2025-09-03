@@ -1,5 +1,6 @@
 import { getAuth } from "@/server/services/authService";
-import { getPropertyById } from "@/server/services/propertyService";
+import { getUnitById } from "@/server/services/propertyService";
+
 import { NextRequest, NextResponse } from "next/server"; // NextRequestをインポート
 
 export async function GET(
@@ -21,8 +22,8 @@ export async function GET(
     );
   }
   const userId = user.userId;
-  const property = await getPropertyById({
-    id: Number(id),
+  const property = await getUnitById({
+    unitId: Number(id),
     userId: userId,
   });
 

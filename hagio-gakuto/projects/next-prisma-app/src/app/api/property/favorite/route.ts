@@ -19,8 +19,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   }
 
   const status = await toggleFavorite({
-    userId,
-    propertyId,
+    userId: userId,
+    unitId: propertyId,
   });
 
   return NextResponse.json({ message: status }, { status: 200 });

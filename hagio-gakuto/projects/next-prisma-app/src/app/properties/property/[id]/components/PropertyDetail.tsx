@@ -1,17 +1,18 @@
 "use client";
 
 import { useLoading } from "@/context/LoadingContext";
-import { Property } from "@/types/PropertyType";
+
 import { useCallback, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import PropertyDetailInfo from "./PropertyDetailInfo";
 import { Loading } from "@/components/layout/Loading";
+import { UnitDetail } from "@/types/PropertyType";
 
 export default function PropertyDetailFunction() {
   const params = useParams();
   const id = params.id as string;
 
-  const [property, setProperty] = useState<Property | null>(null);
+  const [property, setProperty] = useState<UnitDetail | null>(null);
   const { setIsLoading } = useLoading();
 
   const fetchProperty = useCallback(async () => {

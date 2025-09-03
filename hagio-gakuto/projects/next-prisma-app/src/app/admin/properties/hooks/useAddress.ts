@@ -41,7 +41,7 @@ export function useAddress() {
     } finally {
       setIsLoading(false);
     }
-  }, [zipcode]);
+  }, [zipcode, setIsLoading]);
 
   useEffect(() => {
     const timer = setTimeout(() => {

@@ -51,7 +51,7 @@ export default function Header() {
               </li>
             ))}
 
-            {user && user.role === 2 && (
+            {user?.isAdmin && (
               <li>
                 <Nav href="/admin" name="Admin" />
               </li>

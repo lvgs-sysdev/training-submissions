@@ -1,5 +1,7 @@
 "use client";
 
+import { ImageCategory } from "@/types/PropertyMasterTypes";
+import { Image as ImageType } from "@/types/PropertyType";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -38,7 +40,7 @@ const ChevronRightIcon = () => (
 );
 
 interface Props {
-  photos: string[];
+  photos: (ImageType & { category: ImageCategory })[];
   alt: string;
 }
 export default function PropertySlideshow({ photos, alt }: Props) {
@@ -76,7 +78,7 @@ export default function PropertySlideshow({ photos, alt }: Props) {
         <Image
           // keyを追加して画像を強制的に再レンダリングし、トランジションを適用
           key={currentIndex}
-          src={photos[currentIndex]}
+          src={photos[currentIndex].imageUrl}
           alt={alt}
           fill
           priority
@@ -107,9 +109,9 @@ export default function PropertySlideshow({ photos, alt }: Props) {
 
       {/* --- インジケーター (ドット) --- */}
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
-        {photos.map((_, slideIndex) => (
+        {photos.map((p, slideIndex) => (
           <button
-            key={slideIndex}
+            key={p.id}
             onClick={() => goToSlide(slideIndex)}
             className={`w-3 h-3 rounded-full transition-colors duration-300 ${
               currentIndex === slideIndex

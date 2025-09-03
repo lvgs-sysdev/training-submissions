@@ -1,4 +1,4 @@
-import { getUserFromToken } from "../../../server/services/authService";
+import { getUserFromToken } from "@/server/services/authService";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
@@ -14,9 +14,6 @@ export async function GET() {
   if (!token) {
     return NextResponse.json({ message: "Not authenticated" }, { status: 401 });
   }
-
-  // try...catchを削除。もしgetUserFromTokenでエラーが発生すれば、
-  // Next.jsが自動で500エラーを返す。
   const user = await getUserFromToken(token.value);
   return NextResponse.json(user);
 }

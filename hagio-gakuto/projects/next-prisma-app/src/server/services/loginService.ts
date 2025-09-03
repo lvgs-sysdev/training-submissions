@@ -56,7 +56,6 @@ function generateAuthToken(user: UserWithRole): string {
     userId: user.id,
     name: user.name,
     role: user.roleId,
-    roleName: user.role.name,
   };
   validateSecretKey();
   const token = jwt.sign(payload, process.env.JWT_SECRET_KEY!, {

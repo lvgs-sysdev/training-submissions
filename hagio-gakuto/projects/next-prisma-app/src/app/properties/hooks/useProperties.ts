@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useLoading } from "@/context/LoadingContext";
-import { Property } from "@/types/PropertyType";
+import { UnitSummary } from "@/types/PropertyType";
 import { SearchFilters } from "../components/PropertySearchForm";
 
 interface UsePropertiesParams {
@@ -16,7 +16,7 @@ export function useProperties({
   initialFilters = null,
   limit = 9,
 }: UsePropertiesParams) {
-  const [properties, setProperties] = useState<Property[]>([]);
+  const [properties, setProperties] = useState<UnitSummary[]>([]);
   const [withinNeighborhood, setWithinNeighborhood] = useState<boolean>(true);
   const [filters, setFilters] = useState<SearchFilters | null>(initialFilters);
   const [offset, setOffset] = useState(0);
@@ -67,6 +67,10 @@ export function useProperties({
     filters,
     setIsLoading,
   ]);
+
+  useEffect(() => {
+    fetchProperties();
+  }, [fetchProperties]);
 
   const handleNextPage = () => {
     if (offset + limit < count) setOffset(offset + limit);

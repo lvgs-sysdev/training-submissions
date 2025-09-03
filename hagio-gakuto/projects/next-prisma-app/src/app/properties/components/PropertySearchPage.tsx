@@ -26,10 +26,6 @@ export default function PropertySearchPage() {
   } = useProperties({ apiEndpoint: "/api/properties" });
 
   useEffect(() => {
-    fetchProperties();
-  }, [fetchProperties]);
-
-  useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") fetchProperties();
     };

@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 // Utilサービスから、型定義とメイン関数をインポート
-import { getFilteredProperties } from "@/server/services/propertyUtilService";
+
 import { getAuth } from "@/server/services/authService";
 import { PropertyFilters } from "@/types/PropertyFiltersType";
+import { getFilteredUnits } from "@/server/services/propertyUtilService";
 
 export async function GET(request: NextRequest) {
   try {
@@ -31,7 +32,7 @@ export async function GET(request: NextRequest) {
 
     const userId = user?.userId;
 
-    const { properties, count } = await getFilteredProperties({
+    const { properties, count } = await getFilteredUnits({
       userId,
       limit,
       offset,
