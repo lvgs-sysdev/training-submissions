@@ -1,0 +1,16 @@
+.popup-container {
+	position: absolute;
+	margin-top: 0.25rem;
+	top: 100%;
+	right: 1.2rem;
+	z-index: 1050;
+	width: 5rem;
+	border-radius: 10%;
+	box-shadow: 2px 2px 4px gray;
+}
+
+.popup-content {
+	padding-top: 1rem;
+	padding-left: 0.5rem;
+	text-align: left;
+}

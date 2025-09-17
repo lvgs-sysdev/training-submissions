@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DAYDAYTRAVEL</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/popup.css">
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.5/dist/purify.min.js"></script>
+    </head>
+    <body>
+        <header class="header-main">
+            <div class="container pt-2 pt-md-3 pb-2 pb-md-3">
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <a class="header-title" href="/">DAYDAYTRAVEL</a>
+                    </div>
+                    <div class="col-6">
+                        <nav class="text-end" id="login_status"></nav>
+                    </div>
+                    <script src="js/header.js" type="module"></script>
+                </div>
+            </div>
+            <hr class="m-0" />
+        </header>
+        <main class="pb-5 m-5">
+            <div class="container">
+            <div class="mx-auto w-75" id="edit-profile">
+                <p class="subheading mb-3">Profile</p>
+                <img alt="Author Icon" id="author_icon" />
+                <form class="form-edit-profile" id="submit_profile_change">
+                    <table class="table">
+                        <tr>
+                            <th class="align-middle">UserID</th>
+                            <td>
+                                <input
+                                    type="text"
+                                    id="input_user_id"
+                                    class="form-control"
+                                    required
+                                    autofocus
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="align-middle">UserName</th>
+                            <td>
+                                <input
+                                    type="text"
+                                    id="input_user_name"
+                                    class="form-control"
+                                    required
+                                    autofocus
+                                />
+                            </td>
+                        </tr>
+                        <input type="hidden" id="hidden_id" />
+                    </table>
+                    <button class="btn btn-outline-success btn-lg" id="commit_change">Commit</button>
+                    <a class="btn btn-outline-secondary btn-lg" role="button" id="cancel">Cancel</a>
+                </form>
+            </div>
+            <script src="js/edit-profile.js" type="module"></script>
+            </div>
+        </main>
+        <footer class="footer-bg mt-5 pt-5 pb-4">
+            <div class="container pt-5">
+                <div class="row">
+                    <div class="col-12 col-lg-4 mb-3 pe-5">
+                        <p class="footer-title">PT. Travel Everyday Indonesia</p>
+                        <ul class="ps-0 list-unstyled pt-3">
+                            <li>
+                                <a href="" class="footer-content pb-4 mb-4">
+                                    Grand Floor Zaidin L-Walk,<br />
+                                    Jl. Maju Jaya No. 2,<br />
+                                    Daerah Istimewa Yogyakarta,<br />
+                                    Indonesia
+                                </a>
+                            </li>
+                            <li class="d-md-inline-block pe-5 mb-3">
+                                <a href="" class="footer-content border-0">About</a>
+                            </li>
+                            <li class="d-md-inline-block pe-5 mb-3">
+                                <a href="" class="footer-content border-0">Privacy policy</a>
+                            </li>
+                            <br class="d-none" />
+                            <li class="d-md-inline-block pe-5 mb-3">
+                                <a href="" class="footer-content border-0">Teams & Conditions</a>
+                            </li>
+                            <li class="d-md-inline-block mb-3">
+                                <a href="" class="footer-content border-0">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-lg-3 mb-3 pe-5">
+                        <p class="footer-title">Informations</p>
+                        <ul class="ps-0 list-unstyled pt-3">
+                            <li>
+                                <a href="" class="footer-content border-0 mb-3">How to register as a user</a>
+                            </li>
+                            <li>
+                                <a href="" class="footer-content border-0 mb-3">Guide to creating travel review</a>
+                            </li>
+                            <li>
+                                <a href="" class="footer-content border-0 mb-3">Tutorial for making culinary reviews</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-lg-2 mb-3">
+                        <p class="footer-title">Follow us</p>
+                        <ul class="ps-0 list-unstyled pt-3">
+                            <li><a href="" class="footer-content border-0 mb-3">Instagram</a></li>
+                            <li><a href="" class="footer-content border-0 mb-3">Facebook</a></li>
+                            <li><a href="" class="footer-content border-0 mb-3">Twitter</a></li>
+                            <li><a href="" class="footer-content border-0 mb-3">Youtube</a></li>
+                    </div>
+                    <div class="col-12 col-lg-3 mb-3">
+                        <p class="footer-title pb-3">Download app</p>
+                        <a href="" class="text-decoration-none">
+                            <img src="/img/app-icon/app-store.png" alt="App Store" class="footer-btn-store mb-2" />
+                        </a>
+                        <br class="d-none d-lg-block" />
+                        <a href="" class="text-decoration-none">
+                            <img src="/img/app-icon/play-store.png" alt="Play Store" class="footer-btn-store mb-2"/>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-content border-0 pt-5 text-center">
+                <p>&copy; 2023 PT.Travel Everyday Indonesia</p>
+            </div>
+        </footer>
+    </body>
+</html>
