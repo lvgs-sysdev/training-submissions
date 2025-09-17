@@ -1,0 +1,954 @@
+/* モバイルファーストで実装 */
+
+/* レスポンシブ対応のためにhtmlのfont-sizeを定義 */
+html {
+    /* 1rem = 10px になるように調整 デフォルトのフォントサイズは16pxのため*/
+    font-size: 62.5%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 68.75%;
+    }
+}
+
+@media (min-width: 1024px) {
+    html {
+        font-size: 75%;
+    }
+}
+
+
+
+/* ここからヘッダー部分 */
+.header {
+    border-bottom: 1px solid #DEDEDE;
+}
+
+.header-contents {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 90%;
+    margin: 0 auto;
+
+    padding: 10px;
+}
+
+.header_right {
+    display: flex;
+    gap: 10px;
+}
+
+.header_item {
+    padding: 10px;
+}
+
+.logo {
+    color: #FF553C;
+    font-weight: bold;
+}
+
+.nav2 {
+    color: #FFFFFF;
+    background-color: #FF553C;
+}
+
+/* ここまでヘッダー部分 */
+
+/* ここからがcontents部分 */
+
+/* ここからがmain部分 */
+.contents {
+    width: 90%;
+    margin: 0 auto;
+
+    padding-top: 5%;
+    margin-bottom: 10rem;
+    gap: 5%;
+}
+
+.main-header-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 15%;
+}
+
+.main-header-left {
+    display: flex;
+    gap: 5%;
+}
+
+.pic-of-poster {
+    width: 5rem;
+    height: auto;
+}
+
+.post-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    white-space: nowrap;
+    align-items: center;
+}
+
+.date-of-post {
+    color: #757575;
+}
+
+.main-category {
+    color: #FF553C;
+}
+
+.main-title {
+    margin-bottom: 5%;
+}
+
+.text {
+    color: #757575;
+    margin-bottom: 3%;
+}
+
+.image-container {
+    height: 15%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.main-big-image {
+    height: 100%;
+    width: 100%;
+    /* 縦にある程度カットしないといけない */
+    object-fit: cover;
+    object-position: center;
+}
+
+.image-description {
+    margin: 2% auto;
+    text-align: center;
+    color: #757575;
+    margin-bottom: 8%;
+}
+
+.text-title {
+    margin-top: 10%;
+    margin-bottom: 3%;
+}
+
+.image-container-divide {
+    display: flex;
+    gap: 1.5%;
+    margin-bottom: 5%;
+}
+
+.image-wrapper {
+    flex: 1;
+}
+
+.image-divide {
+    width: 100%;
+    height: auto;
+}
+
+.main-footer {
+    color: #757575;
+    border: 0.1rem solid #DEDEDE;
+    /* width: 7%; */
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 15%;
+    display: inline-block;
+    padding: 1%;
+}
+
+.related-title {
+    margin-bottom: 5%;
+}
+
+.related-contents-divide {
+    display: flex;
+    gap: 1.5%;
+    margin-bottom: 5%;
+}
+
+.related-contents {
+    flex: 1;
+}
+
+.img-related {
+    width: 100%;
+    height: auto;
+}
+
+.img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+}
+
+.main-contents-container {
+    display: grid;
+    grid-template-columns: repeat(2 , 1fr);
+    gap: 5%;
+    place-items: center;
+}
+
+.main-contents {
+    width: 100%;
+    margin-bottom: auto;
+}
+
+.main-contents img {
+    width: 100%;
+}
+
+.tag {
+    display: flex;
+    padding-right: 3%;
+    gap: 3%;
+}
+
+.category {
+    color: #FF553C;
+    /* width: 15%; */
+    display: inline-block;
+}
+
+.date {
+    position: relative;
+    color: #757575;
+    display: inline-block;
+    border-left: 0.1rem solid #DEDEDE;
+    padding-left: 5%;
+}
+
+.description {
+    color: #757575;
+}
+
+/* ここまでがmain部分 */
+
+/* ここからがsub部分 */
+
+.sub {
+    flex: 2;
+}
+
+.sub-contents {
+    margin-bottom: 30%;
+}
+
+.sub-title {
+    margin-top: 0;
+    margin-bottom: 10%;
+}
+
+.sub-content {
+    margin-bottom: 2rem;
+}
+
+.poster {
+    display: flex;
+    gap: 5%;
+    margin-bottom: 3rem;
+    align-items: center;
+}
+
+/* ここまでがsub部分 */
+
+/* ここからがfooter部分 */
+
+.footer {
+    /* border: 1px slid #ccc; */
+    /* padding: 10px; */
+
+    padding-top: 7%;
+    padding-bottom:2%;
+
+    background-color: #121212;
+}
+
+.footer-category {
+    margin-bottom: 2rem;
+}
+
+.footer-only-contents {
+    /* モバイル版ではflexせずにgridで2カラムで折り返す */
+    /* display: grid; */
+    /* grid-template-columns: repeat(2, 1fr); */
+    justify-content: space-between;
+    /* align-items: center; */
+
+    width: 50%;
+    margin: 0 auto;
+
+    gap: 5%;
+    margin-bottom: 10%;
+    text-align: center;
+}
+
+.footer-title {
+    color: #FFFFFF;
+    margin-bottom: 1rem;
+}
+
+.address {
+    color: #FFFFFF80;
+    padding-bottom: 10%;
+    border-bottom: 1px solid #DEDEDE80;
+    margin-bottom: 10%;
+}
+
+.detail {
+    display: flex;
+    gap: 5%;
+    /* モバイル版だけは中心に寄せる */
+    justify-content: center;
+}
+
+.footer-other {
+    color: #FFFFFF80;
+}
+
+.footer-image {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.footer-copy-rights {
+    color: #FFFFFF80;
+    text-align: center;
+}
+/* ここまでがfooter部分 */
+
+
+
+
+/* ここからがタブレット版 iPad miniがちょうど768px */
+@media (min-width: 768px) {
+.header {
+    border-bottom: 1px solid #DEDEDE;
+}
+
+.header-contents {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 90%;
+    margin: 0 auto;
+
+    padding: 10px;
+}
+
+.header_right {
+    display: flex;
+    gap: 10px;
+}
+
+.header_item {
+    padding: 10px;
+}
+
+.logo {
+    color: #FF553C;
+    font-weight: bold;
+}
+
+.nav2 {
+    color: #FFFFFF;
+    background-color: #FF553C;
+}
+
+.contents {
+    display: flex;
+    justify-content: space-between;
+
+    width: 90%;
+    margin: 0 auto;
+
+    padding-top: 5%;
+    margin-bottom: 5%;
+    gap: 5%;
+}
+
+.main {
+    /* width: 90%; */
+    flex: 7;
+}
+
+.main-header-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 15%;
+}
+
+.main-header-left {
+    display: flex;
+    gap: 5%;
+}
+
+.pic-of-poster {
+    width: 3rem;
+}
+
+.post-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20%;
+    font-size: 1rem;
+}
+
+.main-category {
+    color: #FF553C;
+}
+
+.main-title {
+    margin-bottom: 5%;
+}
+
+.text {
+    color: #757575;
+    margin-bottom: 3%;
+}
+
+.image-container {
+    height: 12%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.main-big-image {
+    height: 100%;
+    width: 100%;
+    /* 縦にある程度カットしないといけない */
+    object-fit: cover;
+    object-position: center;
+}
+
+.image-description {
+    margin: 2% auto;
+    text-align: center;
+    color: #757575;
+    margin-bottom: 8%;
+}
+
+.text-title {
+    margin-top: 10%;
+    margin-bottom: 3%;
+}
+
+.image-container-divide {
+    display: flex;
+    gap: 1.5%;
+    margin-bottom: 5%;
+}
+
+.image-wrapper {
+    flex: 1;
+}
+
+.image-divide {
+    width: 100%;
+    height: auto;
+}
+
+.main-footer {
+    color: #757575;
+    border: 0.1rem solid #DEDEDE;
+    /* width: 7%; */
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 15%;
+    display: inline-block;
+    padding: 1%;
+}
+
+.related-title {
+    margin-bottom: 5%;
+}
+
+.related-contents-divide {
+    display: flex;
+    gap: 1.5%;
+    margin-bottom: 5%;
+}
+
+.related-contents {
+    flex: 1;
+}
+
+.img-related {
+    width: 100%;
+    height: auto;
+}
+
+.img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+}
+
+.main-contents-container {
+    display: grid;
+    grid-template-columns: repeat(2 , 1fr);
+    gap: 5%;
+    place-items: center;
+}
+
+.main-contents {
+    width: 100%;
+    margin-bottom: auto;
+}
+
+.main-contents img {
+    width: 100%;
+}
+
+.tag {
+    display: flex;
+    padding-right: 3%;
+    gap: 3%;
+}
+
+.category {
+    color: #FF553C;
+    /* width: 15%; */
+    display: inline-block;
+}
+
+.date {
+    position: relative;
+    color: #757575;
+    display: inline-block;
+    border-left: 0.1rem solid #DEDEDE;
+    padding-left: 5%;
+}
+
+/* ここまでがmain部分 */
+
+/* ここからがsub部分 */
+
+.sub {
+    flex: 3;
+}
+
+.sub-contents {
+    margin-bottom: 30%;
+}
+
+.sub-title {
+    margin-top: 0;
+    margin-bottom: 10%;
+}
+
+.sub-category {
+    color: #FF553C;
+    /* width: 15%; */
+    display: inline-block;
+    font-size: 0.8rem;
+}
+
+.sub-date {
+    position: relative;
+    color: #757575;
+    display: inline-block;
+    border-left: 0.1rem solid #DEDEDE;
+    padding-left: 5%;
+    font-size: 0.8rem;
+}
+
+.poster {
+    display: flex;
+    gap: 5%;
+    margin-bottom: 10%;
+}
+
+/* ここまでがsub部分 */
+
+/* ここからがfooter部分 */
+
+.footer {
+    border: 1px slid #ccc;
+    padding: 10px;
+
+    padding-top: 7%;
+    padding-bottom:2%;
+
+    background-color: #121212;
+}
+
+.footer-only-contents {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+
+    width: 85%;
+    margin: 0 auto;
+
+    gap: 5%;
+    margin-bottom: 10%;
+}
+
+.footer-title {
+    color: #FFFFFF;
+    margin-bottom: 1rem;
+}
+
+.address {
+    color: #FFFFFF80;
+    padding-bottom: 10%;
+    border-bottom: 1px solid #DEDEDE80;
+    margin-bottom: 10%;
+}
+
+.detail {
+    display: flex;
+    gap: 5%;
+}
+
+.footer-other {
+    color: #FFFFFF80;
+}
+
+.footer-copy-rights {
+    color: #FFFFFF80;
+    text-align: center;
+}
+/* ここまでがfooter部分 */
+}
+
+
+
+
+
+
+
+/* ここからがPC版 */
+@media (min-width: 1024px) {
+.header {
+    border-bottom: 1px solid #DEDEDE;
+}
+
+.header-contents {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 90%;
+    margin: 0 auto;
+
+    padding: 10px;
+}
+
+.header_right {
+    display: flex;
+    gap: 10px;
+}
+
+.header_item {
+    padding: 10px;
+    font-size: 2rem;
+}
+
+.logo {
+    /* モバイル版と重複している部分は書かなくてOK */
+    font-size: 2.5rem;
+}
+
+.contents {
+    display: flex;
+    justify-content: space-between;
+
+    width: 90%;
+    margin: 0 auto;
+
+    padding-top: 5%;
+    margin-bottom: 5%;
+    gap: 5%;
+}
+
+.main {
+    /* width: 90%; */
+    flex: 8;
+}
+
+.main-header-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 15%;
+    align-items: center;
+}
+
+.main-header-left {
+    display: flex;
+    gap: 5%;
+}
+
+.pic-of-poster {
+    width: 10rem;
+}
+
+.post-info {
+    font-size: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.main-name-poster {
+    font-size: 2.5rem;
+}
+
+.link-pic {
+    width: 4rem;
+}
+
+.main-category {
+    color: #FF553C;
+    font-size: 2rem;
+}
+
+.main-title {
+    margin-bottom: 5%;
+    font-size: 3.5rem;
+}
+
+.text {
+    color: #757575;
+    margin-bottom: 3%;
+    font-size: 2rem;
+}
+
+.image-container {
+    height: 15%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.main-big-image {
+    height: 100%;
+    width: 100%;
+    /* 縦にある程度カットしないといけない */
+    object-fit: cover;
+    object-position: center;
+}
+
+.image-description {
+    margin: 2% auto;
+    text-align: center;
+    color: #757575;
+    margin-bottom: 8%;
+    font-size: 2rem;
+}
+
+.text-title {
+    margin-top: 10%;
+    margin-bottom: 3%;
+    font-size: 2.5rem;
+}
+
+.image-container-divide {
+    display: flex;
+    gap: 1.5%;
+    margin-bottom: 5%;
+}
+
+.image-wrapper {
+    flex: 1;
+}
+
+.image-divide {
+    width: 100%;
+    height: auto;
+}
+
+.main-footer {
+    color: #757575;
+    border: 0.1rem solid #DEDEDE;
+    /* width: 7%; */
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 20rem;
+    display: inline-block;
+    padding: 1%;
+    font-size: 2rem;
+}
+
+.related-title {
+    margin-bottom: 5%;
+    font-size: 2.5rem;
+}
+
+.related-contents-divide {
+    display: flex;
+    gap: 1.5%;
+    margin-bottom: 5%;
+}
+
+.related-contents {
+    flex: 1;
+}
+
+.img-related {
+    width: 100%;
+    height: auto;
+}
+
+.img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+}
+
+.main-contents-container {
+    display: grid;
+    grid-template-columns: repeat(2 , 1fr);
+    gap: 5%;
+    place-items: center;
+}
+
+.main-contents {
+    width: 100%;
+    margin-bottom: auto;
+}
+
+.main-contents img {
+    width: 100%;
+}
+
+.tag {
+    display: flex;
+    padding-right: 3%;
+    gap: 3%;
+}
+
+.category {
+    color: #FF553C;
+    /* width: 15%; */
+    display: inline-block;
+    font-size: 2rem;
+}
+
+.date {
+    position: relative;
+    color: #757575;
+    display: inline-block;
+    border-left: 0.1rem solid #DEDEDE;
+    padding-left: 5%;
+    font-size: 2rem;
+}
+
+.title {
+    font-size: 1.8rem;
+}
+
+.description {
+    color: #757575;
+    font-size: 1.5rem;
+}
+
+/* ここまでがmain部分 */
+
+/* ここからがsub部分 */
+
+.sub {
+    flex: 2;
+}
+
+.sub-contents {
+    margin-bottom: 30%;
+}
+
+.sub-title {
+    font-size: 2rem;
+}
+
+.sub-category {
+    color: #FF553C;
+    /* width: 15%; */
+    display: inline-block;
+    font-size: 1.2rem;
+}
+
+.sub-date {
+    position: relative;
+    color: #757575;
+    display: inline-block;
+    border-left: 0.1rem solid #DEDEDE;
+    padding-left: 5%;
+    font-size: 1.2rem;
+}
+
+.poster {
+    display: flex;
+    gap: 5%;
+    margin-bottom: 10%;
+}
+
+.name-poster {
+    font-size: 1.5rem;
+    white-space: nowrap;
+}
+
+/* ここまでがsub部分 */
+
+/* ここからがfooter部分 */
+
+    .footer {
+        padding-top: 7%;
+        padding-bottom:2%;
+        background-color: #121212;
+    }
+
+    .footer-only-contents {
+        display: flex;
+        justify-content: space-between;
+        gap: 5rem;
+
+        width: 85%;
+        margin: 0 auto;
+        margin-bottom: 10%;
+        text-align: left;
+    }
+
+    .footer-title {
+        color: #FFFFFF;
+        margin-bottom: 1rem;
+        font-size: 2rem;
+    }
+
+    .address {
+        color: #FFFFFF80;
+        padding-bottom: 10%;
+        border-bottom: 1px solid #DEDEDE80;
+        margin-bottom: 10%;
+        font-size: 2rem;
+    }
+
+    .detail {
+        display: flex;
+        gap: 5%;
+        justify-content: left;
+    }
+
+    .footer-other {
+        color: #FFFFFF80;
+        font-size: 2rem;
+    }
+
+    .footer-image {
+        width: 100%;
+    }
+
+    .footer-copy-rights {
+        color: #FFFFFF80;
+        text-align: center;
+        font-size: 2rem;
+    }
+/* ここまでがfooter部分 */
+}

@@ -1,0 +1,602 @@
+/* モバイルファーストで実装 */
+
+/* レスポンシブ対応のためにhtmlのfont-sizeを定義 */
+html {
+    /* 1rem = 10px になるように調整 デフォルトのフォントサイズは16pxのため*/
+    font-size: 62.5%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 68.75%;
+    }
+}
+
+@media (min-width: 1024px) {
+    html {
+        font-size: 75%;
+    }
+}
+
+/* ここからヘッダー部分 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.header_right {
+    display: flex;
+    gap: 10px;
+}
+
+.header_item {
+    padding: 10px;
+}
+
+.logo {
+    color: #FF553C;
+    font-weight: bold;
+}
+
+.nav2 {
+    color: #FFFFFF;
+    background-color: #FF553C;
+}
+
+/* ここまでヘッダー部分 */
+
+/* ここからページヘッダー部分 */
+
+.page-header {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.page-header-picture {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: right center;
+}
+
+.text {
+    position: absolute;
+    top: 25%;
+    left: 10%;
+    font-size: 50%;
+}
+
+.page-header-text1 {
+    font-size: 1.5rem;
+}
+
+.page-header-text2 {
+    font-size: 0.5rem;
+    color: #121212;
+}
+
+.contents-title {
+    font-size: 1.8rem;
+}
+
+.contents {
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 10%;
+    margin-bottom: 25%;
+    /* ここでgapを設定してもしていないのでsubの末端にgapが生じる */
+    /* gap: 3rem;     */
+}
+
+.main-contents-container {
+    display: grid;
+    grid-template-columns: repeat(1 , 1fr);
+    gap: 3rem;
+    /* 要素を中央揃えにしたい… */
+    place-items: center;
+    gap: 3rem;
+    margin-bottom: 10rem;
+}
+
+.title {
+    font-size: 1.5rem;
+}
+
+.description {
+    font-size: 1rem;
+}
+
+.tag {
+    display: flex;
+    padding-right: 5%;
+    gap: 5%;
+}
+
+.category {
+    color: #FF553C;
+    /* width: 15%; */
+    display: inline-block;
+    font-size: 1.2rem;
+}
+
+.date {
+    position: relative;
+    color: #757575;
+    display: inline-block;
+    border-left: 0.1rem solid #DEDEDE;
+    padding-left: 5%;
+    font-size: 1.2rem;
+}
+
+.side-contents {
+    font-size: 1.4rem;
+}
+
+.line {
+    padding-bottom: 20%;
+    margin-bottom: 10%;
+    border-bottom: 1px solid gray;
+}
+
+.without-line{
+    padding-bottom: 20%;
+    margin-bottom: 10%;
+}
+
+.blank {
+    margin-bottom: 10%;
+    margin-top: 10%;
+}
+
+.button-container {
+    display: flex;
+    gap: 1rem;
+}
+
+.button {
+    color: #757575;
+    padding: 0.7rem;
+    border: 0.1rem solid #DEDEDE;
+    font-size: 1rem;
+}
+
+.footer {
+    /* border: 1px slid #ccc; */
+    /* padding: 10px; */
+
+    padding-top: 7%;
+    padding-bottom:2%;
+
+    background-color: #121212;
+}
+
+.footer-category {
+    margin-bottom: 2rem;
+}
+
+.footer-only-contents {
+    /* モバイル版ではflexせずにgridで2カラムで折り返す */
+    /* display: grid; */
+    /* grid-template-columns: repeat(2, 1fr); */
+    justify-content: space-between;
+    /* align-items: center; */
+
+    width: 50%;
+    margin: 0 auto;
+
+    gap: 5%;
+    margin-bottom: 10%;
+    text-align: center;
+}
+
+.footer-title {
+    color: #FFFFFF;
+    margin-bottom: 1rem;
+}
+
+.address {
+    color: #FFFFFF80;
+    padding-bottom: 10%;
+    border-bottom: 1px solid #DEDEDE80;
+    margin-bottom: 10%;
+}
+
+.detail {
+    display: flex;
+    gap: 5%;
+    /* モバイル版だけは中心に寄せる */
+    justify-content: center;
+}
+
+.footer-other {
+    color: #FFFFFF80;
+}
+
+.footer-image {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.footer-copy-rights {
+    color: #FFFFFF80;
+    text-align: center;
+}
+
+/* ここからタブレット部分 */
+@media (min-width: 768px) {
+    .page-header-text1 {
+        font-size: 15rem;
+    }
+
+    .page-header-text2 {
+        font-size: 5rem;
+        color: #121212;
+    }   
+
+    .contents-title {
+    font-size: 2rem;
+    }
+
+    .contents {
+        display: flex;
+        justify-content: space-between;
+
+        width: 90%;
+        margin: 0 auto;
+        padding-top: 10%;
+        margin-bottom: 25%;
+        gap: 6rem;
+    }
+
+    .main {
+        width: 75%;
+    }
+
+    .sub {
+        width: 25%;
+    }
+
+    .main-contents-container {
+        display: grid;
+        grid-template-columns: repeat(2 , 1fr);
+        gap: 2rem;
+        /* 要素を中央揃えにしたい… */
+        place-items: center;
+    }
+
+    .main-contents {
+        width: 100%;
+        margin-bottom: auto;
+        /* display: flex; */
+        /* align-items: flex-start; */
+    }
+
+    .main-contents img {
+        width: 100%;
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .description {
+        font-size: 1.2rem;
+    }
+
+    .tag {
+        display: flex;
+        padding-right: 5%;
+        gap: 5%;
+    }
+
+    .category {
+        color: #FF553C;
+        /* width: 15%; */
+        display: inline-block;
+        font-size: 1.7rem;
+    }
+
+    .date {
+        position: relative;
+        color: #757575;
+        display: inline-block;
+        border-left: 0.1rem solid #DEDEDE;
+        padding-left: 5%;
+        font-size: 1.7rem;
+    }
+
+    .side-contents {
+        font-size: 1.7rem;
+    }
+
+    .line {
+        padding-bottom: 20%;
+        margin-bottom: 10%;
+        border-bottom: 1px solid gray;
+    }
+
+    .without-line{
+        padding-bottom: 30%;
+        margin-bottom: 10%;
+    }
+
+    .blank {
+        margin-bottom: 10%;
+        margin-top: 10%;
+    }
+
+    .button-container {
+        display: flex;
+        gap: 1.7rem;
+    }
+
+    .button {
+        color: #757575;
+        padding: 2%;
+        border: 0.15rem solid #DEDEDE;
+        font-size: 2rem;
+    }
+
+    /* ここからfooter部分 */
+    .footer {
+        border: 1px slid #ccc;
+        padding: 10px;
+
+        padding-top: 7%;
+        padding-bottom:2%;
+
+        background-color: #121212;
+    }
+
+    .footer-only-contents {
+        display: flex;
+        justify-content: space-between;
+        /* align-items: center; */
+
+        width: 85%;
+        margin: 0 auto;
+
+        gap: 5%;
+        margin-bottom: 10%;
+        text-align: left;
+    }
+
+    .footer-title {
+        color: #FFFFFF;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+    }
+
+    .address {
+        color: #FFFFFF80;
+        padding-bottom: 10%;
+        border-bottom: 1px solid #DEDEDE80;
+        margin-bottom: 10%;
+    }
+
+    .detail {
+        display: flex;
+        gap: 5%;
+    }
+
+    .footer-other {
+        color: #FFFFFF80;
+    }
+
+    .footer-image {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .footer-copy-rights {
+        color: #FFFFFF80;
+        text-align: center;
+    }
+}
+
+
+
+
+
+
+/* ここからPC部分 */
+@media (min-width: 1024px) {
+    .header_item {
+        padding: 10px;
+        font-size: 2rem;
+    }
+
+    .logo {
+        /* モバイル版と重複している部分は書かなくてOK */
+        font-size: 2.5rem;
+    }
+
+    .page-header {
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+    }   
+
+    .page-header-picture {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: right center;
+    }
+
+    .page-header-text1 {
+        font-size: 6rem;
+    }
+
+    .page-header-text2 {
+        font-size: 2rem;
+        color: #121212;
+    }   
+
+    .contents-title {
+    font-size: 3rem;
+    }
+
+    .contents {
+        display: flex;
+        justify-content: space-between;
+        /* align-items: center; */
+
+        width: 90%;
+        margin: 0 auto;
+
+        /* border: 1px solid #ccc; */
+        padding-top: 10%;
+        margin-bottom: 20rem;
+        gap: 9rem;
+    }
+
+    .main {
+        width: 75%;
+    }
+
+    .sub {
+        width: 25%;
+    }
+
+    .main-contents-container {
+        display: grid;
+        grid-template-columns: repeat(2 , 1fr);
+        gap: 3rem;
+        /* 要素を中央揃えにしたい… */
+        place-items: center;
+    }
+
+    .main-contents {
+        width: 100%;
+        margin-bottom: auto;
+        /* display: flex; */
+        /* align-items: flex-start; */
+    }
+
+    .main-contents img {
+        width: 100%;
+    }
+
+    .title {
+        font-size: 2.4rem;
+    }
+
+    .description {
+        font-size: 1.5rem;
+    }
+
+    .tag {
+        display: flex;
+        padding-right: 5%;
+        gap: 5%;
+    }
+
+    .category {
+        color: #FF553C;
+        /* width: 15%; */
+        display: inline-block;
+    font-size: 2rem;
+    }
+
+    .date {
+        position: relative;
+        color: #757575;
+        display: inline-block;
+        border-left: 0.1rem solid #DEDEDE;
+        padding-left: 5%;
+        font-size: 2rem;
+    }
+
+    .side-contents {
+        font-size: 2.3rem;
+    }
+
+    .line {
+        padding-bottom: 20%;
+        margin-bottom: 10%;
+        border-bottom: 1px solid gray;
+    }
+
+    .without-line{
+        padding-bottom: 20%;
+        margin-bottom: 10%;
+    }
+
+    .blank {
+        margin-bottom: 10%;
+        margin-top: 10%;
+    }
+
+    .button-container {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .button {
+        color: #757575;
+        padding: 2%;
+        border: 0.2rem solid #DEDEDE;
+        font-size: 2rem;
+    }
+
+    /* ここからfooter部分 */
+    .footer {
+        padding-top: 7%;
+        padding-bottom:2%;
+        background-color: #121212;
+    }
+
+    .footer-only-contents {
+        display: flex;
+        justify-content: space-between;
+        gap: 5rem;
+
+        width: 85%;
+        margin: 0 auto;
+        margin-bottom: 10%;
+        text-align: left;
+    }
+
+    .footer-title {
+        color: #FFFFFF;
+        margin-bottom: 1rem;
+        font-size: 2rem;
+    }
+
+    .address {
+        color: #FFFFFF80;
+        padding-bottom: 10%;
+        border-bottom: 1px solid #DEDEDE80;
+        margin-bottom: 10%;
+        font-size: 2rem;
+    }
+
+    .detail {
+        display: flex;
+        gap: 5%;
+        justify-content: left;
+    }
+
+    .footer-other {
+        color: #FFFFFF80;
+        font-size: 2rem;
+    }
+
+    .footer-image {
+        width: 100%;
+    }
+
+    .footer-copy-rights {
+        color: #FFFFFF80;
+        text-align: center;
+        font-size: 2rem;
+    }
+}

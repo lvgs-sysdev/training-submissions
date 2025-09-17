@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ja">
+  <!-- cssファイルを読み込み -->
+  <link rel="stylesheet" href="top_page.css">
+  <head>
+    <title>HTML課題</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <!-- ページ内で表示される部分のレイアウト -->
+  <body class="wrapper">
+    <!-- ヘッダー部分 -->
+    <header class="header">
+      <div class="header_item logo">DAYDAYTRAVEL</div>
+      <div class="header_right">
+        <div class="header_item">login</div>
+        <div class="header_item nav2">Get started</div>
+      </div>
+    </header>
+    <!-- ページ内のヘッダー、大きい写真がある部分 -->
+    <div class="page-header">
+      <img src="6e898400c2c34c9e3fa4ae12b6e8cb59a572860b.jpg" class="page-header-picture">
+      <div class="text">
+        <h1 class="page-header-text1">Share your<br>holiday stories.</h1>
+        <span class="page-header-text2">Wtire about your experience while on holiday in <br>various parts of indonesia,and reach a wide<br>readership</span>
+      </div>
+    </div>
+
+    <div class="contents">
+      <div class="main">        
+        <div class="main-contents-header">
+          <h2 class="contents-title">一覧(新着順)</h2>
+        </div>
+        <!-- ここからgridを使う -->
+        <div class="main-contents-container">
+          <!-- コンテンツのコンテナとして使う 入れ子でコンテンツを6つ入れる -->
+          <div class="main-contents">
+            <img src="img_1.png">
+            <div class="tag">
+              <span class="category">Travel</span>
+              <span class="date">19 Feb 2022</span>
+            </div>
+            <h2 class="title">記事タイトル記事タイトル記事タイトル記事タイトル</h2>
+            <div class="description">本文の一部を表示本文の一部を表示本文の..</div>
+          </div>
+          <div class="main-contents">
+            <img src="img_2.png">
+            <div class="tag">
+              <span class="category">Culinary</span>
+              <span class="date">25 Apr 2022</span>
+            </div>
+            <h2 class="title">The taste of Bang Embul's soto betawi</h2>
+            <div class="description">Each region has its own specialty food..</div>
+          </div>
+          <div class="main-contents">
+            <img src="img_3.png">
+            <div class="tag">
+              <span class="tag-divide category">Travel</span>
+              <span class="tag-divide date">29 Apr 2022</span>
+            </div>
+            <h2 class="title">Seeing the beauty of Bali, which has many statues in temples</h2>
+            <div class="description">Talking about Bali is never boring to tell..</div>
+          </div>
+          <div class="main-contents">
+            <img src="img_4.png">
+            <div class="tag">
+              <span class="category">Culinary</span>
+              <span class="date">02 May 2022</span>
+            </div>
+            <h2 class="title">Delicious and cheap Semarang street food</h2>
+            <div class="description">There's a lot of street food in Semarang..</div>
+          </div>
+          <div class="main-contents">
+            <img src="img_5.png">
+            <div class="tag">
+              <span class="category">Travel</span>
+              <span class="date">05 Jun 2022</span>
+            </div>
+            <h2 class="title">Karang bebai beach Lampung for summer vacation</h2>
+            <div class="description">Talking about Bali is never boring to tell..</div>
+          </div>
+          <div class="main-contents">
+            <img src="img_6.png">
+            <div class="tag">
+              <span class="category">Culinary</span>
+              <span class="date">13 Jun 2022</span>
+            </div>
+            <h2 class="title">The upside-down mystical forest in Banyuwangi</h2>
+            <div class="description">This place is most often used as a photo..</div>
+          </div>
+        </div>    
+      </div>
+
+      <div class="sub">
+        <!-- sideコンテンツ部分その1 -->
+        <div class="side-contents-header-1">
+          <h2 class="contents-title">人気記事(機能不要)</h2>
+        </div>
+
+        <div class="side-contents title line">記事タイトル記事タイトル記事タイトル記事タイトル</div>
+        <div class="side-contents article line">Cheap Padang specialty food restaurant</div>
+        <div class="side-contents article without-line">Mountain hiking in central Java</div>
+
+        <!-- sideコンテンツ部分その2 -->
+        <div class="side-contents-header-2">
+          <h2 class="contents-title">もっと見る（機能不要）</h2>
+        </div>
+
+        <div class="side-contents-2">
+          <div class="button-container">
+              <a class="button">Travel</button></a>
+              <a class="button">Culinary</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-only-contents">
+        <div class="footer-category">
+          <!-- 横幅を工夫しないといけない -->
+          <div class="footer-title">PT. Travel Everyday Indonesia</div>
+          <div class="address">Grand Floor Zaidin L-Walk,<br>Jl. Maju Jaya No. 2, <br>Daerah Istimewa Yogyakarta,<br>Indonesia 55281</div>
+          <div class="detail">
+            <div class="footer-other">About</div>
+            <div class="footer-other">Privacy policy</div>
+          </div>
+          <div class="detail">
+            <div class="footer-other">Terms & Conditions</div>
+            <div class="footer-other">Contact</div>
+          </div>
+        </div>
+        <div class="footer-category">
+          <div class="footer-title">Informations</div>
+          <div class="footer-other">How to register as a user</div>
+          <div class="footer-other">Guide to creating travel review</div>
+          <div class="footer-other">Tutorial for making culinary reviews</div>
+        </div>
+        <div class="footer-category">
+          <div class="footer-title">Follow us</div>
+          <div class="footer-other">Instagram</div>
+          <div class="footer-other">Facebook</div>
+          <div class="footer-other">Twitter</div>
+          <div class="footer-other">Youtube</div>
+        </div>
+        <div class="footer-category">
+          <div class="footer-title">Download app</div>
+          <img src="Frame 19.png" class="footer-image">
+        </div>
+      </div>
+      <div class="footer-copy-rights">© 2023 PT. Travel Everyday Indonesia</div>
+    </footer>
+    
+  </body>
+</html>
