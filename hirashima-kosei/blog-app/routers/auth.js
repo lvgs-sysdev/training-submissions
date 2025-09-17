@@ -43,8 +43,9 @@ async function authRoutes(fastify) {
 				return reply.status(401).send({ error: '入力内容に誤りがあります。' });
 			}
 
+			// アクセストークンの有効期限は短く設定
 			const accessToken = jwt.sign({ id: user.user_id }, process.env.SECRET_KEY, {
-				expiresIn: '1m',
+				expiresIn: '15m',
 			});
 
 			const refreshToken = uuidv4();

@@ -62,18 +62,19 @@ async function blogRoutes(fastify) {
 		let editArticleFlg = false;
 
 		try {
-			const [authorIdRows] = await pool.query('SELECT user_id FROM articles WHERE id=?', [
-				articleId,
-			]);
-
-			if (!authorIdRows || authorIdRows.length === 0) {
-				return reply.status(404).send({ error: '記事作成者が見つかりません。' });
-			}
-
 			// ログインしている場合、検証したトークンをデコードしたIDと記事作成者のIDが同じであれば記事編集可能
 			if (refreshToken) {
 				try {
+					const [authorIdRows] = await pool.query(
+						'SELECT user_id FROM articles WHERE id=?',
+						[articleId]
+					);
+
+					if (!authorIdRows || authorIdRows.length === 0) {
+						return reply.status(404).send({ error: '記事作成者が見つかりません。' });
+					}
 					const decoded = await authorizeToken(accessToken);
+
 					// 閲覧している記事の作者とログインユーザーが同じであれば編集可能
 					// そうでなければ編集不可能だがページは正しくみられる状態
 					if (authorIdRows[0].user_id === decoded.id) {
@@ -131,7 +132,7 @@ async function blogRoutes(fastify) {
 			}
 
 			if (!editArticleFlg) {
-				return reply.status(403).send({ error: '自分の記事以外は編集不可です。' });
+				return reply.status(403).send({ error: '自分の記事以外は編集できません。' });
 			}
 
 			await pool.query(
