@@ -63,7 +63,7 @@ async function authRoutes(fastify) {
 					httponly: true,
 				})
 				.setCookie('refreshToken', refreshToken, {
-					path: '/api',
+					path: '/api/auth/refresh',
 					maxAge: 7 * 24 * 60 * 60,
 					httponly: true,
 				})
@@ -75,7 +75,7 @@ async function authRoutes(fastify) {
 
 	// アクセストークン再発行用API
 	fastify.post('/api/auth/refresh', async (request, reply) => {
-		const refreshToken = request.cookies.refreshToken;
+		const refreshToken = request.cookies?.refreshToken;
 
 		try {
 			const [userRows] = await pool.query('SELECT * FROM users WHERE refresh_token=?', [
@@ -91,10 +91,23 @@ async function authRoutes(fastify) {
 				expiresIn: '15m',
 			});
 
+			const newRefreshToken = uuidv4();
+
+			// リフレッシュトークンはユーザーIDと紐づけてDB保存
+			await pool.query('UPDATE users SET refresh_token=? WHERE user_id=?', [
+				newRefreshToken,
+				user.user_id,
+			]);
+
 			return reply
 				.setCookie('accessToken', newAccessToken, {
 					path: '/api',
 					maxAge: 15 * 60,
+					httponly: true,
+				})
+				.setCookie('refreshToken', newRefreshToken, {
+					path: '/api/auth/refresh',
+					maxAge: 7 * 24 * 60 * 60,
 					httponly: true,
 				})
 				.send({ msg: 'リフレッシュ成功！' });
@@ -104,7 +117,7 @@ async function authRoutes(fastify) {
 	});
 
 	fastify.post('/api/auth/logout', async (request, reply) => {
-		const refreshToken = request.cookies.refreshToken;
+		const refreshToken = request.cookies?.refreshToken;
 
 		try {
 			// リフレッシュトークンはDBからも削除（nullに）

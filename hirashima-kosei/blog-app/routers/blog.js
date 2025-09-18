@@ -57,13 +57,12 @@ async function blogRoutes(fastify) {
 	fastify.get('/api/blog/article', async (request, reply) => {
 		const articleId = request.query.id;
 		const accessToken = request.cookies?.accessToken;
-		const refreshToken = request.cookies?.refreshToken;
 
 		let editArticleFlg = false;
 
 		try {
 			// ログインしている場合、検証したトークンをデコードしたIDと記事作成者のIDが同じであれば記事編集可能
-			if (refreshToken) {
+			if (accessToken) {
 				try {
 					const [authorIdRows] = await pool.query(
 						'SELECT user_id FROM articles WHERE id=?',
@@ -105,11 +104,10 @@ async function blogRoutes(fastify) {
 	fastify.put('/api/blog/editBlog', async (request, reply) => {
 		const { id, articleTitle, content } = request.body;
 		const accessToken = request.cookies?.accessToken;
-		const refreshToken = request.cookies?.refreshToken;
 
 		let editArticleFlg = false;
 
-		if (!refreshToken) {
+		if (!accessToken) {
 			return reply.status(401).send({ error: '編集するにはログインが必要です。' });
 		}
 

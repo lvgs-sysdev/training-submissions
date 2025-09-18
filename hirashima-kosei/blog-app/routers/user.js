@@ -6,11 +6,10 @@ const authorizeToken = require('../authorize-token');
 async function userRoutes(fastify) {
 	fastify.get('/api/user/loginUser', async (request, reply) => {
 		const accessToken = request.cookies?.accessToken;
-		const refreshToken = request.cookies?.refreshToken;
 
 		let userId = null;
 
-		if (!refreshToken) {
+		if (!accessToken) {
 			return reply.status(200).send({ msg: '非ログインユーザー', user: null });
 		}
 
@@ -37,13 +36,12 @@ async function userRoutes(fastify) {
 
 	fastify.get('/api/user/profile', async (request, reply) => {
 		const accessToken = request.cookies?.accessToken;
-		const refreshToken = request.cookies?.refreshToken;
 		const userId = request.query.userId;
 
 		let editProfileFlg = false;
 
 		// ログインユーザーアクセス時のみアクセストークンの検証、リフレッシュ処理
-		if (refreshToken) {
+		if (accessToken) {
 			try {
 				const decoded = await authorizeToken(accessToken);
 				if (userId === decoded.id) {
@@ -72,11 +70,10 @@ async function userRoutes(fastify) {
 		const { id, beforeUserId, afterUserId, userName } = request.body;
 
 		const accessToken = request.cookies?.accessToken;
-		const refreshToken = request.cookies?.refreshToken;
 
 		let editProfileFlg = false;
 
-		if (!refreshToken) {
+		if (!accessToken) {
 			return reply.status(401).send({ error: '編集するにはログインが必要です。' });
 		}
 
