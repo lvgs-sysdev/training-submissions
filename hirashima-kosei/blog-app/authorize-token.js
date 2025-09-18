@@ -1,5 +1,5 @@
 // アクセストークンを検証するAPIはこの関数を使用
-// アクセストークンの署名を検証
+// アクセストークンの有効期限切れを検知
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
