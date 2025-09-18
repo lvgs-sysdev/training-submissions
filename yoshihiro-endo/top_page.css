@@ -19,6 +19,20 @@ html {
 }
 
 /* ここからヘッダー部分 */
+* {
+    margin: 0;
+    padding: 0;
+    /* font-family: 'Poppins', sans-serif; */
+}
+
+.body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.h1, h2, h3, h4, h5, h6, button, a, div {
+    font-family: 'Poppins', sans-serif;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -52,7 +66,8 @@ html {
 /* ここからページヘッダー部分 */
 
 .page-header {
-    height: 100%;
+    /* 写真の上部分を一部カットしたいがうまく実装できない */
+    height: 15%;
     width: 100%;
     overflow: hidden;
     position: relative;
@@ -83,6 +98,7 @@ html {
 
 .contents-title {
     font-size: 1.8rem;
+    margin-bottom: 2rem;
 }
 
 .contents {
@@ -90,15 +106,12 @@ html {
     margin: 0 auto;
     padding-top: 10%;
     margin-bottom: 25%;
-    /* ここでgapを設定してもしていないのでsubの末端にgapが生じる */
-    /* gap: 3rem;     */
 }
 
 .main-contents-container {
     display: grid;
     grid-template-columns: repeat(1 , 1fr);
     gap: 3rem;
-    /* 要素を中央揃えにしたい… */
     place-items: center;
     gap: 3rem;
     margin-bottom: 10rem;
@@ -110,17 +123,21 @@ html {
 
 .description {
     font-size: 1rem;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    color: #757575;
 }
 
 .tag {
     display: flex;
     padding-right: 5%;
     gap: 5%;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .category {
     color: #FF553C;
-    /* width: 15%; */
     display: inline-block;
     font-size: 1.2rem;
 }
@@ -141,7 +158,7 @@ html {
 .line {
     padding-bottom: 20%;
     margin-bottom: 10%;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid #121212;
 }
 
 .without-line{
@@ -161,15 +178,12 @@ html {
 
 .button {
     color: #757575;
-    padding: 0.7rem;
+    padding: 1rem;
     border: 0.1rem solid #DEDEDE;
     font-size: 1rem;
 }
 
 .footer {
-    /* border: 1px slid #ccc; */
-    /* padding: 10px; */
-
     padding-top: 7%;
     padding-bottom:2%;
 
@@ -182,14 +196,9 @@ html {
 
 .footer-only-contents {
     /* モバイル版ではflexせずにgridで2カラムで折り返す */
-    /* display: grid; */
-    /* grid-template-columns: repeat(2, 1fr); */
     justify-content: space-between;
-    /* align-items: center; */
-
     width: 50%;
     margin: 0 auto;
-
     gap: 5%;
     margin-bottom: 10%;
     text-align: center;
@@ -216,6 +225,7 @@ html {
 
 .footer-other {
     color: #FFFFFF80;
+    margin-bottom: 1rem;
 }
 
 .footer-image {
@@ -231,16 +241,17 @@ html {
 /* ここからタブレット部分 */
 @media (min-width: 768px) {
     .page-header-text1 {
-        font-size: 15rem;
+        font-size: 3rem;
     }
 
     .page-header-text2 {
-        font-size: 5rem;
+        font-size: 1rem;
         color: #121212;
     }   
 
     .contents-title {
-    font-size: 2rem;
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
     }
 
     .contents {
@@ -251,7 +262,7 @@ html {
         margin: 0 auto;
         padding-top: 10%;
         margin-bottom: 25%;
-        gap: 6rem;
+        gap: 4rem;
     }
 
     .main {
@@ -282,7 +293,7 @@ html {
     }
 
     .title {
-        font-size: 1.8rem;
+        font-size: 1.4rem;
     }
 
     .description {
@@ -299,7 +310,7 @@ html {
         color: #FF553C;
         /* width: 15%; */
         display: inline-block;
-        font-size: 1.7rem;
+        font-size: 1.3rem;
     }
 
     .date {
@@ -308,17 +319,17 @@ html {
         display: inline-block;
         border-left: 0.1rem solid #DEDEDE;
         padding-left: 5%;
-        font-size: 1.7rem;
+        font-size: 1.3rem;
     }
 
     .side-contents {
-        font-size: 1.7rem;
+        font-size: 1.2rem;
     }
 
     .line {
         padding-bottom: 20%;
         margin-bottom: 10%;
-        border-bottom: 1px solid gray;
+        border-bottom: 1px solid #121212;
     }
 
     .without-line{
@@ -338,9 +349,9 @@ html {
 
     .button {
         color: #757575;
-        padding: 2%;
+        padding: 1rem;
         border: 0.15rem solid #DEDEDE;
-        font-size: 2rem;
+        font-size: 1rem;
     }
 
     /* ここからfooter部分 */
@@ -355,11 +366,14 @@ html {
     }
 
     .footer-only-contents {
-        display: flex;
-        justify-content: space-between;
+        /* display: flex;
+        justify-content: space-between; */
         /* align-items: center; */
 
-        width: 85%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        width: 70%;
         margin: 0 auto;
 
         gap: 5%;
@@ -369,7 +383,7 @@ html {
 
     .footer-title {
         color: #FFFFFF;
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
         font-size: 1.5rem;
     }
 
@@ -383,10 +397,16 @@ html {
     .detail {
         display: flex;
         gap: 5%;
+        justify-content: left;
     }
+
+    /* .footer-category {
+        justify-content: center;
+    } */
 
     .footer-other {
         color: #FFFFFF80;
+        margin-bottom: 1.5rem;
     }
 
     .footer-image {
@@ -442,6 +462,7 @@ html {
 
     .contents-title {
     font-size: 3rem;
+    margin-bottom: 4rem;
     }
 
     .contents {
@@ -522,7 +543,7 @@ html {
     .line {
         padding-bottom: 20%;
         margin-bottom: 10%;
-        border-bottom: 1px solid gray;
+        border-bottom: 1px solid #121212;
     }
 
     .without-line{
@@ -538,11 +559,12 @@ html {
     .button-container {
         display: flex;
         gap: 2rem;
+        margin-top: 5rem;
     }
 
     .button {
         color: #757575;
-        padding: 2%;
+        padding: 1.5rem;
         border: 0.2rem solid #DEDEDE;
         font-size: 2rem;
     }
@@ -567,7 +589,7 @@ html {
 
     .footer-title {
         color: #FFFFFF;
-        margin-bottom: 1rem;
+        margin-bottom: 3rem;
         font-size: 2rem;
     }
 
@@ -588,6 +610,7 @@ html {
     .footer-other {
         color: #FFFFFF80;
         font-size: 2rem;
+        margin-bottom: 1.5rem;
     }
 
     .footer-image {

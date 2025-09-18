@@ -18,9 +18,20 @@ html {
     }
 }
 
-
-
 /* ここからヘッダー部分 */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.h1, h2, h3, h4, h5, h6, button, a, div {
+    font-family: 'Poppins', sans-serif;
+}
+
 .header {
     border-bottom: 1px solid #DEDEDE;
 }
@@ -100,9 +111,11 @@ html {
 
 .main-category {
     color: #FF553C;
+    margin-bottom: 1rem;
 }
 
 .main-title {
+    font-size: 1.8rem;
     margin-bottom: 5%;
 }
 
@@ -115,6 +128,7 @@ html {
     height: 15%;
     width: 100%;
     overflow: hidden;
+    margin-top: 2rem;
 }
 
 .main-big-image {
@@ -195,15 +209,6 @@ html {
     place-items: center;
 }
 
-.main-contents {
-    width: 100%;
-    margin-bottom: auto;
-}
-
-.main-contents img {
-    width: 100%;
-}
-
 .tag {
     display: flex;
     padding-right: 3%;
@@ -222,6 +227,10 @@ html {
     display: inline-block;
     border-left: 0.1rem solid #DEDEDE;
     padding-left: 5%;
+}
+
+.title {
+    font-size: 1.2rem;
 }
 
 .description {
@@ -383,7 +392,7 @@ html {
     display: flex;
     width: 100%;
     justify-content: space-between;
-    margin-bottom: 15%;
+    margin-bottom: 5rem;
 }
 
 .main-header-left {
@@ -512,6 +521,8 @@ html {
     display: flex;
     padding-right: 3%;
     gap: 3%;
+    margin-top: 0.7rem;
+    margin-bottom: 0.7rem;
 }
 
 .category {
@@ -537,7 +548,11 @@ html {
 }
 
 .sub-contents {
-    margin-bottom: 30%;
+    margin-bottom: 4rem;
+}
+
+.title {
+    font-size: 1.1rem;
 }
 
 .sub-title {
@@ -571,53 +586,73 @@ html {
 
 /* ここからがfooter部分 */
 
-.footer {
-    border: 1px slid #ccc;
-    padding: 10px;
+    .footer {
+        border: 1px slid #ccc;
+        padding: 10px;
 
-    padding-top: 7%;
-    padding-bottom:2%;
+        padding-top: 7%;
+        padding-bottom:2%;
 
-    background-color: #121212;
-}
+        background-color: #121212;
+    }
 
-.footer-only-contents {
-    display: flex;
-    justify-content: space-between;
-    /* align-items: center; */
+    .footer-only-contents {
+        /* display: flex;
+        justify-content: space-between; */
+        /* align-items: center; */
 
-    width: 85%;
-    margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
 
-    gap: 5%;
-    margin-bottom: 10%;
-}
+        width: 70%;
+        margin: 0 auto;
 
-.footer-title {
-    color: #FFFFFF;
-    margin-bottom: 1rem;
-}
+        gap: 5%;
+        margin-bottom: 10%;
+        text-align: left;
+    }
 
-.address {
-    color: #FFFFFF80;
-    padding-bottom: 10%;
-    border-bottom: 1px solid #DEDEDE80;
-    margin-bottom: 10%;
-}
+    .footer-title {
+        color: #FFFFFF;
+        margin-bottom: 2rem;
+        font-size: 1.5rem;
+    }
 
-.detail {
-    display: flex;
-    gap: 5%;
-}
+    .address {
+        color: #FFFFFF80;
+        padding-bottom: 10%;
+        border-bottom: 1px solid #DEDEDE80;
+        margin-bottom: 10%;
+    }
 
-.footer-other {
-    color: #FFFFFF80;
-}
+    .detail {
+        display: flex;
+        gap: 5%;
+        justify-content: left;
+    }
 
-.footer-copy-rights {
-    color: #FFFFFF80;
-    text-align: center;
-}
+    /* .footer-category {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: top;
+        justify-content: center;
+    } */
+
+    .footer-other {
+        color: #FFFFFF80;
+        margin-bottom: 1.5rem;
+    }
+
+    .footer-image {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .footer-copy-rights {
+        color: #FFFFFF80;
+        text-align: center;
+    }
 /* ここまでがfooter部分 */
 }
 
@@ -673,14 +708,14 @@ html {
 
 .main {
     /* width: 90%; */
-    flex: 8;
+    flex: 7.5;
 }
 
 .main-header-container {
     display: flex;
     width: 100%;
     justify-content: space-between;
-    margin-bottom: 15%;
+    margin-bottom: 10rem;
     align-items: center;
 }
 
@@ -694,23 +729,34 @@ html {
 }
 
 .post-info {
-    font-size: 2.5rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    justify-content: left;
 }
 
 .main-name-poster {
     font-size: 2.5rem;
+    /* justify-content: left; */
+    text-align: left;
+}
+
+.date-of-post {
+    /* justify-content: left; */
+    font-size: 2.2rem;
+    text-align: left;
 }
 
 .link-pic {
     width: 4rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 .main-category {
     color: #FF553C;
     font-size: 2rem;
+    margin-bottom: 1rem;
 }
 
 .main-title {
@@ -744,6 +790,7 @@ html {
     color: #757575;
     margin-bottom: 8%;
     font-size: 2rem;
+    font-style: italic;
 }
 
 .text-title {
@@ -825,6 +872,8 @@ html {
     display: flex;
     padding-right: 3%;
     gap: 3%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .category {
@@ -857,15 +906,20 @@ html {
 /* ここからがsub部分 */
 
 .sub {
-    flex: 2;
+    flex: 2.5;
 }
 
 .sub-contents {
-    margin-bottom: 30%;
+    margin-bottom: 12rem;
+}
+
+.sub-content {
+    margin-bottom: 5rem;
 }
 
 .sub-title {
     font-size: 2rem;
+    margin-bottom: 5rem;
 }
 
 .sub-category {
@@ -893,6 +947,7 @@ html {
 .name-poster {
     font-size: 1.5rem;
     white-space: nowrap;
+    font-weight: bold;
 }
 
 /* ここまでがsub部分 */
@@ -918,7 +973,7 @@ html {
 
     .footer-title {
         color: #FFFFFF;
-        margin-bottom: 1rem;
+        margin-bottom: 3rem;
         font-size: 2rem;
     }
 
@@ -939,6 +994,7 @@ html {
     .footer-other {
         color: #FFFFFF80;
         font-size: 2rem;
+        margin-bottom: 1.5rem;
     }
 
     .footer-image {
