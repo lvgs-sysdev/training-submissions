@@ -1,6 +1,8 @@
 function paramToValue(param) {
 	const urlParams = new URLSearchParams(window.location.search);
-	return urlParams.get(param);
+	const targetValue = urlParams.get(param);
+	const sanitizedTargetValue = DOMPurify.sanitize(targetValue);
+	return sanitizedTargetValue;
 }
 
 export default paramToValue;

@@ -18,7 +18,7 @@ const userProfile = async () => {
 
 		const editProfileBtn = document.getElementById('edit_profile');
 		editProfileBtn.addEventListener('click', () => {
-			window.location.href = `/editUser?user_id=${user.user_id}`;
+			window.location.href = `/editUser?user_id=${userId}`;
 		});
 		if (!user.editProfileFlg) {
 			editProfileBtn.classList.add('d-none'); // 自分以外のプロフィール画面では編集を不可に

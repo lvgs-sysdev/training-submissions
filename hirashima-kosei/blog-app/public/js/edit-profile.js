@@ -7,7 +7,7 @@ const editProfile = async () => {
 	try {
 		const { user } = await fetchUserItems(userId);
 		const authorIcon = document.getElementById('author_icon');
-		authorIcon.src = user.user_icon;
+		authorIcon.src = DOMPurify.sanitize(user.user_icon);
 
 		const inputUserId = document.getElementById('input_user_id');
 		inputUserId.value = user.user_id;
@@ -19,7 +19,7 @@ const editProfile = async () => {
 		hiddenId.value = user.id;
 
 		const cancelBtn = document.getElementById('cancel');
-		cancelBtn.href = `/user?user_id=${user.user_id}`;
+		cancelBtn.href = `/user?user_id=${userId}`;
 
 		const editProfileBtn = document.getElementById('commit_change');
 		if (!user.editProfileFlg) {
@@ -31,7 +31,7 @@ const editProfile = async () => {
 			event.preventDefault();
 
 			const beforeUserId = userId;
-			const afterUserId = inputUserId.value;
+			const afterUserId = DOMPurify.sanitize(inputUserId.value);
 			const userName = inputUserName.value;
 			const id = hiddenId.value;
 

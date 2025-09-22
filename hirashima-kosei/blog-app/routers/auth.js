@@ -73,6 +73,8 @@ async function authRoutes(fastify) {
 
 	// アクセストークン再発行用API
 	fastify.post('/api/auth/refresh', async (request, reply) => {
+		const refreshToken = request.cookies?.refreshToken;
+
 		try {
 			const [userRows] = await pool.query('SELECT * FROM users WHERE refresh_token=?', [
 				refreshToken,

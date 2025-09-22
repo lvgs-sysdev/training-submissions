@@ -11,7 +11,7 @@ const editBlog = async () => {
 		inputArticleTitle.value = article_title;
 
 		const inputContent = document.getElementById('input_content');
-		inputContent.value = DOMPurify.sanitize(content);
+		inputContent.value = content;
 
 		const hiddenId = document.getElementById('hidden_id');
 		hiddenId.value = id;
