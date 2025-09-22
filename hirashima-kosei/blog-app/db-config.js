@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const dbConfig = {
 	host: 'localhost',
 	port: 3306,

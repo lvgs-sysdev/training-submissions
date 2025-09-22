@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const mysql = require('mysql2/promise');
 const pool = mysql.createPool(require('../db-config'));
 
@@ -63,7 +61,7 @@ async function authRoutes(fastify) {
 					httponly: true,
 				})
 				.setCookie('refreshToken', refreshToken, {
-					path: '/api/auth/refresh',
+					path: '/api/auth',
 					maxAge: 7 * 24 * 60 * 60,
 					httponly: true,
 				})
@@ -75,8 +73,6 @@ async function authRoutes(fastify) {
 
 	// アクセストークン再発行用API
 	fastify.post('/api/auth/refresh', async (request, reply) => {
-		const refreshToken = request.cookies?.refreshToken;
-
 		try {
 			const [userRows] = await pool.query('SELECT * FROM users WHERE refresh_token=?', [
 				refreshToken,
@@ -106,13 +102,21 @@ async function authRoutes(fastify) {
 					httponly: true,
 				})
 				.setCookie('refreshToken', newRefreshToken, {
-					path: '/api/auth/refresh',
+					path: '/api/auth',
 					maxAge: 7 * 24 * 60 * 60,
 					httponly: true,
 				})
 				.send({ msg: 'リフレッシュ成功！' });
 		} catch (err) {
-			return reply.status(500).send({ error: 'トークンを再発行できませんでした。' });
+			return reply
+				.status(500)
+				.clearCookie('accessToken', {
+					path: '/api',
+				})
+				.clearCookie('refreshToken', {
+					path: '/api/auth',
+				})
+				.send({ error: 'トークンを再発行できませんでした。' });
 		}
 	});
 
@@ -120,8 +124,8 @@ async function authRoutes(fastify) {
 		const refreshToken = request.cookies?.refreshToken;
 
 		try {
-			// リフレッシュトークンはDBからも削除（nullに）
-			await pool.query('UPDATE users SET refresh_token=null WHERE refresh_token=?', [
+			// リフレッシュトークンはDBからも削除（NULLに）
+			await pool.query('UPDATE users SET refresh_token=NULL WHERE refresh_token=?', [
 				refreshToken,
 			]);
 
@@ -130,7 +134,7 @@ async function authRoutes(fastify) {
 					path: '/api',
 				})
 				.clearCookie('refreshToken', {
-					path: '/api',
+					path: '/api/auth',
 				})
 				.send({ msg: 'ログアウト！' });
 		} catch (err) {

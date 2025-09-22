@@ -1,7 +1,11 @@
-require('dotenv').config();
+const dotenv = require('dotenv');
+const path = require('path');
+
+const env = process.env.NODE_ENV || 'development';
+const envPath = path.resolve(__dirname, `./.env.${env}`);
+dotenv.config({ path: envPath });
 
 const fastify = require('fastify')();
-const path = require('path');
 
 fastify.register(require('@fastify/static'), {
 	root: path.join(__dirname, 'public'),
