@@ -1,206 +1,185 @@
 <!doctype html>
 <html lang="ja">
-  <!-- cssファイルを読み込み -->
+  <link rel="stylesheet" href="common_settings.css"> 
   <link rel="stylesheet" href="detail_page.css">
   <head>
-    <title>HTML課題</title>
+    <title>ブログ記事詳細ページ</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
-    <!-- ページ内で表示される部分のレイアウト -->
-    <!-- ヘッダー部分 -->
     <header class="header">
       <div class="header-contents">
-        <div class="header_item logo">DAYDAYTRAVEL</div>
-        <div class="header_right">
-          <div class="header_item">login</div>
-          <div class="header_item nav2">Get started</div>
+        <p class="header-item logo">DAYDAYTRAVEL</p>
+        <div class="header-right">
+          <a class="header-item">login</a>
+          <a class="header-item get-started">Get started</a>
         </div>
       </div>
     </header>
 
-    <!-- ここからがcontents部分 -->
     <div class="contents">
-      <!-- ここからがmain -->
-      <div class="main">
-        <!-- here is cominig main contents  -->
+      <main>
         <div class="main-header-container">
           <div class="main-header-left">
-            <img src="user-2-1.jpg" class="pic-of-poster">
+            <img src="detail_main_header.jpg" alt="人物の写真その1" class="pic-of-author">
             <div class="post-info">
-              <div class="main-name-poster">Karen Smith</div>
+              <div class="main-name-author">Karen Smith</div>
               <div class="date-of-post">19 Feb 2022</div>
             </div>
           </div>
 
           <div class="main-header-right">
-            <img src="bxl-twitter.svg.png" class="link-pic">
-            <img src="bxl-instagram-alt.svg.png" class="link-pic">
-            <img src="bxl-linkedin-square.svg.png" class="link-pic">
-            <img src="bx-link-alt.svg.png" class="link-pic">
+            <img src="twitter.png" class="link-pic">
+            <img src="instagram.png" class="link-pic">
+            <img src="linkedin.png" class="link-pic">
+            <img src="link.png" class="link-pic">
           </div>
         </div>
         <div class="main-category">Culinary</div>
-        <div class="main-title">記事タイトル記事タイトル記事タイトル</div>
-        <div class="text">Even there are a lot of potential tourism in Semarang. Therefore Semarang need more promotional for old potential Tourism.</div>
+        <h1 class="main-title">記事タイトル記事タイトル記事タイトル</h1>
+        <p class="text">Even there are a lot of potential tourism in Semarang. Therefore Semarang need more promotional for old potential Tourism.</p>
         
-        <!-- 大きい画像 -->
         <div class="image-container">
-          <img src="img_2.png" class="main-big-image">
+          <img src="top_main_2.png" class="main-big-image">
         </div>
-        <div class="image-description">Food portrait this afternoon</div>
+        <p class="image-description">Food portrait this afternoon</p>
 
-        <!-- ここでテキスト部分が来る -->
-        <div class="text">Lorem ipsum dolor sit amet consectetur. Nascetur hendrerit mauris in elit viverra consectetur. Enim placerat consectetur leo at pulvinar iaculis sit. Quam nec amet. lofaucibus nunc. Est nec feugiat congue viverra. Enim u</div>
-        <div class="text">Lorem ipsum dolor sit amet consectetur. Urna ipsum praesent at nunc habitasse porttitor consequat risus adipiscing. Ut enim ultricies non lectus. Fringilla duis purus cursus dui sed neque ridiculus. Faucibus et ante faucibus nunc. Est nec feugiat congue viverra. Enim ut lacus malesuada est purus tellus ac condimentum. Dignissim lacinia malesuada nisl condimentum lectus euismod.</div>
-        <h3 class="text-title">Your gene pool depth chart</h3>
-        <div class="text">Sit amet consectetur. Urna ipsum praesent at nunc habitasse porttitor consequat risus adipiscing. Ut enim ultricies non lectus. Fringilla duis purus cursus dui sed neque ridiculus. Faucibus et ante faucibus nunc. Est nec feugiat congue. Enim ut lacus malesuada est purus tellus ac condimentum. Dignissim lacinia malesuada nisl condimentum lectus euismod.</div>
-        <div class="text">Dolor sit amet consectetur. Nascetur hendrerit mauris in elit viverra consectetur. Enim placerat consectetur leo at pulvinar iaculis sit. Quam nec amet mauris sit. Adipiscing orci integer bibendum vitae sit. Porttitor.</div>
+        <p class="text">Lorem ipsum dolor sit amet consectetur. Nascetur hendrerit mauris in elit viverra consectetur. Enim placerat consectetur leo at pulvinar iaculis sit. Quam nec amet. lofaucibus nunc. Est nec feugiat congue viverra. Enim u</p>
+        <p class="text">Lorem ipsum dolor sit amet consectetur. Urna ipsum praesent at nunc habitasse porttitor consequat risus adipiscing. Ut enim ultricies non lectus. Fringilla duis purus cursus dui sed neque ridiculus. Faucibus et ante faucibus nunc. Est nec feugiat congue viverra. Enim ut lacus malesuada est purus tellus ac condimentum. Dignissim lacinia malesuada nisl condimentum lectus euismod.</p>
+        <h2 class="text-title">Your gene pool depth chart</h2>
+        <p class="text">Sit amet consectetur. Urna ipsum praesent at nunc habitasse porttitor consequat risus adipiscing. Ut enim ultricies non lectus. Fringilla duis purus cursus dui sed neque ridiculus. Faucibus et ante faucibus nunc. Est nec feugiat congue. Enim ut lacus malesuada est purus tellus ac condimentum. Dignissim lacinia malesuada nisl condimentum lectus euismod.</p>
+        <p class="text">Dolor sit amet consectetur. Nascetur hendrerit mauris in elit viverra consectetur. Enim placerat consectetur leo at pulvinar iaculis sit. Quam nec amet mauris sit. Adipiscing orci integer bibendum vitae sit. Porttitor.</p>
         
-        <!-- ここで画像が2つ来る -->
         <div class="image-container-divide">
           <div class="image-wrapper">
-            <img src="Rectangle 29.png" class="image-divide">
+            <img src="detail_main_1.png" alt="容器に入った食物" class="image-divide">
           </div>
           <div class="image-wrapper">
-            <img src="Rectangle 30.png" class="image-divide">
+            <img src="detail_main_2.png" alt="路地に停められた自転車" class="image-divide">
           </div>
         </div>
-        <div class="text">Amet consectetur. Urna ipsum praesent at nunc habitasse porttitor consequat risus adipiscing. Ut enim ultricies non lectus. Fringilla duis purus cursus dui sed neque ridiculus. Faucibus et ante faucibus nunc. Est nec feugiat congue viverra. Enim ut lacus malesuada est purus tellus ac condimentum. Dignissim lacinia malesuada nisl condimentum lectus euismod.</div>
-        <div class="text">Urna ipsum praesent at nunc habitasse porttitor consequat risus adipiscing. Ut enim ultricies non lectus. Fringilla duis purus cursus dui sed neque ridiculus. lel Faucibus et ante faucibus nunc. Est nec feugiat congue. </div>
-        <div class="main-footer">Culinary</div>
-        <!-- ここで少しスペースが空く -->
-
+        <p class="text">Amet consectetur. Urna ipsum praesent at nunc habitasse porttitor consequat risus adipiscing. Ut enim ultricies non lectus. Fringilla duis purus cursus dui sed neque ridiculus. Faucibus et ante faucibus nunc. Est nec feugiat congue viverra. Enim ut lacus malesuada est purus tellus ac condimentum. Dignissim lacinia malesuada nisl condimentum lectus euismod.</p>
+        <p class="text">Urna ipsum praesent at nunc habitasse porttitor consequat risus adipiscing. Ut enim ultricies non lectus. Fringilla duis purus cursus dui sed neque ridiculus. lel Faucibus et ante faucibus nunc. Est nec feugiat congue. </p>
+        <p class="main-footer">Culinary</p>
 
         <div class="related">
           <h3 class="related-title">関連記事（同一タグ）</h3>
           <div class="related-contents-divide">
-            <!-- contents左側 -->
             <div class="related-contents">
-              <img src="img.png" class="img-related">
+              <img src="detail_related_1.png" alt="食べ物と飲み物が2つずつ" class="img-related">
               <div class="tag">
                 <span class="category">Culinary</span>
                 <span class="date">02 May 2022</span>
               </div>
-              <div class="title">記事タイトル記事タイトル記事タイトル記事タイトル記事タイトル</div>
-              <div class="description">本文の一部を表示本文の一部を表示本文の..</div>
+              <p class="title">記事タイトル記事タイトル記事タイトル記事タイトル記事タイトル</p>
+              <p class="description">本文の一部を表示本文の一部を表示本文の..</p>
             </div>
-            <!-- contents右側 -->
             <div class="related-contents">
-              <img src="img (1).png" class="img-related">
+              <img src="detail_related_2.png" alt="お皿に盛られた緑野菜" class="img-related">
               <div class="tag">
                 <span class="category">Culinary</span>
                 <span class="date">02 May 2022</span>
               </div>
-              <div class="title">Cah kangkung ala wonosobo restaurant</div>
-              <div class="description">Order your favorite food menu from Asia..</div>
+              <p class="title">Cah kangkung ala wonosobo restaurant</p>
+              <p class="description">Order your favorite food menu from Asia..</p>
             </div>
           </div>
         </div>
-      </div>
-      <!-- ここまでがmain -->
+      </main>
 
-      <!-- ここからがsub -->
       <div class="sub">
-        <!-- here is cominig main contents -->
         <div class="sub-contents">
           <h3 class="sub-title">新着記事</h3>
           <div clas="sub-contents">
             <div class="sub-content">
-              <img src="Rectangle 31.png" class="img">
+              <img src="detail_sub_1.png" alt="屋外にいるいる2人" class="img">
               <div class="tag">
                 <span class="sub-category">Culinary</span>
                 <span class="sub-date">13 Jun 2022</span>
               </div>
-              <div class="title">記事タイトル記事タイトル記事タイトル記事タイトル</div>
+              <p class="title">記事タイトル記事タイトル記事タイトル記事タイトル</p>
             </div>
             <div class="sub-content">
-              <img src="Rectangle 31 (1).png" class="img">
+              <img src="detail_sub_2.png" alt="水辺にいる5人組" class="img">
               <div class="tag">
                 <span class="sub-category">Travel</span>
                 <span class="sub-date">22 Jul 2022</span>
               </div>
-              <div class="title">Enjoying the sunset on Padar island together</div>
+              <p class="title">Enjoying the sunset on Padar island together</p>
             </div>
             <div class="sub-content">
-              <img src="Rectangle 31 (2).png" class="img">
+              <img src="detail_sub_3.png" alt="広大な自然と2人" class="img">
               <div class="tag">
                 <span class="sub-category">Travel</span>
                 <span class="sub-date">22 Jul 2022</span>
               </div>
-              <div class="title">The lush green surroundings of the campgrounds create a..</div>
+              <p class="title">The lush green surroundings of the campgrounds create a..</p>
             </div>
           </div>
         </div>
 
-        <div class="posters"></div>
+        <div class="authors"></div>
           <h3 class="sub-title">投稿者</h3>
-          <!-- 投稿者 -->
-          <div class="poster-title"></div>
-          <div class="poster">
-            <img src="user-1.jpg" class="pic-of-poster">
-            <div class="name-poster">Andrea Wise</div>
+          <div class="author-title"></div>
+          <div class="author">
+            <img src="detail_sub_author_1.jpg" alt="人物の写真その2" class="pic-of-author">
+            <p class="name-author">Andrea Wise</p>
           </div>
-          <div class="poster">
-            <img src="user-2.jpg"  class="pic-of-poster">
-            <div class="name-poster">Karen Smith</div>
+          <div class="author">
+            <img src="detail_sub_author_2.jpg" alt="人物の写真その1" class="pic-of-author">
+            <p class="name-author">Karen Smith</p>
           </div>
-          <div class="poster">
-            <img src="user-3.jpg" class="pic-of-poster">
-            <div class="name-poster">Samantha William</div>
+          <div class="author">
+            <img src="detail_sub_author_3.jpg" alt="人物の写真その3" class="pic-of-author">
+            <p class="name-author">Samantha William</p>
           </div>
-          <div class="poster">
-            <img src="user-4.jpg" class="pic-of-poster">
-            <div class="name-poster">Renata Hope</div>
+          <div class="author">
+            <img src="detail_sub_author_4.jpg" alt="人物の写真その4" class="pic-of-author">
+            <p class="name-author">Renata Hope</p>
           </div>
-          <div class="poster">
-            <img src="user-5.jpg" class="pic-of-poster">
-            <div class="name-poster">Angela Saunder</div>
+          <div class="author">
+            <img src="detail_sub_author_5.jpg" alt="人物の写真その5" class="pic-of-author">
+            <p class="name-author">Angela Saunder</p>
           </div>
         </div>
       </div>
     </div>
-      <!-- ここまでがsub -->
     </div>
-    <!-- ここまでがcontents -->
 
-    <!-- ここからがfooter -->
     <footer class="footer">
       <div class="footer-only-contents">
         <div class="footer-category">
-          <!-- 横幅を工夫しないといけない -->
-          <div class="footer-title">PT. Travel Everyday Indonesia</div>
-          <div class="address">Grand Floor Zaidin L-Walk,<br>Jl. Maju Jaya No. 2, <br>Daerah Istimewa Yogyakarta,<br>Indonesia 55281</div>
+          <p class="footer-title">PT. Travel Everyday Indonesia</p>
+          <p class="address">Grand Floor Zaidin L-Walk,<br>Jl. Maju Jaya No. 2, <br>Daerah Istimewa Yogyakarta,<br>Indonesia 55281</p>
           <div class="detail">
-            <div class="footer-other">About</div>
-            <div class="footer-other">Privacy policy</div>
+            <p class="footer-other">About</p>
+            <p class="footer-other">Privacy policy</p>
           </div>
           <div class="detail">
-            <div class="footer-other">Terms & Conditions</div>
-            <div class="footer-other">Contact</div>
+            <p class="footer-other">Terms & Conditions</p>
+            <p class="footer-other">Contact</p>
           </div>
         </div>
-        <div class="footer-category">
-          <div class="footer-title">Informations</div>
-          <div class="footer-other">How to register as a user</div>
-          <div class="footer-other">Guide to creating travel review</div>
-          <div class="footer-other">Tutorial for making culinary reviews</div>
-        </div>
-        <div class="footer-category">
-          <div class="footer-title">Follow us</div>
-          <div class="footer-other">Instagram</div>
-          <div class="footer-other">Facebook</div>
-          <div class="footer-other">Twitter</div>
-          <div class="footer-other">Youtube</div>
-        </div>
+        <ul class="footer-category">
+          <li><div class="footer-title">Informations</li>
+          <li><div class="footer-other">How to register as a user</li>
+          <li><div class="footer-other">Guide to creating travel review</li>
+          <li><div class="footer-other">Tutorial for making culinary reviews</li>
+        </ul>
+        <ul class="footer-category">
+          <li><div class="footer-title">Follow us</div></li>
+          <li><a class="footer-link">Instagram</a></li>
+          <li><a class="footer-link">Facebook</a></li>
+          <li><a class="footer-link">Twitter</a></li>
+          <li><a class="footer-link">Youtube</a></li>
+        </ul>
         <div class="footer-category">
           <div class="footer-title">Download app</div>
-          <img src="Frame 19.png" class="footer-image">
+          <img src="footer.png" class="footer-image" alt="App StoreとGoogle Play のロゴ">
         </div>
       </div>
-      <div class="footer-copy-rights">© 2023 PT. Travel Everyday Indonesia</div>
+      <p class="footer-copy-rights">&copy; 2023 PT. Travel Everyday Indonesia</p>
     </footer>
-    <!-- ここまでがfooter -->
   </body>
 </html>
