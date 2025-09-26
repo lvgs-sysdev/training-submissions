@@ -15,40 +15,42 @@ const displayData = async (currentPage) => {
 		const pageItems = await fetchArticleItems(userId, limit, currentPage);
 
 		const blogList = document.getElementById('blog_list');
-		blogList.innerHTML = '';
+
+		let pageItemsHtml = '';
+
 		for (let i = 0; i < pageItems.length; i += 2) {
 			const item1 = pageItems[i];
 			const item2 = pageItems[i + 1];
-			const article = document.createElement('div');
-			article.className = 'row pb-lg-5';
+
 			let colHtml = `
-				<a class="d-block text-decoration-none col-12 col-lg-6 list-item pt-3" href=/detail?id=${item1.id}>
-            		<img src=${item1.article_image} alt="Travel Image" class="w-100 h-auto mb-4">
-            		<p>
-						<span class="text-category">Travel</span>
-						<span class="text-date">${' ' + String(parseDate(item1.updated_at))}</span>
-            		</p>
-					<p class="text-article-title">${item1.article_title}</p>
-					<p class="text-part-of-content text-multiline-ellipsis w-100">${parseHtml(item1.content)}</p>
-				</a>
+				<div class="row pb-lg-5">
+					<a class="d-block text-decoration-none col-12 col-lg-6 list-item pt-3" href=/detail?id=${item1.id}>
+						<img src=${item1.article_image} alt="Travel Image" class="w-100 h-auto mb-4">
+						<p>
+							<span class="text-category">Travel</span>
+							<span class="text-date">${' ' + String(parseDate(item1.updated_at))}</span>
+						</p>
+						<p class="text-article-title">${item1.article_title}</p>
+						<p class="text-part-of-content text-multiline-ellipsis w-100">${parseHtml(item1.content)}</p>
+					</a>
     		`;
 			if (item2) {
 				colHtml += `
-					<a class="d-block text-decoration-none col-12 col-lg-6 list-item pt-3" href=/detail?id=${item2.id}>
-						<img src=${item2.article_image} alt="Travel Image" class="w-100 h-auto mb-4">
-						<p>
-							<span class="text-category">Travel</span>
-							<span class="text-date">${' ' + String(parseDate(item2.updated_at))}</span>
-						</p>
-						<p class="text-article-title">${item2.article_title}</p>
-						<p class="text-part-of-content text-multiline-ellipsis w-100">${parseHtml(item2.content)}</p>
-					</a>
+						<a class="d-block text-decoration-none col-12 col-lg-6 list-item pt-3" href=/detail?id=${item2.id}>
+							<img src=${item2.article_image} alt="Travel Image" class="w-100 h-auto mb-4">
+							<p>
+								<span class="text-category">Travel</span>
+								<span class="text-date">${' ' + String(parseDate(item2.updated_at))}</span>
+							</p>
+							<p class="text-article-title">${item2.article_title}</p>
+							<p class="text-part-of-content text-multiline-ellipsis w-100">${parseHtml(item2.content)}</p>
+						</a>
 				`;
 			}
-			// インナーHTMLはサニタイズした上で表示
-			article.innerHTML = DOMPurify.sanitize(colHtml);
-			blogList.appendChild(article);
+			colHtml += '</div>';
+			pageItemsHtml += colHtml;
 		}
+		blogList.innerHTML = DOMPurify.sanitize(pageItemsHtml);
 	} catch (err) {
 		alert(err);
 	}
