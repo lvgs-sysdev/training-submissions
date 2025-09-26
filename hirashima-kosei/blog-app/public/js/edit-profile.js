@@ -1,11 +1,11 @@
 import paramToValue from './lib/param-to-value.js';
-import { fetchUserItems, putUserItems } from './api/user.js';
+import { fetchUserDetails, putUserDetails } from './api/user.js';
 
 const editProfile = async () => {
 	const userId = paramToValue('user_id');
 
 	try {
-		const { user } = await fetchUserItems(userId);
+		const { user } = await fetchUserDetails(userId);
 		const authorIcon = document.getElementById('author_icon');
 		authorIcon.src = DOMPurify.sanitize(user.user_icon);
 
@@ -36,7 +36,7 @@ const editProfile = async () => {
 			const id = hiddenId.value;
 
 			try {
-				const msg = await putUserItems(id, beforeUserId, afterUserId, userName);
+				const msg = await putUserDetails(id, beforeUserId, afterUserId, userName);
 				alert(msg);
 				window.location.href = `/user?user_id=${afterUserId}`;
 			} catch (err) {

@@ -80,7 +80,7 @@ async function authRoutes(fastify) {
 				refreshToken,
 			]);
 			if (!userRows || userRows.length === 0) {
-				return reply.status(401).send({ error: '再度ログインしてください。' });
+				return reply.status(403).send({ error: '再度ログインしてください。' });
 			}
 
 			const user = userRows[0];

@@ -1,5 +1,5 @@
 import paramToValue from './lib/param-to-value.js';
-import { fetchArticleItems } from './api/blog.js';
+import { fetchArticleDetails } from './api/blog.js';
 import parseDate from './lib/parse-date.js';
 
 const insertArticle = async () => {
@@ -7,7 +7,7 @@ const insertArticle = async () => {
 
 	try {
 		const { article_title, content, user_name, user_icon, updated_at, editArticleFlg } =
-			await fetchArticleItems(id);
+			await fetchArticleDetails(id);
 
 		const detailAuthorIcon = document.getElementById('detail_author_icon');
 		// src属性はXSSのリスクがあるためサニタイズ

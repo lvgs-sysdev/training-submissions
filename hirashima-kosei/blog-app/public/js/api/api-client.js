@@ -1,88 +1,34 @@
-import { removeToken } from './auth.js';
+import { refreshAccessToken } from './auth.js';
 
 // 標準で使用するAPIクライアント
-export const ordinaryApiClient = axios.create({
+export const apiClient = axios.create({
 	baseURL: 'http://localhost:5050/api',
 	headers: {
 		'Content-Type': 'application/json',
 	},
 });
 
-// リフレッシュを行うAPIクライアント
-export const authorizedApiClient = {
-	get: async (url, params = {}) => {
-		try {
-			const response = await ordinaryApiClient.get(url, {
-				params,
-			});
-			return response;
-		} catch (err) {
-			// ステータスコードが401でアクセストークンの検証に失敗している場合は1度リフレッシュ後、再度リクエスト
-			if (err.response) {
-				if (err.response.status === 401) {
-					try {
-						await refreshAccessToken();
-					} catch (err) {
-						throw err;
+apiClient.interceptors.response.use(
+	// 成功時の処理（関数）
+	(response) => response,
+	// 失敗時の処理
+	async (error) => {
+		const originalRequest = error.config;
+		if (error.response) {
+			if (error.response.status === 401) {
+				try {
+					await refreshAccessToken();
+					// 失敗したリクエスト内容を再度リクエスト
+					return apiClient(originalRequest);
+				} catch (error) {
+					if (error.response) {
+						throw error.response.data.error;
 					}
-					try {
-						const response = await ordinaryApiClient.get(url, {
-							params,
-						});
-						return response;
-					} catch (err) {
-						if (err.response) {
-							throw err.response.data.error;
-						}
-						throw '接続エラー';
-					}
+					throw '接続エラー';
 				}
-				throw err.response.data.error;
 			}
-			throw '接続エラー';
+			throw error.response.data.error;
 		}
-	},
-
-	put: async (url, body = {}) => {
-		try {
-			const response = await ordinaryApiClient.put(url, body);
-			return response;
-		} catch (err) {
-			if (err.response) {
-				if (err.response.status === 401) {
-					try {
-						await refreshAccessToken();
-					} catch (err) {
-						throw err;
-					}
-					try {
-						const response = await ordinaryApiClient.put(url, body);
-						return response;
-					} catch (err) {
-						if (err.response) {
-							throw err.response.data.error;
-						}
-						throw '接続エラー';
-					}
-				}
-				throw err.response.data.error;
-			}
-			throw '接続エラー';
-		}
-	},
-};
-
-// アクセストークンを更新するための関数
-export const refreshAccessToken = async () => {
-	try {
-		await ordinaryApiClient.post('/auth/refresh', {});
-		return;
-	} catch (err) {
-		if (err.response) {
-			removeToken();
-			throw err.response.data.error;
-		}
-		removeToken();
 		throw '接続エラー';
 	}
-};
+);

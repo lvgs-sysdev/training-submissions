@@ -10,7 +10,7 @@ async function userRoutes(fastify) {
 		let userId = null;
 
 		if (!accessToken) {
-			return reply.status(200).send({ msg: '非ログインユーザー', user: null });
+			return reply.status(204).send({ msg: '非ログインユーザー', user: null });
 		}
 
 		// ログインユーザーアクセス時のみアクセストークンの検証、リフレッシュ処理

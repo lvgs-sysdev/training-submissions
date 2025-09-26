@@ -1,21 +1,18 @@
-import { authorizedApiClient, refreshAccessToken } from './api-client.js';
+import { apiClient } from './api-client.js';
+import { refreshAccessToken } from './auth.js';
 
 export const fetchLoginUser = async () => {
 	try {
-		const response = await authorizedApiClient.get('/user/loginUser');
-
-		const msg = response.data.msg;
-		const user = response.data.user;
-
-		return { msg, user };
+		const response = await apiClient.get('/user/loginUser');
+		return response;
 	} catch (err) {
 		throw err;
 	}
 };
 
-export const fetchUserItems = async (userId) => {
+export const fetchUserDetails = async (userId) => {
 	try {
-		const response = await authorizedApiClient.get('/user/profile', { userId });
+		const response = await apiClient.get('/user/profile', { params: { userId } });
 
 		const user = response.data.user;
 
@@ -25,9 +22,9 @@ export const fetchUserItems = async (userId) => {
 	}
 };
 
-export const putUserItems = async (id, beforeUserId, afterUserId, userName) => {
+export const putUserDetails = async (id, beforeUserId, afterUserId, userName) => {
 	try {
-		const response = await authorizedApiClient.put('/user/editProfile', {
+		const response = await apiClient.put('/user/editProfile', {
 			id,
 			beforeUserId,
 			afterUserId,

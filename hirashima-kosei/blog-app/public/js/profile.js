@@ -1,11 +1,11 @@
-import { fetchUserItems } from './api/user.js';
+import { fetchUserDetails } from './api/user.js';
 import paramToValue from './lib/param-to-value.js';
 
 const userProfile = async () => {
 	const userId = paramToValue('user_id');
 
 	try {
-		const { user } = await fetchUserItems(userId);
+		const { user } = await fetchUserDetails(userId);
 
 		const userIcon = document.getElementById('author_icon');
 		userIcon.src = DOMPurify.sanitize(user.user_icon);

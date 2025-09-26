@@ -1,9 +1,8 @@
-import { ordinaryApiClient } from './api-client.js';
-import { authorizedApiClient } from './api-client.js';
+import { apiClient } from './api-client.js';
 
 export const countPages = async (userId = '', limit) => {
 	try {
-		const response = await ordinaryApiClient.get('/blog/count', {
+		const response = await apiClient.get('/blog/count', {
 			params: {
 				userId,
 				limit,
@@ -19,9 +18,9 @@ export const countPages = async (userId = '', limit) => {
 	}
 };
 
-export const fetchArticleList = async (userId = '', limit, page) => {
+export const fetchArticleItems = async (userId = '', limit, page) => {
 	try {
-		const response = await ordinaryApiClient.get('/blog/list', {
+		const response = await apiClient.get('/blog/list', {
 			params: {
 				userId,
 				limit,
@@ -38,21 +37,21 @@ export const fetchArticleList = async (userId = '', limit, page) => {
 	}
 };
 
-export const fetchArticleItems = async (id) => {
+export const fetchArticleDetails = async (id) => {
 	try {
-		const response = await authorizedApiClient.get('/blog/article', { id });
+		const response = await apiClient.get('/blog/article', { params: { id } });
 
-		const articleItems = response.data.articleItems;
+		const articleDetails = response.data.articleDetails;
 
-		return articleItems;
+		return articleDetails;
 	} catch (err) {
 		throw err;
 	}
 };
 
-export const putArticleItems = async (id, articleTitle, content) => {
+export const putArticleDetails = async (id, articleTitle, content) => {
 	try {
-		const response = await authorizedApiClient.put('/blog/editBlog', {
+		const response = await apiClient.put('/blog/editBlog', {
 			id,
 			articleTitle,
 			content,

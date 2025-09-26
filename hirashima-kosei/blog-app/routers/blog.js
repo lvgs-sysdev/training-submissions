@@ -84,18 +84,18 @@ async function blogRoutes(fastify) {
 				}
 			}
 
-			const [articleItemsRows] = await pool.query(
+			const [articleDetailsRows] = await pool.query(
 				'SELECT A.article_title, A.content, U.user_name, U.user_icon, A.updated_at FROM articles AS A LEFT JOIN users AS U ON A.user_id=U.user_id WHERE A.id=?',
 				[articleId]
 			);
 
-			if (!articleItemsRows || articleItemsRows.length === 0) {
+			if (!articleDetailsRows || articleDetailsRows.length === 0) {
 				return reply.status(404).send({ error: '記事が見つかりません。' });
 			}
 
-			articleItemsRows[0].editArticleFlg = editArticleFlg;
+			articleDetailsRows[0].editArticleFlg = editArticleFlg;
 
-			return reply.send({ articleItems: articleItemsRows[0] });
+			return reply.send({ articleDetails: articleDetailsRows[0] });
 		} catch (err) {
 			return reply.status(500).send({ error: '記事の取得に失敗しました。' });
 		}

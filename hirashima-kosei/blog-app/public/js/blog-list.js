@@ -1,4 +1,4 @@
-import { fetchArticleList, countPages } from './api/blog.js';
+import { fetchArticleItems, countPages } from './api/blog.js';
 import parseDate from './lib/parse-date.js';
 import paramToValue from './lib/param-to-value.js';
 
@@ -12,7 +12,7 @@ const displayData = async (currentPage) => {
 	const userId = !paramToValue('user_id') ? '' : paramToValue('user_id');
 
 	try {
-		const pageItems = await fetchArticleList(userId, limit, currentPage);
+		const pageItems = await fetchArticleItems(userId, limit, currentPage);
 
 		const blogList = document.getElementById('blog_list');
 		blogList.innerHTML = '';

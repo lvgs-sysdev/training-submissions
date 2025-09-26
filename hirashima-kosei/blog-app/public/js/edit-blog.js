@@ -1,11 +1,11 @@
-import { fetchArticleItems, putArticleItems } from './api/blog.js';
+import { fetchArticleDetails, putArticleDetails } from './api/blog.js';
 import paramToValue from './lib/param-to-value.js';
 
 const editBlog = async () => {
 	const id = paramToValue('id');
 
 	try {
-		const { article_title, content, editArticleFlg } = await fetchArticleItems(id);
+		const { article_title, content, editArticleFlg } = await fetchArticleDetails(id);
 
 		const inputArticleTitle = document.getElementById('input_article_title');
 		inputArticleTitle.value = article_title;
@@ -33,7 +33,7 @@ const editBlog = async () => {
 			const id = hiddenId.value;
 
 			try {
-				const msg = await putArticleItems(id, articleTitle, content);
+				const msg = await putArticleDetails(id, articleTitle, content);
 				alert(msg);
 				window.location.href = `/detail?id=${id}`;
 			} catch (err) {
