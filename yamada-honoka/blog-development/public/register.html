@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新規登録</title>
+</head>
+
+<body>
+
+    <div class="registration-form">
+        
+        <form id="register-form">
+            <h1>新規登録</h1>
+
+            <label for="user_id">ユーザーID（必須）</label>
+            <input id="user_id" type="text" name="user_id" maxlength="20" placeholder="honoka-yamada-lvgs" required>
+            <br>
+            <label for="password">パスワード（必須）</label>
+            <input id="password" type="password" name="password" minlength="8" placeholder="********(8文字以上)" required>
+            <br>
+            <label for="user_name">ユーザー名（必須）</label>
+            <input id="user_name" type="text" name="user_name" placeholder="レバ子" required>
+            <br>
+            <p id="message"></p>
+            <br>
+            <button type="submit">登録する</button>
+        </form>
+
+            <a href="login.html">登録済みの方はこちら</a>
+
+    </div>
+    <script src="/register.js"></script>
+    
+</body>
+
+</html>

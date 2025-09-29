@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マイページ</title>
+</head>
+
+<body>
+
+    <h1>MyPage</h1>
+
+    <h2>◼︎プロフィール編集</h2>
+        <form id="profile-form">
+            <label for="user_id">ユーザーID：</label>
+            <input id="user_id" type="text" name="user_id" required>
+            <br>
+            <label for="user_name">ユーザー名：</label>
+            <input id="user_name" type="text" name="user_name" required>
+            <br>
+            <br>
+            <button type="submit">変更する</button>
+        </form>
+
+    <div id="message"></div>
+
+    <h2>◼︎ ブログ編集</h2>
+
+    <div id="my-article-container"></div>
+    <script src="/profile.js"></script>
+    <br>
+    <br>
+    <a href="index.html">★ブログ一覧はこちら</a>
+
+</body>
+</html>

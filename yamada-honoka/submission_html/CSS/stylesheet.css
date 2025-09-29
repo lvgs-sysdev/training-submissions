@@ -1,0 +1,199 @@
+.hero {
+    background-image: url(../images/top-view-passport-tickets-camera.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height:100vh;
+    width: 100vw;
+    height: 100vh;
+    margin-bottom: 9.125rem;
+}
+
+.hero_inner  h1 {
+    font-size: 3.75rem;
+    font-weight: 600;
+    margin-bottom: 2.1875rem;
+    letter-spacing: -2px;
+    line-height: 5.9375rem;
+    text-align: left;
+}
+
+.hero_inner p {
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    opacity: 0.7;
+    line-height: 1.75rem;
+    text-align: left;
+    margin: 0;
+}
+
+.hero_inner {
+    width: 28.4375rem;
+    height: 19.3125rem;
+    padding-top: 12.5rem;
+    margin-left: 7.6875rem;
+}
+
+article {
+    display: flex;
+    justify-content: center;
+    gap: 3.125rem;
+
+}
+
+.section-list {
+    padding-bottom: 15.25rem;
+}
+
+.section-title {
+    margin-bottom: 2.515625rem;
+}
+
+.section-reviews {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    text-align: left;
+}
+
+.card-review {
+    flex: auto;
+    margin-bottom: 3.75rem;
+}
+
+
+
+.card-review img {
+    max-width: 22.5rem;
+    max-height: 15rem;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+
+.category-date-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 1.5625rem;
+    letter-spacing: 1px;
+    line-height: 100%;
+}
+
+.category-date-wrapper p {
+    margin: 0;
+    padding-right: 0.625rem;
+    font-size: 0.875rem;
+    color: #FF553C;
+    border-right: 1px solid #dedede;
+}
+
+.category-date-wrapper span {
+    margin: 0;
+    padding-left: 0.625rem;
+    color: #757575;
+}
+
+.graphic-design {
+    font-size: 1.25rem;
+    font-weight: 300;
+    line-height: 1.875rem;
+    margin: 0.9375rem 0;
+}
+
+.article-date {
+    font-size: 0.875rem;
+}
+
+.paragraph {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 100%;
+    color: #757575;
+    margin: 0;
+}
+
+h2 {
+    font-size: 1.375rem;
+    font-weight: 600;
+}
+
+.aside-right {
+    max-width: 16.5625rem;
+}
+
+.aside-tag {
+    margin-top: 2.5rem;
+}
+
+.contents-popular-list {
+    margin-top: 0.9375rem;
+    width: 100%;
+}
+
+.contents-popular-list p {
+    font-size: 1.125rem;
+    font-weight: 300;
+    border-bottom: 0.5px solid rgba(18, 18, 18, 0.2);
+    padding: 1.5625rem 0 3.46875rem 0;
+    margin: 0 auto;
+}
+
+.contents-popular-list p:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 8.1875rem;
+}
+
+
+.tag {
+    float: left;
+    font-size: 0.875rem;
+    font-weight: 300;
+    color: #757575;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #dedede;
+    margin: 0 23px 0 0;
+    padding: 0.5rem 1.125rem;
+}
+
+@media screen and (max-width: 1024px) {
+
+    article {
+        display: block;  
+    }
+
+
+    .section-list {
+        padding: 2rem;
+    }
+
+    .aside-right-sub {
+        height: 150px;
+    }
+
+    .aside-right {
+        margin: 2rem;
+    }
+
+}
+
+@media screen and (max-width: 767px) {
+
+    .hero {
+        display: flex;
+        justify-content: center;
+    }
+
+    .hero_inner {
+        text-align: center;
+        margin-left: 0.625rem;
+    }
+
+    .section-reviews {
+        display: block;
+    }
+
+}
