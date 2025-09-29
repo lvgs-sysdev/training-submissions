@@ -146,6 +146,11 @@ article {
     margin: 6.25rem 0 18.983125rem 7.6875rem;
 }
 
+#article-tag {
+    font-size: 1.0rem;
+    color:black;
+}
+
 .main-contents {
     max-width: 46.25rem;
     width: 100%;

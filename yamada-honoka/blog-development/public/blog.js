@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const titleInput = document.getElementById('title');
     const contentTextarea = document.getElementById('content');
     const editForm = document.getElementById('edit-form');
+    const tagsInput = document.getElementById('tags');
     const messageDiv = document.getElementById('message');
 
     if (!token) {
@@ -33,6 +34,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         titleInput.value = article.article_title;
         contentTextarea.value = article.content;
 
+        if(article.tags &&  Array.isArray(article.tags)) {
+            tagsInput.value = article.tags.join(',');
+        } else {
+            tagsInput.value = '';
+        }
+
     } catch (error) {
         console.error('記事の読み込み中にエラーが発生しました:', error);
         messageDiv.textContent = '記事の読み込みに失敗しました。';
@@ -42,12 +49,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         event.preventDefault();
         const newTitle = titleInput.value;
         const newContent = contentTextarea.value;
+        const newTagsInput = tagsInput.value;
 
         try {
             const response = await fetch(`/article/${articleId}`, {
                 method: 'PUT',
                 headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
-                body: JSON.stringify({ article_title: newTitle, content: newContent })
+                body: JSON.stringify({ article_title: newTitle, content: newContent, tags: newTagsInput })
             });
 
             if (response.ok) {

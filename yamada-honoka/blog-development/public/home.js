@@ -1,13 +1,9 @@
-// console.logはレビューの時消す！デバック用につけている index.htmlの反映
-
 document.addEventListener('DOMContentLoaded', async () => {
     const containers = document.querySelectorAll('.card-review');
-    console.log(containers);
 
     try {
         const response = await fetch('/article');
         const articles = await response.json();
-        console.log(articles);
 
         const imagePaths = [
             "/assets/images/travel-1.png",
@@ -17,7 +13,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             "/assets/images/image14.jpg",
             "/assets/images/image3.png"
         ];
-        console.log(imagePaths);
 
         const categories = [
             "Travel",
@@ -27,14 +22,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             "Travel",
             "Travel"
         ];
-        console.log(categories);
 
         articles.forEach((article, index) => {
             const container = containers[index];
 
             const imagePath = imagePaths[index % imagePaths.length];
             const category = categories[index % categories.length];
-            console.log(imagePath, category);
 
             if (container) {
                 const articleLink = `/detail.html?id=${article.id}`;
@@ -44,7 +37,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const month = date.toLocaleString('en-US', { month: 'short' });
                 const year = date.getFullYear();
                 const formattedDate = `${day} ${month} ${year}`;
-                console.log(formattedDate);
 
                 container.innerHTML = ` 
                 <div class="card-review-image">
@@ -59,7 +51,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <p class="graphic-design"><a href="${articleLink}">${article.article_title}</a></p>
                 <p class="paragraph">${article.content.substring(0, 50)}...</p>
                 `;
-                console.log(container.innerHTML);
                 }
         });
 

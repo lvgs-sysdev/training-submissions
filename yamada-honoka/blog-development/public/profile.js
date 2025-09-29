@@ -5,9 +5,7 @@ const profileForm = document.getElementById('profile-form');
 
 async function fetchUserProfile() {
     const token = localStorage.getItem('token');
-    console.log('取得したトークン:', token);
     if (!token) {
-        // トークンがない場合、ログインページへリダイレクト
         window.location.href = '/login.html';
         return;
     }
@@ -18,20 +16,17 @@ async function fetchUserProfile() {
                 'Authorization': `Bearer ${token}`
             }
         });
-        console.log('プロフィール取得レスポンス:', response);
 
         if (response.status === 401) {
-            // 認証エラーの場合、ログインページへリダイレクト
             window.location.href = '/login.html';
             return;
         }
 
         const data = await response.json();
-        console.log('プロフィールデータ:', data);
 
         if (response.ok) {
-            userIdInput.value = data.user.user_id;  //ユーザーIDをinputに反映
-            userNameInput.value = data.user.user_name; // ユーザー名をinputに反映
+            userIdInput.value = data.user.user_id;
+            userNameInput.value = data.user.user_name;
         } else {
             messageDiv.textContent = data.message;
         }        
@@ -41,7 +36,7 @@ async function fetchUserProfile() {
         }
     }
 
-    // 情報更新したとき
+    // ユーザーID/ユーザー名更新
     profileForm.addEventListener('submit', async function (event) {
             event.preventDefault();
 
@@ -99,7 +94,7 @@ async function fetchMyArticles() {
         console.error(err);
     }
 }
-// ページ読み込み時に両方の関数を呼び出す
+
 document.addEventListener('DOMContentLoaded', () => {
     fetchUserProfile();
     fetchMyArticles();
