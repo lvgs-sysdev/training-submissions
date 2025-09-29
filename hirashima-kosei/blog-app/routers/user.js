@@ -18,7 +18,7 @@ async function userRoutes(fastify) {
 			const decoded = await authorizeToken(accessToken);
 			userId = decoded.id;
 		} catch (e) {
-			return reply.status(401).send({ error: 'トークンの検証に失敗しました。' });
+			return reply.status(401).send({ error: '再度ログインしてください。' });
 		}
 
 		try {
@@ -48,7 +48,7 @@ async function userRoutes(fastify) {
 					editProfileFlg = true;
 				}
 			} catch (e) {
-				return reply.status(401).send({ error: 'トークンの検証に失敗しました。' });
+				return reply.status(401).send({ error: '再度ログインしてください。' });
 			}
 		}
 
@@ -83,7 +83,7 @@ async function userRoutes(fastify) {
 				editProfileFlg = true;
 			}
 		} catch (e) {
-			return reply.status(401).send({ error: 'トークンの検証に失敗しました。' });
+			return reply.status(401).send({ error: '再度ログインしてください。' });
 		}
 
 		if (!editProfileFlg) {

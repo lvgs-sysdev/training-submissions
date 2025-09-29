@@ -13,14 +13,6 @@ loginForm.addEventListener('submit', async (event) => {
 		alert(response.data.msg);
 		window.location.href = '/';
 	} catch (err) {
-		if (err.response) {
-			if (err.response.status === 401) {
-				alert(err.response.data.error);
-			} else {
-				alert(err.response.data.error);
-			}
-		} else {
-			alert('接続エラー');
-		}
+		alert(err);
 	}
 });

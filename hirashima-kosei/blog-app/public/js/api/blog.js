@@ -11,10 +11,7 @@ export const countPages = async (userId = '', limit) => {
 
 		return response.data.countAllPages;
 	} catch (err) {
-		if (err.response) {
-			throw err.response.data.error;
-		}
-		throw '接続エラー';
+		throw err;
 	}
 };
 
@@ -30,10 +27,7 @@ export const fetchArticleItems = async (userId = '', limit, page) => {
 
 		return response.data.pageItems;
 	} catch (err) {
-		if (err.response) {
-			throw err.response.data.error;
-		}
-		throw '接続エラー';
+		throw err;
 	}
 };
 

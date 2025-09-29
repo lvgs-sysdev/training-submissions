@@ -14,10 +14,6 @@ registerForm.addEventListener('submit', async (event) => {
 		alert(response.data.msg);
 		window.location.href = '/login';
 	} catch (err) {
-		if (err.response) {
-			alert(err.response.data.error);
-		} else {
-			alert('接続エラー');
-		}
+		alert(err);
 	}
 });

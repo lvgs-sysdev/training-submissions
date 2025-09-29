@@ -80,7 +80,7 @@ async function blogRoutes(fastify) {
 						editArticleFlg = true;
 					}
 				} catch (e) {
-					return reply.status(401).send({ error: 'トークンの検証に失敗しました。' });
+					return reply.status(401).send({ error: '再度ログインしてください。' });
 				}
 			}
 
@@ -126,7 +126,7 @@ async function blogRoutes(fastify) {
 					editArticleFlg = true;
 				}
 			} catch (e) {
-				return reply.status(401).send({ error: 'トークンの検証に失敗しました。' });
+				return reply.status(401).send({ error: '再度ログインしてください。' });
 			}
 
 			if (!editArticleFlg) {

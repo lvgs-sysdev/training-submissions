@@ -43,7 +43,7 @@ async function authRoutes(fastify) {
 
 			// アクセストークンの有効期限は短く設定
 			const accessToken = jwt.sign({ id: user.user_id }, process.env.SECRET_KEY, {
-				expiresIn: '15m',
+				expiresIn: '30s',
 			});
 
 			const refreshToken = uuidv4();
@@ -118,7 +118,7 @@ async function authRoutes(fastify) {
 				.clearCookie('refreshToken', {
 					path: '/api/auth',
 				})
-				.send({ error: 'トークンを再発行できませんでした。' });
+				.send({ error: 'トークンを再発行できませんでした。再度ログインしてください。' });
 		}
 	});
 

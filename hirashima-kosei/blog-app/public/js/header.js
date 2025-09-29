@@ -41,7 +41,7 @@ async function headerProfile() {
 			});
 
 			const logout = document.getElementById('logout');
-			logout.addEventListener('click', async (event) => {
+			logout.addEventListener('click', async () => {
 				try {
 					const msg = await removeToken();
 					alert(msg);
