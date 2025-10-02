@@ -43,7 +43,7 @@ async function authRoutes(fastify) {
 
 			// アクセストークンの有効期限は短く設定
 			const accessToken = jwt.sign({ id: user.user_id }, process.env.SECRET_KEY, {
-				expiresIn: '30s',
+				expiresIn: '15m',
 			});
 
 			const refreshToken = uuidv4();
