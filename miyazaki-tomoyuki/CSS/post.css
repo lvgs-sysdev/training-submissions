@@ -1,0 +1,198 @@
+.post {
+    margin-left: 9%;
+    margin-right: 9%;
+    margin-top: 30px;
+}
+
+.post p {
+    color: #757575;
+    font-size: 18px;
+    font-weight: 300;
+    margin-top: 30px;
+}
+
+.post h1 {
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.post h2 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 30px;
+}
+
+.image7 {
+    width: 100%;
+    height: auto;
+}
+
+.image8 {
+    width: 100%;
+    aspect-ratio: 18 / 17;
+    object-fit: cover;
+    object-position: center;
+    margin-bottom: 30px;
+}
+
+.image9 {
+    width: 100%;
+    aspect-ratio: 5 / 3;
+    object-fit: cover;
+    object-position: center;
+}
+
+p.image7-title {
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 400;
+    color: #757575;
+    text-align: center;
+    margin-top: 10px;
+}
+
+h2.post-related {
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 100px
+}
+
+.post-top-category {
+    font-size: 14px;
+    font-weight: 500;
+    color: #FF553C;
+}
+
+.post-bottom-category {
+    font-size: 14px;
+    font-weight: 300;
+    color: #757575;
+    padding: 8px 18px;
+    border: 1px solid #DEDEDE;
+}
+
+.post-item-header {
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.post-date {
+    font-weight: 300;
+    color: #757575;
+}
+
+.post-category {
+    font-weight: 500;
+    color: #FF553C;
+}
+
+.post-item {
+    flex: 1;
+}
+
+.post-item img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    object-position: center;
+}
+
+.post-item-header {
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.post-title {
+    font-weight: 300;
+    font-size: 20px;
+}
+
+.post-content {
+    font-weight: 300;
+    color: #757575;
+    font-size: 16px;
+}
+
+.post-category {
+    font-weight: 500;
+    color: #FF553C;
+}
+
+.post-date {
+    font-weight: 300;
+    color: #757575;
+}
+
+.post-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.SNS {
+    display: flex;
+    flex: 2;
+    gap: 10px;
+}
+
+.writer-info {
+    flex: 8;
+}
+
+.writer-info-right p {
+    margin: 5px 0 5px 10px;
+}
+
+p.post-writer-name {
+    font-size: 16px;
+    font-weight: 300;
+}
+
+p.post-date {
+    font-size: 14px;
+    font-weight: 300;
+    color: #757575;
+}
+
+@media screen and (min-width: 600px) {
+    .post-item-container {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 100px;
+    }
+
+    .writer-info {
+        display: flex;
+    }
+
+    .post-top {
+        margin-bottom: 100px;
+    }
+
+    .post-images {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .image8 {
+        width: 48%;
+        margin-right: 4%;
+        margin-bottom: 0;
+    }
+
+    .image9 {
+        width: 48%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .post-container {
+        display: flex;
+    }
+
+    .post {
+        flex: 7;
+        margin-top: 100px;
+        margin-right: 9%;
+    }
+}

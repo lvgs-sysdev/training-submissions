@@ -1,0 +1,64 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background-color: #FFFFFF;
+    z-index: 1000;
+    padding-left: 9%
+}
+
+.header ul {
+    display: flex;
+    margin-right: 9%;
+}
+
+.login {
+    font-weight: 300;
+    font-size: 10px;
+    opacity: 0.8;
+    padding: 10px;
+}
+
+.start {
+    font-weight: 500;
+    font-size: 10px;
+    background-color: #FF553C;
+    color: #FFFFFF;
+    padding: 10px;
+}
+
+.header h1 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.header a {
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    color: #FF553C;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+@media screen and (min-width: 600px) {
+    .header ul {
+        gap: 20px;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .start {
+        font-size: 14px;
+    }
+
+    .login {
+        font-size: 14px;
+    }
+}
