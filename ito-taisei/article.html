@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>記事ページ</title> 
+    <link rel="stylesheet" href="_common.css">
+    <link rel="stylesheet" href="_header.css">
+    <link rel="stylesheet" href="_footer.css">
+    <link rel="stylesheet" href="article.css">
+    <script src="article.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div id="header"></div>
+
+    <div class="container">
+        <div class="col-left">
+            <main class="article-wrapper">
+                <div class="profile-wrapper" id="profileWrapper"></div>
+                <div class="article-title-wrapper">
+                    <div class="genre">Culinary</div>
+                    <h1 class="article-title">記事タイトル記事タイトル記事タイトル</h1>
+                </div>
+                <div class="article-text-wrapper">
+                    <p class="article-text">Even there are a lot of potential tourism in Semarang. Therefore Semarang need more promotional for old potential Tourism.</p>
+                </div>
+                <div class="img-wrapper">
+                    <div class="img-box">
+                        <!-- <img src="src/image-1.png" alt="article Image" class="article-img"> -->
+                    </div>
+                    <p class="img-caption">Food portrait this afternoon</p>
+                </div>
+                <div class="article-text-wrapper">
+                    <p class="article-text">Lorem ipsum dolor sit amet consectetur. Nascetur hendrerit mauris in elit viverra consectetur. Enim placerat consectetur leo at pulvinar iaculis sit. Quam nec amet. lofaucibus nunc. Est nec feugiat congue viverra. Enim u</p>
+                    <p class="article-text">Lorem ipsum dolor sit amet consectetur. Urna ipsum praesent at nunc habitasse porttitor consequat risus adipiscing. Ut enim ultricies non lectus. Fringilla duis purus cursus dui sed neque ridiculus. Faucibus et ante faucibus nunc. Est nec feugiat congue viverra. Enim ut lacus malesuada est purus tellus ac condimentum. Dignissim lacinia malesuada nisl condimentum lectus euismod.</p>
+                </div>
+                <h3 class="subheading">Your gene pool depth chart</h3>
+                <div class="article-text-wrapper">
+                    <p class="article-text">Sit amet consectetur. Urna ipsum praesent at nunc habitasse porttitor consequat risus adipiscing. Ut enim ultricies non lectus. Fringilla duis purus cursus dui sed neque ridiculus. Faucibus et ante faucibus nunc. Est nec feugiat congue. Enim ut lacus malesuada est purus tellus ac condimentum. Dignissim lacinia malesuada nisl condimentum lectus euismod.</p>
+                    <p class="article-text">Dolor sit amet consectetur. Nascetur hendrerit mauris in elit viverra consectetur. Enim placerat consectetur leo at pulvinar iaculis sit. Quam nec amet mauris sit. Adipiscing orci integer bibendum vitae sit. Porttitor.</p>
+                </div>
+                <div class="sub-img-wrapper">
+                    <div class="sub-img-box"></div>
+                    <div class="sub-img-1-box"></div>
+                </div>
+                <div class="article-text-wrapper">
+                    <p class="article-text">Amet consectetur. Urna ipsum praesent at nunc habitasse porttitor consequat risus adipiscing. Ut enim ultricies non lectus. Fringilla duis purus cursus dui sed neque ridiculus. Faucibus et ante faucibus nunc. Est nec feugiat congue viverra. Enim ut lacus malesuada est purus tellus ac condimentum. Dignissim lacinia malesuada nisl condimentum lectus euismod.</p>
+                    <p class="article-text">Urna ipsum praesent at nunc habitasse porttitor consequat risus adipiscing. Ut enim ultricies non lectus. Fringilla duis purus cursus dui sed neque ridiculus. lel Faucibus et ante faucibus nunc. Est nec feugiat congue. </p>
+                </div>
+                <div class="tags">
+                    <a href="#" class="tag-text">Culinary</a>
+                </div>
+            </main>
+
+            <sub class="related-article-wrapper">
+                    <h2 class="heading mb-50">関連記事（同一タグ）</h2>
+                    <div class="article-list-grid" id="articleListGrid"></div>
+            </sub>
+        </div>
+
+        <div class="col-right">
+            <aside-main class="new-article-wrapper">
+                <h2 class="heading mb-50">新着記事</h2>
+                <div class="new-article-list" id="newArticleList"></div>
+            </aside-main>
+
+            <aside-sub class="posted-wrapper">
+                <h2 class="heading mb-50">投稿者</h2>
+                <ul id="postedList" class="posted-list" aria-label="投稿者一覧"></ul>
+
+                <template id="postedProfileTpl">
+                    <li class="posted-profile" role="listitem">
+                        <img src="src/profile-img.png" alt="プロフィール画像" class="posted-profile-img">
+                        <div class="posted-profile-meta">
+                            <div class="posted-profile-name"></div>
+                        </div>
+                    </li>
+                </template>
+            </aside-sub>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+
+</body>
