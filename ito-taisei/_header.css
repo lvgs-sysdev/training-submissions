@@ -42,9 +42,6 @@
 }
 
 .login-btn {
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
     min-width: 43px;
     min-height: 22px;
 }
@@ -59,9 +56,6 @@
 }
 
 .register-btn {
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
     min-width: 127px;
     min-height: 50px;
     background: var(--Primary);
