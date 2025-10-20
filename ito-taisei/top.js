@@ -24,9 +24,9 @@
       { image: 'src/image-5.png', genre: 'Travel', date: '13 Jun 2022', title: "The upside-down mystical forest in Banyuwangi", body: 'This place is most often used as a photo..', url: '/article6' }
     ];
 
-    const airticleListGrid = document.getElementById('airticleListGrid');
-    if (airticleListGrid) {
-      airticleListGrid.innerHTML = '';
+    const articleListGrid = document.getElementById('articleListGrid');
+    if (articleListGrid) {
+      articleListGrid.innerHTML = '';
       const frag = document.createDocumentFragment();
       articles.slice(0, 6).forEach(article => {
         const link = document.createElement('a');
@@ -36,7 +36,7 @@
         link.className = 'article-link';
 
         const section = document.createElement('div');
-        section.className = 'airticle-card';
+        section.className = 'article-card';
 
         const imgBox = document.createElement('div');
         imgBox.className = 'card-img-box';
@@ -65,7 +65,7 @@
         link.appendChild(section);
         frag.appendChild(link);
       });
-      airticleListGrid.appendChild(frag);
+      articleListGrid.appendChild(frag);
     }
 
     // 人気記事
@@ -75,9 +75,9 @@
       { title: "Mountain hiking in central Java", url: '#popular3' }
     ];
 
-    const popularAirticleList = document.getElementById('popularAirticleList');
-    if (popularAirticleList) {
-      popularAirticleList.innerHTML = '';
+    const populararticleList = document.getElementById('populararticleList');
+    if (populararticleList) {
+      populararticleList.innerHTML = '';
       const frag = document.createDocumentFragment();
       popularArticles.slice(0, 3).forEach((article, idx, arr) => {
         const link = document.createElement('a');
@@ -89,7 +89,7 @@
         const section = document.createElement('div');
         section.className = 'popular-section';
         const title = document.createElement('div');
-        title.className = 'popular-airticle-title';
+        title.className = 'popular-article-title';
         title.textContent = article.title;
         section.appendChild(title);
 
@@ -102,7 +102,7 @@
           frag.appendChild(sep);
         }
       });
-      popularAirticleList.appendChild(frag);
+      populararticleList.appendChild(frag);
     }
 
     // footer
