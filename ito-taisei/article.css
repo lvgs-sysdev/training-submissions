@@ -1,32 +1,24 @@
-/* /article用のCSS */
-html, body {
-    margin: 0;
-    padding: 0;
-}
-
 .container {
-    width: auto;
-    background: var(--White, #FFF);
+    display: flex;
+    background: var(--White);
     margin: 190px auto 0;
     min-height: 3315px;
     max-width: 1120px;
-    width: 100%;
-    display: flex;
     flex-wrap: wrap;
     gap: 115px;
     justify-content: center;
 }
 
 .col-right {
-    max-width: 265px;
     display: flex;
+    max-width: 265px;
     flex-direction: column;
     gap: 96px;
 }
 
 .col-left {
-    max-width: 740px;
     display: flex;
+    max-width: 740px;
     flex-direction: column;
     gap: 174px;
 }
@@ -34,15 +26,13 @@ html, body {
 /* プロフィール関連 */
 .profile-wrapper {
     display: flex;
-    flex-direction: row;
     align-items: center;
     gap: 15px;
-    min-height: 60px;
+    height: 60px;
 }
 
 .profile-avatar {
-    flex: 0 0 auto;
-    width: 60px;
+    flex: 0 0 60px;
     height: 60px;
     border-radius: 50%;
     overflow: hidden;
@@ -66,8 +56,6 @@ html, body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 12px;
-    min-width: 0;
     flex: 1 1 auto;
     justify-content: space-between;
 }
@@ -76,26 +64,19 @@ html, body {
     display: flex;
     flex-direction: column;
     gap: 7px;
-    align-items: flex-start;
 }
 
 .profile-name {
-    font-family: Poppins;
     font-size: 1.6rem;
-    font-weight: 300;
-    color: #121212;
-    font-style: normal;
-    line-height: normal;
+    font-weight: var(--fw-light);
+    color: var(--Dark);
     letter-spacing: 0.3px;
 }
 
 .profile-date {
-    font-family: Poppins;
     font-size: 1.4rem;
-    color: #757575;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
+    font-weight: var(--fw-light);
+    color: var(--Gray);
     letter-spacing: 1px;
 }
 
@@ -116,10 +97,7 @@ html, body {
     width: 24px;
     height: 24px;
     border-radius: 6px;
-    background: rgba(0,0,0,0.04);
-    color: #121212;
-    text-decoration: none;
-    font-size: 1.2rem;
+    color: var(--Dark);
 }
 
 .copy-link {
@@ -129,27 +107,22 @@ html, body {
     width: 24px;
     height: 24px;
     border-radius: 6px;
-    background: rgba(0,0,0,0.04);
     border: none;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.0rem;
     padding: 0;
     line-height: 0;
     box-sizing: border-box;
+    background: transparent;
+    -webkit-appearance: none;
+    appearance: none;
+    box-shadow: none;
 }
 
 .copy-link svg {
     display: block;
     width: 100%;
     height: 100%;
-}
-
-.copy-link:focus {
-    outline: 2px solid rgba(0,0,0,0.12);
-}
-
-.article-wrapper {
-    width: 740px;
 }
 
 /* 記事内容 */
@@ -170,72 +143,52 @@ html, body {
 }
 
 .article-title {
-    color: var(--Dark, #121212);
-    font-family: Poppins;
-    font-size: 32px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    margin-top: 0;
+    color: var(--Dark);
+    font-size: 3.2rem;
+    font-weight: var(--fw-normal);
     margin-bottom: 49px;
 }
 
 .article-text {
-    color: #757575;
-    font-family: Poppins;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-    margin: 0;
+    color: var(--Gray);
+    font-size: 1.8rem;
+    font-weight: var(--fw-light);
+}
+
+.img-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.img-box {
+    width: 100%;
+    aspect-ratio: 74 / 42;
+    background: url(src/image-1.png) lightgray 50% / cover no-repeat;
 }
 
 .img-caption {
     color: #757575;
-    font-family: Poppins;
-    font-size: 14px;
+    font-size: 1.4rem;
     font-style: italic;
     font-weight: 400;
-    line-height: normal;
     text-align: center;
-    margin-bottom: 50px;
     display: block;
     margin: 0;
 }
 
 .subheading {
-    color: var(--Dark, #121212);
-    font-family: Poppins;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 30px; /* 150% */
+    color: var(--Dark);
+    font-size: 2.0rem;
+    font-weight: var(--fw-normal);
+    line-height: 1.5;
     margin-bottom: 15px;
-    margin-top: 0;
-}
-
-.img-wrapper {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 50px;
-}
-
-.img-box {
-    width: 100%;
-    max-width: 740px;
-    aspect-ratio: 74 / 42;
-    height: auto;
-    background: url(src/image-1.png) lightgray 50% / cover no-repeat;
 }
 
 .sub-img-wrapper {
     display: flex;
     gap: 20px;
-    margin-bottom: 50px;
-    max-width: 740px;
     height: auto;
     width: 100%;
 }
@@ -259,10 +212,6 @@ html, body {
 }
 
 /* 新着記事 */
-.new-article-wrapper {
-    width: 265px;
-}
-
 .new-article-list {
     display: grid;
     justify-content: center;
@@ -272,41 +221,31 @@ html, body {
 
 .new-article-list > a {
     display: block;
-    width: 265px;
-}
-
-.new-article-link {
-    text-decoration: none;
-    color: inherit;
+    width: 100%;
 }
 
 .new-article-card {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    width: 100%;
     padding: 0;
     overflow: hidden;
-    background: var(--White, #FFF);
+    background: var(--White);
+}
+
+.new-card-img-box {
+    width: 100%;
+    aspect-ratio: 265 / 165;
+    overflow: hidden;
+    margin-bottom: 25px;
+    background: rgba(0,0,0,0.03);
 }
 
 .new-article-card .new-card-img {
     display: block;
-    width: 265px;
-    max-width: 100%;
-    height: 165px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-}
-
-.new-card-img-box {
-    display: block;
-    width: 265px;
-    max-width: 100%;
-    height: 165px;
-    min-height: 165px;
-    margin-bottom: 25px;
-    overflow: hidden;
-    background: rgba(0,0,0,0.03);
 }
 
 .grid-image-box img {
@@ -331,40 +270,27 @@ html, body {
 }
 
 .new-article-card .genre {
-    font-family: Poppins;
     font-size: 1.4rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
+    font-weight: var(--fw-normal);
     letter-spacing: 1px;
-    color: var(--Primary, #FF553C);
+    color: var(--Primary);
 }
 
 .new-article-card .date {
-    font-family: Poppins;
     font-size: 1.4rem;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
+    font-weight: var(--fw-light);
     letter-spacing: 1px;
-    color: #757575;
+    color: var(--Gray);
 }
 
 .new-article-card .body {
-    width: 100%;
-    font-family: Poppins;
     font-size: 1.6rem;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-    color: #757575;
+    font-weight: var(--fw-light);
+    color: var(--Dark);
 }
 
 /* 投稿者 */
 .posted-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -385,18 +311,14 @@ html, body {
 }
 
 .posted-profile-meta {
-    display: flex;
-    flex-direction: column;
     margin-top: 6px;
 }
 
 .posted-profile-name {
-    color: var(--Dark, #121212);
-    font-family: Poppins;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 26px; /* 162.5% */
+    color: var(--Dark);
+    font-size: 1.6rem;
+    font-weight: var(--fw-normal);
+    line-height: 1.625;
     letter-spacing: 0.3px;
 }
 
@@ -413,7 +335,6 @@ html, body {
     }
 
     .col-left {
-        width: 100%;
         max-width: 740px;
         margin: 0 auto;
         gap: 40px;
@@ -421,11 +342,9 @@ html, body {
 
     .related-article-wrapper {
         width: 740px;
-        margin: 0 auto;
     }
 
     .col-right {
-        width: 100%;
         max-width: 740px;
         display: flex;
         justify-content: center;
@@ -433,115 +352,21 @@ html, body {
         gap: 40px;
     }
 
-    .new-article-wrapper {
-        width: 740px;
-        margin: 0 auto;
-    }
-
-    .posted-wrapper {
-        width: 740px;
-        margin: 0 auto;
-    }
-
     .new-article-list {
-        display: grid;
-        display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 20px;
         justify-items: stretch;
-        width: 100%;
     }
 
     .new-article-list > a {
-        display: block;
-        width: 360px;
-    }
-
-    .new-article-link {
-        text-decoration: none;
-        color: inherit;
-    }
-
-    .new-article-card {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        width: 100%;
-        padding: 0;
-        overflow: hidden;
-        background: var(--White, #FFF);
-    }
-
-    .new-article-card .new-card-img {
-        display: block;
-        width: 360px;
-        max-width: 100%;
-        height: 240px;
-        object-fit: cover;
+        max-width: 360px;
+        height: 351px;
     }
 
     .new-card-img-box {
-        display: block;
-        width: 360px;
-        max-width: 100%;
-        height: 240px;
-        min-height: 240px;
-        margin-bottom: 25px;
-        overflow: hidden;
-        background: rgba(0,0,0,0.03);
+        max-width: 360px;
+        aspect-ratio: 360 / 240;
     }
-
-    .grid-image-box img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .new-article-card .meta-row {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 15px;
-    }
-
-    .meta-separator {
-        width: 1px;
-        height: 15.434px;
-        background: #DEDEDE;
-    }
-
-    .new-article-card .genre {
-        font-family: Poppins;
-        font-size: 1.4rem;
-        font-style: normal;
-        font-weight: 500;
-        line-height: normal;
-        letter-spacing: 1px;
-        color: var(--Primary, #FF553C);
-    }
-
-    .new-article-card .date {
-        font-family: Poppins;
-        font-size: 1.4rem;
-        font-style: normal;
-        font-weight: 300;
-        line-height: normal;
-        letter-spacing: 1px;
-        color: #757575;
-    }
-
-    .new-article-card .body {
-        width: 100%;
-        font-family: Poppins;
-        font-size: 1.6rem;
-        font-style: normal;
-        font-weight: 300;
-        line-height: normal;
-        color: #757575;
-    }
-
 }
 
 @media (max-width: 739px) {
@@ -556,10 +381,6 @@ html, body {
         margin: 0 auto;
     }
 
-    .article-wrapper {
-        width: 100%;
-    }
-
     .sub-img-wrapper {
         flex-direction: column;
         gap: 20px;
@@ -568,21 +389,9 @@ html, body {
         align-items: center;
     }
 
-    .new-article-wrapper {
-        width: 360px;
-        margin: 0 auto;
-    }
-
     .new-article-list {
-        display: grid;
         grid-template-columns: 1fr;
         gap: 20px;
-        justify-items: stretch;
-        width: 100%;
-    }
-
-    .posted-wrapper {
-        width: 360px;
-        margin: 0 auto;
+        
     }
 }
