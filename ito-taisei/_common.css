@@ -12,15 +12,14 @@
     --White: #FFF; 
     --Primary: #FF553C; 
     --Dark: #121212; 
+    --Gray: #757575;
     --ft-grey: rgba(255,255,255,0.5);
+    --skeleton-bg: rgba(0,0,0,0.03);
     --fw-light: 300;
-    --fw-normal: 500;
+    --fw-normal: 400;
+    --fw-medium: 500;
+    --fw-semi-bold: 600;
     --fw-heavy: 700;
-}
-
-/* 確認用 */
-* {
-  outline: 1px solid red !important; 
 }
 
 /* フォントサイズ */
@@ -32,6 +31,8 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    line-height: normal;
 }
 
 ul, ol {
@@ -45,35 +46,29 @@ a {
     text-decoration: none;
 }
 
-h1 {
+h1, h2, h3 {
     font-weight: normal;
     margin: 0;
 }
 
-h2 {
-    font-weight: normal;
+p {
     margin: 0;
+    padding: 0;
 }
 
 .genre {
-  font-family: Poppins;
   font-size: 1.4rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+  font-weight: var(--fw-normal);
   letter-spacing: 1px;
-  color: var(--Primary, #FF553C);
+  color: var(--Primary);
 }
 
 .heading {
     width: 100%;
-    margin: 0;
-    font-family: Poppins;
     font-size: 2.2rem;
-    font-weight: 600;
-    font-style: normal;
+    font-weight: var(--fw-semi-bold);
     line-height: 1.27;
-    color: var(--Dark, #121212);
+    color: var(--Dark);
 }
 
 .mb-35 {
@@ -96,13 +91,18 @@ h2 {
     border: 1px solid #DEDEDE;
 }
 
+.tags-row {
+    display: flex;
+    gap: 23px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    row-gap: 12px;
+}
+
 .tag-text {
-    font-family: Poppins;
     font-size: 1.4rem;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-    color: #757575;
+    font-weight: var(--fw-light);
+    color: var(--Gray);
     text-decoration: none;
 }
 
@@ -124,12 +124,7 @@ h2 {
 
 .article-list-grid > a {
     display: block;
-    width: 360px;
-}
-
-.article-link {
-    text-decoration: none;
-    color: inherit;
+    width: 100%;
 }
 
 .article-card {
@@ -140,26 +135,22 @@ h2 {
     margin-bottom: 60px;
     padding: 0;
     overflow: hidden;
-    background: var(--White, #FFF);
+    background: var(--White);
+}
+
+.card-img-box {
+    width: 100%;
+    aspect-ratio: 36 / 24;
+    margin-bottom: 25px;
+    overflow: hidden;
+    background: var(--skeleton-bg);
 }
 
 .article-card .card-img {
     display: block;
-    width: 360px;
-    max-width: 100%;
-    height: 240px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-}
-
-.card-img-box {
-    display: block;
-    width: 360px;
-    max-width: 100%;
-    height: 240px;
-    min-height: 240px;
-    margin-bottom: 25px;
-    overflow: hidden;
-    background: rgba(0,0,0,0.03);
 }
 
 .grid-image-box img {
@@ -171,7 +162,6 @@ h2 {
 
 .article-card .meta-row {
     display: flex;
-    flex-direction: row;
     align-items: center;
     gap: 10px;
     margin-bottom: 15px;
@@ -184,42 +174,29 @@ h2 {
 }
 
 .article-card .genre {
-    font-family: Poppins;
     font-size: 1.4rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
+    font-weight: var(--fw-medium);
     letter-spacing: 1px;
-    color: var(--Primary, #FF553C);
+    color: var(--Primary);
 }
 
 .article-card .date {
-    font-family: Poppins;
     font-size: 1.4rem;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
+    font-weight: var(--fw-light);
     letter-spacing: 1px;
-    color: #757575;
+    color: var(--Gray);
 }
 
 .article-card .title {
-    width: 100%;
-    font-family: Poppins;
     font-size: 2.0rem;
-    font-style: normal;
-    font-weight: 300;
+    font-weight: var(--fw-light);
     line-height: 1.50;
     margin-bottom: 15px;
-    color: var(--Dark, #121212);
+    color: var(--Dark);
 }
 
 .article-card .body {
-    width: 100%;
-    font-family: Poppins;
     font-size: 1.6rem;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-    color: #757575;
+    font-weight: var(--fw-light);
+    color: var(--Gray);
 }
