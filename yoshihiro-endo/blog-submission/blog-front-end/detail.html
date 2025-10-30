@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <title>ブログ記事詳細ページ</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ブログの詳細ページです。">
+    <meta property="og:title" content="DAYDAYTRAVEL">
+    <meta property="og:description" content="ブログです">
+    <meta property="og:image" content="../pictures/top-page-header.jpg">
+    <!-- <meta property="og:url" content="今回は公開しないので具体的なURLはなし"> -->
+  </head>
+  <link rel="stylesheet" href="./src/common-settings.css"> 
+  <link rel="stylesheet" href="./src/detail-page.css">
+  <body>
+    <div id="header-placeholder"></div>
+
+    <div class="contents-header">
+      <main>
+        <div class="main-header-container">
+          <div class="main-header-left" id="main-header-left">
+            <!-- この部分を編集 -->
+            <img src="../pictures/detail_main_header.jpg" alt="投稿者-Karen Smithのプロフィール画像" class="pic-of-author">
+            <div class="post-info">
+              <div class="main-name-author">Karen Smith</div>
+              <div class="date-of-post">19 Feb 2022</div>
+            </div>
+            <!-- この部分を編集 -->
+          </div>
+
+          <ul class="main-header-right">
+            <li><img src="../pictures/twitter.png" class="link-pic"></li>
+            <li><img src="../pictures/instagram.png" class="link-pic"></li>
+            <li><img src="../pictures/linkedin.png" class="link-pic"></li>
+            <li><img src="../pictures/link.png" class="link-pic"></li>
+          </ul>
+        </div>
+        <div class="main-category">Culinary</div>
+
+        <!-- この部分を改修 -->
+        <article id="article">
+          <!-- この部分はinnerHTMNLで書き換えられる -->
+        </article>
+        <!-- この部分を改修 -->
+
+        <div class="related">
+          <h3 class="related-title">関連記事（同一タグ）</h3>
+          <div class="related-contents-divide">
+            <div class="related-contents">
+              <img src="../pictures/detail_related_1.png" alt="食べ物と飲み物が2つずつ" class="img-related">
+              <div class="tag">
+                <span class="category">Culinary</span>
+                <span class="date">02 May 2022</span>
+              </div>
+              <p class="title">記事タイトル記事タイトル記事タイトル記事タイトル記事タイトル</p>
+              <p class="description">本文の一部を表示本文の一部を表示本文の..</p>
+            </div>
+            <div class="related-contents">
+              <img src="../pictures/detail_related_2.png" alt="お皿に盛られた緑野菜" class="img-related">
+              <div class="tag">
+                <span class="category">Culinary</span>
+                <span class="date">02 May 2022</span>
+              </div>
+              <p class="title">Cah kangkung ala wonosobo restaurant</p>
+              <p class="description">Order your favorite food menu from Asia..</p>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <aside class="sub">
+        <div class="sub-contents">
+          <h3 class="sub-title">新着記事</h3>
+          <div clas="sub-contents">
+            <div class="sub-content">
+              <img src="../pictures/detail_sub_1.png" alt="屋外にいるいる2人" class="img">
+              <div class="tag">
+                <span class="sub-category">Culinary</span>
+                <span class="sub-date">13 Jun 2022</span>
+              </div>
+              <p class="title">記事タイトル記事タイトル記事タイトル記事タイトル</p>
+            </div>
+            <div class="sub-content">
+              <img src="../pictures/detail_sub_2.png" alt="水辺にいる5人組" class="img">
+              <div class="tag">
+                <span class="sub-category">Travel</span>
+                <span class="sub-date">22 Jul 2022</span>
+              </div>
+              <p class="title">Enjoying the sunset on Padar island together</p>
+            </div>
+            <div class="sub-content">
+              <img src="../pictures/detail_sub_3.png" alt="広大な自然と2人" class="img">
+              <div class="tag">
+                <span class="sub-category">Travel</span>
+                <span class="sub-date">22 Jul 2022</span>
+              </div>
+              <p class="title">The lush green surroundings of the campgrounds create a..</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="authors"></div>
+          <h3 class="sub-title">投稿者</h3>
+          <div class="author-title"></div>
+          <div class="author">
+            <img src="../pictures/detail_sub_author_1.jpg" alt="投稿者-Andrea Wiseのプロフィール画像" class="pic-of-author">
+            <p class="name-author">Andrea Wise</p>
+          </div>
+          <div class="author">
+            <img src="../pictures/detail_sub_author_2.jpg" alt="投稿者-Karen Smithのプロフィール画像" class="pic-of-author">
+            <p class="name-author">Karen Smith</p>
+          </div>
+          <div class="author">
+            <img src="../pictures/detail_sub_author_3.jpg" alt="投稿者-Samantha Wiliamのプロフィール画像" class="pic-of-author">
+            <p class="name-author">Samantha William</p>
+          </div>
+          <div class="author">
+            <img src="../pictures/detail_sub_author_4.jpg" alt="投稿者-Renta Hopeのプロフィール画像" class="pic-of-author">
+            <p class="name-author">Renata Hope</p>
+          </div>
+          <div class="author">
+            <img src="../pictures/detail_sub_author_5.jpg" alt="投稿者-Angela Saunderのプロフィール画像" class="pic-of-author">
+            <p class="name-author">Angela Saunder</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <div id="footer-placeholder"></div>
+    <script type="module" src="./src/common.js"></script>
+    <script type="module" src="./src/detail-page.js"></script>
+  </body>
+</html>
