@@ -1,4 +1,3 @@
-import { TableRow, TableCell } from "@/components/ui/table";
 import { CourseDetail } from "@/types";
 import { useState } from "react";
 

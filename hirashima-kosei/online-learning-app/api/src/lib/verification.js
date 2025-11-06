@@ -1,8 +1,6 @@
 import { Resend } from "resend";
 
-// 送信結果を返し、例外は投げない（呼び出し側で処理継続可）
 export default async function sendVerificationMail(email, verificationToken) {
-  // 1つ目のoriginのみ使う
   const baseOrigin = process.env.NEXT_ORIGIN.split(",")[0].trim();
   const confirmLink = `${baseOrigin}/verified?verifiedToken=${verificationToken}`;
 
@@ -10,7 +8,6 @@ export default async function sendVerificationMail(email, verificationToken) {
     console.log(`Verification link for ${email}: ${confirmLink}`);
   };
 
-  // RESEND_API_KEY 未設定ならリンク出力のみ
   if (!process.env.RESEND_API_KEY) {
     console.warn("RESEND_API_KEY is not set. Skipping email send.");
     logLink();

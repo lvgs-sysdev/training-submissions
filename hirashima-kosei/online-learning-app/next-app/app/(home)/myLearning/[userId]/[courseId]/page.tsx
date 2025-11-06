@@ -15,7 +15,6 @@ export default async function MyLearningPage({
     ).data;
 
     if (!completedContentIdRow || completedContentIdRow.length === 0) {
-      // コンテンツが入っていないコースの場合
       if (!courseDetails || courseDetails.length === 0)
         return <ErrorPage msg={"コンテンツが存在しません。"} />;
       redirect(

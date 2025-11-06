@@ -40,7 +40,6 @@ export default function ThumbnailDropzone({
 
   return (
     <>
-      {/* サムネイルが設定されていない場合のみDropzoneを表示 */}
       {!lectureItem?.thumbnail && (
         <Dropzone
           accept={{ "image/*": [".png", ".jpg", ".jpeg"] }}
@@ -48,14 +47,13 @@ export default function ThumbnailDropzone({
           onError={console.error}
         >
           <DropzoneEmptyState />
-          <DropzoneContent>{/* 空の状態では何も表示しない */}</DropzoneContent>
+          <DropzoneContent></DropzoneContent>
         </Dropzone>
       )}
 
-      {/* サムネイルが設定されている場合は画像とゴミ箱ボタンを表示 */}
       {lectureItem?.thumbnail && (
         <div className="relative">
-          <div className="h-102 w-full">
+          <div className="aspect-[16/9] w-full">
             <ShowBlobData
               bufferData={lectureItem?.thumbnail}
               className="absolute top-0 left-0 h-full w-full object-cover"

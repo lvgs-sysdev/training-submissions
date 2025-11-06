@@ -8,6 +8,7 @@ import { useAuth } from "@/context/auth";
 import { toast } from "sonner";
 import { axiosClient } from "@/lib/api/api-client";
 import { redirect } from "next/navigation";
+import { useState, useEffect } from "react";
 
 export default function CourseDetailPage({
   courseData,
@@ -15,16 +16,25 @@ export default function CourseDetailPage({
   courseData: CourseItem;
 }) {
   const { userState } = useAuth();
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleRegister = async () => {
-    if (!userState) {
-      toast(`コースを登録するにはログインしてください。`, {
+  useEffect(() => {
+    if (error) {
+      toast(errorMessage, {
         description: "",
         action: {
           label: "閉じる",
-          onClick: () => console.log("undo"),
+          onClick: () => setError(false),
         },
       });
+    }
+  }, [error]);
+
+  const handleRegister = async () => {
+    if (!userState) {
+      setErrorMessage("コースを登録するにはログインしてください。");
+      setError(true);
       return;
     }
 
@@ -37,13 +47,8 @@ export default function CourseDetailPage({
       if (err.status === 409) {
         redirect(`/myLearning/${userState.userId}/${courseData.id}`);
       }
-      toast(`登録中にエラーが発生しました。：${err.msg}`, {
-        description: "",
-        action: {
-          label: "閉じる",
-          onClick: () => console.log("undo"),
-        },
-      });
+      setErrorMessage(`登録中にエラーが発生しました。：${err.msg}`);
+      setError(true);
       return;
     }
 
@@ -63,7 +68,7 @@ export default function CourseDetailPage({
               <div className="mt-10 p-1 md:max-w-[20rem] md:w-fit space-y-2 bg-white text-black shadow-md shadow-zinc-500">
                 <ShowBlobData
                   bufferData={courseData?.thumbnail!}
-                  className="w-full h-auto mx-auto"
+                  className="w-full aspect-[5/2] object-cover mx-auto"
                 />
                 <div className="flex flex-col gap-2">
                   <p className="break-words">{courseData?.course_name}</p>

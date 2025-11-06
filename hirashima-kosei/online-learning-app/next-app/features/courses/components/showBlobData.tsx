@@ -2,9 +2,14 @@
 
 import { useEffect, useState } from "react";
 
+interface ArrayBuffer {
+  type: "Buffer";
+  data: number[];
+}
+
 export default function ShowBlobData({
   bufferData,
-  className = "w-full h-30",
+  className = "w-full aspect-[5/2] object-cover",
 }: {
   bufferData: Buffer | string | null;
   className: string;
@@ -13,9 +18,7 @@ export default function ShowBlobData({
 
   useEffect(() => {
     if (bufferData) {
-      // 文字列の場合（DataURLまたはBase64）
       if (typeof bufferData === "string") {
-        // Base64文字列の場合はDataURLに変換
         if (!bufferData.startsWith("data:")) {
           setObjectUrl(`data:image/png;base64,${bufferData}`);
         } else {
@@ -29,9 +32,12 @@ export default function ShowBlobData({
         bufferData !== null &&
         (bufferData as { type?: string }).type === "Buffer"
       ) {
-        const blobData = new Blob([new Uint8Array(bufferData)], {
-          type: "image/*",
-        });
+        const blobData = new Blob(
+          [new Uint8Array((bufferData as unknown as ArrayBuffer).data)],
+          {
+            type: "image/*",
+          }
+        );
         const url = window.URL.createObjectURL(blobData);
         setObjectUrl(url);
 

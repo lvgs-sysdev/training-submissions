@@ -46,6 +46,8 @@ services:
     build:
       context: ./next-app
       dockerfile: Dockerfile
+      args:
+        BUILD_MODE: production
     container_name: next_web
     env_file: ./.env.production
     ports:

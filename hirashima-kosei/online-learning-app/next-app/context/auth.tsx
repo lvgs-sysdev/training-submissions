@@ -1,20 +1,23 @@
 "use client";
 
-import { nextAxiosClient } from "@/lib/api/api-client";
 import { UserItem } from "@/types";
 import { createContext, ReactNode, useContext, useState } from "react";
-import { toast } from "sonner";
+import { nextAxiosClient } from "@/lib/api/api-client";
 
 interface AuthContextType {
   userState: UserItem | null;
   login: (loginUser: UserItem) => void;
-  logout: () => void;
+  logout: () => Promise<void>;
+  error: boolean;
+  setError: (error: boolean) => void;
 }
 
 const AuthContext = createContext<AuthContextType>({
   userState: null,
   login: () => {},
-  logout: () => {},
+  logout: async () => {},
+  error: false,
+  setError: () => {},
 });
 
 export const AuthProvider = ({
@@ -25,6 +28,7 @@ export const AuthProvider = ({
   initialUser: UserItem | null;
 }) => {
   const [userState, setUserState] = useState<UserItem | null>(initialUser);
+  const [error, setError] = useState<boolean>(false);
 
   const login = (loginUser: UserItem) => {
     setUserState({
@@ -35,10 +39,15 @@ export const AuthProvider = ({
   };
 
   const logout = async () => {
-    setUserState(null);
+    try {
+      await nextAxiosClient.post("/nextAuth/logout");
+      setUserState(null);
+    } catch (err) {
+      setError(true);
+    }
   };
 
-  const value = { userState, login, logout };
+  const value = { userState, login, logout, error, setError };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

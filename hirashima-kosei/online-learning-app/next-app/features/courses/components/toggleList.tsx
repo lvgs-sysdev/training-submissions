@@ -3,9 +3,10 @@
 import { useState, useEffect } from "react";
 import useCourseDetails from "../hooks/useCourseDetails";
 import ToggleItem from "./toggleItem";
+import ErrorPage from "@/components/ErrorPage";
 
 export default function ToggleList({ courseId }: { courseId: number }) {
-  const { courseDetails, fetchCourseDetails } = useCourseDetails();
+  const { courseDetails, fetchCourseDetails, error } = useCourseDetails();
 
   const [isOpenAllDetails, setIsOpenAllDetails] = useState<boolean>(false);
 
@@ -14,6 +15,10 @@ export default function ToggleList({ courseId }: { courseId: number }) {
       await fetchCourseDetails(courseId);
     executeFetchCourseDetails();
   }, []);
+
+  if (error) {
+    return <ErrorPage />;
+  }
 
   return (
     <>

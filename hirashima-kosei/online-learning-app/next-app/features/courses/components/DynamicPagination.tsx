@@ -19,21 +19,17 @@ const DynamicPagination = ({
   totalPages,
   handleClickPageNum,
 }: DynamicPaginationProps) => {
-  // 総ページ数が1以下の場合はページネーションを表示しない
   if (totalPages <= 1) {
     return null;
   }
 
-  // ページ番号の配列を生成する関数
   const generatePageNumbers = (current: number, total: number) => {
     const pages = [];
 
-    // 常に表示するページ数 (例: 現在のページとその前後2つ = 最大5つ)
     const maxVisible = 5;
     let startPage = Math.max(2, current - Math.floor(maxVisible / 2) + 1);
     let endPage = Math.min(total - 1, startPage + maxVisible - 2);
 
-    // ページ数が少ない場合の調整
     if (endPage - startPage + 1 < maxVisible - 2) {
       startPage = Math.max(2, endPage - (maxVisible - 3));
     }
@@ -52,7 +48,6 @@ const DynamicPagination = ({
   return (
     <Pagination>
       <PaginationContent className="space-x-1">
-        {/* 1. 【前へ】ボタン */}
         <PaginationItem>
           <PaginationPrevious
             onClick={() =>
@@ -65,7 +60,6 @@ const DynamicPagination = ({
           />
         </PaginationItem>
 
-        {/* 2. 【1ページ目】のリンク */}
         <PaginationItem>
           <PaginationLink
             isActive={currentPageNum === 1}

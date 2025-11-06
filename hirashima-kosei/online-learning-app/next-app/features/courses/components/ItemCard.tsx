@@ -42,7 +42,7 @@ export default function ItemCard({
           <Card className="pt-0 rounded-none hover:bg-gray-100">
             <ShowBlobData
               bufferData={courseItem.thumbnail}
-              className="w-full h-30"
+              className="w-full aspect-[5/4] object-cover"
             />
             <CardContent className="ps-2">
               <p className="line-clamp-2">{courseItem.course_name}</p>
@@ -59,7 +59,10 @@ export default function ItemCard({
     <>
       <Card className="pt-0 rounded-none hover:bg-gray-100">
         <Link href={`/lecture/${courseItem.id}`}>
-          <ShowBlobData bufferData={courseItem.thumbnail} className="h-50" />
+          <ShowBlobData
+            bufferData={courseItem.thumbnail}
+            className="w-full aspect-[3/2] object-cover"
+          />
           <CardContent className="ps-2">
             <p className="line-clamp-2">{courseItem.course_name}</p>
             <p className="truncate">{courseItem.course_description}</p>

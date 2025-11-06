@@ -10,13 +10,42 @@ export default async function middleware(request: NextRequest) {
 
   if (!!session) {
     const sessionId = session?.value;
-    const expiresAt = await prismaClient.sessions.findUnique({
+    const sessionData = await prismaClient.sessions.findUnique({
       where: { id: sessionId },
-      select: { expires_at: true },
+      select: { expires_at: true, user_id: true },
     });
 
-    if (expiresAt && expiresAt.expires_at > new Date()) {
+    if (sessionData && sessionData.expires_at > new Date()) {
       isValidSession = true;
+    }
+
+    if (isValidSession) {
+      if (request.nextUrl.pathname.startsWith("/myLearning/")) {
+        const requestUserId = request.nextUrl.pathname.split("/")[2];
+        if (requestUserId !== String(sessionData?.user_id))
+          return NextResponse.redirect(new URL("/accessDenied", request.url));
+      }
+
+      if (request.nextUrl.pathname.startsWith("/myLecture/")) {
+        const requestUserId = request.nextUrl.pathname.split("/")[2];
+        if (requestUserId !== String(sessionData?.user_id))
+          return NextResponse.redirect(new URL("/accessDenied", request.url));
+      }
+
+      if (request.nextUrl.pathname.startsWith("/lecture/")) {
+        const requestLectureId = request.nextUrl.pathname.slice(
+          9,
+          request.nextUrl.pathname.length
+        );
+
+        const lectureData = await prismaClient.courses.findUnique({
+          where: { id: Number(requestLectureId) },
+          select: { user_id: true },
+        });
+
+        if (!lectureData || lectureData?.user_id !== sessionData?.user_id)
+          return NextResponse.redirect(new URL("/accessDenied", request.url));
+      }
     }
   }
 
@@ -39,7 +68,6 @@ export default async function middleware(request: NextRequest) {
   if (!isValidSession) {
     if (!session) return NextResponse.redirect(new URL("/login", request.url));
 
-    // セッション期限切れの場合はparamsとしてメッセージ送信
     const loginUrl = new URL("/login", request.url);
     loginUrl.searchParams.set(
       "message",
@@ -59,6 +87,5 @@ export const config = {
     "/login",
     "/register",
   ],
-  // DB処理のためにランタイムをnodejsに変更
   runtime: "nodejs",
 };

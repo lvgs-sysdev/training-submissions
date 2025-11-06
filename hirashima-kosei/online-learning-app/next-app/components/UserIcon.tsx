@@ -11,12 +11,7 @@ import Link from "next/link";
 import { NavItem, UserItem } from "@/types";
 import { useAuth } from "@/context/auth";
 import { toast } from "sonner";
-import { nextAxiosClient } from "@/lib/api/api-client";
-
-interface ApiError {
-  code?: string;
-  msg: string;
-}
+import { useEffect } from "react";
 
 export default function UserIcon({
   userConfig,
@@ -25,23 +20,19 @@ export default function UserIcon({
   userConfig: UserItem;
   navItems: NavItem[];
 }) {
-  const { logout } = useAuth();
+  const { logout, error, setError } = useAuth();
 
-  const handleLogout = async () => {
-    try {
-      await nextAxiosClient.post("/nextAuth/logout");
-      logout();
-    } catch (err) {
-      const apiError = err as ApiError;
-      toast(`エラーが発生しました。：${apiError.msg}`, {
+  useEffect(() => {
+    if (error) {
+      toast("ログアウトに失敗しました。", {
         description: "",
         action: {
           label: "閉じる",
-          onClick: () => console.log("undo"),
+          onClick: () => setError(false),
         },
       });
     }
-  };
+  }, [error]);
 
   return (
     <>
@@ -77,7 +68,7 @@ export default function UserIcon({
                   <li>
                     <button
                       className="text-gray-900 py-2 md:px-3 font-medium text-sm md:text-md hover:bg-gray-100 w-full text-left"
-                      onClick={() => handleLogout()}
+                      onClick={() => logout()}
                     >
                       ログアウト
                     </button>

@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import { axiosClient } from "@/lib/api/api-client";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 
 export default function CancellationBtn({
   userId,
@@ -13,6 +14,20 @@ export default function CancellationBtn({
   courseId: string;
 }) {
   const router = useRouter();
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    if (error) {
+      toast(errorMessage, {
+        description: "",
+        action: {
+          label: "閉じる",
+          onClick: () => setError(false),
+        },
+      });
+    }
+  }, [error]);
 
   const handleCancellation = async () => {
     try {
@@ -28,13 +43,8 @@ export default function CancellationBtn({
         },
       });
     } catch (err: any) {
-      toast(`エラーが発生しました。：${err.msg}`, {
-        description: "",
-        action: {
-          label: "閉じる",
-          onClick: () => console.log("undo"),
-        },
-      });
+      setErrorMessage(`エラーが発生しました。：${err.msg}`);
+      setError(true);
     }
   };
   return (

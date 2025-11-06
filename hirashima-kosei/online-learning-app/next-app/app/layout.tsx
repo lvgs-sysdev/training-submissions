@@ -31,7 +31,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // 画面全体をロードした時にメモリから消失するユーザー情報を再取得する
   let initialUser = null;
   const cookieStore = await cookies();
   const session = cookieStore.get("session");

@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useState, useEffect } from "react";
 import {
   HoverCard,
   HoverCardTrigger,
@@ -19,16 +19,25 @@ export default function HoverItemCard({
   courseItem: CourseItem;
 }) {
   const { userState } = useAuth();
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleRegister = async () => {
-    if (!userState) {
-      toast(`コースを登録するにはログインしてください。`, {
+  useEffect(() => {
+    if (error) {
+      toast(errorMessage, {
         description: "",
         action: {
           label: "閉じる",
-          onClick: () => console.log("undo"),
+          onClick: () => setError(false),
         },
       });
+    }
+  }, [error]);
+
+  const handleRegister = async () => {
+    if (!userState) {
+      setErrorMessage("コースを登録するにはログインしてください。");
+      setError(true);
       return;
     }
 
@@ -41,13 +50,8 @@ export default function HoverItemCard({
       if (err.status === 409) {
         redirect(`/myLearning/${userState.userId}/${courseItem.id}`);
       }
-      toast(`登録中にエラーが発生しました。：${err.msg}`, {
-        description: "",
-        action: {
-          label: "閉じる",
-          onClick: () => console.log("undo"),
-        },
-      });
+      setErrorMessage(`登録中にエラーが発生しました。：${err.msg}`);
+      setError(true);
       return;
     }
 

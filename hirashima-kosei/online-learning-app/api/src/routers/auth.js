@@ -14,7 +14,6 @@ async function authRoutes(fastify) {
         [email, hashedPassword, userName]
       );
 
-      // メール認証用トークン
       const verificationToken = uuidv4();
 
       const expiresDate = new Date();
@@ -29,7 +28,6 @@ async function authRoutes(fastify) {
         ]
       );
 
-      // メール送信は非致命扱い（失敗しても登録は成功させる）
       const mailResult = await sendVerificationMail(email, verificationToken);
       if (!mailResult?.ok) {
         fastify.log.warn({ mailResult }, "verification email not delivered");
@@ -54,7 +52,6 @@ async function authRoutes(fastify) {
     }
   });
 
-  // メールアドレス検証用トークン更新API
   fastify.post("/api/auth/refreshToken", async (request, reply) => {
     const { email } = request.body;
 
@@ -90,7 +87,6 @@ async function authRoutes(fastify) {
     }
   });
 
-  // メールアドレス検証用API
   fastify.post("/api/auth/verify", async (request, reply) => {
     const { verificationToken } = request.body;
 

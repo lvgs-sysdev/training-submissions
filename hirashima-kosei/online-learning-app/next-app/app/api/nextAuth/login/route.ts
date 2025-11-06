@@ -11,7 +11,6 @@ interface ApiError {
   message: string;
 }
 
-// 認証の際、Next.jsのサーバーからクライアントにCookieを返すための処理
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
     const { email, password } = await request.json();

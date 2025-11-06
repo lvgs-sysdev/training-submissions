@@ -21,7 +21,6 @@ async function courseRoutes(fastify) {
         return reply.send({ courses: courseRows });
       }
 
-      // データ数が膨大になることはないため、受講者数を集計したカラムは作らず毎回結合する
       if (orderByRating === "true") {
         const [courseRows] = await fastify.db.query(
           "SELECT c.id,c.course_name,c.thumbnail,c.course_description,c.user_id,c.updated_at, COUNT(e.user_id) AS rating, u.user_name FROM courses c LEFT JOIN enrollments e ON c.id=e.course_id JOIN users u ON c.user_id=u.id WHERE c.published=1 GROUP BY c.id,c.course_name,c.thumbnail,c.course_description,c.user_id,c.updated_at,u.user_name ORDER BY rating,updated_at"
@@ -90,7 +89,6 @@ async function courseRoutes(fastify) {
         [courseId]
       );
 
-      // 受講済みのコンテンツを取得する処理（ユーザーIDによる取得のためスケーラビリティに懸念）
       const [completedRow] = await fastify.db.query(
         "SELECT content_id,user_id FROM completions WHERE user_id=?",
         [userId]
@@ -223,7 +221,6 @@ async function courseRoutes(fastify) {
         [courseId]
       );
 
-      // まず、対象コースの全コンテンツ（テキスト/クイズ）を取得
       const [contentRows] = await fastify.db.query(
         "SELECT c.id AS content_id, c.content_name, c.content_type, c.content_number, s.id AS section_id, s.section_name FROM contents c JOIN sections s ON c.section_id = s.id WHERE s.course_id = ? ORDER BY s.id, c.content_number",
         [courseId]
@@ -317,29 +314,23 @@ async function courseRoutes(fastify) {
     const { lectureItem, lectureDetails, userId } = request.body;
 
     try {
-      // サムネイルデータの処理
       let thumbnailData = null;
       if (lectureItem.thumbnail) {
         if (typeof lectureItem.thumbnail === "string") {
-          // DataURL形式の場合、Base64部分を抽出
           if (lectureItem.thumbnail.startsWith("data:")) {
             const base64Data = lectureItem.thumbnail.split(",")[1];
             thumbnailData = Buffer.from(base64Data, "base64");
           } else {
-            // Base64文字列の場合
             thumbnailData = Buffer.from(lectureItem.thumbnail, "base64");
           }
         } else if (lectureItem.thumbnail.type === "Buffer") {
-          // Buffer形式の場合
           thumbnailData = Buffer.from(lectureItem.thumbnail.data);
         } else {
-          // その他の場合はそのまま使用
           thumbnailData = lectureItem.thumbnail;
         }
       }
 
       if (!lectureItem.course_id) {
-        // 新規コース作成
         const [courseResult] = await fastify.db.query(
           "INSERT INTO courses (course_name, course_description, thumbnail, user_id, published) VALUES (?, ?, ?, ?, 0)",
           [
@@ -352,11 +343,9 @@ async function courseRoutes(fastify) {
 
         const courseId = courseResult.insertId;
 
-        // セクションとコンテンツの作成
         for (let i = 0; i < lectureDetails.length; i++) {
           const section = lectureDetails[i];
 
-          // セクション作成
           const [sectionResult] = await fastify.db.query(
             "INSERT INTO sections (section_name, section_number, course_id) VALUES (?, ?, ?)",
             [section.section_name, i + 1, courseId]
@@ -364,26 +353,22 @@ async function courseRoutes(fastify) {
 
           const sectionId = sectionResult.insertId;
 
-          // コンテンツ作成
           for (let j = 0; j < section.contents.length; j++) {
             const content = section.contents[j];
 
             if (content.content_type === "quiz") {
-              // クイズコンテンツの作成
               const [contentResult] = await fastify.db.query(
                 "INSERT INTO contents (content_name, content_number, content_type, section_id) VALUES (?, ?, 'quiz', ?)",
                 [content.content_name || "確認テスト", j + 1, sectionId]
               );
               const contentId = contentResult.insertId;
 
-              // 質問（1問）
               const [quizResult] = await fastify.db.query(
                 "INSERT INTO questions (content_id, quiz_number, body) VALUES (?, ?, ?)",
                 [contentId, 1, content.body]
               );
               const questionId = quizResult.insertId;
 
-              // 選択肢（4択）
               const choices = content.choice_body || ["", "", "", ""];
               for (let k = 0; k < choices.length; k++) {
                 await fastify.db.query(
@@ -399,7 +384,6 @@ async function courseRoutes(fastify) {
 
               const contentId = contentResult.insertId;
 
-              // コンテンツテキスト作成
               await fastify.db.query(
                 "INSERT INTO content_texts (content_id, body) VALUES (?, ?)",
                 [contentId, content.body]
@@ -413,10 +397,8 @@ async function courseRoutes(fastify) {
           courseId: courseId,
         });
       } else {
-        // 既存コース編集
         const courseId = lectureItem.course_id;
 
-        // コース情報更新
         await fastify.db.query(
           "UPDATE courses SET course_name = ?, course_description = ?, thumbnail = ? WHERE id = ?",
           [
@@ -427,7 +409,6 @@ async function courseRoutes(fastify) {
           ]
         );
 
-        // 既存のセクションとコンテンツを削除
         await fastify.db.query(
           "DELETE FROM content_texts WHERE content_id IN (SELECT id FROM contents WHERE section_id IN (SELECT id FROM sections WHERE course_id = ?))",
           [courseId]
@@ -440,11 +421,9 @@ async function courseRoutes(fastify) {
           courseId,
         ]);
 
-        // 新しいセクションとコンテンツを作成
         for (let i = 0; i < lectureDetails.length; i++) {
           const section = lectureDetails[i];
 
-          // セクション作成
           const [sectionResult] = await fastify.db.query(
             "INSERT INTO sections (section_name, section_number, course_id) VALUES (?, ?, ?)",
             [section.section_name, i + 1, courseId]
@@ -452,7 +431,6 @@ async function courseRoutes(fastify) {
 
           const sectionId = sectionResult.insertId;
 
-          // コンテンツ作成
           for (let j = 0; j < section.contents.length; j++) {
             const content = section.contents[j];
 

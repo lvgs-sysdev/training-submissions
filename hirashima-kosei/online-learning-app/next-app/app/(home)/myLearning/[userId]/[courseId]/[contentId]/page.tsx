@@ -59,7 +59,7 @@ export default async function SelectedContentPage({
         <div className="container mx-auto flex justify-between items-center">
           <div className="md:flex justify-between w-full">
             <div className="md:w-2/3">
-              <div className="border w-full h-full md:h-150 mb-5">
+              <div className="border w-full aspect-[16/9] md:h-150 mb-5">
                 <ContentArea contentId={contentId} />
               </div>
               <div>

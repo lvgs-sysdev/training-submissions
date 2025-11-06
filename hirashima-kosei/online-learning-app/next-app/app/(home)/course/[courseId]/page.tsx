@@ -32,7 +32,6 @@ export default async function Course({
       console.log(err);
       return <ErrorPage />;
     }
-    // コースの登録前ページアクセス時、登録済みのコースであれば受講画面にリダイレクト
     if (courseData.isEnrollment) {
       redirect(`/myLearning/${userId}/${courseId}`);
     }
@@ -40,7 +39,6 @@ export default async function Course({
   }
 
   try {
-    // 非ログインユーザーにはすべての場合でコースの登録前ページを表示
     const courseData = (
       await axiosServerClient.get("/course/selected", {
         params: {

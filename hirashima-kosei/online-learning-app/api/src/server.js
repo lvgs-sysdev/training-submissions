@@ -10,20 +10,17 @@ import userRoutes from "./routers/user.js";
 import courseRoutes from "./routers/course.js";
 import contentRoutes from "./routers/content.js";
 
-// Enable structured logging for visibility in `docker compose logs`
 const app = fastify({
   logger: {
     level: process.env.FASTIFY_LOG_LEVEL || "info",
   },
 });
 
-// Basic request logging
 app.addHook("onRequest", (req, _reply, done) => {
   req.log.info({ method: req.method, url: req.url }, "incoming request");
   done();
 });
 
-// Central error handler to surface stack traces in logs
 app.setErrorHandler((err, req, reply) => {
   req.log.error({ err }, "unhandled error");
   reply.code(500).send({ error: "サーバー内部でエラーが発生しました。" });
@@ -41,7 +38,6 @@ if (env === "development" && !process.env.SESSION_SECRET_KEY) {
 app.register(cookie, {
   secret: process.env.SESSION_SECRET_KEY,
 });
-// Allow multiple origins via comma-separated env (e.g., http://localhost,http://localhost:3000)
 const allowedOriginsEnv = process.env.NEXT_ORIGIN || "";
 const allowedOrigins = allowedOriginsEnv
   .split(",")
@@ -60,7 +56,6 @@ app.register(userRoutes);
 app.register(courseRoutes);
 app.register(contentRoutes);
 
-// Healthcheck endpoint for Docker
 app.get("/health", async () => {
   return { status: "ok" };
 });

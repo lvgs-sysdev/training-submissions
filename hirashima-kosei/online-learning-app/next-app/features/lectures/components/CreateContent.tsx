@@ -28,7 +28,7 @@ import {
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
-import React from "react"; // 💡 React.Fragment の使用のため追記
+import React from "react";
 
 export default function CreateContent({
   lectureDetails,
@@ -220,12 +220,13 @@ export default function CreateContent({
                           key={`choice-${contentIdx}-${choiceIdx}`}
                           className="border-b-0"
                         >
-                          <TableCell className="w-1/10 border-b-0"></TableCell>
+                          <TableCell className="w-1/10 border-b-0">
+                            <div className="text-sm md:text-md pt-2 w-1/10 text-left">
+                              選択肢{String(choiceIdx + 1)}：
+                            </div>
+                          </TableCell>
                           <TableCell className="w-9/10 border-b" colSpan={2}>
-                            <div className="flex items-start space-x-2">
-                              <div className="text-sm md:text-md pt-2 w-1/10 text-left">
-                                選択肢{String(choiceIdx + 1)}：
-                              </div>
+                            <div className="flex items-start space-x-2 pt-2">
                               <Textarea
                                 id={`choice-body-${choiceIdx}`}
                                 autoComplete="on"

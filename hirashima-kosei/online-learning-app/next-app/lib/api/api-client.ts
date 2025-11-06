@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// クライアントサイドでAxiosクライアントを利用する場合
 const axiosClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_FASTIFY_API_BASE_URL,
   headers: {
@@ -20,7 +19,6 @@ axiosClient.interceptors.response.use(
   }
 );
 
-// サーバーコンポーネントでAxiosクライアントを利用する場合
 const axiosServerClient = axios.create({
   baseURL: process.env.FASTIFY_API_BASE_URL,
   headers: {
@@ -40,7 +38,6 @@ axiosServerClient.interceptors.response.use(
   }
 );
 
-// Next.jsのAPIエンドポイントを経由する形でAxiosクライアントを利用する場合（主にcookie関連用途）
 const nextAxiosClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_NEXT_API_BASE_URL,
   headers: {

@@ -27,7 +27,6 @@ export default function Login() {
 
   const { logout } = useAuth();
 
-  // メッセージがある場合（セッション有効期限切れ）
   useEffect(() => {
     if (!!message) {
       const executeLogout = async () => {
