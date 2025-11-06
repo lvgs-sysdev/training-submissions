@@ -1,0 +1,16 @@
+# Prevent host artifacts from polluting the image
+node_modules
+.next
+.git
+.DS_Store
+npm-debug.log*
+yarn-error.log*
+pnpm-lock.yaml
+*.local
+.env*
+dist
+build
+
+# Docker files are not needed inside the build context
+Dockerfile
+docker-compose.yml
