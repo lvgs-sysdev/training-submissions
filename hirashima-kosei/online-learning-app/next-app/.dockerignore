@@ -11,6 +11,3 @@ pnpm-lock.yaml
 dist
 build
 
-# Docker files are not needed inside the build context
-Dockerfile
-docker-compose.yml
