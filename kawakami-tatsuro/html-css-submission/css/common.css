@@ -1,0 +1,151 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* common */
+
+:root {
+  --main: #121212;
+  --muted: #757575;
+  --primary: #ff553c;
+  --white: #fff;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  color: var(--main);
+}
+
+/* header */
+
+header {
+  background-color: var(--white);
+  border-bottom: 1px #dedede solid;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 123px;
+}
+
+header a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.header__logo {
+  font-size: 1.25rem;
+  color: var(--primary);
+  align-self: center;
+}
+
+.header__nav__btn--sign-up {
+  background-color: var(--primary);
+  display: inline-block;
+  padding: 14px 16px;
+  margin-left: 35px;
+  color: var(--white);
+  font-weight: 500;
+}
+
+/* footer */
+
+footer {
+  background-color: #121212;
+  color: rgb(255, 255, 255, 50%);
+  padding: 60px 60px 32px;
+}
+
+.footer__nav-container {
+  width: fit-content;
+  display: flex;
+  margin: 0 auto;
+  gap: 60px;
+}
+
+.footer__nav-item h4 {
+  font-weight: 300;
+  color: var(white);
+  font-size: 1.125rem;
+  margin-bottom: 35px;
+}
+
+.footer__nav-item ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.footer__nav-item ul a {
+  text-decoration: none;
+  color: rgb(255, 255, 255, 50%);
+}
+
+.footer__nav-item--address address {
+  font-style: normal;
+}
+
+.footer__nav-item--address hr {
+  border-color: rgb(222, 222, 222, 50%);
+  margin: 32px 0;
+  width: 265.07px;
+}
+
+.footer__nav-item--address .footer__nav-item--address__list {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 24px;
+  width: 250px;
+}
+
+.footer__nav-item__banner {
+  width: 100%;
+  max-width: 177px;
+  height: auto;
+}
+
+.footer__copyright {
+  margin-top: 60px;
+  text-align: center;
+}
+
+/* media queries */
+
+@media screen and (max-width: 936px) {
+  html {
+    font-size: 90%;
+  }
+
+  .footer__nav-container {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 80%;
+  }
+
+  header {
+    padding: 0 0 0 16px;
+  }
+}
+
+@media screen and (max-width: 534px) {
+  html {
+    font-size: 75%;
+  }
+
+  .header__nav__btn--sign-up {
+    margin-left: 16px;
+  }
+
+  .footer__nav-item__banner {
+    width: 80%;
+  }
+}
+
