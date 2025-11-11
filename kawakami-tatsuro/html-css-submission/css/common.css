@@ -18,7 +18,7 @@ body {
 
 /* header */
 
-header {
+.common-header {
   background-color: var(--white);
   border-bottom: 1px #dedede solid;
   display: flex;
@@ -26,18 +26,18 @@ header {
   padding: 20px 123px;
 }
 
-header a {
+.common-header__logo, .common-header__nav__btn {
   text-decoration: none;
   color: inherit;
 }
 
-.header__logo {
+.common-header .common-header__logo {
   font-size: 1.25rem;
   color: var(--primary);
   align-self: center;
 }
 
-.header__nav__btn--sign-up {
+.common-header__nav__btn--sign-up {
   background-color: var(--primary);
   display: inline-block;
   padding: 14px 16px;
@@ -48,27 +48,27 @@ header a {
 
 /* footer */
 
-footer {
+.common-footer {
   background-color: #121212;
   color: rgb(255, 255, 255, 50%);
   padding: 60px 60px 32px;
 }
 
-.footer__nav-container {
+.common-footer__nav-container {
   width: fit-content;
   display: flex;
   margin: 0 auto;
   gap: 60px;
 }
 
-.footer__nav-item h4 {
+.common-footer__nav-item h4 {
   font-weight: 300;
   color: var(white);
   font-size: 1.125rem;
   margin-bottom: 35px;
 }
 
-.footer__nav-item ul {
+.common-footer__nav-item ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -77,22 +77,22 @@ footer {
   gap: 15px;
 }
 
-.footer__nav-item ul a {
+.common-footer__nav-item ul a {
   text-decoration: none;
   color: rgb(255, 255, 255, 50%);
 }
 
-.footer__nav-item--address address {
+.common-footer__nav-item--address address {
   font-style: normal;
 }
 
-.footer__nav-item--address hr {
+.common-footer__nav-item--address hr {
   border-color: rgb(222, 222, 222, 50%);
   margin: 32px 0;
   width: 265.07px;
 }
 
-.footer__nav-item--address .footer__nav-item--address__list {
+.common-footer__nav-item--address .common-footer__nav-item--address__list {
   margin: 0;
   padding: 0;
   display: flex;
@@ -102,13 +102,13 @@ footer {
   width: 250px;
 }
 
-.footer__nav-item__banner {
+.common-footer__nav-item__banner {
   width: 100%;
   max-width: 177px;
   height: auto;
 }
 
-.footer__copyright {
+.common-footer__copyright {
   margin-top: 60px;
   text-align: center;
 }
@@ -120,7 +120,7 @@ footer {
     font-size: 90%;
   }
 
-  .footer__nav-container {
+  .common-footer__nav-container {
     flex-wrap: wrap;
   }
 }
@@ -130,7 +130,7 @@ footer {
     font-size: 80%;
   }
 
-  header {
+  .common-header {
     padding: 0 0 0 16px;
   }
 }
@@ -140,11 +140,11 @@ footer {
     font-size: 75%;
   }
 
-  .header__nav__btn--sign-up {
+  .common-header__nav__btn--sign-up {
     margin-left: 16px;
   }
 
-  .footer__nav-item__banner {
+  .common-footer__nav-item__banner {
     width: 80%;
   }
 }
