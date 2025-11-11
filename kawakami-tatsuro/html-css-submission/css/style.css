@@ -123,7 +123,7 @@ main h3 {
 .sidebar__popular-article-item {
   width: 265px;
   height: 109.5px;
-  border-bottom: 0.5px rgb(18, 18, 18, 20%) solid;
+  border-bottom: 0.5px rgb(18 18 18 / 20%) solid;
 }
 
 .sidebar__popular-article-item:nth-last-of-type(1) {
