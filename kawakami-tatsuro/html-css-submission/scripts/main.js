@@ -21,6 +21,6 @@ const loadComponent = async (selector, path) => {
 
 // DOMが読み込まれたらヘッダー・フッターをcommonのHTMLファイルで置換するイベントリスナー
 document.addEventListener('DOMContentLoaded', () => {
-  loadComponent('.common-header', '../html/common/header.html');
-  loadComponent('.common-footer', '../html/common/footer.html');
+  loadComponent('.header', '../html/common/header.html');
+  loadComponent('.footer', '../html/common/footer.html');
 });
