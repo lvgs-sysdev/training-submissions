@@ -1,5 +1,7 @@
 @charset "utf-8";
 
+/* top-page */
+
 /* hero */
 
 .hero__container {
@@ -148,6 +150,35 @@ main h3 {
   font-size: 0.875rem;
   border: 1px #dedede solid;
   padding: 8px 18px;
+}
+
+/* article-page */
+
+.author-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.author-box__info {
+  display: flex;
+  gap: 16px;
+}
+
+.author-box__info__alt {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.author-box__info__alt--date {
+  font-size: .875rem;
+  color: var(--muted);
+}
+
+.author-box__social {
+  display: flex;
+  gap: 15px;
+  align-self: center;
 }
 
 /* responsive */
