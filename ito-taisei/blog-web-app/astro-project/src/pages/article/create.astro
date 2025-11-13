@@ -1,0 +1,131 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import TextareaField from "../../components/TextareaField.astro";
+import Dropdown from "../../components/Dropdown.astro";
+import "../../styles/pages/article-edit.css";
+import { GENRE_OPTIONS, TAG_OPTIONS } from "../../constants/siteData.js";
+import { getLoginUserIdFromSession } from "../../lib/session.js";
+
+// ログイン情報取得
+const loginUserId = await getLoginUserIdFromSession(Astro.cookies);
+const isLoggedIn = !!loginUserId;
+---
+
+<Layout title="新規作成 - DAYDAYTRAVEL" isLoggedIn={isLoggedIn}>
+  <div class="container">
+    <form id="article-form" action="#" method="post" class="article-edit-form">
+      <div class="form-group">
+        <Dropdown
+          label="ジャンル"
+          options={GENRE_OPTIONS}
+          placeholder="選択してください"
+          id="genre"
+          name="genre"
+          required
+        />
+
+        <div>
+          <label for="title">タイトル</label>
+          <input type="text" id="title" name="title" maxlength="100" required />
+        </div>
+        <TextareaField id="body1" label="本文1" required />
+        <div class="img-upload-1">
+          <label for="image1">画像アップロード1</label>
+          <input
+            type="file"
+            id="image1"
+            name="image1"
+            accept="image/png, image/jpeg"
+            required
+          />
+          <div class="img-preview">
+            <img
+              id="preview1"
+              class="loading"
+              style="display:none"
+              alt="プレビュー1"
+            />
+          </div>
+        </div>
+        <div class="img-caption">
+          <label for="img-caption">画像キャプション</label>
+          <input
+            type="text"
+            id="img-caption"
+            name="img-caption"
+            maxlength="50"
+          />
+        </div>
+        <TextareaField id="body2" label="本文2" required />
+        <TextareaField id="body3" label="本文3" required />
+        <div class="sub-heading">
+          <label for="sub-heading">サブ見出し</label>
+          <input
+            type="text"
+            id="sub-heading"
+            name="sub-heading"
+            maxlength="100"
+            required
+          />
+        </div>
+        <TextareaField id="body4" label="本文4" required />
+        <TextareaField id="body5" label="本文5" required />
+        <div class="img-upload-2">
+          <label for="image2">画像アップロード2</label>
+          <input
+            type="file"
+            id="image2"
+            name="image2"
+            accept="image/png, image/jpeg"
+          />
+          <div class="img-preview">
+            <img
+              id="preview2"
+              class="loading"
+              style="display:none"
+              alt="プレビュー2"
+            />
+          </div>
+        </div>
+        <div class="img-upload-3">
+          <label for="image3">画像アップロード3</label>
+          <input
+            type="file"
+            id="image3"
+            name="image3"
+            accept="image/png, image/jpeg"
+          />
+          <div class="img-preview">
+            <img
+              id="preview3"
+              class="loading"
+              style="display:none"
+              alt="プレビュー3"
+            />
+          </div>
+        </div>
+        <TextareaField id="body6" label="本文6" required />
+        <TextareaField id="body7" label="本文7" required />
+      </div>
+
+      <div class="tag">
+        <Dropdown
+          label="タグ"
+          options={TAG_OPTIONS}
+          placeholder="選択してください"
+          id="tag"
+          name="tag"
+          required
+        />
+      </div>
+    </form>
+    <button
+      type="submit"
+      class="submit-button"
+      id="submit-button"
+      form="article-form"
+      disabled>記事を保存</button
+    >
+  </div>
+  <script type="module" src="/scripts/article-create-page.js"></script>
+</Layout>

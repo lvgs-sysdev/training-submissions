@@ -1,0 +1,49 @@
+---
+import Layout from "../layouts/Layout.astro";
+import FormInput from "../components/FormInput.astro";
+import "../styles/pages/register.css";
+---
+
+<Layout title="新規登録 - DAYDAYTRAVEL">
+  <div class="container">
+    <div class="register-wrapper">
+      <form action="#" method="post">
+        <FormInput
+          label="User Name"
+          name="user_name"
+          id="user_name"
+          placeholder="DAYDAY TRAVEL"
+          maxlength={255}
+        />
+        <FormInput
+          label="User ID"
+          type="text"
+          name="user_id"
+          id="user_id"
+          placeholder="dayday1234"
+          maxlength={20}
+          autocomplete="username"
+        />
+        <FormInput
+          label="password"
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password1234"
+          maxlength={255}
+          autocomplete="current-password"
+        />
+        <div>
+          <button
+            type="submit"
+            class="register-button"
+            id="register-button"
+            disabled>Register</button
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/scripts/register.js" type="module"></script>
+</Layout>

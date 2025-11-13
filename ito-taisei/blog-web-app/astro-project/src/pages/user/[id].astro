@@ -1,0 +1,112 @@
+---
+export const prerender = false;
+
+import Layout from "../../layouts/Layout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import "../../styles/pages/user-profile.css";
+import { connectDb } from "../../lib/db.js";
+import { getLoginUserIdFromSession } from "../../lib/session.js";
+import type { ArticleData } from "../../types.ts";
+import { mapDbArticleToCardData } from "../../lib/article-card/mapDbArticleToCardData.js";
+import { sanitizeHtml } from "../../lib/sanitizeHtml.js";
+
+// パラメータ取得
+const { id } = Astro.params;
+const userIdNum = Number(id);
+
+// ログイン情報取得
+const loginUserId = await getLoginUserIdFromSession(Astro.cookies);
+const isLoggedIn = !!loginUserId;
+
+if (!id) {
+  return Astro.redirect("/404");
+}
+
+// ユーザ情報取得
+let dbUser = null;
+try {
+  const connection = await connectDb();
+  const [rows] = await connection.execute(
+    "SELECT user_id, user_name FROM users WHERE id = ?",
+    [userIdNum]
+  );
+  dbUser = Array.isArray(rows) && rows.length > 0 ? rows[0] : null;
+  await connection.end();
+} catch (e) {
+  dbUser = null;
+}
+
+// プロフィールデータ
+import type { RowDataPacket } from "mysql2";
+const profile = dbUser
+  ? {
+      user_id: (dbUser as RowDataPacket).user_id,
+      user_name: (dbUser as RowDataPacket).user_name,
+    }
+  : {
+      user_id: "Not Found",
+      user_name: "Not Found",
+    };
+
+// 投稿記事一覧
+let createdArticles: ArticleData[] = [];
+if (dbUser) {
+  try {
+    const connection = await connectDb();
+    const [rows] = await connection.execute(
+      "SELECT * FROM articles WHERE user_id = ? ORDER BY id DESC",
+      [(dbUser as RowDataPacket).user_id]
+    );
+
+    createdArticles = (rows as any[]).map((row) => {
+      const card = mapDbArticleToCardData(row);
+      card.body = sanitizeHtml(card.body);
+      return card;
+    });
+    await connection.end();
+  } catch (e) {
+    console.error("DB fetch error (top):", e);
+  }
+}
+
+console.log("createdArticles:", createdArticles);
+---
+
+<Layout
+  title={`${profile.user_name}さんのプロフィール`}
+  isLoggedIn={isLoggedIn}
+>
+  <div class="container">
+    <div class="profile-wrapper">
+      <h2 class="heading">{profile.user_name}さんのプロフィール</h2>
+      <h3 class="user-id">user ID: {profile.user_id}</h3>
+      {
+        isLoggedIn && String(loginUserId) === String(profile.user_id) && (
+          <a class="edit-btn" href={`/user/edit/${id}`}>
+            Edit
+          </a>
+        )
+      }
+    </div>
+    <div class="articles-wrapper">
+      <div class="articles-title">
+        <h2 class="heading mb-35">投稿記事一覧</h2>
+      </div>
+      <div class="article-list__grid mb-40">
+        {
+          createdArticles.map((created: ArticleData) => (
+            <ArticleCard
+              title={created.title}
+              date={created.date}
+              genre={created.genre}
+              body={created.body}
+              imgSrc={created.imgSrc}
+              imgAlt={created.imgAlt}
+              url={created.url}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</Layout>

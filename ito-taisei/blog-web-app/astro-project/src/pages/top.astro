@@ -1,0 +1,118 @@
+---
+export const prerender = false;
+
+import Layout from "../layouts/Layout.astro";
+import ArticleCard from "../components/ArticleCard.astro";
+import PopularArticlesCard from "../components/PopularArticlesCard.astro";
+import "../styles/pages/top.css";
+import "../styles/layout/_article-list.css";
+import type { ArticleData } from "../types";
+import { connectDb } from "../lib/db.js";
+import { getLoginUserIdFromSession } from "../lib/session.js";
+import { mapDbArticleToCardData } from "../lib/article-card/mapDbArticleToCardData.js";
+import { sanitizeHtml } from "../lib/sanitizeHtml.js";
+
+// ログイン情報取得
+const loginUserId = await getLoginUserIdFromSession(Astro.cookies);
+const isLoggedIn = !!loginUserId;
+
+// 記事一覧取得
+let articles: ArticleData[] = [];
+try {
+  const connection = await connectDb();
+  const [rows] = await connection.execute(
+    "SELECT * FROM articles ORDER BY id DESC"
+  );
+
+  articles = (rows as any[]).map((row) => {
+    const card = mapDbArticleToCardData(row);
+    card.body = sanitizeHtml(card.body);
+    return card;
+  });
+  await connection.end();
+} catch (e) {
+  console.error("DB fetch error (top):", e);
+}
+
+// 人気記事（ダミーデータ）
+const popularArticles = [
+  {
+    title: "記事タイトル記事タイトル記事タイトル記事タイトル",
+    url: "/popular/1",
+  },
+  {
+    title: "Cheap Padang specialty food restaurant",
+    url: "/popular/2",
+  },
+  {
+    title: "Mountain hiking in central Java",
+    url: "/popular/3",
+  },
+];
+---
+
+<Layout title="トップページ - DAYDAYTRAVEL" isLoggedIn={isLoggedIn}>
+  <div class="container">
+    <div class="img-container">
+      <img src="/src/hero-img.png" alt="Top Image" class="top-img" />
+      <div class="catchphrase-wrapper">
+        <p class="catchphrase">Share your<br />holiday stories.</p>
+        <p class="catchphrase1">
+          Write about your experiences while on holiday in<br />various parts of
+          Indonesia, and reach a wide<br />readership.
+        </p>
+      </div>
+    </div>
+
+    <div class="main-content-wrapper">
+      <main class="article-list__wrapper">
+        <h2 class="heading mb-40">一覧（新着順）</h2>
+        <div class="article-list__grid">
+          {
+            articles.map((article: ArticleData) => (
+              <ArticleCard
+                title={article.title}
+                date={article.date}
+                genre={article.genre}
+                body={article.body}
+                imgSrc={article.imgSrc}
+                imgAlt={article.imgAlt}
+                url={article.url}
+              />
+            ))
+          }
+        </div>
+      </main>
+
+      <aside class="popular-articles-wrapper">
+        <section class="popular-article">
+          <h2 class="heading mb-40">人気記事</h2>
+          <div class="popular-article-list">
+            {
+              popularArticles.map((article, idx, arr) => (
+                <>
+                  <PopularArticlesCard
+                    title={article.title}
+                    url={article.url}
+                  />
+                  {idx < arr.length - 1 && <div class="popular-separator" />}
+                </>
+              ))
+            }
+          </div>
+        </section>
+        <section class="more-topics">
+          <h2 class="heading mb-40">もっと見る</h2>
+          <ul class="tags-row" role="list" aria-label="カテゴリ一覧">
+            <li class="tags">
+              <a href="/article/genre/Travel" class="tag-text">Travel</a>
+            </li>
+            <li class="tags">
+              <a href="/article/genre/Culinary" class="tag-text">Culinary</a>
+            </li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+  </div>
+</Layout>

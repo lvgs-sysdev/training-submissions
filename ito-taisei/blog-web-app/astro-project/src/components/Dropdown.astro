@@ -1,0 +1,42 @@
+---
+import styles from "../styles/components/Dropdown.module.css";
+
+type OptionType = {
+  value: string | number;
+  label: string;
+};
+
+interface Props {
+  label: string;
+  options: OptionType[];
+  status?: "default" | "error";
+  helperText?: string;
+  placeholder?: string;
+  [key: string]: any;
+}
+
+const {
+  label,
+  options,
+  status = "default",
+  helperText,
+  placeholder,
+  ...rest
+} = Astro.props as Props;
+
+const isError = status === "error";
+---
+
+<div class={styles.dropdownWrapper}>
+  <label class={styles.label} for={rest.id}>{label}</label>
+  <select
+    {...rest}
+    class:list={[styles.selectBase, { [styles.selectError]: isError }]}
+  >
+    <option value="" disabled selected>{placeholder}</option>
+
+    {options.map((opt) => <option value={opt.value}>{opt.label}</option>)}
+  </select>
+
+  {isError && <span class="field-error">{helperText}</span>}
+</div>

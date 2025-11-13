@@ -1,0 +1,27 @@
+---
+interface Props {
+  id: string;
+  label: string;
+  required?: boolean;
+  maxlength?: number;
+  value?: string;
+}
+
+const {
+  id,
+  label,
+  required = false,
+  maxlength = 1000,
+  value = "",
+} = Astro.props;
+---
+
+<div class="textarea-group">
+  <label for={id}>{label}</label>
+  <textarea
+    id={id}
+    name={id}
+    maxlength={maxlength}
+    required={required}
+    value={value}></textarea>
+</div>
