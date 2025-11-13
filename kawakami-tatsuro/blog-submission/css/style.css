@@ -1,0 +1,385 @@
+@charset "utf-8";
+
+/* top-page */
+
+/* hero */
+
+.hero__container {
+  margin: 0 auto;
+  position: relative;
+  width: 100%;
+  max-width: 1366px;
+  max-height: 770px;
+}
+
+.hero__container__img {
+  max-width: 100%;
+  height: auto;
+}
+
+.hero__container__text {
+  position: absolute;
+  top: 18%;
+  left: 9%;
+}
+
+.hero__container__text-heading {
+  font-size: 3.75rem;
+  font-weight: var(--fw-semi-bold);
+  margin-bottom: 35px;
+}
+
+.hero__img {
+  width: 100%;
+  height: auto;
+}
+
+/* main */
+
+.main__container {
+  padding: 120px 96px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1366px;
+  min-width: 0;
+  display: flex;
+  gap: 96px;
+}
+
+.top__heading {
+  font-weight: var(--fw-semi-bold);
+  font-size: 1.375rem;
+}
+
+.article-list__col {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  width: 100%;
+  min-width: 0;
+}
+
+.article-list__col__unit {
+  display: flex;
+  gap: 25px;
+  min-width: 0;
+  width: 100%;
+}
+
+.article-list__col__unit__item {
+  width: 360px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.article-list__col__unit__item__desc, .title-box--genre {
+  font-size: 0.875rem;
+}
+
+.article-list__col__unit__item__desc-genre, .title-box--genre {
+  color: var(--primary);
+  font-weight: var(--fw-medium);
+}
+
+.article-list__col__unit__item__desc-hr {
+  rotate: 90deg;
+  width: 0.964375rem;
+  display: inline-block;
+  vertical-align: middle;
+  border-color: #dedede;
+}
+
+.article-list__col__unit__item__desc-date {
+  color: var(--muted);
+}
+
+.article-list__col__unit__item-title {
+  font-weight: var(--fw-normal);
+  font-size: 1.25rem;
+}
+
+.article-list__col__unit__item-text {
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 96px;
+}
+
+.sidebar__heading {
+  font-size: 1.375rem;
+}
+
+.sidebar__popular-article-container, .sidebar__new-article-container {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.sidebar__popular-article-item, .sidebar__new-article-item {
+  width: 265px;
+  height: 109.5px;
+  border-bottom: 0.5px rgb(18 18 18 / 20%) solid;
+}
+
+.sidebar__popular-article-item:nth-last-of-type(1) {
+  border: none;
+  height: auto;
+}
+
+.sidebar__popular-article-item h4 {
+  font-size: 1.125rem;
+  font-weight: var(--fw-normal);
+}
+
+.sidebar__more-contents-container {
+  margin-top: 32px;
+  display: flex;
+  gap: 16px;
+}
+
+.sidebar__more-contents-btn {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.875rem;
+  border: 1px #dedede solid;
+  padding: 8px 18px;
+}
+
+/* article-page */
+
+/* main */
+
+.main__content {
+  display: flex;
+  flex-direction: column;
+  gap: 160px;
+}
+
+.article {
+  max-width: 740px;
+  width: 100%;
+}
+
+.author-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.author-box__info {
+  display: flex;
+  gap: 16px;
+}
+
+.author-box__info__alt {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.author-box__info__alt--date {
+  font-size: .875rem;
+  color: var(--muted);
+}
+
+.author-box__social {
+  display: flex;
+  gap: 15px;
+  align-self: center;
+}
+
+.title-box {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title-box--title {
+  font-size: 2rem;
+  font-weight: var(--fw-medium);
+}
+
+.content-box {
+  width: 100%;
+  font-size: 1.125rem;
+  color: var(--muted);
+}
+
+.article-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+}
+
+.content-img-subtitle-box {
+  text-align: center;
+}
+
+.content-img-subtitle-box__subtitle {
+  margin-top: 15px;
+  font-weight: 400;
+  font-size: .875rem;
+  font-style: italic;
+}
+
+.content-img-wrapper {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.content-img {
+  width: 100%;
+  height: auto;
+  min-width: 0;
+}
+
+.content-box {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.content-h3 {
+  font-size: 1.25rem;
+  font-weight: var(--fw-medium);
+  margin-bottom: 14px;
+  color: var(--main);
+}
+
+.tag-box__tag {
+  margin-top: 16px;
+  padding: 8px 18px;
+  border: 1px solid #dedede;
+  display: inline-block;
+}
+
+/* sidebar */
+
+.sidebar__new-article-item {
+  border: none;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sidebar__new-article-item--title {
+  font-weight: var(--fw-normal);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.sidebar__author {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.sidebar__author__container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.sidebar__author__item {
+  display: flex;
+  gap: 16px;
+}
+
+.sidebar__author__photo {
+  border-radius: 200px;
+}
+
+.sidebar__author__name {
+  margin-top: 6px;
+}
+
+/* responsive */
+
+@media screen and (max-width: 1201px) {
+  .main__container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    flex-direction: row;
+  }
+}
+
+@media screen and (max-width: 936px) {
+  .article-list__col__unit__item {
+    width: 100%;
+  }
+
+  .article-list__col__unit__item img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero__container__text-heading {
+    font-size: 3rem;
+    margin-bottom: 16px;
+  }
+
+  .main__container {
+    padding: 30px 20px;
+  }
+
+  .article-list__col__unit {
+    gap: 16px;
+  }
+
+  .sidebar {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 534px) {
+  html {
+    font-size: 75%;
+  }
+
+  .header__nav__btn--sign-up {
+    margin-left: 16px;
+  }
+
+  .footer__nav-item__banner {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .hero__container__text {
+    top: 10%;
+  }
+
+  .hero__container__text-heading {
+    font-size: 2rem;
+    margin-bottom: 8px;
+  }
+
+  .hero__container__text-sentence {
+    font-size: 0.8rem;
+  }
+}
