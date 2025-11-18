@@ -54,37 +54,34 @@
 .article-list__col {
   margin-top: 32px;
   display: flex;
-  flex-direction: column;
-  gap: 64px;
+  flex-wrap: wrap;
+  gap: 64px 20px;
   width: 100%;
+  max-width: 740px;
   min-width: 0;
 }
 
-.article-list__col__unit {
-  display: flex;
-  gap: 25px;
-  min-width: 0;
-  width: 100%;
-}
-
-.article-list__col__unit__item {
+.article-list__col__item {
   width: 360px;
   min-width: 0;
+}
+
+.article-list__col__item__link {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.article-list__col__unit__item__desc, .title-box--genre {
+.article-list__col__item__desc, .title-box--genre {
   font-size: 0.875rem;
 }
 
-.article-list__col__unit__item__desc-genre, .title-box--genre {
+.article-list__col__item__desc-genre, .title-box--genre {
   color: var(--primary);
   font-weight: var(--fw-medium);
 }
 
-.article-list__col__unit__item__desc-hr {
+.article-list__col__item__desc-hr {
   rotate: 90deg;
   width: 0.964375rem;
   display: inline-block;
@@ -92,21 +89,22 @@
   border-color: #dedede;
 }
 
-.article-list__col__unit__item__desc-date {
+.article-list__col__item__desc-date {
   color: var(--muted);
 }
 
-.article-list__col__unit__item-title {
+.article-list__col__item-title {
   font-weight: var(--fw-normal);
   font-size: 1.25rem;
 }
 
-.article-list__col__unit__item-text {
+.article-list__col__item-text {
   color: var(--muted);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   max-width: 100%;
+  max-height: 1.5rem;
 }
 
 .sidebar {
@@ -156,166 +154,9 @@
   padding: 8px 18px;
 }
 
-/* article-page */
-
-/* main */
-
-.main__content {
-  display: flex;
-  flex-direction: column;
-  gap: 160px;
-}
-
-.article {
-  max-width: 740px;
-  width: 100%;
-}
-
-.author-box {
-  display: flex;
-  justify-content: space-between;
-}
-
-.author-box__info {
-  display: flex;
-  gap: 16px;
-}
-
-.author-box__info__alt {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-.author-box__info__alt--date {
-  font-size: .875rem;
-  color: var(--muted);
-}
-
-.author-box__social {
-  display: flex;
-  gap: 15px;
-  align-self: center;
-}
-
-.title-box {
-  margin-top: 80px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.title-box--title {
-  font-size: 2rem;
-  font-weight: var(--fw-medium);
-}
-
-.content-box {
-  width: 100%;
-  font-size: 1.125rem;
-  color: var(--muted);
-}
-
-.article-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  width: 100%;
-}
-
-.content-img-subtitle-box {
-  text-align: center;
-}
-
-.content-img-subtitle-box__subtitle {
-  margin-top: 15px;
-  font-weight: 400;
-  font-size: .875rem;
-  font-style: italic;
-}
-
-.content-img-wrapper {
-  display: flex;
-  gap: 20px;
-  width: 100%;
-  align-items: flex-start;
-}
-
-.content-img {
-  width: 100%;
-  height: auto;
-  min-width: 0;
-}
-
-.content-box {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  align-items: flex-start;
-}
-
-.content-h3 {
-  font-size: 1.25rem;
-  font-weight: var(--fw-medium);
-  margin-bottom: 14px;
-  color: var(--main);
-}
-
-.tag-box__tag {
-  margin-top: 16px;
-  padding: 8px 18px;
-  border: 1px solid #dedede;
-  display: inline-block;
-}
-
-/* sidebar */
-
-.sidebar__new-article-item {
-  border: none;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.sidebar__new-article-item--title {
-  font-weight: var(--fw-normal);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-}
-
-.sidebar__author {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
-.sidebar__author__container {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-.sidebar__author__item {
-  display: flex;
-  gap: 16px;
-}
-
-.sidebar__author__photo {
-  border-radius: 200px;
-}
-
-.sidebar__author__name {
-  margin-top: 6px;
-}
-
 /* responsive */
 
-@media screen and (max-width: 1201px) {
+@media screen and (max-width: 1292px) {
   .main__container {
     flex-direction: column;
   }
@@ -326,11 +167,11 @@
 }
 
 @media screen and (max-width: 936px) {
-  .article-list__col__unit__item {
+  .article-list__col__item {
     width: 100%;
   }
 
-  .article-list__col__unit__item img {
+  .article-list__col__item img {
     width: 100%;
     height: auto;
   }
@@ -344,10 +185,6 @@
 
   .main__container {
     padding: 30px 20px;
-  }
-
-  .article-list__col__unit {
-    gap: 16px;
   }
 
   .sidebar {
