@@ -5,7 +5,8 @@ const mysql = require('mysql2/promise');
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  database: 'blog_app'
+  database: 'blog_app',
+  namedPlaceholders: true
 });
 
 module.exports = pool;
