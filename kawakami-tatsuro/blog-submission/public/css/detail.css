@@ -2,6 +2,16 @@
 
 /* main */
 
+.main__container {
+  padding: 120px 96px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1366px;
+  min-width: 0;
+  display: flex;
+  gap: 96px;
+}
+
 .main__content {
   display: flex;
   flex-direction: column;
@@ -21,6 +31,10 @@
 .author-box__info {
   display: flex;
   gap: 16px;
+}
+
+.author-box__info__img {
+  border-radius: 200px;
 }
 
 .author-box__info__alt {
@@ -45,6 +59,12 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.title__box--genre {
+  font-size: 0.875rem;
+  color: var(--primary);
+  font-weight: var(--fw-medium);
 }
 
 .title__box--title {
@@ -103,8 +123,11 @@
   color: var(--main);
 }
 
+.tag-box {
+  margin-top: 64px;
+}
+
 .tag-box__tag {
-  margin-top: 16px;
   padding: 8px 18px;
   border: 1px solid #dedede;
   display: inline-block;
@@ -113,15 +136,15 @@
 
 /* sidebar */
 
-.sidebar__new-article-item {
-  border: none;
+.article-list__col__item {
+  width: 265px;
   height: auto;
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.sidebar__new-article-item--title {
+.article-list__col__item-title {
   font-weight: var(--fw-normal);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -150,8 +173,11 @@
 
 .sidebar__author__photo {
   border-radius: 200px;
+  width: 60px;
+  height: 60px;
 }
 
 .sidebar__author__name {
   margin-top: 6px;
 }
+
