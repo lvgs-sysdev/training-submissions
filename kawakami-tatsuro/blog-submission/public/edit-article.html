@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DAYDAYTRAVEL</title>
+  <link rel="stylesheet" href="./css/common/reset.min.css">
+  <link rel="stylesheet" href="./css/common/common.css">
+  <link rel="stylesheet" href="./css/common/header.css">
+  <link rel="stylesheet" href="./css/common/footer.css">
+  <link rel="stylesheet" href="./css/edit-article.css">
+</head>
+<body>
+  <header class="header"></header>
+    <main>
+      <div class="main__container">
+        <h2 class="heading">Article Editing</h2>
+          <form id="js-article-edit-form" class="article-edit-form">
+            <div class="article-input-area title">
+              <label class="label" for="js-article-title">Title</label>
+              <input id="js-article-title" type="text" required>
+            </div>
+            <div class="article-input-area genre">
+              <labe class="label" for="js-article-genre">Genre</labe>
+              <input id="js-article-genre" type="text" required>
+            </div>
+            <div class="article-input-area content">
+              <label class="label" for="js-article-content">Content</label>
+              <textarea id="js-article-content" rows="20" required></textarea>
+            </div>
+            <div class="btn-container">
+              <a href="javascript:history.back();" class="btn btn--cancel">Cancel</a>
+              <input id="js-update-article-btn" class="btn btn--update" type="submit" value="Update">
+            </div>
+          </form>
+      </div>
+    </main>
+  <footer class="footer"></footer>
+  <footer class="footer"></footer>
+  <script src="./js/common.js"></script>
+  <script type="module" src="./js/utils.js"></script>
+  <script type="module" src="./js/edit-article.js"></script>
+</body>
+</html>

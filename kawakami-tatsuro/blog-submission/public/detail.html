@@ -18,7 +18,9 @@
           <article class="article">
             <div class="author-box">
               <div class="author-box__info">
-                <img id="js-author-img" class="author-box__info__img" src="" alt="プロフィール画像" width="60" height="60">
+                <a id="js-author-link" href="">
+                  <img id="js-author-img" class="author-box__info__img" src="" alt="プロフィール画像" width="60" height="60">
+                </a>
                 <div class="author-box__info__alt">
                   <p id="js-author-name"></p>
                   <p id="js-updated-date" class="author-box__info__alt--date"></p>
@@ -32,6 +34,9 @@
               </div>
             </div>
             <div class="article-wrapper">
+              <div class="edit-button-container">
+                <a id="js-edit-button" class="edit-button" href="">Edit</a>
+              </div>
               <div class="title__box">
                 <span id="js-article-genre" class="title__box--genre"></span>
                 <h2 id="js-article-title" class="title__box--title"></h2>
@@ -45,7 +50,7 @@
             </div>
           </article>
           <div class="article-list">
-            <h3 class="top__heading">関連記事（同一タグ）</h3>
+            <h3 class="heading">関連記事（同一タグ）</h3>
             <div id="js-related-article-list-box" class="article-list__col">
             </div>
           </div>
