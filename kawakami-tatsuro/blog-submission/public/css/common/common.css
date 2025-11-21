@@ -20,6 +20,23 @@ body {
   color: var(--main);
 }
 
+.heading {
+  font-weight: var(--fw-semi-bold);
+  font-size: 1.375rem;
+}
+
+/* main */
+
+.main__container {
+  padding: 120px 96px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1366px;
+  min-width: 0;
+  display: flex;
+  gap: 96px;
+}
+
 /* article-list */
 
 .article-list__col {
@@ -78,6 +95,26 @@ body {
   color: var(--muted);
 }
 
+.author-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.author-box__info {
+  display: flex;
+  gap: 16px;
+}
+
+.author-box__info__img {
+  border-radius: 200px;
+}
+
+.author-box__social {
+  display: flex;
+  gap: 15px;
+  align-self: center;
+}
+
 /* sidebar */
 
 .sidebar {
@@ -98,6 +135,27 @@ body {
   gap: 25px;
 }
 
+/* btn */
+
+.btn-container {
+  display: flex;
+  align-self: flex-end;
+  gap: 32px;
+}
+
+.btn {
+  padding: 14px 16px !important;
+}
+
+.btn--cancel {
+  background-color: #d9d9d9;
+}
+
+.btn--update {
+  background-color: var(--primary) !important;
+  color: var(--white);
+  cursor: pointer;
+}
 
 /* media queries */
 

@@ -1,0 +1,49 @@
+@charset "utf-8";
+
+/* main */
+
+.main__container {
+  flex-direction: column;
+}
+
+.author-box {
+  max-width: 1120px;
+}
+
+.author-box__info__img {
+  height: auto;
+  max-width: 120px;
+}
+
+.author-box__info__name {
+  align-self: center;
+  margin-left: 32px;
+  font-size: 2rem;
+}
+
+/* article-list */
+
+.article-list__col {
+  max-width: none;
+}
+
+/* responsive */
+
+@media screen and (max-width: 534px) {
+  .author-box {
+    flex-direction: column;
+    gap: 32px;
+  }
+  
+  .author-box__info__img {
+    max-width: 80px;
+  }
+
+  .author-box__info__name {
+    margin-left: 16px;
+  }
+
+  .author-box__social {
+    align-self: flex-end;
+  }
+}

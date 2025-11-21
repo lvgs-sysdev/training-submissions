@@ -2,16 +2,6 @@
 
 /* main */
 
-.main__container {
-  padding: 120px 96px;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 1366px;
-  min-width: 0;
-  display: flex;
-  gap: 96px;
-}
-
 .main__content {
   display: flex;
   flex-direction: column;
@@ -54,8 +44,20 @@
   align-self: center;
 }
 
+.edit-button-container {
+  text-align: right;
+  margin-top: 32px;
+}
+
+.edit-button {
+  padding: 14px 32px;
+  background-color: #00dbb3;
+  color: var(--white);
+  font-weight: var(--fw-medium);
+  display: none;
+}
+
 .title__box {
-  margin-top: 80px;
   display: flex;
   flex-direction: column;
   gap: 8px;

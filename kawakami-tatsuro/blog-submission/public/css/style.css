@@ -36,17 +36,7 @@
 
 /* main */
 
-.main__container {
-  padding: 120px 96px;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 1366px;
-  min-width: 0;
-  display: flex;
-  gap: 96px;
-}
-
-.top__heading {
+.heading {
   font-weight: var(--fw-semi-bold);
   font-size: 1.375rem;
 }
