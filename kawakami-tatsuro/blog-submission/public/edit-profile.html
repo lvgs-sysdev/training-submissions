@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DAYDAYTRAVEL</title>
+  <link rel="stylesheet" href="./css/common/reset.min.css">
+  <link rel="stylesheet" href="./css/common/common.css">
+  <link rel="stylesheet" href="./css/common/header.css">
+  <link rel="stylesheet" href="./css/common/footer.css">
+  <link rel="stylesheet" href="./css/edit-profile.css">
+</head>
+<body>
+  <header class="header"></header>
+    <main>
+      <div class="main__container">
+        <h2 class="heading">My Profile Editing</h2>
+          <form id="js-profile-edit-form" class="profile-edit-form">
+            <div class="profile-input-area user-id">
+              <label class="label" for="js-profile-id">User ID</label>
+              <input id="js-profile-id" type="text" required>
+            </div>
+            <div class="profile-input-area user-name">
+              <label class="label" for="js-profile-name">User Name</label>
+              <input id="js-profile-name" type="text" required>
+            </div>
+            <div class="btn-container">
+              <a href="javascript:history.back();" class="btn btn--cancel">Cancel</a>
+              <input id="js-update-article-btn" class="btn btn--update" type="submit" value="Update">
+            </div>
+          </form>
+      </div>
+    </main>
+  <footer class="footer"></footer>
+  <footer class="footer"></footer>
+  <script src="./js/common.js"></script>
+  <script type="module" src="./js/utils.js"></script>
+  <script type="module" src="./js/edit-profile.js"></script>
+</body>
+</html>

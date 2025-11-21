@@ -13,6 +13,27 @@ export const fetchData = async (uri) => {
   }
 };
 
+export const updateData = async (uri, data, redirectUrl) => {
+  try {
+    const response = await fetch(uri, {
+      method: 'PUT',
+      headers: {
+        'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    if (response.ok) {
+      window.location.href = redirectUrl;
+    } else {
+      const errorData = await response.json();
+      throw new Error(errorData.message);
+    }
+  } catch(error) {
+    alert('更新に失敗しました。お手数をおかけいたしますが再度行ってください。');
+    console.log(error);
+  }
+};
+
 // 引数で受け取った日付を01 Jan 2025のような形式にフォーマットする
 export const formatDate = (date) => {
   const dateObj = new Date(date);
@@ -98,7 +119,7 @@ export const createArticleListElement = (article) => {
 // articles全件をループ処理し、記事要素をDOMに追加する
 export const createArticleList = (articles, id) => {
   const articleList = document.getElementById(id);
-
+  
   articles.forEach((article) => {
     const itemBox = createArticleListElement(article);
     articleList.appendChild(itemBox);
