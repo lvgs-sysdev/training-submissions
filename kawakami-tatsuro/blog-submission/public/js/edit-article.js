@@ -51,6 +51,13 @@ articleEditForm.addEventListener('submit', async (event) => {
 
   const id = getParamsFromCurrentUrl("id");
   const articleData = getArticleEditFormData();
-  
- updateData(`article/${id}`, articleData, `detail.html?id=${id}`);
+
+  try {
+    await updateData(`article/${id}`, articleData);
+
+    alert('記事の編集が完了しました。');
+    window.location.href = `detail.html?id=${id}`;
+  } catch (error) {
+    alert('記事の更新に失敗しました。恐れ入りますが、再度行ってください。');
+  }
 })

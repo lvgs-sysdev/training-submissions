@@ -8,25 +8,29 @@
   <link rel="stylesheet" href="./css/common/common.css">
   <link rel="stylesheet" href="./css/common/header.css">
   <link rel="stylesheet" href="./css/common/footer.css">
-  <link rel="stylesheet" href="./css/edit-profile.css">
+  <link rel="stylesheet" href="./css/register.css">
 </head>
 <body>
   <header class="header"></header>
     <main>
       <div class="main__container">
-        <h2 class="heading">My Profile Editing</h2>
-          <form id="js-profile-edit-form" class="information-input-form">
+        <h2 class="heading">Sign-up</h2>
+          <form id="js-register-form" class="information-input-form">
             <div class="information-input-area">
-              <label class="label" for="js-profile-id">User ID</label>
-              <input id="js-profile-id" type="text" required>
+              <label class="label" for="js-register-id">User ID</label>
+              <input id="js-register-id" type="text" required>
             </div>
             <div class="information-input-area">
-              <label class="label" for="js-profile-name">User Name</label>
-              <input id="js-profile-name" type="text" required>
+              <label class="label" for="js-register-password">Password</label>
+              <input id="js-register-password" type="password" minlength="8" required>
+              <span class="annotation">* at least 8 characters long</span>
+            </div>
+            <div class="information-input-area">
+              <label class="label" for="js-register-name">User Name</label>
+              <input id="js-register-name" type="text" required>
             </div>
             <div class="btn-container">
-              <a href="javascript:history.back();" class="btn btn--muted">Cancel</a>
-              <input class="btn btn--primary" type="submit" value="Update">
+              <input class="btn btn--primary" type="submit" value="Confirm">
             </div>
           </form>
       </div>
@@ -35,6 +39,6 @@
   <footer class="footer"></footer>
   <script src="./js/common.js"></script>
   <script type="module" src="./js/utils.js"></script>
-  <script type="module" src="./js/edit-profile.js"></script>
+  <script type="module" src="./js/register.js"></script>
 </body>
 </html>

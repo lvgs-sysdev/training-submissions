@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-// 引数のURIにHTTPリクエストをして受け取ったレスポンスをJSON形式でreturnする
+// 引数のURIにGETリクエストをして受け取ったレスポンスをJSON形式でreturnする
 export const fetchData = async (uri) => {
   try {
     const response = await fetch(uri);
@@ -13,24 +13,49 @@ export const fetchData = async (uri) => {
   }
 };
 
-export const updateData = async (uri, data, redirectUrl) => {
+// 引数のURIにPUTリクエストをしてデータを更新する
+export const updateData = async (uri, data) => {
   try {
     const response = await fetch(uri, {
-      method: 'PUT',
+      method: "PUT",
       headers: {
-        'Content-Type' : 'application/json'
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(data)
-    })
+      body: JSON.stringify(data),
+    });
+
+    const responseData = response.json();
+
     if (response.ok) {
-      window.location.href = redirectUrl;
+      return responseData;
     } else {
-      const errorData = await response.json();
-      throw new Error(errorData.message);
+      throw new Error(responseData.message || "エラーが発生しました。再度行ってください。");
     }
-  } catch(error) {
-    alert('更新に失敗しました。お手数をおかけいたしますが再度行ってください。');
-    console.log(error);
+  } catch (error) {
+    throw new Error(errorData.message || "エラーが発生しました。再度行ってください。");
+  }
+};
+
+// 引数で受け取ったURIにPOSTリクエストをする
+export const postData = async (uri, data) => {
+  try {
+    const response = await fetch(uri, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const responseData = await response.json();
+
+    if (response.ok) {
+      return responseData;
+    } else {
+      throw new Error(responseData.message || "エラーが発生しました。再度行ってください。");
+    }
+  } catch (error) {
+    throw new Error(error.message || "エラーが発生しました。再度行ってください。");
   }
 };
 
@@ -38,22 +63,22 @@ export const updateData = async (uri, data, redirectUrl) => {
 export const formatDate = (date) => {
   const dateObj = new Date(date);
   const options = {
-      timeZone: "Asia/Tokyo",
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-    };
-    
+    timeZone: "Asia/Tokyo",
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  };
+
   const jstDate = new Intl.DateTimeFormat("en-GB", options).format(dateObj);
 
   return jstDate;
-}
+};
 
 // 現在表示中のページのURLから引数に一致するパラメーターの値を取得する
 export const getParamsFromCurrentUrl = (paramName) => {
   const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(paramName)
-}
+  return urlParams.get(paramName);
+};
 
 // articleのジャンル、日付を格納したDOM要素を作成する
 export const createMetaBox = (article) => {
@@ -75,7 +100,7 @@ export const createMetaBox = (article) => {
   metaBox.appendChild(date);
 
   return metaBox;
-}
+};
 
 // articleのサムネイル画像、タイトル、本文を含んだDOM要素を作成し、オブジェクトとして返却する
 export const createArticleMainData = (article) => {
@@ -87,25 +112,25 @@ export const createArticleMainData = (article) => {
   img.setAttribute("alt", "サムネイル画像");
   title.classList.add("article-list__col__item-title");
   content.classList.add("article-list__col__item-text");
-  
+
   title.textContent = article.article_title;
   content.innerHTML = article.content;
-  
-  return {img, title, content};
-}
+
+  return { img, title, content };
+};
 
 // 個々のarticleのボックスのDOM要素を作成する
 export const createArticleListElement = (article) => {
   const itemBox = document.createElement("div");
   const articleDetailLink = document.createElement("a");
-  
-  const {img, title, content} = createArticleMainData(article);
+
+  const { img, title, content } = createArticleMainData(article);
   const metaBox = createMetaBox(article);
 
   itemBox.classList.add("article-list__col__item");
   articleDetailLink.classList.add("article-list__col__item__link");
   articleDetailLink.setAttribute("href", `detail.html?id=${article.id}`);
-  
+
   articleDetailLink.appendChild(img);
   articleDetailLink.appendChild(metaBox);
   articleDetailLink.appendChild(title);
@@ -114,14 +139,32 @@ export const createArticleListElement = (article) => {
   itemBox.appendChild(articleDetailLink);
 
   return itemBox;
-}
+};
 
 // articles全件をループ処理し、記事要素をDOMに追加する
 export const createArticleList = (articles, id) => {
   const articleList = document.getElementById(id);
-  
+
   articles.forEach((article) => {
     const itemBox = createArticleListElement(article);
     articleList.appendChild(itemBox);
   });
+};
+
+export const deleteSpaceFromString = (str) => {
+  const trimmedStr = str.trim().replace(/\s+/g, "");
+  return trimmedStr;
+};
+
+export const hasSpace = (str) => {
+  const trimmedStr = deleteSpaceFromString(str);
+  return str.length !== trimmedStr.length;
+};
+
+export const validateInputs = (values) => {
+  const isInvalid = values.some((value) => hasSpace(value));
+
+  if (isInvalid) return false;
+
+  return true;
 };
