@@ -15,16 +15,22 @@
   <section>
     <main>
       <div class="main__container">
-        <div class="author-box">
-          <div class="author-box__info">
-            <img id="js-user-img" class="author-box__info__img" src="./images/profile/author1.png" alt="" width="120" height="120">
-            <p id="js-user-name" class="author-box__info__name">Test User1</p>
+        <div>
+          <div class="author-box">
+            <div class="author-box__info">
+              <img id="js-user-img" class="author-box__info__img" src="./images/profile/author1.png" alt="" width="120" height="120">
+              <p id="js-user-name" class="author-box__info__name">Test User1</p>
+            </div>
+            <div class="author-box__social">
+              <a href="#"><img src="../images/icons/bxl-twitter.svg" alt="Twitter" width="24" height="24"></a>
+              <a href="#"><img src="../images/icons/bxl-instagram-alt.svg" alt="Instagram" width="24" height="24"></a>
+              <a href="#"><img src="../images/icons/bxl-linkedin-square.svg" alt="Linkedin" width="24" height="24"></a>
+              <a href="#"><img src="../images/icons/bx-link-alt.svg" alt="Link" width="24" height="24"></a>
+            </div>
+          
           </div>
-          <div class="author-box__social">
-            <a href="#"><img src="../images/icons/bxl-twitter.svg" alt="Twitter" width="24" height="24"></a>
-            <a href="#"><img src="../images/icons/bxl-instagram-alt.svg" alt="Instagram" width="24" height="24"></a>
-            <a href="#"><img src="../images/icons/bxl-linkedin-square.svg" alt="Linkedin" width="24" height="24"></a>
-            <a href="#"><img src="../images/icons/bx-link-alt.svg" alt="Link" width="24" height="24"></a>
+          <div class="edit-button-container">
+            <a id="js-edit-button" class="btn--edit" href="">Edit</a>
           </div>
         </div>
         <div class="article-list">
@@ -36,7 +42,7 @@
     </main>
   </section>
   <footer class="footer"></footer>
-  <script src="./js/common.js"></script>
+  <script type="module" src="./js/common.js"></script>
   <script type="module" src="./js/utils.js"></script>
   <script type="module" src="./js/user.js"></script>
 </body>

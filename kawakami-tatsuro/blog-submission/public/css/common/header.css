@@ -22,7 +22,12 @@
   align-self: center;
 }
 
-.header__nav__btn--sign-up {
+.header__nav__btn--login, .header__nav__btn--logout {
+  cursor: pointer;
+}
+
+
+.header__nav__btn--sign-up, .header__nav__btn--my-page {
   background-color: var(--primary);
   display: inline-block;
   padding: 14px 16px;
