@@ -35,8 +35,8 @@ const getProfileEditFormData = () => {
   }
 
   const profileData = {
-    userId: id,
-    userName: name,
+    user_id: id,
+    user_name: name,
   };
 
   return profileData;
@@ -67,6 +67,14 @@ profileEditForm.addEventListener("submit", async (event) => {
     alert("ユーザー情報の更新が完了しました。");
     window.location.href = `user.html?id=${id}`;
   } catch (error) {
-    alert("ユーザー情報の更新に失敗しました。恐れ入りますが、再度行ってください。");
+    if (error.status === 401) {
+      alert('セッションが切れました。再度ログインしてください。');
+    } else if (error.status === 403) {
+      alert('更新を行う権限がありません。')
+    } else if (error.status === 404) {
+      alert('存在しないユーザーです。');
+    } else {
+      alert('予期せぬエラーが発生しました。恐れ入りますが、時間をおいて再度行ってください。');
+    }
   }
 });

@@ -5,12 +5,12 @@ import {
   formatDate,
   getParamsFromCurrentUrl,
   createArticleList,
+  getCurrentUser,
+  displayEditButton
 } from "./utils.js";
 
 const NUMBER_OF_DISPLAYED_NEW_ARTICLES = 3; // 表示する新着記事の数
 const NUMBER_OF_DISPLAYED_USERS = 5; // 表示する投稿者の数
-
-const CURRENT_USER_ID = 'test3'; // 暫定的に定義
 
 // 記事詳細を表示する箇所のDOM要素を取得する
 const getArticleDetailElements = () => {
@@ -138,16 +138,7 @@ const displayUsersList = (users) => {
     const userElement  = createUserElement(user);
     container.appendChild(userElement);
   })
-};
-
-// 閲覧中の記事の投稿者のIDとログイン中のユーザーのIDが一致した場合、Editボタンを表示する
-const displayEditButton = (userId, articleId) => {
-  if (userId !== CURRENT_USER_ID) return;
- 
-  const editButton = document.getElementById('js-edit-button');
-  editButton.style.display = 'inline-block';
-  editButton.setAttribute('href', `edit-article.html?id=${articleId}`);
-};
+};  
 
 // DOMの読み込み後、URLのパラメーターから該当する記事のデータを取得し、DOMに表示する
 document.addEventListener("DOMContentLoaded", async () => {
@@ -155,10 +146,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   const article = await fetchData(`/article/${id}`);
   const articles = await fetchData("/articles");
   const users = await fetchData("/users");
+  const currentUser = await getCurrentUser()
 
   displayArticleDetail(article);
   displayNewArticles(articles, article.id);
   displayRelatedArticles(articles, article);
   displayUsersList(users);
-  displayEditButton(article.user_id, article.id);
+  displayEditButton(currentUser.userId, article.user_id, `edit-article.html?id=${article.id}`);
 });

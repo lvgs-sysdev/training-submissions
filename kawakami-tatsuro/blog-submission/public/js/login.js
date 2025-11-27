@@ -27,6 +27,12 @@ loginForm.addEventListener('submit', async (event) => {
     await postData('/login', accountData);
     window.location.href = '/';
   } catch (error) {
-    alert(error.message);
+    if (error.status === 401) {
+      alert('User IDまたはPasswordが間違っています。再度入力してください。');
+    } else if (error.status === 500) {
+      alert('サーバーでエラーが発生しました。恐れ入りますが、しばらく経ってから再度行ってください。');
+    } else {
+      alert(error.message || '予期せぬエラーが発生しました。');
+    }
   }
 })

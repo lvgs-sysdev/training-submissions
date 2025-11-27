@@ -58,6 +58,14 @@ articleEditForm.addEventListener('submit', async (event) => {
     alert('記事の編集が完了しました。');
     window.location.href = `detail.html?id=${id}`;
   } catch (error) {
-    alert('記事の更新に失敗しました。恐れ入りますが、再度行ってください。');
+    if (error.status === 401) {
+      alert('セッションが切れました。再度ログインしてください。');
+    } else if (error.status === 403) {
+      alert('更新を行う権限がありません。')
+    } else if (error.status === 404) {
+      alert('存在しない記事です。');
+    } else {
+      alert('予期せぬエラーが発生しました。恐れ入りますが、時間をおいて再度行ってください。');
+    }
   }
 })

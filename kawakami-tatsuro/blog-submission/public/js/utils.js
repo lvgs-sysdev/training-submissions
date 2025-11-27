@@ -3,13 +3,18 @@
 // 引数のURIにGETリクエストをして受け取ったレスポンスをJSON形式でreturnする
 export const fetchData = async (uri) => {
   try {
-    const response = await fetch(uri);
+    const response = await fetch(uri, {
+      method: "GET",
+      credentials: "include"
+    });
+    
     if (!response.ok) throw new Error();
 
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
+    throw error;
   }
 };
 
@@ -18,6 +23,7 @@ export const updateData = async (uri, data) => {
   try {
     const response = await fetch(uri, {
       method: "PUT",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -29,10 +35,13 @@ export const updateData = async (uri, data) => {
     if (response.ok) {
       return responseData;
     } else {
-      throw new Error(responseData.message || "エラーが発生しました。再度行ってください。");
+      const error = new Error(responseData.message || '更新に失敗しました。');
+      error.status = response.status;
+
+      throw error;
     }
   } catch (error) {
-    throw new Error(errorData.message || "エラーが発生しました。再度行ってください。");
+    throw error;
   }
 };
 
@@ -41,6 +50,7 @@ export const postData = async (uri, data) => {
   try {
     const response = await fetch(uri, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -52,12 +62,42 @@ export const postData = async (uri, data) => {
     if (response.ok) {
       return responseData;
     } else {
-      throw new Error(responseData.message || "エラーが発生しました。再度行ってください。");
+      const error = new Error(responseData.message || "エラーが発生しました。");
+      error.status = response.status
+      throw error;
     }
   } catch (error) {
-    throw new Error(error.message || "エラーが発生しました。再度行ってください。");
+    throw error;
   }
 };
+
+// 現在ログイン中のユーザーの情報を取得する
+export const getCurrentUser = async () => {
+  try {
+    const data = await fetchData('/auth/me');
+    return data;
+  } catch (error) {
+    return null;
+  }
+};
+
+export const logout = async () => {
+  try {
+    const response = await fetch("/logout",{
+      method: "POST",
+      credentials: "include"
+    });
+
+    if (response.ok) {
+      alert('ログアウトしました。');
+      window.location.href = '/login.html';
+    } else {
+      throw new Error();
+    }
+  } catch (error) {
+    alert('ログアウトに失敗しました。恐れ入りますが、再度行ってください。');
+  }
+}
 
 // 引数で受け取った日付を01 Jan 2025のような形式にフォーマットする
 export const formatDate = (date) => {
@@ -162,9 +202,18 @@ export const hasSpace = (str) => {
 };
 
 export const validateInputs = (values) => {
-  const isInvalid = values.some((value) => hasSpace(value));
+  const inputs = Array.isArray(values) ? values : [values];
+  const isInvalid = inputs.some((value) => hasSpace(value));
 
   if (isInvalid) return false;
 
   return true;
+};
+
+export const displayEditButton = (currentUserId, targetUserId, redirectPath) => {
+  if (currentUserId !== targetUserId) return;
+ 
+  const editButton = document.getElementById('js-edit-button');
+  editButton.style.display = 'inline-block';
+  editButton.setAttribute('href', redirectPath);
 };

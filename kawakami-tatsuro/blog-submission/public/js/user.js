@@ -1,8 +1,6 @@
 'use strict';
 
-import { createArticleList, fetchData, getParamsFromCurrentUrl } from "./utils.js";
-
-const CURRENT_USER_ID = 'test3';
+import { createArticleList, displayEditButton, fetchData, getCurrentUser, getParamsFromCurrentUrl } from "./utils.js";
 
 // ユーザー情報を表示するDOM要素を取得する
 const getUserInfoElements = () => {
@@ -27,7 +25,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const id = getParamsFromCurrentUrl('id');
   const user = await fetchData(`user/${id}`)
   const articlesOfTheUser = await fetchData(`articles/${user.user_id}`)
+  const currentUser = await getCurrentUser();
 
   displayUserInfo(user);
   createArticleList(articlesOfTheUser, 'js-user-article-list-box');
+  displayEditButton(currentUser.userId, user.user_id, `/edit-profile.html?id=${user.id}`)
 });
