@@ -63,7 +63,6 @@ const displayNewArticles = (articles, id) => {
   const sortedArticles = articles
     .filter((article) => article.id !== id)
     .slice(0, NUMBER_OF_DISPLAYED_NEW_ARTICLES);
-  console.log(sortedArticles);
 
   createArticleList(sortedArticles, "js-new-article-list-box");
 
