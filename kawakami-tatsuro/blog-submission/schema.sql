@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS articles (
   user_id VARCHAR(255) NOT NULL,
   article_title VARCHAR(255) NOT NULL,
   content TEXT NOT NULL,
-  genre VARCHAR(20),
+  genre VARCHAR(20) NOT NULL,
   thumbnail_path VARCHAR(255),
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(user_id)
