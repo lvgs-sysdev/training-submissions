@@ -41,24 +41,6 @@ fastify.addHook('onRequest', async (request, reply) => {
     reply.clearCookie('session_id', { path: '/' });
     return reply.redirect('/login.html')
   };
-
-  const params = new URLSearchParams(query);
-  const targetId = params.get('id');
-
-  if (currentPath === '/edit-article.html') {
-    const targetArticleAuthorId = await getArticleAuthorId(targetId);
-
-    if (String(targetArticleAuthorId) !== String(user.user_id)) {
-      return reply.redirect('/');
-    }
-  }
-
-  if (currentPath === '/edit-profile.html') {
-
-    if (String(targetId) !== String(user.id)) {
-      return reply.redirect('/');
-    }
-  }
 });
 
 // サーバー起動

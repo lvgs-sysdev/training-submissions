@@ -1,6 +1,6 @@
 'use strict';
 
-import { fetchData, getParamsFromCurrentUrl, updateData } from "./utils.js";
+import { fetchData, getCurrentUser, getParamsFromCurrentUrl, updateData } from "./utils.js";
 
 const articleEditForm = document.getElementById('js-article-edit-form');
 
@@ -41,6 +41,10 @@ const getArticleEditFormData = () => {
 document.addEventListener('DOMContentLoaded', async () => {
   const id = getParamsFromCurrentUrl("id");
   const article = await fetchData(`/article/${id}`);
+  const currentUser = await getCurrentUser();
+
+  // ログイン中のユーザーのidと記事の著者のidが異なる場合、トップにリダイレクトする
+  if (currentUser.id !== article.user_pk_id) window.location.href = '/';
 
   displayArticleInfo(article);
 })

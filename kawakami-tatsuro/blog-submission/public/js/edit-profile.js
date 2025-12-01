@@ -2,6 +2,7 @@
 
 import {
   fetchData,
+  getCurrentUser,
   getParamsFromCurrentUrl,
   updateData,
   validateInputs,
@@ -46,6 +47,10 @@ const getProfileEditFormData = () => {
 document.addEventListener("DOMContentLoaded", async () => {
   const id = getParamsFromCurrentUrl("id");
   const user = await fetchData(`/user/${id}`);
+  const currentUser = await getCurrentUser();
+
+  // ログイン中のユーザーとプロフィール編集対象のユーザーのidが異なる場合、トップにリダイレクトする
+  if (currentUser.id !== user.id) window.location.href = '/';
 
   displayUserInfo(user);
 });
