@@ -3,13 +3,14 @@ import { RowDataPacket } from "mysql2";
 export interface Post extends RowDataPacket {
   id: number;
   user_id: number;
-  content: string;
-  track_id: string;
-  show_date: string;
-  created_at: string;
   user_name: string;
-  track_title: string;
+  show_date: string;
+  artist_id: string;
   artist_name: string;
+  track_id: string;
+  track_title: string;
+  content: string;
+  created_at: string;
 }
 
 export interface Artist extends RowDataPacket {

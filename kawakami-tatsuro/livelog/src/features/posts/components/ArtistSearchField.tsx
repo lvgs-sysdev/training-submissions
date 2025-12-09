@@ -7,12 +7,13 @@ import { searchArtistsFromInput } from '@/features/posts/service'
 
 
 interface Props {
+  initialData?: string;
   onArtistSelect: (artist: SpotifyArtist) => void;
   onArtistInputChange: () => void;
 }
 
-export const ArtistSearchField = ({ onArtistSelect, onArtistInputChange }: Props) => {
-  const [artistNameInput, setArtistNameInput] = useState<string>('')
+export const ArtistSearchField = ({ initialData, onArtistSelect, onArtistInputChange }: Props) => {
+  const [artistNameInput, setArtistNameInput] = useState<string>(initialData || '')
   const [artistsResult, setArtistsResult] = useState<SpotifyArtist[]>()
 
   const handleInputArtistName = async (input: string) => {

@@ -6,13 +6,14 @@ import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
 
 interface Props {
+  initialData?: string;
   artistName?: string;
   onTrackSelect: (track: SpotifyTrack) => void;
   onTrackInputChange: () => void;
 }
 
-export const TrackSearchField = ({ artistName, onTrackSelect, onTrackInputChange }: Props) => {
-  const [trackTitleInput, setTrackTitleInput] = useState<string>('')
+export const TrackSearchField = ({  initialData, artistName, onTrackSelect, onTrackInputChange }: Props) => {
+  const [trackTitleInput, setTrackTitleInput] = useState<string>(initialData || '')
   const [trackResult, setTrackResult] = useState<SpotifyTrack[]>()
 
   const handleInputTrackTitle = async (input: string) => {
@@ -46,7 +47,8 @@ export const TrackSearchField = ({ artistName, onTrackSelect, onTrackInputChange
             onChange={(event) => handleInputTrackTitle(event.target.value)}
             type="text"
           />
-          {artistName ? (
+          {artistName
+          ? (
             <Button
               type="button"
               className="cursor-pointer"

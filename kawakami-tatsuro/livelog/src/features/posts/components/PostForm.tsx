@@ -9,15 +9,16 @@ import { TrackSearchField } from "./TrackSearchField"
 import { SpotifyPreview } from "@/components/SpotifyPreview"
 import { SpotifyArtist, SpotifyTrack } from "../../../../types"
 import { SelectedArtist, SelectedTrack } from "../types"
+import { formatDateForInput } from "@/lib/utils"
 
 interface Props {
   initialData?: {
-    content: string;
-    track_id: string;
     show_date: string;
     artist_id: string;
     artist_name: string;
+    track_id: string;
     track_title: string;
+    content: string;
   };
   action: (formData: FormData) => Promise<void>;
 }
@@ -63,10 +64,10 @@ export const PostForm = ({ initialData, action }: Props ) => {
     <form action={action}>
       <div className="flex flex-col gap-2 mb-6">
         <Label htmlFor="showDate">Date of the Show</Label>
-        <Input type="date" name="showDate" id="showDate" className="cursor-pointer" defaultValue={initialData?.show_date || ''} required/>
+        <Input type="date" name="showDate" id="showDate" className="cursor-pointer" defaultValue={formatDateForInput(initialData?.show_date) || ''} required/>
       </div>
-      <ArtistSearchField onArtistSelect={onArtistSelect} onArtistInputChange={onArtistInputChange} />
-      <TrackSearchField artistName={selectedArtist?.name || ''} onTrackSelect={onTrackSelect} onTrackInputChange={onTrackInputChange} />
+      <ArtistSearchField initialData={selectedArtist?.name} onArtistSelect={onArtistSelect} onArtistInputChange={onArtistInputChange} />
+      <TrackSearchField initialData={selectedTrack?.name} artistName={selectedArtist?.name || ''} onTrackSelect={onTrackSelect} onTrackInputChange={onTrackInputChange} />
       {selectedTrack &&
       <SpotifyPreview  trackId={selectedTrack?.id || ''} />}
       <div className="flex flex-col gap-2 my-6 relative">

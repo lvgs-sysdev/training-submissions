@@ -12,14 +12,22 @@ export const fetchPostById = async (id: string): Promise<Post | undefined> => {
   try {
     const [rows] = await pool.query<Post[]>(`
       SELECT
-        posts.content,
-        posts.track_id,
+        posts.id,
+        posts.user_id,
+        users.user_name,
         posts.show_date,
-        artists.artist_id
+        artists.artist_id,
         artists.artist_name,
-        tracks.title AS track_title
+        posts.track_id,
+        tracks.title AS track_title,
+        posts.content,
+        posts.created_at
       FROM
         posts
+      JOIN
+        users
+      ON
+        posts.user_id = users.id
       JOIN
         tracks
       ON
@@ -151,21 +159,32 @@ export const createPost = async (formData: FormData) => {
 }
 
 export const updatePost = async (postId: number, formData: FormData) => {
-  const content = formData.get('content')
-  const showDate = formData.get('showDate')
+  const { content, artistId, artistName, trackId, trackTitle, showDate } = Object.fromEntries(formData.entries()) as {
+    content: string;
+    artistId: string;
+    artistName: string;
+    trackId: string;
+    trackTitle: string;
+    showDate: string;
+  }
 
   try {
+    await insertArtist(artistId, artistName)
+    await insertTrack(trackId, artistId, trackTitle)
+    
     const [result] = await pool.query<ResultSetHeader>(`
       UPDATE
         posts
       SET
         content = :content,
+        track_id = :trackId,
         show_date = :showDate
       WHERE
         id = :postId
       `,
       { 
         content: content,
+        trackId: trackId,
         showDate: showDate,
         postId: postId
       }
