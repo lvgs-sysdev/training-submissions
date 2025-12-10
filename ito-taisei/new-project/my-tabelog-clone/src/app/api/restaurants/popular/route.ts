@@ -1,3 +1,5 @@
+"use server";
+
 import { NextResponse } from "next/server";
 import { prisma } from "@/shared/lib/prisma";
 import { formatRestaurantResponse } from "@/shared/utils/restaurantResponse";

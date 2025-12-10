@@ -1,20 +1,23 @@
 // ジャンル選択オートコンプリートコンポーネント
+"use client";
+
 import Autocomplete from "./Autocomplete";
 import type { AutocompleteItem } from "@/shared/components/Autocomplete/types";
 
 interface GenreAutocompleteProps {
   genres: AutocompleteItem[];
   onSelect: (genre: AutocompleteItem) => void;
+  inputStyle?: React.CSSProperties;
 }
 
-export default function GenreAutocomplete({ genres, onSelect }: GenreAutocompleteProps) {
+export default function GenreAutocomplete({ genres, onSelect, inputStyle }: GenreAutocompleteProps) {
   return (
     <Autocomplete
       items={genres}
       onSelect={onSelect}
       placeholder="Genre"
       filter={(item, input) => item.name.toLowerCase().includes(input.toLowerCase())}
-      itemClassName="px-3 py-2 hover:bg-gray-100 cursor-pointer"
+      inputStyle={inputStyle}
     />
   );
 }
