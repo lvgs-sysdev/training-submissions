@@ -16,7 +16,7 @@ export default function Header() {
     ? `${pathname}?${searchParams.toString()}`
     : pathname;
 
-  const loginUrl = `/auth/signin?callbackUrl=${encodeURIComponent(currentUrl)}`;
+  const loginUrl = `/auth/signin?callbackUrl=/auth/post-signin?callbackUrl=${encodeURIComponent(currentUrl)}`;
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 h-16 min-h-16 flex items-center justify-between px-8 border-b border-gray-200 bg-white bg-opacity-95 backdrop-blur">
