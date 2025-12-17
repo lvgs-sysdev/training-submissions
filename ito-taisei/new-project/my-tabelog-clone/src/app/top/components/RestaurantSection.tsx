@@ -1,6 +1,6 @@
 // レストランセクションコンポーネント
 import RestaurantCard from '../../../shared/components/card/RestaurantCard';
-import type { RestaurantData } from '@/shared/utils/restaurantResponse';
+import type { RestaurantData } from "@/shared/types/restaurant";
 
 interface RestaurantSectionProps {
   title: string;
@@ -20,12 +20,12 @@ const RestaurantSection: React.FC<RestaurantSectionProps> = ({ title, restaurant
               key={r.id}
               name={r.name}
               address={r.address}
-              imageUrl={r.image_url}
-              genre={r.genre}
-              station={r.station}
+              imageUrl={r.image_url ?? undefined}
+              genre={r.genre?.name}
+              station={r.station?.name}
               averageRating={r.average_rating}
-              opening_hours={r.opening_hours}
-              link={r.link}
+              opening_hours={r.opening_hours ?? undefined}
+              link={r.link ?? undefined}
             />
           ))}
         </div>

@@ -2,8 +2,7 @@
 import { Suspense } from "react";
 import { getTopFeed } from "@/app/top/api/getTopFeed";
 import SearchArea from "./components/SearchArea";
-import PopularArea from "./components/PopularArea";
-import NewArrivalsArea from "./components/NewArrivalsArea";
+import RestaurantSection from "./components/RestaurantSection";
 
 export default async function HomePage() {
   const { popular, newArrivals } = await getTopFeed();
@@ -18,9 +17,19 @@ export default async function HomePage() {
           </Suspense>
         </section>
         {/* Popular Genresエリア */}
-        <PopularArea restaurants={popular} />
+        <RestaurantSection
+          title="Popular Genres"
+          restaurants={popular}
+          emptyMessage="No restaurants for popular genres yet"
+          minHeight="min-h-56"
+        />
         {/* New Arrivalsエリア */}
-        <NewArrivalsArea restaurants={newArrivals} />
+        <RestaurantSection
+          title="New Arrivals"
+          restaurants={newArrivals}
+          emptyMessage="No new restaurants yet"
+          minHeight="min-h-56"
+        />
       </div>
     </main>
   );

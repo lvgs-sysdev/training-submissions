@@ -1,7 +1,7 @@
 // 検索に必要なジャンルと駅のデータを取得してSearchFormに渡す
 import { getGenres } from '@/shared/api/genre/genre';
 import { getStations } from '@/shared/api/station/station';
-import SearchForm from '@/shared/components/form/SearchForm';
+import SearchFormBase from '@/shared/components/form/SearchFormBase';
 
 export default async function SearchArea() {
   const [genres, stations] = await Promise.all([
@@ -9,5 +9,5 @@ export default async function SearchArea() {
     getStations(),
   ]);
 
-  return <SearchForm genres={genres} stations={stations} />;
+  return <SearchFormBase genres={genres} stations={stations} layout="horizontal" inputWidth={160} inputHeight={42} />;
 }
