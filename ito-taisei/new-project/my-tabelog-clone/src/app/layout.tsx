@@ -2,7 +2,7 @@ import Header from '@/shared/components/layout/Header';
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { authOptions } from "@/features/auth/lib/auth";
 import RootClientLayout from "./layout.client";
 
 const geistSans = Geist({
