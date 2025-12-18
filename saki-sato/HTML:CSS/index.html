@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,90 +8,120 @@
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <!-- CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@4.0.0/destyle.min.css">
     <link rel="stylesheet" href="assets/CSS/style.css">
 </head>
+
 <body>
-    <header>
+    <header class="header">
         <div class="navbar">
-            <h1 class="navbar_brand" >DAYDAYTRAVEL</h1>
-            <div class="navbar_container">
+            <h1 class="navbar_brand">DAYDAYTRAVEL</h1>
+            <div>
+                <a href="#">
+                    <img class="navbar_sp-container" src="assets/images/icon-nav.png" alt="">
+                </a>
+            </div>
+            <div class="navbar_pc-container">
                 <a class="navbar_btn-Login" href="#">Login</a>
                 <a class="navbar_btn-Getstarted" href="#">Get started</a>
             </div>
         </div>
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero_txt">
+                    <h2 class="hero_title">
+                        Share your <br>
+                        holiday stories.
+                    </h2>
+                    <p class="hero_desc">Write about your experiences while on holiday in various parts of Indonesia, and reach
+                        a wide readership.</p>
+                    </div>
+            </div>
+        </section>
     </header>
-    <section class="hero">
-        <div class="hero_txt">
-            <h2 class="hero_title">
-                Share your <br>
-                holiday stories.
-            </h2>
-            <p class="hero_desc">Write about your experiences while on holiday in various parts of Indonesia, and reach a wide readership.</p>
-        </div>
-    </section>
     <section class="reviews">
-        <div class="articles">
-            <h2 class="articles_title">一覧（新着順）</h2>
-            <div class="articles_list">
-                <div class="card">
-                    <img class="card_img" src="assets/images/article-1.png" alt="記事タイトル記事タイトル記事タイトル記事タイトル">
-                    <div class="card_info">
-                        <p class="card_category">Travel</p>
-                        <p class="card_date">19 Feb 2022</p>
+        <main>
+            <div class="articles">
+                <h2 class="articles_title">一覧（新着順）</h2>
+                <div class="articles_list">
+                    <div class="card">
+                        <img class="card_img" src="assets/images/article-1.png" alt="記事タイトル記事タイトル記事タイトル記事タイトル">
+                        <div class="card_content">
+                            <div class="card_info">
+                                <p class="card_category">Travel</p>
+                                <p class="card_date">19 Feb 2022</p>
+                            </div>
+                            <h3 class="card_title">記事タイトル記事タイトル記事タイトル記事タイトル</h3>
+                            <p class="card_desc">本文の一部を表示本文の一部を表示本文の..</p>
+                        </div>
                     </div>
-                    <h3 class="card_title">記事タイトル記事タイトル記事タイトル記事タイトル</h3>
-                    <p class="card_desc">本文の一部を表示本文の一部を表示本文の..</p>
-                </div>
-                <div class="card">
-                    <img class="card_img" src="assets/images/article-2.png" alt="The taste of Bang Embul's soto betawi">
-                    <div class="card_info">
-                        <p class="card_category">Culinary</p>
-                        <p class="card_date">25 Apr 2022</p>
+                    <div class="card">
+                        <img class="card_img" src="assets/images/article-2.png"
+                            alt="The taste of Bang Embul's soto betawi">
+                        <div class="card_content">
+                            <div class="card_info">
+                                <p class="card_category">Culinary</p>
+                                <p class="card_date">25 Apr 2022</p>
+                            </div>
+                            <h3 class="card_title">The taste of Bang Embul's soto betawi</h3>
+                            <p class="card_desc">Each region has its own specialty food..</p>
+                        </div>
                     </div>
-                    <h3 class="card_title">The taste of Bang Embul's soto betawi</h3>
-                    <p class="card_desc">Each region has its own specialty food..</p>
-                </div>
-                <div class="card">
-                    <img class="card_img" src="assets/images/article-3.png" alt="Seeing the beauty of Bali, which has many statues in temples ">
-                    <div class="card_info">
-                        <p class="card_category">Travel</p>
-                        <p class="card_date">29 Apr 2022</p>
+                    <div class="card">
+                        <img class="card_img" src="assets/images/article-3.png"
+                            alt="Seeing the beauty of Bali, which has many statues in temples ">
+                        <div class="card_content">
+                            <div class="card_info">
+                                <p class="card_category">Travel</p>
+                                <p class="card_date">29 Apr 2022</p>
+                            </div>
+                            <h3 class="card_title">Seeing the beauty of Bali, which has many statues in temples</h3>
+                            <p class="card_desc">Talking about Bali is never boring to tell..</p>
+                        </div>
                     </div>
-                    <h3 class="card_title">Seeing the beauty of Bali, which has many statues in temples</h3>
-                    <p class="card_desc">Talking about Bali is never boring to tell..</p>
-                </div>
-                <div class="card">
-                    <img class="card_img" src="assets/images/article-4.jpg" alt="Delicious and cheap Semarang street food">
-                    <div class="card_info">
-                        <p class="card_category">Culinary</p>
-                        <p class="card_date">02 May 2022</p>
+                    <div class="card">
+                        <img class="card_img" src="assets/images/article-4.jpg"
+                            alt="Delicious and cheap Semarang street food">
+                        <div class="card_content">
+                            <div class="card_info">
+                                <p class="card_category">Culinary</p>
+                                <p class="card_date">02 May 2022</p>
+                            </div>
+                            <h3 class="card_title">Delicious and cheap Semarang street food</h3>
+                            <p class="card_desc">There's a lot of street food in Semarang..</p>
+                        </div>
                     </div>
-                    <h3 class="card_title">Delicious and cheap Semarang street food</h3>
-                    <p class="card_desc">There's a lot of street food in Semarang..</p>
-                </div>
-                <div class="card">
-                    <img class="card_img" src="assets/images/article-5.jpg" alt="Karang bebai beach Lampung for summer vacation">
-                    <div class="card_info">
-                        <p class="card_category">Travel</p>
-                        <p class="card_date">05 Jun 2022</p>
+                    <div class="card">
+                        <img class="card_img" src="assets/images/article-5.jpg"
+                            alt="Karang bebai beach Lampung for summer vacation">
+                        <div class="card_content">
+                            <div class="card_info">
+                                <p class="card_category">Travel</p>
+                                <p class="card_date">05 Jun 2022</p>
+                            </div>
+                            <h3 class="card_title">Karang bebai beach Lampung for summer vacation</h3>
+                            <p class="card_desc">Talking about Bali is never boring to tell..</p>
+                        </div>
                     </div>
-                    <h3 class="card_title">Karang bebai beach Lampung for summer vacation</h3>
-                    <p class="card_desc">Talking about Bali is never boring to tell..</p>
-                </div>
-                <div class="card">
-                    <img class="card_img" src="assets/images/article-6.png" alt="The upside-down mystical forest in Banyuwangi">
-                    <div class="card_info">
-                        <p class="card_category">Travel</p>
-                        <p class="card_date">13 Jun 2022</p>
+                    <div class="card">
+                        <img class="card_img" src="assets/images/article-6.png"
+                            alt="The upside-down mystical forest in Banyuwangi">
+                        <div class="card_content">
+                            <div class="card_info">
+                                <p class="card_category">Travel</p>
+                                <p class="card_date">13 Jun 2022</p>
+                            </div>
+                            <h3 class="card_title">The upside-down mystical forest in Banyuwangi</h3>
+                            <p class="card_desc">This place is most often used as a photo..</p>
+                        </div>
                     </div>
-                    <h3 class="card_title">The upside-down mystical forest in Banyuwangi</h3>
-                    <p class="card_desc">This place is most often used as a photo..</p>
                 </div>
             </div>
-        </div>
+        </main>
         <aside class="aside">
             <div class="aside-articles">
                 <h2 class="aside-articles_title">人気記事（機能不要）</h2>
@@ -126,15 +157,13 @@
                         Daerah Istimewa Yogyakarta,<br>
                         Indonesia 55281
                     </address>
-                    <ul class="footer_companylist1">
+                    <ul class="footer_companylist">
                         <li>
                             <a class="footer_companycontents" href="#">About</a>
                         </li>
                         <li>
                             <a class="footer_companycontents" href="#">Privacy policy</a>
                         </li>
-                    </ul>
-                    <ul class="footer_companylist2">
                         <li>
                             <a class="footer_companycontents" href="#">Terms & Conditions</a>
                         </li>
@@ -146,17 +175,17 @@
             </div>
             <div class="footer_col footer_info">
                 <p class="footer_title">Informations</p>
-                    <ul class="footer_list">
-                        <li>
-                            <a class="footer_contents" href="#">How to register as a user</a>
-                        </li>
-                        <li>
-                            <a class="footer_contents" href="#">Guide to creating travel review</a>
-                        </li>
-                        <li>
-                            <a class="footer_contents" href="#">Tutorial for making culinary reviews</a>
-                        </li>
-                    </ul>
+                <ul class="footer_list">
+                    <li>
+                        <a class="footer_contents" href="#">How to register as a user</a>
+                    </li>
+                    <li>
+                        <a class="footer_contents" href="#">Guide to creating travel review</a>
+                    </li>
+                    <li>
+                        <a class="footer_contents" href="#">Tutorial for making culinary reviews</a>
+                    </li>
+                </ul>
             </div>
             <div class="footer_col">
                 <p class="footer_title">Follow us</p>
@@ -190,4 +219,5 @@
         <small class="copyright">© 2023 PT. Travel Everyday Indonesia</small>
     </footer>
 </body>
+
 </html>
