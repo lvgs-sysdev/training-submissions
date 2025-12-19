@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 // import { Geist, Geist_Mono } from "next/font/google";
 import { notoSansJp } from "@/lib/fonts";
 import "./globals.css";
+import Link from "next/link";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -26,7 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={notoSansJp.variable}>
       <body className="antialiased flex flex-col min-h-screen">
-        <header className="p-4"><p className="text-4xl">header</p></header>
+        <header className="p-4">
+          <Link className="block" href={'/'}>
+            <p className="text-4xl font-bold">Livelog</p>
+          </Link>
+        </header>
         <main className="p-4 md:p-8 flex-1 max-w-7xl mx-auto w-full">
         {children}
         </main>
