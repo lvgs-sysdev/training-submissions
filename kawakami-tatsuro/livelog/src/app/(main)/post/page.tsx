@@ -1,6 +1,6 @@
 import { PageHeading } from "@/components/PageHeading";
 import { PostForm } from "@/features/posts/components/PostForm";
-import { createPost } from "@/features/posts/service";
+import { createPost } from "@/features/posts/actions";
 
 export default function PostPage() {
   return (

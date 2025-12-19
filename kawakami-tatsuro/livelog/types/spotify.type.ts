@@ -59,6 +59,10 @@ export interface SpotifyArtist {
   uri: string;
 }
 
+export interface SeveralArtistsResponse {
+  artists: SpotifyArtist[];
+}
+
 export interface TracksResponse {
   tracks: {
     href: string;

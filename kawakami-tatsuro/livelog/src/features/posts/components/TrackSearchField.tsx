@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { SpotifyTrack } from '../../../../types'
-import { searchTracksFromInput } from '@/features/posts/service'
+import { searchTracksFromInput } from '@/features/posts/actions'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'

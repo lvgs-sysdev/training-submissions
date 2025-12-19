@@ -1,12 +1,15 @@
-import { fetchPostById, updatePost } from "@/features/posts/service";
+import { fetchPostById } from "@/features/posts/service";
+import { updatePost } from "@/features/posts/actions";
 import { PageParams } from "../../../../../../types";
 import { PageHeading } from "@/components/PageHeading";
 import { PostForm } from "@/features/posts/components/PostForm";
 import { redirect } from "next/navigation";
 
+const CURRENT_USER_ID = 1
+
 export default async function PostEditPage({ params }: PageParams<{id: string}>) {
   const { id } = await params
-  const post = await fetchPostById(id)
+  const post = await fetchPostById(CURRENT_USER_ID, id)
   if (!post) {
     redirect('/')
   }

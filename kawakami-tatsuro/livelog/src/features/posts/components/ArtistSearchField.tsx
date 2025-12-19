@@ -3,7 +3,7 @@ import { SpotifyArtist } from '../../../../types'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
-import { searchArtistsFromInput } from '@/features/posts/service'
+import { searchArtistsFromInput } from '@/features/posts/actions'
 
 
 interface Props {
@@ -37,6 +37,7 @@ export const ArtistSearchField = ({ initialData, onArtistSelect, onArtistInputCh
       <Label htmlFor="artistName">Artist Name</Label>
       <div className="flex gap-4">
         <Input
+          id="artistName"
           value={artistNameInput || ''}
           onChange={(event) => handleInputArtistName(event.target.value)}
           type="text"

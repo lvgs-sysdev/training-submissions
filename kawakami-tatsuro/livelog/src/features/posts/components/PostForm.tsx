@@ -74,9 +74,9 @@ export const PostForm = ({ initialData, action }: Props ) => {
         <Label htmlFor="content">Content</Label>
         <Textarea id="content" name="content" className="h-24" defaultValue={initialData?.content || ''}></Textarea>
       </div>
-      <input type="hidden" name="artistId" value={selectedArtist?.id || ''} />
+      <input type="hidden" name="artistSpotifyId" value={selectedArtist?.id || ''} />
       <input type="hidden" name="artistName" value={selectedArtist?.name || ''} />
-      <input type="hidden" name="trackId" value={selectedTrack?.id || ''} />
+      <input type="hidden" name="trackSpotifyId" value={selectedTrack?.id || ''} />
       <input type="hidden" name="trackTitle" value={selectedTrack?.name || ''} />
       <Input type="submit" className="cursor-pointer bg-foreground text-background h-12" value="Post" />
     </form>

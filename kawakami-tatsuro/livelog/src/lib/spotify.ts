@@ -1,7 +1,8 @@
-import { SpotifyAuthResponse, ArtistsResponse, TracksResponse } from "../../types"
+import { SpotifyAuthResponse, ArtistsResponse, TracksResponse, SeveralArtistsResponse, SpotifyArtist, SpotifyTrack } from "../../types"
 
 const API_BASE_URL = 'https://api.spotify.com/v1'
 const SEARCH_ARTISTS_LIMIT = '10'
+const SPOTIFY_MAX_IDS_PER_REQUEST = 50
 
 let cachedToken: string | null = null
 let tokenExpiration: number = 0
@@ -78,11 +79,10 @@ export const searchArtists = async (artistName: string) => {
   }
 }
 
-export const searchTracks = async (trackTitleInput: string, artistName: string) => {
+export const searchTracks = async (trackTitleInput: string, artistName: string): Promise<SpotifyTrack[]> => {
   const query = new URLSearchParams()
   query.append('q', `${trackTitleInput} artist:${artistName}`)
   query.append('type', 'track')
-  console.log(query)
 
   try {
     const response = await fetch(API_BASE_URL + `/search?${query}`, {
@@ -101,5 +101,34 @@ export const searchTracks = async (trackTitleInput: string, artistName: string) 
     }
   } catch (error) {
     console.log(error)
+    throw error
+  }
+}
+
+export const fetchArtistsByIds = async (artistIds: string[]): Promise<SpotifyArtist[]> => {
+  if (artistIds.length === 0) return []
+
+  const idsString = artistIds.slice(0, SPOTIFY_MAX_IDS_PER_REQUEST).join()
+  const query = new URLSearchParams()
+  query.append('ids', idsString)
+
+    try {
+    const response = await fetch(API_BASE_URL + `/artists?${query}`, {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + await getSpotifyAccessToken()
+      }
+    })
+    const data = await response.json() as SeveralArtistsResponse
+
+    if (response.ok) {
+      return data.artists
+    } else {
+      const error = new Error ('failed to fetch artists')
+      throw error
+    }
+  } catch (error) {
+    console.log(error)
+    throw error
   }
 }
