@@ -1,27 +1,30 @@
-'use server'
-
 import pool from "@/lib/db"
-import { Post, Artist, Track } from "./types"
-import { ResultSetHeader } from "mysql2";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
-import { searchArtists, searchTracks } from "@/lib/spotify";
-import { SpotifyArtist, SpotifyTrack } from "../../../types";
+import { Post, PostDB } from "./types"
 
-export const fetchPostById = async (id: string): Promise<Post | undefined> => {
+const toPost = (row: PostDB): Post => {
+  return {
+    ...row,
+    is_liked_by_me: row.is_liked_by_me === 1
+  }
+}
+
+export const fetchPostById = async (currentUserId: number, id: string): Promise<Post | undefined> => {
   try {
-    const [rows] = await pool.query<Post[]>(`
+    const [rows] = await pool.query<PostDB[]>(`
       SELECT
         posts.id,
         posts.user_id,
         users.user_name,
+        users.pic_path,
         posts.show_date,
-        artists.artist_id,
+        artists.spotify_id AS artist_id,
         artists.artist_name,
-        posts.track_id,
+        tracks.spotify_id AS track_id,
         tracks.title AS track_title,
         posts.content,
-        posts.created_at
+        posts.created_at,
+        (SELECT COUNT(*) FROM likes WHERE likes.post_id = posts.id) AS like_count,
+        (SELECT COUNT(*) > 0 FROM likes WHERE likes.post_id = posts.id AND likes.user_id = :currentUserId) AS is_liked_by_me
       FROM
         posts
       JOIN
@@ -31,206 +34,173 @@ export const fetchPostById = async (id: string): Promise<Post | undefined> => {
       JOIN
         tracks
       ON
-        posts.track_id = tracks.track_id
+        posts.track_id = tracks.id
       JOIN
         artists
       ON
-        tracks.artist_id = artists.artist_id
+        tracks.artist_id = artists.id
+      LEFT JOIN
+        likes
+      ON
+        posts.id = likes.post_id
       WHERE
         posts.id = :id
       `,
-    { id: id })
+    {
+      id: id,
+      currentUserId: currentUserId
+    })
 
     if (rows.length === 0) return undefined;
 
-    return rows[0];
+    const post: Post = toPost(rows[0])
+
+    return post
+
   } catch (error) {
     console.log(error);
     throw new Error('failed')
   }
 }
 
-const insertArtist = async (artistId: string, artistName: string) => {
+export const fetchPosts = async (currentUserId: number): Promise<Post[]> => {
   try {
-    const [rows] = await pool.query<Artist[]>(`
+    const [rows] = await pool.query<PostDB[]>(`
       SELECT
-        *
+        posts.id,
+        posts.user_id,
+        users.user_name,
+        users.pic_path,
+        posts.show_date,
+        artists.spotify_id AS artist_id,
+        artists.artist_name,
+        tracks.spotify_id AS track_id,
+        tracks.title AS track_title,
+        posts.content,
+        posts.created_at,
+        (SELECT COUNT(*) FROM likes WHERE likes.post_id = posts.id) AS like_count,
+        (SELECT COUNT(*) > 0 FROM likes WHERE likes.post_id = posts.id AND likes.user_id = :currentUserId ) AS is_liked_by_me
       FROM
-        artists
-      WHERE
-        artist_id = :artistId
-      `,
-    { artistId: artistId })
-    
-    if (rows.length !== 0) return
-
-    const [result] = await pool.query<ResultSetHeader>(`
-      INSERT INTO
-        artists
-        (artist_id, artist_name)
-      VALUES
-        (:artistId, :artistName)
-      `,
-    {
-      artistId: artistId,
-      artistName: artistName
-    })
-    if (result.affectedRows === 1) {
-        console.log('success')
-      }
-    } catch (error) {
-      console.log(error);
-      throw new Error('failed')
-    }
-  }
-
-const insertTrack = async (trackId: string, artistId: string, trackTitle: string) => {
-  try {
-    const [rows] = await pool.query<Track[]>(`
-      SELECT
-        *
-      FROM
-        tracks
-      WHERE
-        track_id = :trackId
-      `,
-    { trackId: trackId })
-
-    if(rows.length !== 0) return
-
-    const [result] = await pool.query<ResultSetHeader>(`
-      INSERT INTO
-        tracks
-        (track_id, artist_id, title)
-      VALUES
-        (:trackId, :artistId, :trackTitle)
-      `,
-    {
-      trackId: trackId,
-      artistId: artistId,
-      trackTitle: trackTitle
-    })
-    if (result.affectedRows === 1) {
-        console.log('success')
-      }
-    } catch (error) {
-      console.log(error);
-      throw new Error('failed')
-    }
-}
-
-export const createPost = async (formData: FormData) => {
-  const { content, artistId, artistName, trackId, trackTitle, showDate } = Object.fromEntries(formData.entries()) as {
-    content: string;
-    artistId: string;
-    artistName: string;
-    trackId: string;
-    trackTitle: string;
-    showDate: string;
-  }
-
-  try {
-    await insertArtist(artistId, artistName)
-    await insertTrack(trackId, artistId, trackTitle)
-
-    const [result] = await pool.query<ResultSetHeader>(`
-      INSERT INTO
         posts
-        (user_id, content, track_id, show_date)
-      VALUES
-        (1, :content, :trackId, :showDate)
+      JOIN
+        users ON posts.user_id = users.id
+      JOIN
+        tracks ON posts.track_id = tracks.id
+      JOIN
+        artists ON tracks.artist_id = artists.id
+      ORDER BY
+        posts.created_at DESC;
       `,
-      { 
-        content: content,
-        trackId: trackId,
-        showDate: showDate
-      })
-
-      if (result.affectedRows === 1) {
-        console.log('success')
-      }
-    } catch (error) {
-      console.log(error);
-      throw new Error('failed')
-    }
-    revalidatePath('/')
-    redirect('/')
-
-}
-
-export const updatePost = async (postId: number, formData: FormData) => {
-  const { content, artistId, artistName, trackId, trackTitle, showDate } = Object.fromEntries(formData.entries()) as {
-    content: string;
-    artistId: string;
-    artistName: string;
-    trackId: string;
-    trackTitle: string;
-    showDate: string;
-  }
-
-  try {
-    await insertArtist(artistId, artistName)
-    await insertTrack(trackId, artistId, trackTitle)
-    
-    const [result] = await pool.query<ResultSetHeader>(`
-      UPDATE
-        posts
-      SET
-        content = :content,
-        track_id = :trackId,
-        show_date = :showDate
-      WHERE
-        id = :postId
-      `,
-      { 
-        content: content,
-        trackId: trackId,
-        showDate: showDate,
-        postId: postId
-      }
-    )
-    if(result.affectedRows === 1) {
+      { currentUserId: currentUserId })
       console.log('success')
-    }
+      
+      const posts: Post[] = rows.map(toPost)
+
+      return posts
+      
   } catch (error) {
     console.log(error)
     throw new Error('failed')
   }
-
-  revalidatePath('/')
-  redirect('/')
 }
 
-export const deletePost = async (postId: number) => {
+export const fetchPostsByUserId = async (currentUserId: number, userId: string): Promise<Post[]> => {
   try {
-    const [result] = await pool.query<ResultSetHeader>(`
-      DELETE
+    const [rows] = await pool.query<PostDB[]>(`
+      SELECT
+        posts.id,
+        posts.user_id,
+        users.user_name,
+        users.pic_path,
+        posts.show_date,
+        artists.spotify_id AS artist_id,
+        artists.artist_name,
+        tracks.spotify_id AS track_id,
+        tracks.title AS track_title,
+        posts.content,
+        posts.created_at,
+        (SELECT COUNT(*) FROM likes WHERE likes.post_id = posts.id) AS like_count,
+        (SELECT COUNT(*) > 0 FROM likes WHERE likes.post_id = posts.id AND likes.user_id = :currentUserId) AS is_liked_by_me
       FROM
         posts
+      JOIN
+        users
+      ON
+        posts.user_id = users.id
+      JOIN
+        tracks
+      ON
+        posts.track_id = tracks.id
+      JOIN
+        artists
+      ON
+        tracks.artist_id = artists.id
+      LEFT JOIN
+        likes
+      ON
+        posts.id = likes.post_id
       WHERE
-        id = :postId
+        posts.user_id = :userId
+      ORDER BY
+        posts.created_at DESC
       `,
-      { postId: postId }
-    )
-    if (result.affectedRows === 1) [
-      console.log('success')
-    ]
+    {
+      userId: userId,
+      currentUserId: currentUserId
+    })
+
+    if (rows.length === 0) return [];
+
+    const posts: Post[] = rows.map(toPost)
+
+    return posts
+
   } catch (error) {
-    console.log(error)
+    console.log(error);
     throw new Error('failed')
   }
-
-  revalidatePath('/')
-  redirect('/')
 }
 
-export const searchArtistsFromInput = async (artistNameInput: string): Promise<SpotifyArtist[]> => {
-  const artists = await searchArtists(artistNameInput)
-  return artists || []
-}
+// export const fetchArtistId = async (spotifyId: string): Promise<number> => {
+//   try {
+//     const [rows] = await pool.query<Artist[]>(`
+//       SELECT
+//         id
+//       FROM
+//         artists
+//       WHERE
+//         spotify_id = :spotifyId
+//       `,
+//       { spotifyId: spotifyId })
 
-export const searchTracksFromInput = async (trackTitleInput: string, artistName: string): Promise<SpotifyTrack[]> => {
-  const tracks = await searchTracks(trackTitleInput, artistName)
-  const tracksOfSelectedArtist = tracks?.filter(track => track.artists[0].name === artistName)
-  return tracksOfSelectedArtist || []
-}
+//       console.log('success')
+      
+//       const artistId: number = rows[0].id
+//       return artistId
+//   } catch (error) {
+//     console.log(error)
+//     throw new Error('failed')
+//   }
+// }
+
+// export const fetchTrackId = async (spotifyId: string): Promise<number> => {
+//   try {
+//     const [rows] = await pool.query<Artist[]>(`
+//       SELECT
+//         id
+//       FROM
+//         tracks
+//       WHERE
+//         spotify_id = :spotifyId
+//       `,
+//       { spotifyId: spotifyId })
+
+//       console.log('success')
+      
+//       const trackId: number = rows[0].id
+//       return trackId
+//   } catch (error) {
+//     console.log(error)
+//     throw new Error('failed')
+//   }
+// }

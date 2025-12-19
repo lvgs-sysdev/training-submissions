@@ -1,11 +1,10 @@
 import { NextResponse } from "next/server";
 import pool from "@/lib/db";
-import { Post } from "@/features/posts/types";
-import { RowDataPacket } from "mysql2";
+import { PostDB } from "@/features/posts/types";
 
 export async function GET () {
   try {
-    const [rows] = await pool.query<Post[]>(`
+    const [rows] = await pool.query<PostDB[]>(`
       SELECT
         posts.id,
         posts.user_id,

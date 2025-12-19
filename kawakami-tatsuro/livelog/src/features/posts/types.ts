@@ -1,29 +1,36 @@
 import { RowDataPacket } from "mysql2";
 
-export interface Post extends RowDataPacket {
+export interface Post {
   id: number;
   user_id: number;
   user_name: string;
+  pic_path: string;
   show_date: string;
   artist_id: string;
   artist_name: string;
   track_id: string;
   track_title: string;
   content: string;
-  created_at: string;
+  created_at: Date;
+  like_count: number;
+  is_liked_by_me: boolean;
 }
+
+export type PostDB = Omit<Post, 'is_liked_by_me'> & {
+  is_liked_by_me: number;
+} & RowDataPacket
 
 export interface Artist extends RowDataPacket {
   id: number;
-  artist_id: string;
+  spotify_id: string;
   artist_name: string;
   created_at: string;
 }
 
 export interface Track extends RowDataPacket {
   id: number;
-  track_id: string;
-  artist_id: string;
+  spotify_id: string;
+  artist_id: number;
   title: string;
   created_at: string;
 }
@@ -37,6 +44,19 @@ export interface SelectedTrack {
   id: string;
   name: string;
 }
+
+export interface DisplayPost {
+  id: number;
+  user_id: number;
+  user_name: string;
+  pic_path: string;
+  show_date: string;
+  content: string;
+  artist_name: string;
+  track_id: number;
+  track_title: string;
+  created_at: string;
+} 
 
 // export interface PostInput  {
 //   content: string;
