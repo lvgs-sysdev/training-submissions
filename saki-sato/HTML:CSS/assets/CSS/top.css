@@ -31,20 +31,20 @@ Hero
     margin-top: 55px;
 }
 
-.hero_txt {
+.hero__txt {
     display: block;
     width: clamp(225px, 70%, );
     margin: 0 11%;
 }
 
-.hero_title {
+.hero__title {
     font-size: clamp(30px, 5cqi, 60px);
     font-weight: 600;
     line-height: 1.3;
     letter-spacing: -2px;
 }
 
-.hero_desc {
+.hero__desc {
     margin-top: 17.5px;
     width: clamp(225px, 70%, 455px);
     font-size: clamp(8px, 2cqi, 16px);
@@ -58,7 +58,7 @@ Hero
         margin-top: 0;
     }
 
-    .hero_desc {
+    .hero__desc {
         margin-top: 35px;
         width: 455px;
     }
@@ -79,13 +79,13 @@ Articles
     container-type: inline-size;
 }
 
-.articles_title {
+.articles__title {
     font-size: 22px;
     font-weight: 600;
     line-height: 1.3;
 }
 
-.articles_list {
+.articles__list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
     margin-top: 40px;
@@ -97,18 +97,18 @@ Articles
     flex-direction: column;
 }
 
-.card_img {
+.card__img {
     width: 100%;
     height: auto;
     object-fit: cover;
 }
 
-.card_info {
+.card__info {
     display: flex;
     margin-top: 25px;
 }
 
-.card_category {
+.card__category {
     font-size: 14px;
     font-weight: 500;
     line-height: 1.5;
@@ -116,13 +116,13 @@ Articles
     color: var(--color-Primary);
 }
 
-.card_category::after {
+.card__category::after {
     content: '';
     margin: 0 10px;
     border-right: 1px solid var(--color-Secondary);
 }
 
-.card_date {
+.card__date {
     font-size: 14px;
     font-weight: 300;
     line-height: 1.5;
@@ -130,14 +130,14 @@ Articles
     color: var(--color-Gray);
 }
 
-.card_title {
+.card__title {
     margin-top: 15px;
     font-size: 20px;
     font-weight: 300;
     line-height: 1;
 }
 
-.card_desc {
+.card__desc {
     margin-top: 15px;
     font-size: 16px;
     font-weight: 300;
@@ -146,7 +146,7 @@ Articles
 }
 
 @container (width > 500px) {
-    .articles_list {
+    .articles__list {
         display: grid;
         grid-template-columns: 1fr 1fr;
         row-gap: 60px;
@@ -164,45 +164,45 @@ Articles
 /* =======＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 Aside
 =======＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
-.aside-articles_title {
+.aside-articles__title {
     font-size: 22px;
     font-weight: 600;
     line-height: 1.3;
 }
 
-.aside-articles_list {
+.aside-articles__list {
     margin-top: 40px;
     display: flex;
     flex-direction: column;
 }
 
-.aside-articles_subtitle {
+.aside-articles__subtitle {
     font-size: 18px;
     font-weight: 300;
     line-height: 1.5;
 }
 
-.aside-articles_list article:not(:last-child) .aside-articles_subtitle::after {
+.aside-articles__list article:not(:last-child) .aside-articles__subtitle::after {
     content: '';
     display: block;
     border-bottom: 0.5px solid var(--color-Dark);
     margin: 55.5px 0 25px;
 }
 
-.tags_title {
+.tags__title {
     font-size: 22px;
     font-weight: 600;
     line-height: 1.3;
     margin-top: 131px;
 }
 
-.tags_list {
+.tags__list {
     display: flex;
     margin-top: 40px;
     gap: 23px;
 }
 
-.tags_contents {
+.tags__contents {
     font-size: 14px;
     font-weight: 300;
     color: var(--color-Gray);
