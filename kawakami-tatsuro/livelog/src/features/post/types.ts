@@ -20,14 +20,16 @@ export type PostDB = Omit<Post, 'is_liked_by_me'> & {
   is_liked_by_me: number;
 } & RowDataPacket
 
-export interface Artist extends RowDataPacket {
+export interface Artist {
   id: number;
   spotify_id: string;
   artist_name: string;
   created_at: string;
 }
 
-export interface Track extends RowDataPacket {
+export interface ArtistDB extends Artist, RowDataPacket {}
+
+export interface TrackDB extends RowDataPacket {
   id: number;
   spotify_id: string;
   artist_id: number;

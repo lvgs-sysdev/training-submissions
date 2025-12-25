@@ -1,11 +1,12 @@
 'use server'
 import pool from "@/lib/db"
-import { Artist, Track } from "./types"
+import { ArtistDB, TrackDB } from "./types"
 import { ResultSetHeader } from "mysql2";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { searchArtists, searchTracks } from "@/lib/spotify";
-import { SpotifyArtist, SpotifyTrack } from "../../../types";
+import { ApiResponse, SpotifyArtist, SpotifyTrack } from "../../../types";
+import { getVerifiedUser } from "@/lib/auth";
 
 const updateArtistName = async (artistName: string, artistId: number) => {
   try {
@@ -46,7 +47,7 @@ const updateTrackTitle = async (trackTitle: string, trackId: number) => {
       { 
         trackTitle: trackTitle,
         trackId: trackId
-       })
+      })
        // 更新が成功 or 変更が不要だった場合はエラーにしない
     if (result.affectedRows === 0 && result.info?.includes('Rows matched: 1')) {
       // データが同じで更新されなかった場合は何もしない（呼び出し元でチェックしているので affectedRows === 1 になるはず）
@@ -62,7 +63,7 @@ const updateTrackTitle = async (trackTitle: string, trackId: number) => {
 
 const getOrInsertArtist = async (spotifyId: string, artistName: string): Promise<number> => {
   try {
-    const [rows] = await pool.query<Artist[]>(`
+    const [rows] = await pool.query<ArtistDB[]>(`
       SELECT
         id,
         artist_name
@@ -104,7 +105,7 @@ const getOrInsertArtist = async (spotifyId: string, artistName: string): Promise
 
 const getOrInsertTrack = async (trackSpotifyId: string, artistId: number, trackTitle: string): Promise<number> => {
   try {
-    const [rows] = await pool.query<Track[]>(`
+    const [rows] = await pool.query<TrackDB[]>(`
       SELECT
         id,
         title
@@ -145,7 +146,10 @@ const getOrInsertTrack = async (trackSpotifyId: string, artistId: number, trackT
     }
 }
 
-export const createPost = async (formData: FormData) => {
+export const createPost = async (formData: FormData): Promise<ApiResponse<null>> => {
+  const user = await getVerifiedUser()
+  if (!user) return { success: false, status: 401, message: 'The session timed out.', code: 'UNAUTHORIZED' }
+
   const { content, artistSpotifyId, artistName, trackSpotifyId, trackTitle, showDate } = Object.fromEntries(formData.entries()) as {
     content: string;
     artistSpotifyId: string;
@@ -164,28 +168,28 @@ export const createPost = async (formData: FormData) => {
         posts
         (user_id, content, track_id, show_date)
       VALUES
-        (1, :content, :trackId, :showDate)
+        (:userId, :content, :trackId, :showDate)
       `,
       { 
+        userId: user.id,
         content: content,
         trackId: trackId,
         showDate: showDate
       })
 
-      if (result.affectedRows === 1) {
-        console.log('success')
-      } else {
-        throw new Error('failed to create a new post')
-      }
+      if (result.affectedRows !== 1) throw new Error('failed to create a new post')
     } catch (error) {
       console.log(error);
-      throw new Error('failed')
+      return { success: false, status: 500, message: 'Internal error', code: 'INTERNAL_ERROR' }
     }
     revalidatePath('/')
     redirect('/')
 }
 
-export const updatePost = async (postId: number, formData: FormData) => {
+export const updatePost = async (postId: number, formData: FormData): Promise<ApiResponse<null>> => {
+  const user = await getVerifiedUser()
+  if (!user) return { success: false, status: 401, message: 'The session timed out.', code: 'UNAUTHORIZED' }
+
   const { content, artistSpotifyId, artistName, trackSpotifyId, trackTitle, showDate } = Object.fromEntries(formData.entries()) as {
     content: string;
     artistSpotifyId: string;
@@ -207,50 +211,53 @@ export const updatePost = async (postId: number, formData: FormData) => {
         track_id = :trackId,
         show_date = :showDate
       WHERE
-        id = :postId
+        id = :postId AND user_id = :userId
       `,
       { 
         content: content,
         trackId: trackId,
         showDate: showDate,
-        postId: postId
+        postId: postId,
+        userId: user.id
       }
     )
-    if(result.affectedRows === 1) {
-      console.log('success')
-    } else {
-      throw new Error('failed to update the post')
+    if(result.affectedRows !== 1) {
+      return { success: false, status: 404, message: 'The post is not found.', code: 'NOT_FOUND' }
     }
   } catch (error) {
     console.log(error)
-    throw new Error('failed')
+    return { success: false, status: 500, message: 'Internal error', code: 'INTERNAL_ERROR' }
   }
-
   revalidatePath('/')
   redirect('/')
 }
 
-export const deletePost = async (postId: number) => {
+export const deletePost = async (postId: number): Promise<ApiResponse<null>> => {
+  const user = await getVerifiedUser()
+  if (!user) return { success: false, status: 401, message: 'The session timed out.', code: 'UNAUTHORIZED' }
+
   try {
     const [result] = await pool.query<ResultSetHeader>(`
       DELETE
       FROM
         posts
       WHERE
-        id = :postId
+        id = :postId AND posts.user_id = :userId
       `,
-      { postId: postId }
+      { 
+        postId: postId,
+        userId: user.id
+      }
     )
-    if (result.affectedRows === 1) [
-      console.log('success')
-    ]
+    if (result.affectedRows !== 1) {
+      return { success: false, status: 404, message: 'This post is not found.', code: 'NOT_FOUND' }
+    }
+    revalidatePath('/')
+    return { success: true, status: 400, data: null }
   } catch (error) {
     console.log(error)
-    throw new Error('failed')
+    return { success: false, status: 500, message: 'Internal error.', code: 'INTERNAL_ERROR' }
   }
-
-  revalidatePath('/')
-  redirect('/')
 }
 
 export const searchArtistsFromInput = async (artistNameInput: string): Promise<SpotifyArtist[]> => {
