@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { notoSansJp } from "@/lib/fonts";
 import "./globals.css";
 import Link from "next/link";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -27,15 +29,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={notoSansJp.variable}>
       <body className="antialiased flex flex-col min-h-screen">
-        <header className="p-4">
-          <Link className="block" href={'/'}>
-            <p className="text-4xl font-bold">Livelog</p>
-          </Link>
-        </header>
+        <Header />
         <main className="p-4 md:p-8 flex-1 max-w-7xl mx-auto w-full">
         {children}
         </main>
-        <footer><p>footer</p></footer>
+        <Footer />
       </body>
     </html>
   );
