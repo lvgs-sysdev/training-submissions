@@ -3,7 +3,6 @@ import { formatDateForInput } from '@/lib/utils'
 import { ProfileImage } from '@/components/ProfileImage'
 import { User } from '../types';
 import { SpotifyArtist } from '../../../../types';
-import Image from 'next/image'
 import { ArtistsList } from '@/components/ArtistsList';
 
 interface Props {
@@ -28,8 +27,11 @@ export const UserProfile = ({ user, artists }: Props) => {
         </div>
       </CardHeader>
       <CardContent className="flex flex-col gap-6">
+        {artists.length > 0 &&
+        <>
         <h3 className="text-xl font-bold self-start">{`${user?.user_name}'s Recent Live Shows`}</h3>
         <ArtistsList artists={artists} />
+        </>}
       </CardContent>
     </Card>
   )
