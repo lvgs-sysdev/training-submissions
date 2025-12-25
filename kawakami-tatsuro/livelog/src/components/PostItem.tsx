@@ -1,30 +1,30 @@
-import { Post } from "@/features/posts/types"
+import { Post } from "@/features/post/types"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { formatDateForInput } from "@/lib/utils";
 import { SpotifyPreview } from "@/components/SpotifyPreview";
 import { PostOwnerActions } from "./PostOwnerActions";
-import { deletePost } from "@/features/posts/actions";
+import { deletePost } from "@/features/post/actions";
 import { LikeButtonAndCounter } from "./LikeButtonAndCounter";
 import { ProfileImage } from "./ProfileImage";
 import Link from "next/link";
 
 interface Props {
   post: Post
-  currentUserId: number
+  currentUserId?: number
 }
 
 export const PostItem = ({ post, currentUserId }: Props) => {
   return (
-    <div className="w-full" key={post.id}>
+    <div className="w-full">
       <Card className="shadow-none border-none rounded-none w-full">
         <CardHeader className="flex flex-row gap-6 w-full">
-          <Link href={`/user/${currentUserId}`}>
+          <Link href={`/user/${post.user_id}`}>
             <ProfileImage picPath={post.pic_path} userName={post.user_name} />
           </Link>
           <div className="flex justify-between flex-1 w-full min-w-0 gap-2">
-            <Link className="block" href={`/user/${currentUserId}`}>
+            <Link className="block" href={`/user/${post.user_id}`}>
               <p className="truncate">{post.user_name}</p>
             </Link>
             <p className="shrink-0 whitespace-nowrap">
@@ -35,7 +35,7 @@ export const PostItem = ({ post, currentUserId }: Props) => {
         <CardContent className="flex flex-col gap-4">
           <div className="flex gap-4 flex-wrap">
             <Badge className="text-base justify-start max-w-full shrink min-w-0">
-              <span className="truncate">{post.artist_name}</span>
+              <Link href={`/post/search?artist=${encodeURIComponent(post.artist_name)}`}><span className="truncate">{post.artist_name}</span></Link>
             </Badge>
             <Badge className="text-sm justify-start max-w-full shrink min-w-0">
               <span className="truncate">

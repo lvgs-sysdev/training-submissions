@@ -1,18 +1,18 @@
-import { fetchPostById } from "@/features/posts/service";
-import { updatePost } from "@/features/posts/actions";
+import { fetchPostById } from "@/features/post/service";
+import { updatePost } from "@/features/post/actions";
 import { PageParams } from "../../../../../../types";
 import { PageHeading } from "@/components/PageHeading";
-import { PostForm } from "@/features/posts/components/PostForm";
+import { PostForm } from "@/features/post/components/PostForm";
 import { redirect } from "next/navigation";
-
-const CURRENT_USER_ID = 1
+import { getVerifiedUser } from "@/lib/auth";
 
 export default async function PostEditPage({ params }: PageParams<{id: string}>) {
-  const { id } = await params
-  const post = await fetchPostById(CURRENT_USER_ID, id)
-  if (!post) {
-    redirect('/')
-  }
+  const user = await getVerifiedUser()
+  const { id } = await params // ポストのIDの取得
+  const post = await fetchPostById(user?.id, id)
+
+  if (!post) redirect('/') // ポストが存在しなければリダイレクト
+  if (post.user_id !== user?.id) redirect('/') // ポストの投稿者とログインしているユーザーのIDが一致しなければリダイレクト
   
   const initialData = {
     show_date: post.show_date,

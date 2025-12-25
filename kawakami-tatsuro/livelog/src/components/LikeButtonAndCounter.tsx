@@ -1,13 +1,13 @@
 'use client'
 import { useState } from "react"
-import { createLike, deleteLike } from "@/features/posts/actions"
+import { createLike, deleteLike } from "@/features/post/actions"
 import { Button } from "./ui/button"
 import { ThumbsUp } from "lucide-react"
 
 interface Props {
   initialCount: number;
   initialIsLikedByMe: boolean;
-  currentUserId: number;
+  currentUserId?: number;
   postId: number;
 }
 
@@ -16,6 +16,8 @@ export const LikeButtonAndCounter = ({ initialCount, initialIsLikedByMe, current
   const [isLikedByMe, setIsLikedByMe] = useState(initialIsLikedByMe)
 
   const handleClick = async () => {
+    if (!currentUserId) return
+
     if (isLikedByMe) {
       setLikeCount((prev) => prev - 1)
       setIsLikedByMe((prev) => !prev)
@@ -28,9 +30,14 @@ export const LikeButtonAndCounter = ({ initialCount, initialIsLikedByMe, current
   }
   return (
     <div>
-      <Button onClick={handleClick} variant="ghost" size="icon" className="cursor-pointer">
-        <ThumbsUp className={isLikedByMe ? 'fill-neutral-500' : ''} />
-      </Button>
+      {currentUserId
+      ? <Button onClick={handleClick} variant="ghost" size="icon" className="cursor-pointer">
+          <ThumbsUp className={isLikedByMe ? 'fill-neutral-500' : ''} />
+        </Button>
+      : <Button variant="ghost" size="icon" className="cursor-pointer" disabled>
+          <ThumbsUp className='fill-neutral-500' />
+        </Button>
+      }
       <span className="text-sm">{likeCount}</span>
     </div>
   )

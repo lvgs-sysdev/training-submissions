@@ -1,24 +1,23 @@
 import { PageHeading } from '@/components/PageHeading'
-import { fetchPostsByUserId } from '@/features/posts/service'
+import { fetchPostsByUserId } from '@/features/post/service'
 import { PageParams, SpotifyArtist } from '../../../../../types'
 import { Timeline } from '@/components/Timeline'
-import { User } from '@/features/users/types'
-import { fetchUserById } from '@/features/users/service'
+import { User } from '@/features/user/types'
+import { fetchUserById } from '@/features/user/service'
 import { fetchArtistsByIds } from '@/lib/spotify'
 import { redirect } from 'next/navigation'
-import { UserProfile } from '@/features/users/components/UserProfile'
-
-
-const CURRENT_USER_ID = 1
+import { UserProfile } from '@/features/user/components/UserProfile'
+import { getVerifiedUser } from '@/lib/auth'
 
 export default async function UserPage({params}: PageParams<{id: string}>) {
+  const user = await getVerifiedUser()
   const { id } = await params
-  const user: User | undefined = await fetchUserById(id)
-  if (user === undefined) {
+  const targetUser: User | undefined = await fetchUserById(id)
+  if (targetUser === undefined) {
     redirect('/')
   }
 
-  const posts = await fetchPostsByUserId(CURRENT_USER_ID, id)
+  const posts = await fetchPostsByUserId(user?.id, id)
 
   const uniqueArtistIds = Array.from(new Set(posts.map(post => post.artist_id)))
   const artists: SpotifyArtist[] = await fetchArtistsByIds(uniqueArtistIds)
@@ -26,8 +25,8 @@ export default async function UserPage({params}: PageParams<{id: string}>) {
   return (
     <>
       <PageHeading heading={'Profile'} />
-      <UserProfile user={user} artists={artists} />
-      <Timeline posts={posts} currentUserId={CURRENT_USER_ID} />
+      <UserProfile user={targetUser} artists={artists} />
+      <Timeline posts={posts} currentUserId={user?.id} />
     </>
   )
 }

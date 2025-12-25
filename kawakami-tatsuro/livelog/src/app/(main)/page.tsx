@@ -1,18 +1,18 @@
 import { PageHeading } from "@/components/PageHeading";
 import { Timeline } from "@/components/Timeline";
-import { fetchPosts } from "@/features/posts/service";
-import { Post } from "@/features/posts/types";
-
-const CURRENT_USER_ID = 1
+import { fetchPosts } from "@/features/post/service";
+import { Post } from "@/features/post/types";
+import { getVerifiedUser } from "@/lib/auth";
 
 export const revalidate = 60;
 
 export default async function Home () {
-  const posts: Post[] = await fetchPosts(CURRENT_USER_ID)
+  const user = await getVerifiedUser()
+  const posts: Post[] = await fetchPosts(user?.id)
   return (
     <>
     <PageHeading heading="Timeline" />
-    <Timeline posts={posts} currentUserId={CURRENT_USER_ID} />
+    <Timeline posts={posts} currentUserId={user?.id} />
     </>
     )
 }
