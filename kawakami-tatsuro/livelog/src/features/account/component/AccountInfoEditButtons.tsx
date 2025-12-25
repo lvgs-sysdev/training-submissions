@@ -10,7 +10,7 @@ export const AccountInfoEditButtons = ({ onEditButtonClick }: Props) => {
 
   return (
     <>
-      <Button onClick={onEditButtonClick} className="max-w-16 w-16 ml-auto">Edit</Button>
+      <Button onClick={onEditButtonClick} className="max-w-16 w-16 ml-auto cursor-pointer">Edit</Button>
     </>
   )
 }
