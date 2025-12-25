@@ -55,7 +55,7 @@ export const setAuthCookie = async (user: {id: number, user_name: string}) => {
   })
 }
 
-const isExpireToken = (exp: number): boolean => {
+const isExpiredToken = (exp: number): boolean => {
   return exp < Date.now() / 1000
 }
 
@@ -74,7 +74,7 @@ export const getVerifiedUser = async ():Promise<{id: number, userName: string} |
   try {
   const decodedPayload = JSON.parse(Buffer.from(payload, 'base64url').toString()) as {id: number, user_name: string, iat: number, exp: number}
 
-  if (isExpireToken(decodedPayload.exp)) return null
+  if (isExpiredToken(decodedPayload.exp)) return null
 
   return { id: decodedPayload.id, userName: decodedPayload.user_name }
   } catch (error) {
