@@ -13,9 +13,9 @@ export const Timeline = ({ posts, currentUserId }: Props) => {
       ? <div className="divide-y w-full">
           {posts.map((post) => {
       
-          return(
+          return (
             <PostItem key={post.id} post={post} currentUserId={currentUserId} />
-            )
+          )
           })}
           </div>
       : <p className="text-center">There are no posts yet.</p>}

@@ -56,11 +56,13 @@ export const TrackSearchField = ({  initialData, artistName, onTrackSelect, onTr
             >
               Search
             </Button>
-          ) : (
+            ) 
+          : (
             <Button type="button" disabled>
               Search
             </Button>
-          )}
+            )
+          }
         </div>
         {trackResult && (
           <ul className="absolute top-full  bg-background z-1000 rounded-b-2xl overflow-scroll w-3xs h-52">

@@ -1,6 +1,7 @@
 import pool from "@/lib/db"
 import { Post, PostDB } from "./types"
 
+// DBから取得したポストのデータのis_liked_by_me(ログイン中のユーザーがいいね済みか否か)は0か1であるのでbooleanに変換するヘルパー関数
 const toPost = (row: PostDB): Post => {
   return {
     ...row,
@@ -88,7 +89,6 @@ export const fetchPosts = async (currentUserId: number | undefined): Promise<Pos
         posts.created_at DESC;
       `,
       { currentUserId: currentUserId })
-      console.log('success')
       
       const posts: Post[] = rows.map(toPost)
 

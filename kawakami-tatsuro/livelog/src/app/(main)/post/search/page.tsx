@@ -12,7 +12,7 @@ interface Props {
 
 export default async function SearchPage ({ searchParams }: Props) {
   const user = await getVerifiedUser()
-  const params = await searchParams
+  const params = await searchParams // URLのパラメータから取得
   const artistName = typeof params.artist === 'string' ? params.artist : undefined
   let posts: Post[] = []
 
@@ -21,9 +21,9 @@ export default async function SearchPage ({ searchParams }: Props) {
   }
   return (
     <>
-    <PageHeading heading="Search" />
-    <SearchInput getArtistsFromInput={getArtistsFromInput} defaultValue={artistName} />
-    {artistName && <Timeline posts={posts} currentUserId={user?.id} />}
+      <PageHeading heading="Search" />
+      <SearchInput getArtistsFromInput={getArtistsFromInput} defaultValue={artistName} />
+      {artistName && <Timeline posts={posts} currentUserId={user?.id} />}
     </>
   )
 }

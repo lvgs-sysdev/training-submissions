@@ -21,9 +21,7 @@ export const UserProfile = ({ user, artists }: Props) => {
         />
         <div className="flex flex-col gap-2">
           <p className="truncate font-bold text-2xl">TestUser</p>
-          <p className="text-muted-foreground">{`Joined ${formatDateForInput(
-            user?.created_at
-          )}`}</p>
+          <p className="text-muted-foreground">{`Joined ${formatDateForInput(user?.created_at)}`}</p>
         </div>
       </CardHeader>
       <CardContent className="flex flex-col gap-6">

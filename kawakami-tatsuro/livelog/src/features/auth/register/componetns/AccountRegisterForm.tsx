@@ -33,7 +33,7 @@ export const AccountRegisterForm = ({ registerAccount }: Props) => {
     } else if (response.status === 500) {
       alert('Something went wrong. Please try again later.')
     } else if (response.code === 'IMG_UPLOAD_FAILED') {
-      alert('Account csreated. Please retry uploading your image later.')
+      alert('Account created. Please retry uploading your image later.')
     } else {
       alert('Account created successfully.')
       router.push('/')

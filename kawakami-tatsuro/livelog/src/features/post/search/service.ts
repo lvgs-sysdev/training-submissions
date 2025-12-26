@@ -2,7 +2,7 @@ import pool from "@/lib/db"
 import { Artist, ArtistDB } from "../types"
 
 export const searchArtistsOfPosts = async (input: string): Promise<Artist[]> => {
-  const searchPattern = `%${input}%`
+  const searchPattern = `%${input}%` // 部分一致で検索
   try {
     const [rows] = await pool.query<ArtistDB[]>(`
       SELECT

@@ -6,10 +6,10 @@ import { LoginForm } from "@/features/auth/login/components/LoginForm";
 export default async function LoginPage () {
   return (
     <>
-    <PageHeading heading="Login" />
-    <Card className="shadow-none px-4 py-9">
-    <LoginForm login={login} />  
-    </Card>
+      <PageHeading heading="Login" />
+      <Card className="shadow-none px-4 py-9">
+        <LoginForm login={login} />  
+      </Card>
     </>
     
   )

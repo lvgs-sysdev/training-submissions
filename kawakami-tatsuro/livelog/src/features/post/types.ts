@@ -59,8 +59,3 @@ export interface DisplayPost {
   track_title: string;
   created_at: string;
 } 
-
-// export interface PostInput  {
-//   content: string;
-//   show_date: string;
-// }

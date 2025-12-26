@@ -8,7 +8,7 @@ import { getVerifiedUser } from "@/lib/auth";
 
 export default async function PostEditPage({ params }: PageParams<{id: string}>) {
   const user = await getVerifiedUser()
-  const { id } = await params // ポストのIDの取得
+  const { id } = await params // URLのパラメータからポストのIDの取得
   const post = await fetchPostById(user?.id, id)
 
   if (!post) redirect('/') // ポストが存在しなければリダイレクト

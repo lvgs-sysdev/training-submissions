@@ -5,8 +5,8 @@ import { AccountRegisterForm } from "@/features/auth/register/componetns/Account
 export default async function RegisterPage () {
   return (
     <>
-    <PageHeading heading="Register" />
-    <AccountRegisterForm registerAccount={registerAccount} />
+      <PageHeading heading="Register" />
+      <AccountRegisterForm registerAccount={registerAccount} />
     </>
   )
 }

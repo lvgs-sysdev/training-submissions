@@ -39,7 +39,7 @@ export const updateAccountInfo = async (formData: FormData): Promise<ApiResponse
     }
   } catch (error) {
     const err = error as MySqlError
-    if (err.code === 'ER_DUP_ENTRY') {
+    if (err.code === 'ER_DUP_ENTRY') { // 変更しようとしたメールアドレスがすでに使用されていた場合
       return { success: false, status: 409, message: 'This email address is already in use.', code: 'EMAIL_DUPLICATE' }
     }
     console.log(error)

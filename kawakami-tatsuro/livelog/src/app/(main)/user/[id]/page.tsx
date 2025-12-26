@@ -11,7 +11,7 @@ import { getVerifiedUser } from '@/lib/auth'
 
 export default async function UserPage({params}: PageParams<{id: string}>) {
   const user = await getVerifiedUser()
-  const { id } = await params
+  const { id } = await params // URLのパラメータからユーザーIDの取得
   const targetUser: User | undefined = await fetchUserById(id)
   if (targetUser === undefined) {
     redirect('/')

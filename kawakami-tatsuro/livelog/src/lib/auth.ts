@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers'
 import { createHmac } from 'node:crypto'
 
-// Headerは固定なので、エンコード済みの文字列を定数化
+// Headerは固定なので、エンコード済みの文字列を定数化（{alg: "HS256", typ: "JWT"}）
 const ENCODED_HEADER = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'
 
 // JWTの署名に用いる秘密鍵
@@ -17,6 +17,7 @@ const encodeToBase64Url = (input: string | Buffer): string => {
   return result
 }
 
+// HeaderとPayloadを結合した文字列を受け取ってSignatureを作成する
 const createSignature = (data: string, secret: string): string => {
   return createHmac('sha256', secret).update(data).digest('base64url')
 }
@@ -31,6 +32,7 @@ const createPayload = (user: {id: number, user_name: string}): Record<string, st
   }
 }
 
+// Header, Payload, Signatureを結合してトークンを作成する
 const generateToken = (payload: Record<string, string | number>): string => {
   const encodedPayload = encodeToBase64Url(JSON.stringify(payload))
   const dataToSign = `${ENCODED_HEADER}.${encodedPayload}`
@@ -41,6 +43,7 @@ const generateToken = (payload: Record<string, string | number>): string => {
   return token
 }
 
+// トークンをcookieにセットする
 export const setAuthCookie = async (user: {id: number, user_name: string}) => {
   const payload = createPayload(user)
   const token = generateToken(payload)
@@ -55,10 +58,12 @@ export const setAuthCookie = async (user: {id: number, user_name: string}) => {
   })
 }
 
+// トークンが期限切れになっていないかを判定する
 const isExpiredToken = (exp: number): boolean => {
   return exp < Date.now() / 1000
 }
 
+// 有効なトークンを持っているユーザーであるかどうかを判定する
 export const getVerifiedUser = async ():Promise<{id: number, userName: string} | null> => {
   const cookieStore = await cookies()
   const accessToken = cookieStore.get('access_token')
@@ -72,9 +77,9 @@ export const getVerifiedUser = async ():Promise<{id: number, userName: string} |
   if (reCalculatedSignature !== signature) return null // JWTの署名が改ざんされていた場合
 
   try {
-  const decodedPayload = JSON.parse(Buffer.from(payload, 'base64url').toString()) as {id: number, user_name: string, iat: number, exp: number}
+    const decodedPayload = JSON.parse(Buffer.from(payload, 'base64url').toString()) as {id: number, user_name: string, iat: number, exp: number}
 
-  if (isExpiredToken(decodedPayload.exp)) return null
+    if (isExpiredToken(decodedPayload.exp)) return null
 
   return { id: decodedPayload.id, userName: decodedPayload.user_name }
   } catch (error) {

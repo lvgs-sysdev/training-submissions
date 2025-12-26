@@ -65,15 +65,14 @@ export const PostForm = ({ initialData, action }: Props ) => {
   const handleSubmit = async (formData: FormData) => {
     const response: ApiResponse<null> = await action(formData)
 
-    if (response.status === 401) return alert('Your session has timed out.\nPlease log in again.')
-    if (response.status === 500) return alert('Something went wrong. Please try again later.')
-
+    if (response.status === 401) return alert('Your session has timed out.\nPlease log in again.')    
     if (response.status === 404) {
       alert('This post is not found.\nIt may have already been deleted. ')
       router.push('/')
       router.refresh()
       return
     }
+    if (response.status === 500) return alert('Something went wrong. Please try again later.')
   }
 
   return (
