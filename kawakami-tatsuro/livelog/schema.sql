@@ -74,7 +74,6 @@ INSERT INTO users (id, user_name, email, password, pic_path, created_at, updated
 -- 2. Artists テーブル (依存なし)
 -- --------------------------------------------------------
 INSERT INTO artists (id, spotify_id, artist_name, created_at) VALUES
-(1, 'spotify_artist_id_1', 'Test Artist', '2025-12-03 12:17:16'),
 (2, '4Z8W4fKeB5YxbusRsdQVPb', 'Radiohead', '2025-12-05 18:48:13'),
 (4, '2DaxqgrOhkeH0fpeiQq2f4', 'Oasis', '2025-12-05 20:20:07'),
 (5, '7MhMgCo0Bl0Kukl93PZbYS', 'Blur', '2025-12-05 20:21:51'),
@@ -93,7 +92,6 @@ INSERT INTO artists (id, spotify_id, artist_name, created_at) VALUES
 -- 3. Tracks テーブル (Artistsに依存)
 -- --------------------------------------------------------
 INSERT INTO tracks (id, spotify_id, title, created_at, artist_id) VALUES
-(2, 'spotify_track_id_1', 'Test Song', '2025-12-03 12:17:20', 1),
 (3, '73CKjW3vsUXRpy3NnX4H7F', 'Fake Plastic Trees', '2025-12-05 19:56:26', 2),
 (4, '2kx1ibQmztyF7acpxjY4Qf', 'Champagne Supernova - Remastered', '2025-12-05 20:20:07', 4),
 (5, '7FSzJQV6thyoQptFCUTV9c', 'Parklife - 2012 Remaster', '2025-12-05 20:21:51', 5),
