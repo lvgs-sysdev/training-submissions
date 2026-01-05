@@ -53,6 +53,7 @@ export const getSpotifyAccessToken = async (): Promise<string | null> => {
   }
 }
 
+// クライアントから受け取った値をアーティスト名のクエリとしてSpotifyのアーティストデータを取得する
 export const searchArtists = async (artistName: string) => {
   const query = new URLSearchParams()
   query.append('q', artistName)
@@ -79,6 +80,7 @@ export const searchArtists = async (artistName: string) => {
   }
 }
 
+// クライアントから受け取った値をトラック名のクエリとしてSpotifyの楽曲データを取得する
 export const searchTracks = async (trackTitleInput: string, artistName: string): Promise<SpotifyTrack[]> => {
   const query = new URLSearchParams()
   query.append('q', `${trackTitleInput} artist:${artistName}`)
@@ -105,6 +107,7 @@ export const searchTracks = async (trackTitleInput: string, artistName: string):
   }
 }
 
+// クライアントから受け取ったアーティストのSpotify IDの配列を結合して、それらに該当するSpotifyのアーティストデータを取得する
 export const fetchArtistsByIds = async (artistIds: string[]): Promise<SpotifyArtist[]> => {
   if (artistIds.length === 0) return []
 

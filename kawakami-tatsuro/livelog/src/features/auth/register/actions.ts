@@ -8,6 +8,8 @@ import { ResultSetHeader } from "mysql2";
 import pool from "@/lib/db";
 import { setAuthCookie } from "@/lib/auth";
 
+// 本来は画像ファイルの拡張子、サイズのチェックが必要だが現時点では実装できていない
+
 const generatePictureFilePaths = (pictureName: string) => {
   const extension = pictureName.split('.').slice(-1)[0] // 拡張子を取得
   const fileName = `${crypto.randomUUID()}.${extension}`

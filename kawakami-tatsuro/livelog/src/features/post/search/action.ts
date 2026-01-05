@@ -3,6 +3,7 @@ import { ApiResponse } from "../../../../types"
 import { Artist } from "../types"
 import { searchArtistsOfPosts } from "./service"
 
+// ユーザーの入力値をもとにSpotifyのアーティストを検索する
 export const getArtistsFromInput = async (input: string): Promise<ApiResponse<Artist[]>> => {
   try {
     const artists = await searchArtistsOfPosts(input)

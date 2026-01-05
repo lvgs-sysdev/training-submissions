@@ -29,7 +29,7 @@ export const login = async (formData: FormData): Promise<ApiResponse<null>> => {
 
     if(!user) return { success: false, status: 401, message: 'The email address or password is incorrect.' }
 
-    const isValidPassword = await bcrypt.compare(password, user.password) // ユーザーが入力したパスワードとDBのハッシュ化されたパスワードを比較
+    const isValidPassword = await bcrypt.compare(password, user.password) // ユーザーが入力したパスワードとDBに保存されているハッシュ化済みのパスワードを比較
 
     if (!isValidPassword) return { success: false, status: 401, message: 'The email address or password is incorrect.' }
 

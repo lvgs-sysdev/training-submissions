@@ -1,6 +1,7 @@
 import pool from "@/lib/db"
 import { Artist, ArtistDB } from "../types"
 
+// DBのartistsテーブルに登録されているアーティストを検索する
 export const searchArtistsOfPosts = async (input: string): Promise<Artist[]> => {
   const searchPattern = `%${input}%` // 部分一致で検索
   try {

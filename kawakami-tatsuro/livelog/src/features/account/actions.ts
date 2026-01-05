@@ -6,6 +6,7 @@ import { ApiResponse, MySqlError } from "../../../types";
 import { revalidatePath } from "next/cache";
 import { getVerifiedUser } from "@/lib/auth";
 
+// クライアントから受け取ったユーザーIDに該当するユーザーのユーザー名・メールアドレスを、クライアントから受け取った内容に更新する
 export const updateAccountInfo = async (formData: FormData): Promise<ApiResponse<null>> => {
   const user = await getVerifiedUser()
   if (!user) return { success: false, status: 401, message: 'The session timed out.', code: 'UNAUTHORIZED' }

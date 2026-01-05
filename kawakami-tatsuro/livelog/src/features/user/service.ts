@@ -1,6 +1,7 @@
 import pool from "@/lib/db";
 import { User, UserDB } from "./types";
 
+// クライアントから受け取ったユーザーIDに該当するユーザーを取得する
 export const fetchUserById = async (userId: string): Promise<User | undefined> => {
   try {
     const [rows] = await pool.query<UserDB[]>(`
