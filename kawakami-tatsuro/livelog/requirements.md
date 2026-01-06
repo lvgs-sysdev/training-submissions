@@ -50,7 +50,7 @@ src/
 │
 ├── components/          # 共通UI部品
 │   └── ui/              # shadcn/uiのコンポーネント
-├── lib/                 # 共通基盤 (DB, Spotify等)
+├── lib/                 # 共通基盤 (DB, Spotify API等)
 ├── proxy.ts             # 未ログインユーザーの特定ページへのアクセス制限等（旧 middleware.ts）
 └── types/               # 共通の型定義
 ```
