@@ -8,6 +8,10 @@ import { fetchArtistsByIds } from '@/lib/spotify'
 import { redirect } from 'next/navigation'
 import { UserProfile } from '@/features/user/components/UserProfile'
 import { getVerifiedUser } from '@/lib/auth'
+import { getPostsByUserId } from '@/features/post/actions'
+import { TimelineScroller } from '@/components/TimelineScroller'
+
+const LIMIT_NUM_OF_POSTS = 10
 
 export default async function UserPage({params}: PageParams<{id: string}>) {
   const user = await getVerifiedUser()
@@ -17,16 +21,18 @@ export default async function UserPage({params}: PageParams<{id: string}>) {
     redirect('/')
   }
 
-  const posts = await fetchPostsByUserId(user?.id, id)
+  const posts = await getPostsByUserId(user?.id, id, undefined, LIMIT_NUM_OF_POSTS)
 
-  const uniqueArtistIds = Array.from(new Set(posts.map(post => post.artist_id)))
+  const boundAction = getPostsByUserId.bind(null, user?.id, id)
+
+  const uniqueArtistIds = Array.from(new Set(posts.map(post => post.artist_id))) // 当該ユーザーの全投稿に紐づいたアーティストのIDから一意のアーティストIDの配列を作成
   const artists: SpotifyArtist[] = await fetchArtistsByIds(uniqueArtistIds)
 
   return (
     <>
-      <PageHeading heading={'Profile'} />
-      <UserProfile user={targetUser} artists={artists} />
-      <Timeline posts={posts} currentUserId={user?.id} />
+    <PageHeading heading={'Profile'} />
+    <UserProfile user={targetUser} artists={artists} />
+    <TimelineScroller initialPosts={posts} currentUserId={user?.id} getMorePosts={boundAction} limit={LIMIT_NUM_OF_POSTS} />
     </>
   )
 }

@@ -1,12 +1,13 @@
 'use server'
 import pool from "@/lib/db"
-import { ArtistDB, TrackDB } from "./types"
+import { ArtistDB, Post, TrackDB } from "./types"
 import { ResultSetHeader } from "mysql2";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { searchArtists, searchTracks } from "@/lib/spotify";
 import { ApiResponse, SpotifyArtist, SpotifyTrack } from "../../../types";
 import { getVerifiedUser } from "@/lib/auth";
+import { fetchPosts, fetchPostsByArtistName, fetchPostsByUserId } from "./service";
 
 const updateArtistName = async (artistName: string, artistId: number) => {
   try {
@@ -320,4 +321,31 @@ export const deleteLike = async (userId: number, postId: number) => {
   }
 
   revalidatePath('/')
+}
+
+export const getPosts = async (currentUserId: number | undefined, cursorId: number | undefined, limit: number): Promise<Post[]> => {
+  try {
+    return await fetchPosts(currentUserId, cursorId, limit)
+  } catch (error) {
+    console.log(error)
+    throw new Error('failed to get posts')
+  }
+}
+
+export const getPostsByUserId = async (currentUserId: number | undefined, userId: string, cursorId: number | undefined, limit: number): Promise<Post[]> => {
+  try {
+    return await fetchPostsByUserId(currentUserId, userId, cursorId, limit)
+  } catch (error) {
+    console.log(error)
+    throw new Error('failed to get posts')
+  }
+}
+
+export const getPostsByArtistName = async (currentUserId: number | undefined, artistName: string, cursorId: number | undefined, limit: number): Promise<Post[]> => {
+  try {
+    return await fetchPostsByArtistName(currentUserId, artistName, cursorId, limit)
+  } catch (error) {
+    console.log(error)
+    throw new Error('failed to get posts')
+  }
 }

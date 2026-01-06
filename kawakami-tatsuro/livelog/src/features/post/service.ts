@@ -9,6 +9,7 @@ const toPost = (row: PostDB): Post => {
   }
 }
 
+// クライアントから受け取ったポストのIDに該当するポストを1件取得する
 export const fetchPostById = async (currentUserId: number | undefined, id: string): Promise<Post | undefined> => {
   try {
     const [rows] = await pool.query<PostDB[]>(`
@@ -41,7 +42,7 @@ export const fetchPostById = async (currentUserId: number | undefined, id: strin
       ON
         tracks.artist_id = artists.id
       WHERE
-        posts.id = :id
+        posts.id = :id;
       `,
     {
       id: id,
@@ -60,7 +61,8 @@ export const fetchPostById = async (currentUserId: number | undefined, id: strin
   }
 }
 
-export const fetchPosts = async (currentUserId: number | undefined): Promise<Post[]> => {
+// cursorIdよりもIDの数字が小さいポストをlimitの件数分取得する（cursorIdがundefinedの場合は最新のポストをlimitの件数分取得する）
+export const fetchPosts = async (currentUserId: number | undefined, cursorId: number | undefined, limit: number): Promise<Post[]> => {
   try {
     const [rows] = await pool.query<PostDB[]>(`
       SELECT
@@ -85,10 +87,18 @@ export const fetchPosts = async (currentUserId: number | undefined): Promise<Pos
         tracks ON posts.track_id = tracks.id
       JOIN
         artists ON tracks.artist_id = artists.id
+      WHERE
+        (:cursorId IS NULL OR posts.id < :cursorId)
       ORDER BY
-        posts.created_at DESC;
+        posts.id DESC
+      LIMIT
+        :limit;
       `,
-      { currentUserId: currentUserId })
+      { 
+        currentUserId: currentUserId,
+        cursorId: cursorId || null,
+        limit: limit
+      })
       
       const posts: Post[] = rows.map(toPost)
 
@@ -100,7 +110,8 @@ export const fetchPosts = async (currentUserId: number | undefined): Promise<Pos
   }
 }
 
-export const fetchPostsByUserId = async (currentUserId: number | undefined, userId: string): Promise<Post[]> => {
+// クライアントから受け取ったユーザーIDに該当するユーザーの全ポストを取得する
+export const fetchPostsByUserId = async (currentUserId: number | undefined, userId: string, cursorId: number | undefined, limit: number): Promise<Post[]> => {
   try {
     const [rows] = await pool.query<PostDB[]>(`
       SELECT
@@ -132,13 +143,17 @@ export const fetchPostsByUserId = async (currentUserId: number | undefined, user
       ON
         tracks.artist_id = artists.id
       WHERE
-        posts.user_id = :userId
+        posts.user_id = :userId AND (:cursorId IS NULL OR posts.id < :cursorId)
       ORDER BY
-        posts.created_at DESC
+        posts.id DESC
+      LIMIT
+        :limit;
       `,
     {
+      currentUserId: currentUserId,
       userId: userId,
-      currentUserId: currentUserId
+      cursorId: cursorId,
+      limit: limit
     })
 
     if (rows.length === 0) return [];
@@ -153,7 +168,8 @@ export const fetchPostsByUserId = async (currentUserId: number | undefined, user
   }
 }
 
-export const fetchPostsByArtistName = async (currentUserId: number | undefined, artistName: string): Promise<Post[]> => {
+// クライアントから受け取ったアーティスト名と紐づいた全ポストを取得する
+export const fetchPostsByArtistName = async (currentUserId: number | undefined, artistName: string, cursorId: number | undefined, limit: number): Promise<Post[]> => {
   try {
     const [rows] = await pool.query<PostDB[]>(`
       SELECT
@@ -179,13 +195,17 @@ export const fetchPostsByArtistName = async (currentUserId: number | undefined, 
       JOIN
         artists ON tracks.artist_id = artists.id
       WHERE
-        artists.artist_name = :artistName
+        artists.artist_name = :artistName AND (:cursorId IS NULL OR posts.id < :cursorId)
       ORDER BY
-        posts.created_at DESC;
+        posts.id DESC
+      LIMIT
+        :limit;
       `,
       {
         currentUserId: currentUserId,
-        artistName: artistName
+        artistName: artistName,
+        cursorId: cursorId,
+        limit: limit
       })
 
       if (rows.length === 0) return []
