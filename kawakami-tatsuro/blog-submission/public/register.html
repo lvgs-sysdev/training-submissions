@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DAYDAYTRAVEL</title>
+  <link rel="stylesheet" href="./css/common/reset.min.css">
+  <link rel="stylesheet" href="./css/common/common.css">
+  <link rel="stylesheet" href="./css/common/header.css">
+  <link rel="stylesheet" href="./css/common/footer.css">
+  <link rel="stylesheet" href="./css/register.css">
+</head>
+<body>
+  <header class="header"></header>
+    <main>
+      <div class="main__container">
+        <h2 class="heading">Sign-up</h2>
+          <form id="js-register-form" class="information-input-form">
+            <div class="information-input-area">
+              <label class="label" for="js-register-id">User ID</label>
+              <input id="js-register-id" type="text" required>
+            </div>
+            <div class="information-input-area">
+              <label class="label" for="js-register-password">Password</label>
+              <input id="js-register-password" type="password" minlength="8" required>
+              <span class="annotation">* at least 8 characters long</span>
+            </div>
+            <div class="information-input-area">
+              <label class="label" for="js-register-name">User Name</label>
+              <input id="js-register-name" type="text" required>
+            </div>
+            <div class="btn-container">
+              <input class="btn btn--primary" type="submit" value="Confirm">
+            </div>
+          </form>
+      </div>
+    </main>
+  <footer class="footer"></footer>
+  <footer class="footer"></footer>
+  <script type="module" src="./js/common.js"></script>
+  <script type="module" src="./js/utils.js"></script>
+  <script type="module" src="./js/register.js"></script>
+</body>
+</html>

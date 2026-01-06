@@ -1,0 +1,267 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;0,600;0,700;1,400&display=swap');
+
+/* common */
+
+:root {
+  --main: #121212;
+  --muted: #757575;
+  --primary: #ff553c;
+  --white: #fff;
+  --fw-normal: 300;
+  --fw-medium: 500;
+  --fw-semi-bold:600;
+  --fw-bold: 700;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: var(--fw-normal);
+  color: var(--main);
+}
+
+.heading {
+  font-weight: var(--fw-semi-bold);
+  font-size: 1.375rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* main */
+
+.main__container {
+  padding: 120px 96px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1366px;
+  min-width: 0;
+  display: flex;
+  gap: 96px;
+}
+
+.main__container:has(.information-input-form) {
+  flex-direction: column;
+  gap: 64px;
+  padding-top: 64px;
+}
+
+/* article-list */
+
+.article-list__col {
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 64px 20px;
+  width: 100%;
+  max-width: 740px;
+  min-width: 0;
+}
+
+.article-list .article-list__col__item {
+  width: 360px;
+  min-width: 0;
+}
+
+.article-list .article-list__col__item-title {
+  font-weight: var(--fw-normal);
+  font-size: 1.25rem;
+}
+
+.article-list .article-list__col__item-text {
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  max-height: 1.5rem;
+}
+
+.article-list__col__item__link {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.article-list__col__item__desc {
+  font-size: 0.875rem;
+}
+
+.article-list__col__item__desc-genre {
+  color: var(--primary);
+  font-weight: var(--fw-medium);
+}
+
+.article-list__col__item__desc-hr {
+  rotate: 90deg;
+  width: 0.964375rem;
+  display: inline-block;
+  vertical-align: middle;
+  border-color: #dedede;
+}
+
+.article-list__col__item__desc-date {
+  color: var(--muted);
+}
+
+.author-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.author-box__info {
+  display: flex;
+  gap: 16px;
+}
+
+.author-box__info__img {
+  border-radius: 200px;
+}
+
+.author-box__social {
+  display: flex;
+  gap: 15px;
+  align-self: center;
+}
+
+/* form */
+
+.information-input-form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 500px;
+}
+
+.information-input-area {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.label {
+  font-size: 1.5rem;
+}
+
+.label:has(+ input:required)::after {
+  content: '* required';
+  color: var(--primary);
+  font-size: 1rem;
+  margin-left: 8px;
+}
+
+.label:has(+ textarea:required)::after {
+  content: '* required';
+  color: var(--primary);
+  font-size: 1rem;
+  margin-left: 8px;
+}
+
+/* sidebar */
+
+.sidebar {
+  max-width: 740px;
+  display: flex;
+  flex-direction: column;
+  gap: 96px;
+}
+
+.sidebar__heading {
+  font-size: 1.375rem;
+}
+
+.sidebar__popular-article-container, .sidebar__new-article-container {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* btn */
+
+.btn-container {
+  display: flex;
+  align-self: flex-end;
+  gap: 32px;
+}
+
+.btn {
+  padding: 14px 16px !important;
+}
+
+.btn--muted {
+  background-color: #d9d9d9;
+}
+
+.btn--primary {
+  background-color: var(--primary) !important;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.edit-button-container {
+  text-align: right;
+  margin-top: 32px;
+}
+
+.btn--edit {
+  padding: 14px 32px;
+  background-color: #00dbb3;
+  color: var(--white);
+  font-weight: var(--fw-medium);
+  display: none;
+}
+
+/* media queries */
+
+@media screen and (max-width: 1292px) {
+  .main__container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    flex-direction: row;
+  }
+}
+
+@media screen and (max-width: 936px) {
+  html {
+    font-size: 90%;
+  }
+
+  .article-list__col__item {
+    width: 100% !important;
+  }
+
+  .article-list__col__item img {
+    width: 100%;
+    height: auto;
+  }
+
+  .sidebar {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 80%;
+  }
+
+  .main__container {
+    padding: 30px 20px !important;
+  }
+
+  .sidebar {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 534px) {
+  html {
+    font-size: 75%;
+  }
+}

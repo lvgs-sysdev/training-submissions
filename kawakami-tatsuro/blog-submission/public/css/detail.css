@@ -1,0 +1,171 @@
+/* detail-page */
+
+/* main */
+
+.main__content {
+  display: flex;
+  flex-direction: column;
+  gap: 160px;
+}
+
+.article {
+  max-width: 740px;
+  width: 100%;
+}
+
+.author-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.author-box__info {
+  display: flex;
+  gap: 16px;
+}
+
+.author-box__info__img {
+  border-radius: 200px;
+}
+
+.author-box__info__alt {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.author-box__info__alt--date {
+  font-size: .875rem;
+  color: var(--muted);
+}
+
+.author-box__social {
+  display: flex;
+  gap: 15px;
+  align-self: center;
+}
+
+.title__box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title__box--genre {
+  font-size: 0.875rem;
+  color: var(--primary);
+  font-weight: var(--fw-medium);
+}
+
+.title__box--title {
+  font-size: 2rem;
+  font-weight: var(--fw-medium);
+}
+
+.content__box {
+  width: 100%;
+  font-size: 1.125rem;
+  color: var(--muted);
+}
+
+.article-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+}
+
+.content__img__subtitle-box {
+  text-align: center;
+}
+
+.content__img__subtitle-box--subtitle {
+  margin-top: 15px;
+  font-weight: 400;
+  font-size: .875rem;
+  font-style: italic;
+}
+
+.content__img__wrapper {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.content__img {
+  width: 100%;
+  height: auto;
+  min-width: 0;
+}
+
+.content__box {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.content__h3 {
+  font-size: 1.25rem;
+  font-weight: var(--fw-medium);
+  margin-bottom: 14px;
+  color: var(--main);
+}
+
+.tag-box {
+  margin-top: 64px;
+}
+
+.tag-box__tag {
+  padding: 8px 18px;
+  border: 1px solid #dedede;
+  display: inline-block;
+  color: var(--muted);
+}
+
+/* sidebar */
+
+.article-list__col__item {
+  width: 265px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.article-list__col__item-title {
+  font-weight: var(--fw-normal);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.sidebar__author {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.sidebar__author__container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.sidebar__author__item {
+  display: flex;
+  gap: 16px;
+}
+
+.sidebar__author__photo {
+  border-radius: 200px;
+  width: 60px;
+  height: 60px;
+}
+
+.sidebar__author__name {
+  margin-top: 6px;
+}

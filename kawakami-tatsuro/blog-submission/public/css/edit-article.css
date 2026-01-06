@@ -1,0 +1,33 @@
+@charset "utf-8";
+
+.main__container {
+  flex-direction: column;
+  gap: 64px;
+  padding-top: 64px;
+}
+
+.article-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.article-input-area {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.article-input-area.title > input {
+  max-width: 600px;
+}
+
+.article-input-area.genre > input {
+  max-width: 100px;
+}
+
+.label {
+  font-size: 1.5rem;
+}

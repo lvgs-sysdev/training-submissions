@@ -1,0 +1,85 @@
+"use strict";
+
+import {
+  fetchData,
+  getCurrentUser,
+  getParamsFromCurrentUrl,
+  updateData,
+  validateInputs,
+} from "./utils.js";
+
+const profileEditForm = document.getElementById("js-profile-edit-form");
+
+// プロフィール編集フォームのDOM要素を取得する
+const getProfileEditFormElements = () => {
+  const id = document.getElementById("js-profile-id");
+  const name = document.getElementById("js-profile-name");
+
+  return { id, name };
+};
+
+// プロフィール編集フォームのinput要素等の初期値を当該ユーザーの内容に設定
+const displayUserInfo = (user) => {
+  const { id, name } = getProfileEditFormElements();
+
+  id.value = user.user_id;
+  name.value = user.user_name;
+};
+
+// プロフィール編集フォームの入力値を取得し、オブジェクトとして返す
+const getProfileEditFormData = () => {
+  const id = document.getElementById("js-profile-id").value;
+  const name = document.getElementById("js-profile-name").value;
+
+  if (!validateInputs(id)) {
+    return null;
+  }
+
+  const profileData = {
+    user_id: id,
+    user_name: name,
+  };
+
+  return profileData;
+};
+
+// DOMの読み込み後、URLのパラメーターに対応するユーザーのデータを取得し、画面に表示する
+document.addEventListener("DOMContentLoaded", async () => {
+  const id = getParamsFromCurrentUrl("id");
+  const user = await fetchData(`/user/${id}`);
+  const currentUser = await getCurrentUser();
+
+  // ログイン中のユーザーとプロフィール編集対象のユーザーのidが異なる場合、トップにリダイレクトする
+  if (currentUser.id !== user.id) window.location.href = '/';
+
+  displayUserInfo(user);
+});
+
+// プロフィール編集フォームがsubmitされたらPUTリクエストを行ってデータを更新する
+profileEditForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const id = getParamsFromCurrentUrl("id");
+  const profileData = getProfileEditFormData();
+
+  if (!profileData) {
+    alert("User IDに空白は使用することができません。");
+  }
+
+  try {
+    await updateData(`/user/${id}`, profileData);
+
+    alert("ユーザー情報の更新が完了しました。");
+    window.location.href = `user.html?id=${id}`;
+  } catch (error) {
+    if (error.status === 401) {
+      alert('セッションが切れました。再度ログインしてください。');
+    } else if (error.status === 403) {
+      alert('更新を行う権限がありません。')
+    } else if (error.status === 404) {
+      alert('存在しないユーザーです。');
+    } else {
+      alert('予期せぬエラーが発生しました。恐れ入りますが、時間をおいて再度行ってください。');
+    }
+  }
+});

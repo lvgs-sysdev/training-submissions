@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DAYDAYTRAVEL</title>
+  <link rel="stylesheet" href="./css/common/reset.min.css">
+  <link rel="stylesheet" href="./css/common/common.css">
+  <link rel="stylesheet" href="./css/common/header.css">
+  <link rel="stylesheet" href="./css/common/footer.css">
+  <link rel="stylesheet" href="./css/login.css">
+</head>
+<body>
+  <header class="header"></header>
+    <main>
+      <div class="main__container">
+        <h2 class="heading">Login</h2>
+          <form id="js-login-form" class="information-input-form">
+            <div class="information-input-area">
+              <label class="label" for="js-login-id">User ID</label>
+              <input id="js-login-id" type="text" required>
+            </div>
+            <div class="information-input-area">
+              <label class="label" for="js-login-password">Password</label>
+              <input id="js-login-password" type="password" required>
+            </div>
+            <div class="btn-container">
+              <input class="btn btn--primary" type="submit" value="Login">
+            </div>
+          </form>
+      </div>
+    </main>
+  <footer class="footer"></footer>
+  <footer class="footer"></footer>
+  <script type="module" src="./js/common.js"></script>
+  <script type="module" src="./js/utils.js"></script>
+  <script type="module" src="./js/login.js"></script>
+</body>
+</html>

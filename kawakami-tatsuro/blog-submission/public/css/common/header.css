@@ -1,0 +1,51 @@
+@charset "utf-8";
+
+/* header */
+
+.header {
+  background-color: var(--white);
+  border-bottom: 1px #dedede solid;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 123px;
+}
+
+.header__logo, .header__nav__btn {
+  text-decoration: none;
+  color: inherit;
+}
+
+.header .header__logo {
+  font-size: 1.25rem;
+  font-weight: var(--fw-bold);
+  color: var(--primary);
+  align-self: center;
+}
+
+.header__nav__btn--login, .header__nav__btn--logout {
+  cursor: pointer;
+}
+
+
+.header__nav__btn--sign-up, .header__nav__btn--my-page {
+  background-color: var(--primary);
+  display: inline-block;
+  padding: 14px 16px;
+  margin-left: 35px;
+  color: var(--white);
+  font-weight: var(--fw-medium);
+}
+
+/* media queries */
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 0 0 0 16px;
+  }
+}
+
+@media screen and (max-width: 534px) {
+  .header__nav__btn--sign-up {
+    margin-left: 16px;
+  }
+}
