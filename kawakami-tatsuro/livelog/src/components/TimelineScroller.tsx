@@ -8,14 +8,14 @@ import { Loader2 } from "lucide-react"
 interface Props {
   initialPosts: Post[];
   currentUserId: number | undefined;
-  getMorePosts: any;
+  getMorePosts: (cursorId: number, limit: number) => Promise<Post[]>;
   limit: number;
 }
 
 export const TimelineScroller = ({ initialPosts, currentUserId, getMorePosts, limit }: Props) => {
   const [posts, setPosts] = useState<Post[]>(initialPosts)
-  const [hasMore, setHasMore] = useState<Boolean>(true)
-  const [isLoading, setIsLoading] = useState<Boolean>(false)
+  const [hasMore, setHasMore] = useState<boolean>(true)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const triggerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -54,7 +54,7 @@ export const TimelineScroller = ({ initialPosts, currentUserId, getMorePosts, li
     <>
     <Timeline posts={posts} currentUserId={currentUserId} />
     {isLoading && <Loader2 className="animate-spin text-muted-foreground mx-auto" />}
-    <div id="trigger" ref={triggerRef}></div>
+    {posts.length !== 0 && hasMore && <div id="trigger" ref={triggerRef}></div>}
     </>
   )
 }
