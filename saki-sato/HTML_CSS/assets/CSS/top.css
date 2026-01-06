@@ -32,7 +32,6 @@ Hero
 }
 
 .hero__txt {
-    display: block;
     width: clamp(225px, 70%, );
     margin: 0 11%;
 }
