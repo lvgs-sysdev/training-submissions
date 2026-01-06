@@ -22,6 +22,7 @@ export const ArtistSearchField = ({ initialData, onArtistSelect, onArtistInputCh
   }
 
   const handleArtistSearchButton = async (input: string) => {
+    if (!input) return
     const artists = await searchArtistsFromInput(input)
     setArtistsResult(artists)
   }
@@ -45,7 +46,8 @@ export const ArtistSearchField = ({ initialData, onArtistSelect, onArtistInputCh
         <Button
           type="button"
           className="cursor-pointer"
-          onClick={() => handleArtistSearchButton(artistNameInput || '')}
+          onClick={() => handleArtistSearchButton(artistNameInput)}
+          disabled={artistNameInput === ''}
         >
           Search
         </Button>
