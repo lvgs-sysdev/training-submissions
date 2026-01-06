@@ -32,7 +32,7 @@ export default async function SearchPage ({ searchParams }: Props) {
     <>
       <PageHeading heading="Search" />
       <SearchInput getArtistsFromInput={getArtistsFromInput} defaultValue={artistName} />
-      {artistName && <TimelineScroller initialPosts={posts} currentUserId={user?.id} getMorePosts={boundAction} limit={LIMIT_NUM_OF_POSTS} />}
+      {artistName && <TimelineScroller key={artistName} initialPosts={posts} currentUserId={user?.id} getMorePosts={boundAction} limit={LIMIT_NUM_OF_POSTS} />}
     </>
   )
 }
