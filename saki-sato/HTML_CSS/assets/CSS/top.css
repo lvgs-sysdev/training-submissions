@@ -4,7 +4,7 @@ Common
 =======＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 html {
     font-family: 'Poppins', 'Arial', san-serif;
-    color: var(--color-primary-text);
+    color: var(--color-Dark);
 }
 
 :root {
@@ -32,7 +32,7 @@ Hero
 }
 
 .hero__txt {
-    width: clamp(225px, 70%, );
+    width: clamp(225px, 70%, 550px);
     margin: 0 11%;
 }
 
@@ -52,7 +52,7 @@ Hero
     letter-spacing: 0.5px;
 }
 
-@container (width > 1000px) {
+@container (width >= 1000px) {
     .hero-container {
         margin-top: 0;
     }
@@ -67,15 +67,15 @@ Hero
 /* =======＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 Articles
 =======＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
-.reviews {
-    display: grid;
-    grid-template-columns: 1fr minmax(100px, 265px);
-    padding: 73px 11% 152px;
-    gap: clamp(20px, 5cqi, 115px);
+.articles, .reviews {
+    container-type: inline-size;
 }
 
-.articles {
-    container-type: inline-size;
+.reviews {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 60px 11% 150px;
+    gap: clamp(20px, 5cqi, 115px);
 }
 
 .articles__title {
@@ -86,7 +86,7 @@ Articles
 
 .articles__list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    grid-template-columns: 1fr; /* デフォルト1列 */
     margin-top: 40px;
     row-gap: 2rem;
 }
@@ -144,19 +144,18 @@ Articles
     color: var(--color-Gray);
 }
 
-@container (width > 500px) {
+@container (width >= 500px) {
     .articles__list {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        row-gap: 60px;
-        column-gap: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 60px 20px;
     }
 }
 
-@media (max-width: 900px) {
+@media (width >= 900px) {
     .reviews {
-        grid-template-columns: 1fr;
-        padding: 60px 11% 150px;
+        grid-template-columns: 1fr minmax(100px, 360px);
+        padding: 73px 11% 152px;
     }
 }
 
@@ -209,7 +208,7 @@ Aside
     border: 1px solid var(--color-Secondary);
 }
 
-@media (max-width: 900px) {/*  */
+@media (max-width: 900px) {
     .aside {
         margin-top: 130px;
     }

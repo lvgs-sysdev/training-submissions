@@ -4,7 +4,7 @@ Common
 =======＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 html {
     font-family: 'Poppins', 'Arial', san-serif;
-    color: var(--color-primary-text);
+    color: var(--color-Dark);
 }
 
 :root {
@@ -20,6 +20,9 @@ Header
 .navbar {
     container-type: inline-size;
     position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -46,28 +49,28 @@ Header
     display: none
 }
 
-@container (width > 600px) {
+@container (width >= 600px) {
     .navbar {
         padding: 23px 11%;
     }
-
+    
     .navbar__sp-container {
         display: none;
     }
-
+    
     .navbar__pc-container {
         display: flex;
         gap: 35px;
         align-items: center;
     }
-
+    
     .navbar__btn-Login {
         font-size: 14px;
         font-weight: 300;
         line-height: 1.6;
         letter-spacing: 1.5px;
     }
-
+    
     .navbar__btn-Getstarted {
         color: #fff;
         font-size: 14px;
@@ -78,6 +81,19 @@ Header
         border: 1px solid var(--color-Primary);
         background-color: var(--color-Primary);
     }
+}
+
+@media (width >= 1366px) {
+    .header {
+        width: 100%;
+        height: auto;
+        border-bottom: 1px solid var(--color-Secondary);
+        background-color: #fff;
+    }
+
+    .navbar {
+        padding: 12px auto;
+    }
 
 }
 /* =======＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
@@ -85,6 +101,7 @@ Footer
 =======＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 .footer {
     container-type: inline-size;
+    container-name: footer-container;
     background-color: var(--color-Dark);
     border-top: 1px solid var(--color-Secondary);
     width: 100%;
@@ -106,6 +123,7 @@ Footer
 }
 
 .footer__address {
+    max-width: 450px;
     font-size: 16px;
     font-weight: 300;
     line-height: 1.5;
@@ -174,14 +192,14 @@ Footer
     text-align: center;
 }
 
-@container (width > 500px) {
+@container footer-container (width >= 500px) {
     .footer__main {
         grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
     }
 }
 
-@container (width > 1000px) {
+@container footer-container (width >= 1000px) {
     .footer__main {
         grid-template-columns: repeat(4, auto);
     }
