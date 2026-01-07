@@ -40,12 +40,14 @@ src/
 │   └── (main)/          # メイン機能（丸括弧で閉じているのでmainはURLに反映されない）
 │       ├── account/     # アカウント情報
 │       ├── post/        # 投稿関連
+│       ├── search/      # 投稿検索
 │       └── user/        # ユーザープロフィール
 │
 ├── features/            # 機能単位モジュール（それぞれのcomponents, types.ts, action.ts, service.ts等が含まれる）
 │   ├── account/         # アカウント情報表示・編集機能
 │   ├── auth/            # 認証機能
 │   ├── post/            # 投稿機能
+│   ├── search/          # 投稿検索機能 
 │   └── user/            # ユーザー機能
 │
 ├── components/          # 共通UI部品
