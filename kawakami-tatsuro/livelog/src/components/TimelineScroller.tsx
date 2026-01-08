@@ -19,6 +19,10 @@ export const TimelineScroller = ({ initialPosts, currentUserId, getMorePosts, li
   const triggerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    setPosts(initialPosts)
+  }, [initialPosts])
+
+  useEffect(() => {
     if (!triggerRef.current) return
     const observer = new IntersectionObserver(async (entries) => {
       const firstEntry = entries[0]
@@ -48,7 +52,7 @@ export const TimelineScroller = ({ initialPosts, currentUserId, getMorePosts, li
     return () => {
       observer.disconnect()
     }
-  }, [getMorePosts, hasMore, posts, isLoading])
+  }, [getMorePosts, hasMore, posts, isLoading, limit])
 
   return (
     <>
