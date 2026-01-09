@@ -254,7 +254,7 @@ export const deletePost = async (postId: number): Promise<ApiResponse<null>> => 
       return { success: false, status: 404, message: 'This post is not found.', code: 'NOT_FOUND' }
     }
     revalidatePath('/')
-    return { success: true, status: 400, data: null }
+    return { success: true, status: 200, data: null }
   } catch (error) {
     console.log(error)
     return { success: false, status: 500, message: 'Internal error.', code: 'INTERNAL_ERROR' }
