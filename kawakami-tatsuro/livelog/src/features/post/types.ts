@@ -24,7 +24,7 @@ export interface Artist {
   id: number;
   spotify_id: string;
   artist_name: string;
-  created_at: string;
+  created_at: Date;
 }
 
 export interface ArtistDB extends Artist, RowDataPacket {}
@@ -34,7 +34,7 @@ export interface TrackDB extends RowDataPacket {
   spotify_id: string;
   artist_id: number;
   title: string;
-  created_at: string;
+  created_at: Date;
 }
 
 export interface SelectedArtist {
