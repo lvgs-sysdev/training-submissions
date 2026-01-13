@@ -1,6 +1,6 @@
 import { PageHeading } from "@/components/PageHeading";
 import { Card } from "@/components/ui/card";
-import { login } from "@/features/auth/login/action";
+import { login } from "@/features/auth/login/actions";
 import { LoginForm } from "@/features/auth/login/components/LoginForm";
 
 export default async function LoginPage () {
