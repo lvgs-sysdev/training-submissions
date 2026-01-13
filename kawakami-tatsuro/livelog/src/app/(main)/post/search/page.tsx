@@ -1,7 +1,7 @@
 import { PageHeading } from "@/components/PageHeading";
 import { TimelineScroller } from "@/components/TimelineScroller";
 import { getPostsByArtistName } from "@/features/post/actions";
-import { getArtistsFromInput } from "@/features/post/search/action";
+import { getArtistsFromInput } from "@/features/post/search/actions";
 import { SearchInput } from "@/features/post/search/components/SearchInput";
 import { getVerifiedUser } from "@/lib/auth";
 
