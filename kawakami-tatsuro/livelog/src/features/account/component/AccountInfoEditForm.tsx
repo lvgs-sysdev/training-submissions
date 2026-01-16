@@ -55,7 +55,7 @@ export const AccountInfoEditForm = ({ action, account, onCancelButtonClick, onEd
         </Label>
         <div className="flex flex-col gap-2">
           <Input type="email" id="email" name="email" placeholder=" " defaultValue={email} onChange={(e) => setEmail(e.target.value)} className="w-auto peer" required />
-          <p role="alert" className="hidden text-destructive text-sm peer-placeholder-shown:hidden peer-invalid:block">Please enter a vailid email address.</p>
+          <p role="alert" className="hidden text-destructive text-sm peer-placeholder-shown:hidden peer-invalid:block">Please enter a valid email address.</p>
           {fieldErrors.email && <p role="alert" className="text-destructive text-sm">{fieldErrors.email}</p>}
         </div>
       </div>
