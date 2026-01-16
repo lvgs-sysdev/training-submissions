@@ -44,6 +44,6 @@ export const updateAccountInfo = async (formData: FormData): Promise<ApiResponse
       return { success: false, status: 409, message: 'This email address is already in use.', code: 'EMAIL_DUPLICATE' }
     }
     console.log(error)
-    return { success: false, status: 500, message: 'server error' }
+    return { success: false, status: 500, message: 'server error', code: 'INTERNAL_ERROR' }
   }
 }
