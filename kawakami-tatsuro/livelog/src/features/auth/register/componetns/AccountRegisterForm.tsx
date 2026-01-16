@@ -63,7 +63,7 @@ export const AccountRegisterForm = ({ registerAccount }: Props) => {
           <p className="hidden text-destructive text-sm peer-placeholder-shown:hidden peer-[:not(:placeholder-shown):invalid]:block">
             Please enter a vailid email address.
           </p>
-          {fieldErrors.email && <p className="text-destructive text-sm">{fieldErrors.email}</p>}
+          {fieldErrors.email && <p role="alert" className="text-destructive text-sm">{fieldErrors.email}</p>}
         </Field>
         <Field>
           <Label htmlFor="password">Password</Label>
