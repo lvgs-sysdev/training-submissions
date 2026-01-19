@@ -2,7 +2,7 @@
 
 import pool from "@/lib/db";
 import { ResultSetHeader } from "mysql2";
-import { ApiResponse, MySqlError } from "../../../types";
+import { ApiResponse, MySqlError } from "../../types";
 import { revalidatePath } from "next/cache";
 import { getVerifiedUser } from "@/lib/auth";
 

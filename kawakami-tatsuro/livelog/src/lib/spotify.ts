@@ -1,4 +1,4 @@
-import { SpotifyAuthResponse, ArtistsResponse, TracksResponse, SeveralArtistsResponse, SpotifyArtist, SpotifyTrack } from "../../types"
+import { SpotifyAuthResponse, ArtistsResponse, TracksResponse, SeveralArtistsResponse, SpotifyArtist, SpotifyTrack } from "../types"
 
 const API_BASE_URL = 'https://api.spotify.com/v1'
 const SEARCH_ARTISTS_LIMIT = '10'

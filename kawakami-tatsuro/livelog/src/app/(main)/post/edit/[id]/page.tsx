@@ -1,6 +1,6 @@
 import { fetchPostById } from "@/features/post/service";
 import { updatePost } from "@/features/post/actions";
-import { PageParams } from "../../../../../../types";
+import { PageParams } from "../../../../../types";
 import { PageHeading } from "@/components/PageHeading";
 import { PostForm } from "@/features/post/components/PostForm";
 import { redirect } from "next/navigation";

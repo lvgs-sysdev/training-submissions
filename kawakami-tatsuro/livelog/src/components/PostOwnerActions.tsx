@@ -2,7 +2,7 @@
 import { Button } from "./ui/button"
 import { Trash2, SquarePen } from "lucide-react"
 import Link from "next/link"
-import { ApiResponse } from "../../types";
+import { ApiResponse } from "../types";
 import { useRouter } from "next/navigation";
 
 interface Props {

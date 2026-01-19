@@ -5,7 +5,7 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { ReactEventHandler, useState } from 'react'
-import { ApiResponse } from '../../../../../types'
+import { ApiResponse } from '../../../../types'
 import { useRouter } from 'next/navigation'
 
 interface Props {
