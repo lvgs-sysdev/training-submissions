@@ -4,7 +4,7 @@ import { AccountInfo } from "../types"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { ApiResponse } from "../../../../types";
+import { ApiResponse } from "../../../types";
 import { useState } from "react";
 
 const MAX_LENGTH_OF_USER_NAME = 30

@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { useState } from 'react'
 import { Artist } from '../../types'
 import Link from 'next/link'
-import { ApiResponse } from '../../../../../types'
+import { ApiResponse } from '../../../../types'
 
 interface Props {
   getArtistsFromInput: (input: string) => Promise<ApiResponse<Artist[]>>

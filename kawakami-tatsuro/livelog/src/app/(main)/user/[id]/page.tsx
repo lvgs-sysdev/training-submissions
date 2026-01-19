@@ -1,6 +1,6 @@
 import { PageHeading } from '@/components/PageHeading'
 import { fetchPostsByUserId } from '@/features/post/service'
-import { PageParams, SpotifyArtist } from '../../../../../types'
+import { PageParams, SpotifyArtist } from '../../../../types'
 import { Timeline } from '@/components/Timeline'
 import { User } from '@/features/user/types'
 import { fetchUserById } from '@/features/user/service'

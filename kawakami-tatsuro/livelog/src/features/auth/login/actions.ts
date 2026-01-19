@@ -1,7 +1,7 @@
 'use server'
 
 import pool from "@/lib/db";
-import { ApiResponse } from "../../../../types";
+import { ApiResponse } from "../../../types";
 import { UserLogin } from "./types";
 import bcrypt from "bcryptjs";
 import { setAuthCookie } from "@/lib/auth";

@@ -6,7 +6,7 @@ import { AccountInfoEditButtons } from "./AccountInfoEditButtons"
 import { useState } from "react"
 import { AccountInfoDisplay } from "./AccountInfoDisplay"
 import { AccountInfoEditForm } from "./AccountInfoEditForm"
-import { ApiResponse } from "../../../../types"
+import { ApiResponse } from "../../../types"
 
 interface Props {
   action: (formData: FormData) => Promise<ApiResponse<null>>

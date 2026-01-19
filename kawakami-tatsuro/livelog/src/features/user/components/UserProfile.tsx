@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { formatDateForInput } from '@/lib/utils'
 import { ProfileImage } from '@/components/ProfileImage'
 import { User } from '../types';
-import { SpotifyArtist } from '../../../../types';
+import { SpotifyArtist } from '../../../types';
 import { ArtistsList } from '@/components/ArtistsList';
 
 interface Props {

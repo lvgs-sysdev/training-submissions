@@ -1,7 +1,7 @@
 'use server'
 
 import bcrypt from "bcryptjs";
-import { ApiResponse, MySqlError } from "../../../../types"
+import { ApiResponse, MySqlError } from "../../../types"
 import path from "node:path";
 import { writeFile } from "node:fs/promises"
 import { ResultSetHeader } from "mysql2";

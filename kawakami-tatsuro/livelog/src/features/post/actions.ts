@@ -5,7 +5,7 @@ import { ResultSetHeader } from "mysql2";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { searchArtists, searchTracks } from "@/lib/spotify";
-import { ApiResponse, SpotifyArtist, SpotifyTrack } from "../../../types";
+import { ApiResponse, SpotifyArtist, SpotifyTrack } from "../../types";
 import { getVerifiedUser } from "@/lib/auth";
 import { fetchPosts, fetchPostsByArtistName, fetchPostsByUserId, getOrInsertArtist, getOrInsertTrack } from "./service";
 

@@ -1,5 +1,5 @@
 'use server'
-import { ApiResponse } from "../../../../types"
+import { ApiResponse } from "../../../types"
 import { Artist } from "../types"
 import { searchArtistsOfPosts } from "./service"
 

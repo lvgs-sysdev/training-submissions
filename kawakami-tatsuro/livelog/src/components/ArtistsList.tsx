@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { SpotifyArtist } from "../../types"
+import { SpotifyArtist } from "../types"
 import Image from "next/image"
 
 interface Props {

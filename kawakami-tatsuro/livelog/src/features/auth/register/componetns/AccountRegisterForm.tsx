@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ApiResponse } from "../../../../../types";
+import { ApiResponse } from "../../../../types";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
