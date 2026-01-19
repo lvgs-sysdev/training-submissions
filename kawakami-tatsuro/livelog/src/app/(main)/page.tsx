@@ -4,8 +4,6 @@ import { getPosts } from "@/features/post/actions";
 import { Post } from "@/features/post/types";
 import { getVerifiedUser } from "@/lib/auth";
 
-export const revalidate = 60 // 1分間ごとに更新されるISRに仮で設定
-
 const LIMIT_NUM_OF_POSTS = 10
 
 export default async function Home () {
