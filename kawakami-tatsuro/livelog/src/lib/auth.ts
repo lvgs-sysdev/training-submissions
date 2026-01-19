@@ -33,8 +33,10 @@ const createPayload = (user: {id: number, user_name: string}): Record<string, st
 }
 
 // Header, Payload, Signatureを結合してトークンを作成する
-const generateToken = (payload: Record<string, string | number>): string => {
+const generateToken = (user: {id: number, user_name: string}): string => {
+  const payload = createPayload(user)
   const encodedPayload = encodeToBase64Url(JSON.stringify(payload))
+
   const dataToSign = `${ENCODED_HEADER}.${encodedPayload}`
 
   const signature = createSignature(dataToSign, secret)
@@ -45,8 +47,7 @@ const generateToken = (payload: Record<string, string | number>): string => {
 
 // トークンをcookieにセットする
 export const setAuthCookie = async (user: {id: number, user_name: string}) => {
-  const payload = createPayload(user)
-  const token = generateToken(payload)
+  const token = generateToken(user)
 
   const cookieStore = await cookies()
   cookieStore.set('access_token', token, {
