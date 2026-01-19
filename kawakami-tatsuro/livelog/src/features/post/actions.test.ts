@@ -6,7 +6,7 @@ import { getOrInsertArtist, getOrInsertTrack } from "./service"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 import { searchArtists, searchTracks } from "@/lib/spotify"
-import { SpotifyArtist, SpotifyTrack } from "../../../types"
+import { SpotifyArtist, SpotifyTrack } from "../../types"
 
 vi.mock('@/lib/db', () => ({
   default: {

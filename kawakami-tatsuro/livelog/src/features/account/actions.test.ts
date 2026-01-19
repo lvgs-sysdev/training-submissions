@@ -2,7 +2,7 @@ import { getVerifiedUser } from "@/lib/auth"
 import pool from "@/lib/db"
 import { FieldPacket, ResultSetHeader } from "mysql2";
 import { updateAccountInfo } from "./actions";
-import { MySqlError } from "../../../types";
+import { MySqlError } from "../../types";
 
 vi.mock('@/lib/db', () => ({
   default: {
