@@ -5,8 +5,9 @@ import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ApiResponse } from "../../../../types";
-import { useState } from "react";
+import { isValidElement, useState } from "react";
 import { useRouter } from "next/navigation";
+import { VALIDATION } from "@/constants";
 
 const MAX_LENGTH_OF_USER_NAME = 30
 const MIN_LENGTH_OF_PASSWORD = 8
@@ -19,6 +20,10 @@ export const AccountRegisterForm = ({ registerAccount }: Props) => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({})
   const router = useRouter()
+
+  const isValidPicture = (file: File) => {
+    return file.size < VALIDATION.IMAGE.MAX_SIZE && VALIDATION.IMAGE.ALLOWED_MIME_TYPES.some(allowedType => allowedType === file.type)
+  }
   
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -26,9 +31,21 @@ export const AccountRegisterForm = ({ registerAccount }: Props) => {
     setFieldErrors({})
 
     const formData = new FormData(event.currentTarget)
+    const picture = formData.get('picture') || null
+
+    // 画像ファイルが適切でなかった場合は早期リターン
+    if (picture instanceof File && ! isValidPicture(picture)) {
+      setIsSubmitting(false)
+      return alert('File size is too large or file format is not supported.')
+    }
+
     const response = await registerAccount(formData)
 
-    if (response.status === 409) {
+    if (response.code === 'FILE_TOO_LARGE') {
+      alert('The size of uploaded profile picture file is too large.\nPlease retry uploading.')
+    } else if (response.code === 'INVALID_FILE_TYPE') {
+      alert('Please upload a valid image file (JPEG, PNG, or WebP).')
+    } else if (response.status === 409) {
       setFieldErrors({'email': 'This email address is already in use.'})
     } else if (response.status === 500) {
       alert('Something went wrong. Please try again later.')
@@ -82,8 +99,9 @@ export const AccountRegisterForm = ({ registerAccount }: Props) => {
             type="file"
             id="picture"
             name="picture"
-            accept="image/png, image/jpeg, image/jpg"
+            accept="image/png, image/jpeg, image/jpg, image/webp"
           />
+          <p className="text-sm text-muted-foreground">JPEG, PNG, or WebP</p>
         </Field>
         {isSubmitting
         ? <Button className="mt-4" disabled>...</Button>
