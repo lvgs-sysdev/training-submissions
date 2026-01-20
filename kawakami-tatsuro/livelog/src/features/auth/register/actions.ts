@@ -89,15 +89,15 @@ export const registerAccount = async (formData: FormData): Promise<ApiResponse<{
     // DBへの登録が成功し、かつプロフィール画像をアップロードした場合
     if (result.affectedRows === 1 && filePaths && pictureBuffer) {
       try {
-        await setAuthCookie({id: result.insertId, user_name: userName}) // JWTのセット
         await savePictureFile(filePaths.fsPath, pictureBuffer)
       } catch (error) {
         // 画像保存に失敗した場合、DBの画像パスを削除する処理も追加すべきだが、アイコン表示に問題がある場合のフォールバック処理（フロントエンド）はあるため一旦今回は何もしない
         console.log(error)
+        await setAuthCookie({id: result.insertId, user_name: userName})
         return { success: true, status: 201, data: {userId: result.insertId}, code: 'IMG_UPLOAD_FAILED' }
       }
     }
-
+    await setAuthCookie({id: result.insertId, user_name: userName}) // JWTのセット
     return { success: true, status: 201, data: {userId: result.insertId} }
   } catch (error) {
     const err = error as MySqlError
