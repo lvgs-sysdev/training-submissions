@@ -5,7 +5,7 @@ import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ApiResponse } from "../../../../types";
-import { isValidElement, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { VALIDATION } from "@/constants";
 
@@ -13,7 +13,7 @@ const MAX_LENGTH_OF_USER_NAME = 30
 const MIN_LENGTH_OF_PASSWORD = 8
 
 interface Props {
-  registerAccount: (formData: FormData) => Promise<ApiResponse<{userId: number}>>
+  registerAccount: (formData: FormData) => Promise<ApiResponse<{userId: number} | null>>
 }
 
 export const AccountRegisterForm = ({ registerAccount }: Props) => {
@@ -34,7 +34,7 @@ export const AccountRegisterForm = ({ registerAccount }: Props) => {
     const picture = formData.get('picture') || null
 
     // 画像ファイルが適切でなかった場合は早期リターン
-    if (picture instanceof File && ! isValidPicture(picture)) {
+    if (picture instanceof File && picture.size > 0 && !isValidPicture(picture)) {
       setIsSubmitting(false)
       return alert('File size is too large or file format is not supported.')
     }
