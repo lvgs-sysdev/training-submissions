@@ -24,6 +24,7 @@ model User {
   reviews          Review[]
   accounts          Account[]
   sessions          Session[]
+  createdRestaurants Restaurant[] @relation("CreatedRestaurants")
 }
 
 model Account {
@@ -64,6 +65,9 @@ model Restaurant {
   genre          Genre    @relation(fields: [genre_id], references: [id])
   station        Station? @relation(fields: [station_id], references: [id])
   reviews        Review[]
+  createdById   String?
+  isPublic      Boolean  @default(true)
+  createdBy     User?    @relation("CreatedRestaurants", fields: [createdById], references: [id])
 }
 
 model Station {

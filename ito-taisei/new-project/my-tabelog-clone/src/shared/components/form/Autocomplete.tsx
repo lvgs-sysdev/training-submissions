@@ -1,7 +1,7 @@
 // オートコンプリートコンポーネント
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useAutocomplete } from "@/shared/hooks/useAutocomplete";
 import type { AutocompleteItem } from "@/shared/components/Autocomplete/types";
 
@@ -13,6 +13,7 @@ interface AutocompleteProps {
   emptyText?: string;
   className?: string;
   inputStyle?: React.CSSProperties;
+  initialValue?: string;
 }
 
 const Autocomplete: React.FC<AutocompleteProps> = ({
@@ -23,6 +24,7 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
   emptyText = "候補がありません",
   className = "w-40",
   inputStyle,
+  initialValue = "",
 }) => {
   const {
     input,
@@ -33,6 +35,12 @@ const Autocomplete: React.FC<AutocompleteProps> = ({
     filtered,
     handleSelect,
   } = useAutocomplete({ items, filter });
+
+  useEffect(() => {
+    if (initialValue) {
+      setInput(initialValue);
+    }
+  }, [initialValue, setInput]);
 
   return (
     <div className={`relative ${className}`}>

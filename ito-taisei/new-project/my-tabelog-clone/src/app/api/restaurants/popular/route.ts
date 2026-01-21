@@ -12,6 +12,9 @@ export async function GET() {
     const genreCounts = await prisma.restaurant.groupBy({
       by: ["genre_id"],
       _count: { genre_id: true },
+      where: {
+        isPublic: true,
+      },
       orderBy: { _count: { genre_id: "desc" } },
     });
     if (!genreCounts.length) return NextResponse.json([]);
@@ -21,7 +24,7 @@ export async function GET() {
 
     // そのジャンルのレストランを取得
     const restaurants = await prisma.restaurant.findMany({
-      where: { genre_id: mostPopularGenreId },
+      where: { genre_id: mostPopularGenreId, isPublic: true },
       include: { genre: true, station: true },
     });
     if (!restaurants.length) return NextResponse.json([]);

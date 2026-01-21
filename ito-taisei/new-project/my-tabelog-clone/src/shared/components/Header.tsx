@@ -24,7 +24,7 @@ export default function Header() {
         ) : isAuthenticated ? (
           // ログイン済み
           <>
-            <Link href="/my/restaurants" className="no-underline font-bold text-[#d9534f]">
+            <Link href="/mypage" className="no-underline font-bold text-[#d9534f]">
               My Page
             </Link>
 

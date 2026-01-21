@@ -10,6 +10,9 @@ export async function GET() {
   // 新着レストランを6件取得（created_at降順）
   try {
     const restaurants = await prisma.restaurant.findMany({
+      where: {
+        isPublic: true,
+      },
       orderBy: { created_at: "desc" },
       take: 6,
       include: { genre: true, station: true },

@@ -169,7 +169,9 @@ export async function getSearchData(params: SearchParams) {
   }
 
   // クエリ作成
-  const where: any = {};
+  const where: any = {
+    isPublic: true,
+  };
   if (validatedGenreId) where.genre_id = validatedGenreId;
   if (validatedStationId) where.station_id = validatedStationId;
 
