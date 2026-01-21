@@ -20,10 +20,6 @@ services:
       - '3000:3000'
     depends_on:
       - db
-    volumes:
-      - .:/app
-      - /app/node_modules
-    command: npm run dev
     environment:
       DB_HOST: db
       DB_USER: root
