@@ -1,3 +1,0 @@
-causing conflict
-
-this change should be cause of conflict
