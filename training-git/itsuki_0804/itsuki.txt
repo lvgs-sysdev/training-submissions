@@ -1,0 +1,2 @@
+hotfix対応
+した後に、コンフリクト解消した上で追加された echo "Hello World"
