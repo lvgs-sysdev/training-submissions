@@ -12,9 +12,11 @@ RUN npm install
 # 残りのソースコードのコピー
 COPY . .
 
-RUN --mount=type=secret,id=env_file,target=.env \
-    set -a && . ./.env && set +a && \
-    npm run build
+ARG JWT_SECRET=dummy_value_for_build
+
+ENV JWT_SECRET=$JWT_SECRET
+
+RUN npm run build
 
 # コンテナが起動した際に実行するコマンド
 CMD ["npm", "run", "start"]
