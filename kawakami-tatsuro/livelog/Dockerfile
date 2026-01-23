@@ -13,8 +13,7 @@ RUN npm install
 COPY . .
 
 RUN --mount=type=secret,id=env_file,target=.env \
-    ls -la .env && \
-    cat .env && \
+    set -a && . ./.env && set +a && \
     npm run build
 
 # コンテナが起動した際に実行するコマンド
