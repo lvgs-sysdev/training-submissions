@@ -45,17 +45,15 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           username: ${{ secrets.EC2_USER }}
           timeout: 60s
-        script: |
-          cd training-submissions/kawakami-tatsuro/livelog
-          echo ${{ secrets.GITHUB_TOKEN }} | sudo docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
-          sudo docker pull ghcr.io/${{ github.repository }}:latest
-          sudo docker stop livelog-app || true
-          sudo docker rm livelog-app || true
-          sudo docker run -d \
-            --name livelog-app \
-            -p 3000:3000
-            --env-file .env \
-            ghcr.io/${{ github.repository }}:latest
-          sudo docker image prune -f
-
-  
+          script: |
+            cd training-submissions/kawakami-tatsuro/livelog
+            echo ${{ secrets.GITHUB_TOKEN }} | sudo docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
+            sudo docker pull ghcr.io/${{ github.repository }}:latest
+            sudo docker stop livelog-app || true
+            sudo docker rm livelog-app || true
+            sudo docker run -d \
+              --name livelog-app \
+              -p 3000:3000
+              --env-file .env \
+              ghcr.io/${{ github.repository }}:latest
+            sudo docker image prune -f
