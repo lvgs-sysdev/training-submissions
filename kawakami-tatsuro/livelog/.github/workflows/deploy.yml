@@ -3,7 +3,7 @@ on:
   push:
     branches: [kawakami-livelog]
   paths:
-    - 'kawakami-tatsuro/**'
+    - 'kawakami-tatsuro/livelog/**'
 jobs:
   build:
     runs-on: ubuntu-latest
