@@ -34,9 +34,28 @@ jobs:
             ghcr.io/${{ github.repository }}:latest
             ghcr.io/${{ github.repository }}:${{ github.sha }}
 
-  # test:
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: test
-  #       run: npm run test
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: SSH and deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          username: ${{ secrets.EC2_USER }}
+          timeout: 60s
+        script: |
+          cd training-submissions/kawakami-tatsuro/livelog
+          echo ${{ secrets.GITHUB_TOKEN }} | sudo docker login ghcr.io -u ${{ github.repository_owner }} --password-stdin
+          sudo docker pull ghcr.io/${{ github.repository }}:latest
+          sudo docker stop livelog-app || true
+          sudo docker rm livelog-app || true
+          sudo docker run -d \
+            --name livelog-app \
+            -p 3000:3000
+            --env-file .env \
+            ghcr.io/${{ github.repository }}:latest
+          sudo docker image prune -f
+
+  
