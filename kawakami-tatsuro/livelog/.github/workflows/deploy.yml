@@ -51,5 +51,5 @@ jobs:
             sudo docker pull ghcr.io/${{ github.repository }}:latest
             sudo docker stop livelog-app || true
             sudo docker rm livelog-app || true
-            sudo docker run -d --name livelog-app -p 3000:3000 --env-file .env ghcr.io/${{ github.repository }}:latest
+            sudo docker run -d --name livelog-app --network livelog-net -p 3000:3000 --env-file .env ghcr.io/${{ github.repository }}:latest
             sudo docker image prune -f
