@@ -111,7 +111,7 @@ export const fetchPosts = async (currentUserId: number | undefined, cursorId: nu
   }
 }
 
-// クライアントから受け取ったユーザーIDに該当するユーザーの全ポストを取得する
+// クライアントから受け取ったユーザーIDに該当するユーザーのポストを引数limit件で指定された件数分取得する
 export const fetchPostsByUserId = async (currentUserId: number | undefined, userId: string, cursorId: number | undefined, limit: number): Promise<Post[]> => {
   try {
     const [rows] = await pool.query<PostDB[]>(`
@@ -169,7 +169,7 @@ export const fetchPostsByUserId = async (currentUserId: number | undefined, user
   }
 }
 
-// クライアントから受け取ったアーティスト名と紐づいた全ポストを取得する
+// クライアントから受け取ったアーティスト名と紐づいたポストを引数limitで指定された件数分取得する
 export const fetchPostsByArtistName = async (currentUserId: number | undefined, artistName: string, cursorId: number | undefined, limit: number): Promise<Post[]> => {
   try {
     const [rows] = await pool.query<PostDB[]>(`

@@ -7,6 +7,11 @@ const nextConfig: NextConfig = {
       protocol: 'https',
       hostname:'i.scdn.co'
     }]
+  },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '5mb'
+    }
   }
 };
 
