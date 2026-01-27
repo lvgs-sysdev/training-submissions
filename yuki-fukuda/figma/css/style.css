@@ -16,31 +16,29 @@ body{
 header
  */
 .header {
-   width: 100%;
-   max-width: 1,366px;
+   margin: 0;
    display: flex;
    background-color: #fff;
    align-items: center;
    border-bottom: 1px solid #ddd;
    justify-content: space-between;
+   padding: 20px 123px;
+   position: sticky;
+   top: 0;
+   z-index: 1000;
 }
 
 header .header-logo {
     margin: 0;
-    font-size: clamp(7px,4vw,20px);
+    font-size: 1.25rem;
     font-weight: 700;
-    font-family: poppins;
+    font-family: poppins; 
     letter-spacing: 1px;
     line-height: 23px;
-    color: #ff553c;
+    color: rgba(255, 85, 60, 1);
     text-decoration: none;
-    padding: 0 0 0 5vw;
+    padding:10px 10px 10px 0;
 }
-
-nav{
-    padding: 0 5vw 0 0;
-}
-
 header .header-login{
     font-size: clamp(2px,3vw,14px);
     font-family: poppins;
@@ -48,18 +46,16 @@ header .header-login{
     font-weight: 300;
     letter-spacing: 1.5px;
 }
-
-header .header-get-started{
+.header-get-started{
     font-family: poppins;
     font-size: clamp(2px,3vw,14px);
     font-weight: 500;
     color: white;
     background-color: #ff553c;
     display: inline-block;
-    margin-left: 15px;
-    padding: 1.5vh 1.5vw; 
+    margin-left: 35px;
+    padding: 14px 16px; 
 }
-
 nav a {
     text-decoration: none;
 }
@@ -96,6 +92,8 @@ herosection
 }
 
 .hero-container-img{
+    max-width: 1366px;
+    max-height: 770px;
     width: 100%;
     height: auto;
 }
@@ -108,7 +106,6 @@ main
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    /* モバイル・タブレット用にpadding調整 */
 }
 
 .section-headline{
@@ -124,7 +121,7 @@ main
     display: flex;
     flex-wrap: wrap;
     max-width: 740px;
-    gap: 2.5%;
+    gap: 20px;
 }
 
 .main-container{
@@ -142,9 +139,9 @@ main
 .main-container-genre{
     font-family: poppins;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 300;
     line-height: 100%;
-    color: #ff553c;
+    color: rgba(255, 85, 60, 1);
 }
 
 .main-container-date{
@@ -156,7 +153,7 @@ main
 }
 
 .main-container-genre-date{
-    margin: 12px 0;
+    margin: 15px 0;
 }
 
 .main-container-title{
@@ -165,6 +162,7 @@ main
     font-weight: 300;
     letter-spacing: 0px;
     color: #121212;
+    margin: 0 0 15px 0;
 }
 
 .main-container-text{
@@ -173,6 +171,7 @@ main
     font-weight: 300;
     letter-spacing: 0px;
     color: #757575;
+    margin: 0;
 }
 
 /* 
@@ -201,7 +200,9 @@ sidebar
     letter-spacing: 0px;
     padding:30px 0 65px 0;
 }
-
+.sidebar-title a{
+    text-decoration: none;
+}
 .sidebar-article-title:not(:last-child) {
     border-bottom: 1px solid #ddd;
 }
@@ -212,6 +213,7 @@ sidebar
     font-size: clamp(14px,4vw,22px);
     line-height: 28.13px;
     letter-spacing: 0px;
+    margin: 66px 0 40px 0;
 }
 
 .sidebar-more-contents-link {
@@ -224,7 +226,7 @@ sidebar
     line-height: 100%;
     letter-spacing: 0px;
     color: #757575;
-    margin-right: 20px;
+    margin-right: 23px;
 }
 
 /* 
@@ -241,39 +243,54 @@ footer
     font-weight: 300;
     font-size: clamp(10px,4vw,16px);
     line-height: 100%;
-    letter-spacing: 0px;
-    color: #ffffff;
-    gap: 5vw;                     
-    padding: 5vh 10vw;             
-    flex-wrap: wrap;              
+    color: #ffffff;               
+    margin: 0 123px;    
+    width: fit-content;  
+    gap: 60px;
+    padding-top: 70px;    
 }
 
  .footer-section-heading{
     font-size: clamp(12px,4vw,18px);
-    padding-bottom: 15px;
+    font-weight: 300;
+    margin-bottom: 35px;
 }
 
  .footer-section-address{
     opacity: 0.6;
     padding-bottom: 7.5%;
     border-bottom: 1px solid #ffffff;
+    font-style: normal;
+    line-height: 1.3;
  }
 
- .footer-section-list{
+ .footer__nav-item{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    opacity: 0.6;
+    flex-wrap: wrap;
+    padding: 0;
+    gap: 15px;
+    margin: 0;
+    margin-top: 35px;
+ }
+.footer__nav-item--address__list{
     display: flex;
     list-style: none;
     opacity: 0.6;
     flex-wrap: wrap;
     padding: 0;
-    gap: 20px 60px;
- }
-
+    gap: 15px;
+    margin: 0;
+    margin-top: 25px;
+}
  footer a {
     text-decoration: none;
     color: inherit;
  }
 
- .footer-section-app-list{
+ .footer-nav-app-list{
     list-style: none;
     padding: 0;
     display: flex;
@@ -281,24 +298,20 @@ footer
     gap: 15px;
  }
  
- .footer-section-container-adress{
-    max-width: 300.07px;
-    max-height: 300px;
+ .footer-section-container-address{
+    max-width: 265.07px;
  }
 
   .footer-section-container-informations{
     max-width: 265px;
-    max-height: 188px;
  }
  
  .footer-section-container-item{
     max-width: 170px;
-    max-height: 203px;
  }
 
  .footer-section-container-app{
     max-width: 177px;
-    max-height: 188.98px;
  }
 
  .footer-copy{
@@ -306,7 +319,7 @@ footer
     opacity: 0.6;
     display: block;
     text-align: center;
-    padding-bottom: 2%;
+    padding: 127px 0 10px 0;
  }
 
 /* 
@@ -323,7 +336,9 @@ main-detail
     display: flex;
     flex-wrap: wrap;
  }
-
+.detail-content-img-subtitle{
+    font-style: italic;
+}
   .detail-profile-info{
     width: 100%;
     display: flex;
@@ -362,7 +377,7 @@ main-detail
     font-size: 14px;
     line-height: 100%;
     letter-spacing: 1px;
-    color: #ff553c
+    color: rgba(255, 85, 60, 1);
  }
 
  .detail-title-box-title{
@@ -440,15 +455,19 @@ main-detail
 
   .detail-sidebar{
     max-width: 265px;
-    margin-left: 11vw; 
+    margin-left: auto; 
     /*モバイル・タブレットの時にはmargin消して縦のラインを揃える*/
     /* モバイル・タブレットの時にはpaddingでfooterとの間をつくる */
  }
+.detail-sidebar-profile-heading{
+    color: rgba(18, 18, 18, 1);
+}
 
  .sidebar-profile-name{
     display: flex;
     gap: 5%;
     padding: 5% 0;
+    color: rgba(18, 18, 18, 1);
  }
 
  .sidebar-profile-name p{
@@ -459,21 +478,13 @@ main-detail
  }
 
 /* レスポンシブ対応 */
-@media screen and (max-width: 1450px){   
-    .footer-section{
-    padding: 5vh 10vw;
-    gap: 3%;
-}
-}
+
 /* 小さめpc*/
 @media screen and (max-width: 1285px) {
   .main{
     width: 90%;
     padding: 8vh 0 8vh 4vw;
     margin: 0;
-  }
-  .main-content{
-    width: 66%;
   }
   .sidebar-heading{
     margin: 0;
@@ -484,9 +495,6 @@ main-detail
   .footer-section{
     padding: 5vh 2%;
     gap: 1%;
-  }
-  .main-detail-profile{
-    max-width: 625px;
   }
   .main-content-img{
     width: 100%;
@@ -499,7 +507,40 @@ main-detail
     margin-left: auto;
   }
 }
- 
+@media screen and (max-width: 1116px) {
+    .main-content{
+        margin: 0 auto;
+    }
+    .main-section{
+        max-width: 610px;
+    }
+    .main{
+        width: 90%;
+    }
+    .detail-sidebar{
+        margin: 0 auto;
+        max-width: 890px;
+        width: 100%;
+        display: flex;
+        gap: 10vw;
+        padding-bottom: 10vh;
+    }
+    .main-detail-profile{
+        margin: 0 auto;
+    }
+    .detail-sidebar-profile {
+        width: 100%;
+        max-width:272px;
+        margin-top: 0;
+        margin: 0 auto;
+    }
+    .sidebar__new-article{
+        width: 100%;
+        max-width:272px;
+        margin: 0 auto;
+    }
+    }
+
 /* タブレット */
 @media screen and (max-width: 1019px) {
     .main{
@@ -514,20 +555,7 @@ main-detail
     .main-detail-profile{
         margin: 0 auto;
         width: 100%;
-        max-width: 989px
-    }
-    .detail-sidebar{
-        margin-left: 0;
-        max-width: 890px;
-        width: 100%;
-        display: flex;
-        gap: 10vw;
-        padding-bottom: 10vh;
-    }
-    .detail-sidebar-profile {
-        width: 100%;
-        max-width:650px;
-        margin-top: 0;
+        max-width: 740px
     }
     .sidebar-profile-name {
         padding: 1% 0;
@@ -563,13 +591,14 @@ main-detail
         padding:5vh 7vw;
     }
   }
-
-  @media screen and (max-width: 917px) {
+ @media screen and (max-width: 924px) {
     .main-content{
         margin: 0 auto;
         width: 100%;
-        max-width: 917px;
+        max-width: 610px;
     }
+ }
+  @media screen and (max-width: 917px) {
     .main-container{
         width: 100%;
     }
@@ -579,6 +608,12 @@ main-detail
     }
     .main-container-text{
         margin: 0;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .header{
+        padding: 0 16px 0 16px;
     }
   }
 
@@ -594,9 +629,17 @@ main-detail
         margin: 0 auto;
     }
 }
+
+@media screen and (max-width: 534px) {
+    .header-get-started{
+        margin-left: 16px;
+        padding: 10px 12px; 
+    }
+  }
+
   @media screen and (max-width: 400px) {
     .content-img{
         width: 100%;
         height: auto;
     }
-}
+  }
