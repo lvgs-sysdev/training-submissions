@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DAYDAYTRAVEL</title>
+    <link rel="stylesheet" href="./css/common/common.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/reset-custom.css">
 </head>
 <header class="header">
     <h1><a class="header-logo"href="#">DAYDAYTRAVEL</a></h1>
 
-    <nav>
+    <nav class="header-info">
         <a class="header-login" href="#">Login</a>
         <a class="header-get-started" href="#">Get started</a>
     </nav>
@@ -91,7 +92,7 @@
                         <a class="sidebar-more-contents-link" href="#">Cullnary</a>
                     </div> 
                 </div>
-                <h2 class="section-headline-title">関連記事（同一タグ）</h2>
+                <div class="section-header"> <h2 class="section-headline-title">関連記事（同一タグ）</h2> </div>
                 <div class="detail-article-list">
                     <div class="main-container">
                         <img class="main-container-img" src="images/street-food.jpg" alt="記事一覧サムネイル4" width="360" height="240">
@@ -125,7 +126,9 @@
         <div class="detail-sidebar">
             <div class="sidebar__new-article">
                 <h4 class="detail-sidebar-headline">新着記事</h4>
-                    <img class="detail-sidebar-img" src="images/Rectangle 31.png" alt="2人組のおばあちゃん" width="265" height="165">
+                   <div class="sidebar-new-article-container">
+                      <div class="sidebar-new-article-item">
+                        <img class="detail-sidebar-img" src="images/Rectangle 31.png" alt="2人組のおばあちゃん" width="265" height="165">
                             <div class="main-container-genre-date">
                             <span class="main-container-genre">Cullnary</span>
                             <time class="main-container-date" datetime="2022-06-13">13 Jun 2022</time>
@@ -133,7 +136,9 @@
                             <P class="detail-sidebar-headline-title">
                                 記事タイトル記事タイトル記事タイトル記事タイトル
                             </P>
-                    <img class="detail-sidebar-img" src="images/Rectangle 32.png" alt="湖" width="265" height="165">
+                      </div>
+                      <div class="sidebar-new-article-item">
+                        <img class="detail-sidebar-img" src="images/Rectangle 32.png" alt="湖" width="265" height="165">
                             <div class="main-container-genre-date">
                             <span class="main-container-genre">Travel</span>
                             <time class="main-container-date" datetime="2022-07-22">22 Jul 2022</time>
@@ -141,7 +146,9 @@
                             <P class="detail-sidebar-headline-title">
                                 Enjoying the sunset on Padar island together
                             </P>
-                    <img class="detail-sidebar-img" src="images/Rectangle 33.png" alt="丘" width="265" height="165">
+                       </div>
+                       <div class="sidebar-new-article-item">
+                        <img class="detail-sidebar-img" src="images/Rectangle 33.png" alt="丘" width="265" height="165">
                             <div class="main-container-genre-date">
                             <span class="main-container-genre">Travel</span>
                             <time class="main-container-date" datetime="2022-07-22">22 Jul 2022</time>
@@ -149,6 +156,8 @@
                             <p class="detail-sidebar-headline-title">
                                 The lush green surroundings of the campgrounds create a..
                             </P>
+                        </div>
+                    </div>
             </div>
             <div class="detail-sidebar-profile">
                 <h4 class="detail-sidebar-profile-heading">投稿者</h4>
@@ -246,7 +255,7 @@
             </div>
         </seciton>
       <small class="footer-copy">
-        © 2023 PT. Travel Everyday Indonesia
+        &copy; 2023 PT. Travel Everyday Indonesia
       </small>
     </footer>
 </body>
