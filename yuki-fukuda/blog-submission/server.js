@@ -13,20 +13,17 @@ const pool = mysql.createPool({
   queueLimit: 0
 });
 
-// 3. ルーティング（トップページでDB接続テスト）
+// 3. ルーティング（トップページで記事一覧を表示）
 fastify.get('/', async (request, reply) => {
   try {
-    // DBから時間を取得
-    const [rows] = await pool.query('SELECT NOW() as now');
+    // 記事テーブルから全データを取得するSQL
+    const [rows] = await pool.query('SELECT * FROM articles');
     
-    // ★追加: ターミナルに中身を表示して確認する（デバッグ用）
-    console.log('DBから取得したデータ:', rows);
+    // 取得したデータをログに出力（ターミナル確認用）
+    console.log(rows);
 
-    // 取得した時間をブラウザに表示
-    return { 
-      message: 'DB接続成功！', 
-      db_time: rows.now  // ★ここに  をつけます！
-    };
+    // ブラウザにそのままデータを返す（JSON形式で表示されます）
+    return rows;
 
   } catch (err) {
     request.log.error(err);
