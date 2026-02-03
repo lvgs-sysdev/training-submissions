@@ -4,10 +4,10 @@
 /* common */
 
 :root {
-  --main: #121212;
-  --muted: #757575;
-  --primary: #ff553c;
-  --white: #fff;
+  --main: rgb(18,18,18,1);
+  --muted: rgb(222,222,222,1);
+  --primary: rgb(255,85,60,1);
+  --white: rgb(255, 255, 255, 1);
   --fw-normal: 300;
   --fw-medium: 500;
   --fw-semi-bold:600;
