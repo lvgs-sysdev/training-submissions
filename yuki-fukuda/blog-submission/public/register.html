@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAYDAYTRAVEL</title>
+    <link rel="stylesheet" href="./css/common/common.css">
+    <link rel="stylesheet" href="./css/register.css">
+</head>
+<body>
+    <header class="header"></header>
+    <main>
+        <div class="register-container">
+            <h1 class="register-heading">Sign-up</h1>    
+                <form id="register-form" class="register-form">
+                    <div class="register-input-area">
+                        <label class="label" for="user_id">User ID</label>
+                        <input type="text" id="user_id" name="user_id" required>
+                    </div>
+                    <div class="register-input-area">
+                        <label class="label" for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div><div class="register-input-area">
+                        <label class="label" for="user_name">User Name</label>
+                        <input type="text" id="user_name" name="user_name" required>
+                    </div>
+                    <div class="register-btn-container">
+                        <input id="reg-btn" class="btn btn-primary" type="submit" value="会員登録">
+                    </div>
+                </form>
+        </div>
+    </main>
+    <script src="js/register.js"></script>
+</body>
+</html>
