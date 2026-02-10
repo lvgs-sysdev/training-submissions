@@ -23,7 +23,7 @@ fastify.decorate('db', pool);
 fastify.get('/', async (request, reply) => {
   try {
     // 記事テーブルから全データを取得するSQL
-    const [rows] = await pool.query('SELECT * FROM articles');
+    const [rows] = await pool.query('SELECT article_title, content FROM articles ORDER BY created_at DESC LIMIT 6');
     
     // 取得したデータをログに出力（ターミナル確認用）
     console.log(rows);
