@@ -16,6 +16,13 @@ LoginBtn.addEventListener(`submit` , async (event) => {
          });
 
          const result = await response.json();
+
+         if (response.ok) {
+            alert('ログイン成功!トップページに移動します');
+            window.location.href = './top.page.html';
+         }else{
+            alert('IDまたはパスワードが正しくありません：' + result.message);
+         }
          alert(result.message);
 
     } catch (err) {

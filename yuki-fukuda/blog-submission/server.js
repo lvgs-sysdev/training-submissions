@@ -1,5 +1,13 @@
 // 1. 必要なパッケージの読み込み
 const fastify = require('fastify')({ logger: true });
+const path = require('path');
+
+// publicフォルダを静的ファイルとして公開する設定
+fastify.register(require('@fastify/static'), {
+  root: path.join(__dirname, 'public'),
+  prefix: '/', // URLの最初から探す設定
+});
+
 fastify.register(require('@fastify/cors'), { 
   origin: true // 開発用なので全て許可。本番では特定の住所だけに絞るのがプロ
 });
@@ -22,8 +30,8 @@ fastify.decorate('db', pool);
 // 3. ルーティング（トップページで記事一覧を表示）
 fastify.get('/', async (request, reply) => {
   try {
-    // 記事テーブルから全データを取得するSQL
-    const [rows] = await pool.query('SELECT article_title, content FROM articles ORDER BY created_at DESC LIMIT 6');
+    // 記事テーブルから最新の6件を取得するSQL
+    const [rows] = await pool.query('SELECT article_title, content, updated_at FROM articles ORDER BY updated_at DESC LIMIT 6');
     
     // 取得したデータをログに出力（ターミナル確認用）
     console.log(rows);
