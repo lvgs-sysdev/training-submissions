@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>記事編集 | DAYDAYDAYTRAVEL</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h2>ブログ記事編集</h2>
+    <div class="edit-article-container">
+
+        <div class="edit-article-form">
+            <label for="input-article_title">タイトル：</label>
+            <span id="article-title"></span>
+            <input type="text" id="input-article_title" style="display:none; width: 80px;">
+        </div>
+
+        <div class="edit-article-form">
+            <label for="input-content">記事本文</label>
+            <span id="content"></span>
+            <textarea id="input-content" style="display:none; width:100%; height:300px;"></textarea>
+        </div>
+
+        <div class="edit-article-form">
+            <div id="js-current-image-container">
+                <p>現在の写真：</p>
+                <img id="js-current-image" src="" alt="現在の画像" style="width:365px; display:block;">
+            </div>
+
+            <label for="js-image-input">画像を書き換える場合のみ選択</label>
+            <input type="file" id="js-image-input" accept="image/*">
+        </div>
+
+        <hr> <button id="btn-edit">編集する</button>
+        <button id="btn-save" style="display:none;">保存する</button>
+
+        <nav>
+            <a href="edit-profile.html">マイページに戻る</a>
+        </nav>
+    </div>
+
+    <button id="logout">ログアウト</button>
+
+    <script src="js/edit-article.js"></script>
+</body>
+</html>

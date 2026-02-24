@@ -23,7 +23,7 @@ module.exports = async function (fastify, options) {
         }
     });
 
-// ログイン用のルート
+// ログイン用のルート・セッション対応
 
     fastify.post('/login', async (request, reply) => {
         const { user_id,password } = request.body;
@@ -35,13 +35,44 @@ module.exports = async function (fastify, options) {
             const query = 'SELECT * FROM users WHERE user_id = ? AND password = ?'; 
             const [rows] = await fastify.db.execute(query, [user_id, password]);
             if (rows.length > 0) {
-            return { message: "ログインに成功しました"};
+                request.session.user = {
+                    id: rows[0].id,
+                    user_id: rows[0].user_id,
+                    user_name: rows[0].user_name
+                };
+                return { message: "ログインに成功しました", user_id: rows[0].user_id };
         }else {
             return reply.code(401).send({ message: "ログイン失敗"});
         }
         }catch (err) {
             return reply.code(500).send({ message: "エラーが発生しました",error: err.message});
         }
-    })
+    });
+
+    // ログイン状態を確認するためのルート
+    fastify.get('/me', async (request, reply) => {
+        if(request.session.user) {
+            return{
+                loggedIn: true,
+                user: request.session.user
+            };
+        } else {
+            return { loggedIn: false};
+        }
+    });
+
+        // ログアウト用のルート
+    fastify.post('/logout', async (request,reply) => {
+        if(request.session.user) {
+            await request.session.destroy();
+            return { message:"ログアウトしました"};
+        } else {
+            return { message: "すでにログアウトしています"}
+        }
+    });
 };
+
+
+
+
 

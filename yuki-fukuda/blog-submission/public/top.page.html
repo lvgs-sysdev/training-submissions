@@ -11,8 +11,9 @@
 <header class="header">
     <h1><a class="header-logo"href="#">DAYDAYTRAVEL</a></h1>
     <nav>
-        <a class="header-login" href="#">Login</a>
-        <a class="header-get-started" href="#">Get started</a>
+        <a class="header-login" id="login-btn" style="display: none;" href="login.html">Login</a>
+        <a class="header-login" id="logout-btn" style="display:none;">ログアウト</button>
+        <a class="header-get-started" href="edit-profile.html">マイページ</a>
     </nav>
 </header>
 <body>
@@ -31,7 +32,7 @@
             <div class="main-content">
               <h2 class="section-headline">一覧（新着順）</h2>
                 <section class="main-section">
-                  <div id="post-container">ここがバケツです！</div>
+                  <div id="post-container"></div>
                 </section>
             </div>
             <section class="sidebar-section">            
@@ -54,8 +55,9 @@
         </main>
     </section>
 
+
     <footer class="footer">
-        <seciton class="footer-section">
+        <session class="footer-section">
             <div class="footer-section-container-address">
                 <h5 class="footer-section-heading">PT. Travel Everyday Indonesia</h5>
                 <address class="footer-section-address">
@@ -122,7 +124,7 @@
                     </li>
                 </ul>
             </div>
-        </seciton>
+        </session>
       <small class="footer-copy">
         &copy; 2023 PT. Travel Everyday Indonesia
       </small>
