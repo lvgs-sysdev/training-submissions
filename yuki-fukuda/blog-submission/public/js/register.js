@@ -10,7 +10,7 @@ regBtn.addEventListener("submit", async (event) => {
   const user_name = document.querySelector("#user_name").value;
 
   try {
-    const response = await fetch("http://localhost:3000/register", {
+    const response = await fetch("https://localhost:3000/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -20,6 +20,7 @@ regBtn.addEventListener("submit", async (event) => {
 
     const result = await response.json();
     alert(result.message);
+    window.location.href = "./index.html";
   } catch (err) {
     console.error("登録中にエラーが発生しました:", err);
     alert("登録中にエラーが発生しました。");

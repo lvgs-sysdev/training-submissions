@@ -1,4 +1,5 @@
 // profile.js
+import { API_BASE_URL } from "./config.js";
 
 let currentId = "";
 
@@ -8,9 +9,7 @@ async function loadProfile() {
     // currentId が空の場合は中断
     if (!currentId) return;
 
-    const response = await fetch(
-      `http://localhost:3000/get-profile/${currentId}`,
-    );
+    const response = await fetch(`${API_BASE_URL}/get-profile/${currentId}`);
     const user = await response.json();
 
     document.getElementById("display-id").innerText = user.user_id;
@@ -42,7 +41,7 @@ document.querySelector("#submit-post").addEventListener("click", async () => {
       formData.append("image", imageFile);
     }
 
-    const response = await fetch("http://localhost:3000/post-article", {
+    const response = await fetch(`${API_BASE_URL}/post-article`, {
       method: "POST",
       body: formData,
       credentials: "include",
@@ -64,7 +63,7 @@ async function loadArticles() {
   const container = document.getElementById("my-posts-container");
 
   try {
-    const response = await fetch("http://localhost:3000/my-articles", {
+    const response = await fetch(`${API_BASE_URL}/my-articles`, {
       credentials: "include",
     });
 
@@ -107,7 +106,7 @@ async function loadArticles() {
 // --- 3. 実行：すべてをまとめるメイン関数 ---
 async function initProfile() {
   try {
-    const meRes = await fetch("http://localhost:3000/me", {
+    const meRes = await fetch(`${API_BASE_URL}/me`, {
       credentials: "include",
     });
     const auth = await meRes.json();
@@ -143,7 +142,7 @@ async function updateProfile() {
   };
 
   try {
-    const response = await fetch("http://localhost:3000/update-profile", {
+    const response = await fetch(`${API_BASE_URL}/update-profile`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

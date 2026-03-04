@@ -1,8 +1,12 @@
+import { API_BASE_URL } from "./config.js";
+
 // 全ての処理を一つの非同期関数にまとめる
 async function initEditPage() {
   try {
     // 1. ログイン確認
-    const response = await fetch("http://localhost:3000/me");
+    const response = await fetch(`${API_BASE_URL}/me`, {
+      credentials: "include",
+    });
     const data = await response.json();
 
     if (!data.loggedIn) {
@@ -22,7 +26,13 @@ async function initEditPage() {
     }
 
     // 3. 記事データを読み込む
-    await loadArticle(currentId);
+    const article = await loadArticle(currentId);
+
+    if (article.user_id !== data.user.user_id) {
+      alert("他の人の記事は編集できません");
+      window.location.href = "./edit-profile.html";
+      return;
+    }
 
     // 4. イベントリスナーを設定する
     setupEventListeners(currentId);
@@ -34,7 +44,7 @@ async function initEditPage() {
 // 記事データを取得して画面に表示する関数
 async function loadArticle(id) {
   try {
-    const response = await fetch(`http://localhost:3000/article/${id}`);
+    const response = await fetch(`${API_BASE_URL}/article/${id}`);
     if (!response.ok) throw new Error("記事の取得に失敗しました");
 
     const article = await response.json();
@@ -47,8 +57,10 @@ async function loadArticle(id) {
     document.getElementById("input-content").value = article.content;
     const img = document.getElementById("js-current-image");
     img.src = article.image_path
-      ? `/uploads/${article.image_path}?t=${new Date().getTime()}`
+      ? `${API_BASE_URL}/uploads/${article.image_path}?t=${new Date().getTime()}`
       : "/images/default.png";
+
+    return article;
   } catch (err) {
     console.error("表示エラー", err);
   }
@@ -67,44 +79,41 @@ function setupEventListeners(id) {
 
   // 編集ボタン
   document.getElementById("btn-edit").addEventListener("click", () => {
-    document.getElementById("article-title").style.display = "none";
-    document.getElementById("content").style.display = "none";
-    document.getElementById("input-article_title").style.display = "inline";
-    document.getElementById("input-content").style.display = "inline";
-    document.getElementById("btn-edit").style.display = "none";
-    document.getElementById("btn-save").style.display = "inline";
+    document.querySelectorAll(".js-view").forEach((el) => {
+      el.style.display = "none";
+    });
+
+    document.querySelectorAll(".js-edit").forEach((el) => {
+      el.style.display = "inline-block";
+    });
   });
 
-  // 保存ボタン
-  document.getElementById("btn-save").addEventListener("click", async () => {
-    const newTitle = document.getElementById("input-article_title").value;
-    const newContent = document.getElementById("input-content").value;
-    const imageFile = document.getElementById("js-image-input").files[0];
+  const editForm = document.getElementById("js-edit-article-form");
+  if (editForm) {
+    editForm.addEventListener("submit", async (event) => {
+      event.preventDefault(); // リロード防止
 
-    const formData = new FormData();
-    formData.append("id", id);
-    formData.append("new_title", newTitle);
-    formData.append("new_content", newContent);
+      const formData = new FormData(editForm);
+      formData.append("id", id); // URLから取ったIDを追加
 
-    if (imageFile) {
-      formData.append("image", imageFile);
-    }
+      try {
+        const response = await fetch(`${API_BASE_URL}/edit-blog`, {
+          method: "POST",
+          body: formData,
+          credentials: "include",
+        });
 
-    try {
-      const response = await fetch("http://localhost:3000/edit-blog", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (response.ok) {
-        alert("更新しました");
-        location.reload();
+        if (response.ok) {
+          alert("更新しました");
+          location.reload();
+        } else {
+          alert("更新に失敗しました");
+        }
+      } catch (err) {
+        console.error("保存エラー", err);
       }
-    } catch (err) {
-      console.error("保存エラー", err);
-    }
-  });
+    });
+  }
 }
 
-// 最後にスイッチを押して実行！
 initEditPage();

@@ -8,14 +8,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/reset-custom.css">
 </head>
-<header class="header">
-    <h1><a class="header-logo"href="#">DAYDAYTRAVEL</a></h1>
-    <nav>
-        <a class="header-login" id="login-btn" style="display: none;" href="login.html">Login</a>
-        <a class="header-login" id="logout-btn" style="display:none;">ログアウト</button>
-        <a class="header-get-started" href="edit-profile.html">マイページ</a>
-    </nav>
-</header>
+<header id="header-placeholder"></header>
 <body>
     <main class="main-detail">
         <div class="main-detail-profile">
@@ -42,7 +35,7 @@
                         <img id="detail-image" src="" alt="記事画像" style="max-width: 100%; height: auto; display: none;">
                     </div>
                     <div id="content" class="content-body" style="white-space: pre-wrap;"></div>
-                    <a class="top-page-btn" href="top.page.html">一覧へ戻る</a>
+                    <a class="top-page-btn" href="index.html">一覧へ戻る</a>
                         <div class="sidebar-more-contents">
                             <a class="sidebar-more-contents-link" href="#">Cullnary</a>
                         </div> 
@@ -132,80 +125,11 @@
         </div>
         </div>
    </main>
-    <footer class="footer">
-        <seciton class="footer-section">
-            <div class="footer-section-container-address">
-                <h5 class="footer-section-heading">PT. Travel Everyday Indonesia</h5>
-                <address class="footer-section-address">
-                    Grand Floor Zaidin L-Walk,<br>Jl. Maju Jaya No. 2,<br> Daerah Istimewa Yogyakarta,<br>Indonesia 55281
-                </address>
-                <ul class="footer__nav-item--address__list">
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#">Privacy policy</a>
-                    </li>
-                    <li>
-                        <a href="#">Terms & Conditions</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
-             <div class="footer-section-container-informations">
-                <h5 class="footer-section-heading">Informations</h5>
-                <ul class="footer__nav-item">
-                    <li>
-                        <a href="#">How to register as a user</a>
-                    </li>
-                    <li>
-                        <a href="#">Guide to creating travel review</a>
-                    </li>
-                    <li>
-                        <a href="#">Tutorial for making culinary reviews</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="footer-section-container-item">
-                <h5 class="footer-section-heading">Follow us</h5>
-                <ul class="footer__nav-item">
-                    <li>
-                        <a href="#">Instagram</a>
-                    </li>
-                    <li>
-                        <a href="#">Facebook</a>
-                    </li>
-                    <li>
-                        <a href="#">Twitter</a>
-                    </li>
-                    <li>
-                        <a href="#">Youtube</a>
-                    </li>
-                </ul>
-            </div>
-             <div class="footer-section-container-app">
-                <h5 class="footer-section-heading">Download app</h5>
-                <ul class="footer-nav-app-list">
-                    <li>
-                        <a href="#">
-                            <image src="images/appstore.png" alt="Download on the App Store" widht="177" height="55.99"></image>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <image src="images/google-play.png" alt="Download on the google-play" widht="177" height="55.99"></image>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </seciton>
-      <small class="footer-copy">
-        © 2023 PT. Travel Everyday Indonesia
-      </small>
-    </footer>
+   <footer id="footer-placeholder"></footer>
 </body>
+<script type="module" src="js/common-loader.js"></script>
+<script type="module" src="js/checklogin.js"></script>
+<script type="module" src="js/logout.js"></script>
 <script src="js/detail.js"></script>
 </body>
 </html>

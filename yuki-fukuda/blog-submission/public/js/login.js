@@ -8,7 +8,7 @@ LoginBtn.addEventListener(`submit`, async (event) => {
   const password = document.querySelector("#password").value;
 
   try {
-    const response = await fetch("http://localhost:3000/login", {
+    const response = await fetch("https://localhost:3000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,14 +22,14 @@ LoginBtn.addEventListener(`submit`, async (event) => {
 
     if (response.ok) {
       alert("ログイン成功!トップページに移動します");
-      const meRes = await fetch("http://localhost:3000/me", {
+      const meRes = await fetch("https://localhost:3000/me", {
         credentials: "include",
       });
       const meData = await meRes.json();
       console.log("届いたデータ", meData);
       console.log("ログインしてる?:", meData.loggedIn);
       console.log("ユーザー名", meData.user?.user_name);
-      window.location.href = "./top.page.html";
+      window.location.href = "./index.html";
     } else {
       alert("IDまたはパスワードが正しくありません：" + result.message);
     }

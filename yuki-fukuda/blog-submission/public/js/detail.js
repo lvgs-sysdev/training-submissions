@@ -4,13 +4,13 @@ async function fetchDetail() {
 
   if (!articleId) {
     alert("記事IDが指定されていません");
-    window.location.href = "top.page.html";
+    window.location.href = "index.html";
     return;
   }
 
   try {
     const response = await fetch(
-      `http://localhost:3000/article-detail/${articleId}`,
+      `https://localhost:3000/article-detail/${articleId}`,
     );
     if (!response.ok) throw new Error("記事の取得に失敗");
     const article = await response.json();
