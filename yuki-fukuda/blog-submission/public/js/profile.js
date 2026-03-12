@@ -23,7 +23,9 @@ async function loadProfile() {
   }
 }
 
-document.querySelector("#submit-post").addEventListener("click", async () => {
+document.querySelector("#submit-post").addEventListener("click", async (e) => {
+  // クリックされたボタン要素を取得する
+  const submitBtn = e.currentTarget;
   const title = document.querySelector("#post-title").value;
   const content = document.querySelector("#post-content").value;
   const imageFile = document.querySelector("#js-image-input").files[0];
@@ -34,6 +36,11 @@ document.querySelector("#submit-post").addEventListener("click", async () => {
   }
 
   try {
+    //　処理中にボタンを無効化する
+    submitBtn.disabled = true;
+    submitBtn.innerText = "投稿中...";
+    submitBtn.style.cursor = "not-allowed";
+
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
@@ -52,9 +59,17 @@ document.querySelector("#submit-post").addEventListener("click", async () => {
       location.reload();
     } else {
       alert("投稿に失敗しました");
+      // 再度ボタンを押せるように戻す
+      submitBtn.disabled = false;
+      submitBtn.innerText = "投稿する";
+      submitBtn.style.cursor = "pointer";
     }
   } catch (err) {
     console.error("エラー", err);
+    // 通信エラー時も押せるようにする(次の課題の際にはモジュール化できそうなのでモジュール化する)
+    submitBtn.disabled = false;
+    submitBtn.innerText = "投稿する";
+    submitBtn.style.cursor = "pointer";
   }
 });
 
@@ -78,24 +93,28 @@ async function loadArticles() {
 
     container.innerHTML = "";
 
-    myPosts.forEach((post) => {
-      // イメージ画像
-      const imageSrc = post.image_path
-        ? `/uploads/${post.image_path}`
-        : "/images/default-thumbnail.png";
+    const articlesHtml = myPosts
+      .map((post) => {
+        const imageSrc = post.image_path
+          ? `/uploads/${post.image_path}`
+          : "/images/default-thumbnail.png";
 
-      const card = document.createElement("div");
-      card.className = "my-post-card";
-      card.innerHTML = `
-                <img src="${imageSrc}" style="width: 320px; height: auto">
-                <h3>${post.article_title}</h3>
-                <p>${post.content.substring(0, 50)}...</p>
-                <div class="actions">
-                    <a href="edit-article.html?id=${post.id}" class="btn-edit">編集する</a>
-                </div>
-            `;
-      container.appendChild(card);
-    });
+        // HTMLの文字列を配列として作成
+        return `
+    <div class="my-post-card">
+      <img src="${imageSrc}" style="width: 320px; height: auto">
+      <h3>${post.article_title}</h3>
+      <p>${post.content.substring(0, 50)}...</p>
+      <div class="actions">
+        <a href="edit-article.html?id=${post.id}" class="btn-edit">編集する</a>
+      </div>
+    </div>
+  `;
+      })
+      .join(""); // 配列を1つの長い文字列に結合
+
+    container.innerHTML = articlesHtml;
+
     console.log("記事一覧読み込み完了");
   } catch (err) {
     console.error("記事一覧表示エラー", err);

@@ -156,29 +156,24 @@ fastify.get("/article/:id", async (request, reply) => {
 // ブラウザからの記事編集リクエストの対応
 fastify.post("/edit-blog", async (request, reply) => {
   const user = request.session.user;
-
-  if (!user) {
-    console.log("未ログインのユーザーが編集を試みました");
-    return reply.code(401).send({ error: "ログインが必要です" });
-  }
+  if (!user) return reply.code(401).send({ error: "ログインが必要です" });
 
   const parts = request.parts();
   let id, new_title, new_content, image_path;
 
   for await (const part of parts) {
     if (part.file) {
-      if (part.filename) {
-        // 1. ファイルが選ばれている場合：保存してパスをセット
+      // ファイル名が存在する場合のみ保存処理を行う
+      if (part.filename && part.filename !== "") {
         const fileName = `${Date.now()}-${part.filename}`;
         const savePath = path.join(__dirname, "public/uploads", fileName);
         await pipeline(part.file, fs.createWriteStream(savePath));
-        image_path = fileName;
+        image_path = fileName; // ここで画像パスを代入
       } else {
-        // 2. ファイルが選ばれていない（空の）場合：ストリームを破棄して次へ
         await part.file.resume();
       }
     } else {
-      // 3. テキストデータの受け取り
+      // テキストデータの受け取り
       if (part.fieldname === "id") id = part.value;
       if (part.fieldname === "new_title") new_title = part.value;
       if (part.fieldname === "new_content") new_content = part.value;
@@ -186,21 +181,23 @@ fastify.post("/edit-blog", async (request, reply) => {
   }
 
   try {
+    // 画像がある場合とない場合でSQLを分ける
     if (image_path) {
       await pool.query(
         "UPDATE articles SET article_title = ?, content = ?, image_path = ? WHERE id = ? AND user_id = ?",
-        [new_title, new_content, image_path, id],
+        [new_title, new_content, image_path, id, user.user_id],
       );
     } else {
+      // 画像が送られてこない場合は image_path は更新しない（元のまま）
       await pool.query(
         "UPDATE articles SET article_title = ?, content = ? WHERE id = ? AND user_id = ?",
-        [new_title, new_content, id],
+        [new_title, new_content, id, user.user_id],
       );
     }
     return { success: true };
   } catch (err) {
-    console.error(err);
-    reply.status(500).send({ error: "更新に失敗しました。" });
+    console.error("SQL実行エラー:", err);
+    reply.status(500).send({ error: "DB更新に失敗しました" });
   }
 });
 
@@ -217,11 +214,15 @@ fastify.post("/post-article", async (request, reply) => {
 
   for await (const part of parts) {
     if (part.file) {
-      const fileName = `${Date.now()}${part.filename}`;
-      const savePath = path.join(__dirname, "public/uploads", fileName);
+      if (part.filename) {
+        const fileName = `${Date.now()}${part.filename}`;
+        const savePath = path.join(__dirname, "public/uploads", fileName);
 
-      await pipeline(part.file, fs.createWriteStream(savePath));
-      image_path = fileName;
+        await pipeline(part.file, fs.createWriteStream(savePath));
+        image_path = fileName;
+      } else {
+        await part.file.resume();
+      }
     } else {
       if (part.fieldname === "title") title = part.value;
       if (part.fieldname === "content") content = part.value;

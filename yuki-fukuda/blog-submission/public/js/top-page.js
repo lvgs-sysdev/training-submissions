@@ -14,7 +14,7 @@ async function loadArticles() {
       article.className = "main-container";
 
       article.innerHTML = `
-        <img class="main-container-img" src="${imageSrc}" alt="サムネイル">
+        <img class="main-container-img" src="${imageSrc}" alt="サムネイル" >
         <small>投稿者: ${post.user_id}</small>
         <small class="main-container-date">${new Date(post.updated_at).toLocaleDateString()}</small>
         <h3 class="main-container-title"> ${post.article_title} </h3>
