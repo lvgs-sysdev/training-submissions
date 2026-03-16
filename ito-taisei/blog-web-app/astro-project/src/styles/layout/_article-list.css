@@ -1,0 +1,27 @@
+/* article-card関連のレイアウト */
+.article-list__wrapper {
+    flex: 1;
+    max-width: 740px;
+}
+
+.article-list__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 360px);
+    justify-content: center;
+    justify-items: center;
+    gap: 60px 20px;
+}
+
+@media (max-width: 1092px) {
+    .article-list__wrapper {
+        margin-bottom: 75px;
+    }
+}
+
+@media (max-width: 739px) {
+    .article-list__wrapper {
+        width: 360px;
+        margin: 0 auto 75px;
+    }
+}
+

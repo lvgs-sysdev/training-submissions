@@ -1,0 +1,122 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--White);
+    margin: 100px 20px 100px;
+}
+
+.article-edit-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 800px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.textarea-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.genre-label {
+    font-weight: var(--heavy);
+    font-size: 1.6rem;
+}
+
+.tag-label {
+    font-weight: var(--heavy);
+    font-size: 1.6rem;
+}
+
+.article-edit-form label {
+    display: block;
+    margin: 12px 0 6px;
+    font-size: 1.6rem;
+    font-weight: var(--normal);
+    color: var(--Dark);
+}
+
+.textarea-group textarea {
+    width: 100%;
+    min-height: 150px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+}
+
+.submit-button {
+    display: inline-block;
+    padding: 12px 16px;
+    font-size: 1.6rem;
+    font-weight: var(--fw-medium);
+    color: #fff;
+    background: var(--Primary);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.login-button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.img-box,
+.img-preview,
+.inline-img {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    max-height: 420px;
+    overflow: hidden;
+    background: linear-gradient(90deg, #f3f3f3 0%, #ececec 50%, #f3f3f3 100%);
+    background-size: 200% 100%;
+    border-radius: 8px;
+}
+
+.img-box.loading,
+.img-preview.loading,
+.inline-img.loading {
+    animation: pulse 1.6s infinite linear;
+}
+
+@keyframes pulse {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.img-box img,
+.img-preview img,
+.inline-img img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    opacity: 1;
+    transition: opacity 160ms ease-in;
+}
+
+.img-box.loading img,
+.img-preview.loading img,
+.inline-img.loading img {
+    opacity: 0;
+}
+
+@media (max-width: 600px) {
+    .img-box,
+    .img-preview,
+    .inline-img {
+        aspect-ratio: 4/3;
+        max-height: 260px;
+    }
+}

@@ -1,0 +1,77 @@
+---
+export const prerender = false;
+
+import Layout from "../../../layouts/Layout.astro";
+import FormInput from "../../../components/FormInput.astro";
+import "../../../styles/pages/user-profile-edit.css";
+import { connectDb } from "../../../lib/db.js";
+import { getLoginUserIdFromSession } from "../../../lib/session.js";
+import type { RowDataPacket } from "mysql2";
+
+// パラメータ取得
+const { id } = Astro.params;
+const userIdNum = Number(id);
+
+// ログイン情報取得
+const loginUserId = await getLoginUserIdFromSession(Astro.cookies);
+const isLoggedIn = !!loginUserId;
+
+// ユーザ情報取得
+let dbUser = null;
+try {
+  const connection = await connectDb();
+  const [rows] = await connection.execute(
+    "SELECT user_id, user_name FROM users WHERE id = ?",
+    [userIdNum]
+  );
+  dbUser = Array.isArray(rows) && rows.length > 0 ? rows[0] : null;
+  await connection.end();
+} catch (e) {
+  dbUser = null;
+}
+
+// idが未指定、未ログイン、または他人の編集画面なら404へ
+if (
+  !id ||
+  !isLoggedIn ||
+  !dbUser ||
+  String(loginUserId) !== String((dbUser as RowDataPacket).user_id)
+) {
+  return Astro.redirect("/404");
+}
+
+let errorMsg = "";
+let successMsg = "";
+---
+
+<Layout title={`プロフィール編集`} isLoggedIn={isLoggedIn}>
+  <div class="container">
+    <div class="profile-wrapper">
+      <h2 class="heading">プロフィール編集</h2>
+      {errorMsg && <div class="error-msg">{errorMsg}</div>}
+      {successMsg && <div class="success-msg">{successMsg}</div>}
+      <form id="profile-edit-form" class="profile-edit-form">
+        <input type="hidden" name="id" value={id} />
+        <FormInput
+          label="User ID"
+          type="text"
+          name="user_id"
+          id="user_id"
+          placeholder="dayday1234"
+          maxlength="20"
+          required={true}
+        />
+        <FormInput
+          label="User Name"
+          name="user_name"
+          id="user_name"
+          placeholder="DAYDAY TRAVEL"
+          maxlength={255}
+          required={true}
+        />
+        <button type="submit" class="edit-btn">更新</button>
+      </form>
+      <script type="module" src="/scripts/profile-edit.js"></script>
+    </div>
+  </div>
+</Layout>

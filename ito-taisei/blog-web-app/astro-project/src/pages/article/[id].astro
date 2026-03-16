@@ -1,0 +1,148 @@
+---
+export const prerender = false;
+
+import Layout from "../../layouts/Layout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import NewArticleCard from "../../components/NewArticleCard.astro";
+import ProfileCard from "../../components/ProfileCard.astro";
+import AuthorCard from "../../components/AuthorCard.astro";
+import "../../styles/pages/article-page.css";
+import "../../styles/layout/_article-list.css";
+import { connectDb } from "../../lib/db.js";
+import { getLoginUserIdFromSession } from "../../lib/session.js";
+import {
+  getArticleDataById,
+  getRelatedArticles,
+  getNewArticles,
+  getPostedData,
+  getProfileData,
+} from "../../lib/article.js";
+import type { ArticleData, NewArticleData, Author } from "../../types.ts";
+import { sanitizeHtml } from "../../lib/sanitizeHtml.js";
+
+// パラメータ取得
+const { id } = Astro.params;
+const userIdNum = Number(id);
+
+// ログイン情報取得
+const loginUserId = await getLoginUserIdFromSession(Astro.cookies);
+const isLoggedIn = !!loginUserId;
+
+// 記事データ取得
+const articleData = await getArticleDataById(id);
+if (!articleData) {
+  return Astro.redirect("/404");
+}
+articleData.body = sanitizeHtml(articleData.body);
+
+// 投稿者情報取得
+let dbUser = null;
+try {
+  const connection = await connectDb();
+  const [rows] = await connection.execute(
+    "SELECT user_id, user_name FROM users WHERE id = ?",
+    [userIdNum]
+  );
+  dbUser = Array.isArray(rows) && rows.length > 0 ? rows[0] : null;
+  await connection.end();
+} catch (e) {
+  dbUser = null;
+}
+
+// 関連記事取得・2件ランダム表示
+let relatedArticles: ArticleData[] = await getRelatedArticles(
+  articleData.genre,
+  id ? Number(id) : undefined
+);
+if (relatedArticles.length > 2) {
+  relatedArticles = relatedArticles
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value)
+    .slice(0, 2);
+}
+
+// 新着記事・投稿者・プロフィール取得
+const newArticles: NewArticleData[] = await getNewArticles(
+  3,
+  id ? Number(id) : undefined
+);
+const postedData: Author[] = await getPostedData();
+const profileData = await getProfileData(articleData);
+const authorsToShow = postedData || [];
+---
+
+<Layout title={`${articleData.title} - DAYDAYTRAVEL`} isLoggedIn={isLoggedIn}>
+  <div class="container">
+    <div class="col-left">
+      <main class="article-wrapper">
+        <ProfileCard data={profileData} />
+        <div class="article__title-wrapper">
+          {
+            isLoggedIn &&
+              String(loginUserId) === String(articleData.user_id) && (
+                <a class="edit-btn" href={`/article/edit/${id}`}>
+                  Edit
+                </a>
+              )
+          }
+          <div class="genre">{articleData.genre}</div>
+          <h1 class="article__title">{articleData.title}</h1>
+        </div>
+        <div class="article__txt-wrapper" set:html={articleData.body} />
+      </main>
+
+      <section class="article-list__wrapper">
+        <h2 class="heading mb-50">関連記事（同一タグ）</h2>
+        <div class="article-list__grid mb-40">
+          {
+            relatedArticles.map((related: ArticleData) => (
+              <ArticleCard
+                title={related.title}
+                date={related.date}
+                genre={related.genre}
+                body={related.body}
+                imgSrc={related.imgSrc}
+                imgAlt={related.imgAlt}
+                url={related.url}
+              />
+            ))
+          }
+        </div>
+      </section>
+    </div>
+
+    <div class="col-right">
+      <aside class="new-article-wrapper">
+        <h2 class="heading mb-50">新着記事</h2>
+        <div class="new-article-list">
+          {
+            newArticles.map((newArt: NewArticleData) => (
+              <NewArticleCard
+                date={newArt.date}
+                genre={newArt.genre}
+                body={newArt.body}
+                imgSrc={newArt.imgSrc}
+                imgAlt={newArt.imgAlt}
+                url={newArt.url}
+              />
+            ))
+          }
+        </div>
+      </aside>
+
+      <aside class="posted-wrapper">
+        <h2 class="heading mb-50">投稿者</h2>
+        <ul class="posted-list">
+          {
+            authorsToShow.slice(0, 5).map((person: Author) => (
+              <li role="listitem">
+                <AuthorCard author={person} />
+              </li>
+            ))
+          }
+        </ul>
+      </aside>
+    </div>
+  </div>
+</Layout>

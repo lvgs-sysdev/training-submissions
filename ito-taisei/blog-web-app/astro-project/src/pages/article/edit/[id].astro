@@ -1,0 +1,204 @@
+---
+export const prerender = false;
+
+import Layout from "../../../layouts/Layout.astro";
+import TextareaField from "../../../components/TextareaField.astro";
+import Dropdown from "../../../components/Dropdown.astro";
+import "../../../styles/pages/article-edit.css";
+import { connectDb } from "../../../lib/db.js";
+import { getLoginUserIdFromSession } from "../../../lib/session.js";
+import { GENRE_OPTIONS, TAG_OPTIONS } from "../../../constants/siteData.js";
+
+// ログイン情報取得
+const loginUserId = await getLoginUserIdFromSession(Astro.cookies);
+const isLoggedIn = !!loginUserId;
+
+const { id } = Astro.params;
+let article: any = null;
+let connection;
+
+if (id) {
+  try {
+    connection = await connectDb();
+    const [rows] = await connection.execute(
+      "SELECT * FROM articles WHERE id = ?",
+      [id]
+    );
+    if (rows && Array.isArray(rows) && rows.length > 0) {
+      article = rows[0];
+      // 本人以外はリダイレクト
+      if (
+        article &&
+        (!loginUserId || String(article.user_id) !== String(loginUserId))
+      ) {
+        return Astro.redirect(`/article/${id}`);
+      }
+    }
+  } catch (e) {
+    console.error("DB fetch error:", e);
+  } finally {
+    if (connection) await connection.end();
+  }
+}
+
+const initialJson = article ? JSON.stringify(article) : "";
+---
+
+<Layout title="編集画面 - DAYDAYTRAVEL" isLoggedIn={isLoggedIn}>
+  <div class="container">
+    <form
+      id="article-form"
+      action="#"
+      method="post"
+      class="article-edit-form"
+      data-initial={initialJson}
+    >
+      {article && <input type="hidden" name="id" value={(article as any).id} />}
+
+      <div class="form-group">
+        <Dropdown
+          label="ジャンル"
+          options={GENRE_OPTIONS}
+          placeholder="選択してください"
+          id="genre"
+          name="genre"
+          required
+        />
+
+        <div>
+          <label for="title">タイトル</label>
+          <input type="text" id="title" name="title" maxlength="100" required />
+        </div>
+        <TextareaField id="body1" label="本文1" required />
+        <div class="img-upload-1">
+          <label for="image1">画像アップロード1</label>
+          <input
+            type="file"
+            id="image1"
+            name="image1"
+            accept="image/png, image/jpeg"
+          />
+          <span id="fileName1">ファイル未選択</span>
+          <div class="img-preview">
+            {
+              (article as any)?.image1Url ? (
+                <img
+                  id="preview1"
+                  src={(article as any).image1Url}
+                  alt="プレビュー1"
+                />
+              ) : (
+                <img
+                  id="preview1"
+                  class="loading"
+                  style="display:none"
+                  alt="プレビュー1"
+                />
+              )
+            }
+          </div>
+        </div>
+        <div class="img-caption">
+          <label for="img-caption">画像キャプション</label>
+          <input
+            type="text"
+            id="img-caption"
+            name="img-caption"
+            maxlength="50"
+          />
+        </div>
+        <TextareaField id="body2" label="本文2" required />
+        <TextareaField id="body3" label="本文3" required />
+        <div class="sub-heading">
+          <label for="sub-heading">サブ見出し</label>
+          <input
+            type="text"
+            id="sub-heading"
+            name="sub-heading"
+            maxlength="100"
+            required
+          />
+        </div>
+        <TextareaField id="body4" label="本文4" required />
+        <TextareaField id="body5" label="本文5" required />
+        <div class="img-upload-2">
+          <label for="image2">画像アップロード2</label>
+          <input
+            type="file"
+            id="image2"
+            name="image2"
+            accept="image/png, image/jpeg"
+          />
+          <span id="fileName2">ファイル未選択</span>
+          <div class="img-preview">
+            {
+              (article as any)?.image2Url ? (
+                <img
+                  id="preview2"
+                  src={(article as any).image2Url}
+                  alt="プレビュー2"
+                />
+              ) : (
+                <img
+                  id="preview2"
+                  class="loading"
+                  style="display:none"
+                  alt="プレビュー2"
+                />
+              )
+            }
+          </div>
+        </div>
+        <div class="img-upload-3">
+          <label for="image3">画像アップロード3</label>
+          <input
+            type="file"
+            id="image3"
+            name="image3"
+            accept="image/png, image/jpeg"
+          />
+          <span id="fileName3">ファイル未選択</span>
+          <div class="img-preview">
+            {
+              (article as any)?.image3Url ? (
+                <img
+                  id="preview3"
+                  src={(article as any).image3Url}
+                  alt="プレビュー3"
+                />
+              ) : (
+                <img
+                  id="preview3"
+                  class="loading"
+                  style="display:none"
+                  alt="プレビュー3"
+                />
+              )
+            }
+          </div>
+        </div>
+        <TextareaField id="body6" label="本文6" required />
+        <TextareaField id="body7" label="本文7" required />
+      </div>
+
+      <div class="tag">
+        <Dropdown
+          label="タグ"
+          options={TAG_OPTIONS}
+          placeholder="選択してください"
+          id="tag"
+          name="tag"
+          required
+        />
+      </div>
+    </form>
+    <button
+      type="submit"
+      class="submit-button"
+      id="submit-button"
+      form="article-form"
+      disabled>記事を保存</button
+    >
+  </div>
+  <script type="module" src="/scripts/article-edit-page-main.js"></script>
+</Layout>

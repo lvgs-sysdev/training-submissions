@@ -1,0 +1,26 @@
+---
+const {
+  label,
+  type = "text",
+  name,
+  id,
+  placeholder,
+  maxlength,
+  autocomplete = "off",
+  required = true,
+} = Astro.props;
+---
+
+<label class="field">
+  <span>{label}</span>
+  <input
+    type={type}
+    name={name}
+    class="input-textarea"
+    id={id}
+    placeholder={placeholder}
+    maxlength={maxlength}
+    autocomplete={autocomplete}
+    required={required}
+  />
+</label>

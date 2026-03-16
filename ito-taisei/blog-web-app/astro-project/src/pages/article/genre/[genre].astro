@@ -1,0 +1,66 @@
+---
+export const prerender = false;
+
+import Layout from "../../../layouts/Layout.astro";
+import ArticleCard from "../../../components/ArticleCard.astro";
+import "../../../styles/pages/article-list.css";
+import { connectDb } from "../../../lib/db.js";
+import { getLoginUserIdFromSession } from "../../../lib/session.js";
+import type { ArticleData } from "../../../types";
+import { mapDbArticleToCardData } from "../../../lib/article-card/mapDbArticleToCardData.js";
+import { sanitizeHtml } from "../../../lib/sanitizeHtml.js";
+
+// ログイン情報取得
+const loginUserId = await getLoginUserIdFromSession(Astro.cookies);
+const isLoggedIn = !!loginUserId;
+
+// 同一ジャンルをパラーメータで取得
+const genre = Astro.params.genre;
+
+// ジャンル記事取得
+let articles: ArticleData[] = [];
+try {
+  const connection = await connectDb();
+  const [rows] = await connection.execute(
+    "SELECT * FROM articles WHERE genre = ? ORDER BY id DESC",
+    [genre]
+  );
+  articles = (rows as any[]).map((row) => {
+    const card = mapDbArticleToCardData(row);
+    card.body = sanitizeHtml(card.body);
+    return card;
+  });
+  await connection.end();
+} catch (e) {
+  console.error("DB fetch error (article genre):", e);
+}
+---
+
+<Layout title={`${genre}一覧 - DAYDAYTRAVEL`} isLoggedIn={isLoggedIn}>
+  <div class="container">
+    <div class="articles-title">
+      <h2 class="heading mb-35">ジャンル: {Astro.params.genre}</h2>
+    </div>
+    <div class="article-list mb-40">
+      {
+        articles.length === 0 ? (
+          <p class="no-articles">該当する記事がありません。</p>
+        ) : (
+          <div class="article-list__grid">
+            {articles.map((article: ArticleData) => (
+              <ArticleCard
+                imgSrc={article.imgSrc}
+                imgAlt={article.imgAlt}
+                date={article.date}
+                genre={article.genre}
+                title={article.title}
+                body={article.body}
+                url={article.url}
+              />
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </div>
+</Layout>

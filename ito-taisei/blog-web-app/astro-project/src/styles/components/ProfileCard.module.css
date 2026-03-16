@@ -1,0 +1,100 @@
+.card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    height: 60px;
+}
+
+.avatarBox {
+    flex: 0 0 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #eee;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: #555;
+    font-size: 1.6rem;
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.meta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex: 1 1 auto;
+    justify-content: space-between;
+}
+
+.metaRow {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.name {
+    font-size: 1.6rem;
+    font-weight: var(--fw-light);
+    color: var(--Dark);
+    letter-spacing: 0.3px;
+}
+
+.date {
+    font-size: 1.4rem;
+    font-weight: var(--fw-light);
+    color: var(--Gray);
+    letter-spacing: 1px;
+}
+
+.snsWrapper {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 141px;
+    height: auto;
+    justify-content: flex-end;
+}
+
+.snsLink {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    color: var(--Dark);
+}
+
+.copyButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.0rem;
+    padding: 0;
+    line-height: 0;
+    box-sizing: border-box;
+    background: transparent;
+    -webkit-appearance: none;
+    appearance: none;
+    box-shadow: none;
+}
+
+.copyButton svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
