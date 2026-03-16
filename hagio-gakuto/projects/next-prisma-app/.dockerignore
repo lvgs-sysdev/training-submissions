@@ -1,8 +1,0 @@
-.git
-.gitignore
-.vscode
-.env
-README.md
-node_modules
-dist
-build
