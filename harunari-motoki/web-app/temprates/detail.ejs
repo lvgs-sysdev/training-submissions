@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DAYDAYTRAVEL-detail</title>
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/detail.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
+    <meta
+      name="description"
+      content="あなたの休日の過ごし方を共有できるWebサイトです。" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;250;300;400;500;600;700&display=swap"
+      rel="stylesheet" />
+    <script src="/js/login_browser.js" defer></script>
+    <script src="/js/register_browser.js" defer></script>
+  </head>
+  <body>
+    <header class="header header_top">
+      <nav class="menu">
+        <a id="menu__Pagename" href="/">DAYDAYTRAVEL</a>
+         <% if (userName) { %>
+                <p>
+                    <%= userName %>さん ログイン中
+                    <a class="profile-link" href="/User">ユーザプロフィール</a>
+                </p>
+            <% } else { %>
+                <a 
+                    id="menu__loginbutton" 
+                    cass="menu__loginbutton--position" 
+                    href="/login"
+                    >Login
+                </a>
+            <% } %>
+        <a id="menu__registerbutton" href="/register">Get started</a>
+      </nav>
+    </header>
+    <section class="Articles">
+      <section class="mainsub-flame">
+        <main class="main-part">
+          <header class="header-block">
+            <section class="contributor-block">
+              <p class="photo" style="background-image: url('<%=detailarticle[0].iconimage_path%>');"></p>
+              <p src="" alt=""></p>
+              <div class="status">
+                <span class="name">
+                  <%= detailarticle[0].user_name %>
+                </span>
+                <span class="date">
+                  <%
+                  const date = detailarticle[0].created_at;
+                  const year = date.getFullYear();
+                  const month = date.getMonth() + 1;
+                  const monthShort = date.toLocaleString('en-US', {month:'short'});
+                  const day = date.getDate();
+                  %>
+                  <time datetime= "<%= year%>-<%= month%>-<%= day%>" > 
+                    <%= day%>&nbsp;<%= monthShort%>&nbsp;<%= year%>
+                  </time>
+                </span>
+              </div>
+            </section>
+            <ur class="icons">
+              <li>
+                <a href="<%= detailarticle[0].twitter_path %>">
+                  <img
+                    class="image"
+                    src="../assets/images/2P/icon-twitter.png"
+                    alt="" />
+                </a>
+              </li>
+              <li>
+                <a href="<%= detailarticle[0].instagram_path %>">
+                  <img
+                    class="image"
+                    src="../assets/images/2P/icon-instagram.png"
+                    alt="" />
+                </a>
+              </li>
+              <li>
+                <a href="<%= detailarticle[0].linkedin_path %>">
+                  <img
+                    class="image"
+                    src="../assets/images/2P/icon-linkedin.png"
+                    alt="" />
+                </a>
+              </li>
+              <li>
+                <a href="<%= detailarticle[0].link_path %>">
+                  <img
+                    class="image"
+                    src="../assets/images/2P/icon-link.png"
+                    alt="" />
+                </a>
+              </li>
+            </ur>
+          </header>
+          <article class="article-block">
+            <div class="title-part">
+              <div class="category"><%=detailarticle[0].tag_name%></div>
+
+              <h1 class="title"><%=detailarticle[0].title%></h1>
+            </div>
+            <p class="abstract">
+              Even the are a lot of potential tourism in Semarang. Therefore
+              Semarang need more promotional for old potential Tourism
+            </p>
+            <section class="img-block">
+              <p class="Img" style="background-image: url('<%=detailarticle[0].image_path%>');"></p>
+              <i class="caption"> <%=detailarticle[0].image_caption%> </i>
+            </section>
+            <p class="paragraph">
+              <%=detailarticle[0].content%>
+            </p>
+          </article>
+          <article class="article-block">
+            <div class="sub-Img">
+              <% detailimage.forEach((detailimage,i)=>{ %>
+                <div class="Img1" style="background-image: url('<%= detailimage.detailimage_path%>');"></div>
+              <% }) %>
+            </div>
+            <div class="Btn-block">
+              <div class="Btn"><%= detailarticle[0].tag_name %></div>
+            </div>
+          </article>
+        </main>
+        <section class="sub-part">
+          <section class="now-coming-part">
+            <h2 class="subheading">新着記事</h2>
+
+            <ul class="now-coming-frame">
+              <% newarticle.forEach((newarticle,i)=>{ %>
+              <li class="now-coming-block">
+                <a class="detail" href="/detail?id=<%=newarticle.article_id%>">
+                  <p class="nowcm-Img" style="background-image: url('<%= newarticle.image_path %>')"></p>
+                </a>
+                <div class="notes">
+                  <div class="category"><%= newarticle.tag_name %></div>
+                  <span class="separation"> &nbsp;|&nbsp; </span>
+                  <%
+                  const date_new = newarticle.created_at;
+                  const year_new = date_new.getFullYear();
+                  const monthShort_new = date_new.toLocaleString('en-US', {month:'short'});
+                  const day_new = date_new.getDate();
+                  %>
+                  <div class="date"><%= day_new%> <%= monthShort_new%> <%= year_new%></div>
+                </div>
+                <a class="detail" href="/detail?id=<%=newarticle.article_id%>">
+                  <h3 class="title">
+                    <%= newarticle.title %>
+                  </h3>
+                </a>
+              </li>
+              <% }) %>
+            </ul>
+          </section>
+
+          <section class="contributor-part">
+            <h2 class="subheading">投稿者</h2>
+
+            <ul class="contributor-list">
+              <% contributors.forEach((contributors,i)=>{ %>
+              <li class="contributor-block">
+                <p class="Img1" style="background-image: url('<%= contributors.iconimage_path %>');"></p>
+                <span class="name"> <%= contributors.user_name %> </span>
+              </li>
+              <% }) %>
+            </ul>
+          </section>
+        </section>
+      </section>
+      <section class="related-articles">
+        <h2 class="headline">関連記事 (同一タグ)</h2>
+        <ul class="frame">
+          <% relatedarticles.forEach((relatedarticles,i)=>{ %>
+          <li class="block">
+            <a class="detail" href="/detail?id=<%=relatedarticles.article_id%>">
+              <p class="Img1" style="background-image: url('<%= relatedarticles.image_path %>');"></p>
+            </a>
+            <div class="notes">
+              <div class="category"><%= relatedarticles.tag_name %></div>
+              <span class="separation"> &nbsp;|&nbsp; </span>
+              <%  const date_related = relatedarticles.created_at;
+                  const year_related = date_related.getFullYear();
+                  const monthShort_related = date_related.toLocaleString('en-US', {month:'short'});
+                  const day_related = date_related.getDate();
+              %>
+              <div class="date"><%= day_related%> <%= monthShort_related%> <%= year_related%></div>
+            </div>
+            <a class="detail" href="/detail?id=<%=relatedarticles.article_id%>">
+              <div class="title">
+                <%= relatedarticles.title %>
+              </div>
+              <div class="sentence">
+                <%= relatedarticles.content %>
+              </div>
+            </a>
+          </li>
+          <% }) %>
+        </ul>
+      </section>
+    </section>
+    <footer class="footer">
+      <section class="infomation-part">
+        <section class="box">
+          <h3 class="subheading">PT. Travel Everyday Indonesia</h3>
+          <address class="sentence-font">
+            Grand Floor Zaidin L-Walk,<br />
+            JI. Maju Jaya No. 2,<br />
+            Daerah Istimewa Yogyakarta,<br />
+            Indonesia 55281<br />
+          </address>
+          <div>
+            <hr class="partisionLine" />
+          </div>
+          <p class="height-adjust1-2">
+            <a class="sentence-font" href="">About &emsp; Privacy Policy</a
+            ><br />
+            <a class="sentence-font" href=""
+              >Teams & Conditions &emsp; Contact</a
+            ><br />
+          </p>
+        </section>
+        <div class="box-position-adjust2">
+          <section class="box">
+            <h3 class="subheading">Informations</h3>
+            <ul>
+              <li>
+                <a class="height-adjust2 sentence-font" href="">
+                  How to register as a user<br />
+                </a>
+              </li>
+              <li>
+                <a class="height-adjust2 sentence-font" href="">
+                  Guide to creating travel review<br />
+                </a>
+              </li>
+              <li>
+                <a class="height-adjust2-2 sentence-font" href="">
+                  Tutorial for making culinary<br />
+                  reviews
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
+        <div class="box-position-adjust3">
+          <section class="box">
+            <h3 class="subheading">Follow us</h3>
+            <div class="height-adjust3">
+              <a class="sentence-font" href="">Instagram</a><br />
+              <a class="sentence-font" href="">Facebook</a><br />
+              <a class="sentence-font" href="">Twitter</a><br />
+              <a class="sentence-font" href="">Youtube</a><br />
+            </div>
+          </section>
+        </div>
+        <section class="box">
+          <h3 class="subheading">Download app</h3>
+          <div class="Img">
+            <a href="">
+              <img
+                class="AppStore"
+                src="./assets/images/1P/App.png"
+                alt="App Store" />
+            </a>
+            <a href="">
+              <img
+                class="GPlay"
+                src="./assets/images/1P/GooglePlay.png"
+                alt="Google Play" />
+            </a>
+          </div>
+        </section>
+      </section>
+      <small class="Copyright">
+        &copy; <time datetime="2023">2023</time> PT. Travel Everyday Indonesia
+      </small>
+    </footer>
+  </body>
+</html>

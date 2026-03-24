@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAYDAYTRAVEL-registar</title>
+    <link rel="stylesheet" href="">
+    <meta name="description" content="あなたの休日の過ごし方を共有できるWebサイトです。">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;250;300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="/js/register_browser.js" defer></script>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="menu"> 
+            <a id="Pagename" href="/">DAYDAYTRAVEL</a>
+
+            <a id="login-Btn" href="/login">Login</a>
+
+            <a id="register-Btn" href="/register">Get started</a>
+        </nav>
+    </header>
+    <form id="registerForm">
+         <p>ユーザID<br>
+            <input 
+            type="text" 
+            pattern="(?=.*[0-9])(?=.*[A-Za-z]).{10,20}" 
+            title="大文字小文字の英数字で入力してください(10~20文字)" 
+            name="user_ID" 
+            required><br>
+        <p>大小文字英数字のみ（10~20文字）</p>
+        </p>
+        <p>ユーザ名<br>
+            <input 
+            type="text" 
+            pattern="[A-Za-z].{5,20}" 
+            title="大文字小文字の英字で入力してください(5~20文字以内)" 
+            name="user_name" 
+            required><br>
+        <p>大小英字のみ（5~20文字）</p>
+        </p>
+        <p>パスワード<br>
+            <input 
+            type="password" 
+            pattern="(?=.*[0-9])(?=.*[A-Za-z]).{10,20}" 
+            title="10文字で入力してください" 
+            name="password" 
+            required><br>
+        <p>少なくとも大小英数字を1文字ずつ含む（10~20文字）</p><br>
+        </p>
+        <p><button type="submit">登録</button></p>
+    </form>    
+</body>
+
+</html>
