@@ -45,10 +45,6 @@ fastify.register(authRoutes, { prefix: "/auth" });
 // ログイン中か確認するルート
 fastify.register(userRoutes, { prefix: "/user" });
 
-fastify.get("/", async () => {
-  return { hello: "TailWag Server (Fastify)" };
-});
-
 const start = async () => {
   try {
     const port = Number(process.env.PORT) || 3000;
