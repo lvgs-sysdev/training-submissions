@@ -1,0 +1,31 @@
+---
+import "../styles/components/_header.css";
+
+const { isLoggedIn = false } = Astro.props;
+---
+
+<header class="global-header">
+  <h1 class="logo">
+    <a href="/top" class="logo-txt">DAYDAYTRAVEL</a>
+  </h1>
+  <nav class="login-register-wrapper">
+    {
+      isLoggedIn ? (
+        <a href="#" class="login-btn" id="logout-link">
+          <span class="login-txt">Logout</span>
+        </a>
+      ) : (
+        <>
+          <a href="/login" class="login-btn">
+            <span class="login-txt">Login</span>
+          </a>
+          <a href="/register" class="register-btn">
+            <span class="register-txt">Get started</span>
+          </a>
+        </>
+      )
+    }
+  </nav>
+  <script src="/scripts/logout.js" type="module"></script>
+  <div class="header-spacer"></div>
+</header>

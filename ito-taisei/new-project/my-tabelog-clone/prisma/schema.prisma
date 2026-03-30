@@ -1,0 +1,117 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String   @id @default(uuid())
+  email            String   @unique
+  user_name        String?
+  profile_image_url String?
+  emailVerified     DateTime?
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
+  reviews          Review[]
+  accounts          Account[]
+  sessions          Session[]
+  createdRestaurants Restaurant[] @relation("CreatedRestaurants")
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.Text
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Restaurant {
+  id             String   @id @default(uuid())
+  name           String
+  address        String
+  station_id     Int?
+  latitude       Float
+  longitude      Float
+  genre_id       Int
+  image_url      String?
+  link           String?
+  budget         Int?
+  opening_hours  String?
+  average_rating Float    @default(0)
+  review_count   Int      @default(0)
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+  genre          Genre    @relation(fields: [genre_id], references: [id])
+  station        Station? @relation(fields: [station_id], references: [id])
+  reviews        Review[]
+  createdById   String?
+  isPublic      Boolean  @default(true)
+  createdBy     User?    @relation("CreatedRestaurants", fields: [createdById], references: [id])
+}
+
+model Station {
+  id         Int      @id @default(autoincrement())
+  name       String   @unique
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  restaurants Restaurant[]
+}
+
+model Review {
+  id            String   @id @default(uuid())
+  user_id       String
+  restaurant_id String
+  score         Float
+  comment       String?
+  image_url     String?
+  visit_date    DateTime?
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+  user          User     @relation(fields: [user_id], references: [id])
+  restaurant    Restaurant @relation(fields: [restaurant_id], references: [id])
+}
+
+model Genre {
+  id         Int      @id @default(autoincrement())
+  name       String   @unique
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  restaurants Restaurant[]
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}

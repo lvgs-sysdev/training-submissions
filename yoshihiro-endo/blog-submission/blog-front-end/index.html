@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <title>トップページ</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ブログの一覧ページです。">
+    <meta property="og:title" content="DAYDAYTRAVEL">
+    <meta property="og:description" content="ブログです">
+    <meta property="og:image" content="../pictures/top-page-header.jpg">
+    <!-- <meta property="og:url" content="今回は公開しないので具体的なURLはなし"> -->
+  </head>
+  <link rel="stylesheet" href="./src/common_settings.css">
+  <link rel="stylesheet" href="./src/top_page.css">
+  <body class="wrapper">
+    <div id="header-placeholder"></div>
+    <div class="page-header">
+      <img src="../pictures/top-page-header.jpg" alt="カメラ、パスポート、帽子、コンパス" class="page-header-picture">
+      <div class="text">
+        <p class="page-header-text1">Share your<br>holiday stories.</p>
+        <p class="page-header-text2">Wtire about your experience while on holiday in <br>various parts of indonesia,and reach a wide<br>readership</p>
+      </div>
+    </div>
+
+    <header class="contents-header">
+      <main>        
+        <section class="main-contents-header">
+          <h2 class="contents-title">一覧(新着順)</h2>
+        </div>
+        <section class="main-contents-container" id="main-contents-container">
+          <!-- 以下をDOMで操作 -->
+          <article class="main-contents" id="article_container">
+            <img src="../pictures/top_main_1.png" alt="織物をする人が二人" class="main-contents-pictures">
+            <div class="tag">
+              <span class="category">Travel</span>
+              <span class="date">ダミー日付</span>
+            </div>
+            <p class="title">ダミータイトル</p>
+            <p class="description">ダミー本文</p>
+          </article>
+          <!-- 以上をDOMで操作 -->
+        </section>    
+      </main>
+
+      <aside class="sub">
+        <h2 class="contents-title">人気記事(機能不要)</h2>
+        <p class="side-contents title line">記事タイトル記事タイトル記事タイトル記事タイトル</p>
+        <p class="side-contents article line">Cheap Padang specialty food restaurant</p>
+        <p class="side-contents article without-line">Mountain hiking in central Java</p>
+
+        <div class="side-contents-header-2">
+          <h2 class="contents-title">もっと見る（機能不要）</h2>
+        </div>
+        <div class="side-contents-2">
+          <div class="button-container">
+              <a class="button">Travel</button></a>
+              <a class="button">Culinary</button></a>
+          </div>
+        </div>
+      </aside>
+    </header>
+
+    <div id="footer-placeholder"></div>
+    <script type="module" src="./src/common.js"></script>
+    <script type="module" src="./src/top-page.js"></script>
+  </body>
+</html>

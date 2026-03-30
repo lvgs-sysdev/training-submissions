@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>マイページ・記事管理</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <header id="header-placeholder"></header>
+    <main>
+      <h1>マイページ</h1>
+      <h2>プロフィール編集</h2>
+      <div class="edit-profile-container">
+        <div class="filed">
+          <label for="input-id">ユーザーID(ログイン用) :</label>
+          <span id="display-id"></span>
+          <input type="text" id="input-id" style="display: none" />
+        </div>
+
+        <div class="filed">
+          <label for="input-name">ユーザー名：</label>
+          <span id="display-name">読み込み中...</span>
+          <input type="text" id="input-name" style="display: none" />
+        </div>
+
+        <button id="btn-edit">編集する</button>
+        <button id="btn-save" style="display: none">保存する</button>
+      </div>
+
+      <section id="post-area">
+        <h2>新しい記事を投稿する</h2>
+        <input type="text" id="post-title" placeholder="タイトルを入力" />
+        <textarea id="post-content" placeholder="本文を入力"></textarea>
+
+        <div class="image-upload-section">
+          <input type="file" id="js-image-input" accept="image/*" />
+          <div id="js-preview-container"></div>
+        </div>
+        <button id="submit-post">投稿する</button>
+      </section>
+
+      <section id="user-profile">
+        <h2>あなたの投稿一覧</h2>
+        <div id="my-posts-container" class="post-grid">
+          <p>読み込み中...</p>
+        </div>
+      </section>
+    </main>
+    <footer id="footer-placeholder"></footer>
+    <script type="module" src="js/common-loader.js"></script>
+    <script type="module" src="js/checklogin.js"></script>
+    <script type="module" src="js/logout.js"></script>
+    <script type="module" src="js/profile.js"></script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+#header-user-info { 
+    background: #f0f0f0; 
+    padding: 10px; 
+    border-radius: 5px; 
+}
+
+#header-user-info img {
+    vertical-align: middle; 
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%; 
+    margin-right: 10px; 
+}
+        
+#login-form { 
+    border: 1px solid #ccc; 
+    padding: 15px;
+}
+
+.hidden {
+    display: none;
+}

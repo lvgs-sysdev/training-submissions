@@ -1,0 +1,19 @@
+---
+import styles from "../styles/components/AuthorCard.module.css";
+
+interface Author {
+  img: string;
+  name: string;
+}
+const { author } = Astro.props as { author: Author };
+const person = author || { name: "匿名", img: "/images/default-avatar.png" };
+
+const imgAltText = `${person.name}のプロフィール`;
+---
+
+<div class={styles.card}>
+  <img class={styles.img} src={person.img} alt={imgAltText} />
+  <div class={styles.meta}>
+    <div class={styles.name}>{person.name}</div>
+  </div>
+</div>
