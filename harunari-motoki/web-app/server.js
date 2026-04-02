@@ -1,22 +1,17 @@
-import "dotenv/config";
 import Fastify from "fastify";
 import fastifyStatic from "@fastify/static";
 import formbody from "@fastify/formbody";
 import fastifycookie from "@fastify/cookie";
 import fastifySession from "@fastify/session";
+import view from "@fastify/view";
+import "dotenv/config";
 import path from "path";
 import { fileURLToPath } from "url";
-import view from "@fastify/view";
 import ejs from "ejs";
 import dbPlugin from "./js/DB.js";
 import { loginPool } from "./js/DB.js";
-import toppage from "./js/index.js";
-import registerpage from "./js/register.js";
-import loginpage from "./js/login.js";
-import detailpages from "./js/detail.js";
-import profilepages from "./js/profile.js";
-import profile_editpages from "./js/profile_edit.js";
-import editBlogpages from "./js/editBlog.js";
+import publicRoute from "./route/public/publicRoute.js";
+import privateRoute from "./route/private/privateRoute.js";
 
 /**Fastify関数の登録
  * @type {import('fastify').FastifyInstance} Instance of Fastify
@@ -26,16 +21,29 @@ const fastify = Fastify({
   logger: true,
 });
 
+fastify.decorateRequest("getUserName", function () {
+  if (this.session && this.session.user) {
+    return this.session.user.name;
+  } else {
+    return null;
+  }
+});
+
+fastify.decorate("authenticate", async (request, reply) => {
+  const session = request.session.user;
+  if (!session) {
+    return reply.redirect("/login");
+  }
+});
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 console.log(__dirname);
 
-fastify.register(toppage);
-fastify.register(registerpage);
-fastify.register(loginpage);
-fastify.register(detailpages);
-fastify.register(profilepages);
-fastify.register(profile_editpages);
-fastify.register(editBlogpages);
+fastify.register(publicRoute);
+fastify.register(async (loginUserArea) => {
+  loginUserArea.addHook("preHandler", fastify.authenticate);
+  loginUserArea.register(privateRoute);
+});
 fastify.register(dbPlugin);
 fastify.register(formbody);
 fastify.register(fastifycookie);
@@ -56,8 +64,14 @@ fastify.register(view, {
 });
 
 fastify.register(fastifyStatic, {
+  root: path.join(__dirname, "browser"),
+  prefix: "/browser/",
+});
+
+fastify.register(fastifyStatic, {
   root: path.join(__dirname, "js"),
   prefix: "/js/",
+  decorateReply: false,
 });
 
 fastify.register(fastifyStatic, {
@@ -81,14 +95,6 @@ async function startServer() {
     process.exit(1);
   }
 }
-
-fastify.decorateRequest("getUserName", function () {
-  if (this.session && this.session.user) {
-    return this.session.user.name;
-  } else {
-    return null;
-  }
-});
 
 fastify.listen({ port: 3000 }, function (err, address) {
   if (err) {

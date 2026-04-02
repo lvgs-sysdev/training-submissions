@@ -1,11 +1,11 @@
-export default async function (fastify, opts) {
-  fastify.get("/detail", async (request, reply) => {
-    const detailarticle_id = Number(request.query.id);
-    const userName = request.getUserName();
+export const detailGET = async function (request, reply) {
+  const fastify = request.server;
+  const detailarticle_id = Number(request.query.id);
+  const userName = request.getUserName();
 
-    console.log("この記事のarticle_idは" + detailarticle_id);
+  console.log("この記事のarticle_idは" + detailarticle_id);
 
-    const sql_detailarticle = `
+  const sql_detailarticle = `
       SELECT
         a.created_at,
         u.iconimage_path,
@@ -26,13 +26,13 @@ export default async function (fastify, opts) {
       WHERE a.article_id = ?
       ;`;
 
-    const [detailarticle] = await fastify.detailpagePool.execute(
-      sql_detailarticle,
-      [detailarticle_id],
-    );
-    console.log("メインの記事データ取得済");
+  const [detailarticle] = await fastify.detailpagePool.execute(
+    sql_detailarticle,
+    [detailarticle_id],
+  );
+  console.log("メインの記事データ取得済");
 
-    const sql_detailimage = `
+  const sql_detailimage = `
       SELECT
         detailimage_path
       FROM article_images
@@ -40,13 +40,12 @@ export default async function (fastify, opts) {
       ORDER BY display_order ASC
       ;`;
 
-    const [detailimage] = await fastify.detailpagePool.execute(
-      sql_detailimage,
-      [detailarticle_id],
-    );
-    console.log("メインの記事の画像取得済");
+  const [detailimage] = await fastify.detailpagePool.execute(sql_detailimage, [
+    detailarticle_id,
+  ]);
+  console.log("メインの記事の画像取得済");
 
-    const sql_newarticle = `
+  const sql_newarticle = `
       SELECT
         a.title,
         a.created_at,
@@ -59,12 +58,12 @@ export default async function (fastify, opts) {
       ORDER BY created_at DESC
       LIMIT 3
       ;`;
-    const [newarticle] = await fastify.detailpagePool.execute(sql_newarticle, [
-      detailarticle_id,
-    ]);
-    console.log("新着の記事データ取得済");
+  const [newarticle] = await fastify.detailpagePool.execute(sql_newarticle, [
+    detailarticle_id,
+  ]);
+  console.log("新着の記事データ取得済");
 
-    const sql_contributor = `
+  const sql_contributor = `
       SELECT
         u.user_name,
         u.iconimage_path
@@ -75,11 +74,10 @@ export default async function (fastify, opts) {
       LIMIT 5
       ;`;
 
-    const [contributors] =
-      await fastify.detailpagePool.execute(sql_contributor);
-    console.log("投稿者のデータ取得済");
+  const [contributors] = await fastify.detailpagePool.execute(sql_contributor);
+  console.log("投稿者のデータ取得済");
 
-    const sql_relatedarticles = `
+  const sql_relatedarticles = `
       SELECT
         a.image_path,
         a.created_at,
@@ -94,19 +92,18 @@ export default async function (fastify, opts) {
       LIMIT 2
       ;`;
 
-    const [relatedarticles] = await fastify.detailpagePool.execute(
-      sql_relatedarticles,
-      [detailarticle[0].tag_id],
-    );
-    console.log("関連記事のデータ取得済");
+  const [relatedarticles] = await fastify.detailpagePool.execute(
+    sql_relatedarticles,
+    [detailarticle[0].tag_id],
+  );
+  console.log("関連記事のデータ取得済");
 
-    return reply.view("detail.ejs", {
-      userName,
-      detailarticle,
-      detailimage,
-      newarticle,
-      contributors,
-      relatedarticles,
-    });
+  return reply.view("public/detail.ejs", {
+    userName,
+    detailarticle,
+    detailimage,
+    newarticle,
+    contributors,
+    relatedarticles,
   });
-}
+};

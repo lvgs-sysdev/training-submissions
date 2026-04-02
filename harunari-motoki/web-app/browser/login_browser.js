@@ -16,9 +16,11 @@ document
       });
 
       if (response.ok) {
-        alert("ログイン成功！");
+        const data = await response.json();
+        alert(data.message);
       } else {
-        alert("エラーが発生しました");
+        const data = await response.json();
+        alert(data.message);
       }
     } catch (error) {
       console.error("通信失敗", error);

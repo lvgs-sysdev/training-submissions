@@ -1,30 +1,37 @@
-export default async function (fastify, opts) {
-  fastify.get("/editUser", async (request, reply) => {
-    const userName = request.getUserName();
+export const editUserGET = async function (request, reply) {
+  const fastify = request.server;
+  const userName = request.getUserName();
 
-    const sql = `
+  const sql = `
       SELECT 
         u.user_name,
         u.user_id
       FROM users AS u
       WHERE u.user_name = ?
       ;`;
-    const [loginUser] = await fastify.loginPool.execute(sql, [userName]);
+  const [loginUser] = await fastify.loginPool.execute(sql, [userName]);
 
-    return reply.view("profile_edit.ejs", {
-      loginUser,
-    });
+  return reply.view("private/editUser.ejs", {
+    loginUser,
   });
+};
 
-  fastify.post("/editUser", async (request, reply) => {
-    const {
-      Originaluser_ID,
-      Originaluser_Name,
-      Newuser_ID,
-      Newuser_Name,
-      password,
-    } = request.body;
+export const editUserPOST = async function (request, reply) {
+  const fastify = request.server;
+  const { Originaluser_ID, Originaluser_Name, Newuser_ID, Newuser_Name } =
+    request.body;
+  const plainPassword = request.body.password;
 
+  const sql = `
+  SELECT password FROM users WHERE user_ID = ?
+  `;
+  const [passwordcheck] = await fastify.loginPool.execute(sql, [
+    Originaluser_ID,
+  ]);
+  const hashedPasswordInDB = passwordcheck[0].password;
+  const isMatch = await bcrypt.compare(plainPassword, hashedPasswordInDB);
+
+  if (isMatch) {
     if (!Newuser_ID && !Newuser_Name) {
       return reply.send({
         success: false,
@@ -34,20 +41,12 @@ export default async function (fastify, opts) {
     }
 
     const sql_cognit = `
-    SELECT COUNT(*) AS count FROM users WHERE user_ID = ? AND password = ?
+    SELECT COUNT(*) AS count FROM users WHERE user_ID = ?
     `;
+
     const [rows] = await fastify.loginPool.execute(sql_cognit, [
       Originaluser_ID,
-      password,
     ]);
-
-    if (rows[0].count !== 1) {
-      return reply.send({
-        success: false,
-        message: "パスワードが間違っています",
-        redirectUrl: "/editUser",
-      });
-    }
 
     let finalID = Newuser_ID || Originaluser_ID;
     let finalName = Newuser_Name || Originaluser_Name;
@@ -76,5 +75,11 @@ export default async function (fastify, opts) {
       message: Message,
       redirectUrl: "/editUser",
     });
-  });
-}
+  } else {
+    return reply.send({
+      success: false,
+      message: "パスワードが間違っています",
+      redirectUrl: "/editUser",
+    });
+  }
+};

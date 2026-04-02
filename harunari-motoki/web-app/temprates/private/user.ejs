@@ -14,42 +14,36 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;250;300;400;500;600;700&display=swap"
       rel="stylesheet" />
-    <script src="/js/editBlog_browser.js" defer></script>
+    <script src="/browser/login_browser.js" defer></script>
+    <script src="/browser/register_browser.js" defer></script>
   </head>
 
   <body>
     <header class="header header_top">
       <nav class="menu">
         <a id="menu__Pagename" href="/">DAYDAYTRAVEL</a>
-        <a class="profile-link" href="/User">ユーザプロフィール</a>
         <a id="menu__registerbutton" href="/register">Get started</a>
       </nav>
     </header>
-    <form class="editBlogFrom">
-      <input
-        type="hidden"
-        name="article_id"
-        value="<%=edit_article[0].article_id%>" />
-      <p>
-        タイトル：
-        <textarea name="edit_title" rows="1" cols="100" required>
-<%=edit_article[0].title%>
-        </textarea>
-        <br />
-      </p>
-      <br />
-      <p>
-        本文：
-        <textarea name="edit_content" rows="50" cols="100" required>
-<%=edit_article[0].content%>
-        </textarea
-        ><br />
-      </p>
-      <br />
+    <h1>ユーザ登録情報</h1>
+    ユーザID：<%=loginUser[0].user_id%> <br />
+    ユーザ名：<%=loginUser[0].user_name%><br />
+    
 
-      <p><button type="submit">記事更新</button></p>
-    </form>
+    <a class="editUser" href="/editUser">ユーザプロフィールを編集</a>
 
+
+    <h2>投稿記事一覧</h2>
+    
+    <h3><p>Travel</p></h3><br>
+    <% Blog_travel.forEach((Blog_travel,i)=>{%>
+    <a class="Blog" href="/editBlog?id=<%= Blog_travel.article_id %>"><%= Blog_travel.title %></a><br>
+    <%})%>
+
+    <h3><p>Cullnary</p></h3><br>
+    <% Blog_cullnary.forEach((Blog_cullnary,i)=>{%>
+    <a class="Blog" href="/editBlog?id=<%= Blog_cullnary.article_id %>"><%= Blog_cullnary.title %></a><br>
+    <%})%>
     <footer class="footer">
       <section class="infomation-part">
         <section class="box">
@@ -108,6 +102,7 @@
         </div>
         <section class="box">
           <h3 class="subheading">Download app</h3>
+
           <div class="Img">
             <a href="">
               <img

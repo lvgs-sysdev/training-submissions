@@ -11,7 +11,7 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;250;300;400;500;600;700&display=swap"
       rel="stylesheet" />
-    <script src="/js/login_browser.js" defer></script>
+    <script src="/browser/login_browser.js" defer></script>
   </head>
   <body>
     <header class="header">
@@ -30,8 +30,8 @@
         ユーザID<br />
         <input
           type="text"
-          pattern="[A-Za-z].{5,30}"
-          title="大文字小文字の英字で入力してください(20文字以内)"
+          pattern="(?=.*[0-9])(?=.*[A-Za-z]).{10,20}"
+          title="大文字小文字の英数字で入力してください(10~20文字)"
           name="user_ID"
           required /><br />
       </p>
