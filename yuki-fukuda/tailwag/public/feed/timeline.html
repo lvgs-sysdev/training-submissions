@@ -1,0 +1,100 @@
+<div class="app-container">
+  <header class="app-header">
+    <h1 class="logo">TailWag</h1>
+  </header>
+  <main class="timeline-main">
+    <section class="post-form-section">
+      <form id="post-form" enctype="multipart/form-data">
+        <h2>今のわんちゃんをシェア 🐾</h2>
+
+        <div class="form-group">
+          <textarea
+            id="post-content"
+            name="content"
+            placeholder="何してる？ どんな様子？"
+            required
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="file-label">
+            <span class="icon">📸</span> 写真を選ぶ (最大4枚)
+            <input
+              type="file"
+              id="post-images"
+              name="images"
+              accept="image/*"
+              multiple
+            />
+          </label>
+          <div id="image-preview-container" class="preview-grid"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="breed-select">関連する犬種（複数選択可）</label>
+          <select id="breed-select" name="breed_ids" multiple>
+            <option value="1">柴犬</option>
+            <option value="2">トイプードル</option>
+            <option value="3">チワワ</option>
+            <option value="4">ポメラニアン</option>
+          </select>
+          <small
+            >※WindowsはCtrl、MacはCommandキーを押しながらクリックで複数選択できます</small
+          >
+        </div>
+
+        <button type="submit" class="submit-btn">わんこを投稿！</button>
+      </form>
+    </section>
+    <hr class="separator" />
+
+    <section id="timeline-section">
+      <div class="filter-tabs">
+        <button class="filter-btn active">すべて</button>
+        <button class="filter-btn">フォロー中</button>
+      </div>
+
+      <div id="posts-list">
+        <article class="post-card">
+          <header class="post-header">
+            <div class="user-meta">
+              <img
+                src="https://via.placeholder.com/40"
+                alt="アイコン"
+                class="user-icon"
+              />
+              <span class="user-name">わんこ大好き飼い主</span>
+            </div>
+            <span class="breed-tag"># 柴犬</span>
+          </header>
+
+          <div class="post-image-wrapper">
+            <img
+              src="https://via.placeholder.com/600x400"
+              alt="愛犬の写真"
+              class="post-photo"
+            />
+          </div>
+
+          <div class="post-content">
+            <p class="post-text">今日は公園でたくさん走り回りました！</p>
+          </div>
+
+          <footer class="post-footer">
+            <div class="interactions">
+              <button class="like-btn">
+                🐾 <span class="like-count">12</span> Likes
+              </button>
+            </div>
+            <time class="post-timestamp">2026/03/26 12:00</time>
+          </footer>
+        </article>
+      </div>
+    </section>
+  </main>
+  <nav class="bottom-nav">
+    <button id="to-home" class="nav-item" data-label="ホーム">🏠</button>
+    <button id="to-mypage" class="nav-item" data-label="マイページ">👤</button>
+    <button id="logout-btn" class="nav-item" data-label="ログアウト">🚪</button>
+  </nav>
+</div>

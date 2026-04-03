@@ -1,0 +1,115 @@
+/* 投稿フォーム全体のコンテナ */
+.post-form-section {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f0e6d6; /* 優しいベージュの境界線 */
+}
+
+.post-form-section h2 {
+  font-size: 1.25rem;
+  color: #5d4037; /* 濃いブラウン */
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 各入力グループの間隔 */
+.form-group {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* テキストエリア */
+#post-content {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  border: 2px solid #f5f5f5;
+  border-radius: 12px;
+  padding: 12px;
+  font-family: inherit;
+}
+
+#post-content:focus {
+  outline: none;
+  border-color: #ffcc80; /* フォーカス時にオレンジに */
+  background-color: #fff;
+}
+
+/* ファイル入力のカスタマイズ（ボタン風に） */
+.file-label {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #fff3e0;
+  color: #e65100;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  border: 1px solid #ffcc80;
+}
+
+.file-label:hover {
+  background-color: #ffe0b2;
+}
+
+#post-images {
+  display: none; /* 本物のinputは隠す */
+}
+
+/* 犬種セレクトボックス */
+#breed-select {
+  width: 100%;
+  padding: 8px;
+  border: 2px solid #f5f5f5;
+  border-radius: 12px;
+  background-color: #fafafa;
+  color: #5d4037;
+}
+
+.form-group small {
+  display: block;
+  margin-top: 6px;
+  color: #8d6e63;
+  font-size: 0.85rem;
+}
+
+/* 投稿ボタン */
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: #ffa726; /* 元気なオレンジ色 */
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition:
+    transform 0.1s,
+    background-color 0.3s;
+  box-shadow: 0 4px 0 #e68900; /* 立体感 */
+}
+
+.submit-btn:hover {
+  background-color: #fb8c00;
+}
+
+.submit-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #e68900;
+}
+
+/* プレビューエリア（画像を選んだら表示される場所） */
+.preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}

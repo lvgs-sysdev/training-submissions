@@ -1,0 +1,91 @@
+/* 投稿カード全体の枠組み */
+.post-card {
+  background-color: #fff;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  max-width: 600px; /* スマホやPCで見やすい幅に制限 */
+  overflow: hidden; /* 写真が角丸からはみ出さないように */
+}
+
+/* 上部：ヘッダーを横並びにする */
+.post-header {
+  display: flex;
+  justify-content: space-between; /* 両端に広げる（名前とタグ） */
+  align-items: center;
+  padding: 12px;
+}
+
+.user-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* アイコンと名前の間の隙間 */
+}
+
+/* 丸アイコンの作り方 */
+.user-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* 中央：写真を横幅いっぱいに */
+.post-photo {
+  width: 100%;
+  display: block;
+  height: auto;
+  max-height: 500px;
+  object-fit: cover;
+  display: block;
+}
+
+.post-image-wrapper {
+  width: 100%;
+  overflow: hidden;
+  background-color: #f0f0f0; /* 読み込み前の下地 */
+}
+
+/* 下部：本文やいいねの余白 */
+.post-content,
+.post-footer {
+  padding: 12px;
+}
+
+/* 最下部を横並びにする */
+.post-footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #efefef;
+}
+
+.breed-tag {
+  background-color: #f0f7ff; /* 薄い青やオレンジなど */
+  color: #007bff;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.like-btn {
+  background: none;
+  border: 1px solid #ffe0b2;
+  border-radius: 20px;
+  padding: 5px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s;
+}
+
+/* いいね済みの時のスタイル */
+.like-btn.is-liked {
+  background-color: #fff3e0;
+  border-color: #ffcc80;
+}
+
+.like-btn.is-liked .like-icon {
+  transform: scale(1.2); /* 少し大きくして強調 */
+}

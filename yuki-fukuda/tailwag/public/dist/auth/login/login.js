@@ -1,3 +1,6 @@
+import { initRegister } from "../register/register.js";
+import { validateEmail, validatePassword } from "../../utils/validation.js";
+import { initTimeline } from "../../feed/timeline.js";
 /**
  * ログイン画面を初期化する関数
  * @param containerId 描画先の要素ID（例: "root"）
@@ -14,15 +17,33 @@ export const initLogin = async (containerId) => {
         //DOM要素を取得
         const loginForm = document.getElementById("login-form");
         const messageDiv = document.getElementById("message");
+        // 「新規登録へ」のリンクを取得
+        const toRegisterLink = document.getElementById("to-register");
         if (!loginForm)
             return;
+        // 新規登録リンクがクリックされた時の切り替え処理
+        if (toRegisterLink) {
+            toRegisterLink.addEventListener("click", (e) => {
+                e.preventDefault();
+                initRegister(containerId); // 新規登録画面の初期化関数を呼ぶ
+            });
+        }
         //ログインボタンが押された時の処理
         loginForm.addEventListener("submit", async (e) => {
             e.preventDefault();
-            const emailInput = document.getElementById("email");
-            const passwordInput = document.getElementById("password");
-            const email = emailInput.value;
-            const password = passwordInput.value;
+            messageDiv.innerText = "";
+            const email = document.getElementById("email")
+                .value;
+            const password = document.getElementById("password")
+                .value;
+            //バリデーションチェック
+            const results = [validateEmail(email), validatePassword(password)];
+            const errorResult = results.find((r) => !r.isValid);
+            if (errorResult) {
+                messageDiv.innerText = errorResult.message;
+                messageDiv.style.color = "orange";
+                return;
+            }
             try {
                 //バックエンドAPIにリクエストを飛ばす
                 const apiResponse = await fetch("http://localhost:3000/auth/login", {
@@ -39,7 +60,7 @@ export const initLogin = async (containerId) => {
                     messageDiv.innerText = "ログイン成功!";
                     messageDiv.style.color = "green";
                     console.log("取得したトークン：", data.token);
-                    //マイページへ偏移する処理などを将来的に記載
+                    initTimeline("root");
                 }
                 else {
                     messageDiv.innerText =
