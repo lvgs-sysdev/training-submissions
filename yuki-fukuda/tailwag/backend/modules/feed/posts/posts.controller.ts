@@ -12,50 +12,48 @@ export const createPost = async (
   request: FastifyRequest,
   reply: FastifyReply,
 ) => {
-  //JWTからユーザーIDを取得
   const userId = (request.user as any).id;
 
-  //マルチパートデータ
-  const parts = request.parts();
-  let content = "";
+  // 1. ファイルを一時保存する（複数枚対応の肝）
+  const files = await request.saveRequestFiles();
+
+  // 2. テキストデータは request.body から取得する
+  // fastify-multipart の attachFieldsToBody: true を使っている場合に有効
+  const body = request.body as any;
+
+  // body.fieldname.value で値が取れます。存在しない場合を考慮してガードを入れます。
+  let content = body.content?.value || "";
   let breedIds: number[] = [];
-  const imageUrls: string[] = [];
 
   try {
-    for await (const part of parts) {
-      if (part.type === "file") {
-        //画像ファイルの処理
-        const fileName = `post-${Date.now()}-${part.filename}.webp`;
-        const uploadPath = path.resolve(
-          __dirname,
-          "../../../../public/uploads",
-          fileName,
-        );
-
-        console.log("実際に保存しようとしているフルパス:", uploadPath);
-
-        const buffer = await part.toBuffer();
-        await sharp(buffer)
-          .resize(1200)
-          .webp({ quality: 80 })
-          .toFile(uploadPath);
-
-        imageUrls.push(`/uploads/${fileName}`);
-      } else {
-        if (part.fieldname === "content") {
-          content = part.value as string;
-        }
-        if (part.fieldname === "breed_ids") {
-          //フロントからJSON文字列で送る
-          breedIds = JSON.parse(part.value as string);
-        }
-      }
+    if (body.breed_ids?.value) {
+      breedIds = JSON.parse(body.breed_ids.value);
     }
 
-    if (!content && imageUrls.length === 0) {
+    const imageUrls: string[] = [];
+
+    // 3. 一時保存されたファイルをループして Sharp で加工・保存
+    for (const file of files) {
+      const fileName = `post-${Date.now()}-${Math.floor(Math.random() * 1000)}.webp`;
+      const uploadPath = path.resolve(
+        __dirname,
+        "../../../../public/uploads",
+        fileName,
+      );
+
+      await sharp(file.filepath) // 一時ファイルのパス
+        .resize(1200, 1200, { fit: "inside", withoutEnlargement: true })
+        .webp({ quality: 80 })
+        .toFile(uploadPath);
+
+      imageUrls.push(`/uploads/${fileName}`);
+    }
+
+    if (!content.trim() && imageUrls.length === 0) {
       return reply.code(400).send({ message: "内容または写真を投稿してね" });
     }
-    //Serviceを呼び出してDBに保存
+
+    // 4. Service を呼んで DB 保存
     const postId = await postService.createPostWithImages(
       userId,
       content,
@@ -63,10 +61,9 @@ export const createPost = async (
       imageUrls,
     );
 
-    return reply.code(201).send({ message: "写真付きで投稿完了!", postId });
+    return reply.code(201).send({ message: "投稿完了！🐾", postId });
   } catch (error) {
     request.log.error(error);
-    // 失敗した場合、既に保存してしまった画像ファイルを削除する処理（クリーンアップ）を後で入れる
     return reply.code(500).send({ message: "投稿に失敗しました" });
   }
 };

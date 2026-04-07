@@ -1,7 +1,6 @@
 /* 💡 マイページを表示した時、親要素の余計な余白をゼロにする */
 .app-container,
 .timeline-main {
-  padding-bottom: 0 !important;
   margin-bottom: 0 !important;
 }
 /* マイページ全体のコンテナ */
@@ -245,4 +244,72 @@ hr {
 
 .modal-like-info .like-count strong {
   font-weight: bold;
+}
+
+/* 編集フォームのコンテナ */
+.edit-form-container {
+  padding: 25px;
+}
+
+.edit-form-container h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+/* 各入力項目のグループ */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+/* 入力フィールドのデザイン */
+.form-group input[type="text"],
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #fafafa;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
+  box-sizing: border-box; /* 幅がはみ出さないように */
+}
+
+/* フォーカスした時（入力中）の色 */
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #ffa726; /* わんこカラーのオレンジ */
+  background-color: #fff;
+}
+
+/* 保存ボタン */
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #ffa726;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 10px;
+}
+
+.submit-btn:hover {
+  background-color: #fb8c00;
 }

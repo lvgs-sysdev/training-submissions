@@ -1,6 +1,6 @@
 import { initRegister } from "../register/register.js";
 import { validateEmail, validatePassword } from "../../utils/validation.js";
-import { initTimeline } from "../../feed/timeline.js";
+import { initTimeline } from "../../feed/timeline/timeline.js";
 /**
  * ログイン画面を初期化する関数
  * @param containerId 描画先の要素ID（例: "root"）
@@ -60,6 +60,7 @@ export const initLogin = async (containerId) => {
                     messageDiv.innerText = "ログイン成功!";
                     messageDiv.style.color = "green";
                     console.log("取得したトークン：", data.token);
+                    localStorage.setItem("userId", String(data.user.id));
                     initTimeline("root");
                 }
                 else {

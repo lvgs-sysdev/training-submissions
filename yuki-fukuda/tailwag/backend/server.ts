@@ -11,6 +11,7 @@ import fastifyStatic from "@fastify/static";
 import fastifyMultipart from "@fastify/multipart";
 import postRoutes from "./modules/feed/posts/posts.routes.js";
 import mypageRoutes from "./modules/mypage/mypage.routes.js";
+import breedsRoutes from "./modules/breeds/breeds.routes.js";
 
 const fastify = Fastify({
   logger: true,
@@ -24,8 +25,9 @@ const fastify = Fastify({
 });
 
 await fastify.register(cors, {
-  origin: true, //開発中の設定
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  origin: process.env.FRONTEND_URL || "http://localhost:3000",
+  methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 });
 
 const __filename = fileURLToPath(import.meta.url);
@@ -38,13 +40,24 @@ fastify.register(fastifyStatic, {
 });
 
 // JWTの設定
+const jwtSecret = process.env.JWT_SECRET;
+
+if (!jwtSecret) {
+  // 💡 設定がない場合はエラーを出してサーバーを起動させない（安全策）
+  console.error("❌ ERROR: JWT_SECRET is not defined in .env file.");
+  process.exit(1);
+}
+
+// JWTの設定
 fastify.register(fastifyJwt, {
-  secret: process.env.JWT_SECRET || "supersecretkey-yuki-2026", // 署名用の秘密鍵
+  secret: jwtSecret,
 });
 
 fastify.register(import("@fastify/multipart"), {
+  attachFieldsToBody: true,
   limits: {
     fileSize: 10 * 1024 * 1024, // 10MB
+    files: 10,
   },
 });
 
@@ -52,13 +65,16 @@ fastify.register(import("@fastify/multipart"), {
 fastify.register(authRoutes, { prefix: "/auth" });
 
 // ログイン中か確認するルート
-fastify.register(userRoutes, { prefix: "/user" });
+fastify.register(userRoutes, { prefix: "/users" });
 
 //一覧表示・投稿用ルート
-fastify.register(postRoutes, { prefix: "/posts" });
+fastify.register(postRoutes, { prefix: "/api/posts" });
 
 //マイページ取得用のルート
-fastify.register(mypageRoutes, { prefix: "/mypage" });
+fastify.register(mypageRoutes, { prefix: "/api/mypage" });
+
+//犬種取得のルート
+fastify.register(breedsRoutes, { prefix: "/api/breeds" });
 
 const start = async () => {
   try {

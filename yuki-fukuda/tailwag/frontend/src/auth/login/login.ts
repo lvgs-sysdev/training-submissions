@@ -1,11 +1,12 @@
 import { initRegister } from "../register/register.js";
 import { validateEmail, validatePassword } from "../../utils/validation.js";
-import { initTimeline } from "../../feed/timeline.js";
+import { initTimeline } from "../../feed/timeline/timeline.js";
 
 //APIレスポンスの型定義
 interface LoginResponse {
   token: string;
   message?: string;
+  user: { id: number };
 }
 
 /**
@@ -78,6 +79,7 @@ export const initLogin = async (containerId: string): Promise<void> => {
           messageDiv.innerText = "ログイン成功!";
           messageDiv.style.color = "green";
           console.log("取得したトークン：", data.token);
+          localStorage.setItem("userId", String(data.user.id));
           initTimeline("root");
         } else {
           messageDiv.innerText =

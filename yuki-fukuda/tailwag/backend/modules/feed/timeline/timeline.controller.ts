@@ -6,13 +6,21 @@ export const getTimeline = async (
   reply: FastifyReply,
 ) => {
   try {
-    // 💡 request.user が存在するかチェックする
     if (!request.user) {
       return reply.code(401).send({ message: "認証が必要です" });
     }
 
     const currentUserId = (request.user as any).id;
-    const posts = await postService.getAllPosts(currentUserId);
+
+    // 💡 1. クエリから search を取り出す（これが必要だった！）
+    const { search } = request.query as { search?: string };
+
+    // 💡 2. 第3引数に search を渡す！！
+    const posts = await postService.getAllPosts(
+      currentUserId,
+      undefined,
+      search,
+    );
 
     return reply.code(200).send(posts);
   } catch (error) {

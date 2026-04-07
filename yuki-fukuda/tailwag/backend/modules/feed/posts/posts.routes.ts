@@ -11,5 +11,5 @@ export default async function postRoutes(fastify: FastifyInstance) {
   // 2. POST /posts (新規投稿)
   fastify.post("/", { preHandler: [authenticate] }, createPost);
 
-  fastify.post("/:postId/like", { preHandler: [authenticate] }, handleLike);
+  fastify.post("/:id/like", { preHandler: [authenticate] }, handleLike);
 }

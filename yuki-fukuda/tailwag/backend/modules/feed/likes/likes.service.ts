@@ -1,33 +1,38 @@
 import pool from "../../../shared/database/db.js";
 
 export const toggleLike = async (postId: number, userId: number) => {
-  //いいね済みか確認
+  // 1. いいね済みか確認
   const [existing] = await pool.execute(
     "SELECT id FROM likes WHERE post_id = ? AND user_id = ?",
     [postId, userId],
   );
 
   const likes = existing as any[];
+  let liked = false;
 
   if (likes.length > 0) {
+    // 解除
     await pool.execute("DELETE FROM likes WHERE post_id = ? AND user_id = ?", [
       postId,
       userId,
     ]);
-    return { liked: false };
+    liked = false;
   } else {
+    // 追加
     await pool.execute("INSERT INTO likes (post_id, user_id) VALUES (?, ?)", [
       postId,
       userId,
     ]);
-    return { liked: true };
+    liked = true;
   }
-};
 
-export const getLikeCount = async (postId: number) => {
-  const [rows] = await pool.execute(
+  // 💡 2. 最新のいいね数を取得（ここが重要！）
+  const [countRows] = await pool.execute(
     "SELECT COUNT(*) as count FROM likes WHERE post_id = ?",
     [postId],
   );
-  return (rows as any)[0].count;
+  const count = (countRows as any)[0].count;
+
+  // 💡 3. liked状態と最新カウントをセットで返す
+  return { liked, count };
 };

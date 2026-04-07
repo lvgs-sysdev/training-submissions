@@ -1,59 +1,94 @@
-import { renderPosts } from "../feed/timeline.js";
-import { setupNavigation, refreshTimeline } from "../feed/timeline.js";
+// frontend/src/mypage/mypage.ts
+import { PostApi } from "../utils/api.js";
+import { initNavigation } from "../feed/timeline/navigation.js";
+import { Post } from "../feed/posts/type.js";
+import { MypageView } from "./mypageView.js";
+import { renderPostList } from "../feed/posts/components.js";
 
-export const initMypage = async () => {
+export const initMypage = async (userId?: number) => {
   const mainContainer = document.querySelector(".app-container") as HTMLElement;
   if (!mainContainer) return;
 
   try {
-    //HTMLテンプレートの読み込み、表示
     const htmlRes = await fetch("/mypage/mypage.html");
     mainContainer.innerHTML = await htmlRes.text();
 
-    //バックエンドからデータを取得
-    const token = localStorage.getItem("token");
-    const response = await fetch("/mypage", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const data = await PostApi.fetchMypage(userId);
 
-    if (!response.ok) throw new Error("データの取得に失敗しました");
+    // View に描画を依頼
+    MypageView.renderProfile(data.profile);
+    setupActionButton(data.profile, userId);
+    renderMypagePosts(data.posts);
 
-    const data = await response.json();
-
-    //プロフィール情報を反映
-    document.getElementById("profile-name")!.textContent =
-      data.profile.account_name;
-    document.getElementById("profile-account-id")!.textContent =
-      `@${data.profile.account_id}`;
-    document.getElementById("profile-content")!.textContent =
-      data.profile.profile_content || "自己紹介はまだありません";
-    document.getElementById("following-count")!.textContent =
-      data.profile.following_count;
-    document.getElementById("followers-count")!.textContent =
-      data.profile.followers_count;
-
-    if (data.profile.profile_image) {
-      (document.getElementById("profile-img") as HTMLImageElement).src =
-        data.profile.profile_image;
-    }
-
-    const postsContainer = document.getElementById("posts-container");
-    if (postsContainer && data.posts) {
-      renderPosts(data.posts, postsContainer, true);
-    }
+    setupMypageEvents(userId);
+    initNavigation();
   } catch (error) {
-    console.error(error);
-    mainContainer.innerHTML = "<p>読み込みに失敗しました。</p>";
+    console.error("Mypage Init Error:", error);
+    mainContainer.innerHTML = "<p>読み込みに失敗しました🐾</p>";
   }
+};
 
-  setupNavigation();
+/**
+ * アクションボタン（編集 or フォロー）の制御
+ */
+const setupActionButton = (profile: any, userId?: number) => {
+  const currentUserId = Number(localStorage.getItem("userId"));
+  const btn = document.getElementById("edit-profile-btn") as HTMLButtonElement;
+  if (!btn) return;
 
-  const homeBtn = document.getElementById("to-home");
-  if (homeBtn) {
-    homeBtn.onclick = () => {
-      location.reload();
+  const isMe = !userId || userId === currentUserId;
+
+  if (isMe) {
+    btn.textContent = "編集";
+    btn.onclick = () => MypageView.showEditModal(profile);
+  } else {
+    btn.textContent = profile.is_following ? "フォロー解除" : "フォローする";
+    btn.onclick = async () => {
+      await PostApi.toggleFollow(userId!);
+      initMypage(userId); // 再読み込み
     };
+  }
+};
+
+/**
+ * 編集イベントの登録
+ */
+const setupMypageEvents = (userId?: number) => {
+  const form = document.getElementById("edit-profile-form") as HTMLFormElement;
+  const imageInput = document.getElementById("edit-image") as HTMLInputElement;
+
+  imageInput?.addEventListener("change", () => {
+    const file = imageInput.files?.[0];
+    if (file) MypageView.renderImagePreview(file);
+  });
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    try {
+      await PostApi.updateProfile(new FormData(form));
+      alert("プロフィールを更新しました🐾");
+      MypageView.hideEditModal();
+      initMypage(userId);
+    } catch (err) {
+      alert("更新に失敗しました。");
+    }
+  });
+
+  document.getElementById("close-edit-modal")!.onclick = () =>
+    MypageView.hideEditModal();
+
+  document.getElementById("to-home")!.onclick = async () => {
+    const { initTimeline } = await import("../feed/timeline/timeline.js");
+    initTimeline("root");
+  };
+};
+
+/**
+ * 投稿一覧の描画
+ */
+const renderMypagePosts = (posts: Post[]) => {
+  const container = document.getElementById("posts-container");
+  if (container) {
+    renderPostList(container, posts, "post-grid");
   }
 };

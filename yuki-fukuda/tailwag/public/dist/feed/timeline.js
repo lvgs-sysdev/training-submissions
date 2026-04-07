@@ -1,15 +1,82 @@
 import { setupPostForm } from "./post.js";
+import { createPostCardHtml, updateImageCounter } from "./components.js";
+// --- 1. 状態管理用の変数 ---
+let allBreeds = [];
+export let selectedBreeds = [];
+// 犬種選択のリセット
+export const clearSelectedBreeds = () => {
+    selectedBreeds = [];
+    const tagsContainer = document.getElementById("selected-breeds-tags");
+    if (tagsContainer)
+        tagsContainer.innerHTML = "";
+};
+// --- 2. 犬種読み込みと検索機能 ---
+const loadBreeds = async () => {
+    const token = localStorage.getItem("token");
+    const datalist = document.getElementById("breed-options");
+    if (!datalist)
+        return;
+    try {
+        const response = await fetch("/api/breeds", {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+        allBreeds = await response.json();
+        datalist.innerHTML = allBreeds
+            .map((b) => `<option value="${b.name}">`)
+            .join("");
+        setupBreedSearch();
+    }
+    catch (err) {
+        console.error("犬種リストの取得失敗:", err);
+    }
+};
+const setupBreedSearch = () => {
+    const input = document.getElementById("breed-search-input");
+    if (!input)
+        return;
+    input.oninput = () => {
+        const val = input.value;
+        const breed = allBreeds.find((b) => b.name === val);
+        if (breed && !selectedBreeds.some((s) => s.id === breed.id)) {
+            selectedBreeds.push(breed);
+            renderBreedTags();
+            input.value = "";
+        }
+    };
+};
+const renderBreedTags = () => {
+    const tagsContainer = document.getElementById("selected-breeds-tags");
+    if (!tagsContainer)
+        return;
+    tagsContainer.innerHTML = selectedBreeds
+        .map((b) => `
+      <span class="breed-tag-badge">
+        # ${b.name} 
+        <span class="remove-tag" data-id="${b.id}">×</span>
+      </span>
+    `)
+        .join("");
+    tagsContainer.querySelectorAll(".remove-tag").forEach((el) => {
+        const span = el;
+        span.onclick = () => {
+            const id = Number(span.getAttribute("data-id"));
+            selectedBreeds = selectedBreeds.filter((b) => b.id !== id);
+            renderBreedTags();
+        };
+    });
+};
+// --- 3. 初期化処理 ---
 export const initTimeline = async (containerId) => {
     const container = document.getElementById(containerId);
     if (!container)
         return;
     try {
-        //timeline.htmlの読み込み
         const response = await fetch("/feed/timeline.html");
         container.innerHTML = await response.text();
-        // 2. DOM配置後のイベントセットアップ
-        setupPostForm(); // 投稿機能の有効化
-        setupNavigation(); // ナビゲーション（ログアウト等）の有効化
+        setupPostForm();
+        setupNavigation();
+        setupSearch();
+        await loadBreeds();
         await refreshTimeline();
     }
     catch (error) {
@@ -17,6 +84,95 @@ export const initTimeline = async (containerId) => {
         container.innerHTML = "<p>読み込みに失敗しました🐾</p>";
     }
 };
+// --- 4. データの取得と反映 ---
+export const refreshTimeline = async (searchWord) => {
+    const token = localStorage.getItem("token");
+    const listContainer = document.getElementById("posts-list");
+    if (listContainer)
+        listContainer.innerHTML = "<p>わんこを探しています...</p>";
+    try {
+        let url = "/api/posts";
+        if (searchWord) {
+            const params = new URLSearchParams();
+            params.append("search", searchWord);
+            url += `?${params.toString()}`;
+        }
+        const response = await fetch(url, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await response.json();
+        if (listContainer) {
+            if (Array.isArray(data) && data.length === 0 && searchWord) {
+                listContainer.innerHTML = `<p>「${searchWord}」に一致する投稿は見つかりませんでした🐾</p>`;
+            }
+            else {
+                renderPosts(Array.isArray(data) ? data : [], listContainer);
+            }
+        }
+    }
+    catch (error) {
+        console.error("取得エラー:", error);
+    }
+};
+export const renderPosts = (posts, container, isGrid = false) => {
+    if (!container)
+        return;
+    if (!Array.isArray(posts) || posts.length === 0) {
+        container.innerHTML = "<p>投稿が見つかりませんでした🐾</p>";
+        return;
+    }
+    container.classList.toggle("post-grid", isGrid);
+    // 💡 コンポーネント関数を使って HTML を生成
+    container.innerHTML = posts.map((post) => createPostCardHtml(post)).join("");
+    setupLikeButtons();
+    setupUserClickEvents(container);
+    setupPostModalEvents(container, posts);
+    // 💡 共通のカウンター更新イベントを登録
+    container.querySelectorAll(".post-image-wrapper").forEach((el) => {
+        const wrapper = el;
+        wrapper.addEventListener("scroll", () => updateImageCounter(wrapper), {
+            passive: true,
+        });
+    });
+};
+// --- 5. モーダル関連 ---
+const setupPostModalEvents = (container, posts) => {
+    container.querySelectorAll(".post-card").forEach((card) => {
+        card.addEventListener("click", (e) => {
+            if (e.target.closest(".like-btn") ||
+                e.target.closest(".user-name"))
+                return;
+            const postId = Number(card.getAttribute("data-post-id"));
+            const targetPost = posts.find((p) => p.id === postId);
+            if (targetPost)
+                openPostModal(targetPost);
+        });
+    });
+};
+const openPostModal = (post) => {
+    const modal = document.getElementById("post-modal");
+    const modalDetail = document.getElementById("modal-post-detail");
+    if (!modal || !modalDetail)
+        return;
+    // 💡 ここでもコンポーネント関数を使用 (isModal引数をtrueに)
+    modalDetail.innerHTML = createPostCardHtml(post, true);
+    modal.style.display = "flex";
+    setupLikeButtons();
+    setupUserClickEvents(modalDetail);
+    // モーダル内のカウンターイベント
+    const modalWrapper = modalDetail.querySelector(".post-image-wrapper");
+    if (modalWrapper && post.image_urls.length > 1) {
+        modalWrapper.addEventListener("scroll", () => updateImageCounter(modalWrapper), { passive: true });
+    }
+    document.getElementById("close-modal").onclick = () => {
+        modal.style.display = "none";
+    };
+    modal.onclick = (e) => {
+        if (e.target === modal)
+            modal.style.display = "none";
+    };
+};
+// --- 6. ナビゲーション・検索・いいね ---
 export const setupNavigation = () => {
     const logoutBtn = document.getElementById("logout-btn");
     if (logoutBtn) {
@@ -25,23 +181,14 @@ export const setupNavigation = () => {
             location.reload();
         };
     }
-    // 2. マイページボタン（これを目印の id="to-mypage" に紐づける）
     const mypageBtn = document.getElementById("to-mypage");
-    console.log("マイページボタン確認:", mypageBtn); // 💡 これが null ならボタンが見つかっていない
     if (mypageBtn) {
         mypageBtn.onclick = async (e) => {
-            e.preventDefault(); // 💡 念のためデフォルト動作を防止
-            console.log("マイページボタンが押されました！");
-            try {
-                const { initMypage } = await import("../mypage/mypage.js");
-                initMypage();
-            }
-            catch (err) {
-                console.error("インポートエラー:", err);
-            }
+            e.preventDefault();
+            const { initMypage } = await import("../../mypage/mypage.js");
+            initMypage();
         };
     }
-    // 3. ホームボタン（タイムラインを最新にする）
     const homeBtn = document.getElementById("to-home");
     if (homeBtn) {
         homeBtn.onclick = () => {
@@ -50,180 +197,61 @@ export const setupNavigation = () => {
         };
     }
 };
-//サーバーから投稿を取得して画面に表示
-export const refreshTimeline = async () => {
-    const token = localStorage.getItem("token");
-    const listContainer = document.getElementById("posts-list");
-    if (listContainer)
-        listContainer.innerHTML = "<p>わんこを探しています...</p>";
-    try {
-        const response = await fetch("/posts", {
-            headers: { Authorization: `Bearer ${token}` },
-        });
-        const data = await response.json();
-        console.log("届いたデータ:", data[0]);
-        if (listContainer) {
-            renderPosts(Array.isArray(data) ? data : [], listContainer);
+export const setupSearch = () => {
+    const searchInput = document.getElementById("search-input");
+    const searchBtn = document.getElementById("search-btn");
+    if (!searchInput || !searchBtn)
+        return;
+    const doSearch = () => {
+        const word = searchInput.value.trim();
+        refreshTimeline(word || undefined);
+    };
+    searchBtn.onclick = (e) => {
+        e.preventDefault();
+        doSearch();
+    };
+    searchInput.onkeydown = (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            doSearch();
         }
-    }
-    catch (error) {
-        // 💡 失敗した時も listContainer を渡す
-        if (listContainer) {
-            renderPosts([], listContainer);
-        }
-    }
-};
-export const renderPosts = (posts, container, isGrid = false) => {
-    if (!container)
-        return;
-    // 1. 投稿がない場合の表示
-    if (!Array.isArray(posts) || posts.length === 0) {
-        container.innerHTML = "<p>まだ投稿がないか、読み込みに失敗しました🐾</p>";
-        return;
-    }
-    if (isGrid) {
-        container.classList.add("post-grid");
-    }
-    else {
-        container.classList.remove("post-grid");
-    }
-    container.innerHTML = posts
-        .map((post) => {
-        const imagesHtml = post.image_urls && post.image_urls.length > 0
-            ? `<div class="post-image-wrapper">
-             ${post.image_urls.map((url) => `<img src="${url}" alt="わんこの写真" class="post-photo">`).join("")}
-           </div>`
-            : "";
-        const heartIcon = post.is_liked ? "❤️" : "🐾";
-        const likedClass = post.is_liked ? "is-liked" : "";
-        return `
-        <article class="post-card" data-post-id="${post.id}">
-            <header class="post-header">
-                <span class="user-name">${post.user_name || "名無しさん"}</span>
-                <span class="breed-tag"># ${post.breed_name || "不明"}</span>
-            </header>
-            
-            ${imagesHtml}
-            <div class="post-content">
-                <p>${post.content}</p>
-            </div>
-            <footer class="post-footer">
-                <div class="post-actions">
-                  <button class="like-btn ${likedClass}" data-post-id="${post.id}">
-                    <span class="like-icon">${heartIcon}</span>
-                    <span class="like-count">${post.like_count || 0}</span>
-                  </button>
-                </div>
-                <time>${new Date(post.created_at).toLocaleString()}</time>
-            </footer>
-        </article>
-      `;
-    })
-        .join("");
-    // 3. いいねボタンのイベント登録
-    setupLikeButtons();
-    // 💡 3. モーダル表示用のクリックイベント登録（isGridの時だけ）
-    if (isGrid) {
-        setupPostModalEvents(container, posts);
-    }
-};
-/**
- * モーダル表示のためのイベント設定
- */
-const setupPostModalEvents = (container, posts) => {
-    const postCards = container.querySelectorAll(".post-card");
-    postCards.forEach((card) => {
-        card.addEventListener("click", (e) => {
-            // いいねボタンをクリックした時はモーダルを開かないようにする
-            if (e.target.closest(".like-btn"))
-                return;
-            const postId = Number(card.getAttribute("data-post-id"));
-            const targetPost = posts.find((p) => p.id === postId);
-            if (targetPost) {
-                openPostModal(targetPost);
-            }
-        });
-    });
-};
-/**
- * モーダルを開いて中身を書き換える
- */
-const openPostModal = (post) => {
-    const modal = document.getElementById("post-modal");
-    const modalDetail = document.getElementById("modal-post-detail");
-    if (!modal || !modalDetail)
-        return;
-    const heartIcon = post.is_liked ? "❤️" : "🐾";
-    // モーダルの内側を「タイムラインと同じカード形式」で作成
-    // ここで renderPosts を再利用するのではなく、単体の HTML を生成
-    modalDetail.innerHTML = `
-    <div class="post-card">
-      <header class="post-header">
-        <span class="user-name">${post.user_name}</span>
-        <span class="breed-tag"># ${post.breed_name}</span>
-      </header>
-      <div class="post-image-wrapper">
-        <img src="${post.image_urls[0]}" class="post-photo">
-      </div>
-      <div class="post-content">
-        <p>${post.content}</p>
-      </div>
-      <footer class="post-footer">
-       <div class="post-actions">
-        <button class="like-btn ${post.is_liked ? "is-liked" : ""}" data-post-id="${post.id}">
-         <span class="like-icon">${heartIcon}</span>
-         <span class="like-count"><strong>${post.like_count || 0}</strong> Likes</span>
-        </button>
-       </div>
-        <time>${new Date(post.created_at).toLocaleString()}</time>
-      </footer>
-    </div>
-  `;
-    modal.style.display = "flex";
-    setupLikeButtons();
-    // 閉じる処理
-    const closeBtn = document.getElementById("close-modal");
-    if (closeBtn) {
-        closeBtn.onclick = () => {
-            modal.style.display = "none";
-        };
-    }
-    // 背景クリックで閉じる
-    modal.onclick = (e) => {
-        if (e.target === modal)
-            modal.style.display = "none";
     };
 };
-/**
- * 全てのいいねボタンにクリックイベントを設定する
- */
 const setupLikeButtons = () => {
-    const likeButtons = document.querySelectorAll(".like-btn");
-    likeButtons.forEach((el) => {
-        // 💡 Element を HTMLElement に変換して扱う
+    document.querySelectorAll(".like-btn").forEach((el) => {
         const btn = el;
-        btn.onclick = async () => {
+        btn.onclick = async (e) => {
+            e.stopPropagation();
             const postId = btn.getAttribute("data-post-id");
             const token = localStorage.getItem("token");
             try {
-                const response = await fetch(`/posts/${postId}/like`, {
+                const response = await fetch(`/api/posts/${postId}/like`, {
                     method: "POST",
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 if (response.ok) {
                     const result = await response.json();
-                    const icon = btn.querySelector(".like-icon");
-                    const count = btn.querySelector(".like-count");
-                    if (icon)
-                        icon.innerHTML = result.liked ? "❤️" : "🐾";
-                    if (count)
-                        count.innerHTML = result.count;
+                    btn.querySelector(".like-icon").innerHTML = result.liked
+                        ? "❤️"
+                        : "🐾";
+                    btn.querySelector(".like-count").innerHTML = result.count;
                     btn.classList.toggle("is-liked", result.liked);
                 }
             }
             catch (error) {
-                console.error("いいね失敗:", error);
+                console.error(error);
             }
+        };
+    });
+};
+const setupUserClickEvents = (container) => {
+    container.querySelectorAll(".user-name").forEach((el) => {
+        const span = el;
+        span.onclick = async (e) => {
+            e.stopPropagation();
+            const userId = Number(span.getAttribute("data-user-id"));
+            const { initMypage } = await import("../../mypage/mypage.js");
+            initMypage(userId);
         };
     });
 };

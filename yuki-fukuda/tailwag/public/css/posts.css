@@ -106,10 +106,19 @@
   box-shadow: 0 2px 0 #e68900;
 }
 
-/* プレビューエリア（画像を選んだら表示される場所） */
-.preview-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-  gap: 8px;
-  margin-top: 12px;
+/* 投稿フォームの画像プレビュー */
+#image-preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.post-preview-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }

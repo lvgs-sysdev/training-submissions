@@ -1,5 +1,5 @@
 import { initLogin } from "./auth/login/login.js";
-import { initTimeline } from "./feed/timeline.js";
+import { initTimeline } from "./feed/timeline/timeline.js";
 
 window.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem("token");
