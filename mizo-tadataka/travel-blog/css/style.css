@@ -1,0 +1,306 @@
+
+/*見出しを作ろう*/
+
+/* 一番上 */
+.header-top  { 
+  display: flex; /* フレックスボックスを使用 */
+  justify-content: space-between; /* 左右にスペースを均等に配置 */
+  align-items: center; /* 縦方向の中央揃え */
+}
+
+/* ヘッダーのテキスト */
+.header-top-text {
+  position: relative;
+  font-size: 1.5vw;
+  font-weight: 800; /* より太く（数値指定） */
+  color:#FF553C;
+  margin-top: 20px;           
+  margin-left: 123px;
+  margin-bottom : 20px;
+
+}
+
+.tops-right {
+  display: flex; /* フレックスボックスを使用 */
+}
+
+/* ログインのリンク */
+.login-link {
+  font-size: 1.2vw;
+  color: black;
+  text-decoration: none; /* 下線を消す */
+  margin-right: 40px; /* ロゴとログインの間のスペース */
+  margin-top: 10px;
+}
+
+/* カラーボックス */
+.color-box {
+  display: flex;           /* 1. フレックスボックスにする */
+  justify-content: center; /* 2. 左右（横方向）の中央揃え */
+  align-items: center;     /* 3. 上下（縦方向）の中央揃え */
+
+
+  width: 8vw;
+  height: 2.2vw;
+  background-color: #FF553C;
+  color: white;
+  font-size: 1.2vw;
+  padding: 10px 20px;
+  /* 10px：上下の余白　20px：左右の余白 */
+  margin-right: 123px;
+  margin-left: 0px;
+}
+
+
+
+
+
+/* 中央の画像ブロック */
+.full-width img {
+/*画像を画面いっぱいに広げる */
+  width: 100%;      
+}
+
+.full-width  { 
+  position: relative;
+}
+
+/* 文字二つを画像の上に配置するためのスタイル */
+.header-text {
+  position: fixed;
+  position: absolute;  /* 画像の上に浮かせます */
+  top: 10%;           
+  left: 7%;
+  font-size: 4.5vw;
+  font-weight: 800; /* より太く（数値指定） */
+}
+
+.header-text-sub {
+  position: fixed;
+  position: absolute;  /* 画像の上に浮かせます */
+  top: 45%;           
+  left: 7%;
+  font-size: 1.5vw;
+}
+
+/* ページ全体 */
+.main-content-wrapper {
+  display: grid; /* フレックスボックスを使用 */
+  grid-template-columns: 2fr 1fr; /* メインコンテンツとサイドコンテンツの幅を指定 */
+  width: 100%;    
+  gap: 10vw; /* メインコンテンツとサイドコンテンツの間のスペース */
+}
+
+
+
+/* 一覧作り */
+/* グリッド全体の設定 */
+.grid-container {
+  display: grid;
+  grid-template-columns: 24vw 24vw; /* 2列のグリッド */
+  justify-content: start;
+  gap: 50px; /* グリッドアイテム間のスペース */
+  margin-top: 80px;
+}
+
+
+
+
+/* 個別設定 */
+
+.main-content-title {
+  font-size: 1.5vw;
+  /* より太く（数値指定） */
+  font-weight: 800;
+  color:black;
+  margin-top: 200px;           
+}
+
+
+.main-content {
+   margin-left: 150px;
+}
+
+
+.item-content {
+  margin-top: 10px;
+}
+
+
+/* コラムと日付を横並びにするためのスタイル */ 
+.item-column {
+  color:  #FF553C;
+}
+.item-date {
+  color:  #757575; 
+}
+.item-date-span {
+  color:  #dedede; 
+}
+
+
+/* グリッド内のコンテンツ設定 */
+.grid-item img{
+  width: 100%;       /* 横幅は枠いっぱいに */
+  height: 300px;
+}
+.grid-item {
+  text-decoration: none; /* 下線を消す */
+  font-size: 1.05vw;
+  color: black;
+}
+
+
+
+
+/* 日本語だけデカかったので、日本語のクラスを作ってみました。 */
+#japanese_caracter .item-title {
+  font-size: 1.3vw; 
+}
+.item-title   {
+  margin-top: 15px;
+  font-size: 1.3vw; 
+  color:black;
+}
+
+.item-desc {
+  font-size: 1.1vw;
+  color: #757575; /* 少し薄いグレー */
+}
+
+
+
+/* 中段サイドコンテンツ作り */
+.side-content {
+  margin-top: 180px;
+  margin-right: 100px;
+}
+
+/* 中段のサイドコンテンツ上側 */
+
+.grid-container-side1 {
+  display: grid;
+  grid-template-columns: 1fr; /* 1列のグリッド */
+  gap: 20px; /* グリッドアイテム間のスペース */
+  padding: 0vw 5vw 0vw 0vw; /* 上右下左の順で余白を指定 */
+  }
+
+
+.side-content-title-1 {
+  font-size: 1.5vw;
+  /* より太く（数値指定） */
+  font-weight: 800;
+  color:black;      
+}
+
+.side-item-title {
+  font-size: 1.3vw;
+  color:black;  
+  margin-bottom: 3vw;    
+
+}
+
+.side-content1:not(:last-child) {
+  border-bottom: 1px solid #dedede; /* 下線を引く */  
+}
+
+
+
+
+
+/* 中段のサイドコンテンツ下側 */
+
+.side-content-title-2 {
+  font-size: 1.5vw;
+  /* より太く（数値指定） */
+  font-weight: 800;
+  color:black;
+  margin-top: 5vw; 
+}
+
+.container-side2 {
+  display: flex; /* フレックスボックスを使用 */
+  gap: 2vw;
+  margin-top: 4vw;
+
+
+}
+
+
+
+.white-box-text {
+  font-size: 1.4vw;
+  color:#757575;  
+  border: 1px solid #dedede;
+  justify-content: space-between; /* 左右にスペースを均等に配置 */
+  align-items: center; /* 縦方向の中央揃え */
+  padding: 1vw 1vw;
+  
+}
+
+
+/* 下段のフッター */
+.footer{
+  background-color: #121212;
+  margin-top: 20vw;
+}
+
+.footer-wrapper {
+  display: grid; /* フレックスボックスを使用 */
+  grid-template-columns: repeat(2, 1fr) 0.5fr 1fr; /* メインコンテンツとサイドコンテンツの幅を指定 */
+  width: 100%;    
+  justify-content: start;
+  /* padding: 6vw 5vw 15vw 6vw; */
+  margin-bottom: 8vw;
+}
+
+
+
+.footer-text-title {
+  font-size: 1.2vw;
+  color: white; 
+  justify-content: space-between; /* 左右にスペースを均等に配置 */
+  margin-top: 8vw;
+  margin-bottom: 3vw;
+
+} 
+
+
+/* 下段：テキスト関係 */
+.Footer-text {
+  font-size: 1.2vw;
+  color: rgba(255, 255, 255, 0.5); /* 白の50%の透明度 */
+  justify-content: space-between; /* 左右にスペースを均等に配置 */
+}
+
+.copyrightbox {
+  width: 100%;
+}
+
+.copyright {
+  font-size: 1vw;
+  color: rgba(255, 255, 255, 0.5); /* 白の50%の透明度 */
+  margin-left: 40vw; /* 左右にスペースを均等に配置 */
+}
+
+/* 下段の画像設定 */
+.appBox img
+{
+  width: 70%;       /* 横幅は枠いっぱいに */
+  height: 75%;     /* 高さは自動で調整 */
+  border-radius:30px;
+  object-fit: contain;
+
+}
+ 
+
+/* 下段個別設定 */
+.Place {
+  margin-left: 10vw;
+}
+.Information {
+  margin-left: 5vw;
+}
+.Download-app{
+  margin-right: 10vw;
+}
