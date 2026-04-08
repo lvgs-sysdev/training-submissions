@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <link rel="stylesheet" href="css/reset.css">
+<head>    
+
     <link rel="stylesheet" href="css/style.css">
+    <!-- 文字化け対策 -->
     <meta charset="UTF-8">
-    <meta name="description" content="旅行ブログです。">
+    <!-- SEO対策とWeb検索の結果 -->
+    <title>DAYDAYTRAVEL | 旅行ブログ</title>
+    <meta name="description" content="インドネシア各地の休暇体験を共有する旅行ブログ">
+    <!-- ビューポート設定 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 
 <body>
-    <!-- ヘッダー枠 -->
-    <div class="header">
+
+<!-- #################
+          ヘッダー枠
+     ################# -->
+
+    <header class="header">
         <div class="header-top">
             <h1 class="header-top-text">DAYDAYTRAVEL</h1>
             <div class = "tops-right">
@@ -18,107 +28,127 @@
                     <span class="color-box-text">Get started</span>
                 </div>
             </div>
+
         </div>
             
     
-         <div class = "full-width">
+         <div class = "hero-area">
 
-            <img src="img/top/hero-img.png" alt="旅行ブログのロゴ">    
-            <p class = "header-text">Share Your <br> holiday stories.</p>
+            <img src="img/top/hero-img.png" alt="旅行先に行くときの持ち物">    
+            <h1 class = "header-text">Share Your <br> holiday stories.</h1>
             <p class = "header-text-sub">Write about your experiences while on holiday in <br> various parts of Indonesia, and reach a wide <br> readership.</p>
         </div>
+    </header>
 
-        <!-- 中段のコンテンツとサイドコンテンツを囲むラッパー -->
+
+    
+
+    <!-- ########################################
+                メインコンテンツ 
+    ######################################## -->
         <div class="main-content-wrapper">
-            <div class="main-content">
+            <main class="main-content">
+          
 
-
-                <p class="main-content-title">一覧（新着記事）</p>
+                <h2 class="main-content-title">一覧（新着記事）</h2>
 
 
                 <div class="grid-container">
-                    <a href="post-detail.html" class="grid-item">
-                        <div class="item-image">
-                            <img src="img/top/travel-1.png" alt="日常">
-                        </div>
+                    <article class="grid-article">
+                        <a href="post-detail.html" class="grid-item">
+                            <div class="item-image">
+                                <img src="img/top/travel-1.png" alt="インドネシアの日常">
+                            </div>
 
-                        <div class="item-content" id="japanese_caracter">
-                        
-                            <span class="item-column">Travel</span>
-                            <span class="item-date-span"> | </span>
-                            <span class="item-date">29 Apr 2022</span>
-                            <p class="item-title">記事タイトル記事タイトル記事タイトル記事タイトル</p>
-                            <p class="item-desc">本文の一部を表示本文の一部を表示本文の_ </p>
-                        </div>
-                    </a>
-
-                    <a href="post-detail.html" class="grid-item">
-                        <div class="item-image">
-                            <img src="img/common/image 14.png" alt="美味しいご飯">
-                        </div>
-                        <div class="item-content">
-                            <span class="item-column">Culinary</span>
-                            <span class="item-date-span"> | </span>
-                            <span class="item-date">25 Apr 2022</span>
-                            <p class="item-title">The taste of Bang Embul's soto betawi</p>
-                            <p class="item-desc">Each region has its own speciality food.</p>
-                        </div>
-                    </a>
-
-
-                    <a href="post-detail.html" class="grid-item">
-                        <div class="item-image">
-                            <img src="img/top/image15.png" alt="沖縄">
-                        </div>
-                        <div class="item-content">
-                            <span class="item-column">Travel</span>
-                            <span class="item-date-span"> | </span>
-                            <span class="item-date">29 Apr 2022</span>
-                            <p class="item-title">Seeing the Beauty of Bali,Which has many statues in temples</p>
-                            <p class="item-desc">Talking about Bali is never boring to tell..</p>
-                        </div>
-                    </a>
+                            <div class="item-content" id="japanese_caracter">
+                            
+                                <span class="item-column">Travel</span>
+                                <span class="item-date-span"> | </span>
+                                <time class="item-date" datetime="2022-04-29"> 29 Apr 2022</time>
+                                <h3 class="item-title">記事タイトル記事タイトル記事タイトル記事タイトル</h3>
+                                <p class="item-desc">本文の一部を表示本文の一部を表示本文の_ </p>
+                            </div>
+                        </a>
+                    </article>
                     
-                    <a href="post-detail.html" class="grid-item">
-                        <div class="item-image">
-                            <img src="img/top/image19.png" alt="安いご飯">
-                        </div>
-                        <div class="item-content">
-                            <span class="item-column">Culinary</span>
-                            <span class="item-date-span"> | </span>
-                            <span class="item-date">02 May 2022</span>
-                            <p class="item-title">Delisious and cheap Semarang street food</p>
-                            <p class="item-desc">There's a lot of street food in Semarang..</p>
-                        </div>
-                    </a>
+                    <article class="grid-article">
+                        <a href="post-detail.html" class="grid-item">
+                            <div class="item-image">
+                                <img src="img/common/image 14.png" alt="バンエンブルのソトベタウィの味">
+                            </div>
+                            <div class="item-content">
+                                <span class="item-column">Culinary</span>
+                                <span class="item-date-span"> | </span>
+                                <time class="item-date" datetime="2022-04-25">25 Apr 2022</time>
+                                <h3 class="item-title">The taste of Bang Embul's soto betawi</h3>
+                                <p class="item-desc">Each region has its own speciality food.</p>
+                            </div>
+                        </a>
+                    </article>
+
+                    <article class="grid-article">
+                        <a href="post-detail.html" class="grid-item">
+                            <div class="item-image">
+                                <img src="img/top/image15.png" alt="バリ島の美しさ">
+                            </div>
+                            <div class="item-content">
+                                <span class="item-column">Travel</span>
+                                <span class="item-date-span"> | </span>
+                                <time class="item-date" datetime="2022-04-29">29 Apr 2022</time>
+                                <h3 class="item-title">Seeing the Beauty of Bali,Which has many statues in temples</h3>
+                                <p class="item-desc">Talking about Bali is never boring to tell..</p>
+                            </div>
+                        </a>
+                    </article>
+                    
+                    <article class="grid-article">
+                        <a href="post-detail.html" class="grid-item">
+                            <div class="item-image">
+                                <img src="img/top/image19.png" alt="美味しくて安いスマランの屋台料理">
+                            </div>
+                            <div class="item-content">
+                                <span class="item-column">Culinary</span>
+                                <span class="item-date-span"> | </span>
+                                <time class="item-date" datetime="2022-05-02">02 May 2022</time>
+                                <h3 class="item-title">Delisious and cheap Semarang street food</h3>
+                                <p class="item-desc">There's a lot of street food in Semarang..</p>
+                            </div>
+                        </a>
+                    </article>
+
+                    <article class="grid-article">
+                        <a href="post-detail.html" class="grid-item">
+                            <div class="item-image">
+                                <img src="img/top/image16.png" alt="夏休みのアラン・ベバイ・ビーチ・ランプン">
+                            </div>
+                            <div class="item-content">
+                                <span class="item-column">Travel</span>
+                                <span class="item-date-span"> | </span>
+                                <time class="item-date" datetime="2022-06-05">05 Jun 2022</time>
+                                <h3 class="item-title">Karang Bebai beach Lampung for summer vacation</h3>
+                                <p class="item-desc">Talking about Bali is never boring to tell..</p>
+                            </div>
+                        </a>
+                    </article>
 
 
-                    <a href="post-detail.html" class="grid-item">
-                        <div class="item-image">
-                            <img src="img/top/image16.png" alt="京都の寺院">
-                        </div>
-                        <div class="item-content">
-                            <span class="item-column">Travel</span>
-                            <span class="item-date-span"> | </span>
-                            <span class="item-date">05 Jun 2022</span>
-                            <p class="item-title">Karang Bebai beach Lampung for summer vacation</p>
-                            <p class="item-desc">Talking about Bali is never boring to tell..</p>
-                        </div>
-                    </a>
 
 
-                    <a href="post-detail.html" class="grid-item">
-                        <div class="item-image">
-                            <img src="img/top/image17.png" alt="ミステリアスな森">
-                        </div>
-                        <div class="item-content">
-                            <span class="item-column">Travel</span>
-                            <span class="item-date-span"> | </span>
-                            <span class="item-date">13 Jun 2022</span>
-                            <p class="item-title">The upside-down mysticdal forest in Banyuwangi</p>
-                            <p class="item-desc">This place is most often used as a photo..</p>
-                        </div>
-                    </a>
+
+                    <article class="grid-article">
+                        <a href="post-detail.html" class="grid-item">
+                            <div class="item-image">
+                                <img src="img/top/image17.png" alt="バニュワンギにある逆さまの神秘的な森">
+                            </div>
+                            <div class="item-content">
+                                <span class="item-column">Travel</span>
+                                <span class="item-date-span"> | </span>
+                                <time class="item-date" datetime="2022-06-13">13 Jun 2022</time>
+                                <h3 class="item-title">The upside-down mysticdal forest in Banyuwangi</h3>
+                                <p class="item-desc">This place is most often used as a photo..</p>
+                            </div>
+                        </a>
+                    </article>
                 </div>
 
 
@@ -129,50 +159,50 @@
 
 
 
-            </div>
-            <!--サイドコンテンツ -->
+            </main>
+       <!-- ########################################
+            サイドコンテンツ
+    ######################################## -->
 
             <aside class="side-content">
 
-                <p class="side-content-title-1">人気記事（機能不要）</p>
-                
-                <div class="grid-container-side1">                 
-                        <div class="side-content1" >
-                            <p class="side-item-title">記事タイトル記事タイトル記事タイトル記事タイトル</p>
-                        </div>
+                <section class="new-posts">
+                    <h2 class="side-content-title-1">人気記事（機能不要）</h2>
                     
-                        <div class="side-content1">
-                            <p class="side-item-title">Cheap Padang specialty food restaurant</p>
-                        </div>
-                
-                        <div class="side-content1">
-                            <p class="side-item-title">Mountain hiking in central Java</p>
-                        </div>        
-                </div>
-
-
-                <p class="side-content-title-2">もっと見る（機能不要）</p>
-                
-                <div class="container-side2">
-                            <div class="white-box">                        
-                                <span class="white-box-text">Travel</span>    
-                            </div>                 
-                       
-                            <div class="white-box">                        
-                                <span class="white-box-text">Culinary</span>    
+                    <div class="grid-container-side1">                 
+                            <div class="side-content1" >
+                                <p class="side-item-title">記事タイトル記事タイトル記事タイトル記事タイトル</p>
                             </div>
-                </div>
+                        
+                            <div class="side-content1">
+                                <p class="side-item-title">Cheap Padang specialty food restaurant</p>
+                            </div>
+                    
+                            <div class="side-content1">
+                                <p class="side-item-title">Mountain hiking in central Java</p>
+                            </div>        
+                    </div>
+                </section>
+
+                <section class="recommend-posts">
+                    <h2 class="side-content-title-2">もっと見る（機能不要）</h2>
+                    
+                    <div class="container-side2">      
+                        <span class="white-box-text">Travel</span>                          
+                        <span class="white-box-text">Culinary</span>                                 
+                    </div>
+                </section>
 
 
             </aside>
         </div>
 
-
-        <!-- 下段コンテンツ（フッター） -->
-        <div class="footer">
+       <!-- ########################################
+                    フッター
+    ######################################## -->
+        <footer class="footer">
             <div class="footer-wrapper">
-
-
+                
                 <div class="Place">                    
                     <p class="footer-text-title">PT. Travel Everyday Indonesia</p>
                     <div class="Place-wrapper">
@@ -268,7 +298,7 @@
                 <br>
             </div>
 
-        </div>
+        </footer>
 
 
 

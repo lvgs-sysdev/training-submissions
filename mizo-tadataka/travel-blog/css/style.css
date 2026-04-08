@@ -56,12 +56,12 @@
 
 
 /* 中央の画像ブロック */
-.full-width img {
+.hero-area img {
 /*画像を画面いっぱいに広げる */
   width: 100%;      
 }
 
-.full-width  { 
+.hero-area  { 
   position: relative;
 }
 
