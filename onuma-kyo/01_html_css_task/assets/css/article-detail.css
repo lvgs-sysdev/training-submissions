@@ -1,0 +1,153 @@
+@charset "utf-8";
+
+/* ================================= */
+/* 詳細画面用 */
+/* ================================= */
+.main-wrapper {
+  flex-basis: 70%;
+}
+
+/* 
+new-reviews
+ */
+.new-reviews__content {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.new-reviews__card {
+  padding: 0 10px 20px 10px;
+}
+
+.new-reviews__card__headline {
+  font-weight: normal;
+}
+
+/* 
+author
+*/
+.author__content {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.avatar {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  padding: 10px;
+}
+.avatar__name {
+  font-weight: bold;
+  padding: 0 0 0 15px;
+  margin: 0;
+}
+.avatar__image {
+  margin: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  min-width: 60px;
+}
+.avatar__image > img {
+  width: 60px;
+  height: 60px;
+}
+
+/* 
+review-detail
+*/
+.review-detail {
+  margin: 100px 0 200px 0;
+}
+
+.review-detail__topbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-white);
+  padding: 0;
+  top: 0;
+  left: 0;
+  margin: 0 0 50px 0;
+}
+.review-detail__time {
+  padding: 0 0 0 15px;
+  font-size: clamp(12px, 1.5vw, 18px);
+}
+.review-detail__icon-list {
+  list-style: none;
+  display: flex;
+}
+.review-detail__icon-list > li {
+  margin: 0 10px 0 0;
+}
+.review-detail__icon-link {
+  text-decoration: none;
+  transition: background-color 0.25s;
+}
+.review-detail__icon-link:hover {
+  background-color: var(--color-super-light-gray);
+}
+.review-detail__icon-link > img {
+  width: 100%;
+  height: auto;
+}
+.review-detail__category {
+  color: var(--color-primary);
+  margin: 0;
+  font-size: 14px;
+}
+.review-detail__headline {
+  margin: 0;
+  font-size: 32px;
+}
+.review-detail__sub-headline {
+  margin: 0;
+  font-size: 20px;
+}
+.review-detail__paragraph {
+  margin: 0 0 4% 0;
+}
+
+.review-detail__figure {
+  width: 100%;
+  margin: 0;
+}
+
+.review-detail__image {
+  width: 100%;
+}
+
+.review-detail__image--square {
+  height: 100%;
+  object-fit: cover;
+}
+
+.review-detail__caption {
+  font-style: italic;
+  text-align: center;
+  color: var(--color-gray);
+  font-size: 14px;
+  margin: 15px 0 0 0;
+}
+
+.review-detail__image-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.review-detail__image-frame {
+  flex-basis: 48%;
+}
+
+.review-detail__image-frame--square {
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.review-detail__tag-link {
+  margin: 100px 0 0 0;
+}
