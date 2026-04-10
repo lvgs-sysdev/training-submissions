@@ -1,58 +1,76 @@
+@charset "UTF-8";
 
-/*見出しを作ろう*/
 
-/* 一番上 */
+
+/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+            全体的な設定
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
+
+
+
+
+
+/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+            ヘッダー設定
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
+
+
 .header-top  { 
-  display: flex; /* フレックスボックスを使用 */
-  justify-content: space-between; /* 左右にスペースを均等に配置 */
-  align-items: center; /* 縦方向の中央揃え */
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  border-bottom: 0.2vw solid #DEDEDE;
+  padding: 1vw 4vw 1vw;
 }
 
 /* ヘッダーのテキスト */
 .header-top-text {
-  position: relative;
-  font-size: 1.5vw;
-  font-weight: 800; /* より太く（数値指定） */
+
+  font-size: 2vw;
+  font-weight: 800; /* より太く */
   color:#FF553C;
-  margin-top: 20px;           
-  margin-left: 123px;
-  margin-bottom : 20px;
+
 
 }
 
 .tops-right {
-  display: flex; /* フレックスボックスを使用 */
+  display: flex; /* フレックスボックス */
+  align-items: center;
+  gap: 2vw;
 }
 
 /* ログインのリンク */
 .login-link {
-  font-size: 1.2vw;
+  font-size: 2vw;
   color: black;
   text-decoration: none; /* 下線を消す */
-  margin-right: 40px; /* ロゴとログインの間のスペース */
-  margin-top: 10px;
+
+ 
 }
 
 /* カラーボックス */
 .color-box {
-  display: flex;           /* 1. フレックスボックスにする */
-  justify-content: center; /* 2. 左右（横方向）の中央揃え */
-  align-items: center;     /* 3. 上下（縦方向）の中央揃え */
-
 
   width: 8vw;
-  height: 2.2vw;
+  height: 2vw;
   background-color: #FF553C;
   color: white;
-  font-size: 1.2vw;
-  padding: 10px 20px;
-  /* 10px：上下の余白　20px：左右の余白 */
-  margin-right: 123px;
-  margin-left: 0px;
+  font-size: 1.4vw;
+  padding: 1.5vw 1.8vw;
+
+
 }
 
 
 
+
+/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+          　トップページ
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
+
+/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+          　ヒーロー
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
 
 
 /* 中央の画像ブロック */
@@ -65,7 +83,6 @@
   position: relative;
 }
 
-/* 文字二つを画像の上に配置するためのスタイル */
 .header-text {
   position: fixed;
   position: absolute;  /* 画像の上に浮かせます */
@@ -83,9 +100,18 @@
   font-size: 1.5vw;
 }
 
+
+
+/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+  トップページのメインコンテンツ（一覧）
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
+
+
+
+
 /* ページ全体 */
 .main-content-wrapper {
-  display: grid; /* フレックスボックスを使用 */
+  display: grid; 
   grid-template-columns: 2fr 1fr; /* メインコンテンツとサイドコンテンツの幅を指定 */
   width: 100%;    
   gap: 10vw; /* メインコンテンツとサイドコンテンツの間のスペース */
@@ -99,11 +125,9 @@
   display: grid;
   grid-template-columns: 24vw 24vw; /* 2列のグリッド */
   justify-content: start;
-  gap: 50px; /* グリッドアイテム間のスペース */
-  margin-top: 80px;
+  gap: 3vw; /* グリッドアイテム間のスペース */
+  padding-top:  4vw;
 }
-
-
 
 
 /* 個別設定 */
@@ -113,19 +137,13 @@
   /* より太く（数値指定） */
   font-weight: 800;
   color:black;
-  margin-top: 200px;           
+  padding-top: 10vw;           
 }
 
 
 .main-content {
-   margin-left: 150px;
+   margin-left: 5vw;
 }
-
-
-.item-content {
-  margin-top: 10px;
-}
-
 
 /* コラムと日付を横並びにするためのスタイル */ 
 .item-column {
@@ -142,7 +160,7 @@
 /* グリッド内のコンテンツ設定 */
 .grid-item img{
   width: 100%;       /* 横幅は枠いっぱいに */
-  height: 300px;
+  /* height: 250%; */
 }
 .grid-item {
   text-decoration: none; /* 下線を消す */
@@ -152,13 +170,9 @@
 
 
 
-
-/* 日本語だけデカかったので、日本語のクラスを作ってみました。 */
-#japanese_caracter .item-title {
-  font-size: 1.3vw; 
-}
 .item-title   {
   margin-top: 15px;
+  font-weight: 300;
   font-size: 1.3vw; 
   color:black;
 }
@@ -168,12 +182,13 @@
   color: #757575; /* 少し薄いグレー */
 }
 
-
+/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+  トップページのサイドコンテンツ（人気記事：機能不要）
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
 
 /* 中段サイドコンテンツ作り */
 .side-content {
-  margin-top: 180px;
-  margin-right: 100px;
+ padding: 10vw 3vw 0 0;
 }
 
 /* 中段のサイドコンテンツ上側 */
@@ -181,7 +196,7 @@
 .grid-container-side1 {
   display: grid;
   grid-template-columns: 1fr; /* 1列のグリッド */
-  gap: 20px; /* グリッドアイテム間のスペース */
+  gap: 1vw; /* グリッドアイテム間のスペース */
   padding: 0vw 5vw 0vw 0vw; /* 上右下左の順で余白を指定 */
   }
 
@@ -206,6 +221,9 @@
 
 
 
+/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+  トップページのサイドコンテンツ（もっと見る（機能不要））
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
 
 
 /* 中段のサイドコンテンツ下側 */
@@ -220,13 +238,12 @@
 
 .container-side2 {
   display: flex; /* フレックスボックスを使用 */
-  gap: 2vw;
-  margin-top: 4vw;
+  padding-top: 1vw;
+  gap:  2vw;
+  
 
 
 }
-
-
 
 .white-box-text {
   font-size: 1.4vw;
@@ -234,73 +251,387 @@
   border: 1px solid #dedede;
   justify-content: space-between; /* 左右にスペースを均等に配置 */
   align-items: center; /* 縦方向の中央揃え */
-  padding: 1vw 1vw;
+  padding: 0.8vw;
   
 }
 
 
-/* 下段のフッター */
+
+
+
+
+/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+          　詳細ページ
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
+
+/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+    詳細ページ:メイン記事：著者名
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
+
+
+.kiji-wrapper {
+    display: grid; /* フレックスボックスを使用 */
+    grid-template-columns: 4fr 1fr; /* メインコンテンツとサイドコンテンツの幅を指定 */
+    /* width: 100%;     */
+    gap: 4vw; /* メインコンテンツとサイドコンテンツの間のスペース */
+    padding-top: 5vw;
+    justify-items: center;
+
+   
+}
+
+
+
+
+
+
+.profile-img{
+
+    width: 5vw;
+    height: 5vw;
+    clip-path: circle(2.5vw at 50% 50%); 
+}
+
+
+/* メイン記事：投稿者情報の設定 */
+.author-info{
+    display: flex;
+    align-items: center;
+    margin-bottom: 2vw;
+    gap:1vw;
+
+} 
+
+#main-author.author-info{
+      justify-content: space-between; 
+
+}
+
+
+.author-info-content {
+  display: flex;
+  gap: 1vw;
+}
+
+.namedate{
+  
+    font-size: 1.1vw;
+    line-height: 0.9vw;
+}
+
+.publish-date{
+    color: #757575;
+}
+
+
+.sns-share{
+
+    display: flex;
+    max-width: 100%;
+
+
+}
+
+.sns {
+  width: 3vw;
+  height:3vw;
+
+}
+
+
+/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+    詳細ページ:メイン記事
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
+
+.kiji-body{
+    margin-top: 4vw;
+    width: 100%;
+
+}
+.kiji-culumn{
+    font-size: 1.4vw;
+    color:#FF553C;
+
+}
+.kiji-title{
+    font-size: 2vw;
+    font-weight: 200;
+}
+.kiji-main-text{
+    font-size:1.5vw;
+    color: #757575;
+}
+
+.kiji-figure img{
+  width: 100%;
+  height: auto;
+}
+
+.kiji-figure-caption {
+    text-align: center;
+    font-size: 1.3vw;
+    color: #757575;
+
+}
+
+.kiji-sub-title{
+    font-size: 1.5vw;
+}
+
+
+
+ 
+
+/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+    詳細ページ:サイドコンテンツ
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
+
+.kiji-sub {
+
+  justify-items: start;
+  padding: 0 3vw 0 0;
+
+}
+
+
+.kiji-side-title{
+    font-size: 1.5vw;
+  /* より太く（数値指定） */
+    font-weight: 800;
+    color:black;
+}
+
+.grid-container-post-sub {
+  display: grid;
+  grid-template-columns: 24vw; 
+  justify-content: start;
+  gap: 5vw; /* グリッドアイテム間のスペース */
+  margin-top: 5vw;
+}
+
+.authors {
+  padding-top: 8vw ;
+}
+
+
+
+
+
+/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+          　フッター
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
+
 .footer{
   background-color: #121212;
   margin-top: 20vw;
+  padding: 5vw 5vw 0;
+  gap: 2vw;
 }
 
 .footer-wrapper {
   display: grid; /* フレックスボックスを使用 */
-  grid-template-columns: repeat(2, 1fr) 0.5fr 1fr; /* メインコンテンツとサイドコンテンツの幅を指定 */
-  width: 100%;    
-  justify-content: start;
-  /* padding: 6vw 5vw 15vw 6vw; */
-  margin-bottom: 8vw;
+  grid-template-columns: repeat(2, 1fr) 0.5fr 1fr; 
+  padding-bottom: 5vw;
+  
 }
 
-
-
 .footer-text-title {
-  font-size: 1.2vw;
+  font-size: 1vw;
   color: white; 
-  justify-content: space-between; /* 左右にスペースを均等に配置 */
-  margin-top: 8vw;
-  margin-bottom: 3vw;
+  align-items: center ; /* 左右にスペースを均等に配置 */
 
 } 
 
-
-/* 下段：テキスト関係 */
 .Footer-text {
-  font-size: 1.2vw;
-  color: rgba(255, 255, 255, 0.5); /* 白の50%の透明度 */
-  justify-content: space-between; /* 左右にスペースを均等に配置 */
-}
-
-.copyrightbox {
-  width: 100%;
-}
-
-.copyright {
   font-size: 1vw;
   color: rgba(255, 255, 255, 0.5); /* 白の50%の透明度 */
-  margin-left: 40vw; /* 左右にスペースを均等に配置 */
+
+}
+
+
+/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+      フッター(コピーライト)
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
+
+
+.copyright {
+  text-align: center;
+  font-size: 1vw;
+  color: rgba(255, 255, 255, 0.5); /* 白の50%の透明度 */
+  padding-bottom: 1vw;
 }
 
 /* 下段の画像設定 */
-.appBox img
+.app-wrapper img
 {
-  width: 70%;       /* 横幅は枠いっぱいに */
-  height: 75%;     /* 高さは自動で調整 */
-  border-radius:30px;
+  width: 50%;       /* 横幅は枠いっぱいに */
+  height: 50%;     /* 高さは自動で調整 */
+  border-radius:1vw;
   object-fit: contain;
 
 }
  
 
-/* 下段個別設定 */
-.Place {
-  margin-left: 10vw;
+
+
+/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+    　  レスポンシブ対応
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
+@media screen and (max-width: 600px)
+{
+
+/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+  トップページのメインコンテンツの一覧
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
+.grid-container {
+  grid-template-columns: 48vw; /* 2列のグリッド */
+  justify-self: center;
+  gap: 3vw; /* グリッドアイテム間のスペース */
 }
-.Information {
-  margin-left: 5vw;
+
+.main-content-title {
+  font-size: 2vw;
+  justify-self: center;      
 }
-.Download-app{
-  margin-right: 10vw;
+
+
+.item-title   {
+  margin-top: 2vw;
+  font-size: 2vw; 
 }
+
+.item-desc {
+  font-size: 1.5vw;
+}
+
+/* コラムと日付を横並びにするためのスタイル */ 
+.item-column {
+  font-size: 1.5vw;
+}
+.item-date {
+  font-size: 1.5vw;
+}
+.item-date-span {
+  font-size: 1.5vw;
+}
+.item-content{
+  padding-top: 2vw ;
+
+}
+
+
+
+
+/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+  トップページのサイドコンテンツの一覧
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
+
+/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+  トップページのサイドコンテンツ（人気記事：機能不要）
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
+
+/* 中段サイドコンテンツ作り */
+.side-content {
+ padding: 10vw 0vw 0 0;
+}
+
+/* 中段のサイドコンテンツ上側 */
+
+.grid-container-side1 {
+  gap: 1vw; /* グリッドアイテム間のスペース */
+  padding: 0vw 5vw 0vw 0vw; /* 上右下左の順で余白を指定 */
+  }
+
+.side-content-title-1 {
+  font-size: 2vw;
+
+}
+
+.side-item-title {
+  font-size: 1.5vw;
+  margin-bottom: 5vw;    
+}
+
+
+
+
+/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+  トップページのサイドコンテンツ（もっと見る（機能不要））
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
+
+
+/* 中段のサイドコンテンツ下側 */
+
+.side-content-title-2 {
+  font-size: 2vw;
+}
+
+.container-side2 {
+  display: flex; /* フレックスボックスを使用 */
+  padding-top: 4vw;
+  gap:  4vw;
+
+}
+
+.white-box-text {
+  font-size: 2vw;
+
+}
+
+
+/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+          　詳細ページ
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
+
+/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+    詳細ページ:メイン記事：著者名
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
+
+body{
+  padding: 1vw;
+}
+
+
+/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+          　フッター
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
+
+.footer-wrapper {
+  display: grid; /* フレックスボックスを使用 */
+  grid-template-columns: repeat(2, 1fr); 
+  padding: 5vw;
+  /* padding-bottom: 5vw;
+   */
+  
+}
+
+.footer-text-title {
+  font-size: 2vw;
+
+} 
+
+.Footer-text {
+  font-size: 2vw;
+
+}
+
+}
+
+/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+          　完了
+＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
