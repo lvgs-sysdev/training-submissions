@@ -1,0 +1,378 @@
+    @charset "UTF-8";
+
+/* --- reset --- */
+
+
+body {
+    font-family: 
+    'Poppins',
+    'Helvetica Neue', 
+    'Arial', 
+    'Hiragino Sans', 
+    'Hiragino Kaku Gothic ProN', 
+    'BIZ UDPGothic', 
+    'Meiryo',
+    sans-serif;
+    font-weight: 300;
+    color: #757575;
+    }
+
+a {  
+    text-decoration: none;
+    color: inherit;
+    }
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    }
+
+/* ヘッダー */
+.header-page {
+    background-color: #FFFFFF;    
+    border-bottom: 1px solid #DEDEDE;    
+    position: sticky;          
+    width:100%;
+    top:0;
+    z-index: 10;
+}
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0px; 
+    max-width: 1119px;
+    margin: 0 auto;
+}
+
+.header-logo {
+    font-size: 24px;
+    font-weight: 700;
+    color:#FF553C;
+}
+
+/* --- ナビゲーション --- */
+.user-nav ul {
+    display: flex;
+    align-items: center;           /* 【追加】上下中央揃え */
+    gap: 35px; 
+    /* 【変更】LoginとGet startedの間隔 */
+}
+
+.nav-login {
+    font-weight: 300;
+    color: #121212;  
+    opacity: 0.8;                    
+}
+
+/* --- Get started ボタン --- */
+.nav-signup {
+    background-color: #FF553C;     /* ロゴと同じオレンジ */
+    color: #FFFFFF;
+    padding: 10px 24px;            /* ボタン内の余白 */
+    font-weight: 500;
+}
+
+.nav-signup:hover {
+    background-color: #e64a35;     /* ホバー時に少し暗くする */
+}
+
+/* トップビュー（画像とテキストの親要素） */
+.top-view {
+    position: relative; /* テキストを画像の上に配置するための基準 */
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* 背景画像 */
+.top-view img {
+    max-width: 1119px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+
+}
+
+/* テキストコンテンツの配置 */
+.first-content {
+    position: absolute; /* 画像の上に浮かせる */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 1119px;
+    padding-left: 40px; 
+
+    color: #121212;
+    box-sizing: border-box; /* パディングを含めた幅計算にする */ 
+
+}
+
+/* キャッチコピー */
+.catchphrase {
+    font-weight: 600;
+    font-size: 64px;    
+    line-height: 1.1;   /* 行間を少し詰める */
+    margin-bottom: 16px;
+    text-transform: capitalize; /* 各単語の先頭を大文字にする */
+}
+
+/* 説明文 */
+.description {
+    font-weight: 300;
+    font-size: 18px;    
+    line-height: 1.6;
+}
+/* h2へのスタイル */
+.sub-title {
+    font-weight: 600;
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #121212;
+    line-height: 28.13px;
+    letter-spacing: 0px;
+    opacity: 1;
+}   
+
+/* --- 記事一覧 --- */
+.article-section{
+    max-width: 1119px;
+    margin: 40px auto 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px
+    ;
+}  
+
+.main-content {
+    flex: 1; /* サイドバーの残りの幅をすべて使う */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: auto;
+    width: 750px;
+    justify-content: space-around;
+}
+
+.article-contents{
+    width: 100%;
+    max-width: 360px; 
+}
+
+.article-image img {
+    /* width: 360px;
+    height: 240px; */
+    width: 100%;
+    display: block;
+}
+
+/* カテゴリ（Travel, Culinaryなど） */
+.main-category {
+    color: #FF553C; /* オレンジ・赤系 */
+    font-size: 14px;
+    font-weight: 500;
+    margin-right: 10px;
+}
+/* ライン */
+.line {
+    color: #DEDEDE; /* 薄いグレー */
+    margin-right: 10px;
+}
+/* 日付 */
+time {
+    color: #757575;
+    font-size: 14px;
+
+}
+
+/* 記事タイトル */
+.article-info h2 {
+    font-size: 16px;
+    margin: 10px 0;
+    line-height: 1.5;
+    color: #121212;
+}
+
+/* 本文の一部（抜粋） */
+.article-info span:last-child {
+    font-size: 16px;
+    color: #757575;
+    font-style: light;
+    display: block;
+    margin-bottom: 20px;
+}
+
+/* --- 人気記事セクション --- */
+.popular-articles {
+    padding: 0;
+}
+
+.popular-articles li {
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 20px 0;
+    border-bottom: 1px dotted #ccc; /* 下の点線 */
+    color: #333;
+}
+
+.popular-articles li:last-child {
+    border-bottom: none; /* 最後の線の除去 */
+}
+
+/* --- もっと見る（カテゴリボタン） --- */
+.sidebar-category {
+    margin-top: 100px;
+}
+.categories {
+    padding: 0;
+    display: flex;
+    gap: 15px; /* ボタン同士の間隔 */
+}
+
+.categories li a {
+    display: inline-block;
+    padding: 8px 20px;
+    border: 0.5px solid #ddd; /* 薄いグレーの枠線 */
+    color: #121212;
+    font-size: 12px;
+    text-decoration: none; /* 下線を消す */
+    transition: 0.3s;
+}
+
+.categories li a:hover {
+    background-color: #DEDEDE;
+    border-color: #757575;
+}
+
+/* --- フッター --- */
+.footer {
+    background-color:#121212; 
+    padding: 60px 0 20px;
+}
+.footer-inner {
+    display: flex;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-column {
+    flex: 1; /* 各カラムを均等に広げる、または幅を指定 */
+    max-width: 300px; /* カラムの最大幅を指定 */
+}
+
+.footer-column-sns {
+    max-width: 200px;
+}
+
+.footer-title {
+    font-size: 18px;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+}
+.footer-list {
+    padding: 0;
+}
+
+.footer-list li {
+    margin-bottom: 10px;
+} 
+
+.app-buttons img {
+    width: 180px;
+    margin-bottom: 10px;
+}
+
+.copyright {
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 40px;
+    font-size: 14px;
+}
+
+@media screen and (max-width: 1010px) {
+/* 全体的なパディングの確保 */
+    
+
+    .header-inner {
+        flex-direction: column; 
+        gap: 20px;
+        padding: 15px 20px;
+    }
+
+    /* 1. ヘッダー：ロゴとボタンのバランス */
+    .header-inner {
+        padding: 15px 20px;
+    }
+    .user-nav ul {
+        gap: 15px; /* スマホでは間隔を狭く */
+    }
+
+    /* 2. トップビュー：絶対配置の調整 */
+    .top-view .first-content {
+        padding-left: 20px; 
+        width: 100%;
+    }
+    
+    .top-view .catchphrase {
+        font-size: 24px; 
+        line-height: 1.2;
+    }
+
+    .top-view .description {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    /* 文中の強制改行をスマホでは無効 */
+    br {
+        display: none; 
+    }
+
+    /* 3. 記事セクション */
+    .article-section {
+        margin: 20px auto;
+        gap: 40px;
+    }
+
+    .main-content {
+        grid-template-columns: 1fr; /* 1列 */
+        width: 100%; 
+    }
+
+    .article-contents {
+        max-width: 100%; /* スマホでは横いっぱいに */
+        margin: 0 auto;
+    }
+
+    .article-image img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* 4. サイドバー */
+    .sidebar {
+        width: 100%;
+        padding: 0 20px;
+    }
+    
+    .footer-inner {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center; /* 中央寄せにする */
+    }
+
+    .footer-column {
+        max-width: 100%;
+    }
+
+    .footer-column-sns {
+        max-width: 100%;
+    }
+    .app-buttons img{
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+}
