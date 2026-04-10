@@ -1,11 +1,5 @@
 @charset "UTF-8";
 
-:root {
-
-  --title-color: #FF553C; 
-  --text-color-sub:#DEDEDE;
-  --text-color-main: #757575;
-}
 
 /*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
       全体的な設定（カラー等）
@@ -266,7 +260,6 @@
 
 
 
-
 /*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
           　詳細ページ
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
@@ -276,7 +269,7 @@
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
 
 
-.kiji-wrapper {
+.article-wrapper {
     display: grid; /* フレックスボックスを使用 */
     grid-template-columns: 4fr 1fr; /* メインコンテンツとサイドコンテンツの幅を指定 */
     /* width: 100%;     */
@@ -350,38 +343,38 @@
     詳細ページ:メイン記事
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
 
-.kiji-body{
+.article-body{
     margin-top: 4vw;
     width: 100%;
 
 }
-.kiji-culumn{
+.article-culumn{
     font-size: 1.4vw;
     color: var(--title-color);
 
 }
-.kiji-title{
+.article-title{
     font-size: 2vw;
     font-weight: 200;
 }
-.kiji-main-text{
+.article-main-text{
     font-size:1.5vw;
     color: var(--text-color-main);
 }
 
-.kiji-figure img{
+.article-figure img{
   width: 100%;
   height: auto;
 }
 
-.kiji-figure-caption {
+.article-figure-caption {
     text-align: center;
     font-size: 1.3vw;
     color: var(--text-color-main);
 
 }
 
-.kiji-sub-title{
+.article-sub-title{
     font-size: 1.5vw;
 }
 
@@ -393,7 +386,7 @@
     詳細ページ:サイドコンテンツ
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
 
-.kiji-sub {
+.article-sub {
 
   justify-items: start;
   padding: 0 3vw 0 0;
@@ -401,7 +394,7 @@
 }
 
 
-.kiji-side-title{
+.article-side-title{
     font-size: 1.5vw;
   /* より太く（数値指定） */
     font-weight: 800;
@@ -616,7 +609,7 @@ body{
 }
 
 
-.kiji-wrapper {
+.article-wrapper {
 
     grid-template-columns: 1fr; /* メインコンテンツとサイドコンテンツの幅を指定 */
 
