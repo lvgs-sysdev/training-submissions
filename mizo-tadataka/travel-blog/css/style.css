@@ -490,6 +490,13 @@
 /*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
   トップページのメインコンテンツの一覧
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
+
+.main-content-wrapper {
+  grid-template-columns: 1fr; /* メインコンテンツとサイドコンテンツの幅を指定 */
+
+}
+
+
 .grid-container {
   grid-template-columns: 48vw; /* 2列のグリッド */
   justify-self: center;
@@ -540,6 +547,7 @@
 /* 中段サイドコンテンツ作り */
 .side-content {
  padding: 10vw 0vw 0 0;
+
 }
 
 /* 中段のサイドコンテンツ上側 */
@@ -551,16 +559,25 @@
 
 .side-content-title-1 {
   font-size: 2vw;
+  justify-self: center;
 
 }
 
 .side-item-title {
+
   font-size: 1.5vw;
   margin-bottom: 5vw;    
+
 }
 
 
+.new-posts {
+  justify-self: center;
+}
 
+.recommend-posts{
+  justify-self: center;
+}
 
 /*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
   トップページのサイドコンテンツ（もっと見る（機能不要））
@@ -597,6 +614,15 @@
 body{
   padding: 1vw;
 }
+
+
+.kiji-wrapper {
+
+    grid-template-columns: 1fr; /* メインコンテンツとサイドコンテンツの幅を指定 */
+
+   
+}
+
 
 
 /*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
