@@ -22,6 +22,7 @@ new-reviews
 
 .new-reviews__card__headline {
   font-weight: normal;
+  font-size: clamp(12px, 1.1vw, 16px);
 }
 
 /* 
@@ -59,7 +60,7 @@ author
 review-detail
 */
 .review-detail {
-  margin: 100px 0 200px 0;
+  margin: 0 0 200px 0;
 }
 
 .review-detail__topbar {

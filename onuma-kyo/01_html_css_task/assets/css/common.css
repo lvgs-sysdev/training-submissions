@@ -100,12 +100,15 @@ general
  */
 .main-container {
   display: flex;
-  padding: 50px 100px 0 100px;
+  padding: clamp(10px, 6.5vw, 100px) clamp(10px, 6.5vw, 100px) 0 clamp(10px, 6.5vw, 100px);
   justify-content: space-between;
+}
+.main-container--with-header-margin {
+  margin: var(--header-height) 0 0 0;
 }
 .section-headline {
   font-size: 22px;
-  margin: 100px 0 40px 0;
+  margin: 0 0 40px 0;
 }
 .side-wrapper {
   flex-basis: 25%;
@@ -114,8 +117,9 @@ general
 @media screen and (max-width: 768px) {
   .main-container {
     display: block;
-    padding: 10px;
-    justify-content: space-between;
+  }
+  .main-container--with-header-margin {
+    margin: var(--header-height-small) 0 0 0;
   }
   .section-headline {
     font-size: 18px;
@@ -185,7 +189,7 @@ card
 
 .card__label {
   display: flex;
-  margin: 0 0 15px 0;
+  margin: 0 0 clamp(4px, 1vw, 15px) 0;
 }
 .card__category {
   border-right: 1px solid var(--color-light-gray);
@@ -199,10 +203,10 @@ card
   color: var(--color-gray);
 }
 .card__info {
-  padding: 5px 10px;
+  padding: clamp(1px, 0.3vw, 5px) 10px;
 }
 .card__headline {
-  margin: 0 0 15px 0;
+  margin: 0 0 clamp(4px, 1vw, 15px) 0;
   font-size: 20px;
   font-weight: normal;
 }
@@ -217,9 +221,6 @@ card
     padding: 0 10px 10px 10px;
   }
   .card__image {
-    margin: 0 0 4px 0;
-  }
-  .card__label {
     margin: 0 0 4px 0;
   }
   .card__headline {
@@ -317,21 +318,14 @@ footer
 tags
  */
 .tags__link {
-  margin: 0 15px 15px 0;
-  padding: 10px 20px;
+  margin: 0 20px 10px 0;
+  padding: 8px 18px;
   color: var(--color-gray);
   text-decoration: none;
   transition: background-color 0.25s;
   border: 2px solid var(--color-light-gray);
+  font-size: 14px;
 }
 .tags__link:hover {
   background-color: var(--color-super-light-gray);
-}
-
-/* タブレット、スマートフォン用スタイル指定 */
-@media screen and (max-width: 768px) {
-  .tags__link {
-    padding: 5px 10px;
-    font-size: 14px;
-  }
 }
