@@ -1,4 +1,4 @@
-const editForm = document.querySelector(".editUserForm");
+const editForm = document.querySelector(".editBlogFrom");
 
 if (editForm) {
   editForm.addEventListener("keydown", (event) => {

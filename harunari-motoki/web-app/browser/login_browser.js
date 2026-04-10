@@ -1,6 +1,6 @@
 document
   .getElementById("loginForm")
-  .addEventListener("submit", async (event) => {
+  .addEventListener("click", async (event) => {
     event.preventDefault();
 
     const formData = new FormData(event.target);
