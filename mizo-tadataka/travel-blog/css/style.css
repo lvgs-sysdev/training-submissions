@@ -1,10 +1,17 @@
 @charset "UTF-8";
 
+:root {
 
+  --title-color: #FF553C; 
+  --text-color-sub:#DEDEDE;
+  --text-color-main: #757575;
+}
 
 /*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
-            全体的な設定
+      全体的な設定（カラー等）
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
+
+
 
 
 
@@ -19,7 +26,7 @@
   display: flex; 
   justify-content: space-between; 
   align-items: center;
-  border-bottom: 0.2vw solid #DEDEDE;
+  border-bottom: 0.2vw solid var(--text-color-sub);
   padding: 1vw 4vw 1vw;
 }
 
@@ -28,7 +35,7 @@
 
   font-size: 2vw;
   font-weight: 800; /* より太く */
-  color:#FF553C;
+  color: var(--title-color);
 
 
 }
@@ -53,7 +60,7 @@
 
   width: 8vw;
   height: 2vw;
-  background-color: #FF553C;
+  background-color: var(--title-color);
   color: white;
   font-size: 1.4vw;
   padding: 1.5vw 1.8vw;
@@ -147,13 +154,13 @@
 
 /* コラムと日付を横並びにするためのスタイル */ 
 .item-column {
-  color:  #FF553C;
+  color:   var(--title-color);
 }
 .item-date {
-  color:  #757575; 
+  color:  var(--text-color-main); 
 }
 .item-date-span {
-  color:  #dedede; 
+  color:  var(--text-color-sub); 
 }
 
 
@@ -179,7 +186,7 @@
 
 .item-desc {
   font-size: 1.1vw;
-  color: #757575; /* 少し薄いグレー */
+  color: var(--text-color-main); /* 少し薄いグレー */
 }
 
 /*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
@@ -216,7 +223,7 @@
 }
 
 .side-content1:not(:last-child) {
-  border-bottom: 1px solid #dedede; /* 下線を引く */  
+  border-bottom: 1px solid var(--text-color-sub); /* 下線を引く */  
 }
 
 
@@ -247,8 +254,8 @@
 
 .white-box-text {
   font-size: 1.4vw;
-  color:#757575;  
-  border: 1px solid #dedede;
+  color: var(--text-color-main);  
+  border: 1px solid var(--text-color-sub);
   justify-content: space-between; /* 左右にスペースを均等に配置 */
   align-items: center; /* 縦方向の中央揃え */
   padding: 0.8vw;
@@ -320,7 +327,7 @@
 }
 
 .publish-date{
-    color: #757575;
+    color: var(--text-color-main);
 }
 
 
@@ -350,7 +357,7 @@
 }
 .kiji-culumn{
     font-size: 1.4vw;
-    color:#FF553C;
+    color: var(--title-color);
 
 }
 .kiji-title{
@@ -359,7 +366,7 @@
 }
 .kiji-main-text{
     font-size:1.5vw;
-    color: #757575;
+    color: var(--text-color-main);
 }
 
 .kiji-figure img{
@@ -370,7 +377,7 @@
 .kiji-figure-caption {
     text-align: center;
     font-size: 1.3vw;
-    color: #757575;
+    color: var(--text-color-main);
 
 }
 
