@@ -2,9 +2,9 @@ import {
   FinalScanResult,
   GeolocationAPIResponse,
   scanedData,
-} from "../../sharedObject/typeDiffinition.ts";
+} from "../../sharedObject/typeDeffinition.ts";
 import { getAccessGeolocationAPI } from "./getAccessGeolocationAPI.ts";
-import { Location } from "../../sharedObject/typeDiffinition.ts";
+import { userGeolocationdata } from "../../sharedObject/typeDeffinition.ts";
 import axios from "axios";
 
 export async function ClientSideControl() {
@@ -12,7 +12,7 @@ export async function ClientSideControl() {
     const GeolocationAPIAccessResult: GeolocationAPIResponse =
       await getAccessGeolocationAPI();
     if (GeolocationAPIAccessResult.status === "success") {
-      const data: Location = {
+      const data: userGeolocationdata = {
         latitude: GeolocationAPIAccessResult.data.latitude,
         longitude: GeolocationAPIAccessResult.data.longitude,
       };
@@ -51,7 +51,7 @@ export async function ClientSideControl() {
   } catch (error) {
     let responseItem: FinalScanResult = {
       status: "failure",
-      message: "サーバにアクセスできませんでした",
+      message: "位置情報取得サーバにアクセスできませんでした",
     };
     return responseItem;
   }

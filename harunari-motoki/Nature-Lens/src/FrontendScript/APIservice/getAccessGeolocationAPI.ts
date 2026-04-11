@@ -1,4 +1,4 @@
-import { GeolocationAPIResponse } from "../../sharedObject/typeDiffinition.ts";
+import { GeolocationAPIResponse } from "../../sharedObject/typeDeffinition.ts";
 
 function getPositionPromise(
   options: PositionOptions,
@@ -22,7 +22,7 @@ export async function getAccessGeolocationAPI() {
   }
   const options = {
     enableHighAccuracy: true,
-    timeout: 10000, //単位ms
+    timeout: 30000, //単位ms
     maxiumAge: 0, //キャッシュされた位置情報は使わない
   };
 

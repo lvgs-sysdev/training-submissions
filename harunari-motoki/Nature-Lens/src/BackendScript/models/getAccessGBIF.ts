@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GBIFOuterBox } from "@/sharedObject/typeDiffinition";
+import { GBIFOuterBox } from "../../sharedObject/typeDeffinition.ts";
 
 export async function getAccessGBIF(
   locationData: string,

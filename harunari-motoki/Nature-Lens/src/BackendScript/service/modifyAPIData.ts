@@ -1,7 +1,7 @@
 import {
   GBIFdetailInfo,
   GBIFOuterBox,
-} from "../../sharedObject/typeDiffinition.ts";
+} from "../../sharedObject/typeDeffinition.ts";
 
 export function modifyGBIFData(rawGBIFData: GBIFOuterBox): GBIFOuterBox {
   const GBIFResult: GBIFdetailInfo[] = rawGBIFData.results.map(

@@ -1,9 +1,12 @@
-import { ScanAreaCalculation } from "../../BackendScript/service/ScanAreaCalculation";
-import { getAccessGBIF } from "../models/getAccessGBIF";
-import { modifyGBIFData } from "../service/modifyAPIData";
-import { scanedData } from "@/sharedObject/typeDiffinition";
+import { ScanAreaCalculation } from "../service/ScanAreaCalculation.ts";
+import { getAccessGBIF } from "../models/getAccessGBIF.ts";
+import { modifyGBIFData } from "../service/modifyAPIData.ts";
+import { scanedData } from "../../sharedObject/typeDeffinition.ts";
 
-export const scanPost = async function (request, reply): Promise<scanedData> {
+export const postScanprocess = async function (
+  request,
+  reply,
+): Promise<scanedData> {
   const { latitude, longitude } = request.body;
   try {
     const polygonData = await ScanAreaCalculation({ latitude, longitude });

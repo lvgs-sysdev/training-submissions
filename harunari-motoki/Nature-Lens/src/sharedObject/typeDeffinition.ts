@@ -19,7 +19,7 @@ export const coordinateSchema = {
 };
 
 //クライアントサイドの位置データ型
-export interface Location {
+export interface userGeolocationdata {
   longitude: number;
   latitude: number;
 }

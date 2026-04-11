@@ -1,5 +1,5 @@
-import { GBIFdetailInfo } from "@/sharedObject/typeDiffinition.ts";
-import { ClientSideControl } from "../APIservice/GeolocationTrafficControl";
+import { GBIFdetailInfo } from "@/sharedObject/typeDeffinition";
+import { ClientSideControl } from "../APIservice/ClientSideControl";
 
 const scanButton = document.querySelector(".scan_button");
 

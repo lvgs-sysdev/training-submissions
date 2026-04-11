@@ -1,5 +1,9 @@
-import { Location } from "../../../sharedObject/typeDiffinition.js";
-export async function ScanAreaCalculation({ latitude, longitude }: Location) {
+import { userGeolocationdata } from "../../sharedObject/typeDeffinition.ts";
+
+export async function ScanAreaCalculation({
+  latitude,
+  longitude,
+}: userGeolocationdata) {
   interface coordinate {
     lng: number;
     lat: number;
