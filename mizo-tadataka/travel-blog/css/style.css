@@ -1,21 +1,11 @@
 @charset "UTF-8";
-
-
-/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
-      全体的な設定（カラー等）
-＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
-
-
-
-
-
-
-
+body { margin: 0; }
+html{
+  font-size: clamp(1rem, 1vw, 2rem);
+}
 /*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
             ヘッダー設定
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
-
-
 .header-top  { 
   display: flex; 
   justify-content: space-between; 
@@ -23,93 +13,62 @@
   border-bottom: 0.2vw solid var(--text-color-sub);
   padding: 1vw 4vw 1vw;
 }
-
 /* ヘッダーのテキスト */
 .header-top-text {
-
-  font-size: 2vw;
+  font-size: clamp(1rem, 2vw, 3rem);
   font-weight: 800; /* より太く */
   color: var(--title-color);
-
-
 }
-
 .tops-right {
   display: flex; /* フレックスボックス */
   align-items: center;
   gap: 2vw;
 }
-
 /* ログインのリンク */
 .login-link {
-  font-size: 2vw;
+  font-size: clamp(1rem, 2vw, 3rem);
   color: black;
   text-decoration: none; /* 下線を消す */
-
- 
 }
 
-/* カラーボックス */
-.color-box {
-
-  width: 8vw;
-  height: 2vw;
+.color-box-text{
   background-color: var(--title-color);
+  font-size: clamp(0.5rem, 1.4vw, 4rem);
   color: white;
-  font-size: 1.4vw;
-  padding: 1.5vw 1.8vw;
-
-
+  padding: 1.5vw 1.8vw; */
 }
-
-
-
-
 /*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
           　トップページ
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
-
 /*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
           　ヒーロー
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
-
-
 /* 中央の画像ブロック */
 .hero-area img {
 /*画像を画面いっぱいに広げる */
   width: 100%;      
 }
-
 .hero-area  { 
   position: relative;
 }
-
 .header-text {
   position: fixed;
   position: absolute;  /* 画像の上に浮かせます */
   top: 10%;           
   left: 7%;
-  font-size: 4.5vw;
+  font-size:  clamp(1rem, 5vw, 12rem);
   font-weight: 800; /* より太く（数値指定） */
 }
-
 .header-text-sub {
   position: fixed;
   position: absolute;  /* 画像の上に浮かせます */
   top: 45%;           
   left: 7%;
-  font-size: 1.5vw;
+  font-size: clamp(0.4rem, 1.7vw, 10rem);
 }
-
-
-
 /*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
   トップページのメインコンテンツ（一覧）
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
-
-
-
-
 /* ページ全体 */
 .main-content-wrapper {
   display: grid; 
@@ -117,9 +76,6 @@
   width: 100%;    
   gap: 10vw; /* メインコンテンツとサイドコンテンツの間のスペース */
 }
-
-
-
 /* 一覧作り */
 /* グリッド全体の設定 */
 .grid-container {
@@ -129,23 +85,17 @@
   gap: 3vw; /* グリッドアイテム間のスペース */
   padding-top:  4vw;
 }
-
-
 /* 個別設定 */
-
 .main-content-title {
-  font-size: 1.5vw;
+  font-size:  clamp(1rem, 1.7vw, 10rem);
   /* より太く（数値指定） */
   font-weight: 800;
   color:black;
   padding-top: 10vw;           
 }
-
-
 .main-content {
    margin-left: 5vw;
 }
-
 /* コラムと日付を横並びにするためのスタイル */ 
 .item-column {
   color:   var(--title-color);
@@ -156,8 +106,6 @@
 .item-date-span {
   color:  var(--text-color-sub); 
 }
-
-
 /* グリッド内のコンテンツ設定 */
 .grid-item img{
   width: 100%;       /* 横幅は枠いっぱいに */
@@ -165,302 +113,104 @@
 }
 .grid-item {
   text-decoration: none; /* 下線を消す */
-  font-size: 1.05vw;
+  font-size:  clamp(0.8rem, 1.5vw, 8rem);;
   color: black;
 }
-
-
-
 .item-title   {
   margin-top: 15px;
   font-weight: 300;
-  font-size: 1.3vw; 
+  font-size: clamp(0.8rem, 1.7vw, 10rem);
   color:black;
 }
-
 .item-desc {
-  font-size: 1.1vw;
+  font-size: clamp(0.8rem, 1.5vw, 8rem);
   color: var(--text-color-main); /* 少し薄いグレー */
 }
-
 /*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
   トップページのサイドコンテンツ（人気記事：機能不要）
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
-
 /* 中段サイドコンテンツ作り */
 .side-content {
  padding: 10vw 3vw 0 0;
 }
-
 /* 中段のサイドコンテンツ上側 */
-
 .grid-container-side1 {
   display: grid;
   grid-template-columns: 1fr; /* 1列のグリッド */
   gap: 1vw; /* グリッドアイテム間のスペース */
   padding: 0vw 5vw 0vw 0vw; /* 上右下左の順で余白を指定 */
   }
-
-
 .side-content-title-1 {
-  font-size: 1.5vw;
+  font-size: clamp(0.8rem, 1.7vw, 10rem);
   /* より太く（数値指定） */
   font-weight: 800;
   color:black;      
 }
-
 .side-item-title {
-  font-size: 1.3vw;
+  font-size: clamp(1rem, 1.5vw, 6rem);
   color:black;  
   margin-bottom: 3vw;    
-
 }
-
 .side-content1:not(:last-child) {
   border-bottom: 1px solid var(--text-color-sub); /* 下線を引く */  
 }
-
-
-
 /*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
   トップページのサイドコンテンツ（もっと見る（機能不要））
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
-
-
 /* 中段のサイドコンテンツ下側 */
-
 .side-content-title-2 {
-  font-size: 1.5vw;
+  font-size: clamp(1rem, 1.7vw, 10rem);
   /* より太く（数値指定） */
   font-weight: 800;
   color:black;
   margin-top: 5vw; 
 }
-
 .container-side2 {
   display: flex; /* フレックスボックスを使用 */
   padding-top: 1vw;
-  gap:  2vw;
-  
-
-
+  gap:  2vw;  
 }
-
 .white-box-text {
-  font-size: 1.4vw;
+  font-size: clamp(0.8rem, 1.5vw, 8rem);;
   color: var(--text-color-main);  
   border: 1px solid var(--text-color-sub);
   justify-content: space-between; /* 左右にスペースを均等に配置 */
   align-items: center; /* 縦方向の中央揃え */
-  padding: 0.8vw;
-  
+  padding: 0.8vw;  
 }
-
-
-
-
-
-/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
-          　詳細ページ
-＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
-
-/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
-    詳細ページ:メイン記事：著者名
-＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
-
-
-.article-wrapper {
-    display: grid; /* フレックスボックスを使用 */
-    grid-template-columns: 4fr 1fr; /* メインコンテンツとサイドコンテンツの幅を指定 */
-    /* width: 100%;     */
-    gap: 4vw; /* メインコンテンツとサイドコンテンツの間のスペース */
-    padding-top: 5vw;
-    justify-items: center;
-
-   
-}
-
-
-
-
-
-
-.profile-img{
-
-    width: 5vw;
-    height: 5vw;
-    clip-path: circle(2.5vw at 50% 50%); 
-}
-
-
-/* メイン記事：投稿者情報の設定 */
-.author-info{
-    display: flex;
-    align-items: center;
-    margin-bottom: 2vw;
-    gap:1vw;
-
-} 
-
-#main-author.author-info{
-      justify-content: space-between; 
-
-}
-
-
-.author-info-content {
-  display: flex;
-  gap: 1vw;
-}
-
-.namedate{
-  
-    font-size: 1.1vw;
-    line-height: 0.9vw;
-}
-
-.publish-date{
-    color: var(--text-color-main);
-}
-
-
-.sns-share{
-
-    display: flex;
-    max-width: 100%;
-
-
-}
-
-.sns {
-  width: 3vw;
-  height:3vw;
-
-}
-
-
-/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
-    詳細ページ:メイン記事
-＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
-
-.article-body{
-    margin-top: 4vw;
-    width: 100%;
-
-}
-.article-culumn{
-    font-size: 1.4vw;
-    color: var(--title-color);
-
-}
-.article-title{
-    font-size: 2vw;
-    font-weight: 200;
-}
-.article-main-text{
-    font-size:1.5vw;
-    color: var(--text-color-main);
-}
-
-.article-figure img{
-  width: 100%;
-  height: auto;
-}
-
-.article-figure-caption {
-    text-align: center;
-    font-size: 1.3vw;
-    color: var(--text-color-main);
-
-}
-
-.article-sub-title{
-    font-size: 1.5vw;
-}
-
-
-
- 
-
-/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
-    詳細ページ:サイドコンテンツ
-＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
-
-.article-sub {
-
-  justify-items: start;
-  padding: 0 3vw 0 0;
-
-}
-
-
-.article-side-title{
-    font-size: 1.5vw;
-  /* より太く（数値指定） */
-    font-weight: 800;
-    color:black;
-}
-
-.grid-container-post-sub {
-  display: grid;
-  grid-template-columns: 24vw; 
-  justify-content: start;
-  gap: 5vw; /* グリッドアイテム間のスペース */
-  margin-top: 5vw;
-}
-
-.authors {
-  padding-top: 8vw ;
-}
-
-
-
-
-
 /*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
           　フッター
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
-
 .footer{
   background-color: #121212;
   margin-top: 20vw;
   padding: 5vw 5vw 0;
   gap: 2vw;
 }
-
 .footer-wrapper {
   display: grid; /* フレックスボックスを使用 */
   grid-template-columns: repeat(2, 1fr) 0.5fr 1fr; 
-  padding-bottom: 5vw;
-  
+  padding-bottom: 5vw; 
 }
-
 .footer-text-title {
   font-size: 1vw;
   color: white; 
   align-items: center ; /* 左右にスペースを均等に配置 */
-
 } 
-
 .Footer-text {
   font-size: 1vw;
   color: rgba(255, 255, 255, 0.5); /* 白の50%の透明度 */
 
 }
-
-
 /*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
       フッター(コピーライト)
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
-
-
 .copyright {
   text-align: center;
-  font-size: 1vw;
+  font-size: clamp(0.5rem, 1vw, 3rem);
   color: rgba(255, 255, 255, 0.5); /* 白の50%の透明度 */
   padding-bottom: 1vw;
 }
-
 /* 下段の画像設定 */
 .app-wrapper img
 {
@@ -468,181 +218,75 @@
   height: 50%;     /* 高さは自動で調整 */
   border-radius:1vw;
   object-fit: contain;
-
 }
- 
-
-
-
-/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
+ /*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
     　  レスポンシブ対応
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
-@media screen and (max-width: 600px)
+@media screen and (max-width: 800px)
 {
-
 /*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
   トップページのメインコンテンツの一覧
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
-
 .main-content-wrapper {
-  grid-template-columns: 1fr; /* メインコンテンツとサイドコンテンツの幅を指定 */
-
+  grid-template-columns: 1fr; /* メインコンテンツとサイドコンテンツの幅を指定 */  
 }
-
-
+.main-content {
+   margin-left: 0vw;
+}
 .grid-container {
-  grid-template-columns: 48vw; /* 2列のグリッド */
+  grid-template-columns: 1fr; /* 2列のグリッド */
   justify-self: center;
   gap: 3vw; /* グリッドアイテム間のスペース */
+  padding: 8vw;
 }
-
 .main-content-title {
-  font-size: 2vw;
   justify-self: center;      
 }
-
-
 .item-title   {
   margin-top: 2vw;
-  font-size: 2vw; 
 }
-
-.item-desc {
-  font-size: 1.5vw;
-}
-
-/* コラムと日付を横並びにするためのスタイル */ 
-.item-column {
-  font-size: 1.5vw;
-}
-.item-date {
-  font-size: 1.5vw;
-}
-.item-date-span {
-  font-size: 1.5vw;
-}
-.item-content{
-  padding-top: 2vw ;
-
-}
-
-
-
-
 /*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
   トップページのサイドコンテンツの一覧
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
-
 /*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
   トップページのサイドコンテンツ（人気記事：機能不要）
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
-
-/* 中段サイドコンテンツ作り */
-.side-content {
- padding: 10vw 0vw 0 0;
-
-}
-
-/* 中段のサイドコンテンツ上側 */
-
 .grid-container-side1 {
-  gap: 1vw; /* グリッドアイテム間のスペース */
-  padding: 0vw 5vw 0vw 0vw; /* 上右下左の順で余白を指定 */
+  padding: 0vw 15vw 15vw; /* 上右下左の順で余白を指定 */
   }
-
+/* 中段のサイドコンテンツ上側 */
 .side-content-title-1 {
-  font-size: 2vw;
   justify-self: center;
-
 }
-
-.side-item-title {
-
-  font-size: 1.5vw;
-  margin-bottom: 5vw;    
-
-}
-
-
 .new-posts {
   justify-self: center;
 }
-
 .recommend-posts{
   justify-self: center;
 }
-
 /*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
   トップページのサイドコンテンツ（もっと見る（機能不要））
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
-
-
-/* 中段のサイドコンテンツ下側 */
-
-.side-content-title-2 {
-  font-size: 2vw;
-}
-
 .container-side2 {
   display: flex; /* フレックスボックスを使用 */
   padding-top: 4vw;
   gap:  4vw;
-
 }
-
-.white-box-text {
-  font-size: 2vw;
-
-}
-
-
-/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
-          　詳細ページ
-＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
-
-/*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
-    詳細ページ:メイン記事：著者名
-＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
-
-body{
-  padding: 1vw;
-}
-
-
-.article-wrapper {
-
-    grid-template-columns: 1fr; /* メインコンテンツとサイドコンテンツの幅を指定 */
-
-   
-}
-
-
-
 /*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
           　フッター
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
-
 .footer-wrapper {
   display: grid; /* フレックスボックスを使用 */
   grid-template-columns: repeat(2, 1fr); 
   padding: 5vw;
-  /* padding-bottom: 5vw;
-   */
-  
 }
-
 .footer-text-title {
   font-size: 2vw;
-
 } 
-
 .Footer-text {
   font-size: 2vw;
-
 }
-
 }
-
 /*＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊
           　完了
 ＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊＊*/
