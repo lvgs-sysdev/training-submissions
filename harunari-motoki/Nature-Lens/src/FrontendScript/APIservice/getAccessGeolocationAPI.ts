@@ -15,16 +15,17 @@ function getPositionPromise(
 export async function getAccessGeolocationAPI() {
   if (!navigator.geolocation) {
     const returnItems: GeolocationAPIResponse = {
-      status: "error",
+      status: "failure",
       message: "お使いのブラウザは位置情報に対応していません",
     };
     return returnItems;
   }
   const options = {
     enableHighAccuracy: true,
-    timeout: 30000, //単位ms
+    timeout: 3000, //単位ms
     maxiumAge: 0, //キャッシュされた位置情報は使わない
   };
+  console.log("GeolocationAPIのtry-catch前");
 
   try {
     const position = await getPositionPromise(options);
@@ -34,33 +35,53 @@ export async function getAccessGeolocationAPI() {
       data: { latitude: latitude, longitude: longitude },
     };
     return returnItems;
-  } catch (error: any) {
-    switch (error.code) {
-      case error.TIMEOUT:
-        let returnItems: GeolocationAPIResponse = {
-          status: "error",
-          message: "タイムアウトしました。電波のいい場所で再度試してください",
-        };
-        return returnItems;
-      case error.PERMISSION_DENIED:
-        returnItems = {
-          status: "error",
-          message: "位置情報の利用が許可されていません。",
-        };
-        return returnItems;
-      case error.POSITION_UNAVAILABLE:
-        returnItems = {
-          status: "error",
-          message: "位置情報が利用できません。",
-        };
-        return returnItems;
+  } catch (error: unknown) {
+    if (
+      error instanceof GeolocationPositionError ||
+      (error as any).code !== undefined
+    ) {
+      const errorCode = (error as any).code;
+      //エラーコードを返すのは良いが、エラーの内容を決めるのはコントローラの役割　言語をmodelで決めてしまうのはよくない
+      let returnItems: GeolocationAPIResponse = {
+        status: "failure",
+        message: "switchに入る前に定義してエラー回避",
+      };
+      switch (errorCode) {
+        case 3: //GeolocationPositionError.TIMEOUT:
+          returnItems = {
+            status: "failure",
+            message: "タイムアウトしました。電波のいい場所で再度試してください",
+          };
+          console.log("タイムアウトメッセージをreturn前");
+          return returnItems;
+        case 1: //GeolocationPositionError.PERMISSION_DENIED:
+          returnItems = {
+            status: "failure",
+            message: "位置情報の利用が許可されていません。",
+          };
+          console.log("許可されていないメッセージをreturn前");
+          return returnItems;
+        case 2: //GeolocationPositionError.POSITION_UNAVAILABLE:
+          returnItems = {
+            status: "failure",
+            message: "位置情報が利用できません。",
+          };
+          console.log("位置情報不許可メッセージをreturn前");
+          return returnItems;
+        default:
+          returnItems = {
+            status: "failure",
+            message: "原因不明のエラーです。",
+          };
+          return returnItems;
+      }
+    } else {
+      let returnItems: GeolocationAPIResponse = {
+        status: "failure",
+        message: "原因不明のエラーです。",
+      };
+      return returnItems;
     }
-    let returnItems: GeolocationAPIResponse = {
-      status: "error",
-      message: "原因不明のエラーです。",
-    };
-
-    return returnItems;
   }
 }
 

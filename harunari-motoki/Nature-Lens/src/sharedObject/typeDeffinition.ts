@@ -30,7 +30,7 @@ type GeolocationAPISuccess = {
   data: { latitude: number; longitude: number };
 };
 type GeolocationAPIFailure = {
-  status: "error";
+  status: "failure";
   message: string;
 };
 export type GeolocationAPIResponse =

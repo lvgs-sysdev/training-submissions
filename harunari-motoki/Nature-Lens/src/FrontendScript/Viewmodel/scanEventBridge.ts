@@ -31,7 +31,7 @@ if (!scanButton) {
         alert(message);
       }
     } catch (error) {
-      const message = "エラーが発生しました。再度実行してください。";
+      const message = "エラーが発生しました。アプリを再起動してください。";
       alert(message);
     }
   });

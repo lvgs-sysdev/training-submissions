@@ -1,11 +1,10 @@
 import {
   FinalScanResult,
   GeolocationAPIResponse,
-  scanedData,
 } from "../../sharedObject/typeDeffinition.ts";
 import { getAccessGeolocationAPI } from "./getAccessGeolocationAPI.ts";
 import { userGeolocationdata } from "../../sharedObject/typeDeffinition.ts";
-import axios from "axios";
+import { getScanedData } from "./getScanedData.ts";
 
 export async function ClientSideControl() {
   try {
@@ -16,43 +15,35 @@ export async function ClientSideControl() {
         latitude: GeolocationAPIAccessResult.data.latitude,
         longitude: GeolocationAPIAccessResult.data.longitude,
       };
-      const url: string = "/scanResult";
-      try {
-        const scanedData: scanedData = await axios.post(url, data);
-        if (scanedData.status === "NotApplicable") {
-          console.log("viewmodelに該当なしを送信");
-          let responseItem: FinalScanResult = {
-            status: "failure",
-            message: scanedData.message,
-          };
-          return responseItem;
-        } else {
-          console.log("viewmodelに該当データ送信");
-          let responseItem: FinalScanResult = {
-            status: "success",
-            data: scanedData.data,
-          };
-          return responseItem;
-        }
-      } catch (error: any) {
-        let responseItem: FinalScanResult = {
-          status: "failure",
-          message: "サーバからデータを取得できませんでした。",
+      const URL: string = "/scanResult";
+      const scanedData = await getScanedData(URL, data);
+
+      if (scanedData.status == "Applicable") {
+        let returnItems: FinalScanResult = {
+          status: "success",
+          data: scanedData.data,
         };
-        return responseItem;
+        return returnItems;
+      } else {
+        let returnItems: FinalScanResult = {
+          status: "failure",
+          message: scanedData.message,
+        };
+        return returnItems;
       }
     } else {
       let responseItem: FinalScanResult = {
         status: "failure",
         message: GeolocationAPIAccessResult.message,
       };
+      console.log("エラーメッセージalert前");
       return responseItem;
     }
   } catch (error) {
-    let responseItem: FinalScanResult = {
+    let referenseItem: FinalScanResult = {
       status: "failure",
-      message: "位置情報取得サーバにアクセスできませんでした",
+      message: "予期せぬエラーが発生しました（" + error + "）",
     };
-    return responseItem;
+    return referenseItem;
   }
 }
