@@ -16,13 +16,12 @@ export async function getAccessGeolocationAPI() {
   if (!navigator.geolocation) {
     const returnItems: GeolocationAPIResponse = {
       status: "failure",
-      message: "お使いのブラウザは位置情報に対応していません",
     };
     return returnItems;
   }
   const options = {
     enableHighAccuracy: true,
-    timeout: 3000, //単位ms
+    timeout: 10000, //単位ms
     maxiumAge: 0, //キャッシュされた位置情報は使わない
   };
   console.log("GeolocationAPIのtry-catch前");
@@ -36,49 +35,43 @@ export async function getAccessGeolocationAPI() {
     };
     return returnItems;
   } catch (error: unknown) {
-    if (
-      error instanceof GeolocationPositionError ||
-      (error as any).code !== undefined
-    ) {
-      const errorCode = (error as any).code;
-      //エラーコードを返すのは良いが、エラーの内容を決めるのはコントローラの役割　言語をmodelで決めてしまうのはよくない
+    if (error && typeof error === "object" && "code" in error) {
+      // TypeScriptに「errorはcodeを持つオブジェクトだ」と確信させるための型アサーション
+      const errorCode = (error as { code: number }).code;
       let returnItems: GeolocationAPIResponse = {
         status: "failure",
-        message: "switchに入る前に定義してエラー回避",
       };
       switch (errorCode) {
-        case 3: //GeolocationPositionError.TIMEOUT:
+        case GeolocationPositionError.POSITION_UNAVAILABLE:
           returnItems = {
             status: "failure",
-            message: "タイムアウトしました。電波のいい場所で再度試してください",
+            errorDetail: GeolocationPositionError.POSITION_UNAVAILABLE,
           };
-          console.log("タイムアウトメッセージをreturn前");
+          console.log("位置情報が利用できないメッセージをreturn前");
           return returnItems;
-        case 1: //GeolocationPositionError.PERMISSION_DENIED:
+        case GeolocationPositionError.PERMISSION_DENIED:
           returnItems = {
             status: "failure",
-            message: "位置情報の利用が許可されていません。",
+            errorDetail: GeolocationPositionError.PERMISSION_DENIED,
           };
           console.log("許可されていないメッセージをreturn前");
           return returnItems;
-        case 2: //GeolocationPositionError.POSITION_UNAVAILABLE:
+        case GeolocationPositionError.TIMEOUT:
           returnItems = {
             status: "failure",
-            message: "位置情報が利用できません。",
+            errorDetail: GeolocationPositionError.TIMEOUT,
           };
-          console.log("位置情報不許可メッセージをreturn前");
+          console.log("タイムアウトメッセージをreturn前");
           return returnItems;
         default:
           returnItems = {
             status: "failure",
-            message: "原因不明のエラーです。",
           };
           return returnItems;
       }
     } else {
       let returnItems: GeolocationAPIResponse = {
         status: "failure",
-        message: "原因不明のエラーです。",
       };
       return returnItems;
     }

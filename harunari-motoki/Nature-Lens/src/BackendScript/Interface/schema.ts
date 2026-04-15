@@ -1,0 +1,19 @@
+//サーバサイドに届く位置データのバリデーションチェック
+export const coordinateSchema = {
+  body: {
+    type: "object",
+    required: ["latitude", "longitude"],
+    properties: {
+      latitude: {
+        type: "number",
+        minimum: -90,
+        maximum: 90,
+      },
+      longitude: {
+        type: "number",
+        minimum: -180,
+        maximum: 180,
+      },
+    },
+  },
+};

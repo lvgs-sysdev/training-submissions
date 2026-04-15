@@ -29,13 +29,3 @@ export async function ScanAreaCalculation({
   console.log(wktString);
   return wktString;
 }
-
-//テストコード
-// cd ../domain/scan/
-// npx tsx ./scan.ts
-// const testlocation: Location = {
-//   longitude: 139.79695930100348,
-//   latitude: 35.70046691514662,
-// };
-
-// ScanAreaCalculation(testlocation);

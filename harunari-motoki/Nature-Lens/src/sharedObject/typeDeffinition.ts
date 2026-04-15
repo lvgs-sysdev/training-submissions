@@ -1,23 +1,3 @@
-//サーバサイドに届く位置データのバリデーションチェック
-export const coordinateSchema = {
-  body: {
-    type: "object",
-    required: ["latitude", "longitude"],
-    properties: {
-      latitude: {
-        type: "number",
-        minimum: -90,
-        maximum: 90,
-      },
-      longitude: {
-        type: "number",
-        minimum: -180,
-        maximum: 180,
-      },
-    },
-  },
-};
-
 //クライアントサイドの位置データ型
 export interface userGeolocationdata {
   longitude: number;
@@ -31,7 +11,7 @@ type GeolocationAPISuccess = {
 };
 type GeolocationAPIFailure = {
   status: "failure";
-  message: string;
+  errorDetail?: number;
 };
 export type GeolocationAPIResponse =
   | GeolocationAPISuccess
@@ -53,12 +33,12 @@ export interface GBIFdetailInfo {
   // scientificName: string;
   // scientificNameAuthorship: string;
   // acceptedScientificName: string;
-  kingdom: string;
+  kingdom?: string;
   // phylum: string;
   // order: string;
   // family: string;
   // genus: string;
-  species: string;
+  species?: string;
   // genericName: string;
   // specificEpithet: string;
   // taxonomicStatus: string;
@@ -76,7 +56,7 @@ export interface GBIFdetailInfo {
   gbifID: string;
   occurrenceID: string;
   // taxonID: string;
-  isWild: any; //"http://unknown.org/captive_cultivated":で外部APIに保存
+  isWild?: any; //"http://unknown.org/captive_cultivated":で外部APIに保存
   // identificationID: string;
 } //将来項目としてコメントアウトで保持
 

@@ -1,12 +1,10 @@
 import { FastifyInstance, FastifyPluginOptions } from "fastify";
-import { postScanprocess } from "../controllers/postScanTraffics.ts";
-import { coordinateSchema } from "../../sharedObject/typeDeffinition.ts";
-import { getIndex } from "../controllers/getIndex.ts";
+import { postScanpTraffics } from "../controllers/postScanTraffics.ts";
+import { coordinateSchema } from "../Interface/schema.ts";
 
 export default async function (
   fastify: FastifyInstance,
   opts: FastifyPluginOptions,
 ) {
-  fastify.get("/", getIndex);
-  fastify.post("/scanResult", { schema: coordinateSchema }, postScanprocess);
+  fastify.post("/scanResult", { schema: coordinateSchema }, postScanpTraffics);
 }

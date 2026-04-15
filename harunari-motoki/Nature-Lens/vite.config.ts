@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   // HTMLファイルが置いてある場所を指定します
-  root: "./src/FrontendScript/",
+  root: ".",
   // ビルドした後の出力先（サーバーが読み込む場所）
   build: {
     outDir: "../../dist/frontend/",
@@ -10,6 +10,10 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+      },
+      "/scanResult": {
         target: "http://localhost:3000",
         changeOrigin: true,
       },

@@ -1,7 +1,8 @@
 // import "dotenv/config";
-import Fastify, { FastifyInstance, FastifyPluginOptions } from "fastify";
+import Fastify from "fastify";
 import scanRoutes from "./BackendScript/routes/scanRoutes.ts";
 import cors from "@fastify/cors";
+import usersRoutes from "../src/BackendScript/routes/userRoutes.ts";
 // dotenv.config();
 
 const fastify = Fastify({
@@ -9,6 +10,7 @@ const fastify = Fastify({
 });
 
 fastify.register(scanRoutes);
+fastify.register(usersRoutes);
 
 await fastify.register(cors, {
   origin: "http://localhost:5173",

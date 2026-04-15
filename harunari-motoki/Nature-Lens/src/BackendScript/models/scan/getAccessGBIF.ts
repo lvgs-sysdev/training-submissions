@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GBIFOuterBox } from "../../sharedObject/typeDeffinition.ts";
+import { GBIFOuterBox } from "../../../sharedObject/typeDeffinition.ts";
 
 export async function getAccessGBIF(
   locationData: string,
@@ -7,7 +7,7 @@ export async function getAccessGBIF(
   try {
     const paramSetting = {
       geometry: locationData,
-      limit: 2,
+      limit: 100,
     };
     const response = await axios.get(
       "https://api.gbif.org/v1/occurrence/search?",
@@ -27,11 +27,3 @@ export async function getAccessGBIF(
     throw error;
   }
 }
-
-//テストコード
-// cd ../../models/
-// npx tsx ./getAccessGBIF.ts
-// const testArea: string =
-//   "POLYGON((139.80595930100347 35.70046691514662,139.80332326203416 35.7068308761773,139.79695930100348 35.70946691514662,139.7905953399728 35.7068308761773,139.7879593010035 35.70046691514662,139.7905953399728 35.69410295411594,139.79695930100348 35.69146691514662,139.80332326203416 35.69410295411594,139.80595930100347 35.70046691514662))";
-// getAccessGBIF(testArea);
-//POLAから半径１キロにドバトがいる！！

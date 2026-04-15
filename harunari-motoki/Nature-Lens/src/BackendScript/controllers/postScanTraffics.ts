@@ -1,13 +1,14 @@
 import { ScanAreaCalculation } from "../service/ScanAreaCalculation.ts";
-import { getAccessGBIF } from "../models/getAccessGBIF.ts";
+import { getAccessGBIF } from "../models/scan/getAccessGBIF.ts";
 import { modifyGBIFData } from "../service/modifyAPIData.ts";
 import { scanedData } from "../../sharedObject/typeDeffinition.ts";
 
-export const postScanprocess = async function (
+export const postScanpTraffics = async function (
   request,
   reply,
 ): Promise<scanedData> {
   const { latitude, longitude } = request.body;
+  console.log("クライアントからのデータ受け取り完了");
   try {
     const polygonData = await ScanAreaCalculation({ latitude, longitude });
     console.log("ポリゴン正常に出力完了");
@@ -20,17 +21,16 @@ export const postScanprocess = async function (
         status: "NotApplicable",
         message: "該当データなし",
       };
-      console.log("該当なしデータ送信");
+      console.log(scanedData);
       return scanedData;
     } else {
       const finalBioData = await modifyGBIFData(rawGBIFData);
-      console.log("GBIFデータ修正完了");
-
       const scanedData: scanedData = {
         status: "Applicable",
         data: finalBioData,
         message: "該当データあり",
       };
+      console.log(scanedData);
       return scanedData;
     }
   } catch (error: any) {
@@ -38,6 +38,7 @@ export const postScanprocess = async function (
       { error: error },
       "バケツリレーの途中でエラーが発生しました。",
     );
+    console.log("サーバでエラーがありました 再度実行してください");
     return reply
       .status(500)
       .send({ error: "サーバでエラーがありました 再度実行してください" });
