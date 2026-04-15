@@ -14,9 +14,9 @@
     justify-items: center;   
 }
 .profile-img{
-    width:  clamp(1rem, 8vw, 12rem);
-    height:  clamp(1rem, 8vw, 12rem);
-    clip-path: circle( clamp(0.3rem, 4vw, 12rem) at 50% 50%); 
+    width:  clamp(1rem, 8vw, 16rem);
+    height:  clamp(1rem, 8vw, 16rem);
+    clip-path: circle( clamp(0.5rem, 4vw, 8rem) at 50% 50%); 
 }
 /* メイン記事：投稿者情報の設定 */
 .author-info{
