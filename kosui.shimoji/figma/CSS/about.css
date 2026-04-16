@@ -9,8 +9,6 @@
 
 
 /* プロフフィールエリア */
-
-
 .article-profile {
     width: 100%;
     margin:0 auto;
@@ -19,15 +17,14 @@
 .profile-info {
     display: flex;
     justify-content: space-around;
-    align-items: center; /*上下を中央*/
+    align-items: center; 
     gap: 1%;
 }
 
-/* 名前と日付を縦に並べる（ここでも Flex-column！） */
 .profile-user-detail {
     display: flex;
     flex-direction: column; 
-    flex: 1;             /* これで真ん中のスペースを全部使う */
+    flex: 1;            
 }
 
 .profile-name {
@@ -44,7 +41,7 @@
 .sns-image {
     display: flex;
     gap: 10px;
-    margin-left: auto;   /* これでSNSアイコンが右端へ飛んでいきます */
+    margin-left: auto;  
 }
 
 .sns-image img {
@@ -61,7 +58,7 @@
 /* --- 記事エリア --- */
 .contents-wrapper-inner {
 
-    min-width: 0;       /* 画像などの突き抜け防止 */
+    min-width: 0;       
     width: calc(740 / 1119 * 100%);
 }
 /* 記事タイトル */
@@ -89,8 +86,8 @@
 .article-main-description {
     color: #757575;
     text-align: center;
-    margin-top: 10px;        /* 画像との間に少し隙間を作ります */
-    margin-bottom: 30px;     /* 下の本文との間隔を空けます */
+    margin-top: 10px;     
+    margin-bottom: 30px;   
     font-weight: 400;
     font-style: italic;
 
@@ -125,19 +122,19 @@ p.article-text {
 
 
 .article-categories li a {
-    display: inline-block;        /* パディングを有効にする */
+    display: inline-block;       
     border: 0.5px solid #DEDEDE; 
     padding: 14px 30px;          
     color: #757575;              
-    font-size: 14px;              /* 文字サイズ */
+    font-size: 14px;             
 }
 
 /* --- サイドバーエリア --- */
 .sidebar-wrapper {
     width: calc(265 / 1119 * 100%);
     display: flex;
-    flex-direction: column; /* 上から下に並べる */
-    gap: 60px; /* 新着記事と投稿者の間の余白 */  
+    flex-direction: column; 
+    gap: 60px; 
 }
 
 .sidebar-title{
@@ -161,7 +158,7 @@ p.article-text {
 
 /* カテゴリーと日付の親要素（横並びの調整） */
 .new-article-info {
-    margin-top: 12px; /* 画像とテキストの間の余白 */
+    margin-top: 12px; 
 }
 
 /* カテゴリーラベル */
@@ -174,27 +171,26 @@ p.article-text {
 
 /* 区切り線（|） */
 .new-article-line {
-    color: #DEDEDE; /* 主張しすぎない薄いグレー */
-    margin: 0 8px;  /* 左右に程よい隙間を空ける */
+    color: #DEDEDE; 
+    margin: 0 8px;  
     font-size: 12px;
 }
 
 /* 日付 */
 .new-article-info time {
-    color: #757575; /* 本文と同じか、やや薄めのグレー */
+    color: #757575; 
     font-size: 12px;
 }
 
 .new-article-title {
-    color: #121212;   /* 真っ黒に近い色で強調 */
+    color: #121212;   
     font-size: 14px;  
     font-weight: 300;
-    line-height: 1.5; /* 2行になった時に重ならず、黄金比 */
-    margin-top: 8px;  /* カテゴリー行との間の余白 */
+    line-height: 1.5; 
+    margin-top: 8px; 
 }
 /* --- 投稿者セクションの調整 --- */
 
-/* 1. リスト全体の縦の間隔を空ける */
 .author-list {
     display: flex;
     flex-direction: column;
@@ -202,7 +198,6 @@ p.article-text {
     align-items: left;
 }
 
-/* 2. 写真と名前を横に並べる */
 .author-item {
     display: flex;
     align-items: center;
@@ -302,7 +297,7 @@ p.article-text {
 
     .contents-wrapper {
         flex-direction: column;
-        padding: 0 20px;        /* スマホで端がくっつかないように余白を作る */
+        padding: 0 20px;        
         margin-top: 20px;
     }
 
@@ -313,29 +308,26 @@ p.article-text {
         max-width: 100%;
     }
 
-    /* サイドバーの余白調整 */
     .sidebar-wrapper {
-        margin-top: 60px; /* メイン記事との間に隙間を作る */
+        margin-top: 60px; 
     }
 
-    /* 記事本文の br を消す*/
+
     .article-text br {
         display: none; 
     }
 
     p.article-text {
-        text-align: justify; /* 右端を揃える */
+        text-align: justify; 
         word-break: break-all;
     }
 
-    /* 記事タイトルの文字サイズ調整 */
     .article-title {
-        font-size: 24px;
+        font-size: clamp(12px, 4vw, 24px);
     }
 
-    /* サイドバー内の画像サイズ調整 */
     .new-article-image img {
-        width: 100%; /* 固定の265pxを解除 */
+        width: 100%; 
     }
 
     .related-articles-content {

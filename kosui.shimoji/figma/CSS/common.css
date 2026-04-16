@@ -55,9 +55,8 @@ img {
 /* --- ナビゲーション --- */
 .user-nav ul {
     display: flex;
-    align-items: center;           /* 【追加】上下中央揃え */
+    align-items: center;          
     gap: 35px; 
-    /* 【変更】LoginとGet startedの間隔 */
 }
 
 .nav-login {
@@ -68,14 +67,14 @@ img {
 
 /* --- Get started ボタン --- */
 .nav-signup {
-    background-color: #FF553C;     /* ロゴと同じオレンジ */
+    background-color: #FF553C;     
     color: #FFFFFF;
-    padding: 10px 24px;            /* ボタン内の余白 */
+    padding: 10px 24px;        
     font-weight: 500;
 }
 
 .nav-signup:hover {
-    background-color: #e64a35;     /* ホバー時に少し暗くする */
+    background-color: #e64a35;    
 }
 
 
@@ -87,15 +86,40 @@ img {
 }
 .footer-inner {
     display: flex;
-    justify-content: space-around;
+    width: fit-content;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
-
 .footer-column {
-    flex: 1; 
+    flex: 1;
+    min-width: 250px; 
     max-width: 300px;
+}
+
+.footer-address {
+    border-bottom: 1px solid #444;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    font-style: normal;
+    line-height: 1.6;
+    width: 90%;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;             
+    padding: 0;
+    margin-top: 15px;
+}
+
+.footer-links li {
+    width: auto; 
+}
+
+.footer-links a {
+    white-space: nowrap; 
 }
 
 .footer-column-sns {
@@ -130,20 +154,17 @@ img {
 }
 
 
-
 /* --- レスポンシブ対応  --- */
-@media screen and (max-width: 768px) { 
+@media screen and (max-width: 965px) { 
 
-    /* 1. ヘッダー全体の余白を削る */
     .header-inner {
         padding: 10px 15px; 
         justify-content: space-around; 
         flex-direction: row;
     }
 
-    /* 2. ロゴを小さくする */
     .header-logo {
-        font-size: 18px; /* 24pxから18pxに縮小 */
+        font-size: 18px; 
     }
 
     /* 3. ナビゲーションの間隔を詰める */
@@ -165,7 +186,7 @@ img {
     .footer-inner {
         flex-direction: column;
         gap: 40px;
-        text-align: center; /* 中央寄せにする */
+        text-align: center; 
     }
 
     .footer-column {
