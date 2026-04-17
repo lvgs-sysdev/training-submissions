@@ -4,7 +4,7 @@ import { Post, Breed } from "../feed/posts/type";
  * 💡 バックエンドの基本URLを定義
  * 開発環境では localhost:3000 を指定します。
  */
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "http://18.182.38.15:3000";
 
 /**
  * 💡 共通の fetch ラッパー関数

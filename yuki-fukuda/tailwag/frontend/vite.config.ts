@@ -15,9 +15,9 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
-      "/auth": "http://backend:3000",
-      "/posts": "http://backend:3000",
-      "/api": "http://backend:3000",
+      "/auth": "http://18.182.38.15:3000",
+      "/posts": "http://18.182.38.15:3000",
+      "/api": "http://18.182.38.15:3000",
     },
     watch: {
       usePolling: true,
