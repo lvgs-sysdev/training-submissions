@@ -27,8 +27,7 @@ services:
     volumes:
       - ./backend:/app
       - /app/node_modules
-      - ./frontend/public/uploads:/app/uploads
-    # バックエンド起動用コマンド
+      - shared-uploads:/frontend/public/uploads
     command: npm run dev
 
   # フロントエンド
@@ -41,5 +40,8 @@ services:
     volumes:
       - ./frontend:/app
       - /app/node_modules
-    # フロントエンド起動用コマンド
+      - shared-uploads:/app/public/uploads
     command: npm run dev
+
+volumes:
+  shared-uploads:
