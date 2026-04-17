@@ -1,7 +1,7 @@
-import { ScanAreaCalculation } from "../service/ScanAreaCalculation.ts";
-import { getAccessGBIF } from "../models/scan/getAccessGBIF.ts";
-import { modifyGBIFData } from "../service/modifyAPIData.ts";
-import { scanedData } from "../../sharedObject/typeDeffinition.ts";
+import { ScanAreaCalculation } from "../../service/scan/ScanAreaCalculation.ts";
+import { getAccessGBIF } from "../../models/scan/getAccessGBIF.ts";
+import { modifyGBIFData } from "../../service/scan/modifyAPIData.ts";
+import { scanedData } from "../../../library/scan/typeDeffinition.ts";
 
 export const postScanpTraffics = async function (
   request,

@@ -1,10 +1,14 @@
 import { viewIndex } from "./View/users/viewIndex.ts";
-import { initializeScanButton } from "./View/scan/initializeScanButton.ts";
-import { initializeRegisterButton } from "./View/users/initializeRegisterButton.ts";
-import { initializeLoginButton } from "./View/users/initializeLoginButton.ts";
-import { initializeToppageButton } from "./View/users/initializeToppageButton.ts";
+import { initializeScan_Button } from "./View/scan/initializeScan_Button.ts";
+import { initializeLoginPage_Button } from "./View/users/initializeLoginPage_Button.ts";
+import { initializeRegisterPage_Button } from "./View/users/initializeRegisterPage_Button.ts";
+import { initializeToppage_Button } from "./View/users/initializeToppage_Button.ts";
+import { initializeRegister_Button } from "./View/users/initializeRegister_Button.ts";
+import { initializeLogin_Button } from "./View/users/initializeLogin_Button.ts";
 import { updateRegisterPage } from "./Viewmodel/users/updateRegisterPage.ts";
+import { updateLoginPage } from "./Viewmodel/users/updateLoginPage.ts";
 import { updateTopPage } from "./Viewmodel/users/updateTopPage.ts";
+import { updateScanPage } from "./Viewmodel/scan/updateScanPage.ts";
 
 export const router = async () => {
   const path = window.location.pathname;
@@ -12,28 +16,41 @@ export const router = async () => {
 
   if (path === "/register") {
     await updateRegisterPage();
-    initializeToppageButton(); //topページボタン
-    //登録ボタン
+    initializeToppage_Button(); //topページ遷移
+    initializeRegister_Button(); //新規登録
+  } else if (path === "/login") {
+    await updateLoginPage(); //ログインページ表示
+    initializeToppage_Button(); //トップページ移動
+    initializeLogin_Button(); //ログイン
+  } else if (path === "/scan") {
+    await updateScanPage(); //スキャンページ表示
+    initializeScan_Button();
+    // initializeLogout_Button(); //ログアウト
   } else if (path === "/" && isFirstVisit) {
     await viewIndex(); //topページ表示
     sessionStorage.setItem("hasVisited", "true");
-    initializeRegisterButton(); //新規登録ボタン
-    initializeLoginButton(); //ログインボタン
+    initializeRegisterPage_Button(); //新規登録ページ遷移
+    initializeLoginPage_Button(); //ログインページ遷移
   } else if (path === "/") {
     await updateTopPage(); //topページ表示
-    initializeRegisterButton(); //新規登録ボタン
-    initializeLoginButton(); //ログインボタン
+    initializeRegisterPage_Button(); //新規登録ページ遷移
+    initializeLoginPage_Button(); //ログイページ遷移
   }
 };
 // initializeScanButton(); //scanボタン関数
 window.addEventListener("popstate", router);
 
-if (typeof window !== "undefined") {
-  if (document.readyState === "loading") {
-    console.log("ボタン検知！");
-    document.addEventListener("DOMContentLoaded", router);
-  } else {
-    console.log("ボタン検知！");
-    router();
+try {
+  if (typeof window !== "undefined") {
+    if (document.readyState === "loading") {
+      console.log("ボタン検知！");
+      document.addEventListener("DOMContentLoaded", router);
+    } else {
+      console.log("ボタン検知！");
+      router();
+    }
   }
+} catch (error) {
+  console.error(error);
+  alert(error);
 }

@@ -1,4 +1,4 @@
-import { GeolocationAPIResponse } from "../../sharedObject/typeDeffinition.ts";
+import { GeolocationAPIResponse } from "../../../library/scan/typeDeffinition.ts";
 
 function getPositionPromise(
   options: PositionOptions,

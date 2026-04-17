@@ -2,10 +2,10 @@ import {
   FinalScanResult,
   GeolocationAPIResponse,
   scanedData,
-} from "../../sharedObject/typeDeffinition.ts";
-import { getAccessGeolocationAPI } from "./getAccessGeolocationAPI.ts";
-import { userGeolocationdata } from "../../sharedObject/typeDeffinition.ts";
-import { postAxiosserver } from "./postAxiosserver.ts";
+} from "../../../library/scan/typeDeffinition.ts";
+import { getAccessGeolocationAPI } from "../../APIservice/scan/getAccessGeolocationAPI.ts";
+import { userGeolocationdata } from "../../../library/scan/typeDeffinition.ts";
+import { postAxiosserver } from "../../APIservice/scan/postAxiosserver.ts";
 
 //GeolocationAPIが使えないので、特定の座標を返す関数に差し替え
 

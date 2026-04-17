@@ -1,9 +1,9 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 import Fastify from "fastify";
-import scanRoutes from "./BackendScript/routes/scanRoutes.ts";
+import scanRoutes from "./BackendScript/routes/scan/scanRoutes.ts";
 import cors from "@fastify/cors";
-import usersRoutes from "../src/BackendScript/routes/userRoutes.ts";
+import usersRoutes from "./BackendScript/routes/users/userRoutes.ts";
 
 const fastify = Fastify({
   logger: true,

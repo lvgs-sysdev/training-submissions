@@ -1,8 +1,8 @@
 import DOMPurify from "dompurify";
 
-export const updateRegisterPage = async () => {
+export const updateLoginPage = async () => {
   const container = document.querySelector(".app");
-
+  console.log("updateLoginPage.tsどこで動いた？");
   if (!container) {
     console.error("HTMLエラー");
     throw new Error("");
@@ -14,30 +14,24 @@ export const updateRegisterPage = async () => {
         <p>トップページ</p>
       </button>
       <div>
-        <p>新規ユーザ登録</p>
+        <p>ログイン</p>
       </div>
-      <ul class="registerForm">
+      <ul class="loginForm">
         <li>
           <label>
             ユーザID
-            <input type="text" name="user_ID" value= "" required>
-          </label>
-        </li>
-        <li>
-          <label>
-            ユーザ名
-            <input type="text" name="user_name" value= "" required>
+            <input type="text" name="user_ID" value="" required />
           </label>
         </li>
         <li>
           <label>
             パスワード
-            <input type="text" name="password" value= "" required >
+            <input type="text" name="password" value="" required />
           </label>
         </li>
       </ul>
-      <button type="button" class="register_button">
-        <p>登録</p>
+      <button type="button" class="login_button">
+        <p>ログイン</p>
       </button>
     `;
     const cleanHTML = DOMPurify.sanitize(htmlTemplate);

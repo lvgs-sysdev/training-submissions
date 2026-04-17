@@ -17,3 +17,36 @@ export const coordinateSchema = {
     },
   },
 };
+
+export const registerSchema = {
+  body: {
+    type: "object",
+    required: ["user_ID", "user_name", "password"],
+    properties: {
+      user_ID: {
+        type: "string",
+      },
+      user_name: {
+        type: "string",
+      },
+      password: {
+        type: "string",
+      },
+    },
+  },
+};
+
+export const loginSchema = {
+  body: {
+    type: "object",
+    required: ["user_ID", "password"],
+    properties: {
+      user_ID: {
+        type: "string",
+      },
+      password: {
+        type: "string",
+      },
+    },
+  },
+};

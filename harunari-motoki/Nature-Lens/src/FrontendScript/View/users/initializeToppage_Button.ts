@@ -1,9 +1,11 @@
 import { router } from "../../EntryPoint.ts";
 
-export const initializeToppageButton = async () => {
+export const initializeToppage_Button = async () => {
   const toppage_button = document.querySelector(".toppage_button");
+
   if (!toppage_button) {
-    return;
+    console.error("何かがおかしい");
+    throw new Error("HTML Error");
   } else {
     toppage_button.addEventListener("click", async () => {
       try {

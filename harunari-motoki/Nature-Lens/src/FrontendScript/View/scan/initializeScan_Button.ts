@@ -1,7 +1,7 @@
-import { ClientSideControl } from "../../APIservice/scan/ClientSideControl.ts";
+import { ClientSideControl } from "../../Services/scan/ClientSideControl.ts";
 import { updateScanResultUI } from "../../Viewmodel/scan/updateScanResultUI.ts";
 
-export const initializeScanButton = () => {
+export const initializeScan_Button = () => {
   const scanButton = document.querySelector(".scan_button");
 
   if (!scanButton) {

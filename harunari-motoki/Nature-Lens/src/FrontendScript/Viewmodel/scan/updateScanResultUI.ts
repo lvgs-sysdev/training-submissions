@@ -1,4 +1,4 @@
-import { GBIFdetailInfo } from "@/sharedObject/typeDeffinition";
+import { GBIFdetailInfo } from "@/library/scan/typeDeffinition";
 
 export async function updateScanResultUI(
   count: number,

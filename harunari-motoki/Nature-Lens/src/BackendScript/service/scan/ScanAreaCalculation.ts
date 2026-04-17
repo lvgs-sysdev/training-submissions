@@ -1,4 +1,4 @@
-import { userGeolocationdata } from "../../sharedObject/typeDeffinition.ts";
+import { userGeolocationdata } from "../../../library/scan/typeDeffinition.ts";
 
 export async function ScanAreaCalculation({
   latitude,

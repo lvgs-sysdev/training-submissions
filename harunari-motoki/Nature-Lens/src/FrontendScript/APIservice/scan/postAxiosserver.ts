@@ -1,7 +1,7 @@
 import {
   userGeolocationdata,
   scanedData,
-} from "../../sharedObject/typeDeffinition.ts";
+} from "../../../library/scan/typeDeffinition.ts";
 import axios from "axios";
 
 export async function postAxiosserver(URL: string, data: userGeolocationdata) {
