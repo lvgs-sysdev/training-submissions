@@ -14,10 +14,11 @@ export default defineConfig({
   // },
   server: {
     port: 5173,
+    host: "0.0.0.0", // 💡 これを入れないとAWSの外部からアクセスできません！
     proxy: {
-      "/auth": "http://18.182.38.15:3000",
-      "/posts": "http://18.182.38.15:3000",
-      "/api": "http://18.182.38.15:3000",
+      "/auth": "http://backend:3000", // 💡 コンテナ名で指定する
+      "/posts": "http://backend:3000",
+      "/api": "http://backend:3000",
     },
     watch: {
       usePolling: true,
