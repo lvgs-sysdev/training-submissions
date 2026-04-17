@@ -14,15 +14,16 @@ export default defineConfig({
   // },
   server: {
     port: 5173,
-    host: "0.0.0.0", // 💡 これを入れないとAWSの外部からアクセスできません！
+    host: "0.0.0.0",
+    // 💡 ここを追加！これがないとドメイン経由のアクセスがブロックされます
+    allowedHosts: ["tailwag.training-submissions.sysdev.lvms.jp"],
     proxy: {
-      "/auth": "http://backend:3000", // 💡 コンテナ名で指定する
+      "/auth": "http://backend:3000",
       "/posts": "http://backend:3000",
       "/api": {
         target: "http://backend:3000",
         changeOrigin: true,
       },
-      // /uploads で始まる画像リクエストもバックエンドへ転送！ 💡
       "/uploads": {
         target: "http://backend:3000",
         changeOrigin: true,

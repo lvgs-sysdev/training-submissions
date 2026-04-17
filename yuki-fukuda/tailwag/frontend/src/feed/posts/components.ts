@@ -3,7 +3,6 @@ import { Post } from "./type";
 import { escapeHtml } from "../../utils/escape";
 import { setupInteractiveEvents } from "../timeline/timeline";
 
-// 💡 1. バックエンドのURLを定義
 const API_BASE_URL = "";
 
 /**
