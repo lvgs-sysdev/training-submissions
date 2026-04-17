@@ -4,7 +4,7 @@ import { escapeHtml } from "../../utils/escape";
 import { setupInteractiveEvents } from "../timeline/timeline";
 
 // 💡 1. バックエンドのURLを定義
-const API_BASE_URL = "http://18.182.38.15:3000";
+const API_BASE_URL = "";
 
 /**
  * 画像スライダーのHTMLを生成

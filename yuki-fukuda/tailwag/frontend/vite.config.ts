@@ -18,7 +18,15 @@ export default defineConfig({
     proxy: {
       "/auth": "http://backend:3000", // 💡 コンテナ名で指定する
       "/posts": "http://backend:3000",
-      "/api": "http://backend:3000",
+      "/api": {
+        target: "http://backend:3000",
+        changeOrigin: true,
+      },
+      // /uploads で始まる画像リクエストもバックエンドへ転送！ 💡
+      "/uploads": {
+        target: "http://backend:3000",
+        changeOrigin: true,
+      },
     },
     watch: {
       usePolling: true,
