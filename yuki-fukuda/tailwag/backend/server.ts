@@ -38,17 +38,17 @@ await fastify.register(cors, {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// publicフォルダを静的ファイルとして公開
-fastify.register(fastifyStatic, {
-  root: path.join(__dirname, "../frontend/public"), // server.tsから見たpublicの場所
-  prefix: "/", // http://localhost:3000/ でアクセスできるようにする
-});
+// // publicフォルダを静的ファイルとして公開
+// fastify.register(fastifyStatic, {
+//   root: path.join(__dirname, "../frontend/public"), // server.tsから見たpublicの場所
+//   prefix: "/", // http://localhost:3000/ でアクセスできるようにする
+// });
 
 // アップロードされた画像を /uploads/xxxx で公開する設定
 fastify.register(fastifyStatic, {
-  root: path.join(process.cwd(), "uploads"), // 画像が実際に保存されているフォルダ
-  prefix: "/uploads/", // ブラウザで叩くURLの頭
-  decorateReply: false, // staticを複数使う場合に必要
+  root: "/app/uploads",
+  prefix: "/uploads/",
+  decorateReply: false,
 });
 
 // JWTの設定
