@@ -1,8 +1,8 @@
 // frontend/src/feed/posts/post.ts
-import { PostApi } from "../../utils/api.js";
-import { selectedBreeds } from "../timeline/breedSearch.js";
-import { refreshTimeline } from "../timeline/timeline.js";
-import { PostView } from "./postView.js";
+import { PostApi } from "../../utils/api";
+import { selectedBreeds } from "../timeline/breedSearch";
+import { refreshTimeline } from "../timeline/timeline";
+import { PostView } from "./postView";
 
 export const setupPostForm = () => {
   const { form, contentInput, fileInput, previewContainer } =

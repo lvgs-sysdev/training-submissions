@@ -1,11 +1,11 @@
-import { setupPostForm } from "../posts/post.js";
-import { PostApi } from "../../utils/api.js";
-import { Post } from "../posts/type.js";
-import * as UI from "./timelineUI.js";
-import { initNavigation } from "./navigation.js";
-import { initBreedSearch } from "./breedSearch.js";
-import { createPostCardHtml } from "../posts/components.js";
-import { renderPostList } from "../posts/components.js";
+import { setupPostForm } from "../posts/post";
+import { PostApi } from "../../utils/api";
+import { Post } from "../posts/type";
+import * as UI from "./timelineUI";
+import { initNavigation } from "./navigation";
+import { initBreedSearch } from "./breedSearch";
+import { createPostCardHtml } from "../posts/components";
+import { renderPostList } from "../posts/components";
 
 /**
  * タイムラインの全体初期化

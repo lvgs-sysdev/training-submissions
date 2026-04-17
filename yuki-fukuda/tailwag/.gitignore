@@ -2,5 +2,8 @@ node_modules/
 .env
 .DS_Store
 dist/
-public/uploads/*
-!public/uploads/.gitkeep
+frontend/public/uploads/*
+!frontend/public/uploads/.gitkeep
+dist
+docker/mysql/data/*
+!docker/mysql/data/.gitkeep

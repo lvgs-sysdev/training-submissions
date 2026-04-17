@@ -82,9 +82,11 @@ export const updateProfileHandler = async (
       console.log("📸 画像を検出しました:", filePart.filename);
 
       const fileName = `profile-${userId}-${Date.now()}.webp`;
-      const uploadDir = path.join(process.cwd(), "public", "uploads");
+      // コンテナ内のマウント先パス
+      const uploadDir = "/app/uploads";
       const uploadPath = path.join(uploadDir, fileName);
 
+      // ディレクトリが存在しない場合は作成
       if (!fs.existsSync(uploadDir)) {
         fs.mkdirSync(uploadDir, { recursive: true });
       }

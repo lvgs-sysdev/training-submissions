@@ -1,9 +1,9 @@
 // frontend/src/mypage/mypage.ts
-import { PostApi } from "../utils/api.js";
-import { initNavigation } from "../feed/timeline/navigation.js";
-import { Post } from "../feed/posts/type.js";
-import { MypageView } from "./mypageView.js";
-import { renderPostList } from "../feed/posts/components.js";
+import { PostApi } from "../utils/api";
+import { initNavigation } from "../feed/timeline/navigation";
+import { Post } from "../feed/posts/type";
+import { MypageView } from "./mypageView";
+import { renderPostList } from "../feed/posts/components";
 
 export const initMypage = async (userId?: number) => {
   const mainContainer = document.querySelector(".app-container") as HTMLElement;

@@ -1,5 +1,5 @@
-import { Post } from "../posts/type.js";
-import { createPostCardHtml, updateImageCounter } from "../posts/components.js";
+import { Post } from "../posts/type";
+import { createPostCardHtml, updateImageCounter } from "../posts/components";
 
 /**
  * タイムラインのメイン表示

@@ -25,7 +25,10 @@ const fastify = Fastify({
 });
 
 await fastify.register(cors, {
-  origin: process.env.FRONTEND_URL || "http://localhost:3000",
+  origin: [
+    "http://localhost:5173", // Vite（これが必要！）
+    "http://localhost:3000",
+  ],
   methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
 });
@@ -35,7 +38,7 @@ const __dirname = path.dirname(__filename);
 
 // publicフォルダを静的ファイルとして公開
 fastify.register(fastifyStatic, {
-  root: path.join(__dirname, "../public"), // server.tsから見たpublicの場所
+  root: path.join(__dirname, "../frontend/public"), // server.tsから見たpublicの場所
   prefix: "/", // http://localhost:3000/ でアクセスできるようにする
 });
 

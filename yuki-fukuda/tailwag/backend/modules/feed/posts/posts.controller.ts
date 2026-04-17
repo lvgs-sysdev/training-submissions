@@ -35,13 +35,9 @@ export const createPost = async (
     // 3. 一時保存されたファイルをループして Sharp で加工・保存
     for (const file of files) {
       const fileName = `post-${Date.now()}-${Math.floor(Math.random() * 1000)}.webp`;
-      const uploadPath = path.resolve(
-        __dirname,
-        "../../../../public/uploads",
-        fileName,
-      );
+      const uploadPath = path.join("/app/uploads", fileName);
 
-      await sharp(file.filepath) // 一時ファイルのパス
+      await sharp(file.filepath)
         .resize(1200, 1200, { fit: "inside", withoutEnlargement: true })
         .webp({ quality: 80 })
         .toFile(uploadPath);

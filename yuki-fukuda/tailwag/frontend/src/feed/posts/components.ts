@@ -1,7 +1,7 @@
 // 💡 先ほど作成した type.ts からインポート
-import { Post } from "./type.js";
-import { escapeHtml } from "../../utils/escape.js";
-import { setupInteractiveEvents } from "../timeline/timeline.js";
+import { Post } from "./type";
+import { escapeHtml } from "../../utils/escape";
+import { setupInteractiveEvents } from "../timeline/timeline";
 
 /**
  * 画像スライダーのHTMLを生成

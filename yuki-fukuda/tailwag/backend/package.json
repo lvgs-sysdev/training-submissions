@@ -1,9 +1,11 @@
 {
-  "name": "tailwag",
+  "name": "tailwag-backend",
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch backend/server.ts"
+    "dev": "tsx watch server.ts",
+    "start": "node dist/server.js",
+    "build": "tsc"
   },
   "dependencies": {
     "@fastify/cors": "^11.2.0",
@@ -21,7 +23,6 @@
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
     "@types/node": "^25.5.0",
-    "ts-node": "^10.9.2",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }

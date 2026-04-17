@@ -1,4 +1,4 @@
-import { refreshTimeline } from "./timeline.js";
+import { refreshTimeline } from "./timeline";
 
 export const initNavigation = () => {
   // 1. ログアウト

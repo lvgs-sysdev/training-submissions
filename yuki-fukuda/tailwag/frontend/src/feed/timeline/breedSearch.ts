@@ -1,5 +1,5 @@
-import { PostApi } from "../../utils/api.js";
-import { Breed } from "../posts/type.js";
+import { PostApi } from "../../utils/api";
+import { Breed } from "../posts/type";
 
 let allBreeds: Breed[] = [];
 export let selectedBreeds: Breed[] = [];

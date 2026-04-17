@@ -1,4 +1,4 @@
-import { clearSelectedBreeds } from "../timeline/breedSearch.js";
+import { clearSelectedBreeds } from "../timeline/breedSearch";
 
 export const PostView = {
   // HTML要素の取得をまとめる
