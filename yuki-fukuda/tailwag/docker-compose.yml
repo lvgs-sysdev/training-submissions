@@ -27,7 +27,7 @@ services:
     volumes:
       - ./backend:/app
       - /app/node_modules
-      - shared-uploads:/frontend/public/uploads
+      - shared-uploads:/app/uploads
     command: npm run dev
 
   # フロントエンド

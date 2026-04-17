@@ -44,6 +44,13 @@ fastify.register(fastifyStatic, {
   prefix: "/", // http://localhost:3000/ でアクセスできるようにする
 });
 
+// アップロードされた画像を /uploads/xxxx で公開する設定
+fastify.register(fastifyStatic, {
+  root: path.join(process.cwd(), "uploads"), // 画像が実際に保存されているフォルダ
+  prefix: "/uploads/", // ブラウザで叩くURLの頭
+  decorateReply: false, // staticを複数使う場合に必要
+});
+
 // JWTの設定
 const jwtSecret = process.env.JWT_SECRET;
 
