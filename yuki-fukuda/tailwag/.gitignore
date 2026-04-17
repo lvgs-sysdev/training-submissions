@@ -7,3 +7,5 @@ frontend/public/uploads/*
 dist
 docker/mysql/data/*
 !docker/mysql/data/.gitkeep
+.vscode/
+harunari-motoki/
