@@ -7,8 +7,13 @@ import { loginSQL } from "../../models/users/userSQL.ts";
 import { DBAccess } from "../../models/users/DBAccess.ts";
 import { transformData } from "../../service/users/transformData.ts";
 import { verifyPassword } from "../..//service/users/verifyPassword.ts";
+import { generateTokens } from "../../service/users/generateTokens.ts";
+import { FastifyReply, FastifyRequest } from "fastify";
 
-export const postLogin = async function (request, reply) {
+export const postLogin = async function (
+  request: FastifyRequest,
+  reply: FastifyReply,
+) {
   const rawdata = request.body as userInfo;
   console.log("クライアントから受け取ったデータの中身", rawdata);
 
@@ -20,17 +25,35 @@ export const postLogin = async function (request, reply) {
     console.log("postLogin user_IDは", user_ID);
     const password = arrayData[1];
     console.log("postLogin passwordは", password);
-    const db_hash = await DBAccess(usersPool, loginSQL, user_ID); //user_idのみをつかいたい
-    console.log("postLogin password_hashは", db_hash);
-    const isMatch = await verifyPassword(db_hash, password);
+    const { user_id, user_name, password_hash } = await DBAccess(
+      usersPool,
+      loginSQL,
+      user_ID,
+    ); //user_idのみをつかいuser_nameとpasswordを取得
+    console.log("postLogin password_hashは", password_hash);
+    const isMatch = await verifyPassword(password_hash, password);
 
     if (isMatch) {
       //JWTトークンの発行 処理----------
-
-      //-----------------------------
+      //Accessトークンの生成
+      const { accessToken, refreshToken } = await generateTokens(
+        request.server,
+        user_id,
+        user_name,
+      );
+      //RefreshTokenをCookieにセット
+      reply.setCookie("refreshToken", refreshToken, {
+        path: "/",
+        httpOnly: true,
+        secure: false, //本番環境ではtrue
+        sameSite: "lax",
+        maxAge: 1 * 24 * 60 * 60,
+      });
       const result: accessStatus = {
         status: "success",
+        token: { accessToken },
       };
+      console.log("クライアントに送信する");
       return result;
     } else {
       const result: accessStatus = {
@@ -40,7 +63,7 @@ export const postLogin = async function (request, reply) {
       return result;
     }
   } catch (error: any) {
-    console.error("ログイン処理内でエラー発生", error);
+    console.error("エラー発生", error);
     throw error;
   }
 };

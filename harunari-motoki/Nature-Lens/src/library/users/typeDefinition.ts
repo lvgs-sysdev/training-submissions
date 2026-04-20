@@ -6,9 +6,11 @@ export type userInfo = {
 
 type accessSuccess = {
   status: "success";
+  token?: any;
 };
 type accessFailure = {
   status: "failure";
+  message?: string;
 };
 
 export type accessStatus = accessSuccess | accessFailure;

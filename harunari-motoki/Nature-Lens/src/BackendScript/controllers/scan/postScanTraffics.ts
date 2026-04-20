@@ -2,12 +2,15 @@ import { ScanAreaCalculation } from "../../service/scan/ScanAreaCalculation.ts";
 import { getAccessGBIF } from "../../models/scan/getAccessGBIF.ts";
 import { modifyGBIFData } from "../../service/scan/modifyAPIData.ts";
 import { scanedData } from "../../../library/scan/typeDeffinition.ts";
+import { FastifyReply, FastifyRequest } from "fastify";
+import { userGeolocationdata } from "../../../library/scan/typeDeffinition.ts";
 
-export const postScanpTraffics = async function (
-  request,
-  reply,
+export const postScanTraffics = async function (
+  request: FastifyRequest,
+  reply: FastifyReply,
 ): Promise<scanedData> {
-  const { latitude, longitude } = request.body;
+  const body = request.body as userGeolocationdata;
+  const { latitude, longitude } = body;
   console.log("クライアントからのデータ受け取り完了");
   try {
     const polygonData = await ScanAreaCalculation({ latitude, longitude });

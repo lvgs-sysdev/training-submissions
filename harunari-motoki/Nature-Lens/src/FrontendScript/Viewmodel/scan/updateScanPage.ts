@@ -2,7 +2,6 @@ import DOMPurify from "dompurify";
 
 export const updateScanPage = async () => {
   const container = document.querySelector(".app");
-  console.log("updateScanPage.tsどこで動いた？");
   if (!container) {
     console.error("HTMLエラー");
     throw new Error("");

@@ -1,24 +1,41 @@
 import * as dotenv from "dotenv";
 dotenv.config();
-import Fastify from "fastify";
-import scanRoutes from "./BackendScript/routes/scan/scanRoutes.ts";
-import cors from "@fastify/cors";
+import { protectedScanRoutes } from "./BackendScript/routes/scan/protectedScanRoutes.ts";
 import usersRoutes from "./BackendScript/routes/users/userRoutes.ts";
+import { protectedUserRoutes } from "./BackendScript/routes/users/protectedUserRoutes.ts";
+import Fastify from "fastify";
+import fastifyJwt from "@fastify/jwt";
+import cors from "@fastify/cors";
+import fastifyCookie from "@fastify/cookie";
 
-const fastify = Fastify({
+const app = Fastify({
   logger: true,
 });
 
-fastify.register(scanRoutes);
-fastify.register(usersRoutes);
+app.register(protectedUserRoutes);
+app.register(protectedScanRoutes);
+app.register(usersRoutes);
 
-await fastify.register(cors, {
+await app.register(cors, {
   origin: "http://localhost:5173",
 });
 
-fastify.listen({ port: 3000 }, function (err, address) {
+//Cookieの設定（リフレッシュトークン用）
+app.register(fastifyCookie, {
+  secret: process.env.JWT_REFRESH_SECRET,
+});
+//JWTの設定（アクセストークン用）
+const jwtsecret = process.env.JWT_ACCESS_SECRET;
+if (!jwtsecret) {
+  throw new Error("環境変数JWT_SECRETが設定されていません");
+}
+app.register(fastifyJwt, {
+  secret: jwtsecret,
+});
+
+app.listen({ port: 3000 }, function (err, address) {
   if (err) {
-    fastify.log.error(err);
+    app.log.error(err);
     process.exit(1);
   }
 });

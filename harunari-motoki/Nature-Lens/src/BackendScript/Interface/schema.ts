@@ -25,17 +25,25 @@ export const registerSchema = {
     properties: {
       user_ID: {
         type: "string",
+        minLength: 10,
+        maxLength: 30,
+        pattern: "^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9!@#$%^&*]{10,30}$",
       },
       user_name: {
         type: "string",
+        minLength: 5,
+        maxLength: 20,
+        pattern: "^[A-Za-z].{5,20}$",
       },
       password: {
         type: "string",
+        minLength: 10,
+        maxLength: 30,
+        pattern: "^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9!@#$%^&*]{10,30}$",
       },
     },
   },
 };
-
 export const loginSchema = {
   body: {
     type: "object",
@@ -43,9 +51,16 @@ export const loginSchema = {
     properties: {
       user_ID: {
         type: "string",
+        minLength: 10,
+        maxLength: 30,
+        pattern: "^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9!@#$%^&*]{10,30}$",
       },
+
       password: {
         type: "string",
+        minLength: 10,
+        maxLength: 30,
+        pattern: "^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9!@#$%^&*]{10,30}$",
       },
     },
   },

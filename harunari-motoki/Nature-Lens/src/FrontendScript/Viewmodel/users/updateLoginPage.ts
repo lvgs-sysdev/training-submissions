@@ -1,7 +1,7 @@
 import DOMPurify from "dompurify";
 
 export const updateLoginPage = async () => {
-  const container = document.querySelector(".app");
+  const container = document.querySelector(".app") as HTMLElement;
   console.log("updateLoginPage.tsどこで動いた？");
   if (!container) {
     console.error("HTMLエラー");
@@ -20,14 +20,32 @@ export const updateLoginPage = async () => {
         <li>
           <label>
             ユーザID
-            <input type="text" name="user_ID" value="" required />
+            <input
+             type="text" 
+             pattern="^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9!@#$%^&*]{10,30}$"
+             title="英字と数字をそれぞれ1文字以上含む10〜30文字で入力してください" 
+             name="user_ID" 
+             value= "" 
+             required>
           </label>
+          <p>大小英字数字と記号（10~30文字）</p>
+          <p>使える記号 !@#$%^&*</p>
+          <p>少なくとも英字と数字を一文字ずつ含む</p><br>
         </li>
         <li>
           <label>
             パスワード
-            <input type="text" name="password" value="" required />
+            <input 
+            type="password"
+            pattern="^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9!@#$%^&*]{10,30}$"
+            title="英字と数字をそれぞれ1文字以上含む10〜30文字で入力してください" 
+            name="password" 
+            value= "" 
+            required >
           </label>
+          <p>大小英字数字と記号（10~30文字）</p>
+          <p>使える記号 !@#$%^&*</p>
+          <p>少なくとも英字と数字を一文字ずつ含む</p><br>
         </li>
       </ul>
       <button type="button" class="login_button">

@@ -4,7 +4,7 @@ export const DBAccess = async (pool: Pool, SQL: string, values: any) => {
   try {
     const res = await pool.query(SQL, values);
     console.log("Saved Data", res.rows[0]);
-    const queryResult = res.rows[0].password_hash;
+    const queryResult = res.rows[0];
     return queryResult;
   } catch (error: any) {
     console.error("DataBase Error Detail", {
