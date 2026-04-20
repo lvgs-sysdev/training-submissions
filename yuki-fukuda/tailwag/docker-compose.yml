@@ -43,5 +43,19 @@ services:
       - shared-uploads:/app/public/uploads
     command: npm run dev
 
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80" # HTTP用
+      - "443:443" # HTTPS用
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d # 設定ファイル用
+      - ./certbot/conf:/etc/letsencrypt # SSL証明書用
+      - ./certbot/www:/var/www/certbot # 証明書更新用
+    depends_on:
+      - frontend
+      - backend
+
 volumes:
   shared-uploads:

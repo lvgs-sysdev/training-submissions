@@ -25,12 +25,13 @@ export const createPostWithImages = async (
       );
     }
 
-    const values = imageUrls.map((url, i) => [postId, url, i + 1]);
-
-    await connection.query(
-      "INSERT INTO post_images (post_id, image_url, display_order) VALUES ?",
-      [values],
-    );
+    if (imageUrls && imageUrls.length > 0) {
+      const values = imageUrls.map((url, i) => [postId, url, i + 1]);
+      await connection.query(
+        "INSERT INTO post_images (post_id, image_url, display_order) VALUES ?",
+        [values],
+      );
+    }
 
     await connection.commit();
     return postId;

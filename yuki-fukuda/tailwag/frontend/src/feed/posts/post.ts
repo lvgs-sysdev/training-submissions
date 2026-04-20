@@ -25,8 +25,13 @@ export const setupPostForm = () => {
     // 1. データのバリデーション
     const content = contentInput.value.trim();
     const files = fileInput.files;
-    if (!content && (!files || files.length === 0)) {
-      return alert("内容または画像を入力してね");
+    // 画像が1枚も選ばれていない場合はここで即座に終了
+    if (!files || files.length === 0) {
+      return alert("画像を1枚以上選択してね🐾");
+    }
+
+    if (!content) {
+      return alert("内容を入力してね");
     }
 
     // 2. 送信用データの準備

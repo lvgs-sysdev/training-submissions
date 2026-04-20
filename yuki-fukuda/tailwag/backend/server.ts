@@ -28,7 +28,6 @@ await fastify.register(cors, {
   origin: [
     "http://localhost:5173", // Vite（これが必要！）
     "http://localhost:3000",
-    "http://18.182.38.15:5173",
     process.env.FRONTEND_URL || "",
   ],
   methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],

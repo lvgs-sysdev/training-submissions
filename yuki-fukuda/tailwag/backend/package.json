@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "tsx watch server.ts",
     "start": "node dist/server.js",
-    "build": "tsc"
+    "build": "tsc",
+    "test": "vitest"
   },
   "dependencies": {
     "@fastify/cors": "^11.2.0",
@@ -24,6 +25,7 @@
     "@types/bcrypt": "^6.0.0",
     "@types/node": "^25.5.0",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.4"
   }
 }
