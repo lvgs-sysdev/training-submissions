@@ -15,10 +15,3 @@ export const DBAccess = async (pool: Pool, SQL: string, values: any) => {
     throw error;
   }
 };
-
-// // //テストコード
-// import { usersPool } from "./DB";
-// import { loginSQL } from "./userSQL";
-// const testrows = ["user_id2"];
-
-// DBAccess(usersPool, loginSQL, testrows);

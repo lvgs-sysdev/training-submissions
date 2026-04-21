@@ -16,5 +16,3 @@ export const postSilentRefresh = async () => {
     console.log("Refresh Login Status Failure");
   }
 };
-
-//なぜかアクセストークンすら発行できなくなった

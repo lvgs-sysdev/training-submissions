@@ -21,7 +21,7 @@ export async function ScanAreaCalculation({
     let point: coordinate = { lng: lng, lat: lat };
     ScanArea.push(point);
   }
-  ScanArea.push(ScanArea[0]); //最後に最初の一点を追加
+  ScanArea.push(ScanArea[0]);
 
   const vertexes = ScanArea.map((n) => `${n.lng} ${n.lat}`);
   const wktString = `POLYGON((${vertexes.join(",")}))`;

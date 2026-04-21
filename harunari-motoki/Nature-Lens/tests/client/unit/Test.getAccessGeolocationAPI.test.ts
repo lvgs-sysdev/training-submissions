@@ -1,9 +1,10 @@
 // 実施する際はGeolocationPositionError.をコメントアウトして数字を代入
 // GeolocationAPIに接続していないのでErrorの方が使えない
-// 本番では数字ではなくエラーオブジェクトを使うことでどのような処理かわかるようにしておきたい
+// server.jsの階層で  以下のコードを実行
+// npx vitest --root . tests/client/unit/Test.getAccessGeolocationAPI.test.ts
 
 import { vi, describe, it, expect } from "vitest";
-import { getAccessGeolocationAPI } from "../../../src/FrontendScript/APIservice/getAccessGeolocationAPI.ts";
+import { getAccessGeolocationAPI } from "../../../src/FrontendScript/APIservice/scan/getAccessGeolocationAPI.ts";
 
 describe("getAccessGeolocationAPI", () => {
   it("GPS取得に成功したとき、正しいデータを返すこと", async () => {

@@ -1,6 +1,9 @@
+// server.jsの階層で  以下のコードを実行
+// npx vitest --root . tests/client/Test.postAxiozzerver.test.ts
+
 import { vi, describe, it, expect } from "vitest";
-import { postAxiosserver } from "../../../src/FrontendScript/APIservice/postAxiosserver.ts";
-import { userGeolocationdata } from "../../../src/sharedObject/typeDeffinition.ts";
+import { postAxiosserver } from "../../../src/FrontendScript/APIservice/scan/postAxiosserver.ts";
+import { userGeolocationdata } from "../../../src/library/scan/typeDeffinition.ts";
 import axios from "axios";
 vi.mock("axios");
 

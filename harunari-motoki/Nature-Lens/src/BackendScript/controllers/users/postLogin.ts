@@ -18,8 +18,7 @@ export const postLogin = async function (
   console.log("クライアントから受け取ったデータの中身", rawdata);
 
   try {
-    //DBからhash_passwordのみを取得　user_idを使う
-    const arrayData = await transformData(rawdata); //オブジェクトを配列に変換
+    const arrayData = await transformData(rawdata);
     console.log("postLogin arrayData", arrayData);
     const user_ID = [arrayData[0]];
     console.log("postLogin user_IDは", user_ID);
@@ -29,19 +28,16 @@ export const postLogin = async function (
       usersPool,
       loginSQL,
       user_ID,
-    ); //user_idのみをつかいuser_nameとpasswordを取得
+    );
     console.log("postLogin password_hashは", password_hash);
     const isMatch = await verifyPassword(password_hash, password);
 
     if (isMatch) {
-      //JWTトークンの発行 処理----------
-      //Accessトークンの生成
       const { accessToken, refreshToken } = await generateTokens(
         request.server,
         user_id,
         user_name,
       );
-      //RefreshTokenをCookieにセット
       reply.setCookie("refreshToken", refreshToken, {
         path: "/",
         httpOnly: true,

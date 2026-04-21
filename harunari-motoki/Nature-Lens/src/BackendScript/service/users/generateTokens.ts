@@ -1,7 +1,6 @@
 import { FastifyInstance } from "fastify";
 import "@fastify/jwt";
 
-// 型定義の拡張
 declare module "fastify" {
   interface FastifyInstance {
     jwt: import("@fastify/jwt").JWT;

@@ -17,51 +17,49 @@ import { GBIFdetailInfo } from "@/library/scan/typeDeffinition.ts";
 export const router = async () => {
   try {
     console.log("EnrtyPoint.ts　もしかしてスキャン下後もう一回読み込んでる？");
-    await postSilentRefresh(); //routing前にトークン情報を更新
+    await postSilentRefresh();
     const path = window.location.pathname;
     const isFirstVisit = !sessionStorage.getItem("hasVisited");
 
     if (path === "/register") {
       await updateRegisterPage();
-      initializeToppage_Button(); //topページ遷移
-      initializeRegister_Button(); //新規登録
+      initializeToppage_Button();
+      initializeRegister_Button();
     } else if (path === "/login") {
-      await updateLoginPage(); //ログインページ表示
-      initializeToppage_Button(); //トップページ移動
-      initializeLogin_Button(); //ログイン
+      await updateLoginPage();
+      initializeToppage_Button();
+      initializeLogin_Button();
     } else if (path === "/scan") {
-      await updateScanPage(); //スキャンページ表示
+      await updateScanPage();
       initializeScan_Button();
-      initializeLogout_Button(); //ログアウト
+      initializeLogout_Button();
     } else if (path === "/scanResult") {
       const state =
         (history.state as { count: number; results: GBIFdetailInfo[] }) || null;
       if (state && state.results) {
         console.log("リロード後の中身", state.count);
         console.log("リロード後の中身", state.results);
-        await updateScanResult(state.count, state.results); //スキャンページ表示
+        await updateScanResult(state.count, state.results);
       } else {
         history.replaceState(null, "", "/scan");
-        router(); // 再度自分を呼び出して /scan の処理をさせる
+        router();
       }
       initializeScan_Button();
-      initializeLogout_Button(); //ログアウト
+      initializeLogout_Button();
     } else if (path === "/" && isFirstVisit) {
-      await viewIndex(); //topページ表示
+      await viewIndex();
       sessionStorage.setItem("hasVisited", "true");
-      initializeRegisterPage_Button(); //新規登録ページ遷移
-      initializeLoginPage_Button(); //ログインページ遷移
+      initializeRegisterPage_Button();
+      initializeLoginPage_Button();
     } else if (path === "/") {
-      await updateTopPage(); //topページ表示
-      initializeRegisterPage_Button(); //新規登録ページ遷移
-      initializeLoginPage_Button(); //ログイページ遷移
+      await updateTopPage();
+      initializeRegisterPage_Button();
+      initializeLoginPage_Button();
     }
   } catch (error) {
     console.error("Router Error:", error);
-    //エラーが出たことを示す画面への誘導をする
   }
 };
-// initializeScanButton(); //scanボタン関数
 window.addEventListener("popstate", router);
 
 try {

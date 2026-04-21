@@ -8,7 +8,6 @@ export const viewIndex = async () => {
   } else {
     try {
       window.history.pushState({}, "", "/");
-      //新規登録画面に書き換え
       await updateTopPage();
     } catch (error) {
       throw new Error("Page Refresh error");

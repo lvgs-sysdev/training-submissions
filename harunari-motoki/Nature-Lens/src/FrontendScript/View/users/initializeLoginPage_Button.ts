@@ -12,7 +12,6 @@ export const initializeLoginPage_Button = async () => {
     try {
       console.log("initializeloginPage_Button　パス書き換え前");
       window.history.pushState({ page: "login" }, "", "/login");
-      //新規登録画面に書き換え
       console.log("initializeloginPage_Button　ログインページに書き換え前");
       router();
     } catch (error) {

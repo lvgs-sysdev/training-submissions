@@ -3,14 +3,12 @@ import { router } from "../../EntryPoint.ts";
 import { loginTrafficControll } from "../../Services/users/loginTrafficControll.ts";
 
 export const initializeLogin_Button = async () => {
-  //クリックイベントを検知
   const login_Button = document.querySelector(".login_button");
 
   if (!login_Button) {
     console.error("no such a button.");
     throw new Error("no such a button.");
   } else {
-    //データを取得
     console.log("initializelogin_Button 登録ボタンクリックイベント検知前");
     login_Button.addEventListener("click", async () => {
       try {

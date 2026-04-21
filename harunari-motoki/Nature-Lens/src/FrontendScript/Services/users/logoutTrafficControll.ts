@@ -3,7 +3,6 @@ import { authService } from "../../Services/users/authService.ts";
 import { accessStatus } from "../../../library/users/typeDefinition.ts";
 
 export const logoutTrafficControll = async () => {
-  //リフレッシュトークンの削除
   const token = authService.getAccessToken();
   console.log("メモリから入手したアクセストークン", token);
   if (!token) {
@@ -23,7 +22,6 @@ export const logoutTrafficControll = async () => {
     const deleteResult = response.data.status;
     console.log("アクセストークンの削除処理結果", deleteResult);
 
-    //アクセストークンの削除    //アクセストークンの削除
     const refDeleteCheck = authService.clearAccessToken();
     console.log("リフレッシュトークンの削除処理結果", refDeleteCheck);
 

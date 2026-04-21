@@ -6,7 +6,6 @@ import {
 import axios from "axios";
 
 export async function postAxiosserver(URL: string, data: userGeolocationdata) {
-  //メモリ（authService）からアクセストークンを取得
   const token = authService.getAccessToken();
   console.log("tokenが入手できていない可能性", token);
   if (!token) {

@@ -7,8 +7,12 @@ export const updateTopPage = async () => {
   } else {
     container.innerHTML = ``;
     const htmlTemplate = `
-      <button type="button" class="registerPage_button">新規登録</button><br />
-      <button type="button" class="loginPage_button">ログイン</button>
+      <h1 class="app-name">ようこそ<br />Nature-Lensへ</h1>
+      <h2 class="app-caption">
+        あなたの周りで過去に観察された生物を<br />スキャンしましょう
+      </h2>
+      <button type="button" class="button-common registerPage_button">新規登録</button>
+      <button type="button" class="button-common loginPage_button">ログイン</button>
     `;
     const cleanHTML = DOMPurify.sanitize(htmlTemplate);
     container.innerHTML = cleanHTML;

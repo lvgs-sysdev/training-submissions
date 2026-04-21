@@ -21,7 +21,6 @@ export async function getAccessGBIF(
     console.log(response.data);
     return response.data;
   } catch (error: any) {
-    //設計思想:ユーザが知る必要がないエラー内容なのでthrowで処理
     if (error.code === "ECONNABORTED") {
       console.error("タイムアウトしました。GBIF APIから応答がありません");
       throw new Error("通信がタイムアウトしました。");

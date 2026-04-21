@@ -2,14 +2,12 @@ import { router } from "../../EntryPoint.ts";
 import { registerTrafficControll } from "../../Services/users/registerTrafficControll.ts";
 
 export const initializeRegister_Button = async () => {
-  //クリックイベントを検知
   const Register_Button = document.querySelector(".register_button");
 
   if (!Register_Button) {
     console.error("no such a button.");
     throw new Error("no such a button.");
   } else {
-    //データを取得
     console.log("initializeRegister_Button 登録ボタンクリックイベント検知前");
     Register_Button.addEventListener("click", async () => {
       try {

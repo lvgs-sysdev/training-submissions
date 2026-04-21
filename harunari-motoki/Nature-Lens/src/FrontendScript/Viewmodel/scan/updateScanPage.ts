@@ -6,7 +6,6 @@ export const updateScanPage = async () => {
     console.error("HTMLエラー");
     throw new Error("");
   } else {
-    //画面初期化
     container.innerHTML = ``;
     const htmlTemplate = `
     <button type="button" class="scan_button">

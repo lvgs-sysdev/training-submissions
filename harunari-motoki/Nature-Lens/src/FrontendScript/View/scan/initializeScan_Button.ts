@@ -11,11 +11,10 @@ export const initializeScan_Button = () => {
 
   scanButton.addEventListener("click", async () => {
     try {
-      await postSilentRefresh(); //scan前にトークン情報を更新
+      await postSilentRefresh();
       const response = await ClientSideControl();
 
       if (response.status === "success") {
-        // 分離した表示関数を呼び出す
         const { count } = response.data;
         const { results } = response.data;
         history.pushState(

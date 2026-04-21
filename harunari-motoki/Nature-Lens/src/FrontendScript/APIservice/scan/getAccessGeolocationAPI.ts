@@ -21,8 +21,8 @@ export async function getAccessGeolocationAPI() {
   }
   const options = {
     enableHighAccuracy: true,
-    timeout: 10000, //単位ms
-    maxiumAge: 0, //キャッシュされた位置情報は使わない
+    timeout: 10000,
+    maxiumAge: 0,
   };
   console.log("GeolocationAPIのtry-catch前");
 
@@ -36,7 +36,6 @@ export async function getAccessGeolocationAPI() {
     return returnItems;
   } catch (error: unknown) {
     if (error && typeof error === "object" && "code" in error) {
-      // TypeScriptに「errorはcodeを持つオブジェクトだ」と確信させるための型アサーション
       const errorCode = (error as { code: number }).code;
       let returnItems: GeolocationAPIResponse = {
         status: "failure",
@@ -77,5 +76,3 @@ export async function getAccessGeolocationAPI() {
     }
   }
 }
-
-//testはブラウザのコンソール上で実行する

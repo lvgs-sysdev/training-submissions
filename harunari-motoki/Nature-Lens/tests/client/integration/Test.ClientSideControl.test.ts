@@ -1,7 +1,10 @@
+// server.jsの階層で  以下のコードを実行
+// npx vitest --root . tests/client/Test.ClientSideControl.test.ts
+
 import { vi, describe, it, expect, beforeEach } from "vitest";
-import { ClientSideControl } from "../../../src/FrontendScript/APIservice/ClientSideControl.ts";
-import { getAccessGeolocationAPI } from "../../../src/FrontendScript/APIservice/getAccessGeolocationAPI.ts";
-import { postAxiosserver } from "../../../src/FrontendScript/APIservice/postAxiosserver.ts";
+import { ClientSideControl } from "../../../src/FrontendScript/Services/scan/ClientSideControl.ts";
+import { getAccessGeolocationAPI } from "../../../src/FrontendScript/APIservice/scan/getAccessGeolocationAPI.ts";
+import { postAxiosserver } from "../../../src/FrontendScript/APIservice/scan/postAxiosserver.ts";
 
 // 1. 依存している外部関数をモック化（スタントマンにする）
 vi.mock("../../../src/FrontendScript/APIservice/getAccessGeolocationAPI.ts");

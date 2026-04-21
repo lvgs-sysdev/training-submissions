@@ -11,7 +11,6 @@ export const initializeLogout_Button = async () => {
     console.log("ログアウトボタン検知前");
     logout_Button.addEventListener("click", async () => {
       try {
-        //リフレッシュトークンとアクセストークンの削除
         const response = await logoutTrafficControll();
         console.log(
           "リフレッシュトークンとアクセストークンの削除結果",

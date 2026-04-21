@@ -10,19 +10,3 @@ export const transformData = async (data: userInfo) => {
   console.log(arrayData);
   return arrayData;
 };
-
-// //テスト
-// const data: userInfo = {
-//   user_ID: "q",
-//   user_name: "q",
-//   password: "q",
-// };
-
-// transformData(data);
-
-// const dataa: userInfo = {
-//   user_ID: "o",
-//   password: "q",
-// };
-
-// transformData(dataa);

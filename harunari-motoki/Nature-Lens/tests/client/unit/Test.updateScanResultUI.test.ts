@@ -1,6 +1,8 @@
-// import { vi, describe, it, expect } from "vitest";
-import { updateScanResultUI } from "../../../src/FrontendScript/Viewmodel/updateScanResultUI";
-import { GBIFdetailInfo } from "../../../src/sharedObject/typeDeffinition.ts";
+// server.jsの階層で  以下のコードを実行
+// npx vitest --root . tests/client/unit/Test.updateScanResultUI.test.ts
+
+import { updateScanResult } from "../../../src/FrontendScript/Viewmodel/scan/updateScanResult.ts";
+import { GBIFdetailInfo } from "../../../src/library/scan/typeDeffinition.ts";
 import { describe, it, expect, beforeEach } from "vitest";
 
 describe("updateScanResultUI のテスト", () => {
@@ -28,7 +30,7 @@ describe("updateScanResultUI のテスト", () => {
     ];
 
     // 2. 関数の実行
-    await updateScanResultUI(mockCount, mockResults);
+    await updateScanResult(mockCount, mockResults);
 
     // 3. 検証（アサーション）
     const container = document.querySelector(".scanresult-container");
@@ -50,6 +52,6 @@ describe("updateScanResultUI のテスト", () => {
     document.body.innerHTML = "";
 
     // エラーがスローされることを検証
-    await expect(updateScanResultUI(0, [])).rejects.toThrow();
+    await expect(updateScanResult(0, [])).rejects.toThrow();
   });
 });
