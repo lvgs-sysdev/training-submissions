@@ -16,7 +16,7 @@ export async function ClientSideControl() {
         latitude: GeolocationAPIAccessResult.data.latitude,
         longitude: GeolocationAPIAccessResult.data.longitude,
       };
-      const URL: string = "/scanResult";
+      const URL: string = "/api/scanResult";
 
       const scanedData: scanedData = await postAxiosserver(URL, data);
 

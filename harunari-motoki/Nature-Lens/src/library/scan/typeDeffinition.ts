@@ -30,14 +30,14 @@ export interface GBIFOuterBox {
 // GBIFの生物詳細データ部分の型
 export interface GBIFdetailInfo {
   key: number;
-  // scientificName: string;
+  scientificName: string;
   // scientificNameAuthorship: string;
   // acceptedScientificName: string;
   kingdom?: string;
-  // phylum: string;
-  // order: string;
-  // family: string;
-  // genus: string;
+  phylum?: string;
+  order?: string;
+  family?: string;
+  genus?: string;
   species?: string;
   // genericName: string;
   // specificEpithet: string;
@@ -47,17 +47,20 @@ export interface GBIFdetailInfo {
   // coordinateUncertaintyInMeters: number;
   // continent: string;
   // stateProvince: string;
+  media?: { type: string; format: string; identifier: string }[];
   year: number;
   month: number;
   day: number;
   // eventDate: string;
   // references: string;
-  // license: string;
+  license: string;
+  rightsHolder?: string;
   gbifID: string;
   occurrenceID: string;
   // taxonID: string;
   isWild?: any; //"http://unknown.org/captive_cultivated":で外部APIに保存
   // identificationID: string;
+  issues?: string[];
 } //将来項目としてコメントアウトで保持
 
 export interface GBIFResult {

@@ -1,4 +1,4 @@
-import { getAccessGBIF } from "../../../src/BackendScript/models/getAccessGBIF.ts";
+import { getAccessGBIF } from "../../../src/BackendScript/models/scan/getAccessGBIF";
 
 //テストコード
 // cd ../../src/BackendScript/models
@@ -6,8 +6,10 @@ import { getAccessGBIF } from "../../../src/BackendScript/models/getAccessGBIF.t
 
 // テスト環境設定
 //インターネット接続状態で実行
+// 　結果正常
 
 //インターネット未接続状態で実行
+// 　結果異常で帰ってくる
 
 //該当データありで実施
 const testArea: string =

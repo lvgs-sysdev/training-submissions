@@ -4,7 +4,7 @@ import { correctRegisterFormData } from "../../Utils/users/correctRegisterFormDa
 export const registerTrafficControll = async () => {
   try {
     const data = await correctRegisterFormData();
-    const URL: string = "/register";
+    const URL: string = "/api/register";
     console.log("データ送信関数postUserInfo利用前");
     const response = postUserInfo(URL, data);
     return response;

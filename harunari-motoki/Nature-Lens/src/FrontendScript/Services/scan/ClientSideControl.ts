@@ -12,11 +12,11 @@ import { postAxiosserver } from "../../APIservice/scan/postAxiosserver.ts";
 export async function ClientSideControl() {
   try {
     const data: userGeolocationdata = {
-      latitude: 35,
-      longitude: 139,
+      latitude: 35.638581,
+      longitude: 139.861005,
     };
 
-    const URL: string = "/scanResult";
+    const URL: string = "/api/scanResult";
     console.log("偽位置情報をサーバに送る直前");
     const scanedData: scanedData = await postAxiosserver(URL, data);
 

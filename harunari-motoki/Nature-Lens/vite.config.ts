@@ -13,26 +13,6 @@ export default defineConfig({
         target: "http://localhost:3000",
         changeOrigin: true,
       },
-      "/scanResult": {
-        target: "http://localhost:3000",
-        changeOrigin: true,
-      },
-      "/register": {
-        target: "http://localhost:3000",
-        changeOrigin: true,
-      },
-      "/login": {
-        target: "http://localhost:3000",
-        changeOrigin: true,
-      },
-      "/refresh": {
-        target: "http://localhost:3000",
-        changeOrigin: true,
-      },
-      "/logout": {
-        target: "http://localhost:3000",
-        changeOrigin: true,
-      },
     },
   },
 });

@@ -12,7 +12,7 @@ export const protectedUserRoutes = async (app: FastifyInstance) => {
     }
   };
   try {
-    app.post("/logout", { preHandler: authenticate }, postLogout);
+    app.post("/api/logout", { preHandler: authenticate }, postLogout);
   } catch (error: any) {
     console.error("ハンドラー内のエラー", error.message);
     throw new Error(error.message);

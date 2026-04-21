@@ -1,13 +1,13 @@
 //テストコード
 //手順
 // ターミナルでディレクトリ移動
-//cd ../../src/BackendScript/service/
+/// Nature-Lends/src/BackendScript/service/scan/　で実施
 //実行コマンド　npx tsx ./scan.ts
 //schemaで正確な値が来ていることを保証しているので、値が出てくることを確認できれば良い
 //GeoGebraでざっくり８角形ができていることを確認する
 
-import { userGeolocationdata } from "../../../src/sharedObject/typeDeffinition.ts";
-import { ScanAreaCalculation } from "../../../src/BackendScript/service/ScanAreaCalculation.ts";
+import { userGeolocationdata } from "../../../src/library/scan/typeDeffinition.ts";
+import { ScanAreaCalculation } from "../../../src/BackendScript/service/scan/ScanAreaCalculation.ts";
 
 const testlocation: userGeolocationdata = {
   longitude: 140,

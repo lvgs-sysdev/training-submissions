@@ -13,7 +13,7 @@ export const logoutTrafficControll = async () => {
     console.log("axiosでログアウト処理送信前");
     console.log("アクセストークンの内容", token);
     const response = await axios.post(
-      "/logout",
+      "/api/logout",
       {},
       {
         headers: { Authorization: `Bearer ${token}` },

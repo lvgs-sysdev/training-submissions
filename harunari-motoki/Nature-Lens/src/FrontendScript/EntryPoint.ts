@@ -34,12 +34,15 @@ export const router = async () => {
       initializeScan_Button();
       initializeLogout_Button(); //ログアウト
     } else if (path === "/scanResult") {
-      const { count, results } =
+      const state =
         (history.state as { count: number; results: GBIFdetailInfo[] }) || null;
-      if (count && results) {
-        await updateScanResult(count, results); //スキャンページ表示
+      if (state && state.results) {
+        console.log("リロード後の中身", state.count);
+        console.log("リロード後の中身", state.results);
+        await updateScanResult(state.count, state.results); //スキャンページ表示
       } else {
-        window.location.href = "/scan";
+        history.replaceState(null, "", "/scan");
+        router(); // 再度自分を呼び出して /scan の処理をさせる
       }
       initializeScan_Button();
       initializeLogout_Button(); //ログアウト

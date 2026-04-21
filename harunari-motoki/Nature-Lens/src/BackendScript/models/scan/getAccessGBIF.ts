@@ -7,6 +7,8 @@ export async function getAccessGBIF(
   try {
     const paramSetting = {
       geometry: locationData,
+      hasCordinate: true,
+      hasGeospatialIssue: false,
       limit: 100,
     };
     const response = await axios.get(

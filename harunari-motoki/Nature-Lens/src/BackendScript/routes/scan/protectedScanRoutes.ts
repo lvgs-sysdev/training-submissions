@@ -11,7 +11,7 @@ export const protectedScanRoutes = async (app: FastifyInstance) => {
     }
   };
   app.post(
-    "/scanResult",
+    "/api/scanResult",
     { schema: coordinateSchema, preHandler: authenticate },
     postScanTraffics,
   );

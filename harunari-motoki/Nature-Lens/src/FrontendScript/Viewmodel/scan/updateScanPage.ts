@@ -12,8 +12,6 @@ export const updateScanPage = async () => {
     <button type="button" class="scan_button">
       Let's Scan!!
     </button>
-    
-    <div class="scanresult-container"></div>
 
     <button type="button" class="logout_button">
       ログアウト

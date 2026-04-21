@@ -3,10 +3,13 @@ dotenv.config();
 import { protectedScanRoutes } from "./BackendScript/routes/scan/protectedScanRoutes.ts";
 import usersRoutes from "./BackendScript/routes/users/userRoutes.ts";
 import { protectedUserRoutes } from "./BackendScript/routes/users/protectedUserRoutes.ts";
-import Fastify from "fastify";
 import fastifyJwt from "@fastify/jwt";
 import cors from "@fastify/cors";
 import fastifyCookie from "@fastify/cookie";
+import path from "path";
+import Fastify, { FastifyRequest, FastifyReply } from "fastify";
+import fs from "fs";
+import { fileURLToPath } from "url";
 
 const app = Fastify({
   logger: true,
@@ -32,6 +35,26 @@ if (!jwtsecret) {
 app.register(fastifyJwt, {
   secret: jwtsecret,
 });
+
+// const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// app.setNotFoundHandler((request: FastifyRequest, reply: FastifyReply) => {
+//   if (request.raw.url?.startsWith("/api")) {
+//     reply.status(404).send({ error: "Not Found" });
+//     return;
+//   }
+//   //本番ビルド後の設定
+//   const indexPath = path.join(__dirname, "dist", "index.html");
+
+//   if (fs.existsSync(indexPath)) {
+//     const html = fs.readFileSync(indexPath, "utf-8");
+//     return reply.type("text/html").send(html);
+//   }
+
+//   reply
+//     .status(404)
+//     .send("開発中は http://localhost:5137 をリロードしてください");
+// });
 
 app.listen({ port: 3000 }, function (err, address) {
   if (err) {

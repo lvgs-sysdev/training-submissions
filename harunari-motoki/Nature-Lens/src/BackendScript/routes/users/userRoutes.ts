@@ -9,8 +9,8 @@ export default async function (
   fastify: FastifyInstance,
   opts: FastifyPluginOptions,
 ) {
-  fastify.get("/", getIndex);
-  fastify.post("/register", { schema: registerSchema }, postRegister);
-  fastify.post("/login", { schema: loginSchema }, postLogin);
-  fastify.post("/refresh", postRefresh);
+  fastify.get("/api/", getIndex);
+  fastify.post("/api/register", { schema: registerSchema }, postRegister);
+  fastify.post("/api/login", { schema: loginSchema }, postLogin);
+  fastify.post("/api/refresh", postRefresh);
 }

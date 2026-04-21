@@ -4,7 +4,7 @@ import axios from "axios";
 export const postSilentRefresh = async () => {
   try {
     console.log("ppostSilentRefresh.ts. /refreshにリフレッシュ依頼を送信前");
-    const response = await axios.post("/refresh", { timeout: 100000 });
+    const response = await axios.post("/api/refresh", { timeout: 100000 });
     console.log("postSilentRefreshが受け取ったresponseの中身", response);
     if (response.data.status === "success") {
       const accessToken = response.data.token;

@@ -1,13 +1,13 @@
 // １。インターネット接続環境
 // server.jsの階層で  以下のコードを実行
-// npx vitest --root . tests/integration/Test.PostScanTraffics.test.ts
+// npx vitest --root . tests/server/integration/Test.PostScanTraffics.test.ts
 
 // １。インターネット未接続環境
-// server.jsの階層で  該当箇所のコメントアウトを外して以下のコードを実行
+// server.jsの階層で  コード内ののコメントアウトを外して実行　コメントアウトを外した箇所だけ成功するはず
 // npx vitest --root . tests/server/integration/Test.PostScanTraffics.test.ts
 
 import Fastify from "fastify";
-import { postScanpTraffics } from "../../../src/BackendScript/controllers/postScanTraffics.ts";
+import { postScanTraffics } from "../../../src/BackendScript/controllers/scan/postScanTraffics.ts";
 import { coordinateSchema } from "../../../src/BackendScript/Interface/schema.ts";
 import { describe, expect, test, beforeAll } from "vitest";
 
@@ -16,11 +16,7 @@ describe("postScanpTraffics のテスト 正常系（インターネット接続
 
   // テストの前に一度だけルートを登録し、準備を完了させる
   beforeAll(async () => {
-    fastify.post(
-      "/scanResult",
-      { schema: coordinateSchema },
-      postScanpTraffics,
-    );
+    fastify.post("/scanResult", { schema: coordinateSchema }, postScanTraffics);
     await fastify.ready(); // ★これを追加すると安定します
   });
 

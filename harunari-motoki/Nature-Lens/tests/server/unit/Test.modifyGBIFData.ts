@@ -1,8 +1,8 @@
 import {
   GBIFdetailInfo,
   GBIFOuterBox,
-} from "../../../src/sharedObject/typeDeffinition.ts";
-import { modifyGBIFData } from "../../../src/BackendScript/service/modifyAPIData.ts";
+} from "../../../src/library/scan/typeDeffinition.ts";
+import { modifyGBIFData } from "../../../src/BackendScript/service/scan/modifyAPIData.ts";
 //テスト
 // npx tsx ./modifyAPIData.ts
 // cd ../../src/BackendScript/service/

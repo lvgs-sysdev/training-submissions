@@ -27,7 +27,9 @@ export const postScanTraffics = async function (
       console.log(scanedData);
       return scanedData;
     } else {
+      console.log("GBIFデータ編集前");
       const finalBioData = await modifyGBIFData(rawGBIFData);
+      console.log("GBIFデータ編集後");
       const scanedData: scanedData = {
         status: "Applicable",
         data: finalBioData,
