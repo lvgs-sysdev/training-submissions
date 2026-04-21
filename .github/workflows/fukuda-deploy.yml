@@ -9,7 +9,6 @@ on:
       - tailwag
 
 jobs:
-  #--- 1.テスト ---
   test:
     runs-on: ubuntu-latest
     steps:
@@ -20,7 +19,6 @@ jobs:
           node-version: "20"
       - name: Install dependencies
         run: |
-          # 階層をリポジトリルートからの絶対パスで指定
           cd yuki-fukuda/tailwag/frontend && npm install
           cd ../backend && npm install
       - name: Run Tests
@@ -28,7 +26,6 @@ jobs:
           cd yuki-fukuda/tailwag/backend
           npm test -- --watch=false
 
-  #--- 2.デプロイ ---
   deploy:
     needs: test
     runs-on: ubuntu-latest
