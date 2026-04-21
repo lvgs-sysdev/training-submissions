@@ -40,6 +40,8 @@ jobs:
             cd ~/tailwag
             git pull origin tailwag
             cd yuki-fukuda/tailwag
-            # 💡 一度すべてを止めて掃除し、キャッシュなしでビルドし直す
+            # 1. コンテナも、これまでのビルドデータ(cache)も全部消す
             docker-compose down --rmi all --volumes
-            docker-compose up -d --build
+            # 2. キャッシュを一切使わずに、ゼロからビルドして起動
+            docker-compose build --no-cache
+            docker-compose up -d
