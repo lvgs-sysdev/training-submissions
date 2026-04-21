@@ -1,9 +1,10 @@
-name: CI/CD Pipeline
+name: Fukuda-Exclusive-Deploy
 
 on:
   push:
     branches:
       - tailwag
+    pull_request:
     paths:
       - "yuki-fukuda/tailwag/**"
 
@@ -24,7 +25,7 @@ jobs:
       - name: Run Tests
         run: |
           cd yuki-fukuda/tailwag/backend # テストを実行するディレクトリへ移動
-          npm test
+          npm test -- --watch=false
 
   #--- 2.デプロイ ---
   deploy:
