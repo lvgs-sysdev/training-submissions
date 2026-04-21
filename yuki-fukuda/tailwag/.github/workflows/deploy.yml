@@ -2,9 +2,10 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [main]
+    branches:
+      - tailwag
     paths:
-      - "yuki-fuikuda/tailwag/**"
+      - "yuki-fukuda/tailwag/**"
 
 jobs:
   #--- 1.テスト ---
@@ -18,11 +19,12 @@ jobs:
           node-version: "20"
       - name: Install dependencies
         run: |
-          npm: Install
-          cd frontend && npm install
+          cd yuki-fukuda/tailwag/frontend && npm install
           cd ../backend && npm install
       - name: Run Tests
-        run: npm test
+        run: |
+          cd yuki-fukuda/tailwag/backend # テストを実行するディレクトリへ移動
+          npm test
 
   #--- 2.デプロイ ---
   deploy:
@@ -37,5 +39,6 @@ jobs:
           key: ${{ secrets.Fukuda_EC2_SSH_KEY}}
           script: |
             cd ~/tailwag
-            git pull origin main
+            git pull origin tailwag
+            cd yuki-fukuda/tailwag
             docker-compose up -d --build
