@@ -33,9 +33,9 @@ jobs:
       - name: Deploy to EC2 via SSH
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.Fukuda_EC2_HOST }}
-          username: ${{ secrets.Fukuda_EC2_USER }}
-          key: ${{ secrets.Fukuda_EC2_SSH_KEY }}
+          host: ${{ secrets.FUKUDA_EC2_HOST }}
+          username: ${{ secrets.FUKUDA_EC2_USER }}
+          key: ${{ secrets.FUKUDA_EC2_SSH_KEY }}
           script: |
             cd ~/tailwag
             git pull origin tailwag
