@@ -50,9 +50,8 @@ services:
       - "80:80" # HTTP用
       - "443:443" # HTTPS用
     volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d # 設定ファイル用
-      - ./certbot/conf:/etc/letsencrypt # SSL証明書用
-      - ./certbot/www:/var/www/certbot # 証明書更新用
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
     depends_on:
       - frontend
       - backend
