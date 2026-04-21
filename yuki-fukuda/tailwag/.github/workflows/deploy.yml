@@ -1,0 +1,41 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "yuki-fuikuda/tailwag/**"
+
+jobs:
+  #--- 1.テスト ---
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install dependencies
+        run: |
+          npm: Install
+          cd frontend && npm install
+          cd ../backend && npm install
+      - name: Run Tests
+        run: npm test
+
+  #--- 2.デプロイ ---
+  deploy:
+    needs: test #テストが成功した時だけデプロイを実行
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to EC2 via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.Fukuda_EC2_HOST}}
+          username: ${{ secrets.Fukuda_EC2_USER}}
+          key: ${{ secrets.Fukuda_EC2_SSH_KEY}}
+          script: |
+            cd ~/tailwag
+            git pull origin main
+            docker-compose up -d --build

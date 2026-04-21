@@ -3,7 +3,7 @@ import { Post } from "./type";
 import { escapeHtml } from "../../utils/escape";
 import { setupInteractiveEvents } from "../timeline/timeline";
 
-const API_BASE_URL = "";
+const API_BASE_URL = "https://tailwag.training-submissions.sysdev.lvms.jp";
 
 /**
  * 画像スライダーのHTMLを生成
