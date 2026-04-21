@@ -40,6 +40,6 @@ jobs:
             cd ~/tailwag
             git pull origin tailwag
             cd yuki-fukuda/tailwag
-            # 💡 古いコンテナを止めて、イメージを新しく作り直して起動する
-            docker-compose down
+            # 💡 一度すべてを止めて掃除し、キャッシュなしでビルドし直す
+            docker-compose down --rmi all --volumes
             docker-compose up -d --build
