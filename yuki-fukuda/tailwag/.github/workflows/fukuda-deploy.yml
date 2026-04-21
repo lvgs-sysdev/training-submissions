@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - tailwag
-    pull_request:
     paths:
       - "yuki-fukuda/tailwag/**"
+  pull_request: # pushと並べる
+    branches:
+      - tailwag
 
 jobs:
   #--- 1.テスト ---
