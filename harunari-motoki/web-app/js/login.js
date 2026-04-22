@@ -1,49 +1,33 @@
-import fs from 'fs/promises';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import fs from "fs/promises";
+import path from "path";
+import { fileURLToPath } from "url";
+import authNFunction from "../model/loginModel.js";
 
 const pages__dirname = path.dirname(fileURLToPath(import.meta.url));
 console.log(pages__dirname);
 
-export default async function (fastify, opts){
-    fastify.get('/login',async(request, reply) =>{
-        //HTMLファイルのパスを作成
-        const pages_filePath = path.join(pages__dirname, '../pages/login.html');
+export const loginGET = async function (request, reply) {
+  const pages_filePath = path.join(pages__dirname, "../pages/login.html");
 
-        //ファイルの中身を読み込む
-        const login_html = await fs.readFile(pages_filePath, 'utf-8');
+  const login_html = await fs.readFile(pages_filePath, "utf-8");
 
-        //ブラウザにHTMLとして送信
-        return reply.type('text/html').send(login_html);
-    });
+  return reply.type("text/html").send(login_html);
+};
 
-    fastify.post('/login',async(request, reply)=>{
-        //認証処理
-        const {user_name, password} = request.body;
-        
-        //認証情報のバリデーションチェック
-        if(!user_name || !password){
-            return reply.status(401).send('ユーザIDまたはパスワードが不正です。')
-            console.log(request.body);
-        };
-        
-        //1. ユーザ認証（MySQLないのデータと照合）
-        try {
-            const [rows] = await fastify.loginPool.execute(
-                'SELECT COUNT(*) AS count FROM users WHERE user_name = ? AND password = ?',
-                [user_name, password]
-            );
-            const usercount = rows[0].count
-            if(usercount===1){
-                request.session.user = {name: user_name};
-                return reply.send({message:'ログイン成功'});
-            }else{
-                return reply.status(401).send('ユーザ名もしくはパスワードが間違っています')
-            }
-        } catch (error) {
-            console.error(error);
-            reply.status(500).send('データベースエラーです')
+export const loginPOST = async function (request, reply) {
+  const { user_ID } = request.body;
+  const plainPassword = request.body.password;
 
-        }
-    });
-}
+  const answer = await authNFunction(
+    user_ID,
+    plainPassword,
+    request.server.loginPool,
+  );
+
+  if (answer.type === 200) {
+    request.session.user = answer.info;
+    return reply.status(answer.type).send({ message: answer.message });
+  } else {
+    return reply.status(answer.type).send({ message: answer.message });
+  }
+};

@@ -1,6 +1,4 @@
-/*全体共通設定*/
 :root {
-  /*color*/
   --maincolor: #ff553c;
   --loginButton: rgb(0, 0, 0, 70%);
   --registerButton: rgb(255, 255, 255, 80%);
@@ -10,7 +8,6 @@
   --middlegrey: #757575;
   --white: rgb(255, 255, 255);
   --semigrey: rgba(220, 220, 220, 65%);
-  /*font-weight*/
 }
 
 * {
@@ -21,7 +18,6 @@
 
 html {
   font-size: 120%;
-  /* font-size: 1.3vw; */
 }
 
 body {
