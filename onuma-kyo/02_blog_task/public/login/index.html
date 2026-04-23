@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ログイン | DAYDAYTRAVEL</title>
+    <link rel="stylesheet" href="../assets/css/sanitize.css" />
+    <link rel="stylesheet" href="../assets/css/common.css" />
+  </head>
+  <body>
+    <main>
+      <section class="viewport-container">
+        <div class="content-area">
+          <header class="content-area__heading">
+            <div>
+              <img
+                class=""
+                id="prompt-logo-center"
+                src="../assets/images/DAYDAYTRAVEL.svg"
+                alt="DAYDAYTRAVELのロゴ"
+              />
+            </div>
+            <h1 class="content-area__heading_title">ようこそ</h1>
+            <p class="content-area__heading_description">DAILYTRAVEL にログインしてください。</p>
+          </header>
+
+          <form
+            class="group profile-form"
+            data-form-primary="true"
+            data-disable-html-validations="true"
+            novalidate=""
+            id="login-form"
+          >
+            <div class="form-container">
+              <div class="field-with-label">
+                <div>
+                  <div class="field-label">
+                    <span class="field-label__type is-required">必須</span
+                    ><label class="field-label__label" for="userId">ユーザーID</label>
+                  </div>
+                </div>
+                <div class="text-field">
+                  <input
+                    placeholder="onuma-kyo"
+                    id="login-form-userId"
+                    description="1~20文字の一部記号(-._)もしくは英数字である必要があります"
+                    pattern="^([a-zA-Z0-9]|\.|_|-){1,20}$"
+                    required
+                    type="text"
+                    class="text-field__input"
+                    name="userId"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div class="field-with-label">
+                <div>
+                  <div class="field-label">
+                    <span class="field-label__type is-required">必須</span
+                    ><label class="field-label__label" for="password">パスワード</label>
+                  </div>
+                </div>
+                <div class="text-field">
+                  <input
+                    id="login-form-password"
+                    type="password"
+                    class="text-field__input"
+                    name="password"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+            <span class="error-message form__error-message"
+              ><span class="error-message--line"></span
+            ></span>
+            <div class="form-button button--black">
+              <button class="button__button button__button--wide" type="submit">ログイン</button>
+            </div>
+          </form>
+
+          <div class="ulp-alternate-action">
+            <p class="ulp-alternate-action__text">
+              アカウントが未登録ですか？
+              <a class="ulp-alternate-action__link" href="/register">サインアップ</a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="/login/index.js"></script>
+  </body>
+</html>
