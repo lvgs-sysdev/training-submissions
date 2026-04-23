@@ -1,7 +1,7 @@
 import {
   GBIFdetailInfo,
   GBIFOuterBox,
-} from "../../../library/scan/typeDeffinition";
+} from "../../../library/scan/typeDeffinition.js";
 
 export function modifyGBIFData(rawGBIFData: GBIFOuterBox): GBIFOuterBox {
   const alloedlicense = [

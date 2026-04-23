@@ -1,4 +1,4 @@
-import { router } from "../../EntryPoint.ts";
+import { router } from "../../EntryPoint.js";
 
 export const initializeToppage_Button = async () => {
   const toppage_button = document.querySelector(".toppage_button");

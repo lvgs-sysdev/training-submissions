@@ -1,6 +1,6 @@
-import { authService } from "../../Services/users/authService.ts";
-import { router } from "../../EntryPoint.ts";
-import { loginTrafficControll } from "../../Services/users/loginTrafficControll.ts";
+import { authService } from "../../Services/users/authService.js";
+import { router } from "../../EntryPoint.js";
+import { loginTrafficControll } from "../../Services/users/loginTrafficControll.js";
 
 export const initializeLogin_Button = async () => {
   const login_Button = document.querySelector(".login_button");

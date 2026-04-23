@@ -1,18 +1,25 @@
 import * as dotenv from "dotenv";
 dotenv.config();
-import { protectedScanRoutes } from "./BackendScript/routes/scan/protectedScanRoutes.ts";
-import usersRoutes from "./BackendScript/routes/users/userRoutes.ts";
-import { protectedUserRoutes } from "./BackendScript/routes/users/protectedUserRoutes.ts";
+import { protectedScanRoutes } from "./BackendScript/routes/scan/protectedScanRoutes.js";
+import usersRoutes from "./BackendScript/routes/users/userRoutes.js";
+import { protectedUserRoutes } from "./BackendScript/routes/users/protectedUserRoutes.js";
 import fastifyJwt from "@fastify/jwt";
 import cors from "@fastify/cors";
 import fastifyCookie from "@fastify/cookie";
 import path from "path";
-import Fastify, { FastifyRequest, FastifyReply } from "fastify";
-import fs from "fs";
-import { fileURLToPath } from "url";
+import Fastify from "fastify";
+import { PATH } from "./BackendScript/config/pathConfig.js";
+
+import fastifyStatic from "@fastify/static";
 
 const app = Fastify({
   logger: true,
+});
+// フロントエンド用のファイルを配信許可設定
+app.register(fastifyStatic, {
+  root: PATH.VITE_FRONTEND,
+  prefix: "/",
+  wildcard: false,
 });
 
 app.register(protectedUserRoutes);

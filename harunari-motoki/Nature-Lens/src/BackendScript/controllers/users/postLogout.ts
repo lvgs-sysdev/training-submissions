@@ -1,4 +1,4 @@
-import { accessStatus } from "@/library/users/typeDefinition";
+import { accessStatus } from "../../../library/users/typeDefinition.js";
 import { FastifyReply, FastifyRequest } from "fastify";
 
 export const postLogout = async (

@@ -1,5 +1,5 @@
-import { refreshAccessToken } from "../../service//users/refreshAccessToken.ts";
-import { accessStatus } from "../../../library/users/typeDefinition.ts";
+import { refreshAccessToken } from "../../service//users/refreshAccessToken.js";
+import { accessStatus } from "../../../library/users/typeDefinition.js";
 import { FastifyReply, FastifyRequest } from "fastify";
 
 export const postRefresh = async (

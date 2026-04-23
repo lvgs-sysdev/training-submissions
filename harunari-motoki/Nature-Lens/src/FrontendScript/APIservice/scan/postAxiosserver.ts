@@ -1,8 +1,8 @@
-import { authService } from "../../Services/users/authService.ts";
+import { authService } from "../../Services/users/authService.js";
 import {
   userGeolocationdata,
   scanedData,
-} from "../../../library/scan/typeDeffinition.ts";
+} from "../../../library/scan/typeDeffinition.js";
 import axios from "axios";
 
 export async function postAxiosserver(URL: string, data: userGeolocationdata) {

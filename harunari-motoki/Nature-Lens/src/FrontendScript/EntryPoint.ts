@@ -1,18 +1,18 @@
-import { viewIndex } from "./View/users/viewIndex.ts";
-import { initializeScan_Button } from "./View/scan/initializeScan_Button.ts";
-import { initializeLoginPage_Button } from "./View/users/initializeLoginPage_Button.ts";
-import { initializeRegisterPage_Button } from "./View/users/initializeRegisterPage_Button.ts";
-import { initializeToppage_Button } from "./View/users/initializeToppage_Button.ts";
-import { initializeRegister_Button } from "./View/users/initializeRegister_Button.ts";
-import { initializeLogin_Button } from "./View/users/initializeLogin_Button.ts";
-import { initializeLogout_Button } from "./View/users/initializeLogout_Button.ts";
-import { updateRegisterPage } from "./Viewmodel/users/updateRegisterPage.ts";
-import { updateLoginPage } from "./Viewmodel/users/updateLoginPage.ts";
-import { updateTopPage } from "./Viewmodel/users/updateTopPage.ts";
-import { updateScanPage } from "./Viewmodel/scan/updateScanPage.ts";
-import { postSilentRefresh } from "./APIservice/users/postSilentRefresh.ts";
-import { updateScanResult } from "./Viewmodel/scan/updateScanResult.ts";
-import { GBIFdetailInfo } from "@/library/scan/typeDeffinition.ts";
+import { viewIndex } from "./View/users/viewIndex.js";
+import { initializeScan_Button } from "./View/scan/initializeScan_Button.js";
+import { initializeLoginPage_Button } from "./View/users/initializeLoginPage_Button.js";
+import { initializeRegisterPage_Button } from "./View/users/initializeRegisterPage_Button.js";
+import { initializeToppage_Button } from "./View/users/initializeToppage_Button.js";
+import { initializeRegister_Button } from "./View/users/initializeRegister_Button.js";
+import { initializeLogin_Button } from "./View/users/initializeLogin_Button.js";
+import { initializeLogout_Button } from "./View/users/initializeLogout_Button.js";
+import { updateRegisterPage } from "./Viewmodel/users/updateRegisterPage.js";
+import { updateLoginPage } from "./Viewmodel/users/updateLoginPage.js";
+import { updateTopPage } from "./Viewmodel/users/updateTopPage.js";
+import { updateScanPage } from "./Viewmodel/scan/updateScanPage.js";
+import { postSilentRefresh } from "./APIservice/users/postSilentRefresh.js";
+import { updateScanResult } from "./Viewmodel/scan/updateScanResult.js";
+import { GBIFdetailInfo } from "@/library/scan/typeDeffinition.js";
 
 export const router = async () => {
   try {

@@ -1,5 +1,5 @@
 import { FastifyInstance } from "fastify";
-import { generateTokens } from "./generateTokens";
+import { generateTokens } from "./generateTokens.js";
 
 export const refreshAccessToken = async (
   app: FastifyInstance,

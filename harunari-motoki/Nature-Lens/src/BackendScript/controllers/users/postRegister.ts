@@ -1,9 +1,9 @@
-import { userInfo } from "../../../library/users/typeDefinition.ts";
-import { usersPool } from "../../models/users/DB.ts";
-import { registerSQL } from "../../models/users/userSQL.ts";
-import { DBAccess } from "../../models/users/DBAccess.ts";
-import { modifyUserInfo } from "../../service/users/modifyUseInfo.ts";
-import { transformData } from "../../service/users/transformData.ts";
+import { userInfo } from "../../../library/users/typeDefinition.js";
+import { usersPool } from "../../models/users/DB.js";
+import { registerSQL } from "../../models/users/userSQL.js";
+import { DBAccess } from "../../models/users/DBAccess.js";
+import { modifyUserInfo } from "../../service/users/modifyUseInfo.js";
+import { transformData } from "../../service/users/transformData.js";
 import { FastifyReply, FastifyRequest } from "fastify";
 
 export const postRegister = async function (

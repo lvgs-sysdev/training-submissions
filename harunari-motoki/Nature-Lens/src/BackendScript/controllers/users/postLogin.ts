@@ -1,13 +1,13 @@
 import {
   accessStatus,
   userInfo,
-} from "../../../library/users/typeDefinition.ts";
-import { usersPool } from "../../models/users/DB.ts";
-import { loginSQL } from "../../models/users/userSQL.ts";
-import { DBAccess } from "../../models/users/DBAccess.ts";
-import { transformData } from "../../service/users/transformData.ts";
-import { verifyPassword } from "../..//service/users/verifyPassword.ts";
-import { generateTokens } from "../../service/users/generateTokens.ts";
+} from "../../../library/users/typeDefinition.js";
+import { usersPool } from "../../models/users/DB.js";
+import { loginSQL } from "../../models/users/userSQL.js";
+import { DBAccess } from "../../models/users/DBAccess.js";
+import { transformData } from "../../service/users/transformData.js";
+import { verifyPassword } from "../..//service/users/verifyPassword.js";
+import { generateTokens } from "../../service/users/generateTokens.js";
 import { FastifyReply, FastifyRequest } from "fastify";
 
 export const postLogin = async function (

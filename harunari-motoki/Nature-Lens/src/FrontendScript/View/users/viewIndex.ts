@@ -1,4 +1,4 @@
-import { updateTopPage } from "../../Viewmodel/users/updateTopPage.ts";
+import { updateTopPage } from "../../Viewmodel/users/updateTopPage.js";
 
 export const viewIndex = async () => {
   const viewTopPage = document.querySelector(".app");

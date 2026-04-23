@@ -1,9 +1,9 @@
-import { ScanAreaCalculation } from "../../service/scan/ScanAreaCalculation.ts";
-import { getAccessGBIF } from "../../models/scan/getAccessGBIF.ts";
-import { modifyGBIFData } from "../../service/scan/modifyAPIData.ts";
-import { scanedData } from "../../../library/scan/typeDeffinition.ts";
+import { ScanAreaCalculation } from "../../service/scan/ScanAreaCalculation.js";
+import { getAccessGBIF } from "../../models/scan/getAccessGBIF.js";
+import { modifyGBIFData } from "../../service/scan/modifyAPIData.js";
+import { scanedData } from "../../../library/scan/typeDeffinition.js";
 import { FastifyReply, FastifyRequest } from "fastify";
-import { userGeolocationdata } from "../../../library/scan/typeDeffinition.ts";
+import { userGeolocationdata } from "../../../library/scan/typeDeffinition.js";
 
 export const postScanTraffics = async function (
   request: FastifyRequest,

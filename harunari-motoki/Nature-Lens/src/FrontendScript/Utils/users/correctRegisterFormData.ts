@@ -1,4 +1,4 @@
-import { userInfo } from "../../../library/users/typeDefinition.ts";
+import { userInfo } from "../../../library/users/typeDefinition.js";
 
 export const correctRegisterFormData = async () => {
   const registerFormInputs = document.querySelectorAll<HTMLInputElement>(

@@ -1,6 +1,6 @@
 import axios from "axios";
-import { authService } from "../../Services/users/authService.ts";
-import { accessStatus } from "../../../library/users/typeDefinition.ts";
+import { authService } from "../../Services/users/authService.js";
+import { accessStatus } from "../../../library/users/typeDefinition.js";
 
 export const logoutTrafficControll = async () => {
   const token = authService.getAccessToken();
@@ -12,7 +12,7 @@ export const logoutTrafficControll = async () => {
     console.log("axiosでログアウト処理送信前");
     console.log("アクセストークンの内容", token);
     const response = await axios.post(
-      "/api/logout",
+      "/logout",
       {},
       {
         headers: { Authorization: `Bearer ${token}` },

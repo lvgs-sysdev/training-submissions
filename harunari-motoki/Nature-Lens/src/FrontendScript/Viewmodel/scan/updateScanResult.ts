@@ -1,4 +1,4 @@
-import { GBIFdetailInfo } from "@/library/scan/typeDeffinition";
+import { GBIFdetailInfo } from "../../../library/scan/typeDeffinition.js";
 import DOMPurify from "dompurify";
 
 export async function updateScanResult(

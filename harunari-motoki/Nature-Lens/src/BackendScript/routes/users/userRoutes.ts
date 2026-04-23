@@ -1,16 +1,14 @@
 import { FastifyInstance, FastifyPluginOptions } from "fastify";
-import { getIndex } from "../../controllers/getIndex.ts";
-import { postRegister } from "../../controllers/users/postRegister.ts";
-import { registerSchema, loginSchema } from "../../Interface/schema.ts";
-import { postLogin } from "@/BackendScript/controllers/users/postLogin.ts";
-import { postRefresh } from "../../controllers/users/postRefresh.ts";
+import { postRegister } from "../../controllers/users/postRegister.js";
+import { registerSchema, loginSchema } from "../../Interface/schema.js";
+import { postLogin } from "../../../BackendScript/controllers/users/postLogin.js";
+import { postRefresh } from "../../controllers/users/postRefresh.js";
 
 export default async function (
   fastify: FastifyInstance,
   opts: FastifyPluginOptions,
 ) {
-  fastify.get("/api/", getIndex);
-  fastify.post("/api/register", { schema: registerSchema }, postRegister);
-  fastify.post("/api/login", { schema: loginSchema }, postLogin);
-  fastify.post("/api/refresh", postRefresh);
+  fastify.post("/register", { schema: registerSchema }, postRegister);
+  fastify.post("/login", { schema: loginSchema }, postLogin);
+  fastify.post("/refresh", postRefresh);
 }

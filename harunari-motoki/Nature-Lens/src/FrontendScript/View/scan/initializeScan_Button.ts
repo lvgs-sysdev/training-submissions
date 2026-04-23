@@ -1,6 +1,6 @@
-import { router } from "../../EntryPoint.ts";
-import { ClientSideControl } from "../../Services/scan/ClientSideControl.ts";
-import { postSilentRefresh } from "../../APIservice/users/postSilentRefresh.ts";
+import { router } from "../../EntryPoint.js";
+import { ClientSideControl } from "../../Services/scan/ClientSideControl.js";
+import { postSilentRefresh } from "../../APIservice/users/postSilentRefresh.js";
 
 export const initializeScan_Button = () => {
   const scanButton = document.querySelector(".scan_button");

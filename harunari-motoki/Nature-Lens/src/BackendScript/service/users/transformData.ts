@@ -1,4 +1,4 @@
-import { userInfo } from "../../../library/users/typeDefinition.ts";
+import { userInfo } from "../../../library/users/typeDefinition.js";
 
 export const transformData = async (data: userInfo) => {
   const arrayData = [];

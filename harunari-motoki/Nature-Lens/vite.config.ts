@@ -1,9 +1,16 @@
 import { defineConfig } from "vite";
+import { resolve } from "path";
 
 export default defineConfig({
-  root: ".",
   build: {
-    outDir: "../../dist/frontend/",
+    //フロントエンド用のファイル　viteはindex.htmlで読み込まれるファイルのみをコンパイルする
+    outDir: "dist/viteFrontend",
+    emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, "index.html"),
+      },
+    },
   },
   server: {
     proxy: {

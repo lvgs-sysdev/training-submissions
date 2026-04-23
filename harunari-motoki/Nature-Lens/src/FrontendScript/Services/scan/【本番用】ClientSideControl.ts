@@ -2,10 +2,10 @@ import {
   FinalScanResult,
   GeolocationAPIResponse,
   scanedData,
-} from "../../../library/scan/typeDeffinition.ts";
-import { getAccessGeolocationAPI } from "../../APIservice/scan/getAccessGeolocationAPI.ts";
-import { userGeolocationdata } from "../../../library/scan/typeDeffinition.ts";
-import { postAxiosserver } from "../../APIservice/scan/postAxiosserver.ts";
+} from "../../../library/scan/typeDeffinition.js";
+import { getAccessGeolocationAPI } from "../../APIservice/scan/getAccessGeolocationAPI.js";
+import { userGeolocationdata } from "../../../library/scan/typeDeffinition.js";
+import { postAxiosserver } from "../../APIservice/scan/postAxiosserver.js";
 
 export async function ClientSideControl() {
   try {

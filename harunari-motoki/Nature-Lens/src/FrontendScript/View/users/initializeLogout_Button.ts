@@ -1,5 +1,5 @@
-import { router } from "../../EntryPoint.ts";
-import { logoutTrafficControll } from "../../Services/users/logoutTrafficControll.ts";
+import { router } from "../../EntryPoint.js";
+import { logoutTrafficControll } from "../../Services/users/logoutTrafficControll.js";
 
 export const initializeLogout_Button = async () => {
   const logout_Button = document.querySelector(".logout_button");

@@ -1,7 +1,7 @@
 import {
   accessStatus,
   userInfo,
-} from "../../../library/users/typeDefinition.ts";
+} from "../../../library/users/typeDefinition.js";
 import axios from "axios";
 
 export const postUserInfo = async (URL: string, data: userInfo) => {

@@ -1,5 +1,5 @@
-import { router } from "../../EntryPoint.ts";
-import { registerTrafficControll } from "../../Services/users/registerTrafficControll.ts";
+import { router } from "../../EntryPoint.js";
+import { registerTrafficControll } from "../../Services/users/registerTrafficControll.js";
 
 export const initializeRegister_Button = async () => {
   const Register_Button = document.querySelector(".register_button");

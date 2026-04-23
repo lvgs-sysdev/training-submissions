@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GBIFOuterBox } from "../../../library/scan/typeDeffinition.ts";
+import { GBIFOuterBox } from "../../../library/scan/typeDeffinition.js";
 
 export async function getAccessGBIF(
   locationData: string,

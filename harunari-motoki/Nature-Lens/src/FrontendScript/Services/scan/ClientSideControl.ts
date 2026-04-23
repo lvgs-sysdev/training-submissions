@@ -2,10 +2,10 @@ import {
   FinalScanResult,
   GeolocationAPIResponse,
   scanedData,
-} from "../../../library/scan/typeDeffinition.ts";
-import { getAccessGeolocationAPI } from "../../APIservice/scan/getAccessGeolocationAPI.ts";
-import { userGeolocationdata } from "../../../library/scan/typeDeffinition.ts";
-import { postAxiosserver } from "../../APIservice/scan/postAxiosserver.ts";
+} from "../../../library/scan/typeDeffinition.js";
+import { getAccessGeolocationAPI } from "../../APIservice/scan/getAccessGeolocationAPI.js";
+import { userGeolocationdata } from "../../../library/scan/typeDeffinition.js";
+import { postAxiosserver } from "../../APIservice/scan/postAxiosserver.js";
 
 //GeolocationAPIが使えないので、特定の座標を返す関数に差し替え
 
@@ -16,7 +16,7 @@ export async function ClientSideControl() {
       longitude: 139.861005,
     };
 
-    const URL: string = "/api/scanResult";
+    const URL: string = "/scanResult";
     console.log("偽位置情報をサーバに送る直前");
     const scanedData: scanedData = await postAxiosserver(URL, data);
 

@@ -1,4 +1,4 @@
-import { router } from "../../EntryPoint.ts";
+import { router } from "../../EntryPoint.js";
 
 export const initializeRegisterPage_Button = () => {
   const registerPage_Button = document.querySelector(".registerPage_button");

@@ -1,4 +1,4 @@
-import { userInfo } from "../../../library/users/typeDefinition.ts";
+import { userInfo } from "../../../library/users/typeDefinition.js";
 import * as argon2 from "argon2";
 
 export const modifyUserInfo = async (data: userInfo) => {
