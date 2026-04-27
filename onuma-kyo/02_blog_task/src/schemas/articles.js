@@ -1,4 +1,3 @@
-// TODO: 型を修正
 export const Article = {
   type: 'object',
   properties: {

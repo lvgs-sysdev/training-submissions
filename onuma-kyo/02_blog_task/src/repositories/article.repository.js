@@ -1,6 +1,7 @@
 import { createConnection } from '../database.js';
 
 export const findAll = async (limit) => {
+  const connection = await createConnection();
   let sql = `
             SELECT
                 articles.id,
@@ -15,11 +16,13 @@ export const findAll = async (limit) => {
             INNER JOIN users ON articles.user_id = users.id
             ORDER BY articles.updated_at DESC
   `;
+  let rows;
   if (limit) {
-    sql += `LIMIT ${limit}`;
+    sql += `LIMIT :limit`;
+    [rows] = await connection.query(sql, { limit });
+  } else {
+    [rows] = await connection.query(sql);
   }
-  const connection = await createConnection();
-  const [rows] = await connection.query(sql);
   await connection.end();
   return rows;
 };
