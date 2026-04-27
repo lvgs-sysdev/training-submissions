@@ -10,7 +10,7 @@ services:
       - "5432:5432"
     environment: 
       POSTGRES_USER: app_manager
-      POSTGRES_PASSWORD: '@1oGinYQEad'
+      POSTGRES_PASSWORD: hYGUD56@hjn
       POSTGRES_DB: masterdb
   web:
     build: .
