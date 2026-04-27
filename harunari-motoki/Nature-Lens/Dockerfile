@@ -1,6 +1,10 @@
-FROM node:20
+FROM node:24-slim
 WORKDIR /app
-COPY . /app
-RUN npm install
-RUN npm run build
+#ライブラリのインストール
+COPY package*.json ./ 
+RUN npm install --omit=dev
+#ビルド済みの成果物をコンテナにコピー
+COPY dist ./dist
+
+EXPOSE 3000
 CMD ["node", "dist/server.js"]

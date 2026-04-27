@@ -1,5 +1,5 @@
-import { ScanAreaCalculation } from "../../service/scan/ScanAreaCalculation.js";
-import { getAccessGBIF } from "../../models/scan/getAccessGBIF.js";
+import { scanareaCalculation } from "../../service/scan/scanareaCalculation.js";
+import { getAccessGBIF } from "../../service/scan/getAccessGBIF.js";
 import { modifyGBIFData } from "../../service/scan/modifyAPIData.js";
 import { scanedData } from "../../../library/scan/typeDeffinition.js";
 import { FastifyReply, FastifyRequest } from "fastify";
@@ -11,13 +11,10 @@ export const postScanTraffics = async function (
 ): Promise<scanedData> {
   const body = request.body as userGeolocationdata;
   const { latitude, longitude } = body;
-  console.log("クライアントからのデータ受け取り完了");
   try {
-    const polygonData = await ScanAreaCalculation({ latitude, longitude });
-    console.log("ポリゴン正常に出力完了");
+    const polygonData = await scanareaCalculation({ latitude, longitude });
 
     const rawGBIFData = await getAccessGBIF(polygonData);
-    console.log("GBIF生データ取得完了");
 
     if (rawGBIFData.count <= 0) {
       const scanedData: scanedData = {
@@ -27,15 +24,12 @@ export const postScanTraffics = async function (
       console.log(scanedData);
       return scanedData;
     } else {
-      console.log("GBIFデータ編集前");
       const finalBioData = await modifyGBIFData(rawGBIFData);
-      console.log("GBIFデータ編集後");
       const scanedData: scanedData = {
         status: "Applicable",
         data: finalBioData,
         message: "該当データあり",
       };
-      console.log(scanedData);
       return scanedData;
     }
   } catch (error: any) {
@@ -43,7 +37,7 @@ export const postScanTraffics = async function (
       { error: error },
       "バケツリレーの途中でエラーが発生しました。",
     );
-    console.log("サーバでエラーがありました 再度実行してください");
+    console.error("サーバでエラーがありました 再度実行してください");
     return reply
       .status(500)
       .send({ error: "サーバでエラーがありました 再度実行してください" });

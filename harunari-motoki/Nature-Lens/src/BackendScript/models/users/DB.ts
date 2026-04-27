@@ -2,13 +2,6 @@ import * as dotenv from "dotenv";
 dotenv.config();
 import { Pool } from "pg";
 
-console.log("DB.ts内");
-console.log("ホスト名", process.env.USERS_READWRITE_HOST);
-console.log("user名", process.env.USERS_READWRITE_USER);
-console.log("db名", process.env.USERS_READWRITE_DB);
-console.log("pass名", process.env.USERS_READWRITE_PASS);
-console.log("DB.ts内");
-
 export const usersPool = new Pool({
   host: process.env.USERS_READWRITE_HOST,
   user: process.env.USERS_READWRITE_USER,

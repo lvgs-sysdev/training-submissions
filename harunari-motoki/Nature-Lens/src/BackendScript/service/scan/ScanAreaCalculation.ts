@@ -1,6 +1,6 @@
 import { userGeolocationdata } from "../../../library/scan/typeDeffinition.js";
 
-export async function ScanAreaCalculation({
+export async function scanareaCalculation({
   latitude,
   longitude,
 }: userGeolocationdata) {

@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: nature-lens_DB
+    volumes:
+      - db_data:/var/lib/postgresql/18/docker
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    restart: always
+    ports:
+      - "5432:5432"
+    environment: 
+      POSTGRES_USER: app_manager
+      POSTGRES_PASSWORD: '@1oGinYQEad'
+      POSTGRES_DB: masterdb
+  web:
+    build: .
+    container_name: nature-lens
+    volumes: 
+      - .:/app 
+      - /app/node_modules
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+volumes:
+  db_data:

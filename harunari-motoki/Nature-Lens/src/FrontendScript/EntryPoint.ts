@@ -12,7 +12,7 @@ import { updateTopPage } from "./Viewmodel/users/updateTopPage.js";
 import { updateScanPage } from "./Viewmodel/scan/updateScanPage.js";
 import { postSilentRefresh } from "./APIservice/users/postSilentRefresh.js";
 import { updateScanResult } from "./Viewmodel/scan/updateScanResult.js";
-import { GBIFdetailInfo } from "@/library/scan/typeDeffinition.js";
+import { GBIFdetailInfo } from "../library/scan/typeDeffinition.js";
 
 export const router = async () => {
   try {
