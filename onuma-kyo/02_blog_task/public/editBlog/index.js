@@ -17,12 +17,16 @@ window.onload = async function () {
   }
 
   const tags = await apiClient.get('/tags');
-  document.getElementById('blog-edit-tag').removeChild();
+  const eTagSelect = document.getElementById('blog-edit-tag');
+  while (eTagSelect.firstChild) {
+    eTagSelect.removeChild(eTagSelect.firstChild);
+  }
   tags.map((tag) => {
     const child = document.createElement('option');
     child.setAttribute('value', tag.tagId);
     child.textContent = tag.name;
-    document.getElementById('blog-edit-tag').appendChild(child);
+    // document.getElementById('blog-edit-tag').appendChild(child);
+    eTagSelect.appendChild(child);
   });
 
   document.getElementById('blog-edit-form-title').value = result.articleTitle;
