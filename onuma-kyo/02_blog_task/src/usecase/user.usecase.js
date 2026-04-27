@@ -23,6 +23,8 @@ export const getUserBySurrogateKey = async (id) => {
 };
 
 export const addUser = async (userId, password, userName, email, snsLink) => {
+  // 入力値チェック
+  service.validateAdd(userId, password, userName, email, snsLink);
   if (await service.exist(userId)) {
     throw new Error(`User with the same user ID is already registered. userId: ${userId}`);
   }
@@ -32,6 +34,8 @@ export const addUser = async (userId, password, userName, email, snsLink) => {
 };
 
 export const updateUser = async (orgUserId, userId, userName, email, snsLink) => {
+  // 入力値チェック
+  service.validateUpdate(userName, email, snsLink);
   // 編集前ユーザーIDをキーとして更新対象を取得
   const user = await repository.findByID(orgUserId);
   if (user.length == 0) {

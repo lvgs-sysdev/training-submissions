@@ -17,11 +17,12 @@ window.onload = async function () {
   }
 
   const tags = await apiClient.get('/tags');
-  document.getElementById('blog-edit-tag').innerHTML = '';
+  document.getElementById('blog-edit-tag').removeChild();
   tags.map((tag) => {
-    document.getElementById('blog-edit-tag').innerHTML += `
-                  <option value="${tag.tagId}">${tag.name}</option>
-    `;
+    const child = document.createElement('option');
+    child.setAttribute('value', tag.tagId);
+    child.textContent = tag.name;
+    document.getElementById('blog-edit-tag').appendChild(child);
   });
 
   document.getElementById('blog-edit-form-title').value = result.articleTitle;

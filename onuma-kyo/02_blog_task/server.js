@@ -15,6 +15,23 @@ import { authRoutes } from './src/routes/auth.route.js';
 import { tagRoutes } from './src/routes/tag.route.js';
 import 'dotenv/config';
 
+// ペイロード送信直前に走るHook（onSend）で、全レスポンスに共通で設定したいヘッダを設定
+fastify.addHook('onSend', (request, reply, payload, done) => {
+  // HSTS (HTTPS強制)
+  // NOTE: 本番運用時はドメイン設定＆有効化
+  // reply.header('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+  // ブラウザが勝手にファイルタイプを検知し実行しようとするのを防止
+  reply.header('X-Content-Type-Options', 'nosniff');
+  // script-src 'self': スクリプトを同じドメインからしか読み込ませない
+  // img-src 'self': 画像を同じドメインからしか読み込ませない
+  // frame-ancestors 'none': クリックジャッキング防止
+  reply.header(
+    'Content-Security-Policy',
+    "script-src 'self'; img-src 'self'; frame-ancestors 'none';",
+  );
+  done();
+});
+
 fastify.register(userRoutes);
 fastify.register(articleRoutes);
 fastify.register(authRoutes);

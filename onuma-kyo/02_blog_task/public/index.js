@@ -24,27 +24,38 @@ window.onload = async function () {
     return;
   }
 
-  document.querySelector('.grid').innerHTML = '';
+  const eGrid = document.querySelector('.grid');
+  eGrid.innerHTML = '';
   result.map((article) => {
-    document.querySelector('.grid').innerHTML += `
-      <li class="grid__item">
+    const eGridItem = document.createElement('li');
+    eGridItem.setAttribute('class', 'grid__item');
+    eGridItem.innerHTML = `
         <article class="card">
-          <a href="/detail/${article.id}" class="card__link">
+          <a href="#" class="card__link">
             <div class="card__image-frame">
-              <img class="card__image" src="./assets/images/article-1.png" alt="${article.articleTitle}の写真" />
+              <img class="card__image" src="./assets/images/article-1.png" alt="" />
             </div>
             <div class="card__info">
               <div class="card__label">
-                <span class="card__category">Travel</span>
-                <time class="card__time" datetime="2022-02-19">${article.updateAt}</time>
+                <span class="card__category"></span>
+                <time class="card__time" datetime="2022-02-19"></time>
               </div>
-              <h3 class="card__headline">${article.articleTitle}</h3>
-              <p class="card__description">${article.content}</p>
+              <h3 class="card__headline"></h3>
+              <p class="card__description"></p>
             </div>
           </a>
         </article>
-      </li>
     `;
+
+    eGridItem.querySelector('.card__link').setAttribute('href', `/detail/${article.id}`);
+    eGridItem.querySelector('.card__image').setAttribute('alt', `${article.articleTitle}の写真`);
+    // htmlとして解析されないようテンプレートリテラル内で変数参照せず、textContentを使って設定
+    eGridItem.querySelector('.card__time').textContent = article.updateAt;
+    eGridItem.querySelector('.card__headline').textContent = article.articleTitle;
+    eGridItem.querySelector('.card__description').textContent = article.content;
+    eGridItem.querySelector('.card__category').textContent = article.tag;
+
+    eGrid.appendChild(eGridItem);
   });
 
   loadImages();
