@@ -19,6 +19,7 @@ document.getElementById('login-form').addEventListener('submit', async function 
     );
     return;
   }
+  localStorage.setItem('csrfToken', result.csrfToken);
   // レスポンスが成功の場合、アラート出して画面遷移
   alert('ログインが成功しました。トップ画面に遷移します。');
   window.location.href = '/';

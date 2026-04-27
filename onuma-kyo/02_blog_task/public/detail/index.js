@@ -24,13 +24,30 @@ window.onload = async function () {
               </div>
     `;
   }
-  // ログイン済の場合、プロフィールボタンを表示
+  // ログイン済の場合、ログイン/新規登録ボタンの代わりに、ログアウト/プロフィールボタンを表示
   if (sessionInfo.id) {
     document.querySelector('.header__btn-list').innerHTML = `
+        <li>
+          <button id="logout-button" class="header__btn-login">Logout</button>
+        </li>
         <li>
           <a class="header__btn-register" href="/user">PROFILE</a>
         </li>
     `;
+    document.getElementById('logout-button').addEventListener('click', async () => {
+      const apiEndpoint = '/logout';
+
+      const result = await apiClient.get(apiEndpoint);
+      if (result.error) {
+        // レスポンスが失敗の場合、エラーメッセージを画面表示
+        alert(result.message);
+        return;
+      }
+      localStorage.removeItem('csrfToken');
+      // レスポンスが成功の場合、アラート出して画面遷移
+      alert('ログアウトしました。トップ画面に遷移します。');
+      window.location.href = '/';
+    });
   }
 
   document.querySelector('.review-detail__category').textContent = result.tag;

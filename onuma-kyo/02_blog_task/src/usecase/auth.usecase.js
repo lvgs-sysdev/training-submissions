@@ -11,5 +11,5 @@ export const login = async (userId, password, createSession) => {
   if (!authService.verifyPassword(user[0].password, password)) {
     throw new Error(`パスワードが間違っています。`);
   }
-  createSession(user[0].id);
+  createSession(user[0].id, authService.generateCSRFToken());
 };

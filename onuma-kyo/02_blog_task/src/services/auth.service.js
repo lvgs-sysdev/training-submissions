@@ -1,4 +1,5 @@
 import { argon2Sync, randomBytes, timingSafeEqual } from 'node:crypto';
+import crypto from 'crypto';
 
 const CONFIG = {
   parallelism: 4,
@@ -42,4 +43,9 @@ export function verifyPassword(storedStr, password) {
     passes: stored.passes,
   });
   return timingSafeEqual(expected, actual);
+}
+
+// CSRFトークンを生成
+export function generateCSRFToken() {
+  return crypto.randomBytes(32).toString('hex');
 }

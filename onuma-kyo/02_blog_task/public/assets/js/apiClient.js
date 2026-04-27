@@ -54,12 +54,13 @@ export const get = async (apiEndpoint) => {
   }
 };
 
-export const put = async (apiEndpoint, dataBody) => {
+export const put = async (apiEndpoint, dataBody, csrfToken) => {
   try {
     const res = await fetch(apiEndpoint, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken,
       },
       body: JSON.stringify(dataBody),
     });

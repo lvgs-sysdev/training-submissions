@@ -39,8 +39,9 @@ document.getElementById('profile-form').addEventListener('submit', async functio
     snsLink: snsLink,
   };
   const apiEndpoint = `/users/edit/${orgUserId}`;
+  const csrfToken = localStorage.getItem('csrfToken');
 
-  const result = await apiClient.put(apiEndpoint, dataBody);
+  const result = await apiClient.put(apiEndpoint, dataBody, csrfToken);
   if (result.error) {
     // レスポンスが失敗の場合、エラーメッセージを画面表示
     document.querySelector('.form__error-message .error-message--line').innerText = JSON.stringify(

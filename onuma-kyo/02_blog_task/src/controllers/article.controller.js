@@ -45,6 +45,12 @@ export const updateArticleHandler = async (req, reply) => {
   try {
     const { articleTitle, content, tagId } = req.body;
     const { id } = req.params;
+    // CsrfTokenの検証
+    const clientCsrfToken = req.headers['x-csrf-token'];
+    const serverCsrfToken = req.session.csrfToken;
+    if (clientCsrfToken !== serverCsrfToken) {
+      throw new Error(`CSRFトークンの検証に失敗しました`);
+    }
     await usecase.updateArticle(id, articleTitle, content, tagId);
     reply.send(JSON.stringify({ message: 'Article updated' }));
   } catch (error) {

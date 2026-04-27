@@ -56,7 +56,12 @@ export const updateUserHandler = async (req, reply) => {
   try {
     const { userId, userName, email, snsLink } = req.body;
     const { orgUserId } = req.params;
-
+    // CsrfTokenの検証
+    const clientCsrfToken = req.headers['x-csrf-token'];
+    const serverCsrfToken = req.session.csrfToken;
+    if (clientCsrfToken !== serverCsrfToken) {
+      throw new Error(`CSRFトークンの検証に失敗しました`);
+    }
     await usecase.updateUser(orgUserId, userId, userName, email, snsLink);
     reply.send(JSON.stringify({ message: 'User updated' }));
   } catch (error) {

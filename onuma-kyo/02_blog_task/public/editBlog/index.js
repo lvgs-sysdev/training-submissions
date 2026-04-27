@@ -50,7 +50,9 @@ document.getElementById('blog-edit-form').addEventListener('submit', async funct
     tagId: Number.parseInt(tagId),
   };
 
-  const result = await apiClient.put(apiEndpoint, dataBody);
+  const csrfToken = localStorage.getItem('csrfToken');
+
+  const result = await apiClient.put(apiEndpoint, dataBody, csrfToken);
   if (result.error) {
     // レスポンスが失敗の場合、エラーメッセージを画面表示
     document.querySelector('.form__error-message .error-message--line').innerText = JSON.stringify(

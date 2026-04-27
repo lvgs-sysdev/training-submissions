@@ -54,7 +54,11 @@ fastify.register(fastifyCookie);
 fastify.register(fastifySession, {
   cookieName: 'sessionId_test',
   secret: process.env.SESSION_SECRET,
-  cookie: { maxAge: 1800000, secure: false },
+  cookie: {
+    maxAge: 1800000,
+    secure: false,
+    sameSite: 'lax', // 同一サイトと他サイトからのリンク遷移（GET）リクエストの場合のみCookie送信
+  },
 });
 
 // Run the server!

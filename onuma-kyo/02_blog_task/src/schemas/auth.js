@@ -12,6 +12,12 @@ export const loginSchema = {
   },
 };
 
+export const logoutSchema = {
+  response: {
+    200: { type: 'string' },
+  },
+};
+
 export const meSchema = {
   response: {
     200: { type: 'string' },
