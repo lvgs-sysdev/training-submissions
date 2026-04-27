@@ -52,7 +52,7 @@ fastify.get('/editBlog/:id(^\\d+)', async function handler(request, reply) {
 
 fastify.register(fastifyCookie);
 fastify.register(fastifySession, {
-  cookieName: 'sessionId_test',
+  cookieName: 'sessionId',
   secret: process.env.SESSION_SECRET,
   cookie: {
     maxAge: 1800000,

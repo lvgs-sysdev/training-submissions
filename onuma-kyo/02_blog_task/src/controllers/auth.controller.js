@@ -11,7 +11,7 @@ export const loginHandler = async (req, reply) => {
   try {
     const { userId, password } = req.body;
     await usecase.login(userId, password, async (id, csrfToken) => {
-      await req.session.regenerate();
+      await req.session.regenerate(); // セクションフィクセーション対策のためログイン後にセッションID再生成
       req.session.authenticated = true;
       req.session.user = id;
       req.session.csrfToken = csrfToken;
