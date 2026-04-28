@@ -18,7 +18,6 @@ export async function getAccessGBIF(
         timeout: 10000,
       },
     );
-    console.log(response.data);
     return response.data;
   } catch (error: any) {
     if (error.code === "ECONNABORTED") {
