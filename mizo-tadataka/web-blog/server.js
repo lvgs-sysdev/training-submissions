@@ -6,8 +6,13 @@ const fastifyMysql = require("@fastify/mysql");
 const fastifyStatic = require("@fastify/static");
 const path = require("path");
 const argon2 = require("argon2");
-const formBody = require("@fastify/formbody");
-const cookie = require("@fastify/cookie");
+const fastifyformBody = require("@fastify/formbody");
+const fastifycookie = require("@fastify/cookie");
+const fs = require("fs");
+const fastifymultipart = require("@fastify/multipart");
+const { pipeline } = require("stream/promises");
+const crypto = require("crypto");
+const { DESTRUCTION } = require("dns");
 
 //プラグイン（拡張パーツ）の設定
 fastify.register(fastifyStatic, {
@@ -17,11 +22,11 @@ fastify.register(fastifyMysql, {
   promise: true,
   connectionString: process.env.DB_URL,
 });
-
-fastify.register(formBody);
-fastify.register(require("@fastify/cookie"), {
+fastify.register(fastifyformBody);
+fastify.register(fastifycookie, {
   secret: process.env.COOKIE_SECRET,
 });
+fastify.register(fastifymultipart);
 
 //プログラム開始
 //テスト
@@ -92,6 +97,32 @@ fastify.post("/api/v1/login", async (request, reply) => {
       success: true, //成功フラグ
       message: "ログイン成功",
       username: user.username,
+    };
+  } catch (err) {
+    fastify.log.error(err);
+    return reply.code(500).send({ message: "サーバーエラー" });
+  }
+});
+
+//一覧表示（全ての記事の中から、投稿日が新しい順に６つの記事を表示する）
+fastify.get("/api/v1/list", async (request, reply) => {
+  try {
+    const [articles] = await fastify.mysql.query(
+      `SELECT 
+        a.article_id,
+        a.article_title, 
+        LEFT(a.content,50) AS summary,
+        a.created_at,
+        ai.file_name
+      FROM articles a 
+      LEFT JOIN article_images ai
+      ON a.article_id = ai.article_id AND ai.is_main = 1
+      ORDER BY a.created_at DESC
+      LIMIT 6`,
+    );
+    return {
+      success: true, //成功フラグ
+      articles: articles,
     };
   } catch (err) {
     fastify.log.error(err);

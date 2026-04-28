@@ -16,6 +16,7 @@ CREATE TABLE users(
 -- 記事
 CREATE TABLE articles(
     article_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    article_title VARCHAR(255) NOT NULL,
     content TEXT not NULL,
     id INT UNSIGNED NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -58,4 +59,16 @@ CREATE TABLE article_tags(
     FOREIGN KEY (article_id) REFERENCES articles(article_id) ON DELETE CASCADE,
     FOREIGN KEY (tag_type_id) REFERENCES tag_types(tag_type_id)
 );
+--記事の画像
+CREATE TABLE article_images (
+    image_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    article_id INT UNSIGNED NOT NULL,
+    file_name VARCHAR(255) NOT NULL,
+    is_main BOOLEAN DEFAULT FALSE,
+    CONSTRAINT fk_article_image
+    FOREIGN KEY (article_id) REFERENCES articles (article_id)
+    ON DELETE CASCADE
+);
+
+
 

@@ -5,6 +5,7 @@
   "dependencies": {
     "@fastify/cookie": "^11.0.2",
     "@fastify/formbody": "^8.0.2",
+    "@fastify/multipart": "^10.0.0",
     "@fastify/mysql": "^5.0.2",
     "@fastify/static": "^9.1.1",
     "abstract-logging": "^2.0.1",
