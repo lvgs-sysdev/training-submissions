@@ -12,7 +12,6 @@ const fs = require("fs");
 const fastifymultipart = require("@fastify/multipart");
 const { pipeline } = require("stream/promises");
 const crypto = require("crypto");
-const { DESTRUCTION } = require("dns");
 
 //プラグイン（拡張パーツ）の設定
 fastify.register(fastifyStatic, {
@@ -123,6 +122,46 @@ fastify.get("/api/v1/list", async (request, reply) => {
     return {
       success: true, //成功フラグ
       articles: articles,
+    };
+  } catch (err) {
+    fastify.log.error(err);
+    return reply.code(500).send({ message: "サーバーエラー" });
+  }
+});
+//記事の詳細表示（記事の内容と、記事に紐づく画像を全て表示する）
+fastify.get("/api/v1/detail/:id", async (request, reply) => {
+  try {
+    const articleId = request.params.id;
+    const [articles] = await fastify.mysql.query(
+      `SELECT 
+        a.article_id,
+        a.article_title, 
+        a.content,
+        a.created_at,
+        ai.file_name,
+        ai.is_main
+      FROM articles a 
+      LEFT JOIN article_images ai
+      ON a.article_id = ai.article_id
+      WHERE a.article_id = ?`,
+      [articleId],
+    );
+    if (articles.length === 0) {
+      return reply.code(404).send({ message: "記事が見つかりませんでした。" });
+    }
+    const article = articles[0];
+    const images = articles
+      .filter((row) => row.file_name)
+      .map((row) => ({ file_name: row.file_name, is_main: row.is_main }));
+    return {
+      success: true, //成功フラグ
+      article: {
+        id: article.article_id,
+        title: article.article_title,
+        content: article.content,
+        createdAt: article.created_at,
+        images: images,
+      },
     };
   } catch (err) {
     fastify.log.error(err);
