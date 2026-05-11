@@ -16,10 +16,10 @@
       </a>
       <ul class="header__btn-list">
         <li>
-          <a class="header__btn-login" href="/login">Login</a>
+          <button type="button" class="header__btn--left" id="header__btn--left">Login</button>
         </li>
         <li>
-          <a class="header__btn-register" href="/register">Get started</a>
+          <a class="header__btn--right" id="header__btn--right" href="/register">Get started</a>
         </li>
       </ul>
     </header>
@@ -33,8 +33,10 @@
                 <img src="../assets/images/user-2.jpg" alt="Karen Smithのプロフィール写真" />
               </div>
               <div>
-                <p class="avatar__name">Karen Smith</p>
-                <time class="review-detail__time" datetime="2022-02-19">19 Feb 2022</time>
+                <p class="avatar__name" data-js="author">Karen Smith</p>
+                <time class="review-detail__time" datetime="2022-02-19" data-js="updated-time"
+                  >19 Feb 2022</time
+                >
               </div>
             </div>
             <div class="review-detail__topbar-side-area">
@@ -68,11 +70,22 @@
                   </a>
                 </li>
               </ul>
+              <div
+                class="button button--black button--end-aligned button--hidden"
+                id="edit-button-container"
+              >
+                <a href="#" class="button__button" id="edit-button">
+                  <i class="fas fa-pen" style="color: rgb(255, 255, 255)"></i>
+                  編集
+                </a>
+              </div>
             </div>
           </div>
-          <a class="review-detail__category" role="link">Culinary</a>
-          <h1 class="review-detail__headline">記事タイトル記事タイトル記事タイトル</h1>
-          <p class="review-detail__paragraph">
+          <a class="review-detail__category" role="link" data-js="category">Culinary</a>
+          <h1 class="review-detail__headline" data-js="headline">
+            記事タイトル記事タイトル記事タイトル
+          </h1>
+          <p class="review-detail__paragraph" data-js="paragraph">
             Even there are a lot of potential tourism in Semarang. Therefore Semarang need more
             promotional for old potential Tourism.
           </p>
@@ -84,7 +97,7 @@
             />
             <figcaption class="review-detail__caption">Food portrait this afternoon</figcaption>
           </figure>
-          <a class="tags__link review-detail__tag-link" href="#">Culinary</a>
+          <a class="tags__link review-detail__tag-link" href="#" data-js="tag-link">Culinary</a>
         </section>
         <section class="related-reviews">
           <h3 class="section-headline">関連記事（同一タグ）</h3>

@@ -1,43 +1,27 @@
 import * as usecase from '../usecase/auth.usecase.js';
 
-const handleError = (reply, error) => {
-  console.error('Error: ', error);
-  reply.code(500);
-  reply.headers({ 'Content-Type': 'application/json' });
-  reply.send(error);
-};
-
 export const loginHandler = async (req, reply) => {
-  try {
-    const { userId, password } = req.body;
-    await usecase.login(userId, password, async (id, csrfToken) => {
-      await req.session.regenerate(); // セクションフィクセーション対策のためログイン後にセッションID再生成
-      req.session.authenticated = true;
-      req.session.user = id;
-      req.session.csrfToken = csrfToken;
-      reply.send(JSON.stringify({ csrfToken: csrfToken }));
-    });
-  } catch (error) {
-    handleError(reply, error);
-  }
+  const { userId, password } = req.body;
+  await usecase.login(userId, password, async (id, csrfToken) => {
+    await req.session.regenerate(); // セッションフィクセーション対策のためログイン後にセッションID再生成
+    req.session.authenticated = true;
+    req.session.user = id;
+    req.session.csrfToken = csrfToken;
+    reply.type('application/json').code(200);
+    reply.send(JSON.stringify({ csrfToken: csrfToken }));
+  });
 };
 
 export const logoutHandler = async (req, reply) => {
-  try {
-    if (req.session.authenticated) {
-      req.session.destroy();
-    }
-    reply.send(JSON.stringify({ message: 'ログアウト処理成功' }));
-  } catch (error) {
-    handleError(reply, error);
+  if (req.session.authenticated) {
+    req.session.destroy();
   }
+  reply.type('application/json').code(200);
+  reply.send(JSON.stringify({ message: 'ログアウト処理成功' }));
 };
 
 export const meHandler = async (req, reply) => {
-  try {
-    const id = req.session.user;
-    reply.send(JSON.stringify({ id: id }));
-  } catch (error) {
-    handleError(reply, error);
-  }
+  const id = req.session.user;
+  reply.type('application/json').code(200);
+  reply.send(JSON.stringify({ id: id }));
 };

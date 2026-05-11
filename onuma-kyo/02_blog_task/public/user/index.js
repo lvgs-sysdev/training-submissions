@@ -1,6 +1,6 @@
 import * as apiClient from '../assets/js/apiClient.js';
 
-window.onload = async function () {
+document.addEventListener('DOMContentLoaded', async () => {
   // userのidをサーバ側のメモリから取得するGetリクエスト
   const sessionInfo = await apiClient.get('/me');
   // 取得したidを使ってUser情報取得するGetリクエスト
@@ -21,7 +21,7 @@ window.onload = async function () {
   document.getElementById('profile-form-userName').value = result.userName;
   document.getElementById('profile-form-email').value = result.email;
   document.getElementById('profile-form-snsLink').value = result.snsLink;
-};
+});
 
 document.getElementById('profile-form').addEventListener('submit', async function (event) {
   event.preventDefault(); // Prevent default form submission

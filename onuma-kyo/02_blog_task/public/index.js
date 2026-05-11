@@ -1,19 +1,16 @@
 import * as apiClient from './assets/js/apiClient.js';
 
-window.onload = async function () {
+document.addEventListener('DOMContentLoaded', async () => {
   // userのidをサーバ側のメモリから取得するGetリクエスト
   const sessionInfo = await apiClient.get('/me');
+  const btnLeft = document.getElementById('header__btn--left');
+  btnLeft.onclick = async () => {
+    location.href = '/login';
+  };
   // ログイン済の場合、ログイン/新規登録ボタンの代わりに、ログアウト/プロフィールボタンを表示
   if (sessionInfo.id) {
-    document.querySelector('.header__btn-list').innerHTML = `
-        <li>
-          <button id="logout-button" class="header__btn-login">Logout</button>
-        </li>
-        <li>
-          <a class="header__btn-register" href="/user">PROFILE</a>
-        </li>
-    `;
-    document.getElementById('logout-button').addEventListener('click', async () => {
+    btnLeft.textContent = 'Logout';
+    btnLeft.onclick = async () => {
       const apiEndpoint = '/logout';
 
       const result = await apiClient.get(apiEndpoint);
@@ -26,7 +23,11 @@ window.onload = async function () {
       // レスポンスが成功の場合、アラート出して画面遷移
       alert('ログアウトしました。トップ画面に遷移します。');
       window.location.href = '/';
-    });
+    };
+
+    const btnRight = document.getElementById('header__btn--right');
+    btnRight.textContent = 'PROFILE';
+    btnRight.setAttribute('href', '/user');
   }
 
   const apiEndpoint = '/articles?limit=6';
@@ -35,14 +36,12 @@ window.onload = async function () {
   console.log(result);
   if (result.error) {
     // レスポンスが失敗の場合、エラーメッセージを画面表示
-    document.querySelector('.form__error-message .error-message--line').innerText = JSON.stringify(
-      result.message,
-    );
+    alert('記事の取得に失敗しました。');
     return;
   }
 
-  const eGrid = document.querySelector('.grid');
-  eGrid.innerHTML = '';
+  // appendChild後のレイアウト配置処理の繰り返し回避のため、fragmentを使って子要素組み立て
+  const fragment = document.createDocumentFragment();
   result.map((article) => {
     const eGridItem = document.createElement('li');
     eGridItem.setAttribute('class', 'grid__item');
@@ -72,11 +71,14 @@ window.onload = async function () {
     eGridItem.querySelector('.card__description').textContent = article.content;
     eGridItem.querySelector('.card__category').textContent = article.tag;
 
-    eGrid.appendChild(eGridItem);
+    fragment.appendChild(eGridItem);
   });
+  const eGrid = document.querySelector('.grid');
+  eGrid.innerHTML = '';
+  eGrid.appendChild(fragment);
 
   loadImages();
-};
+});
 
 // NOTE: 画像表示はスコープ外とするため、DOM操作で要素を非表示にする。（HTMLファイルは編集せずレイアウトは残す）
 // TODO: 画像を対応する場合はこの処理を改修する

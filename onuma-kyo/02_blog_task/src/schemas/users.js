@@ -57,7 +57,7 @@ export const addUserSchema = {
     },
   },
   response: {
-    200: { type: 'string' },
+    201: { type: 'string' },
   },
 };
 

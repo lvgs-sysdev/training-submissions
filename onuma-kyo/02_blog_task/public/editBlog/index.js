@@ -1,6 +1,6 @@
 import * as apiClient from '../assets/js/apiClient.js';
 
-window.onload = async function () {
+document.addEventListener('DOMContentLoaded', async () => {
   const regexpCoordinates = /\/editBlog\/(\d+)/;
   const match = window.location.pathname.match(regexpCoordinates);
 
@@ -17,24 +17,30 @@ window.onload = async function () {
   }
 
   const tags = await apiClient.get('/tags');
-  const eTagSelect = document.getElementById('blog-edit-tag');
-  while (eTagSelect.firstChild) {
-    eTagSelect.removeChild(eTagSelect.firstChild);
+  if (tags.error) {
+    alert('カテゴリーが取得できません。');
+    return;
   }
+  // appendChild後のレイアウト配置処理の繰り返し回避のため、fragmentを使って子要素組み立て
+  const fragment = document.createDocumentFragment();
   tags.map((tag) => {
     const child = document.createElement('option');
     child.setAttribute('value', tag.tagId);
     child.textContent = tag.name;
-    // document.getElementById('blog-edit-tag').appendChild(child);
-    eTagSelect.appendChild(child);
+    fragment.appendChild(child);
   });
+  const eTagSelect = document.getElementById('blog-edit-tag');
+  while (eTagSelect.firstChild) {
+    eTagSelect.removeChild(eTagSelect.firstChild);
+  }
+  eTagSelect.appendChild(fragment);
 
   document.getElementById('blog-edit-form-title').value = result.articleTitle;
   document.getElementById('blog-edit-form-content').value = result.content;
   const currentTag = tags.find((tag) => tag.name === result.tag);
   console.log(currentTag);
   document.getElementById('blog-edit-tag').value = currentTag.tagId;
-};
+});
 
 document.getElementById('blog-edit-form').addEventListener('submit', async function (event) {
   event.preventDefault(); // Prevent default form submission
