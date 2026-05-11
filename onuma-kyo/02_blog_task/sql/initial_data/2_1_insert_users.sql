@@ -1,0 +1,6 @@
+INSERT INTO users (user_id, password, user_name, email, sns_link, created_at, updated_at) VALUES
+('user_id1', '{"algorithm":"argon2id","parallelism":4,"tagLength":64,"memory":65536,"passes":3,"nonceHex":"67f3c6b8178d824e176e3fecdc664a76","tagHex":"aec87b6bc8366037e8a43223bd4defd6413276acfa0b89b34cc1ce1acf40f51dafc3342513ff5ac789640556a471c80c20d61544ead50f05806979598a86e44d"}', 'user_name1', 'test1@test1', 'https://example1.com/', '2026-04-10 00:00:00', '2026-04-10 00:00:00'),
+('user_id2', '{"algorithm":"argon2id","parallelism":4,"tagLength":64,"memory":65536,"passes":3,"nonceHex":"cae3120f1aad9b3710e700dd01389615","tagHex":"9b37137cedb268d6714990761b53a905b317102c542e8e758dffbb5908750fd63fdf616d9076baa9b25fa0ff93b2dbcd9136051e272c9dc63fa36ffac1042893"}', 'user_name2',
+'test2@test2', 'https://example2.com/', '2026-04-10 00:00:00', '2026-04-10 00:00:00'),
+('user_id3', '{"algorithm":"argon2id","parallelism":4,"tagLength":64,"memory":65536,"passes":3,"nonceHex":"5170a141a36957150aea953efad70ef9","tagHex":"4034a9d6651bca00240b2c67c132846b18413bf1e8e643540c6f16dc4c4d4324f883a5d491fe9b6a83706a408d2863309cee06ed6e35fe1bb13a47327f5cf868"}', 'user_name3',
+'test3@test3', 'https://example3.com/', '2026-04-10 00:00:00', '2026-04-10 00:00:00');
