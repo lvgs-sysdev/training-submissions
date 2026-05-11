@@ -35,7 +35,6 @@ fastify.get("/api/v1/user", async (request, reply) => {
   );
   return rows;
 });
-
 //データの送信(新規登録)
 fastify.post("/api/v1/register", async (request, reply) => {
   try {
@@ -49,7 +48,7 @@ fastify.post("/api/v1/register", async (request, reply) => {
     return reply.send({ message: "ユーザー登録完了！" });
   } catch (err) {
     fastify.log.error(err);
-    if (error.code == "ER_DUP_ENTRY") {
+    if (err.code == "ER_DUP_ENTRY") {
       return reply
         .code(400)
         .send({ message: "すでにID、メールアドレスが使われています。" });
@@ -57,7 +56,6 @@ fastify.post("/api/v1/register", async (request, reply) => {
     return reply.code(500).send({ message: "エラーです" });
   }
 });
-
 //データの照合および認証(ログイン)
 fastify.post("/api/v1/login", async (request, reply) => {
   try {
@@ -168,7 +166,144 @@ fastify.get("/api/v1/detail/:id", async (request, reply) => {
     return reply.code(500).send({ message: "サーバーエラー" });
   }
 });
+//ユーザープロフィールの表示（ユーザーID、ユーザー名を表示する）
+fastify.get("/api/v1/profile", async (request, reply) => {
+  try {
+    const rawuserID = request.cookies.userid;
+    if (!rawuserID) {
+      return reply.code(401).send({ message: "ログインしてください。" });
+    }
 
+    const cookie = request.unsignCookie(rawuserID);
+    if (!cookie.valid) {
+      return reply.code(401).send({ message: "クッキーが無効です。" });
+    }
+    const userID = cookie.value;
+    const [users] = await fastify.mysql.query(
+      "SELECT id, user_id, username FROM users WHERE id = ?",
+      [userID],
+    );
+    if (users.length === 0) {
+      return reply
+        .code(404)
+        .send({ message: "ユーザーが見つかりませんでした。" });
+    }
+    const user = users[0];
+    return {
+      success: true,
+      user: {
+        id: user.id,
+        userId: user.user_id,
+        username: user.username,
+      },
+    };
+  } catch (err) {
+    fastify.log.error(err);
+    return reply.code(500).send({ message: "サーバーエラー" });
+  }
+});
+//プロフィールの編集（ユーザー名、IDを変更できるようにする）
+fastify.post("/api/v1/editUser", async (request, reply) => {
+  try {
+    const rawuserID = request.cookies.userid;
+    if (!rawuserID) {
+      return reply.code(401).send({ message: "ログインしてください。" });
+    }
+
+    const cookie = request.unsignCookie(rawuserID);
+    if (!cookie.valid) {
+      return reply.code(401).send({ message: "クッキーが無効です。" });
+    }
+    const userID = cookie.value;
+    const { user_id, username } = request.body;
+
+    await fastify.mysql.query(
+      "UPDATE users SET user_id = ?, username = ? WHERE id = ?",
+      [user_id, username, userID],
+    );
+
+    return {
+      success: true,
+      message: "プロフィールが更新されました。",
+    };
+  } catch (err) {
+    fastify.log.error(err);
+    if (err.code === "ER_DUP_ENTRY") {
+      //不正なリクエスト
+      return reply
+        .code(400)
+        .send({ message: "すでにユーザーIDは使われています。" });
+    }
+    return reply.code(500).send({ message: "サーバーエラー" });
+  }
+});
+//自分の記事一覧表示（自分が投稿した記事を投稿日が新しい順に表示する）
+fastify.get("/api/v1/mylist", async (request, reply) => {
+  try {
+    const rawuserID = request.cookies.userid;
+    if (!rawuserID) {
+      return reply.code(401).send({ message: "ログインしてください。" });
+    }
+
+    const cookie = request.unsignCookie(rawuserID);
+    if (!cookie.valid) {
+      return reply.code(401).send({ message: "クッキーが無効です。" });
+    }
+    const userID = cookie.value;
+
+    const [articles] = await fastify.mysql.query(
+      `SELECT 
+        a.article_id,
+        a.article_title, 
+        LEFT(a.content,50) AS summary,
+        a.created_at,
+        ai.file_name
+      FROM articles a 
+      LEFT JOIN article_images ai
+      ON a.article_id = ai.article_id AND ai.is_main = 1
+      WHERE a.id = ?
+      ORDER BY a.created_at DESC`,
+      [userID],
+    );
+    return {
+      success: true, //成功フラグ
+      articles: articles,
+    };
+  } catch (err) {
+    fastify.log.error(err);
+    return reply.code(500).send({ message: "サーバーエラー" });
+  }
+});
+//editarticle（記事の編集）
+fastify.post("/api/v1/editBlog/:blogid", async (request, reply) => {
+  try {
+    const articleId = request.params.blogid;
+    const rawuserID = request.cookies.userid;
+    if (!rawuserID) {
+      return reply.code(401).send({ message: "ログインしてください。" });
+    }
+
+    const cookie = request.unsignCookie(rawuserID);
+    if (!cookie.valid) {
+      return reply.code(401).send({ message: "クッキーが無効です。" });
+    }
+    const userID = cookie.value;
+    const { blog_title, blog_content } = request.body;
+
+    await fastify.mysql.query(
+      "UPDATE articles SET article_title = ?, content = ? WHERE article_id = ? AND id = ?",
+      [blog_title, blog_content, articleId, userID],
+    );
+
+    return {
+      success: true,
+      message: "記事が更新されました。",
+    };
+  } catch (err) {
+    fastify.log.error(err);
+    return reply.code(500).send({ message: "サーバーエラー" });
+  }
+});
 //サーバーの起動
 const start = async () => {
   try {
