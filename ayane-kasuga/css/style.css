@@ -1,0 +1,524 @@
+@charset "UTF-8";
+/* ヘッダー */
+
+.header {
+  width: 100%;
+  background-color: #fff; 
+  position: relative;     
+  z-index: 100;          
+}
+
+.header_inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1119px;
+  height: 90px;
+  margin: 0 auto;
+  padding: 0 123px;
+  box-sizing: border-box;
+}
+
+/* ロゴエリア */
+
+.header_logo {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  left: 123px;
+}
+
+.header_logo a {
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  color: #FF553C;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: 1px;
+  display: inline-block;
+  width: 171px;
+  height: 23px;
+}
+
+/* ナビゲーションリスト */
+
+.navbar_list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 35px;
+  margin: 0;
+  padding: 0;
+}
+
+/* login */
+
+.navbar_list a:not(.btn-primary) {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 22px;    
+  letter-spacing: 1.5px;
+  color: #333;           
+  text-decoration: none;
+
+  /* --- レイアウト --- */
+  display: inline-block; 
+  width: 43px;
+  height: 22px;
+  opacity: 0.8;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #FF553C;
+  color: #ffffff;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-family: 'Poppins' , sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+/* hero part */
+
+.hero {
+  width: 100%;
+  height: 770px;
+  background-image: url("../img/hero-img.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  margin-left: auto; 
+  margin-right: auto; 
+  justify-content: center;
+}
+
+.hero_inner {
+  position: absolute;
+  top: 230px;
+  left: 123px;
+  width: 455px;
+}
+
+.hero_title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 60px;
+  line-height: 95px;
+  letter-spacing: -2px;
+  color: #121212;
+  margin-bottom: 35px;
+}
+
+.hero_text {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: 0.5px;
+  color: #121212;
+}
+
+/* 一覧（新着順） */
+
+.container {
+  display: flex;
+  justify-content: flex-start;
+  width: fit-content;
+  margin-top: 146px;
+  margin-left: 123px;
+  min-height: 1389px;
+}
+
+.section_reviews {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 60px 20px;
+  width: 740px;
+  flex-shrink: 0;
+}
+
+.section_title {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+/* カード全体の名前を変更 */
+.card-review {
+  width: 360px;
+}
+
+/* 画像の設定*/
+.card-review .post_img img {
+  width: 360px;
+  height: 240px;
+  object-fit: cover;
+}
+
+.card-review .post_meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  height: 21px;
+}
+
+.post_category {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 1px;
+  color: #FF553C;
+}
+
+.post_sep {
+  display: inline-block;
+  width: 1px;           
+  height: 15.43px;         
+  background-color: #DEDEDE; 
+}
+
+.post_date {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 1px;
+  color: #757575;
+}
+
+.review_title {
+  width: 360px;
+  height: 60px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0px;
+  color: #121212;
+}
+
+.review_text {
+  width: 310px;
+  height: 24px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0px;
+  color: #757575;
+}
+
+/* sidebar */
+
+.sidebar {
+  width: 265px;
+  margin-left: 225px;
+  min-height: 392px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar_title {
+  font-family:  'Poppins', sans-serif;
+  font-weight: 600;
+  font-style: Semibold;
+  font-size: 22px;
+  line-height: 28.13px;
+  letter-spacing: 0px;
+  margin-bottom: 25px;
+  color: #121212;
+}
+
+.section_popular {
+  width: 265px;
+  height: 392px;
+  margin-bottom: 131px;
+}
+
+.contents_popular {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contents_popular li {
+  list-style: none;
+  padding-top: 20px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid rgba(18, 18, 18, 0.2);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #121212;
+}
+.contents_popular li:last-child {
+  border-bottom: none;
+}
+
+.section_tags {
+  margin-top: 60px;
+}
+
+.tag {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.tag {
+  display: inline-block;
+  padding: 8px 18px;
+  border: 1px solid #DEDEDE;
+  border-radius: 2px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #757575;
+  text-decoration: none;
+  background-color: #fff;
+  transition: all 0.3s;
+}
+
+/* footer */
+
+/* フッターの土台 */
+footer {
+  margin-top: 100px;
+  background-color: #000;
+  color: #DEDEDE;
+  font-family: 'Poppins', sans-serif;
+  padding: 80px 123px 40px;
+  display: flex;
+  flex-direction: column; 
+  box-sizing: border-box;
+}
+
+/* 上段：4つのブロックを横に並べる */
+.footer_main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.footer_pt { width: 35%; }   
+.footer_info { width: 22%; }  
+.footer_follow { width: 18%; }
+.footer_app { width: 20%; }
+
+/* タイトルのスタイル */
+.footer_title {
+  font-size: 18px;
+  font-weight: 300; 
+  margin-bottom: 30px;
+  color: #FFFFFF;
+}
+
+/* 区切り線 */
+.footer_hr {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 20px 0;
+  width: 100%;
+}
+
+/* 住所とリストの文字 */
+.pt_address,.pt_text, .info_text, .follow_text, .app_img {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.6;
+  list-style: none;
+  padding: 0;
+  font-style: normal;
+}
+
+/* --- 3. リスト項目の隙間 (Informations & Follow us) --- */
+.info_text li, .follow_text li {
+  margin-bottom: 15px; 
+}
+
+/* 左ブロックのリンクを横並びにする */
+.pt_links {
+  display: flex;           
+  flex-wrap: wrap;         
+  gap: 15px 40px;          
+  list-style: none;
+  padding: 0;
+}
+
+.pt_address,.pt_text a, .info_text a, .follow_text a {
+  color: #FFFFFF;
+  opacity: 50%;
+  text-decoration: none;
+}
+
+.pt_text {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 15px 20px;
+  margin-top: 25px; 
+  list-style: none;
+  padding: 0;
+}
+
+
+/* アプリダウンロード画像（縦に並べる） */
+.app_img {
+  list-style: none;
+  padding: 0;
+
+}
+
+.app_img li {
+  margin-bottom: 15px;
+}
+
+.app_img a {
+  text-decoration: none;  
+  border: none;
+}
+
+.app_img img {
+  width: 177px; 
+  display: block;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: none;
+}
+
+.footer_copy {
+  width: 100%;
+  max-width: 292px;
+  height: 43px;
+  margin: 60px auto 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 50%;
+  color: #FFFFFF;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-style: Light;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 1px;
+}
+
+/* --- レスポンシブ対応 (画面幅が1024px以下の時) --- */
+@media (max-width: 1024px) {
+  /* 全体の余白を調整 */
+  .header_inner, .hero_inner, .container, footer {
+    padding-left: 5% !important;
+    padding-right: 5% !important;
+  }
+
+  .hero_title {
+    font-size: 40px;
+    line-height: 1.2;
+  }
+
+  .container {
+    flex-direction: column;
+    margin-left: 0;
+    margin-top: 60px;
+    align-items: center;
+  }
+
+  .section_reviews {
+    width: 100%; 
+    justify-content: center;
+  }
+
+  .sidebar {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 80px;
+    padding: 0 5%;
+    box-sizing: border-box;
+  }
+}
+
+/* --- スマホ対応 (画面幅が768px以下の時) --- */
+@media (max-width: 768px) {
+  /* 1. ヘッダー */
+  .header_inner {
+    padding: 0 15px !important; 
+    height: 70px;              
+  }
+
+  /* 2. ロゴのサイズ */
+  .header_logo a {
+    font-size: 16px;           
+    width: auto;                
+    letter-spacing: 0px;
+  }
+
+  /* 3. ナビゲーション */
+  .navbar_list {
+    gap: 10px;                 
+  }
+
+  /* 4. Loginとボタンの調整 */
+  .navbar_list a:not(.btn-primary) {
+    font-size: 12px;
+    width: auto;              
+    opacity: 1;
+  }
+
+  .btn-primary {
+    padding: 6px 12px;         
+    font-size: 12px;
+    white-space: nowrap;       
+  }
+
+  /* ヒーローエリア */
+  .hero {
+    height: 500px;
+  }
+  .hero_inner {
+    top: 100px;
+    left: 5% !important;
+    width: 90%;
+  }
+  .hero_title {
+    font-size: 32px;
+  }
+
+  /* 記事カード */
+  .card-review {
+    width: 100%;
+    max-width: 360px;
+  }
+  .card-review .post_img img {
+    width: 100%;
+  }
+
+  /* フッター */
+  footer {
+    padding-top: 80px;
+    align-items: center;
+    text-align: center;
+  }
+  .footer_main {
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 5%;   
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .footer_pt, .footer_info, .footer_follow, .footer_app {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+  .pt_links {
+    justify-content: center;
+  }
+}
