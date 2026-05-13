@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "jsx": "preserve", // 💡 Vite（esbuild）にJSXの変換を任せる設定
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true, //
+    "sourceMap": true
+  },
+  "include": ["src/**/*"] //
+}
