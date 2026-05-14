@@ -1,0 +1,470 @@
+@charset "UTF-8";
+
+/* ブラウザ独自の余白をリセット */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --main-color: #fff;
+    --sub-color: #121212;
+    --sub2-color: #757575;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ヘッダー */
+
+.header {
+    width: 100%;
+    background-color: var(--main-color); 
+    position: fixed;
+    top: 0;
+    left: 0;     
+    z-index: 100;          
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1119px;
+    height: 90px;
+    margin: 0 auto;
+    padding: 0 123px;
+    box-sizing: border-box;
+}
+
+/* ロゴエリア */
+
+.header-logo {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    left: 123px;
+}
+
+.header-logo a {
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    color: #FF553C;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: 1px;
+    display: inline-block;
+    width: 171px;
+    height: 23px;
+}
+
+/* ナビゲーションリスト */
+
+.navbar-list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 35px;
+    margin: 0;
+    padding: 0;
+}
+
+/* login */
+
+.navbar-list a:not(.btn-primary) {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 22px;    
+    letter-spacing: 1.5px;
+    color: #333;           
+    text-decoration: none;
+
+  /* --- レイアウト --- */
+    display: inline-block; 
+    width: 43px;
+    height: 22px;
+    opacity: 0.8;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: #FF553C;
+    color: var(--main-color);
+    padding: 10px 20px;
+    text-decoration: none;
+    font-family: 'Poppins' , sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+/*  メインコンテンツの位置調整 */
+.content-wrapper {
+    max-width: auto;
+    margin: 191px 0 auto;
+    /* 上は191px, 左右は中央寄せ*/
+    display: flex;
+    /* 記事のコンテンツとサイドバーを横並びに */
+    justify-content: center;
+    /* 中央に寄せる */
+    gap: 115px;
+    /* 記事とサイドバーの間隔 */
+}
+
+/* メインコンテンツ　記事エリア */
+.content-wrapper-inner {
+    width: 100%;
+    max-width: 740px;
+}
+ /* プロフィール */
+.author-profile {
+    display: flex;
+    align-items: center; /* 垂直方向（上下）を中央に揃える */
+    margin-bottom: 100px;
+    gap: 15px;
+}
+.profile-img {
+    width: 60px;
+    height: 60px;
+}
+
+.author-profile-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profile-name {
+    font-weight: 300;
+    font-size: 16px;
+    letter-spacing: 0.3px;
+    color: var(--sub-color);
+}
+
+.author-profile-detail time {
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: var(--sub2-color);
+}
+
+/* SNSを右側に配置する */
+.author-profile-sns {
+    display: flex;
+    gap: 15px;
+    margin-left: auto;
+}
+
+.author-profile-sns img {
+    width: 24px;
+    height: 24px;
+
+}
+
+/* 記事タイトル */
+.article-title-wrapper {
+    margin-top: 51px;
+    margin-bottom: 49px;
+}
+
+/* Culinaryの装飾 */
+.main-category {
+    display: block;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #FF553C;
+    margin-bottom: 10px;
+}
+/* 記事タイトル */
+.article-title {
+    font-weight: 500;
+    font-size: 32px;
+    color: var(--sub-color);
+}
+
+/* 記事詳細 */
+.article-content {
+    width: 740px;
+    height: auto;
+    align-items: center;
+    margin-bottom: 174px;
+}
+/*  article-text [pで囲ってる］ */
+.article-text:not(:last-child) {
+    margin-bottom: 30px;
+}
+
+/* margin以外の共通スタイルを維持したい場合 */
+.article-text {
+    font-weight: 300;
+    font-size: 18px;
+    color: var(--sub2-color);
+}
+
+/* コーヒーの画像とキャプションのところ */
+.article-main-img-wrapper {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+/*コーヒーの画像 */
+.article-main-img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+/* コーヒーの画像のキャプション */
+.article-main-img-description {
+    text-align: center;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--sub2-color);
+}
+
+/* subtitle */
+.article-subtitle {
+    margin-top: 50px;
+    margin-bottom: 15px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    color: var(--sub-color);
+}
+
+/* 真ん中の画像２枚のところ */
+.article-sub-img-wrapper {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    gap: 20px;
+}
+
+/* カテゴリーボタン */
+.article-category {
+    margin-top: 50px;
+    border: 1px solid #DEDEDE; 
+    border-radius: 0;
+    display: inline-block;
+
+    /* 中の余白 */
+    padding: 8px 18px;
+
+    /* 中の文字 */
+    font-weight: 300;
+    font-size: 14px;
+    font-style: Light;
+    line-height: 100%;
+    color: var(--sub2-color);
+}
+
+/* サイドバー */
+.sidebar-wrapper {
+    width: 265px;
+    flex-shrink: 0
+}
+
+/* サイドバー　新着記事 */
+
+/* タイトル */
+.sidebar-title {
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 22px;
+    line-height: 28px;
+    color: var(--sub-color);
+}
+
+/* 記事 */
+.new-article {
+    margin-top: 40px;
+
+}
+
+/* 記事の写真 */
+.new-article-img {
+    margin-bottom: 25px;
+}
+
+/* 新着記事のカテゴリーと縦線と日付 */
+/* 大枠から */
+.new-article-detail {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 10px;
+}
+/* Category */
+.new-article-category {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 1px;
+    color: #FF553C
+}
+/* 縦線 */
+.new-article-date { 
+    border-left: 1px solid #DEDEDE; 
+    margin-left: 10px; 
+    padding-left: 10px; 
+}
+/* 日付 */
+.new-article-date {
+    font-weight: 300;
+    font-size: 14px;
+    font-style: Light;
+    line-height: 100%;
+    letter-spacing: 1px;
+    color: var(--sub2-color);
+}
+
+/* 新着記事　タイトル */
+.new-article-title {
+    font-weight: 300;
+    font-style: Light;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0px;
+}
+
+/* 投稿者 */
+.sidebar-author {
+    margin-top: 97px;
+}
+
+/* 投稿者タイトル */
+.sidebar-title {
+    margin-bottom: 40px;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 32px;
+    letter-spacing: 0px;
+    color: var(--sub-color)
+}
+/* 投稿者リスト */
+
+/* 顔写真と名前のセット */
+.author-item {
+    display: flex;
+    height: 60px;
+    margin-bottom: 30px;
+    gap: 15px;
+
+}
+/* 投稿者の名前 */
+.author-name {
+    padding-top: 6px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 26px;
+    letter-spacing: 0.3px;
+    color: var(--sub-color);
+}
+
+/* 関連記事 */
+.related-article-wrapper {
+    margin-top: 174px;
+    margin-bottom: 303px;
+    margin-left: 123px;
+    width: 740px;
+    height: 480px;
+    
+
+}
+/* 関連記事のタイトル */
+.related-article-titles {
+    margin-bottom: 50px;
+    font-weight: 600;
+    font-style: SemiBold;
+    font-size: 22px;
+    line-height: 28px;
+}
+/* 記事本体のブロック */
+.related-article-contents { 
+    display: flex;
+    width:auto;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* 記事 */
+.related-article-content {
+    color: var(--sub2-color)
+}
+/* 記事の画像 */
+.related-article-img {
+    margin-bottom: 25px;
+}
+
+/* 記事の中身 */
+.related-article-detail {
+    margin-bottom: 15px;
+}
+/* カテゴリー */
+.related-article-category {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 1px;
+    color: #FF553C;
+}
+/* 縦線 */
+.related-article-date { 
+    border-left: 1px solid #DEDEDE; 
+    margin-left: 10px; 
+    padding-left: 10px; 
+}
+
+/* 日付 */
+.related-article-date {
+    font-weight: 300;
+    font-size: 14px;
+    font-style: Light;
+    line-height: 100%;
+    letter-spacing: 1px;
+}
+
+/* 記事タイトル */
+.related-article-title {
+    font-weight: 300;
+    font-style: Light;
+    font-size: 20px;
+    list-style: 30px;
+    color: var(--sub-color);
+    margin-bottom: 15px;
+}
+
+/* レスポンシブ対応の時 */
+
+@media screen and (max-width: 1024px) {
+    
+    .content-wrapper {
+        flex-direction: column; /* 横並びから縦並びに変更 */
+        align-items: center;    /* 中央寄せ */
+        gap: 50px;              /* 縦に並んだ時の間隔 */    
+    }
+
+    .content-wrapper-inner, 
+    .sidebar-wrapper {
+        width: 100%;            /* 横幅いっぱいにする */
+        max-width: 100%;        /* 制限を解除 */
+    }
+
+    .related-article-wrapper {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .related-article-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    .header-inner {
+        padding: 0 20px;
+    }
+}
