@@ -1,15 +1,9 @@
 @charset "UTF-8";
 
-/* ブラウザ独自の余白をリセット */
-body {
-    margin: 0;
-    padding: 0;
-}
-
 :root {
     --main-color: #fff;
-    --sub-color: #121212;
-    --sub2-color: #757575;
+    --primary-color: #121212;
+    --sub-color: #757575;
 }
 
 img {
@@ -145,14 +139,14 @@ body {
     font-weight: 300;
     font-size: 16px;
     letter-spacing: 0.3px;
-    color: var(--sub-color);
+    color: var(--primary-color);
 }
 
 .author-profile-detail time {
     font-weight: 300;
     font-size: 14px;
     letter-spacing: 1px;
-    color: var(--sub2-color);
+    color: var(--sub-color);
 }
 
 /* SNSを右側に配置する */
@@ -166,6 +160,24 @@ body {
     width: 24px;
     height: 24px;
 
+}
+
+/* SNSのホバー */
+.author-profile-sns img {
+    transition: opacity 0.2s ease;
+}
+
+/* twitterだけ */
+.Twitter-icon {
+    opacity: 0.34;
+}
+.Twitter-icon:hover {
+    opacity: 1;
+}
+
+/* 他のアイコンについて */
+.author-profile-sns img:not(.Twitter-icon):hover {
+    filter: brightness(0);
 }
 
 /* 記事タイトル */
@@ -187,7 +199,7 @@ body {
 .article-title {
     font-weight: 500;
     font-size: 32px;
-    color: var(--sub-color);
+    color: var(--primary-color);
 }
 
 /* 記事詳細 */
@@ -206,7 +218,7 @@ body {
 .article-text {
     font-weight: 300;
     font-size: 18px;
-    color: var(--sub2-color);
+    color: var(--sub-color);
 }
 
 /* コーヒーの画像とキャプションのところ */
@@ -226,7 +238,7 @@ body {
     font-weight: 400;
     font-style: italic;
     font-size: 14px;
-    color: var(--sub2-color);
+    color: var(--sub-color);
 }
 
 /* subtitle */
@@ -236,7 +248,7 @@ body {
     font-weight: 500;
     font-size: 20px;
     line-height: 30px;
-    color: var(--sub-color);
+    color: var(--primary-color);
 }
 
 /* 真ん中の画像２枚のところ */
@@ -262,7 +274,7 @@ body {
     font-size: 14px;
     font-style: Light;
     line-height: 100%;
-    color: var(--sub2-color);
+    color: var(--sub-color);
 }
 
 /* サイドバー */
@@ -279,7 +291,7 @@ body {
     font-style: SemiBold;
     font-size: 22px;
     line-height: 28px;
-    color: var(--sub-color);
+    color: var(--primary-color);
 }
 
 /* 記事 */
@@ -321,7 +333,7 @@ body {
     font-style: Light;
     line-height: 100%;
     letter-spacing: 1px;
-    color: var(--sub2-color);
+    color: var(--sub-color);
 }
 
 /* 新着記事　タイトル */
@@ -345,7 +357,7 @@ body {
     font-size: 22px;
     line-height: 32px;
     letter-spacing: 0px;
-    color: var(--sub-color)
+    color: var(--primary-color)
 }
 /* 投稿者リスト */
 
@@ -364,7 +376,7 @@ body {
     font-size: 16px;
     line-height: 26px;
     letter-spacing: 0.3px;
-    color: var(--sub-color);
+    color: var(--primary-color);
 }
 
 /* 関連記事 */
@@ -395,7 +407,7 @@ body {
 
 /* 記事 */
 .related-article-content {
-    color: var(--sub2-color)
+    color: var(--sub-color)
 }
 /* 記事の画像 */
 .related-article-img {
@@ -436,7 +448,7 @@ body {
     font-style: Light;
     font-size: 20px;
     list-style: 30px;
-    color: var(--sub-color);
+    color: var(--primary-color);
     margin-bottom: 15px;
 }
 
