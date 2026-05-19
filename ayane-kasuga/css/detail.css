@@ -15,106 +15,20 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-/* ヘッダー */
-
-.header {
-    width: 100%;
-    background-color: var(--main-color); 
-    position: fixed;
-    top: 0;
-    left: 0;     
-    z-index: 100;          
-}
-
-.header-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1119px;
-    height: 90px;
-    margin: 0 auto;
-    padding: 0 123px;
-    box-sizing: border-box;
-}
-
-/* ロゴエリア */
-
-.header-logo {
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    left: 123px;
-}
-
-.header-logo a {
-    font-family: 'Poppins', sans-serif;
-    text-decoration: none;
-    color: #FF553C;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 23px;
-    letter-spacing: 1px;
-    display: inline-block;
-    width: 171px;
-    height: 23px;
-}
-
-/* ナビゲーションリスト */
-
-.navbar-list {
-    display: flex;
-    align-items: center;
-    list-style: none;
-    gap: 35px;
-    margin: 0;
-    padding: 0;
-}
-
-/* login */
-
-.navbar-list a:not(.btn-primary) {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
-    font-size: 14px;
-    line-height: 22px;    
-    letter-spacing: 1.5px;
-    color: #333;           
-    text-decoration: none;
-
-  /* --- レイアウト --- */
-    display: inline-block; 
-    width: 43px;
-    height: 22px;
-    opacity: 0.8;
-    text-align: center;
-}
-
-.btn-primary {
-    background-color: #FF553C;
-    color: var(--main-color);
-    padding: 10px 20px;
-    text-decoration: none;
-    font-family: 'Poppins' , sans-serif;
-    font-weight: 300;
-    font-size: 14px;
-}
-
 /*  メインコンテンツの位置調整 */
 .content-wrapper {
-    max-width: auto;
+    max-width: 1119px;
     margin: 191px 0 auto;
     /* 上は191px, 左右は中央寄せ*/
     display: flex;
     /* 記事のコンテンツとサイドバーを横並びに */
-    justify-content: center;
-    /* 中央に寄せる */
-    gap: 115px;
-    /* 記事とサイドバーの間隔 */
+    justify-content: space-between;
+    gap: 30px
+
 }
 
 /* メインコンテンツ　記事エリア */
 .content-wrapper-inner {
-    width: 100%;
     max-width: 740px;
 }
  /* プロフィール */
@@ -228,7 +142,7 @@ body {
 }
 /*コーヒーの画像 */
 .article-main-img {
-    width: 100%;
+    max-width: 100%;
     height: auto;
     margin-bottom: 15px;
 }
@@ -279,7 +193,7 @@ body {
 
 /* サイドバー */
 .sidebar-wrapper {
-    width: 265px;
+    width: 30%;
     flex-shrink: 0
 }
 
@@ -454,8 +368,14 @@ body {
 
 /* レスポンシブ対応の時 */
 
-@media screen and (max-width: 1024px) {
-    
+@media screen and (max-width: 1280px) {
+    .header-inner, .content-wrapper-inner, .sidebar-wrapper, .related-article-wrapper {
+        padding-left: 5% ;
+        padding-right: 5% ;
+    }
+}
+
+@media (max-width: 822px) {
     .content-wrapper {
         flex-direction: column; /* 横並びから縦並びに変更 */
         align-items: center;    /* 中央寄せ */
