@@ -1,0 +1,245 @@
+* {
+  box-sizing: border-box;
+}
+/* 全体のトーンを暖かみのあるベージュ系に */
+body {
+  margin: 0;
+  font-family:
+    "Hiragino Sans", "Meiryo", sans-serif; /* 少し丸みのある日本語フォント */
+  background-color: #fdfaf5; /* 真っ白ではなく、少しクリーム色 */
+  color: #5d4037; /* 真っ黒ではなく、濃い茶色にして柔らかさを出す */
+}
+
+.timeline-main {
+  /* ヘッダーの高さ(60px)よりも少し多めに余白を作る */
+  padding-top: 80px;
+  /* フッターの高さ(65px)分も確保して、最後の投稿が隠れないようにする */
+  padding-bottom: 80px;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  /* 中央寄せを維持 */
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ヘッダー：角を少し丸くしたり、色を柔らかく */
+.app-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #ffffff;
+  border-bottom: 2px solid #ffecb3; /* 薄い黄色でアクセント */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.logo {
+  font-family:
+    "Rounded Mplus 1c", sans-serif; /* 丸文字系のフォントがあれば最高 */
+  font-size: 22px;
+  color: #fb8c00; /* 暖かみのあるオレンジ */
+  margin: 0;
+}
+
+/* 投稿カード：もっと角を丸く、影を柔らかく */
+.post-card {
+  background-color: #fff;
+  border: none; /* 枠線を消して影にする */
+  border-radius: 20px; /* 角をかなり丸くする */
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(93, 64, 55, 0.08); /* ほんのり茶色い影 */
+  overflow: hidden;
+}
+
+/* 犬種タグ：パステルカラーで可愛く */
+.breed-tag {
+  background-color: #fff3e0;
+  color: #ef6c00;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+/* フッター：アイコンに色味をつける */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 65px;
+  background-color: #ffffff;
+  border-top: 1px solid #ffe0b2;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 100;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 -2px 10px rgba(93, 64, 55, 0.05);
+}
+
+.nav-item {
+  flex: 1; /* 横幅を均等に分ける */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: none;
+  border: none;
+  font-size: 24px; /* アイコンの大きさ */
+  cursor: pointer;
+  color: #bcaaa4; /* 落ち着いたココア色 */
+  transition:
+    color 0.3s,
+    transform 0.2s;
+}
+
+.nav-item:active {
+  color: #ff9800; /* タップした瞬間にオレンジに */
+  transform: scale(1.1); /* 少し大きくしてクリック感を出す */
+}
+
+.nav-item::after {
+  content: attr(data-label); /* HTMLにdata-labelを入れる場合 */
+  font-size: 10px;
+  margin-top: 2px;
+  color: #bcaaa4;
+}
+
+/* ヘッダー内のレイアウト調整 */
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.user-info-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* アイコンと名前の隙間 */
+}
+
+.user-icon-small {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0; /* 画像が潰れないように固定 */
+  background-color: #eee; /* 読み込み中や画像がない時の色 */
+}
+
+.search-bar {
+  display: flex;
+  gap: 8px;
+  padding: 15px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  position: sticky; /* 💡 上に固定すると使いやすい */
+  top: 0;
+  z-index: 10;
+}
+
+#search-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  outline: none;
+}
+
+#search-btn {
+  background: #ff9800;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* 画像を横一列に並べ、はみ出した分をスクロールさせる */
+.post-image-wrapper {
+  display: flex !important; /* 確実に横並びにする */
+  flex-direction: row;
+  overflow-x: auto; /* 横スクロールを強制 */
+  scroll-snap-type: x mandatory; /* ピタッと止める */
+  width: 100%;
+  background-color: #f0f0f0; /* 隙間がわかりやすいように一時的に色付け */
+
+  /* スクロールバーを隠す設定 */
+  -ms-overflow-style: none; /* IE用 */
+  scrollbar-width: none; /* Firefox用 */
+}
+
+/* スクロールバーを隠す（Chrome, Safari用） */
+.post-image-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* 各画像のサイズをコンテナの幅100%に固定 */
+.post-photo {
+  flex: 0 0 100%; /* これが重要：幅を100%から縮ませない */
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  scroll-snap-align: start;
+  display: block;
+}
+
+/* 画像とボタンを包む親 */
+.post-image-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden; /* インジケーターがはみ出ないように */
+}
+/* 2. スライダー（既存の設定を維持） */
+.post-image-wrapper {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important; /* JSで計算するため、scrollではなくauto推奨 */
+  overflow-y: hidden !important;
+  scroll-snap-type: x mandatory !important;
+  width: 100% !important;
+  -webkit-overflow-scrolling: touch;
+
+  /* スクロールバーを隠す */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE */
+}
+.post-image-wrapper::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+/* 3. 各画像（既存の設定を維持） */
+.post-photo {
+  flex: 0 0 100% !important;
+  width: 100% !important;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  scroll-snap-align: start !important;
+}
+
+/* 💡 4. [新規] 右上のインジケーター（1/2など） */
+.image-counter {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.6); /* 半透明の黒 */
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-family: sans-serif;
+  z-index: 10;
+  pointer-events: none; /* クリックを無効化して下の画像を触れるように */
+  letter-spacing: 1px;
+}

@@ -1,0 +1,118 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white);
+  border-bottom: 1.5px solid rgba(220, 220, 220);
+  height: 13vh;
+  max-height: 120px;
+  width: 100%;
+
+  .menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+  }
+}
+
+#menu__Pagename {
+  color: var(--maincolor);
+  font-size: 1.35rem;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+}
+
+#menu__loginbutton {
+  color: var(--loginButton);
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+}
+
+.menu__loginbutton--position {
+  margin-left: auto;
+  margin-right: 2.5vw;
+}
+
+#menu__registerbutton {
+  color: var(--registerButton);
+  font-size: 1rem;
+  letter-spacing: 0.05rem;
+  background-color: var(--maincolor);
+  padding: 1.5%;
+  white-space: nowrap;
+}
+
+.header_top {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+@media screen and (max-width: 780px) {
+  .header {
+    height: 10%;
+  }
+
+  #menu__Pagename {
+    font-size: 1.1rem;
+  }
+
+  #menu__loginbutton {
+    font-size: 0.8rem;
+  }
+
+  .menu__loginbutton--position {
+    margin-left: auto;
+    margin-right: 2vw;
+  }
+
+  #menu__registerbutton {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .header {
+    height: 8%;
+  }
+
+  .header .Pagename {
+    font-size: 0.8rem;
+  }
+
+  .header .lgnBtn {
+    font-size: 0.6rem;
+    margin-left: auto;
+    margin-right: 2vw;
+  }
+
+  #register-Btn {
+    font-size: 0.6rem;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .header {
+    height: 10%;
+    max-height: 200px;
+  }
+
+  .header .menu {
+    flex-direction: column;
+  }
+
+  .header .Pagename {
+    font-size: 0.6rem;
+  }
+
+  .header .lgnBtn {
+    font-size: 0.6rem;
+  }
+
+  #register-Btn {
+    font-size: 0.6rem;
+  }
+}

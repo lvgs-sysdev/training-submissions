@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DAYDAYTRAVEL</title>
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
+    <meta
+      name="description"
+      content="あなたの休日の過ごし方を共有できるWebサイトです。" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;250;300;400;500;600;700&display=swap"
+      rel="stylesheet" />
+    <script src="/browser/login_browser.js" defer></script>
+    <script src="/browser/register_browser.js" defer></script>
+  </head>
+
+  <body>
+    <header class="header header_top">
+      <nav class="menu">
+        <a id="menu__Pagename" href="/">DAYDAYTRAVEL</a>
+        <a id="menu__registerbutton" href="/register">Get started</a>
+      </nav>
+    </header>
+    <h1>ユーザ登録情報</h1>
+    ユーザID：<%=loginUser[0].user_id%> <br />
+    ユーザ名：<%=loginUser[0].user_name%><br />
+    
+
+    <a class="editUser" href="/editUser">ユーザプロフィールを編集</a>
+
+
+    <h2>投稿記事一覧</h2>
+    
+    <h3><p>Travel</p></h3><br>
+    <% Blog_travel.forEach((Blog_travel,i)=>{%>
+    <a class="Blog" href="/editBlog?id=<%= Blog_travel.article_id %>"><%= Blog_travel.title %></a><br>
+    <%})%>
+
+    <h3><p>Cullnary</p></h3><br>
+    <% Blog_cullnary.forEach((Blog_cullnary,i)=>{%>
+    <a class="Blog" href="/editBlog?id=<%= Blog_cullnary.article_id %>"><%= Blog_cullnary.title %></a><br>
+    <%})%>
+    <footer class="footer">
+      <section class="infomation-part">
+        <section class="box">
+          <h3 class="subheading">PT. Travel Everyday Indonesia</h3>
+          <address class="sentence-font">
+            Grand Floor Zaidin L-Walk,<br />
+            JI. Maju Jaya No. 2,<br />
+            Daerah Istimewa Yogyakarta,<br />
+            Indonesia 55281<br />
+          </address>
+          <div>
+            <hr class="partisionLine" />
+          </div>
+          <p class="height-adjust1-2">
+            <a class="sentence-font" href="">About &emsp; Privacy Policy</a
+            ><br />
+            <a class="sentence-font" href=""
+              >Teams & Conditions &emsp; Contact</a
+            ><br />
+          </p>
+        </section>
+        <div class="box-position-adjust2">
+          <section class="box">
+            <h3 class="subheading">Informations</h3>
+            <ul>
+              <li>
+                <a class="height-adjust2 sentence-font" href="">
+                  How to register as a user<br />
+                </a>
+              </li>
+              <li>
+                <a class="height-adjust2 sentence-font" href="">
+                  Guide to creating travel review<br />
+                </a>
+              </li>
+              <li>
+                <a class="height-adjust2-2 sentence-font" href="">
+                  Tutorial for making culinary<br />
+                  reviews
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
+        <div class="box-position-adjust3">
+          <section class="box">
+            <h3 class="subheading">Follow us</h3>
+
+            <div class="height-adjust3">
+              <a class="sentence-font" href="">Instagram</a><br />
+              <a class="sentence-font" href="">Facebook</a><br />
+              <a class="sentence-font" href="">Twitter</a><br />
+              <a class="sentence-font" href="">Youtube</a><br />
+            </div>
+          </section>
+        </div>
+        <section class="box">
+          <h3 class="subheading">Download app</h3>
+
+          <div class="Img">
+            <a href="">
+              <img
+                class="AppStore"
+                src="./assets/images/1P/App.png"
+                alt="App Store" />
+            </a>
+            <a href="">
+              <img
+                class="GPlay"
+                src="./assets/images/1P/GooglePlay.png"
+                alt="Google Play" />
+            </a>
+          </div>
+        </section>
+      </section>
+      <small class="Copyright">
+        &copy; <time datetime="2023">2023</time> PT. Travel Everyday Indonesia
+      </small>
+    </footer>
+  </body>
+</html>

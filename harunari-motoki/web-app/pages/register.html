@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="">
     <meta name="description" content="あなたの休日の過ごし方を共有できるWebサイトです。">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;250;300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="/js/register_browser.js" defer></script>
+    <script src="/browser/register_browser.js" defer></script>
 </head>
 
 <body>
     <header class="header">
-        <nav class="menu"> <!-- メニュー部分にはnavタブを使う -->
+        <nav class="menu"> 
             <a id="Pagename" href="/">DAYDAYTRAVEL</a>
 
             <a id="login-Btn" href="/login">Login</a>
@@ -21,29 +21,33 @@
             <a id="register-Btn" href="/register">Get started</a>
         </nav>
     </header>
-
     <form id="registerForm">
-         <p>ユーザ名<br>
+         <p>ユーザID<br>
             <input 
             type="text" 
-            pattern="[A-Za-z].{5,30}" 
-            title="大文字小文字の英字で入力してください(30文字以内)" 
+            pattern="(?=.*[0-9])(?=.*[A-Za-z]).{10,20}" 
+            title="大文字小文字の英数字で入力してください(10~20文字)" 
+            name="user_ID" 
+            required><br>
+        <p>大小文字英数字のみ（10~20文字）</p>
+        </p>
+        <p>ユーザ名<br>
+            <input 
+            type="text" 
+            pattern="[A-Za-z].{5,20}" 
+            title="大文字小文字の英字で入力してください(5~20文字以内)" 
             name="user_name" 
             required><br>
-        <p>大文字小文字英字のみ（5文字以上30文字以内）</p>
+        <p>大小英字のみ（5~20文字）</p>
         </p>
-
         <p>パスワード<br>
             <input 
             type="password" 
             pattern="(?=.*[0-9])(?=.*[A-Za-z]).{10,20}" 
             title="10文字で入力してください" 
             name="password" 
-            required><br> <!-- ここに一時的にtype をtextに切り替えるボタンを作る　要JavaScript -->
-            <!-- 時間があれば記号をパスワードに含める実装の検討　設定がややこしそうなので後回 ---->
-        <p>少なくとも大小英字、数字を１文字ずつ含む（10文字以上20文字以内）</p><br>
-        <!-- <p>左記記号のみ使用可能　!@#$%^&*()_+-=</p> -->
- 
+            required><br>
+        <p>少なくとも大小英数字を1文字ずつ含む（10~20文字）</p><br>
         </p>
         <p><button type="submit">登録</button></p>
     </form>    

@@ -1,0 +1,103 @@
+<div class="mypage-container">
+  <section class="profile-card">
+    <div class="profile-top">
+      <img
+        id="profile-img"
+        src="/img/default-icon.png"
+        alt="User Icon"
+        class="user-icon-large"
+      />
+      <div class="profile-info">
+        <h2 id="profile-name">読み込み中...</h2>
+        <p id="profile-account-id">@account_id</p>
+      </div>
+      <button id="edit-profile-btn" class="btn-secondary">編集</button>
+    </div>
+
+    <p id="profile-content" class="profile-bio">
+      自己紹介がここに表示されます。
+    </p>
+
+    <div class="profile-stats">
+      <div class="stat">
+        <span id="following-count" class="stat-value">0</span>
+        <span class="stat-label">フォロー</span>
+      </div>
+      <div class="stat">
+        <span id="followers-count" class="stat-value">0</span>
+        <span class="stat-label">フォロワー</span>
+      </div>
+    </div>
+  </section>
+
+  <hr />
+
+  <section class="my-posts">
+    <h3>投稿一覧</h3>
+    <div id="posts-container" class="post-grid"></div>
+  </section>
+</div>
+<div id="post-modal" class="modal">
+  <div class="modal-content">
+    <span id="close-modal" class="close-modal">&times;</span>
+    <div id="modal-post-detail"></div>
+  </div>
+</div>
+<div id="edit-profile-modal" class="modal">
+  <div class="modal-content">
+    <span id="close-edit-modal" class="close-modal">&times;</span>
+    <div class="edit-form-container">
+      <h3>プロフィールを編集 🐾</h3>
+      <form id="edit-profile-form">
+        <div class="form-group">
+          <div class="form-group">
+            <label for="edit-image">プロフィール画像</label>
+            <input
+              type="file"
+              id="edit-image"
+              name="profile_image"
+              accept="image/*"
+            />
+            <div class="image-preview">
+              <img
+                id="preview-img"
+                src=""
+                style="
+                  display: none;
+                  width: 80px;
+                  height: 80px;
+                  border-radius: 50%;
+                  margin-top: 10px;
+                  object-fit: cover;
+                "
+              />
+            </div>
+          </div>
+          <label for="edit-name">アカウント名</label>
+          <input
+            type="text"
+            id="edit-name"
+            name="account_name"
+            placeholder="新しいお名前を入力"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="edit-bio">自己紹介</label>
+          <textarea
+            id="edit-bio"
+            name="profile_content"
+            rows="4"
+            placeholder="愛犬のことや趣味を書いてね"
+          ></textarea>
+        </div>
+        <button type="submit" class="submit-btn">保存する</button>
+      </form>
+    </div>
+  </div>
+</div>
+<nav class="bottom-nav">
+  <button id="to-home" class="nav-item" data-label="ホーム">🏠</button>
+  <button id="to-mypage" class="nav-item" data-label="マイページ">👤</button>
+  <button id="logout-btn" class="nav-item" data-label="ログアウト">🚪</button>
+</nav>

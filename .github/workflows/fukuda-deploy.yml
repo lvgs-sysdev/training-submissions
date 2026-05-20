@@ -1,0 +1,53 @@
+name: Fukuda-Exclusive-Deploy
+
+on:
+  push:
+    branches:
+      - tailwag
+  pull_request:
+    branches:
+      - tailwag
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install dependencies
+        run: |
+          cd yuki-fukuda/tailwag/frontend && npm install
+          cd ../backend && npm install
+      - name: Run Tests
+        run: |
+          cd yuki-fukuda/tailwag/backend
+          npm test -- --watch=false
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to EC2 via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.FUKUDA_EC2_HOST }}
+          username: ${{ secrets.FUKUDA_EC2_USER }}
+          key: ${{ secrets.FUKUDA_EC2_SSH_KEY }}
+          script: |
+            # 1. 確実にリポジトリのルートへ移動
+            cd ~/tailwag
+
+            # 2. GitHubから最新情報を取ってきて、今のブランチを強制的に一致させる
+            # (手元の変更を捨てて、GitHubの tailwag ブランチと完全に同じにする魔法です)
+            git fetch origin tailwag
+            git reset --hard origin/tailwag
+
+            # 3. 自分の作業ディレクトリへ移動
+            cd yuki-fukuda/tailwag
+
+            # 4. 念のため掃除してビルド
+            docker-compose down
+            docker-compose up -d --build

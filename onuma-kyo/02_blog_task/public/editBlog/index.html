@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ブログ記事編集 | DAYDAYTRAVEL</title>
+    <link rel="stylesheet" href="../assets/css/sanitize.css" />
+    <link rel="stylesheet" href="../assets/css/common.css" />
+  </head>
+  <body>
+    <main>
+      <input type="hidden" id="blog-edit-id" value="" />
+      <div class="viewport-container">
+        <div class="content-area content-area--wide">
+          <div class="content-area__heading">
+            <h2 class="content-area__heading_title">ブログ記事編集</h2>
+          </div>
+          <form class="group" id="blog-edit-form">
+            <div class="form-container">
+              <div class="field-with-label">
+                <div>
+                  <div class="field-label">
+                    <label class="field-label__label" for="blog-edit-form-title">タイトル</label>
+                  </div>
+                </div>
+                <div class="text-field">
+                  <input
+                    placeholder="記事タイトル"
+                    id="blog-edit-form-title"
+                    pattern="^[\s\S]{0,225}$"
+                    required
+                    type="text"
+                    class="text-field__input"
+                    name="title"
+                    value=""
+                  />
+                </div>
+                <span class="error-message field-with-label__input__field-error"
+                  ><span class="error-message--line">最大225文字まで入力可能です</span></span
+                >
+              </div>
+              <div class="field-with-label">
+                <div>
+                  <div class="field-label">
+                    <label class="field-label__label" for="blog-edit-tag">カテゴリー</label>
+                  </div>
+                </div>
+                <select name="tag" id="blog-edit-tag">
+                  <option value="tag1">タグ1</option>
+                  <option value="tag2">タグ2</option>
+                </select>
+              </div>
+              <div class="field-with-label">
+                <div>
+                  <div class="field-label">
+                    <label class="field-label__label" for="userName">本文</label>
+                  </div>
+                </div>
+                <textarea
+                  placeholder="本文"
+                  id="blog-edit-form-content"
+                  name="content"
+                  maxlength="10000"
+                  required
+                  class="textarea-field field-with-label__input"
+                ></textarea>
+                <span class="error-message field-with-label__input__field-error"
+                  ><span class="error-message--line">最大10000文字まで入力可能です</span></span
+                >
+              </div>
+            </div>
+            <span class="error-message form__error-message"
+              ><span class="error-message--line"></span
+            ></span>
+            <div class="form-button">
+              <div class="button button--black">
+                <button class="button__button" type="submit">変更を保存する</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+    <script type="module" src="/editBlog/index.js"></script>
+  </body>
+</html>
