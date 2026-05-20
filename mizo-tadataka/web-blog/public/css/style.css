@@ -27,12 +27,21 @@ html {
   gap: 2vw;
 }
 /* ログインのリンク */
+.profile-link {
+  font-size: clamp(1rem, 2vw, 3rem);
+  color: black;
+  text-decoration: none; /* 下線を消す */
+}
 .login-link {
   font-size: clamp(1rem, 2vw, 3rem);
   color: black;
   text-decoration: none; /* 下線を消す */
 }
-
+.register-link {
+  font-size: clamp(1rem, 2vw, 3rem);
+  color: black;
+  text-decoration: none; /* 下線を消す */
+}
 .color-box-text {
   background-color: var(--title-color);
   font-size: clamp(0.5rem, 1.4vw, 4rem);

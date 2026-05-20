@@ -23,10 +23,18 @@
       <div class="header-top">
         <h1 class="header-top-text">DAYDAYTRAVEL</h1>
         <div class="tops-right">
-          <a href="https://www.sejuku.net/blog/83237" class="login-link"
-            ><span>Login</span></a
+          <a href="http://localhost:3000/login.html" class="login-link">
+            <span>Login</span>
+          </a>
+          <a
+            href="http://localhost:3000/profile-editBlog.html"
+            class="profile-link"
           >
-          <span class="color-box-text">Get started</span>
+            <span>Profile</span>
+          </a>
+          <a href="http://localhost:3000/register.html" class="register-link">
+            <span class="color-box-text">Get started</span>
+          </a>
         </div>
       </div>
       <div class="hero-area">
@@ -48,127 +56,23 @@
     <div class="main-content-wrapper">
       <main class="main-content">
         <h2 class="main-content-title">一覧（新着記事）</h2>
-        <div class="grid-container">
-          <article class="grid-article">
-            <a href="post-detail.html" class="grid-item">
-              <div class="item-image">
-                <img src="img/top/travel-1.png" alt="インドネシアの日常" />
-              </div>
-              <div class="item-content" id="japanese_caracter">
-                <span class="item-column">Travel</span>
-                <span class="item-date-span"> | </span>
-                <time class="item-date" datetime="2022-04-29">
-                  29 Apr 2022</time
-                >
-                <h3 class="item-title">
-                  記事タイトル記事タイトル記事タイトル記事タイトル
-                </h3>
-                <p class="item-desc">本文の一部を表示本文の一部を表示本文の_</p>
-              </div>
-            </a>
-          </article>
-          <article class="grid-article">
-            <a href="post-detail.html" class="grid-item">
-              <div class="item-image">
-                <img
-                  src="img/common/image_14.png"
-                  alt="バンエンブルのソトベタウィの味"
-                />
-              </div>
-              <div class="item-content">
-                <span class="item-column">Culinary</span>
-                <span class="item-date-span"> | </span>
-                <time class="item-date" datetime="2022-04-25">25 Apr 2022</time>
-                <h3 class="item-title">
-                  The taste of Bang Embul's soto betawi
-                </h3>
-                <p class="item-desc">
-                  Each region has its own speciality food.
-                </p>
-              </div>
-            </a>
-          </article>
-          <article class="grid-article">
-            <a href="post-detail.html" class="grid-item">
-              <div class="item-image">
-                <img src="img/top/image15.png" alt="バリ島の美しさ" />
-              </div>
-              <div class="item-content">
-                <span class="item-column">Travel</span>
-                <span class="item-date-span"> | </span>
-                <time class="item-date" datetime="2022-04-29">29 Apr 2022</time>
-                <h3 class="item-title">
-                  Seeing the Beauty of Bali,Which has many statues in temples
-                </h3>
-                <p class="item-desc">
-                  Talking about Bali is never boring to tell..
-                </p>
-              </div>
-            </a>
-          </article>
-          <article class="grid-article">
-            <a href="post-detail.html" class="grid-item">
-              <div class="item-image">
-                <img
-                  src="img/top/image19.png"
-                  alt="美味しくて安いスマランの屋台料理"
-                />
-              </div>
-              <div class="item-content">
-                <span class="item-column">Culinary</span>
-                <span class="item-date-span"> | </span>
-                <time class="item-date" datetime="2022-05-02">02 May 2022</time>
-                <h3 class="item-title">
-                  Delisious and cheap Semarang street food
-                </h3>
-                <p class="item-desc">
-                  There's a lot of street food in Semarang..
-                </p>
-              </div>
-            </a>
-          </article>
-          <article class="grid-article">
-            <a href="post-detail.html" class="grid-item">
-              <div class="item-image">
-                <img
-                  src="img/top/image16.png"
-                  alt="夏休みのアラン・ベバイ・ビーチ・ランプン"
-                />
-              </div>
-              <div class="item-content">
-                <span class="item-column">Travel</span>
-                <span class="item-date-span"> | </span>
-                <time class="item-date" datetime="2022-06-05">05 Jun 2022</time>
-                <h3 class="item-title">
-                  Karang Bebai beach Lampung for summer vacation
-                </h3>
-                <p class="item-desc">
-                  Talking about Bali is never boring to tell..
-                </p>
-              </div>
-            </a>
-          </article>
-          <article class="grid-article">
-            <a href="post-detail.html" class="grid-item">
-              <div class="item-image">
-                <img
-                  src="img/top/image17.png"
-                  alt="バニュワンギにある逆さまの神秘的な森"
-                />
-              </div>
-              <div class="item-content">
-                <span class="item-column">Travel</span>
-                <span class="item-date-span"> | </span>
-                <time class="item-date" datetime="2022-06-13">13 Jun 2022</time>
-                <h3 class="item-title">
-                  The upside-down mysticdal forest in Banyuwangi
-                </h3>
-                <p class="item-desc">
-                  This place is most often used as a photo..
-                </p>
-              </div>
-            </a>
-          </article>
+        <div class="grid-container" id="article-list">
+          <!-- <article class="grid-article" >
+        <a href="post-detail.html" class="grid-item">
+          <div class="item-image">
+            <img src="img/top/travel-1.png" alt="インドネシアの日常" />
+          </div>
+          <div class="item-content" id="japanese_caracter">
+            <span class="item-column">Travel</span>
+            <span class="item-date-span"> | </span>
+            <time class="item-date" datetime="2022-04-29"> 29 Apr 2022</time>
+            <h3 class="item-title">
+              記事タイトル記事タイトル記事タイトル記事タイトル
+            </h3>
+            <p class="item-desc">本文の一部を表示本文の一部を表示本文の_</p>
+          </div>
+        </a>
+      </article> -->
         </div>
       </main>
       <!-- ########################################
@@ -247,5 +151,66 @@
       </div>
       <p class="copyright">© 2023 PT. Travel Everyday Indonesia</p>
     </footer>
+    <!-- JSによる操作 -->
+    <script>
+      const loadArticles = async () => {
+        const newarticlelist = document.getElementById("article-list");
+
+        try {
+          const response = await fetch("/api/v1/list");
+          const result = await response.json();
+
+          if (result.success === true) {
+            // alert(result.message);
+            // データを空にする
+            newarticlelist.innerHTML = "";
+            // データを取得する
+            result.articles.forEach((article) => {
+              // 画像の処理をする。
+              const imgSrc = article.file_name
+                ? `/uploads/${article.file_name}`
+                : "/img/common/image_14.png";
+              //日付の処理をする
+              //datetime
+              const date = new Date(article.created_at);
+              const machineDate = date.toISOString().split("T")[0];
+              //表示用の日付
+              const humanDate = date
+                .toLocaleDateString("en-GB", {
+                  day: "2-digit",
+                  month: "short",
+                  year: "numeric",
+                })
+                .replace(/\s/g, " ");
+
+              // HTMLに埋め込む
+              const html = `<article class="grid-article" >
+        <a href="post-detail.html?id=${article.article_id}" class="grid-item">
+          <div class="item-image">
+            <img src="${imgSrc}" alt="" />
+          </div>
+          <div class="item-content">
+            <span class="item-column">Travel</span>
+            <span class="item-date-span"> | </span>
+            <time class="item-date" datetime="${machineDate}">${humanDate}</time>
+            <h3 class="item-title">
+              ${article.article_title}
+            </h3>
+            <p class="item-desc">${article.summary}</p>
+          </div>
+        </a>
+      </article>`;
+              newarticlelist.insertAdjacentHTML("beforeend", html);
+            });
+          } else {
+            alert(result.message);
+          }
+        } catch (err) {
+          console.error("通信エラー:", err);
+          alert("サーバーと通信できませんでした。");
+        }
+      };
+      window.addEventListener("DOMContentLoaded", loadArticles);
+    </script>
   </body>
 </html>
