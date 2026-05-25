@@ -1,0 +1,21 @@
+{
+  "name": "blog-submission",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "type": "module",
+  "dependencies": {
+    "@fastify/cookie": "^11.0.2",
+    "@fastify/cors": "^11.2.0",
+    "@fastify/session": "^11.1.1",
+    "argon2": "^0.44.0",
+    "fastify": "^5.8.5",
+    "mysql2": "^3.22.2"
+  }
+}

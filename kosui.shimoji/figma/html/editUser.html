@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下地課題｜ユーザー編集画面</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/destyle.css">
+</head>
+<body>
+    <main class="edit-user-page">
+        <h1>プロフィール編集</h1>
+        <form id="edit-user-form">
+            <div>
+                <label for="user_id">ユーザーID</label>
+                <input type="text" id="user_id" name="user_id" readonly>
+            </div>
+            <div>
+                <label for="user_name">ユーザー名</label>
+                <input type="text" id="user_name" name="user_name">
+            </div>
+            <button type="submit">更新する</button>
+        </form>
+
+        <p id="message"></p>
+    </main>
+
+    <script src="../../blog-submission/frontend/editUser.js"></script>
+</body>
+</html>
+

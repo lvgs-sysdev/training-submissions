@@ -1,0 +1,13 @@
+services:
+  db:
+    image: mysql:8.0  
+    container_name: mysql-analysis-container
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password  # 接続時に使うパスワード
+      MYSQL_DATABASE: my_analysis_db # 最初から作っておくデータベース名
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql_data:/var/lib/mysql
