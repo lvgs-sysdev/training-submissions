@@ -37,6 +37,15 @@
     </div>
     <!-- JSによる操作 -->
     <script>
+      const escapeHTML = (str) => {
+        if (!str) return "";
+        return String(str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#x27;");
+      };
       const loadArticles = async () => {
         const newarticlelist = document.getElementById("article-list");
 
@@ -69,7 +78,7 @@
 
               // HTMLに埋め込む
               const html = `<article class="grid-article" >
-        <a href="post-detail.html" class="grid-item">
+       <a href="post-detail.html?id=${article.article_id}" class="grid-item">
           <div class="item-image">
             <img src="${imgSrc}" alt="" />
           </div>
@@ -78,9 +87,9 @@
             <span class="item-date-span"> | </span>
             <time class="item-date" datetime="${machineDate}">${humanDate}</time>
             <h3 class="item-title">
-              ${article.article_title}
+              ${escapeHTML(article.article_title)}
             </h3>
-            <p class="item-desc">${article.summary}</p>
+         <p class="item-desc">${escapeHTML(article.summary)}</p>
           </div>
         </a>
       </article>`;

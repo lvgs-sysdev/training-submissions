@@ -28,17 +28,23 @@ fastify.register(fastifycookie, {
 fastify.register(fastifymultipart);
 
 //プログラム開始
-//テスト
-fastify.get("/api/v1/user", async (request, reply) => {
-  const [rows] = await fastify.mysql.query(
-    "SELECT * FROM tweet ORDER BY created_at DESC",
-  );
-  return rows;
+//ヘルスチェックのエンドポイント
+fastify.get("/api/v1/healthcheck", async (request, reply) => {
+  return {
+    message: "サーバーは正常に稼働しています。",
+    timestamp: new Date().toISOString(),
+  };
 });
 //データの送信(新規登録)
 fastify.post("/api/v1/register", async (request, reply) => {
   try {
     const { user_id, username, email, password } = request.body;
+    //バリデーションチェック
+    if (!user_id || !username || !email || !password) {
+      return reply
+        .code(400)
+        .send({ message: "すべての項目を入力してください。" });
+    }
     const hashedPassword = await argon2.hash(password);
     await fastify.mysql.query(
       "INSERT INTO users (user_id, username, email, password) VALUES (?, ?, ?, ?)",
@@ -60,6 +66,13 @@ fastify.post("/api/v1/register", async (request, reply) => {
 fastify.post("/api/v1/login", async (request, reply) => {
   try {
     const { identifier, password } = request.body;
+
+    // 💡 バリデーション追加
+    if (!identifier || !password) {
+      return reply
+        .code(400)
+        .send({ message: "すべての項目を入力してください。" });
+    }
     //Dataを取ってくる
     const [users] = await fastify.mysql.query(
       "SELECT * FROM users WHERE email = ? OR user_id = ?",
@@ -78,9 +91,9 @@ fastify.post("/api/v1/login", async (request, reply) => {
     const isMatch = await argon2.verify(user.password, password);
 
     if (!isMatch) {
-      return reply
-        .code(401)
-        .send({ message: " ユーザー名もしくはパスワードが異なります。" });
+      return reply.code(401).send({
+        message: "ユーザーID、メールアドレスもしくはパスワードが異なります。",
+      });
     }
 
     //クッキーの紐づけと設定、および発行
@@ -88,6 +101,9 @@ fastify.post("/api/v1/login", async (request, reply) => {
       path: "/",
       signed: true,
       httpOnly: true,
+      // 本番環境だとtureにすることで、HTTPS通信のときのみクッキーが送信されるようになる
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
       maxAge: 60 * 60 * 24 * 30,
     });
     return {
@@ -106,16 +122,17 @@ fastify.get("/api/v1/list", async (request, reply) => {
   try {
     const [articles] = await fastify.mysql.query(
       `SELECT 
-        a.article_id,
-        a.article_title, 
+        a.id AS article_id,
+        a.title As article_title, 
         LEFT(a.content,50) AS summary,
         a.created_at,
         ai.file_name
       FROM articles a 
       LEFT JOIN article_images ai
-      ON a.article_id = ai.article_id AND ai.is_main = 1
+      ON a.id = ai.article_id AND ai.is_main = 1
       ORDER BY a.created_at DESC
-      LIMIT 6`,
+      LIMIT ?`,
+      [parseInt(process.env.ARTICLE_COUNT) || 6],
     );
     return {
       success: true, //成功フラグ
@@ -130,18 +147,21 @@ fastify.get("/api/v1/list", async (request, reply) => {
 fastify.get("/api/v1/detail/:id", async (request, reply) => {
   try {
     const articleId = request.params.id;
+    if (isNaN(articleId)) {
+      return reply.code(400).send({ message: "無効な記事IDです。" });
+    }
     const [articles] = await fastify.mysql.query(
       `SELECT 
-        a.article_id,
-        a.article_title, 
+        a.id AS article_id,
+        a.title AS article_title,
         a.content,
         a.created_at,
         ai.file_name,
         ai.is_main
       FROM articles a 
       LEFT JOIN article_images ai
-      ON a.article_id = ai.article_id
-      WHERE a.article_id = ?`,
+      ON a.id = ai.article_id
+      WHERE a.id = ?`,
       [articleId],
     );
     if (articles.length === 0) {
@@ -216,6 +236,11 @@ fastify.post("/api/v1/editUser", async (request, reply) => {
     }
     const userID = cookie.value;
     const { user_id, username } = request.body;
+    if (!user_id || !username) {
+      return reply
+        .code(400)
+        .send({ message: "すべての項目を入力してください。" });
+    }
 
     await fastify.mysql.query(
       "UPDATE users SET user_id = ?, username = ? WHERE id = ?",
@@ -253,18 +278,20 @@ fastify.get("/api/v1/mylist", async (request, reply) => {
 
     const [articles] = await fastify.mysql.query(
       `SELECT 
-        a.article_id,
-        a.article_title, 
+        a.id AS article_id,
+        a.title AS article_title,
         LEFT(a.content,50) AS summary,
         a.created_at,
         ai.file_name
       FROM articles a 
       LEFT JOIN article_images ai
-      ON a.article_id = ai.article_id AND ai.is_main = 1
-      WHERE a.id = ?
+      ON a.id = ai.article_id AND ai.is_main = 1
+      WHERE a.user_id = ?
       ORDER BY a.created_at DESC`,
       [userID],
     );
+    // 💡 【追加②】DBから本当に記事が取れたのか確認
+    console.log("★DBから取得できた記事データの中身:", articles);
     return {
       success: true, //成功フラグ
       articles: articles,
@@ -278,6 +305,9 @@ fastify.get("/api/v1/mylist", async (request, reply) => {
 fastify.post("/api/v1/editBlog/:blogid", async (request, reply) => {
   try {
     const articleId = request.params.blogid;
+    if (isNaN(articleId)) {
+      return reply.code(400).send({ message: "無効な記事IDです。" });
+    }
     const rawuserID = request.cookies.userid;
     if (!rawuserID) {
       return reply.code(401).send({ message: "ログインしてください。" });
@@ -289,9 +319,13 @@ fastify.post("/api/v1/editBlog/:blogid", async (request, reply) => {
     }
     const userID = cookie.value;
     const { blog_title, blog_content } = request.body;
-
+    if (!blog_title || !blog_content) {
+      return reply
+        .code(400)
+        .send({ message: "すべての項目を入力してください。" });
+    }
     await fastify.mysql.query(
-      "UPDATE articles SET article_title = ?, content = ? WHERE article_id = ? AND id = ?",
+      "UPDATE articles SET title = ?, content = ? WHERE id = ? AND user_id = ?",
       [blog_title, blog_content, articleId, userID],
     );
 
