@@ -146,8 +146,8 @@ fastify.get("/api/v1/list", async (request, reply) => {
 //記事の詳細表示（記事の内容と、記事に紐づく画像を全て表示する）
 fastify.get("/api/v1/detail/:id", async (request, reply) => {
   try {
-    const articleId = request.params.id;
-    if (isNaN(articleId)) {
+    const articleID = request.params.id;
+    if (isNaN(articleID)) {
       return reply.code(400).send({ message: "無効な記事IDです。" });
     }
     const [articles] = await fastify.mysql.query(
@@ -162,7 +162,7 @@ fastify.get("/api/v1/detail/:id", async (request, reply) => {
       LEFT JOIN article_images ai
       ON a.id = ai.article_id
       WHERE a.id = ?`,
-      [articleId],
+      [articleID],
     );
     if (articles.length === 0) {
       return reply.code(404).send({ message: "記事が見つかりませんでした。" });
@@ -191,12 +191,18 @@ fastify.get("/api/v1/profile", async (request, reply) => {
   try {
     const rawuserID = request.cookies.userid;
     if (!rawuserID) {
-      return reply.code(401).send({ message: "ログインしてください。" });
+      return reply.code(401).send({
+        message:
+          "セッションの有効期限が切れました。お手数ですが、再度ログインしてください。",
+      });
     }
 
     const cookie = request.unsignCookie(rawuserID);
     if (!cookie.valid) {
-      return reply.code(401).send({ message: "クッキーが無効です。" });
+      return reply.code(401).send({
+        message:
+          "認証情報の確認に失敗しました。安全のため、もう一度ログインし直してください。",
+      });
     }
     const userID = cookie.value;
     const [users] = await fastify.mysql.query(
@@ -227,12 +233,18 @@ fastify.post("/api/v1/editUser", async (request, reply) => {
   try {
     const rawuserID = request.cookies.userid;
     if (!rawuserID) {
-      return reply.code(401).send({ message: "ログインしてください。" });
+      return reply.code(401).send({
+        message:
+          "セッションの有効期限が切れました。お手数ですが、再度ログインしてください。",
+      });
     }
 
     const cookie = request.unsignCookie(rawuserID);
     if (!cookie.valid) {
-      return reply.code(401).send({ message: "クッキーが無効です。" });
+      return reply.code(401).send({
+        message:
+          "認証情報の確認に失敗しました。安全のため、もう一度ログインし直してください。",
+      });
     }
     const userID = cookie.value;
     const { user_id, username } = request.body;
@@ -267,12 +279,18 @@ fastify.get("/api/v1/mylist", async (request, reply) => {
   try {
     const rawuserID = request.cookies.userid;
     if (!rawuserID) {
-      return reply.code(401).send({ message: "ログインしてください。" });
+      return reply.code(401).send({
+        message:
+          "セッションの有効期限が切れました。お手数ですが、再度ログインしてください。",
+      });
     }
 
     const cookie = request.unsignCookie(rawuserID);
     if (!cookie.valid) {
-      return reply.code(401).send({ message: "クッキーが無効です。" });
+      return reply.code(401).send({
+        message:
+          "認証情報の確認に失敗しました。安全のため、もう一度ログインし直してください。",
+      });
     }
     const userID = cookie.value;
 
@@ -304,18 +322,24 @@ fastify.get("/api/v1/mylist", async (request, reply) => {
 //editarticle（記事の編集）
 fastify.post("/api/v1/editBlog/:blogid", async (request, reply) => {
   try {
-    const articleId = request.params.blogid;
-    if (isNaN(articleId)) {
+    const articleID = request.params.blogid;
+    if (isNaN(articleID)) {
       return reply.code(400).send({ message: "無効な記事IDです。" });
     }
     const rawuserID = request.cookies.userid;
     if (!rawuserID) {
-      return reply.code(401).send({ message: "ログインしてください。" });
+      return reply.code(401).send({
+        message:
+          "セッションの有効期限が切れました。お手数ですが、再度ログインしてください。",
+      });
     }
 
     const cookie = request.unsignCookie(rawuserID);
     if (!cookie.valid) {
-      return reply.code(401).send({ message: "クッキーが無効です。" });
+      return reply.code(401).send({
+        message:
+          "認証情報の確認に失敗しました。安全のため、もう一度ログインし直してください。",
+      });
     }
     const userID = cookie.value;
     const { blog_title, blog_content } = request.body;
@@ -326,7 +350,7 @@ fastify.post("/api/v1/editBlog/:blogid", async (request, reply) => {
     }
     await fastify.mysql.query(
       "UPDATE articles SET title = ?, content = ? WHERE id = ? AND user_id = ?",
-      [blog_title, blog_content, articleId, userID],
+      [blog_title, blog_content, articleID, userID],
     );
 
     return {
