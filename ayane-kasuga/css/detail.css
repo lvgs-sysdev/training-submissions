@@ -18,7 +18,7 @@ body {
 /*  メインコンテンツの位置調整 */
 .content-wrapper {
     max-width: 1119px;
-    margin: 191px 0 auto;
+    margin: 191px auto 0;
     /* 上は191px, 左右は中央寄せ*/
     display: flex;
     /* 記事のコンテンツとサイドバーを横並びに */
