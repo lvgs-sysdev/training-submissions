@@ -60,7 +60,7 @@ CREATE TABLE article_tags(
     FOREIGN KEY (article_id) REFERENCES articles(id) ON DELETE CASCADE,
     FOREIGN KEY (tag_id) REFERENCES tags(id)
 );
---記事の画像
+-- 記事の画像
 CREATE TABLE article_images (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     article_id INT UNSIGNED NOT NULL,

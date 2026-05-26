@@ -17,3 +17,7 @@ INSERT INTO article_images (article_id, file_name, is_main) VALUES
 (4, 'image19.png', 1),
 (5, 'image16.png', 1),
 (6, 'image17.png', 1);
+
+-- ユーザーのテストデータを挿入
+INSERT INTO users (id, user_id, username, email, password) 
+VALUES (1, 'test_user', 'テスト太郎', 'test@example.com', '$argon2id$v=19$m=65536,t=3,p=4$UFOLBanEZ1wGwTVnjjs6vA$CP119MyFeanW6GhuPWHohFDwIEz0fjqktEgjGFKdxYc');
