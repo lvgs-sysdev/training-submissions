@@ -34,7 +34,7 @@ const dbConfig = {
 // 記事一覧を取得するルート
 fastify.get('/articles', async (request, reply) => {
   const connection = await mysql.createConnection(dbConfig)
-  const [rows] = await connection.execute('SELECT * FROM articles')
+  const [rows] = await connection.execute('SELECT * FROM articles ORDER BY created_at DESC LIMIT 6')
   await connection.end()
   return rows
 })
@@ -119,8 +119,6 @@ fastify.delete('/articles/:id', async (request, reply) => {
 
 // ★追加：記事を新規作成するルート（POST）
 fastify.post('/articles', async (request, reply) => {
-  // ① ボディから新しい記事のデータを取り出す
-  //    （:id はないので、params は使わない）
   const { article_title, content, user_id } = request.body
 
   // ② DB接続
