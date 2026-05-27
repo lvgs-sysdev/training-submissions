@@ -31,10 +31,6 @@ const dbConfig = {
   database: 'my_analysis_db'
 }
 
-fastify.get('/', async (request, reply) => {
-  return { hello: 'blog-app world!' }
-})
-
 // 記事一覧を取得するルート
 fastify.get('/articles', async (request, reply) => {
   const connection = await mysql.createConnection(dbConfig)
@@ -152,45 +148,45 @@ fastify.post('/articles', async (request, reply) => {
 })
 
 // ユーザー新規登録ルート（POST）
-  fastify.post('/users', async (request, reply) => {
-    const { user_id, password, user_name } = request.body
+fastify.post('/users', async (request, reply) => {
+  const { user_id, password, user_name } = request.body
 
-    //必須フィールドのバリデーション
-    if (!user_id || !password || !user_name) {
-      return reply.status(400).send({
-        error: 'user_id, password, user_name は必須です'
-      })
-    }
-    const connection = await mysql.createConnection(dbConfig)
-
-    // user_id の重複チェック
-    const [existing] = await connection.execute(
-      'SELECT user_id FROM users WHERE user_id = ?',
-      [user_id]
-    )
-    if (existing.length > 0) {
-      await connection.end()
-      return reply.status(409).send({
-        error: 'この user_id は既に使われています'
-      })
-    }
-    const hashedPassword = await argon2.hash(password)
-
-    const [result] = await connection.execute(
-      'INSERT INTO users (user_id, password, user_name) VALUES (?, ?, ?)',
-      [user_id, hashedPassword, user_name]
-    )
-    await connection.end()
-    // ⑦ 成功レスポンス
-    return reply.status(201).send({
-      message: 'ユーザー登録が完了しました',
-      data: {
-        id: result.insertId,
-        user_id,
-        user_name
-      }
+  //必須フィールドのバリデーション
+  if (!user_id || !password || !user_name) {
+    return reply.status(400).send({
+      error: 'user_id, password, user_name は必須です'
     })
+  }
+  const connection = await mysql.createConnection(dbConfig)
+
+  // user_id の重複チェック
+  const [existing] = await connection.execute(
+    'SELECT user_id FROM users WHERE user_id = ?',
+    [user_id]
+  )
+  if (existing.length > 0) {
+    await connection.end()
+    return reply.status(409).send({
+      error: 'この user_id は既に使われています'
+    })
+  }
+  const hashedPassword = await argon2.hash(password)
+
+  const [result] = await connection.execute(
+    'INSERT INTO users (user_id, password, user_name) VALUES (?, ?, ?)',
+    [user_id, hashedPassword, user_name]
+  )
+  await connection.end()
+  // ⑦ 成功レスポンス
+  return reply.status(201).send({
+    message: 'ユーザー登録が完了しました',
+    data: {
+      id: result.insertId,
+      user_id,
+      user_name
+    }
   })
+})
 
 fastify.post('/login', async (request, reply) => {
   const { user_id, password } = request.body
@@ -218,7 +214,6 @@ fastify.post('/login', async (request, reply) => {
   }
 
   request.session.user = {
-    id: user.id,
     user_id: user.user_id,
     user_name: user.user_name
   }
