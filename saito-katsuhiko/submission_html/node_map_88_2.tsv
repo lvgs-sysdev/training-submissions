@@ -1,0 +1,190 @@
+88:2	FRAME	ブログ記事詳細ページ		layout_4NU1JB					White	
+104:109	GROUP	explore-more		layout_13KBCM						
+104:10	GROUP	content-popular		layout_C5V5F1						
+104:22	TEXT	新着記事	新着記事	layout_C5V5F1					Dark	style_VB7MTH
+104:38	GROUP	Group 1197		layout_924Y8P						
+104:41	GROUP	Group 1199		layout_PSM5OW						
+104:40	GROUP	title		layout_PSM5OW						
+104:34	TEXT	記事タイトル記事タイトル記事タイトル記事タイトル	記事タイトル記事タイトル記事タイトル記事タイトル	layout_1SHZ3C					Dark	style_NOK33G
+201:80	GROUP	category-date		layout_2IIRVU						
+201:81	TEXT	125 courses	Culinary	layout_2AQODO					Primary	style_TUIU51
+201:82	LINE	Line 3		layout_IEY023						
+201:83	GROUP	Group 1179		layout_SSNKIG						
+201:84	TEXT	13 Jun 2022	13 Jun 2022	layout_5G7096					fill_F416TQ	style_CBSE2F
+104:33	RECTANGLE	Rectangle 31		layout_811SEP					fill_QXZ17C	
+104:43	GROUP	Group 1200		layout_76QIEO						
+104:45	GROUP	Group 1198		layout_PSM5OW						
+104:46	TEXT	Enjoying the sunset on Padar island together	Enjoying the sunset on Padar island together	layout_1SHZ3C					Dark	style_NOK33G
+201:85	GROUP	category-date		layout_6KUEZA						
+201:86	TEXT	125 courses	Travel	layout_1436GW					Primary	style_TUIU51
+201:87	LINE	Line 3		layout_9VK9ME						
+201:88	GROUP	Group 1179		layout_Z94XOP						
+201:89	TEXT	22 Jul 2022	22 Jul 2022	layout_V9SZ1E					fill_F416TQ	style_CBSE2F
+104:44	RECTANGLE	Rectangle 31		layout_811SEP					fill_50LVOH	
+104:50	GROUP	Group 1201		layout_LVW4P7						
+104:52	GROUP	Group 1198		layout_PSM5OW						
+104:53	TEXT	The lush green surroundings of the campgrounds create a..	The lush green surroundings of the campgrounds create a..	layout_1SHZ3C					Dark	style_NOK33G
+201:90	GROUP	category-date		layout_6KUEZA						
+201:91	TEXT	125 courses	Travel	layout_1436GW					Primary	style_TUIU51
+201:92	LINE	Line 3		layout_9VK9ME						
+201:93	GROUP	Group 1179		layout_Z94XOP						
+201:94	TEXT	22 Jul 2022	22 Jul 2022	layout_V9SZ1E					fill_F416TQ	style_CBSE2F
+104:51	RECTANGLE	Rectangle 31		layout_811SEP					fill_PO6FE3	
+110:125	GROUP	other-relavant		layout_RIL8CK						
+104:64	TEXT	関連記事（同一タグ）	関連記事（同一タグ）	layout_TGZ4FL					Dark	style_VB7MTH
+104:79	GROUP	card		layout_A3978Y						
+104:80	GROUP	card		layout_CS71B7						
+104:81	GROUP	content		layout_87KNZS						
+104:82	GROUP	title-subtitle		layout_Y2LFG4						
+104:83	TEXT	Graphic Design	記事タイトル記事タイトル記事タイトル記事タイトル記事タイトル	layout_84NS1V					Dark	style_67CL8C
+104:84	TEXT	本文の一部を表示本文の一部を表示本文の..	本文の一部を表示本文の一部を表示本文の..	layout_P8KK2T					fill_F416TQ	style_NOK33G
+104:85	FRAME	Frame 2		layout_QAYQZ1						
+104:86	FRAME	Frame 1		layout_ZK2YRX						
+104:87	TEXT	125 courses	Culinary	layout_AD3550					Primary	style_TUIU51
+104:88	LINE	Line 3		layout_6EN0DV						
+104:89	TEXT	02 May 2022	02 May 2022	layout_FOF584					fill_F416TQ	style_CBSE2F
+104:90	GROUP	img		layout_ZCQDSR						
+104:91	RECTANGLE	Rectangle 12		layout_ZCQDSR					fill_G1E1CV	
+104:92	RECTANGLE	image 19		layout_ZCQDSR					fill_SKVO3Q	
+104:93	GROUP	card		layout_E7BPL5						
+104:94	GROUP	card		layout_CS71B7						
+104:95	GROUP	content		layout_87KNZS						
+104:96	GROUP	title-subtitle		layout_Y2LFG4						
+104:97	TEXT	Graphic Design	Cah kangkung ala wonosobo restaurant	layout_84NS1V					Dark	style_67CL8C
+104:98	TEXT	Order your favorite food menu from Asia..	Order your favorite food menu from Asia..	layout_Q90JD9					fill_F416TQ	style_NOK33G
+104:99	FRAME	Frame 2		layout_QAYQZ1						
+104:100	FRAME	Frame 1		layout_ZK2YRX						
+104:101	TEXT	125 courses	Culinary	layout_AD3550					Primary	style_TUIU51
+104:102	LINE	Line 3		layout_6EN0DV						
+104:103	TEXT	02 May 2022	02 May 2022	layout_FOF584					fill_F416TQ	style_CBSE2F
+104:104	GROUP	img		layout_ZCQDSR						
+104:105	RECTANGLE	Rectangle 12		layout_ZCQDSR					fill_G1E1CV	
+104:106	RECTANGLE	image 19		layout_ZCQDSR					fill_HPREF6	
+298:239	GROUP	content-detail-reviews		layout_SBPQJI						
+94:234	GROUP	title		layout_SG23NS						
+94:222	TEXT	125 courses	Culinary	layout_I4BFVR					Primary	style_TUIU51
+94:229	TEXT	記事タイトル記事タイトル記事タイトル	記事タイトル記事タイトル記事タイトル	layout_F32BMH					Dark	style_3TJ0BQ
+104:110	GROUP	content		layout_PLN26X						
+273:378	GROUP	text-img-content		layout_3EH5N6						
+94:237	TEXT	Even there are a lot of potential tourism in Semarang. Therefore Semarang need more promotional for old potential Tourism.	Even there are a lot of potential tourism in Semarang. Therefore Semarang need more promotional for old potential Tourism.	layout_1775MY					fill_F416TQ	style_AFJSCU
+94:259	TEXT	Lorem ipsum dolor sit amet consectetur. Nascetur hendrerit mauris in elit viverra consectetur. Enim placerat consectetur leo at pulvinar iaculis sit. Quam nec amet. lofaucibus nunc. Est nec feugiat congue viverra. Enim u	Lorem ipsum dolor sit amet consectetur. Nascetur hendrerit mauris in elit viverra consectetur. Enim placerat consectetur leo at pulvinar iaculis sit. Quam nec amet. lofaucibus nunc. Est nec feugiat congue viverra. Enim u	layout_ENLDZC					fill_F416TQ	style_AFJSCU
+100:2	TEXT	Dolor sit amet consectetur. Nascetur hendrerit mauris in elit viverra consectetur. Enim placerat consectetur leo at pulvinar iaculis sit. Quam nec amet mauris sit. Adipiscing orci integer bibendum vitae sit. Porttitor.	Dolor sit amet consectetur. Nascetur hendrerit mauris in elit viverra consectetur. Enim placerat consectetur leo at pulvinar iaculis sit. Quam nec amet mauris sit. Adipiscing orci integer bibendum vitae sit. Porttitor.	layout_PU0IEA					fill_F416TQ	style_AFJSCU
+94:278	TEXT	Lorem ipsum dolor sit amet consectetur. Urna ipsum praesent at nunc habitasse porttitor consequat risus adipiscing. Ut enim ultricies non lectus. Fringilla duis purus cursus dui sed neque ridiculus. Faucibus et ante faucibus nunc. Est nec feugiat congue viverra. Enim ut lacus malesuada est purus tellus ac condimentum. Dignissim lacinia malesuada nisl condimentum lectus euismod.	Lorem ipsum dolor sit amet consectetur. Urna ipsum praesent at nunc habitasse porttitor consequat risus adipiscing. Ut enim ultricies non lectus. Fringilla duis purus cursus dui sed neque ridiculus. Faucibus et ante faucibus nunc. Est nec feugiat congue viverra. Enim ut lacus malesuada est purus tellus ac condimentum. Dignissim lacinia malesuada nisl condimentum lectus euismod.	layout_CT3HUK					fill_F416TQ	style_AFJSCU
+104:6	TEXT	Amet consectetur. Urna ipsum praesent at nunc habitasse porttitor consequat risus adipiscing. Ut enim ultricies non lectus. Fringilla duis purus cursus dui sed neque ridiculus. Faucibus et ante faucibus nunc. Est nec feugiat congue viverra. Enim ut lacus malesuada est purus tellus ac condimentum. Dignissim lacinia malesuada nisl condimentum lectus euismod.	Amet consectetur. Urna ipsum praesent at nunc habitasse porttitor consequat risus adipiscing. Ut enim ultricies non lectus. Fringilla duis purus cursus dui sed neque ridiculus. Faucibus et ante faucibus nunc. Est nec feugiat congue viverra. Enim ut lacus malesuada est purus tellus ac condimentum. Dignissim lacinia malesuada nisl condimentum lectus euismod.	layout_EW6LLH					fill_F416TQ	style_AFJSCU
+94:293	TEXT	Sit amet consectetur. Urna ipsum praesent at nunc habitasse porttitor consequat risus adipiscing. Ut enim ultricies non lectus. Fringilla duis purus cursus dui sed neque ridiculus. Faucibus et ante faucibus nunc. Est nec feugiat congue. Enim ut lacus malesuada est purus tellus ac condimentum. Dignissim lacinia malesuada nisl condimentum lectus euismod.	Sit amet consectetur. Urna ipsum praesent at nunc habitasse porttitor consequat risus adipiscing. Ut enim ultricies non lectus. Fringilla duis purus cursus dui sed neque ridiculus. Faucibus et ante faucibus nunc. Est nec feugiat congue. Enim ut lacus malesuada est purus tellus ac condimentum. Dignissim lacinia malesuada nisl condimentum lectus euismod.	layout_Q5VO5D					fill_F416TQ	style_AFJSCU
+104:7	TEXT	Urna ipsum praesent at nunc habitasse porttitor consequat risus adipiscing. Ut enim ultricies non lectus. Fringilla duis purus cursus dui sed neque ridiculus. lel Faucibus et ante faucibus nunc. Est nec feugiat congue.	Urna ipsum praesent at nunc habitasse porttitor consequat risus adipiscing. Ut enim ultricies non lectus. Fringilla duis purus cursus dui sed neque ridiculus. lel Faucibus et ante faucibus nunc. Est nec feugiat congue. 	layout_4J2KRK					fill_F416TQ	style_AFJSCU
+298:237	FRAME	img		layout_UQPRYI						
+94:257	RECTANGLE	Rectangle 28		layout_HD639M					fill_2Q6PQ2	
+102:4	TEXT	Food portrait this afternoon	Food portrait this afternoon	layout_FOF584					fill_F416TQ	style_95XQ0Z
+104:8	GROUP	img		layout_MUUHBO						
+102:2	RECTANGLE	Rectangle 29		layout_3D0RER					fill_84U3RD	
+102:3	RECTANGLE	Rectangle 30		layout_4OL8WT					fill_YLRN6L	
+94:292	TEXT	Your gene pool depth chart	Your gene pool depth chart	layout_55BJ6X					Dark	style_ZWSHAN
+110:120	GROUP	tag		layout_FMI67Y						
+104:57	FRAME	Frame 9		layout_F8XGB2						
+104:58	TEXT	Culinary	Culinary	layout_FOF584					fill_F416TQ	style_UQ7ZQH
+147:65	GROUP	author-social-location		layout_WV0X9K						
+147:64	GROUP	author-social-links		layout_KBRMA4						
+298:235	FRAME	social-links		layout_8O2CCR						
+94:238	IMAGE-SVG	bxl-twitter.svg		layout_31YR4F					fill_7W0U4L	
+94:240	IMAGE-SVG	bxl-instagram-alt.svg		layout_31YR4F					fill_7W0U4L	
+94:243	IMAGE-SVG	bxl-linkedin-square.svg		layout_31YR4F					fill_7W0U4L	
+94:248	IMAGE-SVG	bx-link-alt.svg		layout_31YR4F					fill_7W0U4L	
+94:236	GROUP	author		layout_EZHTAC						
+171:337	GROUP	profile		layout_M5OSU8					fill_7W0U4L	
+171:339	IMAGE-SVG	Rectangle 2 Copy 6		layout_M5OSU8					fill_9AAZEI	
+171:340	RECTANGLE	Bitmap		layout_0I9GKV					fill_EX5B5R	
+298:234	FRAME	Frame 21		layout_N6YJXE						
+94:220	TEXT	Puteri Todd McCarty	Karen Smith	layout_FOF584					Dark	style_Q5U576
+298:233	FRAME	Frame 20		layout_9YUGOX						
+94:225	TEXT	19 Feb 2022	19 Feb 2022	layout_FOF584					fill_F416TQ	style_CBSE2F
+298:236	FRAME	location		layout_ZOJ01Z						
+110:112	FRAME	bxs-map.svg		layout_4LDYJH					fill_7W0U4L	
+1089:51	GROUP	contributors		layout_H7KUQW						
+1089:53	TEXT	投稿者	投稿者	layout_U8QUGN					Dark	style_8RRQ8Z
+1089:54	GROUP	Group 1236		layout_YNI6I8						
+1089:55	GROUP	Group 4		layout_BC4WDC					fill_7W0U4L	
+1089:56	GROUP	user-2		layout_M5OSU8					fill_7W0U4L	
+1089:57	IMAGE-SVG	Rectangle 2 Copy 6		layout_M5OSU8					Primary	
+1089:58	IMAGE-SVG	Rectangle 2 Copy 6		layout_M5OSU8					fill_9AAZEI	
+1089:59	RECTANGLE	Bitmap		layout_0I9GKV					fill_EX5B5R	
+1089:60	GROUP	Group 1232		layout_PS9S94						
+1089:62	TEXT	Karen William	Karen Smith	layout_G55QXD					Dark	style_XOMRY8
+1089:63	GROUP	Group 3 Copy		layout_ELOY0L					fill_7W0U4L	
+1089:64	GROUP	Group 3 Copy 2		layout_PXW0T2					fill_7W0U4L	
+1089:65	GROUP	Group 1233		layout_HEWHFV						
+1089:67	TEXT	Angela Smith	Samantha William	layout_4U4B4C					Dark	style_XOMRY8
+1089:68	GROUP	user-3		layout_M5OSU8					fill_7W0U4L	
+1089:69	IMAGE-SVG	Rectangle 2 Copy 6		layout_M5OSU8					Primary	
+1089:70	IMAGE-SVG	Rectangle 2 Copy 6		layout_M5OSU8					fill_9AAZEI	
+1089:71	RECTANGLE	Bitmap		layout_5DOZDF					fill_31FOTK	
+1089:72	GROUP	Group 3 Copy		layout_BDFLS5					fill_7W0U4L	
+1089:73	GROUP	Group 3 Copy 2		layout_VE9U8R					fill_7W0U4L	
+1089:74	GROUP	Group 1234		layout_SFPLSW						
+1089:76	TEXT	Angela Smith	Renata Hope	layout_LOH0FB					Dark	style_XOMRY8
+1089:77	GROUP	user-4		layout_M5OSU8					fill_7W0U4L	
+1089:78	IMAGE-SVG	Rectangle 2 Copy 6		layout_M5OSU8					Primary	
+1089:79	IMAGE-SVG	Rectangle 2 Copy 6		layout_M5OSU8					fill_9AAZEI	
+1089:80	RECTANGLE	Bitmap		layout_O1UBPQ					fill_U13VDS	
+1089:81	GROUP	Group 3 Copy		layout_W2PN82					fill_7W0U4L	
+1089:82	GROUP	Group 3 Copy 2		layout_MEG4R5					fill_7W0U4L	
+1089:83	GROUP	Group 1235		layout_HHIEOF						
+1089:85	TEXT	Angela Smith	Angela Saunder	layout_SUEB24					Dark	style_XOMRY8
+1089:86	GROUP	user-5		layout_M5OSU8					fill_7W0U4L	
+1089:87	IMAGE-SVG	Rectangle 2 Copy 6		layout_M5OSU8					Primary	
+1089:88	IMAGE-SVG	Rectangle 2 Copy 6		layout_M5OSU8					fill_9AAZEI	
+1089:89	RECTANGLE	Bitmap		layout_1Q4LB6					fill_A5MCLW	
+1089:90	GROUP	Group 3 Copy 5		layout_9RMBLD					fill_7W0U4L	
+1089:91	GROUP	user-1		layout_M5OSU8					fill_7W0U4L	
+1089:92	IMAGE-SVG	Rectangle 2 Copy 6		layout_M5OSU8					Primary	
+1089:93	IMAGE-SVG	Rectangle 2 Copy 6		layout_M5OSU8					fill_9AAZEI	
+1089:94	RECTANGLE	Bitmap		layout_9J84B5					fill_GOUS7Q	
+1089:95	GROUP	Group 1231		layout_IET6YI						
+1089:97	TEXT	Samantha	Andrea Wise	layout_G1RCFV					Dark	style_XOMRY8
+801:36	GROUP	footer		layout_QZPLUG						
+801:37	GROUP	row		layout_CUIBZS						
+801:38	RECTANGLE	Rectangle 38		layout_CUIBZS					Dark	
+801:39	TEXT	copyright	© 2023 PT. Travel Everyday Indonesia	layout_ZSKN9Z					fill_B8OEJX	style_CBSE2F
+801:40	FRAME	col		layout_TVXFKC						
+801:41	TEXT	Graphic Design	Download app	layout_QIOYMC					White	style_AFJSCU
+801:42	FRAME	Frame 19		layout_46L8ZF						
+801:43	RECTANGLE	App Store		layout_VSBOEI					fill_U9AE6H	
+801:44	RECTANGLE	Play Store		layout_VSBOEI					fill_ZENFE6	
+801:45	FRAME	col		layout_LF97FT						
+801:46	TEXT	Follow us	Follow us	layout_QIOYMC					White	style_AFJSCU
+801:47	FRAME	social-links		layout_46L8ZF						
+801:48	TEXT	Instagram	Instagram	layout_QIOYMC					fill_B8OEJX	style_NOK33G
+801:49	TEXT	Facebook	Facebook	layout_QIOYMC					fill_B8OEJX	style_NOK33G
+801:50	TEXT	Twitter	Twitter	layout_QIOYMC					fill_B8OEJX	style_NOK33G
+801:51	TEXT	Youtube	Youtube	layout_QIOYMC					fill_B8OEJX	style_NOK33G
+801:52	FRAME	col		layout_TNN6UK						
+801:53	TEXT	Graphic Design	Informations	layout_L0WDDD					White	style_AFJSCU
+801:54	FRAME	Frame 18		layout_46L8ZF						
+801:55	TEXT	How to register as a user	How to register as a user	layout_7G2XP3					fill_B8OEJX	style_NOK33G
+801:56	TEXT	Guide to creating travel review	Guide to creating travel review	layout_7G2XP3					fill_B8OEJX	style_NOK33G
+801:57	TEXT	Tutorial for making culinary reviews	Tutorial for making culinary reviews	layout_7G2XP3					fill_B8OEJX	style_NOK33G
+801:58	FRAME	col		layout_FDNWN1						
+801:59	TEXT	PT. Travel Everyday Indonesia	PT. Travel Everyday Indonesia	layout_7G2XP3					White	style_AFJSCU
+801:60	FRAME	address-links		layout_8DNGWY						
+801:61	TEXT	Grand Floor Zaidin L-Walk, Jl. Maju Jaya No. 2,  Daerah Istimewa Yogyakarta, Indonesia 55281	Grand Floor Zaidin L-Walk, Jl. Maju Jaya No. 2,  Daerah Istimewa Yogyakarta, Indonesia 55281	layout_7G2XP3					fill_B8OEJX	style_NOK33G
+801:62	LINE	Line 7		layout_F1BEPG						
+801:63	GROUP	links		layout_AG4OAB						
+801:64	TEXT	About	About	layout_JR76UF					fill_B8OEJX	style_NOK33G
+801:65	TEXT	Contact	Contact	layout_5HC6UK					fill_B8OEJX	style_NOK33G
+801:66	TEXT	Privacy policy	Privacy policy	layout_JY43S8					fill_B8OEJX	style_NOK33G
+801:67	TEXT	Terms & Conditions	Terms & Conditions	layout_UMDI3O					fill_B8OEJX	style_NOK33G
+801:68	GROUP	footer-brand		layout_52QLWJ						
+801:69	TEXT	DAYDAYTRAVEL	DAYDAYTRAVEL	layout_M1VZU5						style_Q3FH78
+801:70	LINE	Line 5		layout_WIEMIN						
+88:5	GROUP	navbar		layout_8M8TNZ						
+88:6	RECTANGLE	Rectangle 25		layout_F1KVUS					White	
+210:104	LINE	Line 7		layout_XOYXHX						
+88:7	GROUP	logo		layout_RXS399						
+88:8	TEXT	DAYDAYTRAVEL	DAYDAYTRAVEL	layout_M1VZU5					Primary	style_Q3FH78
+88:9	GROUP	btn-login-register		layout_E3RDYE						
+88:10	TEXT	LOG IN	Login	layout_MSXEI0					Dark	style_9LHEJC
+88:11	GROUP	btn-register		layout_T17X72						
+88:12	IMAGE-SVG	Rectangle Copy 2		layout_JITMB0					Primary	
+88:13	TEXT	COMMUNITY	Get started	layout_QAQQZU					White	style_JUQTJE
+114:6	GROUP	Group 1209		layout_52UW68						
+114:2	FRAME	bx-search.svg		layout_Y0V2CT					fill_7W0U4L	
