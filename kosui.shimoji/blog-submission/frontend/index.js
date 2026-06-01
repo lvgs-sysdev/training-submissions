@@ -11,35 +11,42 @@ async function displayArticles() {
 
         // 3. 今ある「読み込み中...」などの初期表示をクリアする
         container.innerHTML = '';
-
-        // 4. 記事の数だけ、HTMLのカードを生成する
+        const fragment = document.createDocumentFragment();
         articles.forEach(article => {
             // 新しい article 要素を作成
             const articleCard = document.createElement('article');
             articleCard.className = 'article-contents';
 
-            // HTMLの構造を再現
-            articleCard.innerHTML = `
-                <a href="about.html?id=${article.id}">
-                    <figure class="article-image">
-                        <img src="../images/P1/left1.png" alt="Article image">
-                    </figure>
-                    <div class="article-info">
-                        <div class="post-meta">
-                            <span class="main-category">Travel</span>
-                            <time class="main-category-date">${new Date(article.created_at).toLocaleDateString('ja-JP')}
-                            </time>
-                        </div>
-                        <h2>${article.title}</h2>
-                        <span>${article.content.substring(0, 50)}...</span>
+
+        articleCard.innerHTML = `
+            <a href="">
+                <figure class="article-image">
+                    <img src="../images/P1/left1.png" alt="Article image">
+                </figure>
+                <div class="article-info">
+                    <div class="post-meta">
+                        <span class="main-category">Travel</span>
+                        <time class="main-category-date"></time>
                     </div>
-                </a>
-            `;
+                    <h2 class="article-title-text"></h2>
+                    <span class="article-preview"></span>
+                </div>
+            </a>
+        `;
+
+        articleCard.querySelector('a').href = `about.html?id=${article.id}`;
+        articleCard.querySelector('.main-category-date').textContent = 
+            new Date(article.created_at).toLocaleDateString('ja-JP');
+        articleCard.querySelector('.article-title-text').textContent = article.article_title;
+        articleCard.querySelector('.article-preview').textContent = 
+            article.content.substring(0, 50) + '...';
+
+
 
             // 親要素（main）に追加する
-            container.appendChild(articleCard);
+            fragment.appendChild(articleCard);
         });
-
+        container.appendChild(fragment);
     } 
     catch (error) {
         console.error("データの取得に失敗しました:", error);
