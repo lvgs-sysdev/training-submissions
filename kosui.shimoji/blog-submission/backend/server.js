@@ -6,6 +6,7 @@ import cookie from '@fastify/cookie'
 import session from '@fastify/session'
 
 const fastify = Fastify({ logger: true })
+const ARTICLE_DISPLAY_LIMIT = 6
 
 await fastify.register(cors, {
   origin: true, 
@@ -34,7 +35,8 @@ const dbConfig = {
 // 記事一覧を取得するルート
 fastify.get('/articles', async (request, reply) => {
   const connection = await mysql.createConnection(dbConfig)
-  const [rows] = await connection.execute('SELECT * FROM articles ORDER BY created_at DESC LIMIT 6')
+  const [rows] = await connection.execute(`SELECT * FROM articles ORDER BY created_at DESC LIMIT ${ARTICLE_DISPLAY_LIMIT}`)
+    
   await connection.end()
   return rows
 })
