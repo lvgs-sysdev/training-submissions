@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>記事タイトル | DAYDAYTRAVEL</title>
+    <link rel="stylesheet" href="../assets/css/sanitize.css?v=1.0.0" />
+    <link rel="stylesheet" href="../assets/css/common.css?v=20260409_1" />
+    <link rel="stylesheet" href="./article-detail.css?v=20260409_1" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+  </head>
+  <body>
+    <header class="header">
+      <a class="header__logo-link" href="#">
+        <strong class="header__logo">DAYDAYTRAVEL</strong>
+      </a>
+      <ul class="header__btn-list">
+        <li>
+          <button type="button" class="header__btn--left" id="header__btn--left">Login</button>
+        </li>
+        <li>
+          <a class="header__btn--right" id="header__btn--right" href="/register">Get started</a>
+        </li>
+      </ul>
+    </header>
+
+    <main class="main-container main-container--with-header-margin">
+      <div class="main-wrapper">
+        <section class="review-detail">
+          <div class="review-detail__topbar">
+            <div class="avatar">
+              <div class="avatar__image">
+                <img src="../assets/images/user-2.jpg" alt="Karen Smithのプロフィール写真" />
+              </div>
+              <div>
+                <p class="avatar__name" data-js="author">Karen Smith</p>
+                <time class="review-detail__time" datetime="2022-02-19" data-js="updated-time"
+                  >19 Feb 2022</time
+                >
+              </div>
+            </div>
+            <div class="review-detail__topbar-side-area">
+              <ul class="review-detail__icon-list">
+                <li>
+                  <a class="icon-link" href="#">
+                    <img class="icon-image" src="../assets/images/bxl-twitter.svg" alt="Twitter" />
+                  </a>
+                </li>
+                <li>
+                  <a class="icon-link" href="#">
+                    <img
+                      class="icon-image"
+                      src="../assets/images/bxl-instagram-alt.svg"
+                      alt="Instagram"
+                    />
+                  </a>
+                </li>
+                <li>
+                  <a class="icon-link" href="#">
+                    <img
+                      class="icon-image"
+                      src="../assets/images/bxl-linkedin-square.svg"
+                      alt="Linkedin"
+                    />
+                  </a>
+                </li>
+                <li>
+                  <a class="icon-link" href="#">
+                    <img class="icon-image" src="../assets/images/bx-link-alt.svg" alt="Link" />
+                  </a>
+                </li>
+              </ul>
+              <div
+                class="button button--black button--end-aligned button--hidden"
+                id="edit-button-container"
+              >
+                <a href="#" class="button__button" id="edit-button">
+                  <i class="fas fa-pen" style="color: rgb(255, 255, 255)"></i>
+                  編集
+                </a>
+              </div>
+            </div>
+          </div>
+          <a class="review-detail__category" role="link" data-js="category">Culinary</a>
+          <h1 class="review-detail__headline" data-js="headline">
+            記事タイトル記事タイトル記事タイトル
+          </h1>
+          <p class="review-detail__paragraph" data-js="paragraph">
+            Even there are a lot of potential tourism in Semarang. Therefore Semarang need more
+            promotional for old potential Tourism.
+          </p>
+          <figure class="review-detail__figure">
+            <img
+              class="review-detail__image"
+              src="../assets/images/Food-portrait.png"
+              alt="Food portrait this afternoon"
+            />
+            <figcaption class="review-detail__caption">Food portrait this afternoon</figcaption>
+          </figure>
+          <a class="tags__link review-detail__tag-link" href="#" data-js="tag-link">Culinary</a>
+        </section>
+        <section class="related-reviews">
+          <h3 class="section-headline">関連記事（同一タグ）</h3>
+          <ul class="grid grid-col-2">
+            <li class="grid__item">
+              <article class="card">
+                <a href="#" class="card__link">
+                  <div class="card__image-frame">
+                    <img
+                      class="card__image"
+                      src="../assets/images/related-article-1.png"
+                      alt="2人分のエスニック料理の写真"
+                    />
+                  </div>
+                  <div class="card__info">
+                    <div class="card__label">
+                      <span class="card__category">Travel</span>
+                      <time class="card__time" datetime="2022-02-19">19 Feb 2022</time>
+                    </div>
+                    <h3 class="card__headline">記事タイトル記事タイトル記事タイトル記事タイトル</h3>
+                    <p class="card__description">本文の一部を表示本文の一部を表示本文の..</p>
+                  </div>
+                </a>
+              </article>
+            </li>
+            <li class="grid__item">
+              <article class="card">
+                <a href="#" class="card__link">
+                  <div class="card__image-frame">
+                    <img
+                      class="card__image"
+                      src="../assets/images/related-article-2.png"
+                      alt="野菜料理の写真"
+                    />
+                  </div>
+                  <div class="card__info">
+                    <div class="card__label">
+                      <span class="card__category">Culinary</span>
+                      <time class="card__time" datetime="2022-04-25">25 Apr 2022</time>
+                    </div>
+                    <h3 class="card__headline">The taste of Bang Embul's soto betawi</h3>
+                    <p class="card__description">Each region has its own specialty food..</p>
+                  </div>
+                </a>
+              </article>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+      <aside class="side-wrapper">
+        <section class="new-reviews">
+          <h3 class="section-headline">新着記事</h3>
+          <ul class="new-reviews__content">
+            <li>
+              <article class="card new-reviews__card">
+                <a href="#" class="card__link">
+                  <div class="card__image-frame card__image-frame--wide">
+                    <img
+                      class="card__image"
+                      src="../assets/images/new-article-1.png"
+                      alt="東南アジアの食堂の店員の写真"
+                    />
+                  </div>
+                  <div class="card__info">
+                    <div class="card__label">
+                      <span class="card__category">Culinary</span>
+                      <time class="card__time" datetime="2022-04-25">25 Apr 2022</time>
+                    </div>
+                    <h3 class="card__headline new-reviews__card__headline">
+                      The taste of Bang Embul's soto betawi
+                    </h3>
+                  </div>
+                </a>
+              </article>
+            </li>
+            <li>
+              <article class="card new-reviews__card">
+                <a href="#" class="card__link">
+                  <div class="card__image-frame card__image-frame--wide">
+                    <img
+                      class="card__image"
+                      src="../assets/images/new-article-2.png"
+                      alt="4人の若者の後ろ姿の写真"
+                    />
+                  </div>
+                  <div class="card__info">
+                    <div class="card__label">
+                      <span class="card__category">Culinary</span>
+                      <time class="card__time" datetime="2022-04-25">25 Apr 2022</time>
+                    </div>
+                    <h3 class="card__headline new-reviews__card__headline">
+                      The taste of Bang Embul's soto betawi
+                    </h3>
+                  </div>
+                </a>
+              </article>
+            </li>
+            <li>
+              <article class="card new-reviews__card">
+                <a href="#" class="card__link">
+                  <div class="card__image-frame card__image-frame--wide">
+                    <img
+                      class="card__image"
+                      src="../assets/images/new-article-3.png"
+                      alt="ハイキングで記念撮影する2人の写真"
+                    />
+                  </div>
+                  <div class="card__info">
+                    <div class="card__label">
+                      <span class="card__category">Culinary</span>
+                      <time class="card__time" datetime="2022-04-25">25 Apr 2022</time>
+                    </div>
+                    <h3 class="card__headline new-reviews__card__headline">
+                      The taste of Bang Embul's soto betawi
+                    </h3>
+                  </div>
+                </a>
+              </article>
+            </li>
+          </ul>
+        </section>
+        <section class="author">
+          <h3 class="section-headline">投稿者</h3>
+          <ul class="author__content">
+            <li>
+              <div class="avatar">
+                <div class="avatar__image">
+                  <img src="../assets/images/user-1.jpg" alt="Andrea Wiseのプロフィール写真" />
+                </div>
+                <p class="avatar__name">Andrea Wise</p>
+              </div>
+            </li>
+            <li>
+              <div class="avatar">
+                <div class="avatar__image">
+                  <img src="../assets/images/user-2.jpg" alt="Karen Smithのプロフィール写真" />
+                </div>
+                <p class="avatar__name">Karen Smith</p>
+              </div>
+            </li>
+            <li>
+              <div class="avatar">
+                <div class="avatar__image">
+                  <img src="../assets/images/user-3.jpg" alt="Samantha Williamのプロフィール写真" />
+                </div>
+                <p class="avatar__name">Samantha William</p>
+              </div>
+            </li>
+            <li>
+              <div class="avatar">
+                <div class="avatar__image">
+                  <img src="../assets/images/user-4.jpg" alt="Renata Hopeのプロフィール写真" />
+                </div>
+                <p class="avatar__name">Renata Hope</p>
+              </div>
+            </li>
+            <li>
+              <div class="avatar">
+                <div class="avatar__image">
+                  <img src="../assets/images/user-5.jpg" alt="Angela Saunderのプロフィール写真" />
+                </div>
+                <p class="avatar__name">Angela Saunder</p>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </aside>
+    </main>
+    <footer class="footer">
+      <div class="footer__content">
+        <section class="footer__company">
+          <h3 class="footer__col-headline">PT. Travel Everyday Indonesia</h3>
+          <address class="footer__company-address">
+            Grand Floor Zaidin L-Walk,Jl. Maju Jaya No. 2, Daerah Istimewa Yogyakarta,Indonesia
+            55281
+          </address>
+          <div class="footer__link-row">
+            <a class="footer__link" href="#">About</a>
+            <a class="footer__link" href="#">Privacy policy</a>
+          </div>
+          <div class="footer__link-row">
+            <a class="footer__link" href="#">Terms & Conditions</a>
+            <a class="footer__link" href="#">Contact</a>
+          </div>
+        </section>
+        <div class="footer__side-wrapper">
+          <section class="footer__info">
+            <h3 class="footer__col-headline">Informations</h3>
+            <a class="footer__link" href="#">How to register as a user</a>
+            <a class="footer__link" href="#">Guide to creating travel review</a>
+            <a class="footer__link" href="#">Tutorial for making culinary all-reviews</a>
+          </section>
+          <section class="footer__follow-us">
+            <h3 class="footer__col-headline">Follow us</h3>
+            <a class="footer__link" href="#">Instagram</a>
+            <a class="footer__link" href="#">Facebook</a>
+            <a class="footer__link" href="#">Twitter</a>
+            <a class="footer__link" href="#">Youtube</a>
+          </section>
+          <section class="footer__dl-app">
+            <h3 class="footer__col-headline">Download app</h3>
+            <a class="footer__link" href="#">
+              <img
+                class="footer__link-image"
+                src="../assets/images/App Store.svg"
+                alt="App Store"
+              />
+            </a>
+            <a class="footer__link" href="#">
+              <img
+                class="footer__link-image"
+                src="../assets/images/Play Store.svg"
+                alt="Play Store"
+              />
+            </a>
+          </section>
+        </div>
+      </div>
+      <small class="footer__copy-right">© 2023 PT. Travel Everyday Indonesia</small>
+    </footer>
+    <script type="module" src="/detail/index.js"></script>
+  </body>
+</html>

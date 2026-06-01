@@ -1,0 +1,69 @@
+SET NAMES utf8mb4;
+SET CHARACTER SET utf8mb4;
+
+-- ユーザー
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  account_id VARCHAR(20) NOT NULL UNIQUE,
+  account_name VARCHAR(50) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  profile_content VARCHAR(400),
+  profile_image_url VARCHAR(255),
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 犬種マスタ
+CREATE TABLE IF NOT EXISTS breeds (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(50) NOT NULL UNIQUE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 投稿
+CREATE TABLE IF NOT EXISTS posts (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  content VARCHAR(500) NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 投稿画像（1投稿に複数枚対応）
+CREATE TABLE IF NOT EXISTS post_images (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  post_id INT NOT NULL,
+  image_url VARCHAR(255) NOT NULL,
+  display_order INT NOT NULL DEFAULT 1,
+  FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- 投稿と犬種の中間テーブル（多頭飼い対応）
+CREATE TABLE IF NOT EXISTS post_breeds (
+  post_id INT NOT NULL,
+  breed_id INT NOT NULL,
+  PRIMARY KEY (post_id, breed_id),
+  FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE,
+  FOREIGN KEY (breed_id) REFERENCES breeds(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- いいね
+CREATE TABLE IF NOT EXISTS likes (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  post_id INT NOT NULL,
+  user_id INT NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE(post_id, user_id),
+  FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- フォロー
+CREATE TABLE IF NOT EXISTS follows (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  following_user_id INT NOT NULL,
+  followed_user_id INT NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE(following_user_id, followed_user_id),
+  FOREIGN KEY (following_user_id) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY (followed_user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

@@ -1,0 +1,35 @@
+:root {
+  --maincolor: #ff553c;
+  --loginButton: rgb(0, 0, 0, 70%);
+  --registerButton: rgb(255, 255, 255, 80%);
+  --black: #121212;
+  --subTxt: rgba(130, 130, 130);
+  --lightgrey: rgb(220, 220, 220);
+  --middlegrey: #757575;
+  --white: rgb(255, 255, 255);
+  --semigrey: rgba(220, 220, 220, 65%);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 120%;
+}
+
+body {
+  background-color: white;
+  overflow-x: hidden;
+  font-family: "Poppins";
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}

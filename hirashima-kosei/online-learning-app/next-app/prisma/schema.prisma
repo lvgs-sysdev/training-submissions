@@ -1,0 +1,168 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+  binaryTargets   = ["native", "linux-musl-arm64-openssl-3.0.x"]
+}
+
+datasource db {
+  provider  = "mysql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_DATABASE_URL")
+}
+
+model completions {
+  user_id    Int
+  content_id Int
+  created_at DateTime @default(now()) @db.DateTime(0)
+  contents   contents @relation(fields: [content_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "completion content")
+  users      users    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "completion user")
+
+  @@id([user_id, content_id])
+  @@index([content_id], map: "id_idx")
+}
+
+model content_texts {
+  content_id Int      @id
+  body       String   @db.VarChar(10000)
+  created_at DateTime @default(now()) @db.DateTime(0)
+  updated_at DateTime @default(now()) @db.DateTime(0)
+  contents   contents @relation(fields: [content_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "constraint_content_text")
+}
+
+model contents {
+  id             Int                   @id @default(autoincrement())
+  content_name   String                @db.VarChar(255)
+  content_number Int                   @db.SmallInt
+  content_type   contents_content_type
+  section_id     Int
+  created_at     DateTime              @default(now()) @db.DateTime(0)
+  updated_at     DateTime              @default(now()) @db.DateTime(0)
+  completions    completions[]
+  content_texts  content_texts?
+  sections       sections              @relation(fields: [section_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "constraint_content")
+  questions      questions[]
+
+  @@index([section_id], map: "foreign_id_content")
+}
+
+model courses {
+  id                 Int           @id @default(autoincrement())
+  published          Int           @db.TinyInt
+  course_name        String        @unique(map: "course_name_UNIQUE") @db.VarChar(255)
+  thumbnail          Bytes         @db.MediumBlob
+  course_description String        @db.VarChar(500)
+  user_id            Int
+  created_at         DateTime      @default(now()) @db.DateTime(0)
+  updated_at         DateTime      @default(now()) @db.DateTime(0)
+  users              users         @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "constraint_course")
+  enrollments        enrollments[]
+  sections           sections[]
+  stars              stars[]
+
+  @@index([user_id], map: "id_idx")
+}
+
+model enrollments {
+  user_id    Int
+  course_id  Int
+  created_at DateTime? @default(now()) @db.DateTime(0)
+  courses    courses   @relation(fields: [course_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "enroll-course")
+  users      users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "enroll-user")
+
+  @@id([user_id, course_id])
+  @@index([course_id], map: "id_idx")
+}
+
+model sections {
+  id             Int        @id @default(autoincrement())
+  section_name   String     @db.VarChar(255)
+  section_number Int        @db.SmallInt
+  course_id      Int
+  created_at     DateTime   @default(now()) @db.DateTime(0)
+  updated_at     DateTime   @default(now()) @db.DateTime(0)
+  contents       contents[]
+  courses        courses    @relation(fields: [course_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "constraint_section")
+
+  @@index([course_id], map: "foreign_id_section")
+  @@index([course_id], map: "id_idx")
+}
+
+model sessions {
+  id         String   @id @unique(map: "id_UNIQUE") @db.VarChar(255)
+  user_id    Int
+  expires_at DateTime @db.DateTime(0)
+  created_at DateTime @default(now()) @db.DateTime(0)
+  updated_at DateTime @default(now()) @db.DateTime(0)
+  users      users    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "id")
+
+  @@index([user_id], map: "id_idx")
+}
+
+model stars {
+  user_id    Int
+  course_id  Int
+  created_at DateTime @default(now()) @db.DateTime(0)
+  courses    courses  @relation(fields: [course_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "star-course")
+  users      users    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "star-user")
+
+  @@id([user_id, course_id])
+  @@index([course_id], map: "id_idx")
+}
+
+model users {
+  id            Int             @id @default(autoincrement())
+  email         String          @unique(map: "email_UNIQUE") @db.VarChar(255)
+  user_name     String          @unique(map: "user_name_UNIQUE") @db.VarChar(255)
+  password      String          @db.VarChar(255)
+  created_at    DateTime        @default(now()) @db.DateTime(0)
+  updated_at    DateTime        @default(now()) @db.DateTime(0)
+  verified      Int             @default(0) @db.TinyInt
+  completions   completions[]
+  courses       courses[]
+  enrollments   enrollments[]
+  sessions      sessions[]
+  stars         stars[]
+  verifications verifications[]
+}
+
+model verifications {
+  id                 Int      @id @default(autoincrement())
+  email              String   @db.VarChar(255)
+  verification_token String   @db.VarChar(255)
+  expires_at         DateTime @db.DateTime(0)
+  users              users    @relation(fields: [email], references: [email], onDelete: Cascade, onUpdate: NoAction, map: "email")
+
+  @@index([email], map: "email_idx")
+}
+
+model choices {
+  id            Int       @id @default(autoincrement())
+  question_id   Int
+  body_choice   String    @db.VarChar(10000)
+  choice_number Int
+  is_answer     Int       @db.TinyInt
+  created_at    DateTime  @default(now()) @db.DateTime(0)
+  updated_at    DateTime  @default(now()) @db.DateTime(0)
+  questions     questions @relation(fields: [question_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "quiz_choice")
+
+  @@index([question_id], map: "id_idx")
+}
+
+model questions {
+  id          Int       @id @default(autoincrement())
+  content_id  Int
+  quiz_number Int
+  body        String    @db.VarChar(10000)
+  created_at  DateTime  @default(now()) @db.DateTime(0)
+  updated_at  DateTime  @default(now()) @db.DateTime(0)
+  choices     choices[]
+  contents    contents  @relation(fields: [content_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "content_quiz")
+
+  @@index([content_id], map: "id_idx")
+}
+
+enum contents_content_type {
+  text
+  image
+  quiz
+}

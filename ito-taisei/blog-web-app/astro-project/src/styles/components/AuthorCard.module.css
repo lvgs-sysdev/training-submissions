@@ -1,0 +1,25 @@
+.card {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex: 0 0 60px;
+}
+
+.meta {
+    margin-top: 6px;
+}
+
+.name {
+    color: var(--Dark);
+    font-size: 1.6rem;
+    font-weight: var(--fw-medium);
+    line-height: 1.625;
+    letter-spacing: 0.3px;
+}

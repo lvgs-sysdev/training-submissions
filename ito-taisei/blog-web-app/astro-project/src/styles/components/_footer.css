@@ -1,0 +1,157 @@
+.global-footer {
+    position: relative;
+    width: 100%;
+    min-height: 540px;
+    margin: 0;
+    padding: 0;
+    z-index: 900;
+    background-color: var(--Dark);
+    font-weight: var(--fw-light);
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding: 100px 123px 24px;
+    width: 100%;
+}
+
+.tags-row {
+    display: flex;
+    gap: 23px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    row-gap: 12px;
+}
+
+.label {
+    color: var(--White);
+    font-size: 1.8rem;
+    font-weight: inherit;
+}
+
+.footer-txt {
+    color: var(--ft-grey);
+    font-size: 1.6rem;
+}
+
+.company-wrapper {
+    width: 265px;
+    margin-inline-end: 115px;
+}
+
+.company-wrapper-separator {
+    width: 265px;
+    height: 1px;
+    margin-block: 25px;
+    background: var(--ft-grey);
+}
+
+.info-wrapper {
+    width: 265px;
+    margin-inline-end: 20px;
+}
+
+.info-wrapper .tags-row {
+    flex-direction: column;
+    gap: 15px;
+}
+
+.sns-wrapper {
+    width: 170px;
+    margin-inline-end: 20px;
+}
+
+.sns-wrapper .tags-row {
+    flex-direction: column;
+    gap: 15px;
+}
+
+.app-wrapper {
+    width: 170px;
+}
+
+.mobile-app {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.app-badge {
+    width: 100%;
+    height: 56px;
+    overflow: hidden;
+    display: block;
+}
+
+.app-badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.copyright {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    height: 43px;
+    bottom: 0;
+}
+
+.copyright-txt {
+    color: var(--ft-grey);
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 1365px) {
+    .footer-container {
+        padding: 100px 42.5px 43px;
+    }
+}
+
+@media (max-width: 1014px) {
+    .footer-container {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 1119px) {
+    .company-wrapper {
+        margin-inline-end: 20px;
+    }
+}
+
+@media (max-width: 712px) {
+    .global-footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-container {
+        width: 320px;
+        padding: 100px 0 43px;
+    }
+
+    .company-wrapper,
+    .info-wrapper,
+    .sns-wrapper,
+    .app-wrapper {
+        width: 100%;
+        margin-inline-end: 0;
+        margin-block-end: 24px;
+    }
+    
+    .company-wrapper-separator {
+        width: 100%;
+    }
+
+    .app-wrapper .app-badge img {
+        object-position: left center;
+    }
+}

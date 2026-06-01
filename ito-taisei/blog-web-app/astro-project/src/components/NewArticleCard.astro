@@ -1,0 +1,21 @@
+---
+import styles from "../styles/components/NewArticleCard.module.css";
+
+const { imgSrc, imgAlt, date, genre, body, url } = Astro.props;
+---
+
+<a href={url} class="article-card-link">
+  <article class={styles.card}>
+    <div class={styles.imgBox}>
+      <img class={styles.img} src={imgSrc} alt={imgAlt} />
+    </div>
+
+    <div class={styles.meta}>
+      <div class={styles.genre}>{genre}</div>
+      <div class={styles.metaSeparator}></div>
+      <div class={styles.date}>{date}</div>
+    </div>
+
+    <div class={styles.body}>{body}</div>
+  </article>
+</a>

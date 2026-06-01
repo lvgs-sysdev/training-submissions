@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "target": "ESNext",
+    "module": "NodeNext", //Node.jsのESModulers(ESM)に最適化 //ESNextはvite前提の構成
+    "moduleResolution": "nodenext", //blunderはviteがフロントエンドをビルドするときに使う設定
+    "noEmit": false,
+    "strict": true,
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["src/FrontendScript"]
+}

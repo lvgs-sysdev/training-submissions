@@ -1,0 +1,26 @@
+---
+import styles from "../styles/components/ArticleCard.module.css";
+import { formatDate } from "../lib/article-card/formatDate.js";
+
+const { imgSrc, imgAlt, date, genre, title, body, url } = Astro.props;
+---
+
+<a href={url} class="article-card-link">
+  <article class={styles.card}>
+    <div class={styles.imgBox}>
+      <img class={styles.img} src={imgSrc} alt={imgAlt} />
+    </div>
+
+    <div class={styles.meta}>
+      <div class={styles.genre}>{genre}</div>
+      <div class={styles.metaSeparator}></div>
+      <div class={styles.date}>{formatDate(date)}</div>
+    </div>
+
+    <div class={styles.title}>{title}</div>
+
+    <div class={styles.body}>
+      {body && body.length > 50 ? body.slice(0, 50) + "…" : body}
+    </div>
+  </article>
+</a>

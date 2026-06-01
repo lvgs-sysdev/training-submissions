@@ -1,0 +1,60 @@
+services:
+  # データベース (MySQL)
+  db:
+    image: mysql:8.0
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: always
+    environment:
+      MYSQL_DATABASE: tail_wag
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
+      - ./docker/mysql/schema.sql:/docker-entrypoint-initdb.d/1_schema.sql
+      - ./docker/mysql/seed.sql:/docker-entrypoint-initdb.d/2_seed.sql
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf
+
+  # バックエンド
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    env_file:
+      - .env
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+      - shared-uploads:/app/uploads
+    command: npm run dev
+
+  # フロントエンド
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - shared-uploads:/app/public/uploads
+    command: npm run dev
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80" # HTTP用
+      - "443:443" # HTTPS用
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - frontend
+      - backend
+
+volumes:
+  shared-uploads:

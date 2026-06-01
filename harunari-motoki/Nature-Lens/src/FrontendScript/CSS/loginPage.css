@@ -1,0 +1,151 @@
+/* ==========================================================================
+   Nature-Lens Login Page Styles
+   ========================================================================== */
+
+/* 1. ページ全体のレイアウト調整 (body)
+   -------------------------------------------------------------------------- */
+.page-body {
+  min-height: 100vh;
+  background-image: url("../Asset/Nature-Lends_PC_Image.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: #f4e8c9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 40px 20px;
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+  color: #333;
+}
+
+/* 2. タイトル部分 
+   -------------------------------------------------------------------------- */
+.page-name {
+  font-size: 2rem;
+  color: #2e6b3b;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* 3. フォーム全体 (ul.loginForm)
+   -------------------------------------------------------------------------- */
+.loginForm {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.loginForm__potision {
+  margin-bottom: 25px;
+  position: relative;
+}
+
+/* 4. ラベルと入力欄 
+   -------------------------------------------------------------------------- */
+.loginForm_name {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.loginForm_input {
+  display: block;
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-sizing: border-box;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.loginForm_input:focus {
+  outline: none;
+  border-color: #2e6b3b;
+  box-shadow: 0 0 5px rgba(46, 107, 59, 0.3);
+}
+
+/* 5. 入力ルールの説明テキスト (.loginForm_caution)
+   -------------------------------------------------------------------------- */
+.loginForm_caution {
+  font-size: 0.85rem;
+  color: #777;
+  margin: 5px 0 0 10px;
+  line-height: 1.4;
+}
+
+/* 6. ボタン (.button-common)
+   -------------------------------------------------------------------------- */
+.button-common {
+  display: block;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  width: 100%;
+  max-width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 0.2s ease-in-out;
+}
+
+.button-common p {
+  margin: 0;
+}
+
+.toppage_button {
+  font-size: 1.3rem;
+  background-color: transparent;
+  border: 2px solid #2e6b3b;
+  color: #2e6b3b;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.toppage_button:hover {
+  background-color: rgba(46, 107, 59, 0.1);
+  transform: translateY(-2px);
+}
+
+.login_button {
+  background-color: #2e6b3b;
+  color: #fff;
+  margin-top: 30px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.login_button:hover {
+  background-color: #1e4b2a;
+  transform: translateY(-2px);
+}
+
+/* 7. レスポンシブ対応（スマートフォンなど）
+   -------------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .page-name {
+    font-size: 1.5rem;
+  }
+
+  .loginForm {
+    max-width: 100%;
+    padding: 0 15px;
+  }
+}

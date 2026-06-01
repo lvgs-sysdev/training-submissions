@@ -1,0 +1,15 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background: var(--White);
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: var(--fw-light);
+    line-height: normal;
+    margin-bottom: 56px;
+    color: var(--Dark);
+}
+

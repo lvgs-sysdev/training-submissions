@@ -1,0 +1,11 @@
+---
+import styles from "../styles/components/PopularArticlesCard.module.css";
+
+const { title, url } = Astro.props;
+---
+
+<a href={url} class="popular-articles-card-link">
+  <article class={styles.card}>
+    <div class={styles.title}>{title}</div>
+  </article>
+</a>

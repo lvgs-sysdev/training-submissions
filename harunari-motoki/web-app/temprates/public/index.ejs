@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAYDAYTRAVEL</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="./css/footer.css">
+    <meta name="description" content="あなたの休日の過ごし方を共有できるWebサイトです。">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;250;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="/browser/login_browser.js" defer></script>
+    <script src="/browser/register_browser.js" defer></script>
+</head>
+
+<body>
+    <header class="header header_top">
+      <nav class="menu">
+        <a id="menu__Pagename" href="/">DAYDAYTRAVEL</a>
+
+            <% if (userName) { %>
+                <p>
+                    <%= userName %>さん  ログイン中
+                    <a class="profile-link" href="/User">ユーザプロフィール</a>
+                </p>
+            <% } else { %>
+                <a 
+                    id="menu__loginbutton" 
+                    cass="menu__loginbutton--position" 
+                    href="/login"
+                    >Login
+                </a>
+            <% } %>
+
+            <a id="menu__registerbutton" href="/register">Get started</a>
+        </nav>
+    </header>
+    <section class="card">
+      <img
+        class="card__image"
+        src="./assets/images/1P/HeadlineImage.jpg"
+        alt="見出しイメージ" />
+
+      <section class="headline-message">
+        <h1 class="headline-message__title">Share your<br />holiday stories.</h1>
+        <p class="headline-message__note">
+          Write about your experience while on holiday in<br />
+          various parts of Indonasia, and reach a wide<br />
+          readership.
+        </p>
+      </section>
+    </section>
+    <main class="container">
+      <section class="archives archives_margin-bottom">
+        <h2 class="archives__headline">一覧（新着順）</h2>
+        <ul class="article-list">
+          <% articlelist.forEach((articlelist,i)=>{ %>
+          <li class="article-block">
+            <a class="detail" href="/detail?id=<%=articlelist.article_id%>">
+              <img
+              class="article-block__image"
+              src="<%= articlelist.image_path %>"
+              alt="写真">
+            </a>
+            <div class="property">
+              <p class="property__category"><%= articlelist.tag_name %></p>
+              <div class="property__separation">&nbsp;|&nbsp;</div>
+              <p class="property__date">
+                <%
+                const date = articlelist.created_at;
+                const year = date.getFullYear();
+                const monthShort = date.toLocaleString('en-US', {month:'short'});
+                const day = date.getDate();
+                %>
+                <%= day%> <%= monthShort%> <%= year%></p>
+            </div>
+            <a class="article-block__title detail" href="/detail?id=<%=articlelist.article_id%>">
+                <%= articlelist.title %>
+            </a>
+            <a class="article-block__body detail" href="/detail?id=<%=articlelist.article_id%>">
+                <%= articlelist.content %>
+            </a>
+          </li>
+          <% }) %>
+        </ul>
+      </section>
+      <section class="sidemenu">
+        <h2 class="recommended-headline">人気記事</h2>
+        <section class="recommended-article">
+          <p
+            class="recommended-article__title recommended-article__title_margin-bottom">
+            記事タイトル記事タイトル記事タイトル記事タイトル
+          </p>
+          <hr
+            class="recommended-article__line recommended-article__line_margin-bottom" />
+          <p
+            class="recommended-article__title recommended-article__title_margin-bottom">
+            Cheap Padang Spesiality food restaurant
+          </p>
+          <hr
+            class="recommended-article__line recommended-article__line_margin-bottom" />
+          <p
+            class="recommended-article__title recommended-article__title_margin-bottom">
+            Mountaion hiking in a central Java
+          </p>
+        </section>
+        <section class="options">
+          <h2 class="options__title">もっと見る</h2>
+          <div class="option-box">
+            <div class="option-box__button">Travel</div>
+            <div class="option-box__button">Cullnary</div>
+          </div>
+        </section>
+      </section>
+    </main>
+    <footer class="footer">
+      <section class="infomation-part">
+        <section class="box">
+          <h3 class="subheading">PT. Travel Everyday Indonesia</h3>
+          <address class="sentence-font">
+            Grand Floor Zaidin L-Walk,<br />
+            JI. Maju Jaya No. 2,<br />
+            Daerah Istimewa Yogyakarta,<br />
+            Indonesia 55281<br />
+          </address>
+          <div>
+            <hr class="partisionLine" />
+          </div>
+          <p class="height-adjust1-2">
+            <a class="sentence-font" href="">About &emsp; Privacy Policy</a
+            ><br />
+            <a class="sentence-font" href=""
+              >Teams & Conditions &emsp; Contact</a
+            ><br />
+          </p>
+        </section>
+        <div class="box-position-adjust2">
+          <section class="box">
+            <h3 class="subheading">Informations</h3>
+            <ul>
+              <li>
+                <a class="height-adjust2 sentence-font" href="">
+                  How to register as a user<br />
+                </a>
+              </li>
+              <li>
+                <a class="height-adjust2 sentence-font" href="">
+                  Guide to creating travel review<br />
+                </a>
+              </li>
+              <li>
+                <a class="height-adjust2-2 sentence-font" href="">
+                  Tutorial for making culinary<br />
+                  reviews
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
+        <div class="box-position-adjust3">
+          <section class="box">
+            <h3 class="subheading">Follow us</h3>
+            <div class="height-adjust3">
+              <a class="sentence-font" href="">Instagram</a><br />
+              <a class="sentence-font" href="">Facebook</a><br />
+              <a class="sentence-font" href="">Twitter</a><br />
+              <a class="sentence-font" href="">Youtube</a><br />
+            </div>
+          </section>
+        </div>
+        <section class="box">
+          <h3 class="subheading">Download app</h3>
+          <div class="Img">
+            <a href="">
+              <img
+                class="AppStore"
+                src="./assets/images/1P/App.png"
+                alt="App Store" />
+            </a>
+            <a href="">
+              <img
+                class="GPlay"
+                src="./assets/images/1P/GooglePlay.png"
+                alt="Google Play" />
+            </a>
+          </div>
+        </section>
+      </section>
+      <small class="Copyright">
+        &copy; <time datetime="2023">2023</time> PT. Travel Everyday Indonesia
+      </small>
+    </footer>
+  </body>
+</html>
