@@ -49,7 +49,17 @@ fastify.get("/articles/:id", async (request, reply) => {
   const connection = await mysql.createConnection(dbConfig);
 
   const [rows] = await connection.execute(
-    "SELECT * FROM articles WHERE id = ?",
+    `SELECT
+      articles.id,
+      articles.article_title,
+      articles.content,
+      articles.user_id,
+      articles.created_at,
+      articles.updated_at,
+      users.user_name
+    FROM articles
+    LEFT JOIN users ON articles.user_id = users.user_id
+    WHERE articles.id = ?`,
     [id],
   );
 

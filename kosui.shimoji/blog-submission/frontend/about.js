@@ -40,18 +40,9 @@ async function loadArticle() {
       }
     }
 
-    const userResponse = await fetch(
-      `http://localhost:3000/users/${article.user_id}`,
-    );
-    if (!userResponse.ok) {
-      console.error("投稿者情報の取得に失敗しました");
-      return;
-    }
-    const user = await userResponse.json();
-
     const authorElem = document.getElementById("article-author");
     if (authorElem) {
-      authorElem.textContent = user.user_name;
+      authorElem.textContent = article.user_name;
     }
   } catch (error) {
     console.error("データの取得、または反映に失敗しました:", error);
