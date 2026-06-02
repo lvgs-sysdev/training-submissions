@@ -1,0 +1,309 @@
+@charset "UTF-8";
+
+:root {
+  --main-color: #fff;
+  --primary-color: #121212;
+  --sub-color: #757575;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* hero part */
+
+.hero {
+  width: 100%;
+  height: 770px;
+  background-image: url("../img/hero-img.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  margin-left: auto; 
+  margin-right: auto; 
+  margin-bottom: 146px;
+  justify-content: center;
+}
+
+.hero-inner {
+  position: absolute;
+  margin-top: 230px;
+  width: 455px;
+}
+
+.hero-title {
+  font-weight: 600;
+  font-size: 60px;
+  line-height: 95px;
+  letter-spacing: -2px;
+  color: var(--primary-color);
+  margin-bottom: 35px;
+}
+
+.hero-text {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: 0.5px;
+  color: var(--primary-color)
+}
+
+/* 全体*/
+
+.container {
+  max-width: 1119px; 
+  margin: 0 auto;
+  display: flex;
+}
+
+/* 一覧（新着順） */
+.section-reviews { 
+  width: 100%;
+}
+
+.section-title {
+  font-family: 600;
+  font-size: 22px;
+  font-style: SemiBold;
+  line-height: 28px;
+  margin-bottom: 40px;
+}
+
+/* 2列✖️3列の配置 */
+.review-grid {
+  display: flex;
+  flex-wrap: wrap;    /* 折り返しを許可 */
+  gap: 40px 20px;     /* 上下 40px / 左右 20px の隙間 */
+}
+
+  /* 記事のまとまり */
+.card-review {
+  width: 360px;
+  height: 400px;
+  box-sizing: border-box;
+}
+
+.card-review .post-img img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+.card-review {
+  margin-bottom: 60px;
+}
+
+.post-img {
+  margin-bottom: 25px;
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.post-category {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 1px;
+  color: #FF553C;
+}
+
+.post-category::after {
+  content: "";          /* 擬似要素には必須 */
+  display: inline-block;
+  width: 1px;
+  height: 12px;         /* 文字の高さに合わせる */
+  background-color: #DEDEDE;
+  margin: 0 10px;       /* 棒の左右に余白を作る */
+  vertical-align: middle;
+}
+
+.post-date {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 1px;
+  color: var(--sub-color)
+}
+
+.review-title {
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0px;
+  color: var(--sub-color);
+  margin-bottom: 15px;
+}
+
+.review-text {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0px;
+  color: var(--sub-color);
+  margin-bottom: 15px;
+}
+
+/* sidebar */
+
+.sidebar {
+  width: 265px;      /* 固定幅 */
+  flex-shrink: 0;    /* 画面が狭くなってもサイドバーが潰れないようにする */
+}
+
+.section-popular {
+  height: 392px;
+  margin-bottom: 131px;
+}
+
+.sidebar-title {
+  font-weight: 600;
+  font-style: Semibold;
+  font-size: 22px;
+  line-height: 28px;
+  letter-spacing: 0px;
+  margin-bottom: 40px;
+  color: var(--primary-color)
+}
+
+.contents-popular {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contents-popular li {
+  list-style: none;
+  padding-top: 20px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid rgba(18, 18, 18, 0.2);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #121212;
+}
+.contents-popular li:last-child {
+  border-bottom: none;
+}
+
+
+.section-tags {
+  margin-top: 60px;
+}
+
+.tags {  
+  /* classで指定してる名称がtagsであるのに対して、ここでtagと記載していたので反映されていませんでした */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+.tag {
+  display: inline-block;
+  padding: 8px 18px;
+  border: 1px solid #DEDEDE;
+  border-radius: 2px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #757575;
+  text-decoration: none;
+  background-color: var(--main-color);
+  transition: all 0.3s;
+}
+
+/* --- レスポンシブ対応 --- */
+@media (max-width: 1280px) {
+  /* 全体の余白を調整 */
+  .header-inner, .hero-inner, .container, footer {
+    padding-left: 5% ;
+    padding-right: 5% ;
+  }
+
+  .hero-inner {
+    left: 5%;
+  }
+
+  .hero-title {
+    font-size: 40px;
+    line-height: 1.2;
+  }
+
+.container {
+    flex-direction: column; /* 縦に並べる */
+    align-items: center;    /* 中央に寄せる */
+  }
+
+  .section-reviews {
+    margin-right: 0;
+    width: 100%; 
+    max-width: 740px;
+  }
+
+.sidebar {
+    width: 100%;           /* 横幅いっぱいにする */
+    max-width: 740px;      /* メインの幅に合わせると綺麗 */
+    margin-top: 80px;
+  }
+}
+
+/* --- スマホ対応 (画面幅が822px以下の時) --- */
+@media (max-width: 822px) {
+/* ヒーローエリア */
+  .hero {
+    width: 100%;
+    height: auto;
+    min-height: 500px;
+    top: 0;
+    left: 0;
+    margin-top: 70px;
+  }
+  
+  .hero-inner {
+    position: static;
+    padding: 40px 20px;
+    box-sizing: border-box;
+  }
+  .hero-title {
+    font-size: 32px;
+  }
+
+  /* 記事カード */
+
+  .container {
+    margin-top: 60px;
+    margin-left: 0;   /* PC用の余白をリセット */
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .card-review {
+    width: 100%;
+    gap: 40px 0;
+  }
+  .card-review  {
+    width: 100%;
+    max-width: 100%;
+  }
+  .review-title, .review-text {
+    width: 100%;     /* 固定幅を解除 */
+    height: auto;    /* 高さを中身に合わせる */
+  }
+
+  /* サイドバー */
+  .sidebar {
+    margin-top: 60px;
+    padding: 0;      /* containerのpaddingがあるため0でOK */
+  }
+
+}
