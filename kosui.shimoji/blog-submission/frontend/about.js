@@ -28,16 +28,16 @@ async function loadArticle() {
             const rawDate = String(article.created_at);
             
             if (rawDate.length === 8) {
-                const y = rawDate.substring(0, 4);
-                const m = rawDate.substring(4, 6);
-                const d = rawDate.substring(6, 8);
+                const year = rawDate.substring(0, 4);
+                const month = rawDate.substring(4, 6);
+                const day = rawDate.substring(6, 8);
                 dateElem.textContent = `${y}/${m}/${d}`;
             } else {
                 const date = new Date(Number(rawDate) * 1000);
-                const y = date.getFullYear();
-                const m = date.getMonth() + 1;
-                const d = date.getDate();
-                dateElem.textContent = `${y}/${m}/${d}`;
+                const year = date.getFullYear();
+                const month = date.getMonth() + 1;
+                const day = date.getDate();
+                dateElem.textContent = `${year}/${month}/${day}`;
             }
         }
 

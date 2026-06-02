@@ -10,21 +10,21 @@ const articleId = params.get('id')
 
 
 async function loadArticle() {
-try {
-    const response = await fetch('http://localhost:3000/articles/' + articleId)
+    try {
+        const response = await fetch('http://localhost:3000/articles/' + articleId)
+        if (!response.ok) {
 
-    if (!response.ok) {
-    message.textContent = '記事が見つかりません'
-    return
+            message.textContent = '記事が見つかりません'
+        return
+        }
+
+        const article = await response.json()
+        titleInput.value = article.article_title
+        contentInput.value = article.content
+    } catch (error) {
+        console.error(error)
+        message.textContent = 'サーバーに接続できませんでした'
     }
-
-    const article = await response.json()
-    titleInput.value = article.article_title
-    contentInput.value = article.content
-} catch (error) {
-    console.error(error)
-    message.textContent = 'サーバーに接続できませんでした'
-}
 }
 
 // ② フォーム送信時：PUT /articles/:id で保存
