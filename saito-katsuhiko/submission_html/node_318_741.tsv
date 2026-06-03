@@ -1,0 +1,147 @@
+318:741	FRAME	トップページ	layout_FYCQN8	
+318:744	GROUP	footer	layout_6VY000	
+318:745	GROUP	row	layout_CUIBZS	
+334:185	RECTANGLE	Rectangle 38	layout_CUIBZS	
+318:746	TEXT	copyright	layout_ZSKN9Z	© 2023 PT. Travel Everyday Indonesia
+318:747	FRAME	col	layout_TVXFKC	
+318:748	TEXT	Graphic Design	layout_QIOYMC	Download app
+318:749	FRAME	Frame 19	layout_46L8ZF	
+318:750	RECTANGLE	App Store	layout_VSBOEI	
+318:751	RECTANGLE	Play Store	layout_VSBOEI	
+318:752	FRAME	col	layout_LF97FT	
+318:753	TEXT	Follow us	layout_QIOYMC	Follow us
+318:754	FRAME	social-links	layout_46L8ZF	
+318:755	TEXT	Instagram	layout_QIOYMC	Instagram
+318:756	TEXT	Facebook	layout_QIOYMC	Facebook
+318:757	TEXT	Twitter	layout_QIOYMC	Twitter
+318:758	TEXT	Youtube	layout_QIOYMC	Youtube
+318:759	FRAME	col	layout_TNN6UK	
+318:760	TEXT	Graphic Design	layout_L0WDDD	Informations
+318:761	FRAME	Frame 18	layout_46L8ZF	
+318:762	TEXT	How to register as a user	layout_7G2XP3	How to register as a user
+318:763	TEXT	Guide to creating travel review	layout_7G2XP3	Guide to creating travel review
+318:764	TEXT	Tutorial for making culinary reviews	layout_7G2XP3	Tutorial for making culinary reviews
+318:765	FRAME	col	layout_FDNWN1	
+318:766	TEXT	PT. Travel Everyday Indonesia	layout_7G2XP3	PT. Travel Everyday Indonesia
+318:767	FRAME	address-links	layout_8DNGWY	
+318:768	TEXT	Grand Floor Zaidin L-Walk, Jl. Maju Jaya No. 2,  Daerah Istimewa Yogyakarta, Indonesia 55281	layout_7G2XP3	Grand Floor Zaidin L-Walk, Jl. Maju Jaya No. 2,  Daerah Istimewa Yogyakarta, Indonesia 55281
+318:769	LINE	Line 7	layout_F1BEPG	
+318:770	GROUP	links	layout_AG4OAB	
+318:771	TEXT	About	layout_JR76UF	About
+318:772	TEXT	Contact	layout_5HC6UK	Contact
+318:773	TEXT	Privacy policy	layout_JY43S8	Privacy policy
+318:774	TEXT	Terms & Conditions	layout_UMDI3O	Terms & Conditions
+318:775	GROUP	footer-brand	layout_52QLWJ	
+318:776	TEXT	DAYDAYTRAVEL	layout_M1VZU5	DAYDAYTRAVEL
+318:777	LINE	Line 5	layout_WIEMIN	
+318:778	GROUP	section-tags	layout_BGEAVE	
+318:779	GROUP	tags	layout_Y0LIGA	
+318:788	FRAME	tag	layout_999IRK	
+318:789	TEXT	Cullnary	layout_FOF584	Cullnary
+318:790	FRAME	tag	layout_F8XGB2	
+318:791	TEXT	Travel	layout_FOF584	Travel
+318:792	TEXT	もっと見る（機能不要）	layout_YU8X19	もっと見る（機能不要）
+318:793	GROUP	section-popular	layout_6QU9MD	
+318:794	FRAME	contents-popular	layout_KMHI1Q	
+318:795	GROUP	content	layout_HAY0MI	
+318:796	LINE	Line 2	layout_5SUNT8	
+318:797	FRAME	Frame 15	layout_UXKBGL	
+318:798	TEXT	Explore tourist destinations in Banda Aceh	layout_7G2XP3	記事タイトル記事タイトル記事タイトル記事タイトル
+318:800	GROUP	content	layout_HAY0MI	
+318:801	LINE	Line 2	layout_5SUNT8	
+318:802	FRAME	Frame 17	layout_UXKBGL	
+318:803	TEXT	Cheap Padang specialty food restaurant	layout_7G2XP3	Cheap Padang specialty food restaurant
+318:805	GROUP	content	layout_89H9GT	
+318:806	FRAME	Frame 16	layout_UXKBGL	
+318:807	TEXT	Mountain hiking in central Java	layout_7G2XP3	Mountain hiking in central Java
+318:809	TEXT	人気記事（機能不要）	layout_TGZ4FL	人気記事（機能不要）
+318:810	GROUP	section-reviews	layout_KZNPP2	
+318:813	FRAME	card-review	layout_UZXCL4	
+318:814	GROUP	img	layout_XZU4T6	
+318:815	RECTANGLE	Rectangle 12	layout_ZCQDSR	
+318:816	RECTANGLE	image 14	layout_UTG09C	
+318:817	FRAME	content	layout_46L8ZF	
+318:818	FRAME	reviews-item-date	layout_9YUGOX	
+318:819	TEXT	125 courses	layout_AD3550	Culinary
+318:820	LINE	Line 3	layout_6EN0DV	
+318:821	TEXT	25 Apr 2022	layout_FOF584	25 Apr 2022
+318:822	FRAME	title-reviews-paragraph	layout_46L8ZF	
+318:823	TEXT	Graphic Design	layout_MY4AW3	The taste of Bang Embul's soto betawi
+318:824	TEXT	Each region has its own specialty food..	layout_FOF584	Each region has its own specialty food..
+318:825	FRAME	card-review	layout_NF8KSY	
+318:826	GROUP	img	layout_XZU4T6	
+318:827	RECTANGLE	Rectangle 12	layout_ZCQDSR	
+318:828	RECTANGLE	image 14	layout_UTG09C	
+318:829	FRAME	content	layout_46L8ZF	
+318:830	FRAME	reviews-item-date	layout_9YUGOX	
+318:831	TEXT	125 courses	layout_1FMB5W	Travel
+318:832	LINE	Line 3	layout_6EN0DV	
+318:833	TEXT	29 Apr 2022	layout_FOF584	29 Apr 2022
+318:834	FRAME	title-reviews-paragraph	layout_46L8ZF	
+318:835	TEXT	Graphic Design	layout_MY4AW3	Seeing the beauty of Bali, which has many statues in temples 
+318:836	TEXT	Talking about Bali is never boring to tell..	layout_FOF584	Talking about Bali is never boring to tell..
+318:837	FRAME	card-review	layout_L92XO6	
+318:838	GROUP	img	layout_XZU4T6	
+318:839	RECTANGLE	Rectangle 12	layout_ZCQDSR	
+318:840	RECTANGLE	image 14	layout_UTG09C	
+318:841	FRAME	content	layout_46L8ZF	
+318:842	FRAME	reviews-item-date	layout_9YUGOX	
+318:843	TEXT	125 courses	layout_AD3550	Culinary
+318:844	LINE	Line 3	layout_6EN0DV	
+318:845	TEXT	02 May 2022	layout_FOF584	02 May 2022
+318:846	FRAME	title-reviews-paragraph	layout_46L8ZF	
+318:847	TEXT	Graphic Design	layout_MY4AW3	Delicious and cheap Semarang street food
+318:848	TEXT	There's a lot of street food in Semarang..	layout_FOF584	There's a lot of street food in Semarang..
+318:849	FRAME	card-review	layout_RDHJYG	
+318:850	GROUP	img	layout_XZU4T6	
+318:851	RECTANGLE	Rectangle 12	layout_ZCQDSR	
+318:852	RECTANGLE	image 14	layout_UTG09C	
+318:853	FRAME	content	layout_46L8ZF	
+318:854	FRAME	reviews-item-date	layout_9YUGOX	
+318:855	TEXT	125 courses	layout_1FMB5W	Travel
+318:856	LINE	Line 3	layout_6EN0DV	
+318:857	TEXT	05 Jun 2022	layout_FOF584	05 Jun 2022
+318:858	FRAME	title-reviews-paragraph	layout_46L8ZF	
+318:859	TEXT	Graphic Design	layout_MY4AW3	Karang bebai beach Lampung for summer vacation
+318:860	TEXT	Talking about Bali is never boring to tell..	layout_FOF584	Talking about Bali is never boring to tell..
+318:861	FRAME	card-review	layout_7UWSCL	
+318:862	GROUP	img	layout_XZU4T6	
+318:863	RECTANGLE	Rectangle 12	layout_ZCQDSR	
+318:864	RECTANGLE	image 14	layout_UTG09C	
+318:865	FRAME	content	layout_46L8ZF	
+318:866	FRAME	reviews-item-date	layout_9YUGOX	
+318:867	TEXT	125 courses	layout_1FMB5W	Travel
+318:868	LINE	Line 3	layout_6EN0DV	
+318:869	TEXT	13 Jun 2022	layout_FOF584	13 Jun 2022
+318:870	FRAME	title-reviews-paragraph	layout_46L8ZF	
+318:871	TEXT	Graphic Design	layout_MY4AW3	The upside-down mystical forest in Banyuwangi
+318:872	TEXT	This place is most often used as a photo..	layout_FOF584	This place is most often used as a photo..
+318:873	FRAME	card-review	layout_RMB0XB	
+318:874	GROUP	img	layout_XZU4T6	
+318:875	RECTANGLE	Rectangle 12	layout_ZCQDSR	
+318:876	RECTANGLE	travel-1	layout_UTG09C	
+318:877	FRAME	content	layout_46L8ZF	
+318:878	FRAME	reviews-item-date	layout_9YUGOX	
+318:879	TEXT	125 courses	layout_1FMB5W	Travel
+318:880	LINE	Line 3	layout_6EN0DV	
+318:881	TEXT	19 Feb 2022	layout_FOF584	19 Feb 2022
+318:882	FRAME	title-reviews-paragraph	layout_46L8ZF	
+318:883	TEXT	Graphic Design	layout_MY4AW3	記事タイトル記事タイトル記事タイトル記事タイトル
+318:884	TEXT	本文の一部を表示本文の一部を表示本文の..	layout_FOF584	本文の一部を表示本文の一部を表示本文の..
+318:885	TEXT	一覧（新着順）	layout_BU369G	一覧（新着順）
+318:886	GROUP	section-hero	layout_LLRU81	
+318:887	RECTANGLE	hero-img	layout_LLRU81	
+318:888	FRAME	hero-text	layout_S9YVUO	
+318:889	TEXT	Share your holiday stories.	layout_94FP65	Share your holiday stories.
+318:890	TEXT	Write about your experiences while on holiday in various parts of Indonesia, and reach a wide readership.	layout_94FP65	Write about your experiences while on holiday in various parts of Indonesia, and reach a wide readership.
+318:907	GROUP	navbar	layout_8M8TNZ	
+318:908	LINE	Line 6	layout_XOYXHX	
+318:909	RECTANGLE	Rectangle 25	layout_F1KVUS	
+318:910	FRAME	container	layout_PJD5SZ	
+318:911	FRAME	navbar-brand	layout_6S0DBU	
+318:912	TEXT	DAYDAYTRAVEL	layout_FOF584	DAYDAYTRAVEL
+318:913	FRAME	nav-link	layout_7NOZBV	
+318:920	FRAME	btn-login-register	layout_R3HXI2	
+318:921	TEXT	Login	layout_FOF584	Login
+318:922	FRAME	btn	layout_7O1AZC	
+318:923	TEXT	Get started	layout_FOF584	Get started

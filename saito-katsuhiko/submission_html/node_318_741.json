@@ -1,0 +1,1225 @@
+{
+  "id": "318:741",
+  "name": "トップページ",
+  "type": "FRAME",
+  "layout": "layout_FYCQN8",
+  "fills": "White",
+  "children": [
+    {
+      "id": "318:744",
+      "name": "footer",
+      "type": "GROUP",
+      "layout": "layout_6VY000",
+      "children": [
+        {
+          "id": "318:745",
+          "name": "row",
+          "type": "GROUP",
+          "layout": "layout_CUIBZS",
+          "children": [
+            {
+              "id": "334:185",
+              "name": "Rectangle 38",
+              "type": "RECTANGLE",
+              "layout": "layout_CUIBZS",
+              "fills": "Dark"
+            },
+            {
+              "id": "318:746",
+              "name": "copyright",
+              "type": "TEXT",
+              "layout": "layout_ZSKN9Z",
+              "text": "© 2023 PT. Travel Everyday Indonesia",
+              "textStyle": "style_CBSE2F",
+              "fills": "fill_B8OEJX"
+            },
+            {
+              "id": "318:747",
+              "name": "col",
+              "type": "FRAME",
+              "layout": "layout_TVXFKC",
+              "children": [
+                {
+                  "id": "318:748",
+                  "name": "Graphic Design",
+                  "type": "TEXT",
+                  "layout": "layout_QIOYMC",
+                  "text": "Download app",
+                  "textStyle": "style_AFJSCU",
+                  "fills": "White"
+                },
+                {
+                  "id": "318:749",
+                  "name": "Frame 19",
+                  "type": "FRAME",
+                  "layout": "layout_46L8ZF",
+                  "children": [
+                    {
+                      "id": "318:750",
+                      "name": "App Store",
+                      "type": "RECTANGLE",
+                      "layout": "layout_VSBOEI",
+                      "fills": "fill_U9AE6H"
+                    },
+                    {
+                      "id": "318:751",
+                      "name": "Play Store",
+                      "type": "RECTANGLE",
+                      "layout": "layout_VSBOEI",
+                      "fills": "fill_ZENFE6"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "318:752",
+              "name": "col",
+              "type": "FRAME",
+              "layout": "layout_LF97FT",
+              "children": [
+                {
+                  "id": "318:753",
+                  "name": "Follow us",
+                  "type": "TEXT",
+                  "layout": "layout_QIOYMC",
+                  "text": "Follow us",
+                  "textStyle": "style_AFJSCU",
+                  "fills": "White"
+                },
+                {
+                  "id": "318:754",
+                  "name": "social-links",
+                  "type": "FRAME",
+                  "layout": "layout_46L8ZF",
+                  "children": [
+                    {
+                      "id": "318:755",
+                      "name": "Instagram",
+                      "type": "TEXT",
+                      "layout": "layout_QIOYMC",
+                      "text": "Instagram",
+                      "textStyle": "style_NOK33G",
+                      "fills": "fill_B8OEJX"
+                    },
+                    {
+                      "id": "318:756",
+                      "name": "Facebook",
+                      "type": "TEXT",
+                      "layout": "layout_QIOYMC",
+                      "text": "Facebook",
+                      "textStyle": "style_NOK33G",
+                      "fills": "fill_B8OEJX"
+                    },
+                    {
+                      "id": "318:757",
+                      "name": "Twitter",
+                      "type": "TEXT",
+                      "layout": "layout_QIOYMC",
+                      "text": "Twitter",
+                      "textStyle": "style_NOK33G",
+                      "fills": "fill_B8OEJX"
+                    },
+                    {
+                      "id": "318:758",
+                      "name": "Youtube",
+                      "type": "TEXT",
+                      "layout": "layout_QIOYMC",
+                      "text": "Youtube",
+                      "textStyle": "style_NOK33G",
+                      "fills": "fill_B8OEJX"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "318:759",
+              "name": "col",
+              "type": "FRAME",
+              "layout": "layout_TNN6UK",
+              "children": [
+                {
+                  "id": "318:760",
+                  "name": "Graphic Design",
+                  "type": "TEXT",
+                  "layout": "layout_L0WDDD",
+                  "text": "Informations",
+                  "textStyle": "style_AFJSCU",
+                  "fills": "White"
+                },
+                {
+                  "id": "318:761",
+                  "name": "Frame 18",
+                  "type": "FRAME",
+                  "layout": "layout_46L8ZF",
+                  "children": [
+                    {
+                      "id": "318:762",
+                      "name": "How to register as a user",
+                      "type": "TEXT",
+                      "layout": "layout_7G2XP3",
+                      "text": "How to register as a user",
+                      "textStyle": "style_NOK33G",
+                      "fills": "fill_B8OEJX"
+                    },
+                    {
+                      "id": "318:763",
+                      "name": "Guide to creating travel review",
+                      "type": "TEXT",
+                      "layout": "layout_7G2XP3",
+                      "text": "Guide to creating travel review",
+                      "textStyle": "style_NOK33G",
+                      "fills": "fill_B8OEJX"
+                    },
+                    {
+                      "id": "318:764",
+                      "name": "Tutorial for making culinary reviews",
+                      "type": "TEXT",
+                      "layout": "layout_7G2XP3",
+                      "text": "Tutorial for making culinary reviews",
+                      "textStyle": "style_NOK33G",
+                      "fills": "fill_B8OEJX"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "318:765",
+              "name": "col",
+              "type": "FRAME",
+              "layout": "layout_FDNWN1",
+              "children": [
+                {
+                  "id": "318:766",
+                  "name": "PT. Travel Everyday Indonesia",
+                  "type": "TEXT",
+                  "layout": "layout_7G2XP3",
+                  "text": "PT. Travel Everyday Indonesia",
+                  "textStyle": "style_AFJSCU",
+                  "fills": "White"
+                },
+                {
+                  "id": "318:767",
+                  "name": "address-links",
+                  "type": "FRAME",
+                  "layout": "layout_8DNGWY",
+                  "children": [
+                    {
+                      "id": "318:768",
+                      "name": "Grand Floor Zaidin L-Walk, Jl. Maju Jaya No. 2,  Daerah Istimewa Yogyakarta, Indonesia 55281",
+                      "type": "TEXT",
+                      "layout": "layout_7G2XP3",
+                      "text": "Grand Floor Zaidin L-Walk, Jl. Maju Jaya No. 2,  Daerah Istimewa Yogyakarta, Indonesia 55281",
+                      "textStyle": "style_NOK33G",
+                      "fills": "fill_B8OEJX"
+                    },
+                    {
+                      "id": "318:769",
+                      "name": "Line 7",
+                      "type": "LINE",
+                      "layout": "layout_F1BEPG",
+                      "strokes": "fill_0FHF5E",
+                      "strokeWeight": "1px"
+                    },
+                    {
+                      "id": "318:770",
+                      "name": "links",
+                      "type": "GROUP",
+                      "layout": "layout_AG4OAB",
+                      "borderRadius": "0px 0px 0px 0px",
+                      "children": [
+                        {
+                          "id": "318:771",
+                          "name": "About",
+                          "type": "TEXT",
+                          "layout": "layout_JR76UF",
+                          "text": "About",
+                          "textStyle": "style_NOK33G",
+                          "fills": "fill_B8OEJX"
+                        },
+                        {
+                          "id": "318:772",
+                          "name": "Contact",
+                          "type": "TEXT",
+                          "layout": "layout_5HC6UK",
+                          "text": "Contact",
+                          "textStyle": "style_NOK33G",
+                          "fills": "fill_B8OEJX"
+                        },
+                        {
+                          "id": "318:773",
+                          "name": "Privacy policy",
+                          "type": "TEXT",
+                          "layout": "layout_JY43S8",
+                          "text": "Privacy policy",
+                          "textStyle": "style_NOK33G",
+                          "fills": "fill_B8OEJX"
+                        },
+                        {
+                          "id": "318:774",
+                          "name": "Terms & Conditions",
+                          "type": "TEXT",
+                          "layout": "layout_UMDI3O",
+                          "text": "Terms & Conditions",
+                          "textStyle": "style_NOK33G",
+                          "fills": "fill_B8OEJX"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "318:775",
+              "name": "footer-brand",
+              "type": "GROUP",
+              "layout": "layout_52QLWJ",
+              "borderRadius": "0px 0px 0px 0px",
+              "children": [
+                {
+                  "id": "318:776",
+                  "name": "DAYDAYTRAVEL",
+                  "type": "TEXT",
+                  "layout": "layout_M1VZU5",
+                  "text": "DAYDAYTRAVEL",
+                  "textStyle": "style_Q3FH78"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "318:777",
+          "name": "Line 5",
+          "type": "LINE",
+          "layout": "layout_WIEMIN",
+          "strokes": "fill_O0322C",
+          "strokeWeight": "1px"
+        }
+      ]
+    },
+    {
+      "id": "318:778",
+      "name": "section-tags",
+      "type": "GROUP",
+      "layout": "layout_BGEAVE",
+      "children": [
+        {
+          "id": "318:779",
+          "name": "tags",
+          "type": "GROUP",
+          "layout": "layout_Y0LIGA",
+          "children": [
+            {
+              "id": "318:788",
+              "name": "tag",
+              "type": "FRAME",
+              "layout": "layout_999IRK",
+              "strokes": "fill_O0322C",
+              "strokeWeight": "1px",
+              "children": [
+                {
+                  "id": "318:789",
+                  "name": "Cullnary",
+                  "type": "TEXT",
+                  "layout": "layout_FOF584",
+                  "text": "Cullnary",
+                  "textStyle": "style_UQ7ZQH",
+                  "fills": "fill_F416TQ"
+                }
+              ]
+            },
+            {
+              "id": "318:790",
+              "name": "tag",
+              "type": "FRAME",
+              "layout": "layout_F8XGB2",
+              "strokes": "fill_O0322C",
+              "strokeWeight": "1px",
+              "children": [
+                {
+                  "id": "318:791",
+                  "name": "Travel",
+                  "type": "TEXT",
+                  "layout": "layout_FOF584",
+                  "text": "Travel",
+                  "textStyle": "style_UQ7ZQH",
+                  "fills": "fill_F416TQ"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "318:792",
+          "name": "もっと見る（機能不要）",
+          "type": "TEXT",
+          "layout": "layout_YU8X19",
+          "text": "もっと見る（機能不要）",
+          "textStyle": "style_VB7MTH",
+          "fills": "Dark"
+        }
+      ]
+    },
+    {
+      "id": "318:793",
+      "name": "section-popular",
+      "type": "GROUP",
+      "layout": "layout_6QU9MD",
+      "children": [
+        {
+          "id": "318:794",
+          "name": "contents-popular",
+          "type": "FRAME",
+          "layout": "layout_KMHI1Q",
+          "children": [
+            {
+              "id": "318:795",
+              "name": "content",
+              "type": "GROUP",
+              "layout": "layout_HAY0MI",
+              "children": [
+                {
+                  "id": "318:796",
+                  "name": "Line 2",
+                  "type": "LINE",
+                  "layout": "layout_5SUNT8",
+                  "strokes": "Dark",
+                  "strokeWeight": "0.5px",
+                  "opacity": 0.20000000298023224
+                },
+                {
+                  "id": "318:797",
+                  "name": "Frame 15",
+                  "type": "FRAME",
+                  "layout": "layout_UXKBGL",
+                  "children": [
+                    {
+                      "id": "318:798",
+                      "name": "Explore tourist destinations in Banda Aceh",
+                      "type": "TEXT",
+                      "layout": "layout_7G2XP3",
+                      "text": "記事タイトル記事タイトル記事タイトル記事タイトル",
+                      "textStyle": "style_AFJSCU",
+                      "fills": "Dark"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "318:800",
+              "name": "content",
+              "type": "GROUP",
+              "layout": "layout_HAY0MI",
+              "children": [
+                {
+                  "id": "318:801",
+                  "name": "Line 2",
+                  "type": "LINE",
+                  "layout": "layout_5SUNT8",
+                  "strokes": "Dark",
+                  "strokeWeight": "0.5px",
+                  "opacity": 0.20000000298023224
+                },
+                {
+                  "id": "318:802",
+                  "name": "Frame 17",
+                  "type": "FRAME",
+                  "layout": "layout_UXKBGL",
+                  "children": [
+                    {
+                      "id": "318:803",
+                      "name": "Cheap Padang specialty food restaurant",
+                      "type": "TEXT",
+                      "layout": "layout_7G2XP3",
+                      "text": "Cheap Padang specialty food restaurant",
+                      "textStyle": "style_AFJSCU",
+                      "fills": "Dark"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "318:805",
+              "name": "content",
+              "type": "GROUP",
+              "layout": "layout_89H9GT",
+              "children": [
+                {
+                  "id": "318:806",
+                  "name": "Frame 16",
+                  "type": "FRAME",
+                  "layout": "layout_UXKBGL",
+                  "children": [
+                    {
+                      "id": "318:807",
+                      "name": "Mountain hiking in central Java",
+                      "type": "TEXT",
+                      "layout": "layout_7G2XP3",
+                      "text": "Mountain hiking in central Java",
+                      "textStyle": "style_AFJSCU",
+                      "fills": "Dark"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "318:809",
+          "name": "人気記事（機能不要）",
+          "type": "TEXT",
+          "layout": "layout_TGZ4FL",
+          "text": "人気記事（機能不要）",
+          "textStyle": "style_VB7MTH",
+          "fills": "Dark"
+        }
+      ]
+    },
+    {
+      "id": "318:810",
+      "name": "section-reviews",
+      "type": "GROUP",
+      "layout": "layout_KZNPP2",
+      "children": [
+        {
+          "id": "318:813",
+          "name": "card-review",
+          "type": "FRAME",
+          "layout": "layout_UZXCL4",
+          "children": [
+            {
+              "id": "318:814",
+              "name": "img",
+              "type": "GROUP",
+              "layout": "layout_XZU4T6",
+              "children": [
+                {
+                  "id": "318:815",
+                  "name": "Rectangle 12",
+                  "type": "RECTANGLE",
+                  "layout": "layout_ZCQDSR",
+                  "fills": "fill_G1E1CV"
+                },
+                {
+                  "id": "318:816",
+                  "name": "image 14",
+                  "type": "RECTANGLE",
+                  "layout": "layout_UTG09C",
+                  "fills": "fill_2Q6PQ2"
+                }
+              ]
+            },
+            {
+              "id": "318:817",
+              "name": "content",
+              "type": "FRAME",
+              "layout": "layout_46L8ZF",
+              "children": [
+                {
+                  "id": "318:818",
+                  "name": "reviews-item-date",
+                  "type": "FRAME",
+                  "layout": "layout_9YUGOX",
+                  "children": [
+                    {
+                      "id": "318:819",
+                      "name": "125 courses",
+                      "type": "TEXT",
+                      "layout": "layout_AD3550",
+                      "text": "Culinary",
+                      "textStyle": "style_TUIU51",
+                      "fills": "Primary"
+                    },
+                    {
+                      "id": "318:820",
+                      "name": "Line 3",
+                      "type": "LINE",
+                      "layout": "layout_6EN0DV",
+                      "strokes": "fill_O0322C",
+                      "strokeWeight": "1px"
+                    },
+                    {
+                      "id": "318:821",
+                      "name": "25 Apr 2022",
+                      "type": "TEXT",
+                      "layout": "layout_FOF584",
+                      "text": "25 Apr 2022",
+                      "textStyle": "style_CBSE2F",
+                      "fills": "fill_F416TQ"
+                    }
+                  ]
+                },
+                {
+                  "id": "318:822",
+                  "name": "title-reviews-paragraph",
+                  "type": "FRAME",
+                  "layout": "layout_46L8ZF",
+                  "children": [
+                    {
+                      "id": "318:823",
+                      "name": "Graphic Design",
+                      "type": "TEXT",
+                      "layout": "layout_MY4AW3",
+                      "text": "The taste of Bang Embul's soto betawi",
+                      "textStyle": "style_67CL8C",
+                      "fills": "Dark"
+                    },
+                    {
+                      "id": "318:824",
+                      "name": "Each region has its own specialty food..",
+                      "type": "TEXT",
+                      "layout": "layout_FOF584",
+                      "text": "Each region has its own specialty food..",
+                      "textStyle": "style_NOK33G",
+                      "fills": "fill_F416TQ"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "318:825",
+          "name": "card-review",
+          "type": "FRAME",
+          "layout": "layout_NF8KSY",
+          "children": [
+            {
+              "id": "318:826",
+              "name": "img",
+              "type": "GROUP",
+              "layout": "layout_XZU4T6",
+              "children": [
+                {
+                  "id": "318:827",
+                  "name": "Rectangle 12",
+                  "type": "RECTANGLE",
+                  "layout": "layout_ZCQDSR",
+                  "fills": "fill_G1E1CV"
+                },
+                {
+                  "id": "318:828",
+                  "name": "image 14",
+                  "type": "RECTANGLE",
+                  "layout": "layout_UTG09C",
+                  "fills": "fill_DI8LKK"
+                }
+              ]
+            },
+            {
+              "id": "318:829",
+              "name": "content",
+              "type": "FRAME",
+              "layout": "layout_46L8ZF",
+              "children": [
+                {
+                  "id": "318:830",
+                  "name": "reviews-item-date",
+                  "type": "FRAME",
+                  "layout": "layout_9YUGOX",
+                  "children": [
+                    {
+                      "id": "318:831",
+                      "name": "125 courses",
+                      "type": "TEXT",
+                      "layout": "layout_1FMB5W",
+                      "text": "Travel",
+                      "textStyle": "style_TUIU51",
+                      "fills": "Primary"
+                    },
+                    {
+                      "id": "318:832",
+                      "name": "Line 3",
+                      "type": "LINE",
+                      "layout": "layout_6EN0DV",
+                      "strokes": "fill_O0322C",
+                      "strokeWeight": "1px"
+                    },
+                    {
+                      "id": "318:833",
+                      "name": "29 Apr 2022",
+                      "type": "TEXT",
+                      "layout": "layout_FOF584",
+                      "text": "29 Apr 2022",
+                      "textStyle": "style_CBSE2F",
+                      "fills": "fill_F416TQ"
+                    }
+                  ]
+                },
+                {
+                  "id": "318:834",
+                  "name": "title-reviews-paragraph",
+                  "type": "FRAME",
+                  "layout": "layout_46L8ZF",
+                  "children": [
+                    {
+                      "id": "318:835",
+                      "name": "Graphic Design",
+                      "type": "TEXT",
+                      "layout": "layout_MY4AW3",
+                      "text": "Seeing the beauty of Bali, which has many statues in temples ",
+                      "textStyle": "style_67CL8C",
+                      "fills": "Dark"
+                    },
+                    {
+                      "id": "318:836",
+                      "name": "Talking about Bali is never boring to tell..",
+                      "type": "TEXT",
+                      "layout": "layout_FOF584",
+                      "text": "Talking about Bali is never boring to tell..",
+                      "textStyle": "style_NOK33G",
+                      "fills": "fill_F416TQ"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "318:837",
+          "name": "card-review",
+          "type": "FRAME",
+          "layout": "layout_L92XO6",
+          "children": [
+            {
+              "id": "318:838",
+              "name": "img",
+              "type": "GROUP",
+              "layout": "layout_XZU4T6",
+              "children": [
+                {
+                  "id": "318:839",
+                  "name": "Rectangle 12",
+                  "type": "RECTANGLE",
+                  "layout": "layout_ZCQDSR",
+                  "fills": "fill_G1E1CV"
+                },
+                {
+                  "id": "318:840",
+                  "name": "image 14",
+                  "type": "RECTANGLE",
+                  "layout": "layout_UTG09C",
+                  "fills": "fill_8YTIQJ"
+                }
+              ]
+            },
+            {
+              "id": "318:841",
+              "name": "content",
+              "type": "FRAME",
+              "layout": "layout_46L8ZF",
+              "children": [
+                {
+                  "id": "318:842",
+                  "name": "reviews-item-date",
+                  "type": "FRAME",
+                  "layout": "layout_9YUGOX",
+                  "children": [
+                    {
+                      "id": "318:843",
+                      "name": "125 courses",
+                      "type": "TEXT",
+                      "layout": "layout_AD3550",
+                      "text": "Culinary",
+                      "textStyle": "style_TUIU51",
+                      "fills": "Primary"
+                    },
+                    {
+                      "id": "318:844",
+                      "name": "Line 3",
+                      "type": "LINE",
+                      "layout": "layout_6EN0DV",
+                      "strokes": "fill_O0322C",
+                      "strokeWeight": "1px"
+                    },
+                    {
+                      "id": "318:845",
+                      "name": "02 May 2022",
+                      "type": "TEXT",
+                      "layout": "layout_FOF584",
+                      "text": "02 May 2022",
+                      "textStyle": "style_CBSE2F",
+                      "fills": "fill_F416TQ"
+                    }
+                  ]
+                },
+                {
+                  "id": "318:846",
+                  "name": "title-reviews-paragraph",
+                  "type": "FRAME",
+                  "layout": "layout_46L8ZF",
+                  "children": [
+                    {
+                      "id": "318:847",
+                      "name": "Graphic Design",
+                      "type": "TEXT",
+                      "layout": "layout_MY4AW3",
+                      "text": "Delicious and cheap Semarang street food",
+                      "textStyle": "style_67CL8C",
+                      "fills": "Dark"
+                    },
+                    {
+                      "id": "318:848",
+                      "name": "There's a lot of street food in Semarang..",
+                      "type": "TEXT",
+                      "layout": "layout_FOF584",
+                      "text": "There's a lot of street food in Semarang..",
+                      "textStyle": "style_NOK33G",
+                      "fills": "fill_F416TQ"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "318:849",
+          "name": "card-review",
+          "type": "FRAME",
+          "layout": "layout_RDHJYG",
+          "children": [
+            {
+              "id": "318:850",
+              "name": "img",
+              "type": "GROUP",
+              "layout": "layout_XZU4T6",
+              "children": [
+                {
+                  "id": "318:851",
+                  "name": "Rectangle 12",
+                  "type": "RECTANGLE",
+                  "layout": "layout_ZCQDSR",
+                  "fills": "fill_G1E1CV"
+                },
+                {
+                  "id": "318:852",
+                  "name": "image 14",
+                  "type": "RECTANGLE",
+                  "layout": "layout_UTG09C",
+                  "fills": "fill_REJ1N3"
+                }
+              ]
+            },
+            {
+              "id": "318:853",
+              "name": "content",
+              "type": "FRAME",
+              "layout": "layout_46L8ZF",
+              "children": [
+                {
+                  "id": "318:854",
+                  "name": "reviews-item-date",
+                  "type": "FRAME",
+                  "layout": "layout_9YUGOX",
+                  "children": [
+                    {
+                      "id": "318:855",
+                      "name": "125 courses",
+                      "type": "TEXT",
+                      "layout": "layout_1FMB5W",
+                      "text": "Travel",
+                      "textStyle": "style_TUIU51",
+                      "fills": "Primary"
+                    },
+                    {
+                      "id": "318:856",
+                      "name": "Line 3",
+                      "type": "LINE",
+                      "layout": "layout_6EN0DV",
+                      "strokes": "fill_O0322C",
+                      "strokeWeight": "1px"
+                    },
+                    {
+                      "id": "318:857",
+                      "name": "05 Jun 2022",
+                      "type": "TEXT",
+                      "layout": "layout_FOF584",
+                      "text": "05 Jun 2022",
+                      "textStyle": "style_CBSE2F",
+                      "fills": "fill_F416TQ"
+                    }
+                  ]
+                },
+                {
+                  "id": "318:858",
+                  "name": "title-reviews-paragraph",
+                  "type": "FRAME",
+                  "layout": "layout_46L8ZF",
+                  "children": [
+                    {
+                      "id": "318:859",
+                      "name": "Graphic Design",
+                      "type": "TEXT",
+                      "layout": "layout_MY4AW3",
+                      "text": "Karang bebai beach Lampung for summer vacation",
+                      "textStyle": "style_67CL8C",
+                      "fills": "Dark"
+                    },
+                    {
+                      "id": "318:860",
+                      "name": "Talking about Bali is never boring to tell..",
+                      "type": "TEXT",
+                      "layout": "layout_FOF584",
+                      "text": "Talking about Bali is never boring to tell..",
+                      "textStyle": "style_NOK33G",
+                      "fills": "fill_F416TQ"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "318:861",
+          "name": "card-review",
+          "type": "FRAME",
+          "layout": "layout_7UWSCL",
+          "children": [
+            {
+              "id": "318:862",
+              "name": "img",
+              "type": "GROUP",
+              "layout": "layout_XZU4T6",
+              "children": [
+                {
+                  "id": "318:863",
+                  "name": "Rectangle 12",
+                  "type": "RECTANGLE",
+                  "layout": "layout_ZCQDSR",
+                  "fills": "fill_G1E1CV"
+                },
+                {
+                  "id": "318:864",
+                  "name": "image 14",
+                  "type": "RECTANGLE",
+                  "layout": "layout_UTG09C",
+                  "fills": "fill_XTAUGG"
+                }
+              ]
+            },
+            {
+              "id": "318:865",
+              "name": "content",
+              "type": "FRAME",
+              "layout": "layout_46L8ZF",
+              "children": [
+                {
+                  "id": "318:866",
+                  "name": "reviews-item-date",
+                  "type": "FRAME",
+                  "layout": "layout_9YUGOX",
+                  "children": [
+                    {
+                      "id": "318:867",
+                      "name": "125 courses",
+                      "type": "TEXT",
+                      "layout": "layout_1FMB5W",
+                      "text": "Travel",
+                      "textStyle": "style_TUIU51",
+                      "fills": "Primary"
+                    },
+                    {
+                      "id": "318:868",
+                      "name": "Line 3",
+                      "type": "LINE",
+                      "layout": "layout_6EN0DV",
+                      "strokes": "fill_O0322C",
+                      "strokeWeight": "1px"
+                    },
+                    {
+                      "id": "318:869",
+                      "name": "13 Jun 2022",
+                      "type": "TEXT",
+                      "layout": "layout_FOF584",
+                      "text": "13 Jun 2022",
+                      "textStyle": "style_CBSE2F",
+                      "fills": "fill_F416TQ"
+                    }
+                  ]
+                },
+                {
+                  "id": "318:870",
+                  "name": "title-reviews-paragraph",
+                  "type": "FRAME",
+                  "layout": "layout_46L8ZF",
+                  "children": [
+                    {
+                      "id": "318:871",
+                      "name": "Graphic Design",
+                      "type": "TEXT",
+                      "layout": "layout_MY4AW3",
+                      "text": "The upside-down mystical forest in Banyuwangi",
+                      "textStyle": "style_67CL8C",
+                      "fills": "Dark"
+                    },
+                    {
+                      "id": "318:872",
+                      "name": "This place is most often used as a photo..",
+                      "type": "TEXT",
+                      "layout": "layout_FOF584",
+                      "text": "This place is most often used as a photo..",
+                      "textStyle": "style_NOK33G",
+                      "fills": "fill_F416TQ"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "318:873",
+          "name": "card-review",
+          "type": "FRAME",
+          "layout": "layout_RMB0XB",
+          "children": [
+            {
+              "id": "318:874",
+              "name": "img",
+              "type": "GROUP",
+              "layout": "layout_XZU4T6",
+              "children": [
+                {
+                  "id": "318:875",
+                  "name": "Rectangle 12",
+                  "type": "RECTANGLE",
+                  "layout": "layout_ZCQDSR",
+                  "fills": "fill_G1E1CV"
+                },
+                {
+                  "id": "318:876",
+                  "name": "travel-1",
+                  "type": "RECTANGLE",
+                  "layout": "layout_UTG09C",
+                  "fills": "fill_GH7M9G"
+                }
+              ]
+            },
+            {
+              "id": "318:877",
+              "name": "content",
+              "type": "FRAME",
+              "layout": "layout_46L8ZF",
+              "children": [
+                {
+                  "id": "318:878",
+                  "name": "reviews-item-date",
+                  "type": "FRAME",
+                  "layout": "layout_9YUGOX",
+                  "children": [
+                    {
+                      "id": "318:879",
+                      "name": "125 courses",
+                      "type": "TEXT",
+                      "layout": "layout_1FMB5W",
+                      "text": "Travel",
+                      "textStyle": "style_TUIU51",
+                      "fills": "Primary"
+                    },
+                    {
+                      "id": "318:880",
+                      "name": "Line 3",
+                      "type": "LINE",
+                      "layout": "layout_6EN0DV",
+                      "strokes": "fill_O0322C",
+                      "strokeWeight": "1px"
+                    },
+                    {
+                      "id": "318:881",
+                      "name": "19 Feb 2022",
+                      "type": "TEXT",
+                      "layout": "layout_FOF584",
+                      "text": "19 Feb 2022",
+                      "textStyle": "style_CBSE2F",
+                      "fills": "fill_F416TQ"
+                    }
+                  ]
+                },
+                {
+                  "id": "318:882",
+                  "name": "title-reviews-paragraph",
+                  "type": "FRAME",
+                  "layout": "layout_46L8ZF",
+                  "children": [
+                    {
+                      "id": "318:883",
+                      "name": "Graphic Design",
+                      "type": "TEXT",
+                      "layout": "layout_MY4AW3",
+                      "text": "記事タイトル記事タイトル記事タイトル記事タイトル",
+                      "textStyle": "style_67CL8C",
+                      "fills": "Dark"
+                    },
+                    {
+                      "id": "318:884",
+                      "name": "本文の一部を表示本文の一部を表示本文の..",
+                      "type": "TEXT",
+                      "layout": "layout_FOF584",
+                      "text": "本文の一部を表示本文の一部を表示本文の..",
+                      "textStyle": "style_NOK33G",
+                      "fills": "fill_F416TQ"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "318:885",
+          "name": "一覧（新着順）",
+          "type": "TEXT",
+          "layout": "layout_BU369G",
+          "text": "一覧（新着順）",
+          "textStyle": "style_VB7MTH",
+          "fills": "Dark"
+        }
+      ]
+    },
+    {
+      "id": "318:886",
+      "name": "section-hero",
+      "type": "GROUP",
+      "layout": "layout_LLRU81",
+      "children": [
+        {
+          "id": "318:887",
+          "name": "hero-img",
+          "type": "RECTANGLE",
+          "layout": "layout_LLRU81",
+          "fills": "fill_FU8MOB"
+        },
+        {
+          "id": "318:888",
+          "name": "hero-text",
+          "type": "FRAME",
+          "layout": "layout_S9YVUO",
+          "children": [
+            {
+              "id": "318:889",
+              "name": "Share your holiday stories.",
+              "type": "TEXT",
+              "layout": "layout_94FP65",
+              "text": "Share your holiday stories.",
+              "textStyle": "style_GVAUWK",
+              "fills": "Dark"
+            },
+            {
+              "id": "318:890",
+              "name": "Write about your experiences while on holiday in various parts of Indonesia, and reach a wide readership.",
+              "type": "TEXT",
+              "layout": "layout_94FP65",
+              "text": "Write about your experiences while on holiday in various parts of Indonesia, and reach a wide readership.",
+              "textStyle": "style_BFDX6Y",
+              "fills": "Dark",
+              "opacity": 0.699999988079071
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "318:907",
+      "name": "navbar",
+      "type": "GROUP",
+      "layout": "layout_8M8TNZ",
+      "children": [
+        {
+          "id": "318:908",
+          "name": "Line 6",
+          "type": "LINE",
+          "layout": "layout_XOYXHX",
+          "strokes": "fill_O0322C",
+          "strokeWeight": "1px"
+        },
+        {
+          "id": "318:909",
+          "name": "Rectangle 25",
+          "type": "RECTANGLE",
+          "layout": "layout_F1KVUS",
+          "fills": "White"
+        },
+        {
+          "id": "318:910",
+          "name": "container",
+          "type": "FRAME",
+          "layout": "layout_PJD5SZ",
+          "fills": "White",
+          "children": [
+            {
+              "id": "318:911",
+              "name": "navbar-brand",
+              "type": "FRAME",
+              "layout": "layout_6S0DBU",
+              "children": [
+                {
+                  "id": "318:912",
+                  "name": "DAYDAYTRAVEL",
+                  "type": "TEXT",
+                  "layout": "layout_FOF584",
+                  "text": "DAYDAYTRAVEL",
+                  "textStyle": "style_Q3FH78",
+                  "fills": "Primary"
+                }
+              ]
+            },
+            {
+              "id": "318:913",
+              "name": "nav-link",
+              "type": "FRAME",
+              "layout": "layout_7NOZBV"
+            },
+            {
+              "id": "318:920",
+              "name": "btn-login-register",
+              "type": "FRAME",
+              "layout": "layout_R3HXI2",
+              "children": [
+                {
+                  "id": "318:921",
+                  "name": "Login",
+                  "type": "TEXT",
+                  "layout": "layout_FOF584",
+                  "text": "Login",
+                  "textStyle": "style_9LHEJC",
+                  "fills": "Dark",
+                  "opacity": 0.800000011920929
+                },
+                {
+                  "id": "318:922",
+                  "name": "btn",
+                  "type": "FRAME",
+                  "layout": "layout_7O1AZC",
+                  "fills": "Primary",
+                  "children": [
+                    {
+                      "id": "318:923",
+                      "name": "Get started",
+                      "type": "TEXT",
+                      "layout": "layout_FOF584",
+                      "text": "Get started",
+                      "textStyle": "style_JUQTJE",
+                      "fills": "White",
+                      "opacity": 0.800000011920929
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
