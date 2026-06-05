@@ -5,6 +5,8 @@ const fs = require('fs');
 const fastifyMultipart = require('@fastify/multipart');
 const fastifyStatic = require('@fastify/static');
 
+const RECENT_ARTICLES_LIMIT = 6;
+
 const fastify = require('fastify')({ logger: true });
 const mysql = require('mysql2/promise');
 
@@ -19,7 +21,7 @@ fastify.register(fastifyStatic, {
 fastify.register(require('@fastify/cors'), {
     origin: ['http://127.0.0.1:5500', 'http://localhost:5500'], 
     credentials: true,                
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], 
+    methods: ['GET', 'POST', 'PUT', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']     
 });
 
@@ -45,7 +47,8 @@ const pool = mysql.createPool({
 fastify.get('/', async (request, reply) => {
     try {
         const [rows] = await pool.query(
-            'SELECT id, article_title, content, updated_at, article_image, category FROM articles ORDER BY updated_at DESC LIMIT 6'
+            'SELECT id, article_title, content, updated_at, article_image, category FROM articles ORDER BY updated_at DESC LIMIT ?',
+            [RECENT_ARTICLES_LIMIT]
         );
 
         // 本文が30文字を超える場合は切り詰め処理を行う
