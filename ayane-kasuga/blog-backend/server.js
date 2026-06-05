@@ -17,7 +17,7 @@ fastify.register(fastifyStatic, {
 });
 
 fastify.register(require('@fastify/cors'), {
-    origin: 'http://127.0.0.1:5500', 
+    origin: ['http://127.0.0.1:5500', 'http://localhost:5500'], 
     credentials: true,                
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], 
     allowedHeaders: ['Content-Type', 'Authorization']     
@@ -91,9 +91,9 @@ fastify.get('/detail', async (request, reply) => {
                 u.user_name,
                 u.user_id AS author_id,
                 u.profile_image
-             FROM articles AS a
-             JOIN users AS u ON a.user_id = u.id
-             WHERE a.id = ?`,
+                FROM articles AS a
+                JOIN users AS u ON a.user_id = u.id
+                WHERE a.id = ?`,
             [id]
         );
 
@@ -190,10 +190,10 @@ fastify.get('/user', async (request, reply) => {
         // 該当ユーザーの過去投稿一覧の取得
         const [articleRows] = await pool.query(
             `SELECT a.id, a.article_title, a.content, a.updated_at 
-             FROM articles a
-             INNER JOIN users u ON a.user_id = u.id
-             WHERE u.user_id = ?
-             ORDER BY a.updated_at DESC`,
+                FROM articles a
+                INNER JOIN users u ON a.user_id = u.id
+                WHERE u.user_id = ?
+                ORDER BY a.updated_at DESC`,
             [userId]
         );
 

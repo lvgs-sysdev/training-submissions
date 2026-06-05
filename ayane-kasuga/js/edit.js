@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const cookies = document.cookie;
     const hasCookie = cookies.includes('session_user=');
     const navbarNav = document.querySelector('.header .navbar');
+
+    const currentUserId = hasCookie ? cookies.split('session_user=')[1].split(";")[0] : '';
     
     if (hasCookie && navbarNav) {
-        const currentUserId = cookies.split('session_user=')[1].split(";")[0];
-        
         navbarNav.innerHTML = `
             <div class="user-logged-in" style="display: flex; align-items: center; gap: 15px;">
                 <a href="user.html?userId=${currentUserId}" id="header-user-link" style="text-decoration: none; font-weight: 500; color: #333; font-size: 16px; transition: color 0.2s;">
@@ -50,10 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(article => {
             // 編集権限（作成者本人か）のセキュリティチェック
-            const currentLoginUser = localStorage.getItem('userId') || 'test@example.com'; 
             const articleAuthor = article.author_id;
 
-            if (currentLoginUser !== articleAuthor) {
+            if (currentUserId !== articleAuthor) {
                 alert('🔒 この記事の編集権限がありません。');
                 window.location.href = 'index.html'; 
                 return; 
