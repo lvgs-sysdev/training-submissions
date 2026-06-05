@@ -143,8 +143,6 @@ window.editEmail = () => {
     })
     .then(data => {
         alert(data.message);
-        localStorage.setItem('login_user_id', newEmail);
-        currentUserId = newEmail; 
         window.location.reload();
     })
     .catch(error => {

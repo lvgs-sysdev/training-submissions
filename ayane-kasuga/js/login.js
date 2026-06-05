@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // ログインフォーム要素の取得（HTML側のID名に基づき取得）
-    const loginForm = document.getElementById('registerForm');
+    const loginForm = document.getElementById('loginForm');
 
     if (!loginForm) return;
 
