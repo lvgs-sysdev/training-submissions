@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const path = require('path');
 const fs = require('fs');
 const fastifyMultipart = require('@fastify/multipart');
@@ -28,10 +30,10 @@ fastify.register(require('@fastify/cookie'), {
 
 // データベース接続プール設定
 const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'wfhb9aQ@',
-    database: 'blog_app',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
