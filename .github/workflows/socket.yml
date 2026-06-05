@@ -1,0 +1,18 @@
+# ツール申請中
+name: Socket Security Scan
+
+on:
+  pull_request:
+
+jobs:
+  socket-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Socket CLI
+        uses: socket-security/plugin-github-action@v2
+        with:
+          # Optional: Specify additional options for the scan
+          api-key: ${{ secrets.SOCKET_API_KEY }}
