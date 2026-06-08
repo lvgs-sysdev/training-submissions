@@ -10,6 +10,16 @@ const RECENT_ARTICLES_LIMIT = 6;
 const fastify = require('fastify')({ logger: true });
 const mysql = require('mysql2/promise');
 
+
+// ユーザーIDからユーザー情報を取得する共通関数
+async function getUserById(userId) {
+    const [rows] = await pool.query(
+        'SELECT user_id, user_name, password, email, profile_image FROM users WHERE user_id = ?',
+        [userId]
+    );
+    return rows[0] || null;
+}
+
 // プラグインの登録
 fastify.register(fastifyMultipart);
 
@@ -18,8 +28,14 @@ fastify.register(fastifyStatic, {
     prefix: '/public/', 
 });
 
+// ⭕️ CORSで許可するオリジンを環境変数から取得（定数化）
+// .env から文字列を取得し、カンマ(,)で区切って配列に変換します。万が一取れなかった場合のフォールバック（デフォルト値）も設定。
+const ALLOWED_ORIGINS = process.env.FRONTEND_ORIGINS 
+    ? process.env.FRONTEND_ORIGINS.split(',') 
+    : ['http://127.0.0.1:5500', 'http://localhost:5500'];
+
 fastify.register(require('@fastify/cors'), {
-    origin: ['http://127.0.0.1:5500', 'http://localhost:5500'], 
+    origin: ALLOWED_ORIGINS, // 直書きではなく、上で定義した定数を指定
     credentials: true,                
     methods: ['GET', 'POST', 'PUT', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization']     
@@ -71,7 +87,7 @@ fastify.get('/', async (request, reply) => {
 
     } catch (err) {
         fastify.log.error(err);
-        return reply.status(500).send({ error: 'データベースからデータを取得できませんでした' });
+        return reply.status(500).send({ error: '記事一覧の取得に失敗しました' });
     }
 });
 
@@ -122,8 +138,8 @@ fastify.post('/register', async (request, reply) => {
     }
 
     try {
-        const [existingUser] = await pool.query('SELECT * FROM users WHERE user_id = ?', [userId]);
-        if (existingUser.length > 0) {
+        const existingUser = await getUserById(userId);
+        if (existingUser) {
             return reply.code(400).send({ success: false, message: 'このユーザーIDはすでに使用されています。' });
         }
 
@@ -147,15 +163,16 @@ fastify.post('/login', async (request, reply) => {
     const { userId, password } = request.body;
 
     try {
-        const [rows] = await pool.query('SELECT * FROM users WHERE user_id = ?', [userId]);
-        if (rows.length === 0) {
+        const user = await getUserById(userId);
+        if (!user || user.password !== password) {
             return { success: false, message: 'ユーザーIDまたはパスワードが違います。' };
         }
 
-        const user = rows[0];
-        if (user.password !== password) {
-            return { success: false, message: 'ユーザーIDまたはパスワードが違います。' };
-        }
+        reply.setCookie('session_user', user.user_id, {
+            path: '/',
+            httpOnly: true, //  JavaScriptからCookieを盗まれないようにするセキュリティ設定
+            maxAge: 60 * 60 * 24 // 1日間有効
+        });
 
         return { 
             success: true, 
@@ -175,20 +192,16 @@ fastify.post('/login', async (request, reply) => {
 /**
  * ユーザープロフィール ＆ 投稿一覧取得 API
  */
-fastify.get('/user', async (request, reply) => {
+fastify.get('/me', async (request, reply) => {
     try {
         const userId = request.query.userId || 'test@example.com';
 
         // プロフィール情報の取得
-        const [userRows] = await pool.query(
-            'SELECT user_id, user_name, email, profile_image FROM users WHERE user_id = ?',
-            [userId]
-        );
-        
-        if (userRows.length === 0) {
+        const userInfo = await getUserById(userId);
+
+        if (!userInfo) { 
             return reply.status(404).send({ error: 'ユーザーが見つかりません' });
         }
-        const userInfo = userRows[0];
 
         // 該当ユーザーの過去投稿一覧の取得
         const [articleRows] = await pool.query(
@@ -262,14 +275,19 @@ fastify.put('/user/update-name', async (request, reply) => {
  */
 fastify.put('/user/update-email', async (request, reply) => {
     try {
-        const { userId, newEmail } = request.body;
-        if (!userId || !newEmail) {
+        const { newEmail } = request.body;
+        const loginUserId = request.cookies.session_user;
+
+        if (!loginUserId) {
+            return reply.status(401).send({ error: 'ログインが必要です' });
+        }
+        if (!newEmail) {
             return reply.status(400).send({ error: 'データが不足しています' });
         }
 
         await pool.query(
             'UPDATE users SET email = ? WHERE user_id = ?',
-            [newEmail, userId]
+            [newEmail, loginUserId]
         );
 
         return { success: true, message: 'メールアドレスを更新しました！' };
@@ -322,18 +340,40 @@ fastify.post('/user/update-avatar', async (request, reply) => {
 fastify.put('/article/update', async (request, reply) => {
     try {
         const { id, article_title, content } = request.body;
+
+       // 1. 【認証】Cookieからログイン中のユーザーID（文字列）を取得する
+        const loginUserId = request.cookies.session_user;
+        if (!loginUserId) {
+            return reply.status(401).send({ success: false, message: 'ログインが必要です。' });
+        }
+
         if (!id || !article_title || !content) {
             return reply.status(400).send({ success: false, message: '必要なデータが不足しています' });
         }
 
-        const [result] = await pool.query(
+        // 2. 【認可】更新対象の記事の「作成者（user_id）」をデータベースから取得する
+        const [articles] = await pool.query(
+            'SELECT a.id, u.user_id FROM articles a JOIN users u ON a.user_id = u.id WHERE a.id = ?',
+            [id]
+        );
+
+        if (articles.length === 0) {
+            return reply.status(404).send({ success: false, message: '該当する記事が見つかりませんでした。' });
+        }
+
+        const articleAuthorId = articles[0].user_id; 
+
+        // 3. 【認可】ログインしている人と、記事の作者が「一致するか」をチェックする
+        if (loginUserId !== articleAuthorId) {
+            // 一致しなければ「権限がありません（403 Forbidden）」と拒否
+            return reply.status(403).send({ success: false, message: '他人の記事を編集する権限がありません。' });
+        }
+
+        // 4. すべてのチェックをクリアしたら、初めてUPDATEを実行する
+        await pool.query(
             'UPDATE articles SET article_title = ?, content = ?, updated_at = NOW() WHERE id = ?',
             [article_title, content, id]
         );
-
-        if (result.affectedRows === 0) {
-            return reply.status(404).send({ success: false, message: '該当する記事が見つかりませんでした。' });
-        }
 
         return { success: true, message: '記事を正常に更新しました！' };
 

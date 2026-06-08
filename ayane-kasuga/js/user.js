@@ -1,6 +1,8 @@
 // グローバル変数：ログインユーザーIDの保持
 let currentUserId = localStorage.getItem('login_user_id') || 'test@example.com';
 
+
+
 window.addEventListener('DOMContentLoaded', () => {
     // ログイン状態に応じたヘッダーの制御
     const userStatusDiv = document.getElementById('user-status');
@@ -20,7 +22,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     // プロフィール情報および過去の投稿一覧の取得
-    fetch(`http://localhost:3000/user?userId=${encodeURIComponent(currentUserId)}`)
+    fetch(`http://localhost:3000/me?userId=${encodeURIComponent(currentUserId)}`)
         .then(response => {
             if (!response.ok) throw new Error('Failed to fetch user data');
             return response.json();
@@ -135,7 +137,8 @@ window.editEmail = () => {
     fetch('http://localhost:3000/user/update-email', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId: currentUserId, newEmail: newEmail })
+        credentials: 'include',
+        body: JSON.stringify({ newEmail: newEmail })
     })
     .then(response => {
         if (!response.ok) throw new Error('Update failed');

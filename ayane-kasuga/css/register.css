@@ -20,7 +20,7 @@ body .register-container .form-group label {
     color: #333;
 }
 
-/* 「bodyの中の、containerの中の、groupの中の、input」と詳しく書くことで最優先されます */
+/* 「bodyの中の、containerの中の、groupの中の、input」と詳しく書くことで最優先されるそう */
 body .register-container .form-group input[type="text"],
 body .register-container .form-group input[type="password"] {
     display: block;
@@ -31,7 +31,7 @@ body .register-container .form-group input[type="password"] {
     box-sizing: border-box;
 }
 
-/* ボタンも同様に詳しく指定します */
+/* ボタンも同様に詳しく指定 */
 body .register-container .submit-button {
     display: block;
     width: 100%;
