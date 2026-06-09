@@ -1,33 +1,5 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // ログイン状態の確認とヘッダー制御
-    const cookies = document.cookie;
-    const hasCookie = cookies.includes('session_user=');
-    const navbarNav = document.querySelector('.header .navbar');
-
-    const currentUserId = hasCookie ? cookies.split('session_user=')[1].split(";")[0] : '';
-    
-    if (hasCookie && navbarNav) {
-        navbarNav.innerHTML = `
-            <div class="user-logged-in" style="display: flex; align-items: center; gap: 15px;">
-                <a href="user.html?userId=${currentUserId}" id="header-user-link" style="text-decoration: none; font-weight: 500; color: #333; font-size: 16px; transition: color 0.2s;">
-                    👤 読み込み中...
-                </a>
-                <button id="logout-btn" onclick="logout()" style="background-color: #FF553C; color: white; padding: 10px 20px; font-size: 14px; cursor: pointer; border: none; font-weight: 300;">Logout</button>
-            </div>
-        `;
-
-        fetch(`http://localhost:3000/user?userId=${currentUserId}`)
-            .then(res => res.json())
-            .then(data => {
-                const userLink = document.getElementById('header-user-link');
-                if (userLink && data.user) {
-                    userLink.innerText = `👤 ${data.user.user_name} さん`;
-                }
-            })
-            .catch(err => console.error('Header user name fetch error:', err));
-    }
-
-    // URLパラメータから編集対象の記事IDを取得
+document.addEventListener('DOMContentLoaded', async () => {
+    // 1. URLパラメータから編集対象の記事IDを取得
     const urlParams = new URLSearchParams(window.location.search);
     const articleId = urlParams.get('id');
 
@@ -41,31 +13,59 @@ document.addEventListener('DOMContentLoaded', () => {
     const titleInput = document.getElementById('article-title');
     const contentInput = document.getElementById('article-content');
     const editForm = document.getElementById('edit-form');
+    const navbarNav = document.querySelector('.header .navbar');
 
-    // 編集対象記事の既存データを取得
-    fetch(`http://localhost:3000/detail?id=${articleId}`)
-        .then(response => {
-            if (!response.ok) throw new Error('Failed to fetch article data');
-            return response.json(); 
-        })
-        .then(article => {
-            // 編集権限（作成者本人か）のセキュリティチェック
-            const articleAuthor = article.author_id;
+    let currentUserId = null;
 
-            if (currentUserId !== articleAuthor) {
-                alert('🔒 この記事の編集権限がありません。');
-                window.location.href = 'index.html'; 
-                return; 
-            }
+    try {
+        // まずはバックエンドにログイン情報を確認
+        const authResponse = await fetch('/api/me');
+        if (!authResponse.ok) {
+            alert('🔒 編集するにはログインが必要です。');
+            window.location.href = 'login.html';
+            return;
+        }
+        
+        const authData = await authResponse.json();
+        currentUserId = authData.user.user_id;
+        const realUserName = authData.user.user_name || 'ゲスト';
 
-            // フォーム入力欄への初期値マッピング
-            titleInput.value = article.article_title;
-            contentInput.value = article.content; 
-        })
-        .catch(error => {
-            console.error('Data load error:', error);
-            alert('記事のデータを読み込めませんでした。');
-        });
+        // ヘッダーUIの書き換え
+        if (navbarNav) {
+            navbarNav.innerHTML = `
+                <div class="user-logged-in" style="display: flex; align-items: center; gap: 15px;">
+                    <a href="user.html?userId=${encodeURIComponent(currentUserId)}" id="header-user-link" style="text-decoration: none; font-weight: 500; color: #333; font-size: 16px; transition: color 0.2s;">
+                        👤 ${realUserName} さん
+                    </a>
+                    <button id="logout-btn" onclick="logout()" style="background-color: #FF553C; color: white; padding: 10px 20px; font-size: 14px; cursor: pointer; border: none; font-weight: 300;">Logout</button>
+                </div>
+            `;
+        }
+
+        // ログインしていることが確定したら、記事の既存データを取得する
+        const detailResponse = await fetch(`/api/detail?id=${articleId}`);
+        if (!detailResponse.ok) throw new Error('Failed to fetch article data');
+        
+        const article = await detailResponse.json();
+        const articleAuthor = article.author_id;
+
+        // 本物の「ログインユーザーID」と「記事の作者ID」を比較する
+        if (currentUserId !== articleAuthor) {
+            alert('🔒 この記事の編集権限がありません。');
+            window.location.href = 'index.html'; 
+            return; 
+        }
+
+        // フォーム入力欄への初期値マッピング
+        titleInput.value = article.article_title;
+        contentInput.value = article.content; 
+
+    } catch (error) {
+        console.error('Data load error:', error);
+        alert('記事のデータを読み込めませんでした。トップページに戻ります。');
+        window.location.href = 'index.html';
+        return;
+    }
 
     // 変更保存フォームのイベントハンドリング
     editForm.addEventListener('submit', (e) => {
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         // 記事更新APIへのPUTリクエスト送信
-        fetch('http://localhost:3000/article/update', {
+        fetch('/api/article/update', {
             method: 'PUT',
             headers: { 'Content-Type' : 'application/json' },
             body: JSON.stringify(updatedData)
@@ -101,7 +101,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ログアウト処理
 window.logout = () => {
-    document.cookie = 'session_user=; path=/; max-age=0';
-    alert('ログアウトしました');
-    window.location.reload(); 
+    // バックエンドのログアウトAPIを呼び出す
+    fetch('/api/logout', { method: 'POST' })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('ログアウトしました');
+                window.location.href = 'index.html'; // トップページに戻る
+            }
+        })
+        .catch(error => console.error('Logout error:', error));
 };

@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  # ① フロントエンド配信 ＆ 案内人（Nginx）
+  frontend:
+    image: nginx:alpine
+    ports:
+      - "80:80" # Macの80番ポートを解放
+    volumes:
+      # 今あるHTMLやCSSのファイルを、Nginxのコンテナ内に
+      - .:/usr/share/nginx/html
+      # nginx.confをNginxコンテナ内に読み込ませる
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - backend
+
+  #  ② バックエンドサーバー（Node.js / Fastify）
+  backend:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - ./blog-backend:/app
+    ports:
+      - "3000:3000"
+    # コンテナが立ち上がったら自動でライブラリを入れ、サーバーを起動するコマンド
+    command: sh -c "npm install && node server.js"
+    env_file:
+      - ./blog-backend/.env #  .envファイルから環境変数を自動読み込み
+    environment:
+      # Dockerの中からMac本体で動いているMySQLに接続するための特別な設定
+      - DB_HOST=host.docker.internal

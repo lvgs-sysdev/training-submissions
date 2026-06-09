@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         // 新規ユーザー登録APIへのPOSTリクエスト送信
-        fetch('http://localhost:3000/register', {
+        fetch('/api/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

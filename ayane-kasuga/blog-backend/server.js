@@ -9,6 +9,7 @@ const RECENT_ARTICLES_LIMIT = 6;
 
 const fastify = require('fastify')({ logger: true });
 const mysql = require('mysql2/promise');
+const { error } = require('console');
 
 
 // ユーザーIDからユーザー情報を取得する共通関数
@@ -194,7 +195,12 @@ fastify.post('/login', async (request, reply) => {
  */
 fastify.get('/me', async (request, reply) => {
     try {
-        const userId = request.query.userId || 'test@example.com';
+        const userId = request.cookies.session_user;
+
+        // Cookieを持っていない場合（未ログイン）なら401を返す
+        if(!userId) {
+            return reply.status(401).send({ success: false, error:'ログインが必要です。', message: 'ログインが必要です。'})
+        }
 
         // プロフィール情報の取得
         const userInfo = await getUserById(userId);
@@ -383,11 +389,24 @@ fastify.put('/article/update', async (request, reply) => {
     }
 });
 
+/**
+ * ユーザーログアウト API
+ */
+fastify.post('/logout', async (request, reply) => {
+    reply.setCookie('session_user', '', {
+        path: '/',
+        httpOnly: true,
+        maxAge: 0 
+    });
+
+    return { success: true, message: 'ログアウトしました' };
+});
+
 // サーバー起動処理
 const start = async () => {
     try {
-        await fastify.listen({ port: 3000 });
-        console.log('サーバーがポート3000で起動しました!'); 
+        await fastify.listen({ port: 3000, host: '0.0.0.0' });
+        console.log('サーバーがポート3000(外部受付OK)で起動しました!'); 
     } catch (err) {
         fastify.log.error(err);
         process.exit(1);

@@ -1,53 +1,40 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // ログイン状態の確認とヘッダー制御
-    const cookies = document.cookie;
-    const hasCookie = cookies.includes('session_user=');
     const userStatusDiv = document.getElementById('user-status');
 
-    if (hasCookie) {
-        const userId = cookies.split('session_user=')[1].split(";")[0];
+    //  ① ページが開いた瞬間に、無条件でバックエンド（/api/me）にログイン状態を確認
+    fetch('/api/me')
+        .then(response => {
+            if (!response.ok) throw new Error('未ログインまたはセッション切れ');
+            return response.json();
+        })
+        .then(data => {
+            // 【ログイン状態のとき】バックエンドから返ってきた本物のユーザー情報を反映
+            const userId = data.user.user_id;
+            const realUserName = data.user.user_name || 'ゲスト';
 
-        // ログインユーザー情報の取得と反映
-        fetch(`http://localhost:3000/user?userId=${encodeURIComponent(userId)}`)
-            .then(response => {
-                if (!response.ok) throw new Error('Failed to fetch user data');
-                return response.json();
-            })
-            .then(data => {
-                const realUserName = data.user.user_name || 'ゲスト';
+            if (userStatusDiv) {
+                userStatusDiv.innerHTML = `
+                <div class="user-logged-in" style="display: flex; align-items: center; gap: 15px;">
+                    <a href="user.html?userId=${encodeURIComponent(userId)}" class="welcome-msg" style="font-weight: 500; color: #333; font-size: 16px; text-decoration: none; cursor: pointer; transition: color 0.2s;" onmouseover="this.style.color='#FF553C'" onmouseout="this.style.color='#333'">
+                        👤 ${realUserName} さん
+                    </a>
+                    <button id="logout-btn" onclick="logout()" style="background-color: #FF553C; color: white; padding: 10px 20px; font-size: 14px; cursor: pointer; border: none; font-weight: 300;">Logout</button>
+                </div>
+                `;
+            }
+        })
+        .catch(error => {
+            // 【未ログイン状態のとき（401エラーなどが飛んできたとき）】通常のログイン・登録ボタンを表示
+            if (userStatusDiv) {
+                userStatusDiv.innerHTML = `
+                    <a href="login.html" style="text-decoration: none; color: #333; font-size: 14px;">Login</a>
+                    <a href="register.html" class="btn-primary" style="text-decoration: none; background-color: #FF553C; color: white; padding: 10px 20px; font-size: 14px; margin-left: 15px;">Get started</a>
+                `;
+            }
+        });
 
-                if (userStatusDiv) {
-                    userStatusDiv.innerHTML = `
-                    <div class="user-logged-in" style="display: flex; align-items: center; gap: 15px;">
-                        <a href="user.html?userId=${userId}" class="welcome-msg" style="font-weight: 500; color: #333; font-size: 16px; text-decoration: none; cursor: pointer; transition: color 0.2s;" onmouseover="this.style.color='#FF553C'" onmouseout="this.style.color='#333'">
-                            👤 ${realUserName} さん
-                        </a>
-                        <button id="logout-btn" onclick="logout()" style="background-color: #FF553C; color: white; padding: 10px 20px; font-size: 14px; cursor: pointer; border: none; font-weight: 300;">Logout</button>
-                    </div>
-                    `;
-                }
-            })
-            .catch(error => {
-                console.error('User name fetch error:', error);
-                if (userStatusDiv) {
-                    userStatusDiv.innerHTML = `
-                    <div class="user-logged-in" style="display: flex; align-items: center; gap: 15px;">
-                        <a href="user.html?userId=${userId}" style="color: #333; text-decoration: none; font-weight: 500;">👤 マイページへ (${userId})</a>
-                        <button id="logout-btn" onclick="logout()" style="background-color: #FF553C; color: white; padding: 10px 20px; font-size: 14px; cursor: pointer; border: none; font-weight: 300;">Logout</button>
-                    </div>`;
-                }
-            });
-    } else {
-        if (userStatusDiv) {
-            userStatusDiv.innerHTML = `
-                <a href="login.html" style="text-decoration: none; color: #333; font-size: 14px;">Login</a>
-                <a href="register.html" class="btn-primary" style="text-decoration: none; background-color: #FF553C; color: white; padding: 10px 20px; font-size: 14px; margin-left: 15px;">Get started</a>
-            `;
-        }
-    }
-
-    // 記事一覧データの取得と反映
-    fetch('http://localhost:3000/')
+    //  ② 記事一覧データの取得と反映
+    fetch('/api/')
         .then(response => {
             if (!response.ok) throw new Error('Failed to fetch articles');
             return response.json(); 
@@ -61,14 +48,12 @@ document.addEventListener('DOMContentLoaded', () => {
             articles.forEach((article) => {
                 let currentImage = '';
                 
-                // 画像データの存在チェックとフォールバック処理
                 if (article.article_image && article.article_image !== '' && article.article_image !== 'null') {
-                    currentImage = `http://localhost:3000/public/uploads/${article.article_image}`;
+                    currentImage = `/api/public/uploads/${article.article_image}`;
                 } else {
                     currentImage = 'https://placehold.co/600x400?text=No+Image';
                 }
                 
-                // 記事カードHTMLの組み立て
                 const articleHtml = `
                 <a href="detail.html?id=${article.id}" class="card-link" style="text-decoration: none; color: inherit; display: block;">    
                     <article class="card-review">
@@ -105,9 +90,14 @@ function formatDate(dateString) {
 
 // ログアウト処理
 window.logout = () => {
-    document.cookie = 'session_user=; path=/; max-age=0';
-    localStorage.removeItem('login_user_id');
-    localStorage.removeItem('login_user_name');
-    alert('ログアウトしました');
-    window.location.href = 'index.html?t=' + Date.now();
+    // バックエンドのログアウトAPIを呼び出す
+    fetch('/api/logout', { method: 'POST' })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('ログアウトしました');
+                window.location.href = 'index.html'; // トップページに戻る
+            }
+        })
+        .catch(error => console.error('Logout error:', error));
 };

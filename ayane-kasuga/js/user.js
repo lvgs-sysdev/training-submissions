@@ -1,38 +1,42 @@
 // グローバル変数：ログインユーザーIDの保持
-let currentUserId = localStorage.getItem('login_user_id') || 'test@example.com';
-
-
+let currentUserId = null;
 
 window.addEventListener('DOMContentLoaded', () => {
-    // ログイン状態に応じたヘッダーの制御
     const userStatusDiv = document.getElementById('user-status');
-    if (userStatusDiv) {
-        userStatusDiv.innerHTML = `
-            <div class="user-logged-in" style="display: flex; align-items: center; gap: 15px;">
-                <button id="logout-btn" onclick="logout()" style="background-color: #FF553C; color: white; padding: 10px 20px; font-size: 14px; cursor: pointer; border: none; font-weight: 300;">Logout</button>
-            </div>
-        `;
-    }
 
-    // 認証チェック（未ログイン時はログインページへリダイレクト）
-    if (!localStorage.getItem('login_user_id')) {
-        alert('ログインが必要です！ログイン画面に移動します。');
-        window.location.href = 'login.html';
-        return;
-    }
-
-    // プロフィール情報および過去の投稿一覧の取得
-    fetch(`http://localhost:3000/me?userId=${encodeURIComponent(currentUserId)}`)
+    // 無条件でバックエンド（/api/me）に自分の情報を聞きにいく
+    fetch('/api/me')
         .then(response => {
-            if (!response.ok) throw new Error('Failed to fetch user data');
+            if (!response.ok) {
+                // 認証チェック：クッキーがない（未ログイン）なら強制的にログイン画面へ
+                alert('ログインが必要です！ログイン画面に移動します。');
+                window.location.href = 'login.html';
+                throw new Error('未ログイン状態');
+            }
             return response.json();
         })
         .then(data => {
-            // プロフィール情報のマッピング
+            // サーバーから返ってきた本物のユーザーIDをグローバル変数に格納
+            currentUserId = data.user.user_id;
+            const realUserName = data.user.user_name || 'ゲスト';
+
+            // ヘッダーにログアウトボタンとユーザー名を描画
+            if (userStatusDiv) {
+                userStatusDiv.innerHTML = `
+                    <div class="user-logged-in" style="display: flex; align-items: center; gap: 15px;">
+                        <span class="welcome-msg" style="font-weight: 500; color: #333; font-size: 16px;">👤 ${realUserName} さん</span>
+                        <button id="logout-btn" onclick="logout()" style="background-color: #FF553C; color: white; padding: 10px 20px; font-size: 14px; cursor: pointer; border: none; font-weight: 300;">Logout</button>
+                    </div>
+                `;
+            }
+
+            // プロフィール情報のマッピング（URLパスを /api/public/... に変更！）
             document.getElementById('profile-user-id').innerText = data.user.user_id;
             document.getElementById('profile-user-name').innerText = data.user.user_name;
             document.getElementById('profile-email').innerText = data.user.email || '未登録';
-            document.getElementById('profile-avatar').src = `http://localhost:3000/public/uploads/${data.user.profile_image}`;
+            
+            const avatarName = data.user.profile_image || 'default-icon.png';
+            document.getElementById('profile-avatar').src = `/api/public/uploads/${avatarName}`;
 
             // 過去投稿リストの生成処理
             const container = document.getElementById('my-posts-container');
@@ -67,16 +71,24 @@ window.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => {
             console.error('User data fetch error:', error);
-            document.getElementById('my-posts-container').innerHTML = '<p style="color: #ef4444;">データの読み込みに失敗しました。</p>';
+            const container = document.getElementById('my-posts-container');
+            if (container) {
+                container.innerHTML = '<p style="color: #ef4444;">データの読み込みに失敗しました。</p>';
+            }
         });
 });
 
-// ログアウト処理
+// サーバー連動ログアウト処理
 window.logout = () => {
-    document.cookie = 'session_user=; path=/; max-age=0';
-    localStorage.removeItem('login_user_id');
-    alert('ログアウトしました');
-    window.location.href = 'index.html';
+    fetch('/api/logout', { method: 'POST' })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('ログアウトしました');
+                window.location.href = 'index.html';
+            }
+        })
+        .catch(error => console.error('Logout error:', error));
 };
 
 // ユーザーID更新処理
@@ -84,7 +96,7 @@ window.editUserId = () => {
     const newId = prompt('新しいユーザーIDを入力してください：');
     if (!newId || !newId.trim()) return;
 
-    fetch('http://localhost:3000/user/update-id', {
+    fetch('/api/user/update-id', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId: currentUserId, newUserId: newId })
@@ -95,8 +107,6 @@ window.editUserId = () => {
     })
     .then(data => {
         alert(data.message);
-        localStorage.setItem('login_user_id', newId); 
-        currentUserId = newId; 
         window.location.reload();
     })
     .catch(error => {
@@ -110,7 +120,7 @@ window.editUserName = () => {
     const newName = prompt('新しいユーザー名を入力してください：');
     if (!newName || !newName.trim()) return;
 
-    fetch('http://localhost:3000/user/update-name', {
+    fetch('/api/user/update-name', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ userId: currentUserId, newUserName: newName })
@@ -134,10 +144,9 @@ window.editEmail = () => {
     const newEmail = prompt('新しいメールアドレスを入力してください：');
     if (!newEmail || !newEmail.trim()) return;
 
-    fetch('http://localhost:3000/user/update-email', {
+    fetch('/api/user/update-email', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
         body: JSON.stringify({ newEmail: newEmail })
     })
     .then(response => {
@@ -164,7 +173,7 @@ window.uploadAvatar = () => {
     formData.append('userId', currentUserId);   
     formData.append('file', file); 
 
-    fetch('http://localhost:3000/user/update-avatar', {
+    fetch('/api/user/update-avatar', {
         method: 'POST',
         body: formData
     })
