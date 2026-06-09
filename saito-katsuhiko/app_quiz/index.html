@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Activity Console</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Pattern Reading Task</p>
+          <h1>Activity Console</h1>
+          <p class="lead">
+            いくつかの記録を入力して、期間ごとの傾向を比較できます。表示される3つの指標が何を示すかを推測してみてください。
+          </p>
+        </div>
+        <label class="field month-filter">
+          <span>対象期間</span>
+          <input id="month-filter" type="month" />
+        </label>
+      </section>
+
+      <section class="summary-grid">
+        <article>
+          <span>Metric A</span>
+          <strong id="income-total">¥0</strong>
+        </article>
+        <article>
+          <span>Metric B</span>
+          <strong id="expense-total">¥0</strong>
+        </article>
+        <article>
+          <span>Metric C</span>
+          <strong id="balance-total">¥0</strong>
+        </article>
+      </section>
+
+      <section class="content-grid">
+        <form id="entry-form" class="panel entry-form">
+          <h2>レコード入力</h2>
+
+          <label class="field">
+            <span>ラベル</span>
+            <input id="description" name="description" type="text" maxlength="40" required />
+          </label>
+
+          <div class="inline-fields">
+            <label class="field">
+              <span>区分</span>
+              <select id="entry-kind" name="kind">
+                <option value="expense">タイプX</option>
+                <option value="income">タイプY</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>グループ</span>
+              <select id="category" name="category"></select>
+            </label>
+          </div>
+
+          <div class="inline-fields">
+            <label class="field">
+              <span>値</span>
+              <input id="amount" name="amount" type="number" min="0" step="1" required />
+            </label>
+
+            <label class="field">
+              <span>記録日</span>
+              <input id="entry-date" name="date" type="date" required />
+            </label>
+          </div>
+
+          <button type="submit">追加する</button>
+          <p id="form-message" class="message" aria-live="polite"></p>
+        </form>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <h2>ログ一覧</h2>
+            <p id="entry-count">0 items</p>
+          </div>
+          <ul id="entry-list" class="entry-list"></ul>
+        </section>
+      </section>
+    </main>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
