@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // サーバーからのレスポンス判定
             if (data.success) {
                 // セッション情報および認証状態の保存
-                document.cookie = `session_user=${data.user.userId}; path=/; max-age=86400`;
                 localStorage.setItem('login_user_id', data.user.userId);
                 localStorage.setItem('login_user_name', data.user.userName);
                 

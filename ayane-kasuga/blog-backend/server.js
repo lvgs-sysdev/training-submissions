@@ -28,8 +28,8 @@ fastify.register(fastifyStatic, {
     prefix: '/public/', 
 });
 
-// ⭕️ CORSで許可するオリジンを環境変数から取得（定数化）
-// .env から文字列を取得し、カンマ(,)で区切って配列に変換します。万が一取れなかった場合のフォールバック（デフォルト値）も設定。
+// CORSで許可するオリジンを環境変数から取得（定数化）
+// .env から文字列を取得し、カンマ(,)で区切って配列に変換、万が一取れなかった場合のフォールバック（デフォルト値）も設定。
 const ALLOWED_ORIGINS = process.env.FRONTEND_ORIGINS 
     ? process.env.FRONTEND_ORIGINS.split(',') 
     : ['http://127.0.0.1:5500', 'http://localhost:5500'];
@@ -87,7 +87,7 @@ fastify.get('/', async (request, reply) => {
 
     } catch (err) {
         fastify.log.error(err);
-        return reply.status(500).send({ error: '記事一覧の取得に失敗しました' });
+        return reply.status(500).send({ success: false, error: '記事一覧の取得に失敗しました', message: '記事一覧の取得に失敗しました' });
     }
 });
 
@@ -98,7 +98,7 @@ fastify.get('/detail', async (request, reply) => {
     try {
         const { id } = request.query;
         if (!id) {
-            return reply.status(400).send({ error: '記事IDが指定されていません' });
+            return reply.status(400).send({ success: false, error: '記事IDが指定されていません', message: '記事IDが指定されていません' });
         }
 
         const [rows] = await pool.query(
@@ -117,14 +117,14 @@ fastify.get('/detail', async (request, reply) => {
         );
 
         if (rows.length === 0) {
-            return reply.status(404).send({ error: '指定された記事が見つかりませんでした' });
+            return reply.status(404).send({ success: false, error: '指定された記事が見つかりませんでした' , message: '指定された記事が見つかりませんでした'});
         }
 
         return rows[0];
 
     } catch (err) {
         fastify.log.error(err);
-        return reply.status(500).send({ error: 'データベースから詳細データを取得できませんでした' });
+        return reply.status(500).send({ success: false, error: '記事詳細の取得に失敗しました' , message: '記事詳細の取得に失敗しました' });
     } 
 });
 
@@ -134,13 +134,13 @@ fastify.get('/detail', async (request, reply) => {
 fastify.post('/register', async (request, reply) => {
     const { userId, userName, password } = request.body;
     if (!userId || !userName || !password) {
-        return reply.code(400).send({ success: false, message: 'すべての項目を入力してください' });
+        return reply.code(400).send({ success: false, error: 'すべての項目を入力してください', message: 'すべての項目を入力してください' });
     }
 
     try {
         const existingUser = await getUserById(userId);
         if (existingUser) {
-            return reply.code(400).send({ success: false, message: 'このユーザーIDはすでに使用されています。' });
+            return reply.code(400).send({ success: false, error: 'このユーザーIDはすでに使用されています。', message: 'このユーザーIDはすでに使用されています。' });
         }
 
         await pool.query(
@@ -152,7 +152,7 @@ fastify.post('/register', async (request, reply) => {
 
     } catch (error) {
         fastify.log.error(error);
-        return reply.code(500).send({ success: false, message: 'サーバーエラーが発生しました。' });
+        return reply.code(500).send({ success: false, error: 'ユーザー登録に失敗しました。', message: 'ユーザー登録に失敗しました。' });
     }
 });
 
@@ -165,7 +165,7 @@ fastify.post('/login', async (request, reply) => {
     try {
         const user = await getUserById(userId);
         if (!user || user.password !== password) {
-            return { success: false, message: 'ユーザーIDまたはパスワードが違います。' };
+            return { success: false, error: 'ユーザーIDまたはパスワードが違います。', message: 'ユーザーIDまたはパスワードが違います。' };
         }
 
         reply.setCookie('session_user', user.user_id, {
@@ -185,7 +185,7 @@ fastify.post('/login', async (request, reply) => {
 
     } catch (error) {
         fastify.log.error(error);
-        return reply.code(500).send({ success: false, message: 'サーバーでエラーが発生しました。' });
+        return reply.code(500).send({ success: false, error: 'ログインに失敗しました。', message: 'ログインに失敗しました。' });
     }
 });
 
@@ -200,7 +200,7 @@ fastify.get('/me', async (request, reply) => {
         const userInfo = await getUserById(userId);
 
         if (!userInfo) { 
-            return reply.status(404).send({ error: 'ユーザーが見つかりません' });
+            return reply.status(404).send({ success: false, error: 'ユーザーが見つかりません', message: 'ユーザーが見つかりません' });
         }
 
         // 該当ユーザーの過去投稿一覧の取得
@@ -220,7 +220,7 @@ fastify.get('/me', async (request, reply) => {
 
     } catch (err) {
         fastify.log.error(err);
-        return reply.status(500).send({ error: 'プロフィールデータの取得に失敗しました' });
+        return reply.status(500).send({ success: false, error: 'プロフィールデータの取得に失敗しました' , message: 'プロフィールデータの取得に失敗しました'});
     }
 });
 
@@ -231,7 +231,7 @@ fastify.put('/user/update-id', async (request, reply) => {
     try {
         const { userId, newUserId } = request.body;
         if (!userId || !newUserId) {
-            return reply.status(400).send({ error: 'データが不足しています' });
+            return reply.status(400).send({ success: false, error: 'データが不足しています', message: 'データが不足しています' });
         }
 
         await pool.query(
@@ -243,7 +243,7 @@ fastify.put('/user/update-id', async (request, reply) => {
 
     } catch (err) {
         fastify.log.error(err);
-        return reply.status(500).send({ error: 'ユーザーIDの更新に失敗しました' });
+        return reply.status(500).send({ success: false, error: 'ユーザーIDの更新に失敗しました', message: 'ユーザーIDの更新に失敗しました'});
     }
 });
 
@@ -254,7 +254,7 @@ fastify.put('/user/update-name', async (request, reply) => {
     try {
         const { userId, newUserName } = request.body;
         if (!userId || !newUserName) {
-            return reply.status(400).send({ error: 'データが不足しています' });
+            return reply.status(400).send({ success: false, error: 'データが不足しています', message: 'データが不足しています' });
         }
 
         await pool.query(
@@ -266,7 +266,7 @@ fastify.put('/user/update-name', async (request, reply) => {
 
     } catch (err) {
         fastify.log.error(err);
-        return reply.status(500).send({ error: 'ユーザー名の更新に失敗しました' });
+        return reply.status(500).send({ success: false, error: 'ユーザー名の更新に失敗しました', message: 'ユーザー名の更新に失敗しました' });
     }
 });
 
@@ -279,10 +279,10 @@ fastify.put('/user/update-email', async (request, reply) => {
         const loginUserId = request.cookies.session_user;
 
         if (!loginUserId) {
-            return reply.status(401).send({ error: 'ログインが必要です' });
+            return reply.status(401).send({ success: false, error: 'ログインが必要です。', message: 'ログインが必要です。' });
         }
         if (!newEmail) {
-            return reply.status(400).send({ error: 'データが不足しています' });
+            return reply.status(400).send({ success: false, error: 'データが不足しています', message: 'データが不足しています' });
         }
 
         await pool.query(
@@ -294,7 +294,7 @@ fastify.put('/user/update-email', async (request, reply) => {
 
     } catch (err) {
         fastify.log.error(err);
-        return reply.status(500).send({ error: 'メールアドレスの更新に失敗しました' });
+        return reply.status(500).send({ success: false, error: 'メールアドレスの更新に失敗しました', message: 'メールアドレスの更新に失敗しました' });
     }
 });
 
@@ -305,7 +305,7 @@ fastify.post('/user/update-avatar', async (request, reply) => {
     try {
         const data = await request.file();
         if (!data) {
-            return reply.status(400).send({ error: 'ファイルがありません' });
+            return reply.status(400).send({ success: false, error: 'ファイルがありません', message: 'ファイルがありません'});
         }
 
         const userId = data.fields.userId.value;
@@ -330,7 +330,7 @@ fastify.post('/user/update-avatar', async (request, reply) => {
 
     } catch (err) {
         fastify.log.error(err);
-        return reply.status(500).send({ error: '画像のアップロードに失敗しました' });
+        return reply.status(500).send({ success: false, error: '画像のアップロードに失敗しました', message: '画像のアップロードに失敗しました' });
     }
 });
 
@@ -344,11 +344,11 @@ fastify.put('/article/update', async (request, reply) => {
        // 1. 【認証】Cookieからログイン中のユーザーID（文字列）を取得する
         const loginUserId = request.cookies.session_user;
         if (!loginUserId) {
-            return reply.status(401).send({ success: false, message: 'ログインが必要です。' });
+            return reply.status(401).send({ success: false, error: 'ログインが必要です。', message: 'ログインが必要です。' });
         }
 
         if (!id || !article_title || !content) {
-            return reply.status(400).send({ success: false, message: '必要なデータが不足しています' });
+            return reply.status(400).send({ success: false,  error:'必要なデータが不足しています', message: '必要なデータが不足しています' });
         }
 
         // 2. 【認可】更新対象の記事の「作成者（user_id）」をデータベースから取得する
@@ -358,7 +358,7 @@ fastify.put('/article/update', async (request, reply) => {
         );
 
         if (articles.length === 0) {
-            return reply.status(404).send({ success: false, message: '該当する記事が見つかりませんでした。' });
+            return reply.status(404).send({ success: false, error: '該当する記事が見つかりませんでした。',  message: '該当する記事が見つかりませんでした。' });
         }
 
         const articleAuthorId = articles[0].user_id; 
@@ -366,7 +366,7 @@ fastify.put('/article/update', async (request, reply) => {
         // 3. 【認可】ログインしている人と、記事の作者が「一致するか」をチェックする
         if (loginUserId !== articleAuthorId) {
             // 一致しなければ「権限がありません（403 Forbidden）」と拒否
-            return reply.status(403).send({ success: false, message: '他人の記事を編集する権限がありません。' });
+            return reply.status(403).send({ success: false, error: '他人の記事を編集する権限がありません。',  message: '他人の記事を編集する権限がありません。' });
         }
 
         // 4. すべてのチェックをクリアしたら、初めてUPDATEを実行する
@@ -379,7 +379,7 @@ fastify.put('/article/update', async (request, reply) => {
 
     } catch (err) {
         fastify.log.error(err);
-        return reply.status(500).send({ success: false, message: 'サーバー側で更新エラーが発生しました。' });
+        return reply.status(500).send({ success: false, error: '記事の更新に失敗しました。', message: '記事の更新に失敗しました。' });
     }
 });
 
