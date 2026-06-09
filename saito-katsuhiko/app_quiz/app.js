@@ -1,6 +1,6 @@
 const categoriesByKind = {
-  expense: ["Cluster-X1", "Cluster-X2", "Cluster-X3", "Cluster-X4", "Cluster-X5"],
-  income: ["Cluster-Y1", "Cluster-Y2", "Cluster-Y3", "Cluster-Y4", "Cluster-Y5"],
+  expense: ["Food", "Transport", "Housing", "Utilities", "Leisure"],
+  income: ["Salary", "Bonus", "Freelance", "Refund", "Other"],
 };
 
 class Entry {
@@ -63,7 +63,7 @@ const defaultEntries = [
   new Entry({
     id: crypto.randomUUID(),
     kind: "income",
-    category: "Cluster-Y1",
+    category: "Salary",
     description: "Seed-Alpha",
     amount: 280000,
     date: `${defaultMonth}-01`,
@@ -71,7 +71,7 @@ const defaultEntries = [
   new Entry({
     id: crypto.randomUUID(),
     kind: "expense",
-    category: "Cluster-X1",
+    category: "Food",
     description: "Seed-Beta",
     amount: 12800,
     date: `${defaultMonth}-03`,
@@ -79,7 +79,7 @@ const defaultEntries = [
   new Entry({
     id: crypto.randomUUID(),
     kind: "expense",
-    category: "Cluster-X2",
+    category: "Transport",
     description: "Seed-Gamma",
     amount: 9200,
     date: `${defaultMonth}-05`,
