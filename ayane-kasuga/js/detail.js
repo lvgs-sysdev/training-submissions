@@ -91,6 +91,10 @@ function loadArticleDetails(currentUserId) {
 
             // 作成者本人である場合のみ編集ボタンを表示
             const articleAuthorId = article.author_id;
+
+            // 💡 編集ボタンを出す処理の直前に、このログを仕込む！
+            console.log("【認可チェック】ログイン中:", currentUserId, " 記事の作者:", articleAuthorId);
+
             if (currentUserId && currentUserId === articleAuthorId) {
                 const editBtnContainer = document.getElementById('edit-button-container');
                 if (editBtnContainer) editBtnContainer.style.display = 'block'; 

@@ -27,5 +27,25 @@ services:
     env_file:
       - ./blog-backend/.env #  .envファイルから環境変数を自動読み込み
     environment:
-      # Dockerの中からMac本体で動いているMySQLに接続するための特別な設定
-      - DB_HOST=host.docker.internal
+      - DB_HOST=db
+    depends_on:
+      - db
+
+  #  ③ データベースサーバー（MySQL）を追加
+  db:
+    image: mysql:8.0
+    container_name: ayane-blog-db
+    restart: always
+    ports:
+      - "3306:3306"
+    env_file:
+      - ./blog-backend/.env
+    environment:
+      MYSQL_DATABASE: ${DB_NAME} #.envからデータベース名を読み込む
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD} #.envからパスワードを読み込む
+    volumes:
+      - db_data:/var/lib/mysql
+
+# データの永続化設定
+volumes:
+  db_data:

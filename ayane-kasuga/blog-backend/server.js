@@ -1,5 +1,8 @@
 require('dotenv').config();
 
+const bcrypt = require('bcrypt');
+const SALT_ROUNDS = 10;
+
 const path = require('path');
 const fs = require('fs');
 const fastifyMultipart = require('@fastify/multipart');
@@ -144,9 +147,13 @@ fastify.post('/register', async (request, reply) => {
             return reply.code(400).send({ success: false, error: 'このユーザーIDはすでに使用されています。', message: 'このユーザーIDはすでに使用されています。' });
         }
 
+        // パスワードのハッシュ化
+        const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
+
+        // ハッシュ化した文字列（hashedPassword）を保存
         await pool.query(
             'INSERT INTO users (user_id, user_name, password) VALUES (?, ?, ?)',
-            [userId, userName, password]
+            [userId, userName, hashedPassword]
         );
 
         return { success: true, message: 'ユーザー登録が完了しました！' };
@@ -165,7 +172,11 @@ fastify.post('/login', async (request, reply) => {
 
     try {
         const user = await getUserById(userId);
-        if (!user || user.password !== password) {
+
+        // 入力されたパスワードと、DBにあるハッシュ化されたパスワードを比較
+        const isPasswordMatch = user ? await bcrypt.compare(password, user.password) : false;
+
+        if (!user || !isPasswordMatch) {
             return { success: false, error: 'ユーザーIDまたはパスワードが違います。', message: 'ユーザーIDまたはパスワードが違います。' };
         }
 
