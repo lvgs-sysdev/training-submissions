@@ -183,6 +183,8 @@ fastify.post('/login', async (request, reply) => {
         reply.setCookie('session_user', user.user_id, {
             path: '/',
             httpOnly: true, //  JavaScriptからCookieを盗まれないようにするセキュリティ設定
+            sameSite: 'lax',
+            secure: process.env.NODE_ENV === 'production',
             maxAge: 60 * 60 * 24 // 1日間有効
         });
 
@@ -231,7 +233,7 @@ fastify.get('/me', async (request, reply) => {
         );
 
         return {
-            user: userInfo,
+            user: safeUserInfo,　// 漏洩しないように安全なデータだけを画面に返す
             articles: articleRows
         };
 
@@ -246,17 +248,30 @@ fastify.get('/me', async (request, reply) => {
  */
 fastify.put('/user/update-id', async (request, reply) => {
     try {
-        const { userId, newUserId } = request.body;
-        if (!userId || !newUserId) {
+        const loginUserId = request.cookies.session_user;
+        const { newUserId } = request.body;
+        if (!loginUserId) {
+            return reply.status(401).send({ success: false, error: 'ログインが必要です。', message: 'ログインが必要です。' });
+        }
+        if (!newUserId || !newUserId.trim()) {
             return reply.status(400).send({ success: false, error: 'データが不足しています', message: 'データが不足しています' });
         }
 
-        await pool.query(
-            'UPDATE users SET user_id = ? WHERE user_id = ?',
-            [newUserId, userId]
-        );
-
-        return { success: true, message: 'ユーザーIDを更新しました！' };
+        const normalizedNewUserId = newUserId.trim();
+        const existingUser = await getUserById(normalizedNewUserId);
+        if (existingUser) {
+            return reply.status(400).send({ success: false, error: 'このユーザーIDはすでに使用されています。', message: 'このユーザーIDはすでに使用されています。' });
+        }
+        await pool.query('UPDATE users SET user_id = ? WHERE user_id = ?', [normalizedNewUserId, loginUserId]);
+        reply.setCookie('session_user', normalizedNewUserId, {
+            path: '/',
+            httpOnly: true,
+            sameSite: 'lax',
+            secure: process.env.NODE_ENV === 'production',
+            maxAge: 60 * 60 * 24
+        });
+        return { success: true, message: 'ユーザーIDを更新しました！' 
+        };
 
     } catch (err) {
         fastify.log.error(err);
@@ -325,8 +340,12 @@ fastify.post('/user/update-avatar', async (request, reply) => {
             return reply.status(400).send({ success: false, error: 'ファイルがありません', message: 'ファイルがありません'});
         }
 
-        const userId = data.fields.userId.value;
-        const filename = `${Date.now()}_${data.filename}`;
+        const userId = request.cookies.session_user;
+        if (!userId) {
+            return reply.status(401).send({ success: false, error: 'ログインが必要です。', message: 'ログインが必要です。' });
+        }
+        const safeOriginalName = path.basename(data.filename || 'upload');
+        const filename = `${Date.now()}_${safeOriginalName}`;
         const uploadPath = path.join(__dirname, 'public', 'uploads', filename);
 
         // 物理ファイルを指定ディレクトリへストリーム保存

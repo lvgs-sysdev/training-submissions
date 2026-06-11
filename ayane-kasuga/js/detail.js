@@ -67,21 +67,26 @@ function loadArticleDetails(currentUserId) {
             // 記事メイン画像と本文の反映
             const articleContentDiv = document.querySelector('.article-content');
             if (articleContentDiv) {
-                const mainImgHtml = article.article_image 
-                    ? `<div class="article-main-img-wrapper" style="margin-bottom: 20px;">
-                            <figure class="article-main-img">
-                                <img src="/api/public/uploads/${article.article_image}" alt="article-img">
-                            </figure>
-                            <p class="article-main-img-description" style="margin-top: 8px;">Featured Image</p>
-                        </div>`
-                    : '';
+                articleContentDiv.innerHTML = '';
 
-                articleContentDiv.innerHTML = `
-                    ${mainImgHtml}
-                    <p class="article-text" style="white-space: pre-wrap; margin-bottom: 30px;">
-                        ${article.content}
-                    </p>
-                `;
+            if (article.article_image) {
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'article-main-img-wrapper';
+                    wrapper.style.marginBottom = '20px';
+                    wrapper.innerHTML = `
+                        <figure class="article-main-img">
+                            <img src="/api/public/uploads/${article.article_image}" alt="article-img">
+                        </figure>
+                        <p class="article-main-img-description" style="margin-top: 8px;">Featured Image</p>
+                    `;
+                    articleContentDiv.appendChild(wrapper);
+                }
+                const p = document.createElement('p');
+                p.className = 'article-text';
+                p.style.whiteSpace = 'pre-wrap';
+                p.style.marginBottom = '30px';
+                p.textContent = article.content ?? '';
+                articleContentDiv.appendChild(p);
             }
             
             // 投稿日時の反映
